@@ -1,0 +1,127 @@
+﻿@model UI.Controllers.CreateProductionLineViewModel
+
+@{
+    ViewBag.Title = "Create Production Line";
+}
+
+<h1 class="ui header">
+    Set up a new Production Line
+</h1>
+<hr />
+
+<form id="createProductionLineForm" asp-controller="ProductionLine" asp-action="Create" method="post" class="ui form">
+
+    <div class="field">
+        @Html.LabelFor(model => model.Number)
+        @Html.EditorFor(model => model.Number)
+    </div>
+
+    @*<div class="field">
+        @Html.LabelFor(model => model.Date)
+        <div class="ui calendar" id="watchCalendar">
+            <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text" id="Date" name="Date" value="@Model.Date.ToString("MMMM dd, yyyy")" />
+            </div>
+        </div>
+    </div>
+
+    <div class="inline field">
+        @Html.LabelFor(model => model.Rating)
+        <div class="ui yellow segment">
+            <div class="ui yellow ribbon label">
+            </div>
+            <div id="rateYo"></div>
+        </div>
+    </div>
+    <div class="field">
+        @Html.LabelFor(model => model.Comment)
+        @Html.TextAreaFor(model => model.Comment)
+    </div>*@
+
+    <div id="Submit" class="ui green submit button">Watch!</div>
+    @Html.ActionLink("Back", "Index", null, null, new { @class = "ui button" })
+
+    @*@section Scripts {
+            <script type="text/javascript">
+                $(function () {
+                    $("#rateYo")
+                        .on("rateyo.init", function (e, data) {
+                            $(this).prev().text(data.rating);
+                        })
+                        .on("rateyo.change", function (e, data) {
+                            $(this).prev().text(data.rating);
+                        })
+                        .rateYo({
+                            starWidth: "25px",
+                            numStars: 10,
+                            maxValue: 10,
+                            normalFill: '#fff9c4',
+                            ratedFill: '#ffd54f',
+                        });
+                });
+                $('#watchCalendar')
+                    .calendar({
+                        today: true
+                    })
+                    ;
+                $.fn.form.settings.rules.date = function (value, maxDate) {
+                    var valueMoment = moment(value, "MMMM DD, YYYY");
+                    var maxMoment = moment(maxDate, "MMMM DD, YYYY");
+                    return valueMoment.isValid() && valueMoment.isSameOrBefore(maxMoment);
+                };
+                $('#WatchForm')
+                    .form({
+                        on: 'blur',
+                        inline: true,
+                        fields: {
+                            Number: {
+                                rules: [
+                                    {
+                                        type: 'integer[1..9999]',
+                                    }
+                                ]
+                            },
+                            Date: {
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: '{name} is required'
+                                    },
+                                    {
+                                        type: 'date[' + moment().format("MMMM DD, YYYY") + ']',
+                                        prompt: "{name} can't be in the future."
+                                    }
+                                ]
+                            }
+                        },
+                        onSuccess: function (e) {
+                            e.preventDefault();
+                            var token = $('input[name=__RequestVerificationToken]').val();
+                            $.ajax({
+                                url: "/movies/watch",
+                                method: "POST",
+                                dataType: "json",
+                                data: {
+                                    __RequestVerificationToken: token,
+                                    MovieId: @Model.MovieId,
+                                    Number: $('#Number').val(),
+                                    Date: $('#Date').val(),
+                                    Rating: $("#rateYo").rateYo("rating"),
+                                    Comment: $('#Comment').val(),
+                                },
+                                success: function (result) {
+                                    if (result.redirectToUrl != null) {
+                                        window.location = result.redirectToUrl;
+                                    }
+                                },
+                                error: function () {
+                                    alert("Ajax call failed");
+                                }
+                            })
+                        }
+                    })
+                    ;
+            </script>
+        }*@
+</form>
