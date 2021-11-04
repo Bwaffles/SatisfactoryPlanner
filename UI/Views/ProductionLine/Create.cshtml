@@ -7,37 +7,66 @@
 <h1 class="ui header">
     Set up a new Production Line
 </h1>
-<hr />
+
+<div id="newPod"></div>
+
+@*<div class="field">
+        <div class="ui fluid scrolling floating labeled icon dropdown button">
+            <i class="add icon"></i>
+            <span class="text">Pick item</span>
+            <div class="inverted menu">
+                <div class="ui icon search input">
+                    <i class="search icon"></i>
+                    <input type="text" placeholder="Search items...">
+                </div>
+                <div class="divider"></div>
+                @foreach (var category in Model.Items.GroupBy(i => i.Category))
+                {
+                    <div class="header">
+                        @category.Key
+                    </div>
+                    @foreach (var item in category)
+                    {
+                        <div class="item">
+                            <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
+                            @item.Name
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>*@
+
 
 <form id="createProductionLineForm" asp-controller="ProductionLine" asp-action="Create" method="post" class="ui form">
 
-    <div class="field">
-        @Html.LabelFor(model => model.Number)
-        @Html.EditorFor(model => model.Number)
-    </div>
+    @*<div class="field">
+            @Html.LabelFor(model => model.Number)
+            @Html.EditorFor(model => model.Number)
+        </div>*@
 
     @*<div class="field">
-        @Html.LabelFor(model => model.Date)
-        <div class="ui calendar" id="watchCalendar">
-            <div class="ui input left icon">
-                <i class="calendar icon"></i>
-                <input type="text" id="Date" name="Date" value="@Model.Date.ToString("MMMM dd, yyyy")" />
+            @Html.LabelFor(model => model.Date)
+            <div class="ui calendar" id="watchCalendar">
+                <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" id="Date" name="Date" value="@Model.Date.ToString("MMMM dd, yyyy")" />
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="inline field">
-        @Html.LabelFor(model => model.Rating)
-        <div class="ui yellow segment">
-            <div class="ui yellow ribbon label">
+        <div class="inline field">
+            @Html.LabelFor(model => model.Rating)
+            <div class="ui yellow segment">
+                <div class="ui yellow ribbon label">
+                </div>
+                <div id="rateYo"></div>
             </div>
-            <div id="rateYo"></div>
         </div>
-    </div>
-    <div class="field">
-        @Html.LabelFor(model => model.Comment)
-        @Html.TextAreaFor(model => model.Comment)
-    </div>*@
+        <div class="field">
+            @Html.LabelFor(model => model.Comment)
+            @Html.TextAreaFor(model => model.Comment)
+        </div>*@
 
     <div id="Submit" class="ui green submit button">Watch!</div>
     @Html.ActionLink("Back", "Index", null, null, new { @class = "ui button" })
@@ -125,3 +154,20 @@
             </script>
         }*@
 </form>
+
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.0/umd/react.development.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.0/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+@section Scripts {
+    <script src="@Url.Content("~/js/NewPod.jsx")"></script>
+<script type="text/javascript">
+    $('.ui.dropdown')
+        .dropdown({
+            fullTextSearch: true,
+            match: 'text',
+            onChange: function (value, text, $selectedItem) {
+                alert(value);
+            }
+        });
+</script>
+}

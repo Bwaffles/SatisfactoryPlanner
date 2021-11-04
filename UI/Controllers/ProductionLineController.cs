@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using Application.Pods.Queries.Create;
+using Microsoft.AspNetCore.Mvc;
+using Services.SFGame;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace UI.Controllers
 {
@@ -21,6 +20,26 @@ namespace UI.Controllers
 
             };
             return View(model);
+        }
+
+        public IActionResult Items() // TODO should be in like an ItemController
+        {
+            var query = new CreatePodQuery();
+            var data = query.Execute();
+            return Json(data.Items);
+        }
+
+        [HttpGet]
+        public IActionResult Recipes(string itemCode)
+        {
+            var sfGameService = new SFGameService();
+            var gameData = sfGameService.GetGameData();
+            return Json(
+                gameData
+                .Recipes
+                .Where(recipe => recipe.Product.Any(product => product.ClassName == itemCode))
+                .Select(recipe => new { Id = recipe.FullName, Name = recipe.DisplayName })
+                );
         }
 
         [HttpPost]

@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ProductionLines\SetupNewLine\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Services\Services.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
