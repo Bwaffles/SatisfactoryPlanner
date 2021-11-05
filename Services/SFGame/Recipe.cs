@@ -4,7 +4,7 @@ namespace Services.SFGame
 {
     public class Recipe
     {
-        public string Name { get; set; }
+        public string ClassName { get; set; }
 
         /// <summary>
         /// The full name of the recipe.
@@ -14,6 +14,8 @@ namespace Services.SFGame
         /// </example>
         public string FullName { get; set; }
         public string DisplayName { get; internal set; }
-        public List<Product> Product { get; internal set; }
+        public List<Product> Products { get; internal set; }
+        public List<Product> Ingredients { get; internal set; }
+        public decimal ManufacturingDuration { get; internal set; }
     }
 }

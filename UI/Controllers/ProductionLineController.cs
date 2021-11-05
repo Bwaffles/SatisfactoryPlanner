@@ -37,9 +37,27 @@ namespace UI.Controllers
             return Json(
                 gameData
                 .Recipes
-                .Where(recipe => recipe.Product.Any(product => product.ClassName == itemCode))
-                .Select(recipe => new { Id = recipe.FullName, Name = recipe.DisplayName })
-                );
+                .Where(recipe => recipe.Products.Any(product => product.Item?.ClassName == itemCode))
+                .Select(recipe => new
+                {
+                    Id = recipe.FullName,
+                    Name = recipe.DisplayName,
+                    Ingredients = recipe.Ingredients.Select(ingredient => new
+                    {
+                        Id = ingredient.Item.ClassName,
+                        Name = ingredient.Item.DisplayName,
+                        Amount = ingredient.Amount,
+                        ItemsPerMinute = (60 / recipe.ManufacturingDuration) * ingredient.Amount
+                    }),
+                    Products = recipe.Products.Select(product => new
+                    {
+                        Id = product.Item.ClassName,
+                        Name = product.Item.DisplayName,
+                        Amount = product.Amount,
+                        ItemsPerMinute = (60 / recipe.ManufacturingDuration) * product.Amount
+                    })
+                })
+            );
         }
 
         [HttpPost]

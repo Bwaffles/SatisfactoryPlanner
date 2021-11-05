@@ -227,13 +227,26 @@ namespace Services.SFGame.Models.DocExtraction
         public string mStackHeight { get; set; }
         public string mBuildMenuPriority { get; set; }
 
+        /// <summary>
+        /// The items that are used to produce this recipe.
+        /// </summary>
         [JsonProperty("mIngredients")]
         public string Ingredients { get; set; }
 
+        /// <summary>
+        /// The items that are produced by this recipe.
+        /// </summary>
         [JsonProperty("mProduct")]
         public string Product { get; set; }
+
         public string mManufacturingMenuPriority { get; set; }
-        public string mManufactoringDuration { get; set; }
+        
+
+        /// <summary>
+        /// The seconds it requires to produce the item.
+        /// </summary>
+        [JsonProperty("mManufactoringDuration")]
+        public decimal ManufactoringDuration { get; set; }
         public string mManualManufacturingMultiplier { get; set; }
         public string mProducedIn { get; set; }
         public string mVariablePowerConsumptionConstant { get; set; }
