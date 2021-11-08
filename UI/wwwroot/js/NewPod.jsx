@@ -68,10 +68,12 @@ class PodItemCreator extends React.Component {
         super(props);
         this.state = {
             items: [],
-            selectedItem: null
+            selectedItem: null,
+            selectedRecipe: null
         };
 
         this.selectItem = this.selectItem.bind(this);
+        this.selectRecipe = this.selectRecipe.bind(this);
     }
 
     loadItemsFromServer() {
@@ -87,6 +89,13 @@ class PodItemCreator extends React.Component {
     selectItem(e) {
         this.setState({
             selectedItem: e.target.value
+        });
+    }
+
+    selectRecipe(recipe) {
+        console.debug(recipe);
+        this.setState({
+            selectedRecipe: recipe
         });
     }
 
@@ -107,9 +116,8 @@ class PodItemCreator extends React.Component {
                 </select>
                 <br />
                 {this.state.selectedItem != null &&
-                    <RecipeList item={this.state.selectedItem} />
+                    <RecipeList item={this.state.selectedItem} selectedRecipe={this.state.selectedRecipe} onSelectRecipe={this.selectRecipe} />
                 }
-
             </div>
         );
     }
@@ -121,6 +129,12 @@ class RecipeList extends React.Component {
         this.state = {
             recipes: []
         };
+
+        this.selectRecipe = this.selectRecipe.bind(this);
+    }
+
+    selectRecipe(recipe) {
+        this.props.onSelectRecipe(recipe);
     }
 
     loadRecipesFromServer() {
@@ -134,7 +148,6 @@ class RecipeList extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
         if (this.props.item !== prevProps.item) {
             this.loadRecipesFromServer();
         }
@@ -150,45 +163,42 @@ class RecipeList extends React.Component {
                 <h4 className="ui horizontal divider header">
                     Recipes
                 </h4>
-                <div className="ui one centered cards">
-                    {this.state.recipes.map((recipe) =>
-                        <a className="ui card" key={recipe.id}>
-                            <div className="content">
-                                <div className="header" style={{ marginBottom: 0.5 + 'rem' }}>{recipe.name}</div>
-                                <div className="ui horizontal equal width segments">
-                                    <div className="ui red segment left aligned">
-                                        <h3>
-                                            <i className="right arrow red icon"></i>
-                                            <span className="ui text black" style={{ marginLeft: 0.5 + 'rem' }}>
-                                                Inputs
+                {this.state.recipes.map((recipe) =>
+                    <div className={"ui segment " + (this.props.selectedRecipe == recipe ? 'secondary' : '')} style={{ cursor: "pointer" }}
+                        key={recipe.id} onClick={(e) => this.selectRecipe(recipe)}>
+                        <div className="header" style={{ marginBottom: 0.5 + 'rem' }}>{recipe.name}</div>
+                        <div className="ui horizontal equal width segments">
+                            <div className="ui red segment left aligned">
+                                <h3>
+                                    <i className="right arrow red icon"></i>
+                                    <span className="ui text black" style={{ marginLeft: 0.5 + 'rem' }}>
+                                        Inputs
                                             </span>
-                                        </h3>
-                                        {recipe.ingredients.map((ingredient) =>
-                                            <p key={ingredient.id}>
-                                                <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{ingredient.name}</span>
-                                                <span className="ui grey text">{ingredient.itemsPerMinute}/min</span>
-                                            </p>
-                                        )}
-                                    </div>
-                                    <div className="ui green segment right aligned">
-                                        <h3>
-                                            <span className="ui text black" style={{ marginRight: 0.5 + 'rem' }}>
-                                                Outputs
-                                            </span>
-                                            <i className="right arrow green icon"></i>
-                                        </h3>
-                                        {recipe.products.map((product) =>
-                                            <p key={product.id}>
-                                                <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{product.name}</span>
-                                                <span className="ui grey text">{product.itemsPerMinute}/min</span>
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
+                                </h3>
+                                {recipe.ingredients.map((ingredient) =>
+                                    <p key={ingredient.id}>
+                                        <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{ingredient.name}</span>
+                                        <span className="ui grey text">{ingredient.itemsPerMinute}/min</span>
+                                    </p>
+                                )}
                             </div>
-                        </a>
-                    )}
-                </div>
+                            <div className="ui green segment right aligned">
+                                <h3>
+                                    <span className="ui text black" style={{ marginRight: 0.5 + 'rem' }}>
+                                        Outputs
+                                            </span>
+                                    <i className="right arrow green icon"></i>
+                                </h3>
+                                {recipe.products.map((product) =>
+                                    <p key={product.id}>
+                                        <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{product.name}</span>
+                                        <span className="ui grey text">{product.itemsPerMinute}/min</span>
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
