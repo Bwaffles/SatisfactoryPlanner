@@ -88,12 +88,13 @@ class PodItemCreator extends React.Component {
 
     selectItem(e) {
         this.setState({
-            selectedItem: e.target.value
+            selectedItem: e.target.value,
+            selectedRecipe: null
         });
+
     }
 
     selectRecipe(recipe) {
-        console.debug(recipe);
         this.setState({
             selectedRecipe: recipe
         });
@@ -106,17 +107,19 @@ class PodItemCreator extends React.Component {
     render() {
         return (
             <div className="ui center aligned blue very padded text raised container segment">
-                <div className="ui header">
-                    Pick item and recipe
-                </div>
+                <h2 className="ui horizontal divider header">
+                    Item
+                </h2>
                 <select className="ui fluid dropdown" onChange={(e) => this.selectItem(e)}>
                     {this.state.items.map((item) =>
                         <option key={item.code} value={item.code}>{item.name}</option>
                     )}
                 </select>
-                <br />
                 {this.state.selectedItem != null &&
                     <RecipeList item={this.state.selectedItem} selectedRecipe={this.state.selectedRecipe} onSelectRecipe={this.selectRecipe} />
+                }
+                {this.state.selectedRecipe != null &&
+                    <Calculator recipe={this.state.selectedRecipe} />
                 }
             </div>
         );
@@ -159,21 +162,21 @@ class RecipeList extends React.Component {
 
     render() {
         return (
-            <div className="ui container recipe-list">
-                <h4 className="ui horizontal divider header">
-                    Recipes
-                </h4>
+            <div className="ui container recipe-list" style={{ marginTop: 3 + 'rem' }}>
+                <h2 className="ui horizontal divider header">
+                    Recipe
+                </h2>
                 {this.state.recipes.map((recipe) =>
                     <div className={"ui segment " + (this.props.selectedRecipe == recipe ? 'secondary' : '')} style={{ cursor: "pointer" }}
                         key={recipe.id} onClick={(e) => this.selectRecipe(recipe)}>
-                        <div className="header" style={{ marginBottom: 0.5 + 'rem' }}>{recipe.name}</div>
+                        <h3>{recipe.name}</h3>
                         <div className="ui horizontal equal width segments">
-                            <div className="ui red segment left aligned">
+                            <div className={"ui red segment left aligned " + (this.props.selectedRecipe == recipe ? 'secondary' : '')}>
                                 <h3>
                                     <i className="right arrow red icon"></i>
                                     <span className="ui text black" style={{ marginLeft: 0.5 + 'rem' }}>
                                         Inputs
-                                            </span>
+                                    </span>
                                 </h3>
                                 {recipe.ingredients.map((ingredient) =>
                                     <p key={ingredient.id}>
@@ -182,11 +185,11 @@ class RecipeList extends React.Component {
                                     </p>
                                 )}
                             </div>
-                            <div className="ui green segment right aligned">
+                            <div className={"ui green segment left aligned " + (this.props.selectedRecipe == recipe ? 'secondary' : '')}>
                                 <h3>
                                     <span className="ui text black" style={{ marginRight: 0.5 + 'rem' }}>
                                         Outputs
-                                            </span>
+                                    </span>
                                     <i className="right arrow green icon"></i>
                                 </h3>
                                 {recipe.products.map((product) =>
@@ -199,6 +202,24 @@ class RecipeList extends React.Component {
                         </div>
                     </div>
                 )}
+            </div>
+        );
+    }
+}
+
+class Calculator extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+
+            <div>
+                <h2 className="ui horizontal divider header" style={{ marginTop: 3 + 'rem' }}>
+                    Calculator
+                </h2>
+                <p>Selected recipe: {this.props.recipe.id}</p>
             </div>
         );
     }
