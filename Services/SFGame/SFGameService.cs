@@ -19,11 +19,11 @@ namespace Services.SFGame
         public SFGameData GetGameData()
         {
             var docFile = File.ReadAllText("E:/Projects/SatisfactoryPlanner/SatisfactoryPlanner/Services/SFGame/Docs.json");
-            var t = JsonConvert.DeserializeObject<List<Root>>(docFile);
+            var rootData = JsonConvert.DeserializeObject<List<Root>>(docFile);
 
             var gameData = new SFGameData
             {
-                Items = t.First(_ => _.NativeClass == ClassTypeMap[ClassType.Item]).Classes.Select(_ => new Item
+                Items = rootData.First(_ => _.NativeClass == ClassTypeMap[ClassType.Item]).Classes.Select(_ => new Item
                 {
                     AbbreviatedDisplayName = _.AbbreviatedDisplayName,
                     BigIcon = _.BigIcon,
@@ -42,7 +42,7 @@ namespace Services.SFGame
                     SmallIcon = _.SmallIcon,
                     StackSize = _.StackSize.Value,
                 }),
-                Schematics = t.First(_ => _.NativeClass == ClassTypeMap[ClassType.Schematic]).Classes.Select(_ => new Schematic
+                Schematics = rootData.First(_ => _.NativeClass == ClassTypeMap[ClassType.Schematic]).Classes.Select(_ => new Schematic
                 {
                     ClassName = _.ClassName,
                     FullName = _.FullName,
@@ -61,9 +61,10 @@ namespace Services.SFGame
                     //SchematicDependencies = _.SchematicDependencies
                     //Unlocks = _.Unlocks,
                     IncludeInBuilds = _.IncludeInBuilds
-                }),
-                Recipes = ParseRecipes(t)
+                })
             };
+
+            gameData.Recipes = ParseRecipes(rootData, gameData.Items).ToList();
 
             var ui = gameData.Items
                 .Select(_ => new { Name = _.ClassName, Category = _.Category })
@@ -72,7 +73,7 @@ namespace Services.SFGame
             return gameData;
         }
 
-        private IEnumerable<Recipe> ParseRecipes(List<Root> t)
+        private IEnumerable<Recipe> ParseRecipes(List<Root> data, IEnumerable<Item> existingItems)
         {
             /*
             "ClassName": "Recipe_CircuitBoard_C",
@@ -96,50 +97,51 @@ namespace Services.SFGame
             "mVariablePowerConsumptionConstant": "0.000000",
             "mVariablePowerConsumptionFactor": "1.000000"
              */
-
-            //"((ItemClass=BlueprintGeneratedClass'\"/Game/FactoryGame/Resource/Parts/Plastic/Desc_Plastic.Desc_Plastic_C\"',Amount=2),(ItemClass=BlueprintGeneratedClass'\"/Game/FactoryGame/Resource/Parts/HeavyOilResidue/Desc_HeavyOilResidue.Desc_HeavyOilResidue_C\"',Amount=1000))",
-            //"(
-            //(ItemClass=BlueprintGeneratedClass'\"/Game/FactoryGame/Resource/Parts/Plastic/Desc_Plastic.Desc_Plastic_C\"',Amount=2),(ItemClass=BlueprintGeneratedClass'\"/Game/FactoryGame/Resource/Parts/HeavyOilResidue/Desc_HeavyOilResidue.Desc_HeavyOilResidue_C\"',Amount=1000))",
-            return t.First(_ => _.NativeClass == ClassTypeMap[ClassType.Recipe]).Classes.Select(_ => new Recipe
+            foreach (var recipeRawData in data.First(_ => _.NativeClass == ClassTypeMap[ClassType.Recipe]).Classes)
             {
-                Name = _.ClassName,
-                FullName = _.FullName,
-                DisplayName = _.DisplayName,
-                //Ingredients = ParseIngredients(_.Ingredients),
-                Product = ParseRecipeProduct(_.Product)
-            });
+                var products = ParseItems(recipeRawData.Product, existingItems);
+                if (!products.Any())
+                    continue;
+
+                var recipe = new Recipe
+                {
+                    ClassName = recipeRawData.ClassName,
+                    FullName = recipeRawData.FullName,
+                    DisplayName = recipeRawData.DisplayName,
+                    Ingredients = ParseItems(recipeRawData.Ingredients, existingItems),
+                    Products = products,
+                    ManufacturingDuration = recipeRawData.ManufactoringDuration
+                };
+                yield return recipe;
+            }
         }
 
-        private List<Product> ParseRecipeProduct(string product)
+        private List<Product> ParseItems(string product, IEnumerable<Item> existingItems)
         {
             var items = product.Substring(1, product.Length - 2).Split(",");
             var products = new List<Product>();
 
-            for (int i = 0; i + 1 < items.Length; i+=2)
+            for (int i = 0; i + 1 < items.Length; i += 2)
             {
                 var item = items[i];
                 var amount = items[i + 1].TrimEnd(')');
                 var itemClass = item.Substring(item.IndexOf("=") + 1);
+                var className = itemClass.Substring(itemClass.LastIndexOf('.') + 1).TrimEnd('\'').TrimEnd('"');
+
+                var producedItem = existingItems.FirstOrDefault(i => i.ClassName == className);
+                if (producedItem == null)
+                    continue;
+
                 products.Add(new Product
                 {
+                    Item = producedItem,
                     ItemClass = itemClass,
-                    ClassName = itemClass.Substring(itemClass.LastIndexOf('.') + 1).TrimEnd('\'').TrimEnd('"'),
                     Amount = int.Parse(amount.Substring(amount.IndexOf("=") + 1)),
                 });
             }
 
             return products;
         }
-
-        //private object ParseIngredients(string ingredients)
-        //{
-        //    /*
-        //     * "mIngredients": "( (ItemClass=BlueprintGeneratedClass'\"/Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C\"',Amount=3)
-        //     *                  , (ItemClass=BlueprintGeneratedClass'\"/Game/FactoryGame/Resource/Parts/Rubber/Desc_Rubber.Desc_Rubber_C\"',Amount=1))",
-        //       "mProduct":     "((ItemClass=BlueprintGeneratedClass'\"/Game/FactoryGame/Resource/Parts/IronPlateReinforced/Desc_IronPlateReinforced.Desc_IronPlateReinforced_C\"',Amount=1))",
-        //     */
-        //    var t = ingredients.Split(",");
-        //}
 
         private ItemCategory GetCategory(Class c)
         {
