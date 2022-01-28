@@ -52,7 +52,7 @@ class AddPodItem extends React.Component {
             <div className="ui center aligned blue very padded text raised container segment">
                 <div className="ui icon header">
                     Add New Pod
-                    </div>
+                </div>
                 <div className="inline">
                     <button className="ui primary button" onClick={this.addPod}>
                         Add <i className="icon add"></i>
@@ -106,20 +106,24 @@ class PodItemCreator extends React.Component {
 
     render() {
         return (
-            <div className="ui center aligned blue very padded text raised container segment">
-                <h2 className="ui horizontal divider header">
-                    Item
-                </h2>
-                <select className="ui fluid dropdown" onChange={(e) => this.selectItem(e)}>
-                    {this.state.items.map((item) =>
-                        <option key={item.code} value={item.code}>{item.name}</option>
-                    )}
-                </select>
-                {this.state.selectedItem != null &&
-                    <RecipeList item={this.state.selectedItem} selectedRecipe={this.state.selectedRecipe} onSelectRecipe={this.selectRecipe} />
-                }
+            <div className="ui centered grid">
+                <div className="eight wide column">
+                    <div className="ui center aligned blue very padded text raised segment">
+                        <h2 className="ui horizontal divider header">
+                            Item
+                        </h2>
+                        <select className="ui fluid dropdown" onChange={(e) => this.selectItem(e)}>
+                            {this.state.items.map((item) =>
+                                <option key={item.code} value={item.code}>{item.name}</option>
+                            )}
+                        </select>
+                        {this.state.selectedItem != null &&
+                            <RecipeList item={this.state.selectedItem} selectedRecipe={this.state.selectedRecipe} onSelectRecipe={this.selectRecipe} />
+                        }
+                    </div>
+                </div>
                 {this.state.selectedRecipe != null &&
-                    <Calculator recipe={this.state.selectedRecipe} />
+                    <Calculator item={this.state.selectedItem} recipe={this.state.selectedRecipe} />
                 }
             </div>
         );
@@ -210,16 +214,77 @@ class RecipeList extends React.Component {
 class Calculator extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            totalItem: this.props.recipe
+                .products
+                .find(product => product.id == this.props.item)
+                .itemsPerMinute
+        };
+
+        this.updateTotals = this.updateTotals.bind(this);
+    }
+
+    updateTotals(e) {
+        this.setState({
+            totalItem: e.target.value
+        });
+    }
+
+    getRatio() {
+        return this.state.totalItem / this.getOutputItem().itemsPerMinute;
+    }
+
+    getOutputItem() {
+        return this.props.recipe.products
+            .find(product => product.id == this.props.item);
     }
 
     render() {
+
+        var recipe = this.props.recipe;
+        var outputItem = this.getOutputItem();
+        var productionRatio = this.getRatio();
+
         return (
 
-            <div>
-                <h2 className="ui horizontal divider header" style={{ marginTop: 3 + 'rem' }}>
-                    Calculator
-                </h2>
-                <p>Selected recipe: {this.props.recipe.id}</p>
+            <div className="ui form eight wide column">
+                <div className="ui center aligned blue very padded text raised segment">
+                    <h2 className="ui horizontal divider header">
+                        Calculator
+                    </h2>
+
+                    <p><b>Selected recipe:</b> {recipe.name}</p>
+
+                    <div className="ui inline field">
+                        <label>Target Output</label>
+                        <div className="ui right labeled input">
+                            <input type="text" value={this.state.totalItem} onChange={(e) => this.updateTotals(e)} />
+                            <div className="ui label">
+                                / min
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Output</h3>
+                    {recipe.products.map((product) =>
+                        <p key={product.id}>
+                            <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{product.name}</span>
+                            <span className="ui grey text">{(product.itemsPerMinute * productionRatio)}/min</span>
+                        </p>
+                    )}
+
+                    <h3>Input</h3>
+                    {recipe.ingredients.map((ingredient) =>
+                        <p key={ingredient.id}>
+                            <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{ingredient.name}</span>
+                            <span className="ui grey text">{(ingredient.itemsPerMinute * productionRatio)}/min</span>
+                        </p>
+                    )}
+
+                    <h3>Machines</h3>
+                    {this.state.totalItem / outputItem.itemsPerMinute}
+                </div>
             </div>
         );
     }
