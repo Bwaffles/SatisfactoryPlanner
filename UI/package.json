@@ -33,6 +33,7 @@
   },
   "scripts": {
     "build": "rimraf wwwroot/dist && webpack",
+    "dev": "rimraf wwwroot/dist && webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

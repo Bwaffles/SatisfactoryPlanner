@@ -52,6 +52,30 @@ export class Calculator extends React.Component {
         });
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.recipe !== prevProps.recipe) {
+
+            this.setState({
+                totalItem: this.props.recipe
+                    .products
+                    .find(product => product.id == this.props.item)
+                    .itemsPerMinute,
+                ingredients: this.props.recipe
+                    .ingredients
+                    .map(ingredient => {
+                        return {
+                            id: ingredient.id,
+                            name: ingredient.name,
+                            amount: ingredient.amount,
+                            itemsPerMinute: ingredient.itemsPerMinute,
+                            produceOnSite: false // TODO maybe persist if the same ingredient was present in last recipe
+                        };
+                    })
+            });
+
+        }
+    }
+
     getRatio() {
         return this.state.totalItem / this.getOutputItem().itemsPerMinute;
     }
