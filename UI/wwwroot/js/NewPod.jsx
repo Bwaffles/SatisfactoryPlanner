@@ -112,7 +112,7 @@ class PodItemCreator extends React.Component {
                         <h2 className="ui horizontal divider header">
                             Item
                         </h2>
-                        <select className="ui fluid dropdown" onChange={(e) => this.selectItem(e)}>
+                        <select className="ui fluid selection dropdown" onChange={(e) => this.selectItem(e)}>
                             {this.state.items.map((item) =>
                                 <option key={item.code} value={item.code}>{item.name}</option>
                             )}
@@ -171,37 +171,58 @@ class RecipeList extends React.Component {
                     Recipe
                 </h2>
                 {this.state.recipes.map((recipe) =>
-                    <div className={"ui segment " + (this.props.selectedRecipe == recipe ? 'secondary' : '')} style={{ cursor: "pointer" }}
+                    <div className={"ui fluid raised card " + (this.props.selectedRecipe == recipe ? 'secondary' : '')} style={{ cursor: "pointer" }}
                         key={recipe.id} onClick={(e) => this.selectRecipe(recipe)}>
-                        <h3>{recipe.name}</h3>
-                        <div className="ui horizontal equal width segments">
-                            <div className={"ui red segment left aligned " + (this.props.selectedRecipe == recipe ? 'secondary' : '')}>
-                                <h3>
-                                    <i className="right arrow red icon"></i>
-                                    <span className="ui text black" style={{ marginLeft: 0.5 + 'rem' }}>
-                                        Inputs
-                                    </span>
-                                </h3>
-                                {recipe.ingredients.map((ingredient) =>
-                                    <p key={ingredient.id}>
-                                        <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{ingredient.name}</span>
-                                        <span className="ui grey text">{ingredient.itemsPerMinute}/min</span>
-                                    </p>
-                                )}
-                            </div>
-                            <div className={"ui green segment left aligned " + (this.props.selectedRecipe == recipe ? 'secondary' : '')}>
-                                <h3>
-                                    <span className="ui text black" style={{ marginRight: 0.5 + 'rem' }}>
-                                        Outputs
-                                    </span>
-                                    <i className="right arrow green icon"></i>
-                                </h3>
-                                {recipe.products.map((product) =>
-                                    <p key={product.id}>
-                                        <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{product.name}</span>
-                                        <span className="ui grey text">{product.itemsPerMinute}/min</span>
-                                    </p>
-                                )}
+                        <div className="content">
+                            <div className="header">{recipe.name}</div>
+                            <div className="ui horizontal equal width segments">
+
+                                <div className={"ui red segment left aligned " + (this.props.selectedRecipe == recipe ? 'secondary' : '')}>
+                                    <h3>
+                                        <i className="right arrow red icon"></i>
+                                        <span className="ui text black" style={{ marginLeft: 0.5 + 'rem' }}>
+                                            Inputs
+                                        </span>
+                                    </h3>
+                                    <div className="ui relaxed middle aligned list">
+
+                                        {recipe.ingredients.map((ingredient) =>
+                                            <div key={ingredient.id} className="item">
+                                                <div className="right floated content">
+                                                    <span className="ui grey text">{ingredient.itemsPerMinute}/min</span>
+                                                </div>
+                                                <div className="content">
+                                                    <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{ingredient.name}</span>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                    </div>
+                                </div>
+
+                                <div className={"ui green segment left aligned " + (this.props.selectedRecipe == recipe ? 'secondary' : '')}>
+                                    <h3>
+                                        <span className="ui text black" style={{ marginRight: 0.5 + 'rem' }}>
+                                            Outputs
+                                        </span>
+                                        <i className="right arrow green icon"></i>
+                                    </h3>
+
+                                    <div className="ui relaxed middle aligned list">
+
+                                        {recipe.products.map((product) =>
+                                            <div key={product.id} className="item">
+                                                <div className="right floated content">
+                                                    <span className="ui grey text">{product.itemsPerMinute}/min</span>
+                                                </div>
+                                                <div className="content">
+                                                    <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{product.name}</span>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -219,15 +240,46 @@ class Calculator extends React.Component {
             totalItem: this.props.recipe
                 .products
                 .find(product => product.id == this.props.item)
-                .itemsPerMinute
+                .itemsPerMinute,
+            ingredients: this.props.recipe
+                .ingredients
+                .map(ingredient => {
+                    return {
+                        id: ingredient.id,
+                        name: ingredient.name,
+                        amount: ingredient.amount,
+                        itemsPerMinute: ingredient.itemsPerMinute,
+                        produceOnSite: false
+                    }
+                })
         };
 
-        this.updateTotals = this.updateTotals.bind(this);
+        this.handleUpdateTotals = this.handleUpdateTotals.bind(this);
+        this.handleProduceOnSite = this.handleProduceOnSite.bind(this);
     }
 
-    updateTotals(e) {
+    handleUpdateTotals(e) {
         this.setState({
             totalItem: e.target.value
+        });
+    }
+
+    handleProduceOnSite(event, ingredient) {
+        console.debug(ingredient);
+        console.debug(event);
+
+        var produceOnSite = event.target.checked;
+
+        this.setState(state => {
+            const ingredients = this.state.ingredients.map(existingIngredient => {
+                if (existingIngredient.id == ingredient.id) {
+                    existingIngredient.produceOnSite = produceOnSite;
+                }
+
+                return existingIngredient;
+            })
+
+            return ingredients;
         });
     }
 
@@ -240,15 +292,23 @@ class Calculator extends React.Component {
             .find(product => product.id == this.props.item);
     }
 
+    getIngredientsProducedOnSite() {
+        return this.state.ingredients.filter(ingredient => ingredient.produceOnSite);
+    }
+
     render() {
 
         var recipe = this.props.recipe;
         var outputItem = this.getOutputItem();
         var productionRatio = this.getRatio();
+        var ingredientsProducedOnSite = this.getIngredientsProducedOnSite();
+
+        console.debug("props", this.props);
+        console.debug("state", this.state);
 
         return (
 
-            <div className="ui form eight wide column">
+            < div className="ui form eight wide column" >
                 <div className="ui center aligned blue very padded text raised segment">
                     <h2 className="ui horizontal divider header">
                         Calculator
@@ -259,7 +319,11 @@ class Calculator extends React.Component {
                     <div className="ui inline field">
                         <label>Target Output</label>
                         <div className="ui right labeled input">
-                            <input type="text" value={this.state.totalItem} onChange={(e) => this.updateTotals(e)} />
+                            <input
+                                type="text"
+                                value={this.state.totalItem}
+                                onChange={(e) => this.handleUpdateTotals(e)}
+                            />
                             <div className="ui label">
                                 / min
                             </div>
@@ -275,16 +339,44 @@ class Calculator extends React.Component {
                     )}
 
                     <h3>Input</h3>
-                    {recipe.ingredients.map((ingredient) =>
-                        <p key={ingredient.id}>
-                            <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{ingredient.name}</span>
-                            <span className="ui grey text">{(ingredient.itemsPerMinute * productionRatio)}/min</span>
-                        </p>
-                    )}
+                    <div className="ui large relaxed middle aligned divided list">
+
+                        {this.state.ingredients.map((ingredient) =>
+                            <div key={ingredient.id} className="item">
+                                <div className="right floated content">
+                                    <div className="ui toggle checkbox">
+                                        <input
+                                            type="checkbox"
+                                            id={ingredient.id + "-produceOnSite"}
+                                            checked={ingredient.produceOnSite}
+                                            onChange={(e) => this.handleProduceOnSite(e, ingredient)}
+                                        />
+                                        <label htmlFor={ingredient.id + "-produceOnSite"}>Produce on site</label>
+                                    </div>
+                                </div>
+                                <div className="content">
+                                    <span className="ui black text" style={{ marginRight: 0.5 + 'rem' }}>{ingredient.name}</span>
+                                    <span className="ui grey text">{(ingredient.itemsPerMinute * productionRatio)}/min</span>
+                                </div>
+                            </div>
+                        )}
+
+                    </div>
 
                     <h3>Machines</h3>
                     {this.state.totalItem / outputItem.itemsPerMinute}
                 </div>
+
+                {ingredientsProducedOnSite.map(ingredient =>
+                    <div key={ingredient.id} className="ui fluid raised card">
+                        <div className="content">
+                            <div className="header">
+                                {ingredient.name}
+                            </div>
+                            Something is being produced on site!
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
