@@ -4,7 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import RootComponent from './NewProductionLine.jsx';
 
-import 'semantic-ui-css/semantic.min.css'
+import '../lib/semantic/dist/semantic.css'
 
 global.React = React;
 global.ReactDOM = ReactDOM;

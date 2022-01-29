@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.js": "/dist/main.2ff849a0.js",
+    "main.js": "/dist/main.979ff73c.js",
     "runtime.js": "/dist/runtime.1c264d9c.js",
     "vendor.js": "/dist/vendor.50cbf625.js",
-    "outline-icons.svg": "/dist/82f60bd0b94a1ed68b1e6e309ce2e8c3.svg",
-    "icons.eot": "/dist/8e3c7f5520f5ae906c6cf6d7f3ddcd19.eot",
-    "icons.svg": "/dist/962a1bf31c081691065fe333d9fa8105.svg",
-    "brand-icons.svg": "/dist/a1a749e89f578a49306ec2b055c073da.svg",
-    "icons.ttf": "/dist/b87b9ba532ace76ae9f6edfe9f72ded2.ttf"
+    "brand-icons.svg": "/dist/0cb5a5c0d251c109458c85c6afeffbaa.svg",
+    "brand-icons.ttf": "/dist/13685372945d816a2b474fc082fd9aaa.ttf",
+    "icons.ttf": "/dist/1ab236ed440ee51810c56bd16628aef0.ttf",
+    "outline-icons.svg": "/dist/89ffa3aba80d30ee0a9371b25c968bbb.svg",
+    "icons.eot": "/dist/a0369ea57eb6d3843d6474c035111f29.eot",
+    "icons.woff": "/dist/bea989e82b07e9687c26fc58a4805021.woff",
+    "brand-icons.eot": "/dist/c1868c9545d2de1cf8488f1dadd8c9d0.eot",
+    "icons.svg": "/dist/ec763292e583294612f124c0b0def500.svg"
   },
   "entrypoints": [
-    "/dist/main.2ff849a0.js",
+    "/dist/main.979ff73c.js",
     "/dist/runtime.1c264d9c.js",
     "/dist/vendor.50cbf625.js"
   ]
