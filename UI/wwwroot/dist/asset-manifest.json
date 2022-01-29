@@ -1,11 +1,16 @@
 {
   "files": {
-    "main.js": "/dist/main.19d70121.js",
+    "main.js": "/dist/main.2ff849a0.js",
     "runtime.js": "/dist/runtime.1c264d9c.js",
-    "vendor.js": "/dist/vendor.50cbf625.js"
+    "vendor.js": "/dist/vendor.50cbf625.js",
+    "outline-icons.svg": "/dist/82f60bd0b94a1ed68b1e6e309ce2e8c3.svg",
+    "icons.eot": "/dist/8e3c7f5520f5ae906c6cf6d7f3ddcd19.eot",
+    "icons.svg": "/dist/962a1bf31c081691065fe333d9fa8105.svg",
+    "brand-icons.svg": "/dist/a1a749e89f578a49306ec2b055c073da.svg",
+    "icons.ttf": "/dist/b87b9ba532ace76ae9f6edfe9f72ded2.ttf"
   },
   "entrypoints": [
-    "/dist/main.19d70121.js",
+    "/dist/main.2ff849a0.js",
     "/dist/runtime.1c264d9c.js",
     "/dist/vendor.50cbf625.js"
   ]
