@@ -14,9 +14,19 @@ namespace Domain
         /// </summary>
         public string Name { get; set; }
 
-        public List<ItemOutput> Outputs { get; set; }
+        /// <summary>
+        /// The ingredients required to produce this recipe.
+        /// </summary>
+        public IEnumerable<Ingredient> Ingredients { get; set; }
 
-        public List<ItemInput> Inputs { get; set; }
+        /// <summary>
+        /// The products that are created from this recipe.
+        /// </summary>
+        public IEnumerable<Product> Products { get; set; }
+
+        /// <summary>
+        /// The building that this recipe is produced in.
+        /// </summary>
         public Building ProducedIn { get; set; }
     }
 }
