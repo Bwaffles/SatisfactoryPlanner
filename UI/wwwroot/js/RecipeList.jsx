@@ -40,7 +40,8 @@ export class RecipeList extends React.Component {
                 <h2 className="ui horizontal divider header">
                     Recipe
                 </h2>
-                {this.state.recipes.map((recipe) => <div className={"ui fluid raised card " + (this.props.selectedRecipe == recipe ? 'secondary' : '')} style={{ cursor: "pointer" }}
+                {this.state.recipes.map((recipe) =>
+                    <div className={"ui fluid raised card " + (this.props.selectedRecipe == recipe ? 'secondary' : '')} style={{ cursor: "pointer" }}
                     key={recipe.id} onClick={(e) => this.selectRecipe(recipe)}>
                     <div className="content">
                         <div className="header">{recipe.name}</div>

@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { Divider, Dropdown, Form, Grid, Header } from 'semantic-ui-react';
 import { Calculator } from "./Calculator.jsx";
 import { RecipeList } from "./RecipeList.jsx";
 
@@ -25,9 +26,12 @@ export class PodItemCreator extends React.Component {
         xhr.send();
     }
 
-    selectItem(e) {
+    selectItem(event, data) {
+        console.debug("PodItemCreator => selectItem");
+        console.debug("PodItemCreator => data", data);
+
         this.setState({
-            selectedItem: e.target.value,
+            selectedItem: data.value,
             selectedRecipe: null
         });
 
@@ -43,25 +47,69 @@ export class PodItemCreator extends React.Component {
         this.loadItemsFromServer();
     }
 
+    getItems() {
+        return this.state.items.map((item) => {
+            return {
+                key: item.code,
+                value: item.code,
+                text: item.name
+            };
+        });
+
+    }
+
     render() {
+        console.debug("PodItemCreator => render()");
+        console.debug("PodItemCreator => state", this.state);
+
+        const { selectedItem, selectedRecipe } = this.state;
+
         return (
-            <div className="ui centered grid">
-                <div className="eight wide column">
-                    <div className="ui center aligned blue very padded text raised segment">
-                        <h2 className="ui horizontal divider header">
-                            Item
-                        </h2>
-                        <select className="ui fluid selection dropdown" onChange={(e) => this.selectItem(e)}>
-                            {this.state.items.map((item) => <option key={item.code} value={item.code}>{item.name}</option>
-                            )}
-                        </select>
-                        {this.state.selectedItem != null &&
-                            <RecipeList item={this.state.selectedItem} selectedRecipe={this.state.selectedRecipe} onSelectRecipe={this.selectRecipe} />}
-                    </div>
-                </div>
-                {this.state.selectedRecipe != null &&
-                    <Calculator item={this.state.selectedItem} recipe={this.state.selectedRecipe} />}
-            </div>
+            <Form>
+                <Grid>
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Divider horizontal>
+                                <Header as="h3">New Pod</Header>
+                            </Divider>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Column width="8">
+                        <Form.Field>
+                            <label>Number</label>
+                            <input type="number" />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Item</label>
+                            <Dropdown
+                                placeholder='Select item'
+                                fluid
+                                search
+                                selection
+                                options={this.getItems()}
+                                onChange={this.selectItem}
+                            />
+                        </Form.Field>
+
+                        {selectedItem != null &&
+                            <RecipeList
+                                item={selectedItem}
+                                selectedRecipe={selectedRecipe}
+                                onSelectRecipe={this.selectRecipe}
+                            />
+                        }
+
+                    </Grid.Column>
+                    <Grid.Column width="8">
+                        {selectedRecipe != null &&
+                            <Calculator
+                                item={selectedItem}
+                                recipe={selectedRecipe}
+                            />
+                        }
+                    </Grid.Column>
+                </Grid>
+            </Form>
         );
     }
 }

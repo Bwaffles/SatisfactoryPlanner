@@ -6,11 +6,5 @@
     ViewBag.Title = "Create Production Line";
 }
 
-<h1 class="ui header">
-    Set up a new Production Line
-</h1>
-
-<div id="newPod"></div>
-
-@Html.React("Components.RootComponent", new { url="/ProductionLine/Items" })
+@Html.React("Components.ProductionLineCreate", new {})
 
