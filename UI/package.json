@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "fomantic-ui": "^2.8.8",
+    "lodash": "^4.17.21",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-jss": "^8.6.1",
@@ -24,7 +25,9 @@
     "@babel/preset-react": "7.8.3",
     "babel-loader": "8.0.6",
     "babel-runtime": "6.26.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.7",
+    "debug": "^4.3.3",
     "file-loader": "^1.1.11",
     "rimraf": "3.0.2",
     "url-loader": "^4.1.1",
@@ -34,7 +37,7 @@
   },
   "scripts": {
     "build": "rimraf wwwroot/dist && webpack",
-    "dev": "rimraf wwwroot/dist && webpack -w",
+    "dev": "cross-env NODE_ENV=development rimraf wwwroot/dist && webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

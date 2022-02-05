@@ -1,7 +1,11 @@
 ﻿import React from 'react';
 import { Divider, Dropdown, Form, Grid, Header } from 'semantic-ui-react';
-import { Calculator } from "./Calculator.jsx";
-import { RecipeList } from "./RecipeList.jsx";
+import { Calculator } from "../Calculator.jsx";
+import makeDebugger from '../lib/makeDebugger.js';
+import { RecipeList } from "../RecipeList.jsx";
+
+const debug = makeDebugger('PodItemCreator');
+
 
 export class PodItemCreator extends React.Component {
     constructor(props) {
@@ -16,6 +20,11 @@ export class PodItemCreator extends React.Component {
         this.selectRecipe = this.selectRecipe.bind(this);
     }
 
+    componentDidMount() {
+        debug('componentDidMount()')
+        this.loadItemsFromServer();
+    }
+
     loadItemsFromServer() {
         const xhr = new XMLHttpRequest();
         xhr.open('get', "items", true);
@@ -27,24 +36,24 @@ export class PodItemCreator extends React.Component {
     }
 
     selectItem(event, data) {
-        console.debug("PodItemCreator => selectItem");
-        console.debug("PodItemCreator => data", data);
+        debug("selectItem()");
+
+        var item = data.value;
+        debug("item", item);
 
         this.setState({
-            selectedItem: data.value,
+            selectedItem: item,
             selectedRecipe: null
         });
 
     }
 
     selectRecipe(recipe) {
+        debug("selectRecipe()");
+        debug("recipe", recipe);
         this.setState({
             selectedRecipe: recipe
         });
-    }
-
-    componentDidMount() {
-        this.loadItemsFromServer();
     }
 
     getItems() {
@@ -59,8 +68,8 @@ export class PodItemCreator extends React.Component {
     }
 
     render() {
-        console.debug("PodItemCreator => render()");
-        console.debug("PodItemCreator => state", this.state);
+        debug("render()");
+        debug("state", this.state);
 
         const { selectedItem, selectedRecipe } = this.state;
 

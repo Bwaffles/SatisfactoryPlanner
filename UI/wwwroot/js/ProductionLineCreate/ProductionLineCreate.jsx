@@ -1,6 +1,9 @@
 ﻿import React from 'react';
 import { Button, Divider, Header, Icon, Segment } from 'semantic-ui-react';
-import { PodItemCreator } from '../PodItemCreator.jsx';
+import makeDebugger from '../lib/makeDebugger.js';
+import { PodItemCreator } from './PodItemCreator.jsx';
+
+const debug = makeDebugger('ProductionLineCreate');
 
 // Top level component -- will hold list of the pods
 export default class ProductionLineCreate extends React.Component {
@@ -17,13 +20,16 @@ export default class ProductionLineCreate extends React.Component {
     startCreatingPod() {
         this.setState((state) => ({
             pods: [
-                { id: state.pods.length + 1 },
-                ...state.pods
+                ...state.pods,
+                { id: state.pods.length + 1 }
             ]
         }));
     }
 
     render() {
+        debug('render()');
+        debug('state', this.state);
+
         const { pods } = this.state;
 
         return (
