@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using React.AspNet
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - UI</title>
-    <link rel="stylesheet" href="~/lib/semantic/dist/semantic.min.css" />
+    <link rel="stylesheet" href="~/lib/semantic/dist/semantic.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -23,6 +25,8 @@
 
     <main role="main" class="ui main container">
         @RenderBody()
+        @Html.ReactGetScriptPaths()
+        @Html.ReactInitJavaScript()
     </main>
 
     <footer class="ui inverted vertical footer segment">
@@ -30,9 +34,10 @@
             <p>&copy; @DateTime.Now.Year - Satisfactory Planner</p>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/semantic/dist/semantic.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -10,8 +10,13 @@ namespace Domain
         public Factory Factory { get; set; }
 
         /// <summary>
+        /// User-defined custom name to identify the production line with.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// The collection of <see cref="Pod"/>s that are used in this <see cref="ProductionLine"/>.
         /// </summary>
-        public List<Pod> Pods { get; set; }
+        public ICollection<Pod> Pods { get; set; }
     }
 }

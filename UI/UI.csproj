@@ -5,14 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.16.0" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.16.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
-    <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.12.4" />
-    <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.12.4" />
     <PackageReference Include="React.AspNet" Version="5.2.11" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\dist\" />
   </ItemGroup>
 
 </Project>

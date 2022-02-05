@@ -4,10 +4,37 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "fomantic-ui": "^2.8.8"
+    "fomantic-ui": "^2.8.8",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-jss": "^8.6.1",
+    "react-router-dom": "^5.0.0",
+    "react-select": "^3.0.4",
+    "reactstrap": "^8.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.1.1",
+    "styled-components": "^4.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/core": "7.8.7",
+    "@babel/plugin-proposal-class-properties": "7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "7.8.3",
+    "@babel/plugin-syntax-dynamic-import": "7.8.3",
+    "@babel/preset-env": "7.8.7",
+    "@babel/preset-react": "7.8.3",
+    "babel-loader": "8.0.6",
+    "babel-runtime": "6.26.0",
+    "css-loader": "^5.2.7",
+    "file-loader": "^1.1.11",
+    "rimraf": "3.0.2",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-manifest-plugin": "2.2.0"
+  },
   "scripts": {
+    "build": "rimraf wwwroot/dist && webpack",
+    "dev": "rimraf wwwroot/dist && webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
