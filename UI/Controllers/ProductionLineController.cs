@@ -1,5 +1,5 @@
-﻿using Application.Pods.Queries.Create;
-using Application.Pods.Queries.Export;
+﻿using Application.ProductionLines.Queries.Export;
+using Application.ProductionLines.Queries.GetItems;
 using Microsoft.AspNetCore.Mvc;
 using Services.SFGame;
 using System.Linq;
@@ -23,11 +23,13 @@ namespace UI.Controllers
             return View(model);
         }
 
-        public IActionResult Items() // TODO should be in like an ItemController
+        [HttpGet]
+        public IActionResult Items()
         {
-            var query = new CreatePodQuery();
-            var data = query.Execute();
-            return Json(data.Items);
+            var items = new GetItemsQuery()
+                .Execute();
+
+            return Json(items);
         }
 
         [HttpGet]

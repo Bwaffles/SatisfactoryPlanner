@@ -2,9 +2,11 @@
 {
     public enum ItemCategory
     {
+        Ingot,
         Part,
+        Fluid,
         ProjectAssembly,
-        Christmas,
-        Unknown
+        PowerShard,
+        Ficsmas,
     }
 }

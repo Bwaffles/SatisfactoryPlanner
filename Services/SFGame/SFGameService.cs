@@ -68,6 +68,7 @@ namespace Services.SFGame
 
             var ui = gameData.Items
                 .Select(_ => new { Name = _.ClassName, Category = _.Category })
+                .GroupBy(_ => _.Category)
                 .ToList();
 
             return gameData;
@@ -146,15 +147,25 @@ namespace Services.SFGame
         private ItemCategory GetCategory(Class c)
         {
             if (c.BigIcon.Contains("Christmas"))
-                return ItemCategory.Christmas;
+                return ItemCategory.Ficsmas;
 
             if (c.ClassName.Contains("SpaceElevatorPart"))
                 return ItemCategory.ProjectAssembly;
 
-            if (c.BigIcon.Contains("Parts"))
-                return ItemCategory.Part;
+            if (c.BigIcon.Contains("Parts") || c.BigIcon.Contains("Resource/RawResources"))
+            {
+                if (c.BigIcon.Contains("Ingot"))
+                    return ItemCategory.Ingot;
+                else if (c.StackSize == StackSize.SS_FLUID)
+                    return ItemCategory.Fluid;
+                else
+                    return ItemCategory.Part;
+            }
 
-            return ItemCategory.Unknown;
+            if (c.ClassName.Contains("Crystal"))
+                return ItemCategory.PowerShard;
+
+            throw new System.Exception("Can't get category for this item");
         }
     }
 }

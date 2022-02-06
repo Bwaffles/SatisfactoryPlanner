@@ -59,19 +59,18 @@ export class PodItemCreator extends React.Component {
     getItems() {
         return this.state.items.map((item) => {
             return {
-                key: item.code,
-                value: item.code,
+                key: item.id,
+                value: item.id,
                 text: item.name
             };
         });
-
     }
 
     render() {
         debug("render()");
         debug("state", this.state);
 
-        const { selectedItem, selectedRecipe } = this.state;
+        const { items, selectedItem, selectedRecipe } = this.state;
 
         return (
             <Form>
@@ -97,7 +96,8 @@ export class PodItemCreator extends React.Component {
                                 selection
                                 options={this.getItems()}
                                 onChange={this.selectItem}
-                            />
+                            >
+                            </Dropdown>
                         </Form.Field>
 
                         {selectedItem != null &&
