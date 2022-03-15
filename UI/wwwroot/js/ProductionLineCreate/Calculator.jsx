@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { Checkbox, Header, Item } from 'semantic-ui-react';
 import makeDebugger from '../lib/makeDebugger.js';
-import { OutputList } from '../OutputList.jsx';
+import { OutputList } from './OutputList.jsx';
 
 const debug = makeDebugger('Calculator');
 
