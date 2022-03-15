@@ -1,18 +1,17 @@
 ﻿import React from 'react';
 import { Divider, Dropdown, Form, Grid, Header } from 'semantic-ui-react';
-import { Calculator } from "../Calculator.jsx";
 import makeDebugger from '../lib/makeDebugger.js';
-import { RecipeList } from "../RecipeList.jsx";
+import { Calculator } from "./Calculator.jsx";
+import { RecipeList } from "./RecipeList.jsx";
 
 const debug = makeDebugger('PodItemCreator');
-
 
 export class PodItemCreator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             items: [],
-            selectedItem: null,
+            selectedItemId: null,
             selectedRecipe: null
         };
 
@@ -38,11 +37,11 @@ export class PodItemCreator extends React.Component {
     selectItem(event, data) {
         debug("selectItem()");
 
-        var item = data.value;
-        debug("item", item);
+        var itemId = data.value;
+        debug("itemId", itemId);
 
         this.setState({
-            selectedItem: item,
+            selectedItemId: itemId,
             selectedRecipe: null
         });
 
@@ -70,7 +69,7 @@ export class PodItemCreator extends React.Component {
         debug("render()");
         debug("state", this.state);
 
-        const { items, selectedItem, selectedRecipe } = this.state;
+        const { selectedItemId, selectedRecipe } = this.state;
 
         return (
             <Form>
@@ -100,9 +99,9 @@ export class PodItemCreator extends React.Component {
                             </Dropdown>
                         </Form.Field>
 
-                        {selectedItem != null &&
+                        {selectedItemId != null &&
                             <RecipeList
-                                item={selectedItem}
+                                itemId={selectedItemId}
                                 selectedRecipe={selectedRecipe}
                                 onSelectRecipe={this.selectRecipe}
                             />
@@ -112,7 +111,7 @@ export class PodItemCreator extends React.Component {
                     <Grid.Column width="8">
                         {selectedRecipe != null &&
                             <Calculator
-                                item={selectedItem}
+                                itemId={selectedItemId}
                                 recipe={selectedRecipe}
                             />
                         }

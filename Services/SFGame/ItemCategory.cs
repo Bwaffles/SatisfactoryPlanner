@@ -8,5 +8,6 @@
         ProjectAssembly,
         PowerShard,
         Ficsmas,
+        Resource,
     }
 }

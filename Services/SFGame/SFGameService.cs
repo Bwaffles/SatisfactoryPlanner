@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace Services.SFGame
 {
-
     public class SFGameService
     {
         public Dictionary<ClassType, string> ClassTypeMap = new()
         {
             { ClassType.Item, "Class'/Script/FactoryGame.FGItemDescriptor'" },
             { ClassType.Schematic, "Class'/Script/FactoryGame.FGSchematic'" },
-            { ClassType.Recipe, "Class'/Script/FactoryGame.FGRecipe'" }
+            { ClassType.Recipe, "Class'/Script/FactoryGame.FGRecipe'" },
+            { ClassType.Resource, "Class'/Script/FactoryGame.FGResourceDescriptor'" }
         };
 
         public SFGameData GetGameData()
@@ -41,7 +41,7 @@ namespace Services.SFGame
                     ResourceSinkPoints = _.ResourceSinkPoints.Value,
                     SmallIcon = _.SmallIcon,
                     StackSize = _.StackSize.Value,
-                }),
+                }).ToList(),
                 Schematics = rootData.First(_ => _.NativeClass == ClassTypeMap[ClassType.Schematic]).Classes.Select(_ => new Schematic
                 {
                     ClassName = _.ClassName,
@@ -63,6 +63,28 @@ namespace Services.SFGame
                     IncludeInBuilds = _.IncludeInBuilds
                 })
             };
+
+            var resources = rootData.First(_ => _.NativeClass == ClassTypeMap[ClassType.Resource]).Classes.Select(_ => new Item
+            {
+                AbbreviatedDisplayName = _.AbbreviatedDisplayName,
+                BigIcon = _.BigIcon,
+                CanBeDiscarded = _.CanBeDiscarded.Value,
+                Category = ItemCategory.Resource,
+                ClassName = _.ClassName,
+                Description = _.Description,
+                DisplayName = _.DisplayName,
+                EnergyValue = _.EnergyValue.Value,
+                FluidColor = _.FluidColor,
+                Form = _.Form.Value,
+                GasColor = _.GasColor,
+                RadioactiveDecay = _.RadioactiveDecay.Value,
+                RememberPickUp = _.RememberPickUp.Value,
+                ResourceSinkPoints = _.ResourceSinkPoints.Value,
+                SmallIcon = _.SmallIcon,
+                StackSize = _.StackSize.Value,
+            });
+
+            gameData.Items.AddRange(resources);
 
             gameData.Recipes = ParseRecipes(rootData, gameData.Items).ToList();
 
@@ -133,11 +155,14 @@ namespace Services.SFGame
                 if (producedItem == null)
                     continue;
 
+                var rawAmount = int.Parse(amount.Substring(amount.IndexOf("=") + 1));
+                var adjustedAmount = producedItem.Form == ResourceForm.RF_LIQUID || producedItem.Form == ResourceForm.RF_GAS ? rawAmount / 1000 : rawAmount;
+
                 products.Add(new Product
                 {
                     Item = producedItem,
                     ItemClass = itemClass,
-                    Amount = int.Parse(amount.Substring(amount.IndexOf("=") + 1)),
+                    Amount = adjustedAmount,
                 });
             }
 

@@ -4,6 +4,7 @@
     {
         Item,
         Schematic,
-        Recipe
+        Recipe,
+        Resource
     }
 }

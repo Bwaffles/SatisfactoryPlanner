@@ -1,8 +1,7 @@
 ﻿using Application.ProductionLines.Queries.Export;
 using Application.ProductionLines.Queries.GetItems;
+using Application.ProductionLines.Queries.GetRecipes;
 using Microsoft.AspNetCore.Mvc;
-using Services.SFGame;
-using System.Linq;
 
 namespace UI.Controllers
 {
@@ -33,34 +32,12 @@ namespace UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Recipes(string itemCode)
+        public IActionResult Recipes(string itemId)
         {
-            var sfGameService = new SFGameService();
-            var gameData = sfGameService.GetGameData();
-            return Json(
-                gameData
-                .Recipes
-                .Where(recipe => recipe.Products.Any(product => product.Item?.ClassName == itemCode))
-                .Select(recipe => new
-                {
-                    Id = recipe.FullName,
-                    Name = recipe.DisplayName,
-                    Ingredients = recipe.Ingredients.Select(ingredient => new
-                    {
-                        Id = ingredient.Item.ClassName,
-                        Name = ingredient.Item.DisplayName,
-                        Amount = ingredient.Amount,
-                        ItemsPerMinute = (60 / recipe.ManufacturingDuration) * ingredient.Amount
-                    }),
-                    Products = recipe.Products.Select(product => new
-                    {
-                        Id = product.Item.ClassName,
-                        Name = product.Item.DisplayName,
-                        Amount = product.Amount,
-                        ItemsPerMinute = (60 / recipe.ManufacturingDuration) * product.Amount
-                    })
-                })
-            );
+            var recipes = new GetRecipesQuery()
+                   .Execute(itemId);
+
+            return Json(recipes);
         }
 
         [HttpPost]

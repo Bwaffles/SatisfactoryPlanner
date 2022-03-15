@@ -1,45 +1,26 @@
 ﻿import React from 'react';
 import { Checkbox, Header, Item } from 'semantic-ui-react';
-import { OutputList } from './OutputList.jsx';
+import makeDebugger from '../lib/makeDebugger.js';
+import { OutputList } from '../OutputList.jsx';
 
-
+const debug = makeDebugger('Calculator');
 
 export class Calculator extends React.Component {
     constructor(props) {
         super(props);
 
-        var outputItem = this.props
-            .recipe
-            .products
-            .find(product => product.id == this.props.item);
-
-        this.state = {
-            totalItem: outputItem.itemsPerMinute,
-            outputs: this.props.recipe
-                .products
-                .map(product => {
-                    return {
-                        id: product.id,
-                        name: product.name,
-                        originalItemsPerMinute: product.itemsPerMinute,
-                        itemsPerMinute: product.itemsPerMinute
-                    };
-                }),
-            inputs: this.props.recipe
-                .ingredients
-                .map(ingredient => {
-                    return {
-                        id: ingredient.id,
-                        name: ingredient.name,
-                        originalItemsPerMinute: ingredient.itemsPerMinute,
-                        itemsPerMinute: ingredient.itemsPerMinute,
-                        produceOnSite: false
-                    };
-                })
-        };
+        this.initializeState();
 
         this.handleUpdateTotals = this.handleUpdateTotals.bind(this);
         this.handleProduceOnSite = this.handleProduceOnSite.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.recipe === prevProps.recipe) {
+            return;
+        }
+
+        this.initializeState();
     }
 
     handleUpdateTotals(event) {
@@ -51,7 +32,7 @@ export class Calculator extends React.Component {
         this.setState(state => {
 
             var outputItemsPerMinute = state.outputs
-                .find(output => output.id == this.props.item)
+                .find(output => output.id == this.props.itemId)
                 .originalItemsPerMinute;
 
             var productionRatio = newTotal / outputItemsPerMinute;
@@ -88,23 +69,29 @@ export class Calculator extends React.Component {
         });
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.recipe === prevProps.recipe) {
-            return;
-        }
-
-        // Update the recipe that is used
+    initializeState() {
         this.setState({
             totalItem: this.props.recipe
                 .products
-                .find(product => product.id == this.props.item)
+                .find(product => product.id == this.props.itemId)
                 .itemsPerMinute,
+            outputs: this.props.recipe
+                .products
+                .map(product => {
+                    return {
+                        id: product.id,
+                        name: product.name,
+                        originalItemsPerMinute: product.itemsPerMinute,
+                        itemsPerMinute: product.itemsPerMinute
+                    };
+                }),
             inputs: this.props.recipe
                 .ingredients
                 .map(ingredient => {
                     return {
                         id: ingredient.id,
                         name: ingredient.name,
+                        originalItemsPerMinute: ingredient.itemsPerMinute,
                         itemsPerMinute: ingredient.itemsPerMinute,
                         produceOnSite: false // TODO maybe persist if the same ingredient was present in last recipe
                     };
@@ -113,16 +100,15 @@ export class Calculator extends React.Component {
     }
 
     render() {
+        debug("render()");
+        debug("props", this.props);
+        debug("state", this.state);
 
-        var recipe = this.props.recipe;
-        var outputs = this.state.outputs;
-        var inputs = this.state.inputs;
+        const { itemId, recipe } = this.props;
+        const { outputs, inputs, totalItem } = this.state;
 
-        var outputItem = recipe.products.find(product => product.id == this.props.item);
+        var outputItem = recipe.products.find(product => product.id == itemId);
         var inputsProducedOnSite = inputs.filter(input => input.produceOnSite);
-
-        console.debug("props", this.props);
-        console.debug("state", this.state);
 
         return (
 
@@ -139,7 +125,7 @@ export class Calculator extends React.Component {
                         <div className="ui right labeled input">
                             <input
                                 type="text"
-                                value={this.state.totalItem}
+                                value={totalItem}
                                 onChange={(e) => this.handleUpdateTotals(e)} />
                             <div className="ui label">
                                 / min
@@ -173,7 +159,7 @@ export class Calculator extends React.Component {
                     </Item.Group>
 
                     <h3>Machines</h3>
-                    {this.state.totalItem / outputItem.itemsPerMinute}
+                    {totalItem / outputItem.itemsPerMinute}
                 </div>
 
                 {inputsProducedOnSite.map(input => <div key={input.id} className="ui fluid raised card">
