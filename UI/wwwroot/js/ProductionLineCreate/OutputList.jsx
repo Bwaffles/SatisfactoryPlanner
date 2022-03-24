@@ -1,6 +1,8 @@
 ﻿import React from 'react';
 import { Button, Card, Dropdown, Header, List } from 'semantic-ui-react';
+import makeDebugger from '../lib/makeDebugger.js';
 
+const debug = makeDebugger('OutputList');
 
 /**
  * Props
@@ -26,6 +28,8 @@ export class OutputList extends React.Component {
     }
 
     componentDidMount() {
+        debug('componentDidMount()');
+
         const xhr = new XMLHttpRequest();
         xhr.open('get', "itemsToExportTo", true);
         xhr.onload = () => {
@@ -36,7 +40,8 @@ export class OutputList extends React.Component {
     }
 
     addExport(event, output) {
-        console.debug("output", output);
+        debug("addExport()");
+        debug("output", output);
 
         this.setState(state => {
             return state.outputs.map(currentOutput => {
@@ -60,9 +65,9 @@ export class OutputList extends React.Component {
     }
 
     render() {
-
-        console.debug("props", this.props);
-        console.debug("state", this.state);
+        debug("render()");
+        debug("props", this.props);
+        debug("state", this.state);
 
         const outputs = this.state.outputs;
 
