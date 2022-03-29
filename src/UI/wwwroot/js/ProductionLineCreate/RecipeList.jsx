@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import makeDebugger from '../lib/makeDebugger.js';
+import PropTypes from 'prop-types';
 
 const debug = makeDebugger('RecipeList');
 
@@ -112,3 +113,12 @@ export class RecipeList extends React.Component {
         );
     }
 }
+
+RecipeList.propTypes = {
+
+    /** Id of the item to get the recipes for. */
+    itemId: PropTypes.string.isRequired,
+
+    /** The recipe that was selected */
+    selectedRecipe: PropTypes.object
+};

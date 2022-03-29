@@ -18,7 +18,7 @@ namespace Services.SFGame
 
         public SFGameData GetGameData()
         {
-            var docFile = File.ReadAllText("E:/Projects/SatisfactoryPlanner/SatisfactoryPlanner/Services/SFGame/Docs.json");
+            var docFile = File.ReadAllText("E:/Projects/SatisfactoryPlanner/src/Services/SFGame/Docs.json");
             var rootData = JsonConvert.DeserializeObject<List<Root>>(docFile);
 
             var gameData = new SFGameData

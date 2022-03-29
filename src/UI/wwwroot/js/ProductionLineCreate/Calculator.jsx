@@ -9,7 +9,7 @@ export class Calculator extends React.Component {
     constructor(props) {
         super(props);
 
-        this.initializeState();
+        this.state = this.initializeState();
 
         this.handleUpdateTotals = this.handleUpdateTotals.bind(this);
         this.handleProduceOnSite = this.handleProduceOnSite.bind(this);
@@ -20,7 +20,7 @@ export class Calculator extends React.Component {
             return;
         }
 
-        this.initializeState();
+        this.setState(this.initializeState());
     }
 
     handleUpdateTotals(event) {
@@ -70,7 +70,7 @@ export class Calculator extends React.Component {
     }
 
     initializeState() {
-        this.setState({
+        return {
             totalItem: this.props.recipe
                 .products
                 .find(product => product.id == this.props.itemId)
@@ -96,7 +96,7 @@ export class Calculator extends React.Component {
                         produceOnSite: false // TODO maybe persist if the same ingredient was present in last recipe
                     };
                 })
-        });
+        };
     }
 
     render() {
