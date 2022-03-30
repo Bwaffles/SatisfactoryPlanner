@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj" />
-    <ProjectReference Include="..\Application\SatisfactoryPlanner.Modules.Factories.Application\SatisfactoryPlanner.Modules.Factories.Application.csproj" />
+    <ProjectReference Include="..\SatisfactoryPlanner.Modules.Factories.Application\SatisfactoryPlanner.Modules.Factories.Application.csproj" />
   </ItemGroup>
 
 </Project>
