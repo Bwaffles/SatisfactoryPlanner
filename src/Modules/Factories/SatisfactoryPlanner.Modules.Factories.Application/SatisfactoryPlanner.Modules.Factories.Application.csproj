@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="MediatR" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\SatisfactoryPlanner.Modules.Factories.Domain\SatisfactoryPlanner.Modules.Factories.Domain.csproj" />
   </ItemGroup>
 
 </Project>

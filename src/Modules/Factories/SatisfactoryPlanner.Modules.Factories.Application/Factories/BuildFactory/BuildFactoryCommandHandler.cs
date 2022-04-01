@@ -1,0 +1,28 @@
+﻿using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildFactory;
+using SatisfactoryPlanner.Modules.Factories.Domain.Factories;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.AddFactory
+{
+    public class BuildFactoryCommandHandler : ICommandHandler<BuildFactoryCommand, Guid>
+    {
+        private readonly IFactoryRepository _factoriesRepository;
+
+        public BuildFactoryCommandHandler(IFactoryRepository factoriesRepository)
+        {
+            _factoriesRepository = factoriesRepository;
+        }
+
+        public async Task<Guid> Handle(BuildFactoryCommand request, CancellationToken cancellationToken)
+        {
+            var factory = Factory.BuildNew(request.Name);
+
+            await _factoriesRepository.AddAsync(factory);
+
+            return factory.Id.Value;
+        }
+    }
+}

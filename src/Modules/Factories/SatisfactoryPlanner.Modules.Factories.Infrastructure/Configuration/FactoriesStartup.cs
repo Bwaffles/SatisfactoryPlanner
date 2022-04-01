@@ -1,47 +1,42 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.DataAccess;
+using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Logging;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Mediation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Processing;
+using Serilog.Extensions.Logging;
+using ILogger = Serilog.ILogger;
 
 namespace SatisfactoryPlanner.Modules.Factories.Infrastructure
 {
+    /// <summary>
+    ///     Initialize the services and configurations for the Factories module.
+    ///     This will set up the logging, emailing and dependency injection for this module.
+    ///     Should be called from the main application Startup.
+    /// </summary>
     public class FactoriesStartup
     {
         private static IContainer _container;
 
-        public static void Initialize(string connectionString, IExecutionContextAccessor executionContextAccessor)
+        public static void Initialize(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger)
         {
-            ConfigureCompositionRoot(
-                connectionString,
-                executionContextAccessor
-                //,
-                //moduleLogger,
-                //emailsConfiguration,
-                //eventsBus
+            ConfigureCompositionRoot(connectionString, executionContextAccessor, logger
+                //, emailsConfiguration, eventsBus
                 );
         }
 
-        private static void ConfigureCompositionRoot(
-           string connectionString,
-           IExecutionContextAccessor executionContextAccessor
-            //,
-           //ILogger logger,
-           //EmailsConfiguration emailsConfiguration,
-           //IEventsBus eventsBus
+        private static void ConfigureCompositionRoot(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger
+            //, EmailsConfiguration emailsConfiguration, IEventsBus eventsBus
             )
         {
             var containerBuilder = new ContainerBuilder();
 
-            //containerBuilder.RegisterModule(new LoggingModule(logger.ForContext("Module", "Meetings")));
+            containerBuilder.RegisterModule(new LoggingModule(logger.ForContext("Module", "Factories")));
 
-            //var loggerFactory = new SerilogLoggerFactory(logger);
-            //containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
-            //containerBuilder.RegisterModule(new ProcessingModule());
+            var loggerFactory = new SerilogLoggerFactory(logger);
+            containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
+            containerBuilder.RegisterModule(new ProcessingModule());
             //containerBuilder.RegisterModule(new EventsBusModule(eventsBus));
             containerBuilder.RegisterModule(new MediatorModule());
             //containerBuilder.RegisterModule(new AuthenticationModule());

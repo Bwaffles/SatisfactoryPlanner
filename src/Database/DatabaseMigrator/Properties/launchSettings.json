@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DatabaseMigrator": {
+      "commandName": "Project",
+      "commandLineArgs": "\"Server=127.0.0.1;User Id=postgres;Password=xxxx\" \"Server=127.0.0.1;Database=satisfactory-planner;User Id=postgres;Password=xxxx\""
+    }
+  }
+}

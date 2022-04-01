@@ -33,6 +33,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Buildin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Factories.Application", "Modules\Factories\SatisfactoryPlanner.Modules.Factories.Application\SatisfactoryPlanner.Modules.Factories.Application.csproj", "{05CC273B-57EE-4C24-9BA1-5DA8AFD8C5B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseMigrator", "Database\DatabaseMigrator\DatabaseMigrator.csproj", "{82EFAB19-4915-42CE-B171-A227C5CFC689}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.BuildingBlocks.Infrastructure", "BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj", "{91346DF2-819D-4A74-991A-5A64D1022793}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.BuildingBlocks.Domain", "BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj", "{E4727ECA-20FC-4495-B02A-88F6FB5CE1DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +85,18 @@ Global
 		{05CC273B-57EE-4C24-9BA1-5DA8AFD8C5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05CC273B-57EE-4C24-9BA1-5DA8AFD8C5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05CC273B-57EE-4C24-9BA1-5DA8AFD8C5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82EFAB19-4915-42CE-B171-A227C5CFC689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82EFAB19-4915-42CE-B171-A227C5CFC689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82EFAB19-4915-42CE-B171-A227C5CFC689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82EFAB19-4915-42CE-B171-A227C5CFC689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91346DF2-819D-4A74-991A-5A64D1022793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91346DF2-819D-4A74-991A-5A64D1022793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91346DF2-819D-4A74-991A-5A64D1022793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91346DF2-819D-4A74-991A-5A64D1022793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4727ECA-20FC-4495-B02A-88F6FB5CE1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4727ECA-20FC-4495-B02A-88F6FB5CE1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4727ECA-20FC-4495-B02A-88F6FB5CE1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4727ECA-20FC-4495-B02A-88F6FB5CE1DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +108,9 @@ Global
 		{14042750-24F3-4303-9340-7051FE31444B} = {45177093-D1BF-47F4-930B-CFBE7AF3CD5D}
 		{A7B41980-5224-45AD-A7A4-9BF4CDB5F5A2} = {757C2086-53D1-4FF4-8A4D-76CE49614DC2}
 		{05CC273B-57EE-4C24-9BA1-5DA8AFD8C5B5} = {F3C703A0-817F-4014-A166-D2EAE5058B3F}
+		{82EFAB19-4915-42CE-B171-A227C5CFC689} = {B6C1498C-6EF5-4DC7-9C49-3C748CA1DA31}
+		{91346DF2-819D-4A74-991A-5A64D1022793} = {757C2086-53D1-4FF4-8A4D-76CE49614DC2}
+		{E4727ECA-20FC-4495-B02A-88F6FB5CE1DA} = {757C2086-53D1-4FF4-8A4D-76CE49614DC2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}

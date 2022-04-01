@@ -7,23 +7,16 @@ using MediatR.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Mediation
 {
-    public class MediatorModule : Autofac.Module
+    public class MediatorModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly)
+            builder.RegisterAssemblyTypes(Assemblies.Mediatr)
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
-
-            builder.RegisterSource(new ScopedContravariantRegistrationSource(
-                typeof(IRequestHandler<,>),
-                typeof(IRequestHandler<>),
-                typeof(INotificationHandler<>),
-                typeof(IValidator<>)));
 
             var mediatorOpenTypes = new[]
             {
@@ -32,6 +25,8 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Med
                 typeof(INotificationHandler<>),
                 typeof(IValidator<>)
             };
+
+            builder.RegisterSource(new ScopedContravariantRegistrationSource(mediatorOpenTypes));
 
             foreach (var mediatorOpenType in mediatorOpenTypes)
             {
@@ -72,7 +67,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Med
                 _types.AddRange(types);
             }
 
-            public IEnumerable<IComponentRegistration> RegistrationsFor(Service service, Func<Service, IEnumerable<ServiceRegistration>> registrationAccessor)
+            public IEnumerable<IComponentRegistration> RegistrationsFor(Service service, Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
             {
                 var components = _source.RegistrationsFor(service, registrationAccessor);
                 foreach (var c in components)

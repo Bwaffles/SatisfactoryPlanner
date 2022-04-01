@@ -1,4 +1,6 @@
-﻿using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Queries;
+﻿using Dapper;
+using SatisfactoryPlanner.BuildingBlocks.Application.Data;
+using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Queries;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,24 +9,23 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.GetFactori
 {
     internal class GetFactoriesQueryHandler : IQueryHandler<GetFactoriesQuery, List<FactoryDto>>
     {
-        public async Task<List<FactoryDto>> Handle(GetFactoriesQuery request, CancellationToken cancellationToken)
+        private readonly IDbConnectionFactory _dbConnectionFactory;
+
+        public GetFactoriesQueryHandler(IDbConnectionFactory dbConnectionFactory)
         {
-            return await GetFakeData();
+            _dbConnectionFactory = dbConnectionFactory;
         }
 
-        private async Task<List<FactoryDto>> GetFakeData()
+        public async Task<List<FactoryDto>> Handle(GetFactoriesQuery request, CancellationToken cancellationToken)
         {
-            return new List<FactoryDto>
-            {
-                new FactoryDto
-                {
-                    Name = "Circuit Board West"
-                },
-                new FactoryDto
-                {
-                    Name = "Main Copper"
-                }
-            };
+            var connection = _dbConnectionFactory.GetOpenConnection();
+
+            return (await connection.QueryAsync<FactoryDto>(
+                "SELECT " +
+                $"factory.id AS {nameof(FactoryDto.Id)}, " +
+                $"factory.name AS {nameof(FactoryDto.Name)} " +
+                "FROM factories.factories AS factory"))
+                .AsList();
         }
     }
 }
