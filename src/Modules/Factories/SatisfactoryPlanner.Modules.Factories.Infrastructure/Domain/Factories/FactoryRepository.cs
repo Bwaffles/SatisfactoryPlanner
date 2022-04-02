@@ -22,5 +22,10 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Domain.Factories
         {
             await _context.Factories.AddAsync(factory);
         }
+
+        public async Task<Factory> GetByIdAsync(FactoryId factoryId)
+        {
+            return await _context.Factories.FindAsync(factoryId);
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Domain.Factories
 
             builder.Property<FactoryId>("Id").HasColumnName("id");
             builder.Property<string>("_name").HasColumnName("name");
+            builder.Property<FactoryId>("_builtUnderFactoryId").HasColumnName("built_under_factory_id");
         }
     }
 }

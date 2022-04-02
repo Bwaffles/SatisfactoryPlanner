@@ -13,5 +13,10 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.GetFactori
         ///     The user-defined name that can be used to identify the factory.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        ///     The unique identifier of the factory that this factory is build under or null.
+        /// </summary>
+        public Guid? BuiltUnderFactoryId { get; set; }
     }
 }

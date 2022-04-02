@@ -8,17 +8,21 @@ namespace SatisfactoryPlanner.Modules.Factories.Domain.Factories
 
         private string _name { get; }
 
+        private FactoryId? _builtUnderFactoryId { get; }
+
         private Factory() { }
 
-        private Factory(string name)
+        private Factory(string name, FactoryId? builtUnderFactoryId)
         {
             Id = new FactoryId(System.Guid.NewGuid());
             _name = name;
+            _builtUnderFactoryId = builtUnderFactoryId;
         }
 
-        public static Factory BuildNew(string name)
-        {
-            return new Factory(name);
-        }
+        public static Factory Build(string name)
+            => new Factory(name, builtUnderFactoryId: null);
+
+        public Factory BuildSubFactory(string name)
+            => new Factory(name, Id);
     }
 }

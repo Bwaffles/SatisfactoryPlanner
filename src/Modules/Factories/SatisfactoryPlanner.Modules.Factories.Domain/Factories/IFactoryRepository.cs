@@ -8,5 +8,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Domain.Factories
     public interface IFactoryRepository
     {
         Task AddAsync(Factory factory);
+
+        Task<Factory> GetByIdAsync(FactoryId factoryId);
     }
 }

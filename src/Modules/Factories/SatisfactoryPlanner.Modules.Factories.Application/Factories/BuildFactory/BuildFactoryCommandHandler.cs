@@ -18,8 +18,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.AddFactory
 
         public async Task<Guid> Handle(BuildFactoryCommand request, CancellationToken cancellationToken)
         {
-            var factory = Factory.BuildNew(request.Name);
-
+            var factory = Factory.Build(request.Name);
             await _factoriesRepository.AddAsync(factory);
 
             return factory.Id.Value;
