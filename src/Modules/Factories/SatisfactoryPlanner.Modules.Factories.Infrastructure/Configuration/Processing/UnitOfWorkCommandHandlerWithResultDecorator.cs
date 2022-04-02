@@ -14,7 +14,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Pro
         private readonly IUnitOfWork _unitOfWork;
         private readonly FactoriesContext _factoriesContext;
 
-        public UnitOfWorkCommandHandlerWithResultDecorator(ICommandHandler<T, TResult> decorated, IUnitOfWork unitOfWork, 
+        public UnitOfWorkCommandHandlerWithResultDecorator(ICommandHandler<T, TResult> decorated, IUnitOfWork unitOfWork,
             FactoriesContext factoriesContext)
         {
             _decorated = decorated;

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SatisfactoryPlanner.Modules.Factories.Domain.Factories;
-using System;
 
 namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Domain.Factories
 {
@@ -10,7 +9,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Domain.Factories
         public void Configure(EntityTypeBuilder<Factory> builder)
         {
             builder.ToTable("factories", "factories");
-            
+
             builder
                 .HasKey(_ => _.Id);
 

@@ -13,7 +13,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration.Proces
         public UnitOfWork(DbContext context /*, IDomainEventsDispatcher domainEventsDispatcher*/)
         {
             _context = context;
-           // _domainEventsDispatcher = domainEventsDispatcher;
+            // _domainEventsDispatcher = domainEventsDispatcher;
         }
 
         public async Task<int> CommitAsync(CancellationToken cancellationToken = default, Guid? internalCommandId = null)

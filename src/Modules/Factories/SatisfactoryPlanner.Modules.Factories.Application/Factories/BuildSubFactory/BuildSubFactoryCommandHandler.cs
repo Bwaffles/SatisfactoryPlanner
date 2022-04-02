@@ -22,7 +22,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildSubFa
             var subFactory = factory.BuildSubFactory(request.Name);
             await _factoriesRepository.AddAsync(subFactory);
 
-            return subFactory.Id.Value;            
+            return subFactory.Id.Value;
         }
     }
 }

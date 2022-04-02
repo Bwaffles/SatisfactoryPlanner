@@ -7,7 +7,7 @@ namespace DatabaseMigrator
 {
     internal class Program
     {
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
             Console.WriteLine("Starting migration...");
 
@@ -36,7 +36,9 @@ namespace DatabaseMigrator
                 .BuildServiceProvider(false);
 
             using (var scope = servicesProvider.CreateScope())
+            {
                 UpdateDatabase(connectionString, scope.ServiceProvider);
+            }
 
             return 0;
         }

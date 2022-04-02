@@ -18,8 +18,9 @@ namespace DatabaseMigrator.Migrations
                 parameters);
 
             if (!records.Any())
+            {
                 connection.Execute($"CREATE DATABASE \"{name}\";");
-
+            }
         }
     }
 }
