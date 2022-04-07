@@ -1,20 +1,17 @@
 ﻿using Services.SFGame;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Services.Tests.SFGame
 {
     public class SFGameServiceTests
     {
+        /// <summary>
+        /// Run this test to write the seed items with resources script.
+        /// </summary>
         [Fact]
-        public void DoStuffTest()
+        public void SeedItemResources()
         {
-            var sut = new SFGameService();
-            sut.GetGameData();
+            new SeedItemResourcesScriptWriter().Write();
         }
     }
 }

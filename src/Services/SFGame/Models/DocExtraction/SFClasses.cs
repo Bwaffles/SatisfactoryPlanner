@@ -262,7 +262,9 @@ namespace Services.SFGame.Models.DocExtraction
         public string mPowerConnections { get; set; }
         public string mPowerPoleType { get; set; }
         public string mHasPower { get; set; }
-        public string mHealthGain { get; set; }
+
+        [JsonProperty("mHealthGain")]
+        public decimal HealthGain { get; set; }
         public string mCustomHandsMeshScale { get; set; }
         public string mCustomRotation { get; set; }
         public string mCustomLocation { get; set; }

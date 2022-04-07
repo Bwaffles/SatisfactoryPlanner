@@ -52,9 +52,19 @@ namespace DatabaseMigrator
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
 
             // Execute the migrations
+            runner.ListMigrations();
             runner.MigrateUp();
 
-            //runner.MigrateDown(201812212149);
+            //RetestPreviousMigrations(runner);
+        }
+
+        private static void RetestPreviousMigrations(IMigrationRunner runner)
+        {
+            runner.ListMigrations();
+            runner.Rollback(1);
+            runner.ListMigrations();
+            runner.MigrateUp();
+            runner.ListMigrations();
         }
     }
 }

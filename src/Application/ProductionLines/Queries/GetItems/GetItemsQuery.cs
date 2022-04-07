@@ -25,18 +25,23 @@ namespace Application.ProductionLines.Queries.GetItems
 
             var items = new List<ItemViewModel>();
             items.AddRange(producableItems
-                .Where(item => item.Category == ItemCategory.Ingot)
+                .Where(item => item.Type == ItemType.Ingot)
                 .OrderBy(item => item.ResourceSinkPoints)
                 .Select(ViewModel));
 
             items.AddRange(producableItems
-                .Where(item => item.Category == ItemCategory.Part || item.Category == ItemCategory.Fluid)
-                .OrderBy(item => item.Category)
+                .Where(item => item.Type == ItemType.Component || item.Type == ItemType.Fluid)
+                .OrderBy(item => item.Type)
                 .ThenBy(item => item.DisplayName)
                 .Select(ViewModel));
 
             items.AddRange(producableItems
-                .Where(item => item.Category == ItemCategory.ProjectAssembly)
+                .Where(item => item.Type == ItemType.Biomass)
+                .OrderBy(item => item.ClassName)
+                .Select(ViewModel));
+
+            items.AddRange(producableItems
+                .Where(item => item.Type == ItemType.ProjectAssembly)
                 .OrderBy(item => item.ClassName)
                 .Select(ViewModel));
 
@@ -45,7 +50,7 @@ namespace Application.ProductionLines.Queries.GetItems
 
         private static ItemViewModel ViewModel(Item item)
         {
-            return new ItemViewModel { Category = item.Category.ToString(), Id = item.ClassName, Name = item.DisplayName };
+            return new ItemViewModel { Category = item.Type.ToString(), Id = item.ClassName, Name = item.DisplayName };
         }
     }
 }
