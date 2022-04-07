@@ -1,0 +1,42 @@
+﻿using Dapper;
+using SatisfactoryPlanner.BuildingBlocks.Application.Data;
+using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Queries;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourceDetails
+{
+    public class GetResourceDetailsQueryHandler : IQueryHandler<GetResourceDetailsQuery, ResourceDetailsDto>
+    {
+        private readonly IDbConnectionFactory _dbConnectionFactory;
+
+        public GetResourceDetailsQueryHandler(IDbConnectionFactory dbConnectionFactory)
+        {
+            _dbConnectionFactory = dbConnectionFactory;
+        }
+
+        public async Task<ResourceDetailsDto> Handle(GetResourceDetailsQuery query, CancellationToken cancellationToken)
+        {
+            var connection = _dbConnectionFactory.GetOpenConnection();
+
+            return await connection.QuerySingleAsync<ResourceDetailsDto>(
+               "SELECT " +
+               $"item.code AS {nameof(ResourceDetailsDto.Code)}, " +
+               $"item.name AS {nameof(ResourceDetailsDto.Name)}, " +
+               $"item.description AS {nameof(ResourceDetailsDto.Description)}, " +
+               $"item.form AS {nameof(ResourceDetailsDto.Form)}, " +
+               $"item.stack_size AS {nameof(ResourceDetailsDto.StackSize)}, " +
+               $"item.can_be_deleted AS {nameof(ResourceDetailsDto.CanBeDeleted)}, " +
+               $"item.resource_sink_points AS {nameof(ResourceDetailsDto.ResourceSinkPoints)}, " +
+               $"item.energy_value AS {nameof(ResourceDetailsDto.EnergyValue)}, " +
+               $"item.radioactive_decay AS {nameof(ResourceDetailsDto.RadioactiveDecay)} " +
+               "FROM factories.items AS item " +
+               "WHERE item.type = 'Resource' " +
+               "  AND item.code = @ResourceCode",
+               new
+               {
+                   query.ResourceCode
+               });
+        }
+    }
+}
