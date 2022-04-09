@@ -51,11 +51,16 @@ namespace DatabaseMigrator
             // Instantiate the runner
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
 
-            // Execute the migrations
-            runner.ListMigrations();
-            runner.MigrateUp();
+            MigrateNext(runner);
 
             //RetestPreviousMigrations(runner);
+        }
+
+        private static void MigrateNext(IMigrationRunner runner)
+        {
+            runner.ListMigrations();
+            runner.MigrateUp();
+            runner.ListMigrations();
         }
 
         private static void RetestPreviousMigrations(IMigrationRunner runner)

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
 using SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourceDetails;
+using SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourceNodes;
 using SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResources;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,15 +24,22 @@ namespace SatisfactoryPlanner.API.Modules.Factories.Resources
         [ProducesResponseType(typeof(List<ResourceDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetResources()
         {
-            var items = await factoriesModule.ExecuteQueryAsync(new GetResourcesQuery());
-            return Ok(items);
+            var resources = await factoriesModule.ExecuteQueryAsync(new GetResourcesQuery());
+            return Ok(resources);
         }
 
         [HttpGet("{resourceCode}")]
         public async Task<IActionResult> GetResourceDetails([FromRoute] string resourceCode)
         {
-            var items = await factoriesModule.ExecuteQueryAsync(new GetResourceDetailsQuery(resourceCode));
-            return Ok(items);
+            var resource = await factoriesModule.ExecuteQueryAsync(new GetResourceDetailsQuery(resourceCode));
+            return Ok(resource);
+        }
+
+        [HttpGet("{resourceCode}/nodes")]
+        public async Task<IActionResult> GetResourceNodes([FromRoute] string resourceCode)
+        {
+            var resourceNodes = await factoriesModule.ExecuteQueryAsync(new GetResourceNodesQuery(resourceCode));
+            return Ok(resourceNodes);
         }
     }
 }
