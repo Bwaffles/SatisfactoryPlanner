@@ -5,6 +5,11 @@
         Item,
         Schematic,
         Recipe,
-        Resource
+        Resource,
+        Consumable,
+        Biomass,
+        NuclearFuel,
+        Equipment,
+        Projectile
     }
 }

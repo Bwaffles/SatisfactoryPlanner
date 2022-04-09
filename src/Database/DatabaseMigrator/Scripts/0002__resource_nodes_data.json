@@ -1,0 +1,4531 @@
+[
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode100",
+    "Position": {
+      "X": 178265.375,
+      "Y": 206095.641,
+      "Z": -9238.571
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode101_1893",
+    "Position": {
+      "X": 181999.063,
+      "Y": 114342.0,
+      "Z": 10285.4688
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode102_2068",
+    "Position": {
+      "X": -280836.7,
+      "Y": -42089.18,
+      "Z": -1276.148
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode103",
+    "Position": {
+      "X": -267051.4,
+      "Y": -24386.79,
+      "Z": -723.6485
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode104",
+    "Position": {
+      "X": -273321.219,
+      "Y": -19667.0,
+      "Z": -1537.05469
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode105_2463",
+    "Position": {
+      "X": -263873.031,
+      "Y": -30848.3652,
+      "Z": -411.6734
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode106",
+    "Position": {
+      "X": -260110.453,
+      "Y": -27673.627,
+      "Z": -706.128662
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode107",
+    "Position": {
+      "X": -256244.0,
+      "Y": -29564.0,
+      "Z": -668.0099
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode108",
+    "Position": {
+      "X": -259120.328,
+      "Y": -44688.95,
+      "Z": -494.1499
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode109",
+    "Position": {
+      "X": -261358.453,
+      "Y": -41228.13,
+      "Z": -327.0
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode11",
+    "Position": {
+      "X": -279019.75,
+      "Y": -186294.3,
+      "Z": 269.288574
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode110",
+    "Position": {
+      "X": -178099.063,
+      "Y": -165241.563,
+      "Z": 7616.867
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode111_3367",
+    "Position": {
+      "X": -268264.4,
+      "Y": -54991.4375,
+      "Z": -343.690918
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode112",
+    "Position": {
+      "X": -266711.875,
+      "Y": -51317.582,
+      "Z": -331.482971
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode113",
+    "Position": {
+      "X": -165001.938,
+      "Y": -133278.1,
+      "Z": 1610.91016
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode114",
+    "Position": {
+      "X": -152490.281,
+      "Y": -45786.5078,
+      "Z": 692.6235
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode115",
+    "Position": {
+      "X": -166731.047,
+      "Y": -26566.1387,
+      "Z": -509.766541
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode116",
+    "Position": {
+      "X": -170447.578,
+      "Y": -28321.373,
+      "Z": -596.007446
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode117",
+    "Position": {
+      "X": -148008.2,
+      "Y": -30185.4473,
+      "Z": -556.1295
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode118_4340",
+    "Position": {
+      "X": -133444.859,
+      "Y": -35240.2461,
+      "Z": 3832.00073
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode119",
+    "Position": {
+      "X": -145781.0,
+      "Y": -31969.0,
+      "Z": 3281.07568
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode120_4806",
+    "Position": {
+      "X": -156847.75,
+      "Y": -73292.08,
+      "Z": -963.575439
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode121_4877",
+    "Position": {
+      "X": -178491.0,
+      "Y": -79788.0,
+      "Z": 3331.0
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode122",
+    "Position": {
+      "X": -99604.05,
+      "Y": -146823.219,
+      "Z": -1631.12109
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode123_5084",
+    "Position": {
+      "X": -110588.0,
+      "Y": -135153.0,
+      "Z": 1911.0
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode124_5785",
+    "Position": {
+      "X": -90457.87,
+      "Y": -152279.484,
+      "Z": -1650.314
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode125_5930",
+    "Position": {
+      "X": -96801.0,
+      "Y": -135276.0,
+      "Z": 166.0
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode126_6409",
+    "Position": {
+      "X": -96100.71,
+      "Y": 163752.859,
+      "Z": -3734.49268
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode127",
+    "Position": {
+      "X": -94265.12,
+      "Y": 165842.2,
+      "Z": -3734.83447
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode128_5242",
+    "Position": {
+      "X": -190787.0,
+      "Y": -117690.0,
+      "Z": 706.0
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Crater Lake",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode129",
+    "Position": {
+      "X": -113615.883,
+      "Y": -50450.0,
+      "Z": 16266.2676
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode12_91",
+    "Position": {
+      "X": 248481.438,
+      "Y": -146160.344,
+      "Z": 3591.89355
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode13",
+    "Position": {
+      "X": 242691.672,
+      "Y": -149432.563,
+      "Z": 2590.652
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Crater Lake",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode130",
+    "Position": {
+      "X": -107640.281,
+      "Y": -52375.5156,
+      "Z": 16193.37
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Impure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode131",
+    "Position": {
+      "X": -266903.938,
+      "Y": -133355.438,
+      "Z": 5973.782
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode132_5908",
+    "Position": {
+      "X": -173249.031,
+      "Y": -112172.633,
+      "Z": 31.6359863
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode133_6963",
+    "Position": {
+      "X": 109989.1,
+      "Y": 196758.813,
+      "Z": -3246.712
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode134_8590",
+    "Position": {
+      "X": 109619.43,
+      "Y": 155798.281,
+      "Z": 4175.6665
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode135",
+    "Position": {
+      "X": -182182.719,
+      "Y": -142367.813,
+      "Z": -1777.43518
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode136",
+    "Position": {
+      "X": 37926.11,
+      "Y": 120939.234,
+      "Z": 13370.2461
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode137_2248",
+    "Position": {
+      "X": 34968.07,
+      "Y": 118464.156,
+      "Z": 13370.2461
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode138_590",
+    "Position": {
+      "X": 175981.109,
+      "Y": -40156.3125,
+      "Z": 6611.68555
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode139_909",
+    "Position": {
+      "X": 158314.438,
+      "Y": -65002.84,
+      "Z": 2591.26
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode140",
+    "Position": {
+      "X": 236608.719,
+      "Y": -260095.609,
+      "Z": 11784.3506
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode141",
+    "Position": {
+      "X": 297710.438,
+      "Y": -107995.766,
+      "Z": 5475.0166
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode142",
+    "Position": {
+      "X": 224307.766,
+      "Y": -128741.742,
+      "Z": 7240.549
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode143_1543",
+    "Position": {
+      "X": -129599.0,
+      "Y": -96956.0,
+      "Z": 4209.62158
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode144_1644",
+    "Position": {
+      "X": -231390.3,
+      "Y": -89529.73,
+      "Z": 803.9837
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode145_1749",
+    "Position": {
+      "X": -194906.313,
+      "Y": -25779.7852,
+      "Z": -627.992065
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Southern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode146",
+    "Position": {
+      "X": 96959.12,
+      "Y": 157163.2,
+      "Z": 2110.30444
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Southern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode147",
+    "Position": {
+      "X": 96326.0,
+      "Y": 159762.453,
+      "Z": 2102.83887
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Southern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode148",
+    "Position": {
+      "X": 93730.26,
+      "Y": 160263.922,
+      "Z": 2111.11621
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Southern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode149",
+    "Position": {
+      "X": 92724.9453,
+      "Y": 163305.547,
+      "Z": 1881.96143
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode14_609",
+    "Position": {
+      "X": -36415.0859,
+      "Y": -199979.984,
+      "Z": 2281.10059
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode15",
+    "Position": {
+      "X": -34085.08,
+      "Y": -193714.984,
+      "Z": 2280.044
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode150",
+    "Position": {
+      "X": 108117.258,
+      "Y": 152283.922,
+      "Z": 3387.56665
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode151",
+    "Position": {
+      "X": 185124.391,
+      "Y": 214441.7,
+      "Z": -8910.608
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Pure",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode152_995",
+    "Position": {
+      "X": 184226.859,
+      "Y": 217101.75,
+      "Z": -8910.764
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode153",
+    "Position": {
+      "X": -258432.719,
+      "Y": -40560.85,
+      "Z": -327.0
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Pure",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode154",
+    "Position": {
+      "X": 182115.7,
+      "Y": 188396.656,
+      "Z": -5640.0957
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Pure",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode155",
+    "Position": {
+      "X": 184782.688,
+      "Y": 191090.109,
+      "Z": -5732.21045
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode156",
+    "Position": {
+      "X": -281345.625,
+      "Y": -71999.67,
+      "Z": -1200.90784
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode157",
+    "Position": {
+      "X": -268787.8,
+      "Y": -79095.18,
+      "Z": -292.371277
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode158",
+    "Position": {
+      "X": -129015.438,
+      "Y": -39541.0352,
+      "Z": 2898.15015
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode159",
+    "Position": {
+      "X": -166357.25,
+      "Y": -129627.563,
+      "Z": 1600.22668
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode16",
+    "Position": {
+      "X": -44360.14,
+      "Y": -189109.359,
+      "Z": 2291.03784
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode160",
+    "Position": {
+      "X": -250080.313,
+      "Y": -126362.7,
+      "Z": 3837.601
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode161",
+    "Position": {
+      "X": -252032.609,
+      "Y": -125001.141,
+      "Z": 3847.601
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode162_5199",
+    "Position": {
+      "X": -163354.125,
+      "Y": -192096.656,
+      "Z": 10761.33
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode163",
+    "Position": {
+      "X": -221696.688,
+      "Y": -104736.008,
+      "Z": 4105.7
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode164",
+    "Position": {
+      "X": -261495.656,
+      "Y": -116492.594,
+      "Z": 4302.58838
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode165",
+    "Position": {
+      "X": -281761.4,
+      "Y": -134704.469,
+      "Z": 1998.01489
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode166",
+    "Position": {
+      "X": -206172.672,
+      "Y": -141688.641,
+      "Z": 4859.957
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode167",
+    "Position": {
+      "X": -186902.3,
+      "Y": -118339.828,
+      "Z": 706.0
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode168",
+    "Position": {
+      "X": -187932.656,
+      "Y": -114624.188,
+      "Z": 706.0
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Pure",
+    "Biome": "Crater Lake",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode169_80",
+    "Position": {
+      "X": -49121.207,
+      "Y": -84441.67,
+      "Z": 11925.2295
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Normal",
+    "Biome": "Crater Lake",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode170_363",
+    "Position": {
+      "X": -41122.3242,
+      "Y": -72631.13,
+      "Z": 23212.2148
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode171",
+    "Position": {
+      "X": 99585.4141,
+      "Y": 118251.836,
+      "Z": 10598.8662
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode172",
+    "Position": {
+      "X": -24065.6719,
+      "Y": 269858.1,
+      "Z": -13353.7686
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode173",
+    "Position": {
+      "X": 264240.25,
+      "Y": -162899.2,
+      "Z": 3331.65527
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode174",
+    "Position": {
+      "X": -227410.781,
+      "Y": -118862.211,
+      "Z": 3931.601
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode175",
+    "Position": {
+      "X": -230852.828,
+      "Y": -115124.492,
+      "Z": 3917.601
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Pure",
+    "Biome": "Dangle Spires",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode176",
+    "Position": {
+      "X": -177447.313,
+      "Y": 113140.664,
+      "Z": 2992.09424
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode177",
+    "Position": {
+      "X": 34655.0,
+      "Y": 284303.0,
+      "Z": 905.0
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode178",
+    "Position": {
+      "X": 186164.391,
+      "Y": 77069.96,
+      "Z": 1138.16406
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode179",
+    "Position": {
+      "X": 225503.75,
+      "Y": 55772.54,
+      "Z": -1303.98157
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode180",
+    "Position": {
+      "X": 285860.75,
+      "Y": -127665.094,
+      "Z": 3875.85034
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode181",
+    "Position": {
+      "X": 237354.578,
+      "Y": -164936.422,
+      "Z": 2636.013
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode182",
+    "Position": {
+      "X": 244598.969,
+      "Y": -190901.813,
+      "Z": 1803.641
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode184",
+    "Position": {
+      "X": 311229.8,
+      "Y": -128705.039,
+      "Z": 4669.48926
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode185",
+    "Position": {
+      "X": 252874.516,
+      "Y": -161693.453,
+      "Z": 3452.73755
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode186",
+    "Position": {
+      "X": 295895.531,
+      "Y": -272876.5,
+      "Z": 1237.46179
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode187_0",
+    "Position": {
+      "X": 225406.313,
+      "Y": -237056.656,
+      "Z": 1043.22839
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode188",
+    "Position": {
+      "X": 256401.875,
+      "Y": -184355.4,
+      "Z": 3519.32568
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode189",
+    "Position": {
+      "X": 308652.031,
+      "Y": -100658.063,
+      "Z": 6378.20459
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode190",
+    "Position": {
+      "X": 311622.656,
+      "Y": -69811.22,
+      "Z": 5620.26563
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode191",
+    "Position": {
+      "X": 299122.0,
+      "Y": -85512.0,
+      "Z": 5936.0
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode192_0",
+    "Position": {
+      "X": 270316.844,
+      "Y": -211596.891,
+      "Z": 3051.478
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode193",
+    "Position": {
+      "X": 383045.9,
+      "Y": -92549.1953,
+      "Z": 207.135559
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode194",
+    "Position": {
+      "X": 297397.531,
+      "Y": -96437.46,
+      "Z": 6021.43
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode195",
+    "Position": {
+      "X": 277591.063,
+      "Y": -94119.44,
+      "Z": 5535.76563
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode196",
+    "Position": {
+      "X": 255249.609,
+      "Y": -91659.65,
+      "Z": 5523.85742
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode197",
+    "Position": {
+      "X": 355997.625,
+      "Y": -66386.5,
+      "Z": -396.257446
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode198",
+    "Position": {
+      "X": 268524.3,
+      "Y": -116944.1,
+      "Z": 4206.803
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode199",
+    "Position": {
+      "X": 266880.719,
+      "Y": -120714.6,
+      "Z": 4084.00342
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode200",
+    "Position": {
+      "X": 283968.625,
+      "Y": -121598.344,
+      "Z": 4452.26758
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode201",
+    "Position": {
+      "X": 347227.781,
+      "Y": -58490.81,
+      "Z": -748.9642
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode202",
+    "Position": {
+      "X": 233446.563,
+      "Y": -247935.031,
+      "Z": 1056.99707
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode203",
+    "Position": {
+      "X": 319464.063,
+      "Y": -158098.328,
+      "Z": 3864.566
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode204_0",
+    "Position": {
+      "X": 330433.031,
+      "Y": -142399.734,
+      "Z": 3965.89746
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode205",
+    "Position": {
+      "X": 313010.2,
+      "Y": -133841.609,
+      "Z": 4861.54736
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode206",
+    "Position": {
+      "X": 339300.2,
+      "Y": -183354.422,
+      "Z": 4477.048
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode207",
+    "Position": {
+      "X": 273729.531,
+      "Y": -148172.9,
+      "Z": 4082.7124
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode208",
+    "Position": {
+      "X": 338207.625,
+      "Y": -177564.141,
+      "Z": 4959.218
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode209",
+    "Position": {
+      "X": 372373.7,
+      "Y": -153420.891,
+      "Z": 4005.96948
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode20_3137",
+    "Position": {
+      "X": -280305.969,
+      "Y": -181362.969,
+      "Z": 338.1084
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode210",
+    "Position": {
+      "X": 348525.656,
+      "Y": -123750.758,
+      "Z": 4283.54
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode211",
+    "Position": {
+      "X": 348939.469,
+      "Y": -185584.438,
+      "Z": 4235.77
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode212",
+    "Position": {
+      "X": 329409.6,
+      "Y": -186014.453,
+      "Z": 3740.88232
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode213",
+    "Position": {
+      "X": 355461.719,
+      "Y": -149808.078,
+      "Z": 4214.50439
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode214",
+    "Position": {
+      "X": 326947.063,
+      "Y": -209586.438,
+      "Z": 3687.76563
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode215",
+    "Position": {
+      "X": 287767.781,
+      "Y": -274886.125,
+      "Z": 1242.49072
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode216",
+    "Position": {
+      "X": 342806.281,
+      "Y": -114728.1,
+      "Z": 6020.38672
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode217",
+    "Position": {
+      "X": 278266.3,
+      "Y": -210771.859,
+      "Z": 3221.94824
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode218",
+    "Position": {
+      "X": 298733.938,
+      "Y": -199292.719,
+      "Z": 2709.45972
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode219",
+    "Position": {
+      "X": 282689.3,
+      "Y": -179305.016,
+      "Z": 4212.3584
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode220",
+    "Position": {
+      "X": 385302.656,
+      "Y": -189927.9,
+      "Z": 4280.75537
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode221",
+    "Position": {
+      "X": 311798.844,
+      "Y": -215343.438,
+      "Z": 2436.9
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode222",
+    "Position": {
+      "X": 314598.1,
+      "Y": -196773.438,
+      "Z": 3905.68726
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode223",
+    "Position": {
+      "X": 276673.563,
+      "Y": -195099.813,
+      "Z": 2898.73975
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode224",
+    "Position": {
+      "X": 359885.0,
+      "Y": -200469.0,
+      "Z": 4110.0
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode225",
+    "Position": {
+      "X": 391118.031,
+      "Y": -208702.953,
+      "Z": 4998.15967
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode226",
+    "Position": {
+      "X": 338761.0,
+      "Y": -205718.0,
+      "Z": 4225.0
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode227",
+    "Position": {
+      "X": 348908.0,
+      "Y": -163350.391,
+      "Z": 4238.03271
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode228",
+    "Position": {
+      "X": 370713.0,
+      "Y": -221971.0,
+      "Z": 4225.0
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode229",
+    "Position": {
+      "X": 385953.0,
+      "Y": -254364.75,
+      "Z": 3390.01538
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode230",
+    "Position": {
+      "X": 280137.938,
+      "Y": -261096.7,
+      "Z": 1859.70142
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode231",
+    "Position": {
+      "X": 305659.969,
+      "Y": -301305.6,
+      "Z": 1232.68811
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode232",
+    "Position": {
+      "X": 308597.781,
+      "Y": -296079.2,
+      "Z": 1256.873
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode233",
+    "Position": {
+      "X": 374874.7,
+      "Y": -259903.078,
+      "Z": 3231.756
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode234",
+    "Position": {
+      "X": 355115.5,
+      "Y": -122969.93,
+      "Z": 5003.63672
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode235",
+    "Position": {
+      "X": 380813.625,
+      "Y": -169867.75,
+      "Z": 4187.0166
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode236",
+    "Position": {
+      "X": 377738.063,
+      "Y": -254225.641,
+      "Z": 3347.13062
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode237",
+    "Position": {
+      "X": 381666.3,
+      "Y": -268289.938,
+      "Z": 3485.97168
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode238",
+    "Position": {
+      "X": 304839.656,
+      "Y": -172907.9,
+      "Z": 3801.06079
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode239",
+    "Position": {
+      "X": 297575.8,
+      "Y": -150186.375,
+      "Z": 3972.9917
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode23_96",
+    "Position": {
+      "X": 25224.459,
+      "Y": -226073.688,
+      "Z": -1825.7677
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode240",
+    "Position": {
+      "X": 406181.875,
+      "Y": -206883.047,
+      "Z": -1717.45959
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode24_97",
+    "Position": {
+      "X": 4869.07275,
+      "Y": -224542.234,
+      "Z": -1829.52686
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode25_98",
+    "Position": {
+      "X": 41978.6758,
+      "Y": -207048.672,
+      "Z": -1827.25549
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Pure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode26_99",
+    "Position": {
+      "X": 65653.15,
+      "Y": -174386.172,
+      "Z": -1821.504
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Pure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode27_100",
+    "Position": {
+      "X": 69725.88,
+      "Y": -181911.984,
+      "Z": -1832.18445
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode28_101",
+    "Position": {
+      "X": 47544.58,
+      "Y": -192701.422,
+      "Z": -1776.18213
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode29_102",
+    "Position": {
+      "X": 89076.09,
+      "Y": -201485.547,
+      "Z": -1823.30273
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode30_103",
+    "Position": {
+      "X": 114158.141,
+      "Y": -183697.438,
+      "Z": -1826.0946
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode31_104",
+    "Position": {
+      "X": 154378.266,
+      "Y": -178428.766,
+      "Z": -1831.33936
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode32_105",
+    "Position": {
+      "X": 140956.9,
+      "Y": -190595.047,
+      "Z": -1813.83679
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode35",
+    "Position": {
+      "X": 256611.656,
+      "Y": -197978.563,
+      "Z": 3516.465
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode36",
+    "Position": {
+      "X": 241090.688,
+      "Y": -239787.953,
+      "Z": 1048.34448
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode37_178",
+    "Position": {
+      "X": 177197.547,
+      "Y": -86516.85,
+      "Z": 2459.135
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode38_902",
+    "Position": {
+      "X": 167904.109,
+      "Y": -116373.078,
+      "Z": 2426.64038
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode39",
+    "Position": {
+      "X": 181723.7,
+      "Y": -116280.305,
+      "Z": 2150.03125
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode40",
+    "Position": {
+      "X": 178061.9,
+      "Y": -120503.633,
+      "Z": 2280.74854
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode41_1099",
+    "Position": {
+      "X": 107368.211,
+      "Y": -43239.4922,
+      "Z": 14774.4326
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode426",
+    "Position": {
+      "X": 68075.3359,
+      "Y": -81001.0859,
+      "Z": 9944.151
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode427",
+    "Position": {
+      "X": 70865.2656,
+      "Y": -78125.82,
+      "Z": 10451.6494
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode42_1294",
+    "Position": {
+      "X": 63823.2734,
+      "Y": 8376.804,
+      "Z": 14012.6592
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode430",
+    "Position": {
+      "X": 59113.3945,
+      "Y": -71501.63,
+      "Z": 10568.02
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode431",
+    "Position": {
+      "X": 64576.34,
+      "Y": -71386.9453,
+      "Z": 10641.1289
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode435_26",
+    "Position": {
+      "X": 84199.14,
+      "Y": -86393.55,
+      "Z": 9766.527
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode437_30",
+    "Position": {
+      "X": 83508.54,
+      "Y": -90506.79,
+      "Z": 9590.733
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode439_1",
+    "Position": {
+      "X": 79670.5,
+      "Y": -75852.08,
+      "Z": 12028.0059
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode440",
+    "Position": {
+      "X": 69552.0859,
+      "Y": -100368.7,
+      "Z": 9391.888
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode441",
+    "Position": {
+      "X": 67878.4,
+      "Y": -95777.43,
+      "Z": 9352.034
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode442",
+    "Position": {
+      "X": 60592.707,
+      "Y": -77890.83,
+      "Z": 9417.138
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode443",
+    "Position": {
+      "X": -6448.65674,
+      "Y": -120483.445,
+      "Z": 10380.249
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode444_0",
+    "Position": {
+      "X": 173702.453,
+      "Y": -91776.41,
+      "Z": 1051.03955
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode445",
+    "Position": {
+      "X": 56109.1641,
+      "Y": -85970.16,
+      "Z": 9944.389
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode446_1",
+    "Position": {
+      "X": 167391.5,
+      "Y": -88953.6,
+      "Z": 1049.76953
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode447",
+    "Position": {
+      "X": 176296.813,
+      "Y": -94196.8359,
+      "Z": 1419.14783
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode448",
+    "Position": {
+      "X": 172814.172,
+      "Y": -94608.1953,
+      "Z": 1042.363
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode449",
+    "Position": {
+      "X": 136290.219,
+      "Y": -20923.6113,
+      "Z": 9425.299
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode451",
+    "Position": {
+      "X": 128059.313,
+      "Y": -24824.6055,
+      "Z": 8263.719
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode452",
+    "Position": {
+      "X": 122698.039,
+      "Y": -26966.293,
+      "Z": 7998.91553
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode453",
+    "Position": {
+      "X": -44869.3828,
+      "Y": -139479.688,
+      "Z": 7983.02246
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode454",
+    "Position": {
+      "X": -43381.9258,
+      "Y": -136820.031,
+      "Z": 8046.35449
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Normal",
+    "Biome": "Crater Lake",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode455",
+    "Position": {
+      "X": -41961.57,
+      "Y": -94314.12,
+      "Z": 374.595551
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode456",
+    "Position": {
+      "X": -71340.82,
+      "Y": -118238.7,
+      "Z": 2007.87915
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode457",
+    "Position": {
+      "X": 116236.008,
+      "Y": -15552.1855,
+      "Z": 14026.7354
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Lake Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode458",
+    "Position": {
+      "X": 49403.6523,
+      "Y": -4743.892,
+      "Z": 13191.5049
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Lake Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode459",
+    "Position": {
+      "X": 52588.7344,
+      "Y": -8859.303,
+      "Z": 13593.47
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode460",
+    "Position": {
+      "X": 49638.543,
+      "Y": 655.757568,
+      "Z": 13149.6191
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Normal",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode461",
+    "Position": {
+      "X": 126724.422,
+      "Y": -46635.582,
+      "Z": 12896.8574
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode462",
+    "Position": {
+      "X": -37614.4961,
+      "Y": -142250.453,
+      "Z": 7971.792
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode463",
+    "Position": {
+      "X": -55554.9766,
+      "Y": -129406.359,
+      "Z": 6951.587
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode464",
+    "Position": {
+      "X": 50259.72,
+      "Y": -157152.719,
+      "Z": -149.060547
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode465",
+    "Position": {
+      "X": 121322.344,
+      "Y": -88295.22,
+      "Z": 13669.1162
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Desert Canyons",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode466",
+    "Position": {
+      "X": 168496.5,
+      "Y": -108029.6,
+      "Z": 1557.05615
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode467",
+    "Position": {
+      "X": 92072.6,
+      "Y": 3163.584,
+      "Z": 16079.166
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Normal",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode468",
+    "Position": {
+      "X": 114678.531,
+      "Y": -16970.4473,
+      "Z": 14016.24
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode469",
+    "Position": {
+      "X": 138805.359,
+      "Y": -23952.67,
+      "Z": 9440.769
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode46_2284",
+    "Position": {
+      "X": 343519.2,
+      "Y": -83469.72,
+      "Z": 5618.0
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode471",
+    "Position": {
+      "X": 223671.875,
+      "Y": -47942.1641,
+      "Z": 11273.29
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode473",
+    "Position": {
+      "X": 218436.8,
+      "Y": -50921.64,
+      "Z": 11291.7813
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode474",
+    "Position": {
+      "X": 245250.281,
+      "Y": -22224.377,
+      "Z": 8803.896
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode475",
+    "Position": {
+      "X": 198151.828,
+      "Y": -48632.61,
+      "Z": 5519.95947
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Normal",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode476",
+    "Position": {
+      "X": 263148.1,
+      "Y": 53611.1641,
+      "Z": -1325.3866
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Impure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode477",
+    "Position": {
+      "X": 261127.969,
+      "Y": 48274.6,
+      "Z": -816.8045
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode479",
+    "Position": {
+      "X": 260298.516,
+      "Y": 56227.5273,
+      "Z": -866.56665
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Impure",
+    "Biome": "Lake Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode47_3066",
+    "Position": {
+      "X": 15459.8906,
+      "Y": -331.770325,
+      "Z": 14636.2109
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode480",
+    "Position": {
+      "X": 199007.172,
+      "Y": 89173.19,
+      "Z": 1096.80286
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Impure",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode481",
+    "Position": {
+      "X": 198936.422,
+      "Y": 93354.0547,
+      "Z": 1238.62207
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode482",
+    "Position": {
+      "X": 181526.531,
+      "Y": 78469.12,
+      "Z": 7241.44531
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode483",
+    "Position": {
+      "X": 198844.25,
+      "Y": 14860.8516,
+      "Z": 55.8537
+    }
+  },
+  {
+    "ItemCode": "Desc_OreUranium_C",
+    "Purity": "Normal",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode484",
+    "Position": {
+      "X": 168712.563,
+      "Y": 50839.1641,
+      "Z": -9.32179
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Pure",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode485",
+    "Position": {
+      "X": -59322.1328,
+      "Y": 14594.7637,
+      "Z": 23995.0449
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Normal",
+    "Biome": "Red Bamboo Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode486",
+    "Position": {
+      "X": 2570.9895,
+      "Y": 9834.487,
+      "Z": 23971.52
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Normal",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode487",
+    "Position": {
+      "X": -12814.5234,
+      "Y": -104642.125,
+      "Z": 10908.915
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode488",
+    "Position": {
+      "X": -94905.47,
+      "Y": 262677.5,
+      "Z": -4620.15674
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode489",
+    "Position": {
+      "X": -97178.42,
+      "Y": 264232.125,
+      "Z": -4625.652
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode49",
+    "Position": {
+      "X": 265501.219,
+      "Y": -178205.922,
+      "Z": 3456.911
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode490",
+    "Position": {
+      "X": -98579.16,
+      "Y": 265801.063,
+      "Z": -4634.952
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode491",
+    "Position": {
+      "X": -91267.71,
+      "Y": 253077.453,
+      "Z": -4513.924
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode492",
+    "Position": {
+      "X": -83962.15,
+      "Y": 273576.625,
+      "Z": -6240.1333
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode493",
+    "Position": {
+      "X": -83133.63,
+      "Y": 275762.219,
+      "Z": -6264.25244
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode494",
+    "Position": {
+      "X": -36499.56,
+      "Y": 243893.734,
+      "Z": -2502.624
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode495",
+    "Position": {
+      "X": -35040.7266,
+      "Y": 245805.3,
+      "Z": -2504.111
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode496",
+    "Position": {
+      "X": -49077.0156,
+      "Y": 231707.75,
+      "Z": -3845.75171
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode497_1",
+    "Position": {
+      "X": -51644.5977,
+      "Y": 229391.391,
+      "Z": -3845.75171
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode498",
+    "Position": {
+      "X": 400379.4,
+      "Y": -262928.125,
+      "Z": 3427.25073
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode499",
+    "Position": {
+      "X": 155867.516,
+      "Y": 248394.4,
+      "Z": -6062.52734
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode500",
+    "Position": {
+      "X": 157195.484,
+      "Y": 241871.547,
+      "Z": -6201.17334
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode501",
+    "Position": {
+      "X": 153876.156,
+      "Y": 252816.969,
+      "Z": -4609.96436
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode502",
+    "Position": {
+      "X": 150582.828,
+      "Y": 249923.766,
+      "Z": -5135.73
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode503",
+    "Position": {
+      "X": -75977.25,
+      "Y": 130576.336,
+      "Z": -3632.12134
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode504",
+    "Position": {
+      "X": -78418.71,
+      "Y": 129174.289,
+      "Z": -3648.87085
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode505",
+    "Position": {
+      "X": 7171.53,
+      "Y": 155231.7,
+      "Z": -12082.94
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode506",
+    "Position": {
+      "X": 5251.412,
+      "Y": 157169.188,
+      "Z": -12082.8232
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode507",
+    "Position": {
+      "X": 5023.70361,
+      "Y": 159951.484,
+      "Z": -12082.94
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Maze Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode508",
+    "Position": {
+      "X": 120084.586,
+      "Y": -9957.308,
+      "Z": 10448.19
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode509",
+    "Position": {
+      "X": -108119.977,
+      "Y": 261059.141,
+      "Z": -4801.65771
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Impure",
+    "Biome": "Crater Lake",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode510",
+    "Position": {
+      "X": -39889.7578,
+      "Y": -93579.23,
+      "Z": 343.0762
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode511",
+    "Position": {
+      "X": -52587.4375,
+      "Y": 264646.9,
+      "Z": -3819.65771
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode512",
+    "Position": {
+      "X": -89046.08,
+      "Y": 153285.141,
+      "Z": -3019.6936
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode513",
+    "Position": {
+      "X": 152648.422,
+      "Y": 5227.09131,
+      "Z": 15168.2705
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode514",
+    "Position": {
+      "X": 157737.734,
+      "Y": 14877.8213,
+      "Z": 15369.9746
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode515",
+    "Position": {
+      "X": 149936.7,
+      "Y": 4686.471,
+      "Z": 15468.126
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode516",
+    "Position": {
+      "X": 166452.453,
+      "Y": 7804.26367,
+      "Z": 15934.0479
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode517",
+    "Position": {
+      "X": 124933.164,
+      "Y": 5226.18945,
+      "Z": 15573.5791
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode518",
+    "Position": {
+      "X": 128572.93,
+      "Y": 1795.29663,
+      "Z": 15542.8418
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Impure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode519",
+    "Position": {
+      "X": -48333.42,
+      "Y": 128900.133,
+      "Z": 23287.6543
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Pure",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode520",
+    "Position": {
+      "X": -90474.37,
+      "Y": 67259.8047,
+      "Z": 2145.04688
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode521",
+    "Position": {
+      "X": -107864.805,
+      "Y": 60190.59,
+      "Z": 2653.34668
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Pure",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode522",
+    "Position": {
+      "X": -90370.42,
+      "Y": 63712.1563,
+      "Z": 2145.04688
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode523",
+    "Position": {
+      "X": 193679.1,
+      "Y": -5536.15625,
+      "Z": 10224.8633
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode524",
+    "Position": {
+      "X": 199555.656,
+      "Y": -776.71875,
+      "Z": 10251.6357
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode525",
+    "Position": {
+      "X": 242403.047,
+      "Y": -20541.4883,
+      "Z": 8785.376
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode526",
+    "Position": {
+      "X": 244102.4,
+      "Y": -27296.8379,
+      "Z": 8775.347
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode527",
+    "Position": {
+      "X": 216036.031,
+      "Y": -43073.3945,
+      "Z": 11279.3643
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode528",
+    "Position": {
+      "X": 246412.375,
+      "Y": -45892.6,
+      "Z": 10255.3242
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Normal",
+    "Biome": "Red Bamboo Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode529",
+    "Position": {
+      "X": 39477.65,
+      "Y": 52119.99,
+      "Z": 23601.6016
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Impure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode52_3895",
+    "Position": {
+      "X": 285296.0,
+      "Y": -43240.0,
+      "Z": 5264.0
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode530",
+    "Position": {
+      "X": -99586.61,
+      "Y": 267811.938,
+      "Z": -4660.73
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode531",
+    "Position": {
+      "X": -93267.11,
+      "Y": 254146.172,
+      "Z": -4509.76367
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode532",
+    "Position": {
+      "X": -94006.57,
+      "Y": 268116.219,
+      "Z": -3127.72632
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode533",
+    "Position": {
+      "X": -92372.08,
+      "Y": 266081.844,
+      "Z": -3125.04419
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode534",
+    "Position": {
+      "X": -55951.41,
+      "Y": 271564.9,
+      "Z": -3776.7
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode535",
+    "Position": {
+      "X": -65049.1133,
+      "Y": 137463.8,
+      "Z": 8488.221
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode536",
+    "Position": {
+      "X": -42273.0977,
+      "Y": 132150.969,
+      "Z": 8668.766
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode537",
+    "Position": {
+      "X": -60453.418,
+      "Y": 141695.672,
+      "Z": 8416.784
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode538",
+    "Position": {
+      "X": -41928.32,
+      "Y": 206907.641,
+      "Z": -2228.233
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode539",
+    "Position": {
+      "X": -43940.1641,
+      "Y": 207992.469,
+      "Z": -2228.233
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode53_510",
+    "Position": {
+      "X": -21758.373,
+      "Y": -145311.75,
+      "Z": 10041.6787
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode540",
+    "Position": {
+      "X": -33328.1836,
+      "Y": 231626.156,
+      "Z": -1394.35034
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode541",
+    "Position": {
+      "X": -38249.4648,
+      "Y": 127975.211,
+      "Z": 8811.497
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode542",
+    "Position": {
+      "X": -41484.49,
+      "Y": 125793.586,
+      "Z": 8644.933
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode543",
+    "Position": {
+      "X": 571.7422,
+      "Y": 283802.1,
+      "Z": -1139.76221
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode544",
+    "Position": {
+      "X": -1126.05542,
+      "Y": 285301.25,
+      "Z": -1139.76221
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode545",
+    "Position": {
+      "X": -44922.0469,
+      "Y": 302273.563,
+      "Z": -2573.11816
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode546",
+    "Position": {
+      "X": -50406.5273,
+      "Y": 302870.719,
+      "Z": -2583.33325
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode547",
+    "Position": {
+      "X": -21265.09,
+      "Y": 283147.75,
+      "Z": -2531.18945
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode548",
+    "Position": {
+      "X": 3998.15234,
+      "Y": 271120.625,
+      "Z": -4107.96338
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode549",
+    "Position": {
+      "X": 4127.76953,
+      "Y": 273241.8,
+      "Z": -4107.96338
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode54_833",
+    "Position": {
+      "X": -41844.6055,
+      "Y": -152412.109,
+      "Z": 9227.157
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode550",
+    "Position": {
+      "X": 16091.8359,
+      "Y": 264153.125,
+      "Z": -3854.18
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode551",
+    "Position": {
+      "X": -54100.96,
+      "Y": 229417.016,
+      "Z": -3845.75171
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode552",
+    "Position": {
+      "X": -194230.344,
+      "Y": -140421.953,
+      "Z": -1241.91687
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode553",
+    "Position": {
+      "X": -41301.4063,
+      "Y": 288558.031,
+      "Z": -2575.56982
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode554",
+    "Position": {
+      "X": -37142.0742,
+      "Y": 201538.156,
+      "Z": -3066.461
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode555",
+    "Position": {
+      "X": -62536.7734,
+      "Y": 228042.6,
+      "Z": -3279.11133
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode556",
+    "Position": {
+      "X": -110521.766,
+      "Y": 249721.672,
+      "Z": -5379.684
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode557",
+    "Position": {
+      "X": -94477.42,
+      "Y": 228243.266,
+      "Z": -2399.37134
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode558",
+    "Position": {
+      "X": -8996.638,
+      "Y": 293512.3,
+      "Z": -2527.2478
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode559",
+    "Position": {
+      "X": -89379.35,
+      "Y": 136763.078,
+      "Z": -3948.64868
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode55_1215",
+    "Position": {
+      "X": -47085.4023,
+      "Y": -141054.672,
+      "Z": 8074.42969
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode560",
+    "Position": {
+      "X": -86788.44,
+      "Y": 138201.344,
+      "Z": -3613.601
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode561",
+    "Position": {
+      "X": -55288.332,
+      "Y": 129002.875,
+      "Z": 8671.784
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Impure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode562",
+    "Position": {
+      "X": -71673.08,
+      "Y": 106511.313,
+      "Z": 8466.151
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode563",
+    "Position": {
+      "X": 271770.7,
+      "Y": 100432.477,
+      "Z": -1294.798
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode564",
+    "Position": {
+      "X": 284986.281,
+      "Y": 111894.07,
+      "Z": -1605.71484
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode565_8",
+    "Position": {
+      "X": 242756.75,
+      "Y": 87933.09,
+      "Z": -617.177
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Impure",
+    "Biome": "Red Bamboo Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode566",
+    "Position": {
+      "X": -5633.59375,
+      "Y": 44274.0625,
+      "Z": 21105.998
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode567",
+    "Position": {
+      "X": 245861.547,
+      "Y": 4378.943,
+      "Z": 573.6341
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Pure",
+    "Biome": "Red Bamboo Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode568",
+    "Position": {
+      "X": -5292.68359,
+      "Y": 92075.1953,
+      "Z": 22756.3262
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Western Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode569",
+    "Position": {
+      "X": -43326.97,
+      "Y": 130254.383,
+      "Z": 8662.27051
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode56_190",
+    "Position": {
+      "X": -66390.64,
+      "Y": -137146.313,
+      "Z": 4741.182
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Pure",
+    "Biome": "Abyss Cliffs",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode570",
+    "Position": {
+      "X": 270786.063,
+      "Y": 120111.016,
+      "Z": -54.5227051
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode571",
+    "Position": {
+      "X": -53615.4258,
+      "Y": 160375.563,
+      "Z": 3355.89
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode572",
+    "Position": {
+      "X": 134965.875,
+      "Y": 123199.914,
+      "Z": 12290.6514
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573",
+    "Position": {
+      "X": 146849.563,
+      "Y": 115085.813,
+      "Z": 12296.8438
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode574",
+    "Position": {
+      "X": 90375.79,
+      "Y": 80713.84,
+      "Z": 10116.5605
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode575",
+    "Position": {
+      "X": -80089.19,
+      "Y": 204746.5,
+      "Z": 1544.53076
+    }
+  },
+  {
+    "ItemCode": "Desc_OreUranium_C",
+    "Purity": "Normal",
+    "Biome": "Red Bamboo Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode576",
+    "Position": {
+      "X": 38000.17,
+      "Y": 91735.95,
+      "Z": -4809.05127
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode577",
+    "Position": {
+      "X": -55693.168,
+      "Y": 194370.484,
+      "Z": -2557.02759
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode578",
+    "Position": {
+      "X": -57161.0625,
+      "Y": 192772.7,
+      "Z": -2513.37256
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode579",
+    "Position": {
+      "X": -58919.3945,
+      "Y": 195892.938,
+      "Z": -2195.56787
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode57_373",
+    "Position": {
+      "X": -62329.8164,
+      "Y": -140683.938,
+      "Z": 4868.03467
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode580",
+    "Position": {
+      "X": -61757.27,
+      "Y": 194633.719,
+      "Z": -2042.01
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode581",
+    "Position": {
+      "X": 276452.75,
+      "Y": -250331.375,
+      "Z": 1260.6814
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode582",
+    "Position": {
+      "X": 296499.781,
+      "Y": 13253.5117,
+      "Z": -881.7694
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode583_1",
+    "Position": {
+      "X": 255908.453,
+      "Y": -3071.1897,
+      "Z": 3583.2832
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode584",
+    "Position": {
+      "X": -8700.848,
+      "Y": 283439.625,
+      "Z": -1137.01343
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode585",
+    "Position": {
+      "X": -10233.5449,
+      "Y": 291034.9,
+      "Z": -2475.65259
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode586",
+    "Position": {
+      "X": -43321.69,
+      "Y": 239553.469,
+      "Z": -3850.861
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode587",
+    "Position": {
+      "X": -66076.53,
+      "Y": 296870.719,
+      "Z": -6102.426
+    }
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode588",
+    "Position": {
+      "X": -167359.828,
+      "Y": -145682.578,
+      "Z": -1916.12256
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode589",
+    "Position": {
+      "X": 8341.529,
+      "Y": 147571.7,
+      "Z": -9599.883
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Normal",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode58_504",
+    "Position": {
+      "X": -20566.47,
+      "Y": -105374.625,
+      "Z": 9004.264
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode590",
+    "Position": {
+      "X": 17163.8223,
+      "Y": 280787.9,
+      "Z": 2768.04541
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode591",
+    "Position": {
+      "X": -47534.3555,
+      "Y": 289606.6,
+      "Z": -2526.47925
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Impure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode592",
+    "Position": {
+      "X": -50101.9023,
+      "Y": 284478.031,
+      "Z": -2614.764
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode593",
+    "Position": {
+      "X": -28703.168,
+      "Y": 198210.484,
+      "Z": -1997.02759
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode594",
+    "Position": {
+      "X": 404788.156,
+      "Y": -113960.586,
+      "Z": 634.6417
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Pure",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode595",
+    "Position": {
+      "X": -217052.25,
+      "Y": 11242.1445,
+      "Z": 17705.3828
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Pure",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode596",
+    "Position": {
+      "X": -177367.2,
+      "Y": 44998.918,
+      "Z": 23765.87
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Normal",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode597",
+    "Position": {
+      "X": -150574.8,
+      "Y": -22.5576,
+      "Z": 19505.623
+    }
+  },
+  {
+    "ItemCode": "Desc_OreUranium_C",
+    "Purity": "Normal",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode598_0",
+    "Position": {
+      "X": -75893.16,
+      "Y": 51636.96,
+      "Z": 19145.9531
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode599",
+    "Position": {
+      "X": -60960.8867,
+      "Y": 96171.0859,
+      "Z": 21234.123
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode59_755",
+    "Position": {
+      "X": 20776.252,
+      "Y": -134970.047,
+      "Z": 16881.8359
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode5_381",
+    "Position": {
+      "X": -107739.1,
+      "Y": -130639.961,
+      "Z": -1525.47534
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Red Bamboo Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode600",
+    "Position": {
+      "X": -29925.75,
+      "Y": 39693.06,
+      "Z": 21307.7637
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Crater Lake",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode601",
+    "Position": {
+      "X": -64843.0352,
+      "Y": -7738.49072,
+      "Z": 22626.6641
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Lake Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode602",
+    "Position": {
+      "X": 33024.7461,
+      "Y": 69.47814,
+      "Z": 23076.4063
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode603",
+    "Position": {
+      "X": 57623.4531,
+      "Y": 45463.2148,
+      "Z": 24895.3262
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Impure",
+    "Biome": "Red Bamboo Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode604",
+    "Position": {
+      "X": 8348.431,
+      "Y": 70432.0,
+      "Z": 23244.65
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode605",
+    "Position": {
+      "X": -107793.867,
+      "Y": 31855.4727,
+      "Z": 22428.2539
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode606",
+    "Position": {
+      "X": -141071.516,
+      "Y": 39662.0273,
+      "Z": 19144.66
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Impure",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode607",
+    "Position": {
+      "X": -125022.914,
+      "Y": 50906.73,
+      "Z": 32742.0762
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Impure",
+    "Biome": "Red Bamboo Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode608",
+    "Position": {
+      "X": 18464.125,
+      "Y": 41695.8633,
+      "Z": 21119.5879
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Red Jungle",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode609",
+    "Position": {
+      "X": -53781.875,
+      "Y": 33003.2734,
+      "Z": 20012.2344
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode60_984",
+    "Position": {
+      "X": 75114.84,
+      "Y": -123003.477,
+      "Z": 13630.3262
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode610",
+    "Position": {
+      "X": 404471.156,
+      "Y": -116794.984,
+      "Z": 1122.16174
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode611",
+    "Position": {
+      "X": 368850.563,
+      "Y": -76218.82,
+      "Z": -538.8308
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode612",
+    "Position": {
+      "X": 365436.375,
+      "Y": -80081.98,
+      "Z": -63.16175
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode613",
+    "Position": {
+      "X": 380366.875,
+      "Y": -109495.695,
+      "Z": 9249.585
+    }
+  },
+  {
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode614",
+    "Position": {
+      "X": 330471.4,
+      "Y": -264658.344,
+      "Z": 2144.00537
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode615",
+    "Position": {
+      "X": 271513.7,
+      "Y": -246510.547,
+      "Z": 1630.90662
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode616",
+    "Position": {
+      "X": 399533.875,
+      "Y": -255364.922,
+      "Z": 3822.78
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode617",
+    "Position": {
+      "X": 362593.6,
+      "Y": -135769.969,
+      "Z": 5895.026
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode618",
+    "Position": {
+      "X": 368128.344,
+      "Y": -139150.7,
+      "Z": 5475.85156
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode619",
+    "Position": {
+      "X": 365854.438,
+      "Y": -133383.734,
+      "Z": 5255.9
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode62",
+    "Position": {
+      "X": -227331.1,
+      "Y": -158278.328,
+      "Z": 8947.665
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode620",
+    "Position": {
+      "X": 406197.031,
+      "Y": -252989.969,
+      "Z": 3940.42847
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode621",
+    "Position": {
+      "X": 218926.469,
+      "Y": -255338.891,
+      "Z": 1070.19226
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode622",
+    "Position": {
+      "X": 220712.891,
+      "Y": -250482.2,
+      "Z": 1257.3457
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode623",
+    "Position": {
+      "X": 325548.8,
+      "Y": -264500.125,
+      "Z": 1673.578
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Pure",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode624",
+    "Position": {
+      "X": 246502.219,
+      "Y": -276999.9,
+      "Z": 1498.77332
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode625",
+    "Position": {
+      "X": 330471.4,
+      "Y": -264658.344,
+      "Z": 2144.00537
+    }
+  },
+  {
+    "ItemCode": "Desc_OreUranium_C",
+    "Purity": "Impure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode626",
+    "Position": {
+      "X": -132772.219,
+      "Y": -187579.234,
+      "Z": 46528.31
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode627",
+    "Position": {
+      "X": 106047.648,
+      "Y": 50478.7852,
+      "Z": 9765.116
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode628",
+    "Position": {
+      "X": 116877.539,
+      "Y": 51510.9063,
+      "Z": 17359.5059
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Impure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode629",
+    "Position": {
+      "X": 103317.648,
+      "Y": 67498.78,
+      "Z": 9540.116
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Impure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode630",
+    "Position": {
+      "X": 89592.65,
+      "Y": 62638.78,
+      "Z": 10375.1162
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode65_1865",
+    "Position": {
+      "X": 219394.75,
+      "Y": 37188.8164,
+      "Z": -1292.16638
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode66",
+    "Position": {
+      "X": 245700.438,
+      "Y": 30065.3984,
+      "Z": -847.297852
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode67_2193",
+    "Position": {
+      "X": 270772.25,
+      "Y": 47035.57,
+      "Z": -1613.82385
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode68_2514",
+    "Position": {
+      "X": -36771.3867,
+      "Y": 296778.969,
+      "Z": -2366.04614
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode69",
+    "Position": {
+      "X": 225430.5,
+      "Y": -6949.22852,
+      "Z": -1549.86084
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode6_379",
+    "Position": {
+      "X": -110109.1,
+      "Y": -129159.961,
+      "Z": -1405.47534
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Pure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode70_3132",
+    "Position": {
+      "X": -131573.672,
+      "Y": 227253.1,
+      "Z": -787.024048
+    }
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "Purity": "Normal",
+    "Biome": "Snaketree Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode71_736",
+    "Position": {
+      "X": -46605.68,
+      "Y": 155202.859,
+      "Z": 6497.82764
+    }
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "Purity": "Pure",
+    "Biome": "Grass Fields",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode72_998",
+    "Position": {
+      "X": -92343.3359,
+      "Y": 281605.875,
+      "Z": -4620.49561
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Blue Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode73_6071",
+    "Position": {
+      "X": 133276.125,
+      "Y": 197857.0,
+      "Z": -7378.84473
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Blue Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode74",
+    "Position": {
+      "X": 131967.422,
+      "Y": 194729.0,
+      "Z": -7424.693
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Impure",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode75_6425",
+    "Position": {
+      "X": 130551.0,
+      "Y": 179528.531,
+      "Z": -5545.097
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Blue Canyon",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode76",
+    "Position": {
+      "X": 133637.484,
+      "Y": 205791.547,
+      "Z": -7424.32129
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode77",
+    "Position": {
+      "X": 226320.0,
+      "Y": -200702.0,
+      "Z": 1079.34985
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Impure",
+    "Biome": "Abyss Cliffs",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode78_1097",
+    "Position": {
+      "X": 228273.234,
+      "Y": 116287.039,
+      "Z": -1581.81714
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Impure",
+    "Biome": "Southern Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode79_1312",
+    "Position": {
+      "X": 80929.8359,
+      "Y": 242455.25,
+      "Z": -4483.244
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode7_380",
+    "Position": {
+      "X": -102630.016,
+      "Y": -140319.844,
+      "Z": -1581.732
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dangle Spires",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode80",
+    "Position": {
+      "X": -167603.141,
+      "Y": 179557.156,
+      "Z": 1589.63232
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dangle Spires",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode81",
+    "Position": {
+      "X": -164442.609,
+      "Y": 171771.8,
+      "Z": 1612.34692
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Dangle Spires",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode82",
+    "Position": {
+      "X": -162723.672,
+      "Y": 182453.1,
+      "Z": 462.976074
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Dangle Spires",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode83",
+    "Position": {
+      "X": -171878.625,
+      "Y": 185789.219,
+      "Z": 1077.15735
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Dangle Spires",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode84",
+    "Position": {
+      "X": -156728.531,
+      "Y": 202159.609,
+      "Z": 961.4581
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Dangle Spires",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode85",
+    "Position": {
+      "X": -151152.172,
+      "Y": 184381.0,
+      "Z": 978.07
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Islands",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode86",
+    "Position": {
+      "X": -229053.75,
+      "Y": 78058.34,
+      "Z": -1684.96692
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Pure",
+    "Biome": "Islands",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode87",
+    "Position": {
+      "X": -245048.641,
+      "Y": 90588.17,
+      "Z": -1652.39807
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Normal",
+    "Biome": "Islands",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode88",
+    "Position": {
+      "X": -232468.75,
+      "Y": 62838.28,
+      "Z": -1676.49329
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Pure",
+    "Biome": "Islands",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode89",
+    "Position": {
+      "X": -252533.734,
+      "Y": 69813.32,
+      "Z": -1562.461
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Normal",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode90_482",
+    "Position": {
+      "X": 252751.219,
+      "Y": 29139.623,
+      "Z": -798.658936
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode91_785",
+    "Position": {
+      "X": 282284.2,
+      "Y": 63326.7539,
+      "Z": -1601.31152
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode92",
+    "Position": {
+      "X": 297499.063,
+      "Y": -7312.437,
+      "Z": -298.23465
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode93_5",
+    "Position": {
+      "X": 219900.9,
+      "Y": 42217.4961,
+      "Z": -1597.6604
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode94_406",
+    "Position": {
+      "X": 160085.531,
+      "Y": 259420.734,
+      "Z": -1094.70557
+    }
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "Purity": "Pure",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode95_579",
+    "Position": {
+      "X": 164518.281,
+      "Y": 238317.953,
+      "Z": -8588.598
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode96_886",
+    "Position": {
+      "X": 141567.922,
+      "Y": 230906.75,
+      "Z": -5835.19238
+    }
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode97_1",
+    "Position": {
+      "X": 245860.047,
+      "Y": -218934.484,
+      "Z": 1311.56628
+    }
+  },
+  {
+    "ItemCode": "Desc_LiquidOil_C",
+    "Purity": "Impure",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode98",
+    "Position": {
+      "X": 169716.922,
+      "Y": 203386.047,
+      "Z": -9242.584
+    }
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "Purity": "Impure",
+    "Biome": "Blue Crater",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode99",
+    "Position": {
+      "X": 162833.469,
+      "Y": 224425.188,
+      "Z": -7946.02051
+    }
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "Purity": "Pure",
+    "Biome": "Crater Lake",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode_700",
+    "Position": {
+      "X": -113215.828,
+      "Y": -44145.0,
+      "Z": 16295.9316
+    }
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "InstanceName": "Persistent_Exploration:PersistentLevel.BP_ResourceNode69",
+    "Position": {
+      "X": -26897.6719,
+      "Y": -145468.75,
+      "Z": 8397.135
+    }
+  }
+]
