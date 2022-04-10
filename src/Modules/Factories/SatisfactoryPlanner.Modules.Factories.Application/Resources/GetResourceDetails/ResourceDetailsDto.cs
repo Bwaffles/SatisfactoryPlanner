@@ -8,7 +8,7 @@
 
         public string Description { get; set; }
 
-        public string Form { get; set; }
+        public string ResourceForm { get; set; }
 
         public int? StackSize { get; set; }
 

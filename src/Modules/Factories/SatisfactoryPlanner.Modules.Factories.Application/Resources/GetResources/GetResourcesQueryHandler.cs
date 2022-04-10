@@ -26,7 +26,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourc
                $"item.name AS {nameof(ResourceDto.Name)} " +
                "FROM factories.items AS item " +
                "WHERE item.type = 'Resource' " +
-               "ORDER BY item.form desc, item.resource_sink_points"))
+               "ORDER BY item.resource_form desc, item.resource_sink_points"))
                .AsList();
         }
     }

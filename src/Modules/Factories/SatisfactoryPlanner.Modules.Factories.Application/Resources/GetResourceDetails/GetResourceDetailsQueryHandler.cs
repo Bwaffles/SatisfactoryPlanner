@@ -24,7 +24,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourc
                $"item.code AS {nameof(ResourceDetailsDto.Code)}, " +
                $"item.name AS {nameof(ResourceDetailsDto.Name)}, " +
                $"item.description AS {nameof(ResourceDetailsDto.Description)}, " +
-               $"item.form AS {nameof(ResourceDetailsDto.Form)}, " +
+               $"item.resource_form AS {nameof(ResourceDetailsDto.ResourceForm)}, " +
                $"item.stack_size AS {nameof(ResourceDetailsDto.StackSize)}, " +
                $"item.can_be_deleted AS {nameof(ResourceDetailsDto.CanBeDeleted)}, " +
                $"item.resource_sink_points AS {nameof(ResourceDetailsDto.ResourceSinkPoints)}, " +
