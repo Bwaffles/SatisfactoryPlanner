@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,10 +16,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj" />
-    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj" />
-    <ProjectReference Include="..\Application\SatisfactoryPlanner.Modules.Factories.Application.csproj" />
-    <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Factories.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\Application\SatisfactoryPlanner.Modules.Factories.Application.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Factories.Domain.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,8 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj" />
-    <ProjectReference Include="..\SatisfactoryPlanner.BuildingBlocks.Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj" />
+    <ProjectReference Include="..\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\SatisfactoryPlanner.BuildingBlocks.Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

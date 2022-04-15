@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,8 +12,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj" />
-    <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Factories.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Factories.Domain.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>
