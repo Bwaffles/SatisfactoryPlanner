@@ -5,7 +5,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Domain.ResourceExtractors
 {
     public class ResourceExtractorAllowedResource : Entity
     {
-        public ResourceExtractorAllowedResourceId Id { get; }
+        internal ResourceExtractorAllowedResourceId Id { get; }
 
         private ResourceId _resourceId;
 

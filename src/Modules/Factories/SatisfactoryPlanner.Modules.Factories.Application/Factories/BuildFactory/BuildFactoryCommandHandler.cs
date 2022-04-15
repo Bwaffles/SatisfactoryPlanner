@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildFactory
 {
-    public class BuildFactoryCommandHandler : ICommandHandler<BuildFactoryCommand, Guid>
+    internal class BuildFactoryCommandHandler : ICommandHandler<BuildFactoryCommand, Guid>
     {
         private readonly IFactoryRepository _factoriesRepository;
 

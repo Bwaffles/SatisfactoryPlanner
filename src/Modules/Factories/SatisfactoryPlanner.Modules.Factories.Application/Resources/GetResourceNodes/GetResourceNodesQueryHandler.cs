@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourceNodes
 {
-    public class GetResourceNodesQueryHandler : IQueryHandler<GetResourceNodesQuery, List<ResourceNodeDto>>
+    internal class GetResourceNodesQueryHandler : IQueryHandler<GetResourceNodesQuery, List<ResourceNodeDto>>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
 
