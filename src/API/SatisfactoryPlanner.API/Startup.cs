@@ -12,6 +12,7 @@ using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.API.Modules.Factories;
 using SatisfactoryPlanner.BuildingBlocks.Application;
+using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure;
 using Serilog;
 using Serilog.Formatting.Compact;
@@ -53,7 +54,7 @@ namespace SatisfactoryPlanner.API
             services.AddProblemDetails(x =>
             {
                 x.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
-                //x.Map<BusinessRuleValidationException>(ex => new BusinessRuleValidationExceptionProblemDetails(ex));
+                x.Map<BusinessRuleValidationException>(ex => new BusinessRuleValidationExceptionProblemDetails(ex));
             });
             /*
             services.AddAuthorization(options =>
@@ -66,7 +67,6 @@ namespace SatisfactoryPlanner.API
             });
 
             services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
-
             */
         }
 

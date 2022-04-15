@@ -6,7 +6,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourc
     {
         public Guid Id { get; set; }
 
-        public string ItemCode { get; set; }
+        public Guid ItemId { get; set; }
 
         public string ItemName { get; set; }
 

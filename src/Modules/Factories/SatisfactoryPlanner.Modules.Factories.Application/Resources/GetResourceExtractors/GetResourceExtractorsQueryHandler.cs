@@ -28,11 +28,11 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourc
                $"     resource_extractor.name AS {nameof(ResourceExtractorDto.Name)} " +
                " FROM factories.resource_extractors AS resource_extractor " +
                "    , factories.resource_extractor_allowed_resources AS resource_extractor_allowed_resource " +
-               "WHERE resource_extractor_allowed_resource.item_code = @ResourceCode " +
+               "WHERE resource_extractor_allowed_resource.item_id = @ResourceId " +
                "  AND resource_extractor_allowed_resource.resource_extractor_id = resource_extractor.id",
                new
                {
-                   request.ResourceCode
+                   request.ResourceId
                })).ToList();
         }
     }

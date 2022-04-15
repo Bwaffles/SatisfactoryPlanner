@@ -21,6 +21,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourc
 
             return await connection.QuerySingleAsync<ResourceDetailsDto>(
                "SELECT " +
+               $"item.id AS {nameof(ResourceDetailsDto.Id)}, " +
                $"item.code AS {nameof(ResourceDetailsDto.Code)}, " +
                $"item.name AS {nameof(ResourceDetailsDto.Name)}, " +
                $"item.description AS {nameof(ResourceDetailsDto.Description)}, " +
@@ -32,10 +33,10 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourc
                $"item.radioactive_decay AS {nameof(ResourceDetailsDto.RadioactiveDecay)} " +
                "FROM factories.items AS item " +
                "WHERE item.type = 'Resource' " +
-               "  AND item.code = @ResourceCode",
+               "  AND item.id = @ResourceId",
                new
                {
-                   query.ResourceCode
+                   query.ResourceId
                });
         }
     }
