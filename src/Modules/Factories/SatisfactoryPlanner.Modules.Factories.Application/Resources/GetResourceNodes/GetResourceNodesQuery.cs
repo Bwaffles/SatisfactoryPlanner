@@ -1,15 +1,16 @@
 ﻿using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Queries;
+using System;
 using System.Collections.Generic;
 
 namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourceNodes
 {
     public class GetResourceNodesQuery : QueryBase<List<ResourceNodeDto>>
     {
-        public GetResourceNodesQuery(string resourceCode)
+        public GetResourceNodesQuery(Guid resourceId)
         {
-            ResourceCode = resourceCode;
+            ResourceId = resourceId;
         }
 
-        public string ResourceCode { get; set; }
+        public Guid ResourceId { get; set; }
     }
 }

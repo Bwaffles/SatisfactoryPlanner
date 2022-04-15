@@ -24,7 +24,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourc
             return (await connection.QueryAsync<ResourceNodeDto>(
                "SELECT " +
                $"resource_node.id AS {nameof(ResourceNodeDto.Id)}, " +
-               $"item.code AS {nameof(ResourceNodeDto.ItemCode)}, " +
+               $"item.id AS {nameof(ResourceNodeDto.ItemId)}, " +
                $"item.name AS {nameof(ResourceNodeDto.ItemName)}, " +
                $"resource_node.purity AS {nameof(ResourceNodeDto.Purity)}, " +
                $"resource_node.biome AS {nameof(ResourceNodeDto.Biome)}, " +
@@ -32,12 +32,12 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourc
                $"resource_node.map_position_y AS {nameof(ResourceNodeDto.MapPositionY)}, " +
                $"resource_node.map_position_z AS {nameof(ResourceNodeDto.MapPositionZ)} " +
                "FROM factories.resource_nodes AS resource_node " +
-               "INNER JOIN factories.items AS item ON item.code = resource_node.item_code " +
-               "WHERE resource_node.item_code = @ResourceCode " +
+               "INNER JOIN factories.items AS item ON item.id = resource_node.item_id " +
+               "WHERE resource_node.item_id = @ResourceId " +
                "ORDER BY resource_node.purity",
                new
                {
-                   query.ResourceCode
+                   query.ResourceId
                })).ToList();
         }
     }

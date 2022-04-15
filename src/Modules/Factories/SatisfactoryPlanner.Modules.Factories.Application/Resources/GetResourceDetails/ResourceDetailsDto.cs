@@ -1,14 +1,18 @@
-﻿namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourceDetails
+﻿using System;
+
+namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResourceDetails
 {
     public class ResourceDetailsDto
     {
+        public Guid Id { get; set; }
+
         public string Code { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public string Form { get; set; }
+        public string ResourceForm { get; set; }
 
         public int? StackSize { get; set; }
 

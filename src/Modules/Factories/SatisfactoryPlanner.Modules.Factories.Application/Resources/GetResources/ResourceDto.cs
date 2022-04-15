@@ -1,8 +1,10 @@
-﻿namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResources
+﻿using System;
+
+namespace SatisfactoryPlanner.Modules.Factories.Application.Resources.GetResources
 {
     public class ResourceDto
     {
-        public string Code { get; set; }
+        public Guid Id { get; set; }
         
         public string Name { get; set; }
     }

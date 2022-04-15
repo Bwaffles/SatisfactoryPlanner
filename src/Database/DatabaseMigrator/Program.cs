@@ -48,28 +48,36 @@ namespace DatabaseMigrator
         /// </sumamry>
         private static void UpdateDatabase(string connectionString, IServiceProvider serviceProvider)
         {
-            // Instantiate the runner
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
 
-            MigrateNext(runner);
+            runner.ListMigrations();
 
+            // Data model changes
+            //RollbackMigrations(runner);
+            //MigrateNext(runner);
             //RetestPreviousMigrations(runner);
+
+            runner.ListMigrations();
         }
 
-        private static void MigrateNext(IMigrationRunner runner)
+        private static void RollbackMigrations(IMigrationRunner runner, int steps = 1)
         {
-            runner.ListMigrations();
-            runner.MigrateUp();
-            runner.ListMigrations();
+            runner.Rollback(steps);
+        }
+
+        private static void MigrateNext(IMigrationRunner runner, long? version = null)
+        {
+            if (version == null)
+                runner.MigrateUp();
+            else
+                runner.MigrateUp(version.Value);
         }
 
         private static void RetestPreviousMigrations(IMigrationRunner runner)
         {
-            runner.ListMigrations();
             runner.Rollback(1);
             runner.ListMigrations();
             runner.MigrateUp();
-            runner.ListMigrations();
         }
     }
 }
