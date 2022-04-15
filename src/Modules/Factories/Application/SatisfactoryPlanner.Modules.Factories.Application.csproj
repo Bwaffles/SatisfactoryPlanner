@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj" />
-    <ProjectReference Include="..\SatisfactoryPlanner.Modules.Factories.Domain\SatisfactoryPlanner.Modules.Factories.Domain.csproj" />
+    <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Factories.Domain.csproj" />
   </ItemGroup>
 
 </Project>
