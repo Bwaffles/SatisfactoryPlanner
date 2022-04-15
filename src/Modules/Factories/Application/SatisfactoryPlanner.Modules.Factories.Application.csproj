@@ -12,10 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
+    <ProjectReference Include="..\..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
+    <ProjectReference Include="..\..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
     <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Factories.Domain.csproj">

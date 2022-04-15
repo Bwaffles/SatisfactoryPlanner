@@ -29,19 +29,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.API", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{757C2086-53D1-4FF4-8A4D-76CE49614DC2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Application", "BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj", "{A7B41980-5224-45AD-A7A4-9BF4CDB5F5A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Application", "BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj", "{A7B41980-5224-45AD-A7A4-9BF4CDB5F5A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Factories.Application", "Modules\Factories\Application\SatisfactoryPlanner.Modules.Factories.Application.csproj", "{05CC273B-57EE-4C24-9BA1-5DA8AFD8C5B5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseMigrator", "Database\DatabaseMigrator\DatabaseMigrator.csproj", "{82EFAB19-4915-42CE-B171-A227C5CFC689}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Infrastructure", "BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj", "{91346DF2-819D-4A74-991A-5A64D1022793}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Infrastructure", "BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj", "{91346DF2-819D-4A74-991A-5A64D1022793}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Domain", "BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj", "{E4727ECA-20FC-4495-B02A-88F6FB5CE1DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Domain", "BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj", "{E4727ECA-20FC-4495-B02A-88F6FB5CE1DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{73C5DD36-D873-41DA-87F5-9993C38B147B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Factories.ArchTests", "Modules\Factories\Tests\ArchTests\SatisfactoryPlanner.Modules.Factories.ArchTests.csproj", "{5EFB6D21-EC98-4EFF-9FE3-2CF955EAD6B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Factories.ArchTests", "Modules\Factories\Tests\ArchTests\SatisfactoryPlanner.Modules.Factories.ArchTests.csproj", "{5EFB6D21-EC98-4EFF-9FE3-2CF955EAD6B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Factories.UnitTests", "Modules\Factories\Tests\UnitTests\SatisfactoryPlanner.Modules.Factories.UnitTests.csproj", "{2B736264-F504-48A8-9C9B-BDE28E925085}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{5EFB6D21-EC98-4EFF-9FE3-2CF955EAD6B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EFB6D21-EC98-4EFF-9FE3-2CF955EAD6B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EFB6D21-EC98-4EFF-9FE3-2CF955EAD6B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B736264-F504-48A8-9C9B-BDE28E925085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B736264-F504-48A8-9C9B-BDE28E925085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B736264-F504-48A8-9C9B-BDE28E925085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B736264-F504-48A8-9C9B-BDE28E925085}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,6 +127,7 @@ Global
 		{E4727ECA-20FC-4495-B02A-88F6FB5CE1DA} = {757C2086-53D1-4FF4-8A4D-76CE49614DC2}
 		{73C5DD36-D873-41DA-87F5-9993C38B147B} = {F3C703A0-817F-4014-A166-D2EAE5058B3F}
 		{5EFB6D21-EC98-4EFF-9FE3-2CF955EAD6B9} = {73C5DD36-D873-41DA-87F5-9993C38B147B}
+		{2B736264-F504-48A8-9C9B-BDE28E925085} = {73C5DD36-D873-41DA-87F5-9993C38B147B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}
