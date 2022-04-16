@@ -5,7 +5,7 @@
     /// </summary>
     public class Scripts
     {
-        private static string Path = "E:/Projects/SatisfactoryPlanner/src/Database/DatabaseMigrator/Scripts";
+        private static readonly string Path = "E:/Projects/SatisfactoryPlanner/src/Database/DatabaseMigrator/Scripts";
         public static string GeneratorsPath = $"{Path}/Generators";
 
         /// <summary>

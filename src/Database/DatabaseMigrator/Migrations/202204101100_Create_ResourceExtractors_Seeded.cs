@@ -1,4 +1,4 @@
-﻿using DatabaseMigrator.Scripts.Generators.ResourceExtractorSeed;
+﻿using DatabaseMigrator.Scripts.Generators.SeedResourceExtractors;
 using FluentMigrator;
 
 namespace DatabaseMigrator.Migrations

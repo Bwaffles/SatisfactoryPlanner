@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace DatabaseMigrator.Scripts.Generators.ResourceExtractorSeed
+namespace DatabaseMigrator.Scripts.Generators.SeedResourceExtractors
 {
     internal class SeedResourceExtractorsScriptGenerator
     {

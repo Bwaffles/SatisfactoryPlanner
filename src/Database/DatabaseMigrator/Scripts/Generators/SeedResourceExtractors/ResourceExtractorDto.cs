@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DatabaseMigrator.Scripts.Generators.ResourceExtractorSeed
+namespace DatabaseMigrator.Scripts.Generators.SeedResourceExtractors
 {
     public class ResourceExtractorDto
     {

@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.DataAccess;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Logging;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Mediation;
@@ -8,7 +7,7 @@ using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Process
 using Serilog.Extensions.Logging;
 using ILogger = Serilog.ILogger;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure
+namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration
 {
     /// <summary>
     ///     Initialize the services and configurations for the Factories module.

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 using System.Linq;
 
 namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.DataAccess

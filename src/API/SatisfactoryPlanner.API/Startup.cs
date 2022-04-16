@@ -11,9 +11,11 @@ using Microsoft.OpenApi.Models;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.API.Modules.Factories;
+using SatisfactoryPlanner.API.Modules.Resources;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure;
+using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Formatting.Compact;
 
@@ -72,6 +74,7 @@ namespace SatisfactoryPlanner.API
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
+            containerBuilder.RegisterModule(new ResourcesAutofacModule());
             containerBuilder.RegisterModule(new FactoriesAutofacModule());
         }
 
@@ -127,6 +130,15 @@ namespace SatisfactoryPlanner.API
             var executionContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
 
             //var emailsConfiguration = new EmailsConfiguration(_configuration["EmailsConfiguration:FromEmail"]);
+
+            ResourcesStartup.Initialize(
+                   _configuration.GetConnectionString(FactoriesConnectionString),
+                   executionContextAccessor,
+                   _logger
+                   //,
+                   //emailsConfiguration,
+                   //null
+                   );
 
             FactoriesStartup.Initialize(
                    _configuration.GetConnectionString(FactoriesConnectionString),

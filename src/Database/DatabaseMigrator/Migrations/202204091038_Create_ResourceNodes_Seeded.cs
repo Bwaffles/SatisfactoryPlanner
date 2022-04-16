@@ -24,7 +24,7 @@ namespace DatabaseMigrator.Migrations
                     .WithDefault(SystemMethods.NewGuid)
                 .WithColumn("item_code")
                     .AsString()
-                    .ForeignKey("","factories","items","code")
+                    .ForeignKey("", "factories", "items", "code")
                 .WithColumn("purity")
                     .AsString()
                     .NotNullable()

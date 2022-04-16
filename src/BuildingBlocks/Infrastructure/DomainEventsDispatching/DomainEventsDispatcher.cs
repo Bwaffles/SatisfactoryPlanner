@@ -6,7 +6,6 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Events;
 using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Serialization;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -45,7 +44,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
             var domainEventNotifications = new List<IDomainEventNotification<IDomainEvent>>();
             foreach (var domainEvent in domainEvents)
             {
-                Type domainEvenNotificationType = typeof(IDomainEventNotification<>);
+                var domainEvenNotificationType = typeof(IDomainEventNotification<>);
                 var domainNotificationWithGenericType = domainEvenNotificationType.MakeGenericType(domainEvent.GetType());
                 var domainNotification = _scope.ResolveOptional(domainNotificationWithGenericType, new List<Parameter>
                 {
