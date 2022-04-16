@@ -28,19 +28,19 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources
         public static async Task<List<ResourceNodeDto>> GetAvailableResourceNodes(IDbConnection connection, Guid? resourceId)
         {
             return (await connection.QueryAsync<ResourceNodeDto>(
-               "SELECT " +
-               $"resource_node.id AS {nameof(ResourceNodeDto.Id)}, " +
-               $"item.id AS {nameof(ResourceNodeDto.ItemId)}, " +
-               $"item.name AS {nameof(ResourceNodeDto.ItemName)}, " +
-               $"resource_node.purity AS {nameof(ResourceNodeDto.Purity)}, " +
-               $"resource_node.biome AS {nameof(ResourceNodeDto.Biome)}, " +
-               $"resource_node.map_position_x AS {nameof(ResourceNodeDto.MapPositionX)}, " +
-               $"resource_node.map_position_y AS {nameof(ResourceNodeDto.MapPositionY)}, " +
-               $"resource_node.map_position_z AS {nameof(ResourceNodeDto.MapPositionZ)} " +
-               "FROM resources.resource_nodes AS resource_node " +
-               "INNER JOIN resources.items AS item ON item.id = resource_node.item_id " +
-               "WHERE (@resourceId is null or resource_node.item_id = @resourceId) " +
-               "ORDER BY resource_node.purity",
+               "    SELECT " +
+               $"          resource_node.id AS {nameof(ResourceNodeDto.Id)}, " +
+               $"          resource.id AS {nameof(ResourceNodeDto.ItemId)}, " +
+               $"          resource.name AS {nameof(ResourceNodeDto.ItemName)}, " +
+               $"          resource_node.purity AS {nameof(ResourceNodeDto.Purity)}, " +
+               $"          resource_node.biome AS {nameof(ResourceNodeDto.Biome)}, " +
+               $"          resource_node.map_position_x AS {nameof(ResourceNodeDto.MapPositionX)}, " +
+               $"          resource_node.map_position_y AS {nameof(ResourceNodeDto.MapPositionY)}, " +
+               $"          resource_node.map_position_z AS {nameof(ResourceNodeDto.MapPositionZ)} " +
+               "      FROM resources.resource_nodes AS resource_node " +
+               "INNER JOIN resources.resources AS resource ON resource.id = resource_node.resource_id " +
+               "     WHERE (@resourceId is null or resource_node.resource_id = @resourceId) " +
+               "  ORDER BY resource_node.purity",
                new
                {
                    resourceId

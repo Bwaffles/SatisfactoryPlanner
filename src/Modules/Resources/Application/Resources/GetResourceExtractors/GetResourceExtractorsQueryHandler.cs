@@ -28,7 +28,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
                $"     resource_extractor.name AS {nameof(ResourceExtractorDto.Name)} " +
                " FROM resources.resource_extractors AS resource_extractor " +
                "    , resources.resource_extractor_allowed_resources AS resource_extractor_allowed_resource " +
-               "WHERE resource_extractor_allowed_resource.item_id = @ResourceId " +
+               "WHERE resource_extractor_allowed_resource.resource_id = @ResourceId " +
                "  AND resource_extractor_allowed_resource.resource_extractor_id = resource_extractor.id",
                new
                {

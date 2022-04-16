@@ -26,7 +26,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.ResourceEx
                 _.ToTable("resource_extractor_allowed_resources", "resources");
                 _.Property<ResourceExtractorAllowedResourceId>("Id").HasColumnName("id");
                 _.HasKey("Id");
-                _.Property<ResourceId>("_resourceId").HasColumnName("item_id");
+                _.Property<ResourceId>("_resourceId").HasColumnName("resource_id");
                 _.Property<ResourceExtractorId>("_resourceExtractorId").HasColumnName("resource_extractor_id");
             });
         }

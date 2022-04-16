@@ -21,12 +21,12 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
             var connection = _dbConnectionFactory.GetOpenConnection();
 
             return (await connection.QueryAsync<ResourceDto>(
-               "SELECT " +
-               $"item.id AS {nameof(ResourceDto.Id)}, " +
-               $"item.name AS {nameof(ResourceDto.Name)} " +
-               "FROM resources.items AS item " +
-               "WHERE item.type = 'Resource' " +
-               "ORDER BY item.resource_form desc, item.resource_sink_points"))
+               "  SELECT " +
+               $"        resource.id AS {nameof(ResourceDto.Id)}, " +
+               $"        resource.name AS {nameof(ResourceDto.Name)} " +
+               "    FROM resources.resources AS resource " +
+               "ORDER BY resource.resource_form desc" +
+               "       , resource.resource_sink_points"))
                .AsList();
         }
     }

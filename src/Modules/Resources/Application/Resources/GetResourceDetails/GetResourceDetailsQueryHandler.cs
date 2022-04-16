@@ -21,19 +21,12 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
 
             return await connection.QuerySingleAsync<ResourceDetailsDto>(
                "SELECT " +
-               $"item.id AS {nameof(ResourceDetailsDto.Id)}, " +
-               $"item.code AS {nameof(ResourceDetailsDto.Code)}, " +
-               $"item.name AS {nameof(ResourceDetailsDto.Name)}, " +
-               $"item.description AS {nameof(ResourceDetailsDto.Description)}, " +
-               $"item.resource_form AS {nameof(ResourceDetailsDto.ResourceForm)}, " +
-               $"item.stack_size AS {nameof(ResourceDetailsDto.StackSize)}, " +
-               $"item.can_be_deleted AS {nameof(ResourceDetailsDto.CanBeDeleted)}, " +
-               $"item.resource_sink_points AS {nameof(ResourceDetailsDto.ResourceSinkPoints)}, " +
-               $"item.energy_value AS {nameof(ResourceDetailsDto.EnergyValue)}, " +
-               $"item.radioactive_decay AS {nameof(ResourceDetailsDto.RadioactiveDecay)} " +
-               "FROM resources.items AS item " +
-               "WHERE item.type = 'Resource' " +
-               "  AND item.id = @ResourceId",
+               $"      resource.id AS {nameof(ResourceDetailsDto.Id)}, " +
+               $"      resource.code AS {nameof(ResourceDetailsDto.Code)}, " +
+               $"      resource.name AS {nameof(ResourceDetailsDto.Name)}, " +
+               $"      resource.description AS {nameof(ResourceDetailsDto.Description)} " +
+               "  FROM resources.resources AS resource " +
+               " WHERE resource.id = @ResourceId",
                new
                {
                    query.ResourceId
