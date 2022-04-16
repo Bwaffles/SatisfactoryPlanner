@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceExtractors;
+using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
 using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodes;
 
@@ -16,7 +16,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.ResourceNo
 
             builder.Property<ResourceNodeExtractionId>("Id").HasColumnName("id");
             builder.Property<ResourceNodeId>("_resourceNodeId").HasColumnName("resource_node_id");
-            builder.Property<ResourceExtractorId>("_resourceExtractorId").HasColumnName("resource_extractor_id");
+            builder.Property<ExtractorId>("_extractorId").HasColumnName("extractor_id");
             builder.Property<decimal>("_amount").HasColumnName("amount");
             builder.Property<string>("_name").HasColumnName("name");
         }

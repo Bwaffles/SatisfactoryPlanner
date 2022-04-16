@@ -5,17 +5,17 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.ResourceNodeExtracti
 {
     public class ExtractResourceNodeCommand : CommandBase<Guid>
     {
-        public ExtractResourceNodeCommand(Guid resourceNodeId, Guid resourceExtractorId, decimal amount, string name)
+        public ExtractResourceNodeCommand(Guid resourceNodeId, Guid extractorId, decimal amount, string name)
         {
             ResourceNodeId = resourceNodeId;
-            ResourceExtractorId = resourceExtractorId;
+            ExtractorId = extractorId;
             Amount = amount;
             Name = name;
         }
 
         public Guid ResourceNodeId { get; }
 
-        public Guid ResourceExtractorId { get; }
+        public Guid ExtractorId { get; }
 
         public decimal Amount { get; }
 

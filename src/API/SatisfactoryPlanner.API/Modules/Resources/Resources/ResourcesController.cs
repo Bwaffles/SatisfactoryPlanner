@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourceDetails;
-using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourceExtractors;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourceNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResources;
 using System;
@@ -45,14 +44,6 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         {
             var resourceNodes = await _resourcesModule.ExecuteQueryAsync(new GetResourceNodesQuery(resourceId));
             return Ok(resourceNodes);
-        }
-
-        [HttpGet("{resourceId}/extractors")]
-        [ProducesResponseType(typeof(List<ResourceExtractorDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetResourceExtractors([FromRoute] Guid resourceId)
-        {
-            var resourceExtractors = await _resourcesModule.ExecuteQueryAsync(new GetResourceExtractorsQuery(resourceId));
-            return Ok(resourceExtractors);
         }
     }
 }

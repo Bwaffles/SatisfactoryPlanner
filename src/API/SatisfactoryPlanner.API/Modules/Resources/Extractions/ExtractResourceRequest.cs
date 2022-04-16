@@ -10,9 +10,9 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Extractions
         public Guid ResourceNodeId { get; set; }
 
         /// <summary>
-        ///     The id of the resource extractor being used to extract the resource node.
+        ///     The id of the extractor being used to extract the resource node.
         /// </summary>
-        public Guid ResourceExtractorId { get; set; }
+        public Guid ExtractorId { get; set; }
 
         /// <summary>
         ///     The amount of the resource to be extracted.

@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Commands;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceExtractors;
+using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
 using System;
 using System.Threading;
@@ -13,17 +13,17 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.ResourceNodeExtracti
     internal class ExtractResourceNodeCommandHandler : ICommandHandler<ExtractResourceNodeCommand, Guid>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
-        private readonly IResourceExtractorRepository _resourceExtractorRepository;
+        private readonly IExtractorRepository _extractorRepository;
         private readonly IResourceNodeExtractionRepository _resourceNodeExtractionRepository;
 
         public ExtractResourceNodeCommandHandler(
             IDbConnectionFactory dbConnectionFactory,
-            IResourceExtractorRepository resourceExtractorRepository,
+            IExtractorRepository extractorRepository,
             IResourceNodeExtractionRepository resourceNodeExtractionRepository
             )
         {
             _dbConnectionFactory = dbConnectionFactory;
-            _resourceExtractorRepository = resourceExtractorRepository;
+            _extractorRepository = extractorRepository;
             _resourceNodeExtractionRepository = resourceNodeExtractionRepository;
         }
 
@@ -35,15 +35,15 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.ResourceNodeExtracti
             if (resourceNode == null)
                 throw new InvalidCommandException("Resource node to extract from must exist.");
 
-            var resourceExtractor = await _resourceExtractorRepository.GetByIdAsync(new ResourceExtractorId(command.ResourceExtractorId));
-            if (resourceExtractor == null)
-                throw new InvalidCommandException("Resource extractor to extract with must exist.");
+            var extractor = await _extractorRepository.GetByIdAsync(new ExtractorId(command.ExtractorId));
+            if (extractor == null)
+                throw new InvalidCommandException("Extractor to extract with must exist.");
 
             var existingResouceNodeExtraction = await _resourceNodeExtractionRepository.GetByResourceNodeIdAsync(resourceNode.Id);
 
             var resourceNodeExtraction = ResourceNodeExtraction.ExtractNew(
                 resourceNode,
-                resourceExtractor,
+                extractor,
                 command.Amount,
                 command.Name,
                 existingResouceNodeExtraction);

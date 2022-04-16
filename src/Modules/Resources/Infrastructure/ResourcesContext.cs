@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceExtractors;
+using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure
 {
     public class ResourcesContext : DbContext
     {
-        public DbSet<ResourceExtractor> ResourceExtractors { get; set; }
+        public DbSet<Extractor> Extractors { get; set; }
 
         public DbSet<ResourceNodeExtraction> ResourceNodeExtractions { get; set; }
 

@@ -3,11 +3,11 @@ using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceExtractors
+namespace SatisfactoryPlanner.Modules.Resources.Domain.Extractors
 {
-    public class ResourceExtractor : Entity, IAggregateRoot
+    public class Extractor : Entity, IAggregateRoot
     {
-        public ResourceExtractorId Id { get; }
+        public ExtractorId Id { get; }
 
         private readonly decimal _extractCycleTime;
 
@@ -19,11 +19,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceExtractors
 
         private readonly int _maxShards;
 
-        private readonly List<ResourceExtractorAllowedResource> _allowedResources;
+        private readonly List<AllowedResource> _allowedResources;
 
-        private ResourceExtractor() { }
+        private Extractor() { }
 
-        public decimal GetPotentialItemsPerMinute()
+        public decimal GetPotentialResourcesPerMinute()
         {
             const int secondsPerMinute = 60;
             var itemsPerSecond = secondsPerMinute / _extractCycleTime * _itemsPerCycle;
@@ -32,6 +32,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceExtractors
             return itemsPerSecond * maxPotentialClockspeed;
         }
 
-        internal bool CanExtract(ResourceId resourceId) => _allowedResources.Any(_ => _.IsResource(resourceId));
+        internal bool CanExtract(ResourceId resourceId) => _allowedResources.Any(_ => _.Is(resourceId));
     }
 }

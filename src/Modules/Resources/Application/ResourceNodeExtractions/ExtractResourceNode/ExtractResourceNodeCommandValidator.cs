@@ -9,8 +9,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.ResourceNodeExtracti
             RuleFor(_ => _.ResourceNodeId).NotEmpty()
                 .WithMessage("Id of resource node cannot be empty.");
 
-            RuleFor(_ => _.ResourceExtractorId).NotEmpty()
-                .WithMessage("Id of resource extractor cannot be empty.");
+            RuleFor(_ => _.ExtractorId).NotEmpty()
+                .WithMessage("Id of extractor cannot be empty.");
 
             RuleFor(_ => _.Amount).GreaterThanOrEqualTo(0)
                 .WithMessage("Amount to be extracted cannot be less than 0.");
