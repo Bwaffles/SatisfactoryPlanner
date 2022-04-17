@@ -1,22 +1,22 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodes
+namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
 {
-    public class ResourceNode : Entity, IAggregateRoot
+    public class Node : Entity, IAggregateRoot
     {
-        public ResourceNodeId Id { get; }
+        public NodeId Id { get; }
 
-        private readonly ResourceNodePurity _purity;
+        private readonly NodePurity _purity;
 
         private readonly ResourceId _resourceId;
 
-        public static ResourceNode CreateNew(ResourceNodeId id, ResourceNodePurity purity, ResourceId resourceId)
+        public static Node CreateNew(NodeId id, NodePurity purity, ResourceId resourceId)
         {
             return new(id, purity, resourceId);
         }
 
-        private ResourceNode(ResourceNodeId id, ResourceNodePurity purity, ResourceId resourceId)
+        private Node(NodeId id, NodePurity purity, ResourceId resourceId)
         {
             Id = id;
             _purity = purity;

@@ -22,7 +22,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Extractions
         public async Task<IActionResult> ExtractResource([FromBody] ExtractResourceRequest request)
         {
             await _resourcesModule.ExecuteCommandAsync(new ExtractResourceNodeCommand(
-                request.ResourceNodeId,
+                request.NodeId,
                 request.ExtractorId,
                 request.Amount,
                 request.Name

@@ -6,8 +6,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.ResourceNodeExtracti
     {
         public ExtractResourceNodeCommandValidator()
         {
-            RuleFor(_ => _.ResourceNodeId).NotEmpty()
-                .WithMessage("Id of resource node cannot be empty.");
+            RuleFor(_ => _.NodeId).NotEmpty()
+                .WithMessage("Id of node cannot be empty.");
 
             RuleFor(_ => _.ExtractorId).NotEmpty()
                 .WithMessage("Id of extractor cannot be empty.");

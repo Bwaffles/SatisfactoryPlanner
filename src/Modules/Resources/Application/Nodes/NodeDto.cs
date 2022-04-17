@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.Resources
+namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
 {
-    public class ResourceNodeDto
+    public class NodeDto
     {
         public Guid Id { get; set; }
 
-        public Guid ItemId { get; set; }
+        public Guid ResourceId { get; set; }
 
-        public string ItemName { get; set; }
+        public string ResourceName { get; set; }
 
         public string Purity { get; set; }
 

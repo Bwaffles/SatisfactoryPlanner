@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.Resources.Application.Resources;
+using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
 using System;
@@ -31,18 +31,18 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.ResourceNodeExtracti
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
-            var resourceNode = await ResourceNodeFactory.GetResourceNode(connection, command.ResourceNodeId);
-            if (resourceNode == null)
-                throw new InvalidCommandException("Resource node to extract from must exist.");
+            var node = await NodeFactory.GetNode(connection, command.NodeId);
+            if (node == null)
+                throw new InvalidCommandException("Node to extract from must exist.");
 
             var extractor = await _extractorRepository.GetByIdAsync(new ExtractorId(command.ExtractorId));
             if (extractor == null)
                 throw new InvalidCommandException("Extractor to extract with must exist.");
 
-            var existingResouceNodeExtraction = await _resourceNodeExtractionRepository.GetByResourceNodeIdAsync(resourceNode.Id);
+            var existingResouceNodeExtraction = await _resourceNodeExtractionRepository.GetByNodeIdAsync(node.Id);
 
             var resourceNodeExtraction = ResourceNodeExtraction.ExtractNew(
-                resourceNode,
+                node,
                 extractor,
                 command.Amount,
                 command.Name,

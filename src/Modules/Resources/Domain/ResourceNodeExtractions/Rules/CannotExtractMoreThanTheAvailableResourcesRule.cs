@@ -1,19 +1,19 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions.Rules
 {
     public class CannotExtractMoreThanTheAvailableResourcesRule : IBusinessRule
     {
-        private readonly ResourceNode _resourceNode;
+        private readonly Node _node;
         private readonly Extractor _extractor;
         private readonly decimal _amount;
 
-        public CannotExtractMoreThanTheAvailableResourcesRule(ResourceNode resourceNode, Extractor extractor, decimal amount)
+        public CannotExtractMoreThanTheAvailableResourcesRule(Node node, Extractor extractor, decimal amount)
         {
-            _resourceNode = resourceNode;
+            _node = node;
             _extractor = extractor;
             _amount = amount;
         }
@@ -22,7 +22,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions.R
 
         public bool IsBroken()
         {
-            var amountExtractable = Math.Min(_extractor.GetPotentialResourcesPerMinute() * _resourceNode.GetPurityMultiplier(), Constants.MaxItemsPerMinute);
+            var amountExtractable = Math.Min(_extractor.GetPotentialResourcesPerMinute() * _node.GetPurityMultiplier(), Constants.MaxItemsPerMinute);
             return _amount > amountExtractable;
         }
     }

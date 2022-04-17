@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SatisfactoryPlanner.API.Modules.Resources.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Extractors.GetExtractors;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.API.Modules.Resources.Resources
+namespace SatisfactoryPlanner.API.Modules.Resources.Extractors
 {
     [ApiController]
     [Route("api/resources/extractors")]

@@ -1,17 +1,17 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodes
+namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
 {
-    public class ResourceNodePurity : ValueObject
+    public class NodePurity : ValueObject
     {
         public string Value { get; }
 
-        public static ResourceNodePurity Impure => new ResourceNodePurity(nameof(Impure));
+        public static NodePurity Impure => new NodePurity(nameof(Impure));
 
-        public static ResourceNodePurity Normal => new ResourceNodePurity(nameof(Normal));
+        public static NodePurity Normal => new NodePurity(nameof(Normal));
 
-        public static ResourceNodePurity Pure => new ResourceNodePurity(nameof(Pure));
+        public static NodePurity Pure => new NodePurity(nameof(Pure));
 
         public decimal GetMultiplier()
         {
@@ -27,12 +27,12 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodes
             throw new ArgumentOutOfRangeException(nameof(Value));
         }
 
-        public static ResourceNodePurity Of(string value)
+        public static NodePurity Of(string value)
         {
             return new(value);
         }
 
-        private ResourceNodePurity(string value)
+        private NodePurity(string value)
         {
             Value = value;
         }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodes;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.ResourceNodeExtractions
@@ -19,10 +19,10 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.ResourceNo
             await _context.ResourceNodeExtractions.AddAsync(resourceNodeExtraction);
         }
 
-        public async Task<ResourceNodeExtraction> GetByResourceNodeIdAsync(ResourceNodeId resourceNodeId)
+        public async Task<ResourceNodeExtraction> GetByNodeIdAsync(NodeId nodeId)
         {
             return await _context.ResourceNodeExtractions
-                .SingleOrDefaultAsync(c => EF.Property<ResourceNodeId>(c, "_resourceNodeId") == resourceNodeId);
+                .SingleOrDefaultAsync(c => EF.Property<NodeId>(c, "_nodeId") == nodeId);
         }
     }
 }

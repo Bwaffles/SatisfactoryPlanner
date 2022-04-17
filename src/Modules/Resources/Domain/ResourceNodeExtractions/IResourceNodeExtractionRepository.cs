@@ -1,4 +1,4 @@
-﻿using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodes;
+﻿using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions
@@ -10,6 +10,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions
     {
         Task AddAsync(ResourceNodeExtraction resourceNodeExtraction);
 
-        Task<ResourceNodeExtraction> GetByResourceNodeIdAsync(ResourceNodeId resourceNodeId);
+        Task<ResourceNodeExtraction> GetByNodeIdAsync(NodeId nodeId);
     }
 }
