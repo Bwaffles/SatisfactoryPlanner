@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.ResourceNodeExtractions.ExtractResourceNode
+namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.TapNode
 {
-    internal class ExtractResourceNodeCommandValidator : AbstractValidator<ExtractResourceNodeCommand>
+    internal class TapNodeCommandValidator : AbstractValidator<TapNodeCommand>
     {
-        public ExtractResourceNodeCommandValidator()
+        public TapNodeCommandValidator()
         {
             RuleFor(_ => _.NodeId).NotEmpty()
                 .WithMessage("Id of node cannot be empty.");
@@ -12,7 +12,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.ResourceNodeExtracti
             RuleFor(_ => _.ExtractorId).NotEmpty()
                 .WithMessage("Id of extractor cannot be empty.");
 
-            RuleFor(_ => _.Amount).GreaterThanOrEqualTo(0)
+            RuleFor(_ => _.AmountToExtract).GreaterThanOrEqualTo(0)
                 .WithMessage("Amount to be extracted cannot be less than 0.");
         }
     }

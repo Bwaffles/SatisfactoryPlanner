@@ -1,16 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
-using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure
 {
     public class ResourcesContext : DbContext
     {
-        public DbSet<Extractor> Extractors { get; set; }
-
-        public DbSet<ResourceNodeExtraction> ResourceNodeExtractions { get; set; }
+        public DbSet<TappedNode> TappedNodes { get; set; }
 
         public DbSet<InternalCommand> InternalCommands { get; set; }
 

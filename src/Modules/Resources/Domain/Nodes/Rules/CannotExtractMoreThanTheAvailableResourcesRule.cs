@@ -21,7 +21,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions.R
         public string Message => "Cannot extract more than the available resources.";
 
         public bool IsBroken()
-        {
+        { // TODO liquids have a potential resources per minute * 1000 and they're theoretical max is 600, not 780
             var amountExtractable = Math.Min(_extractor.GetPotentialResourcesPerMinute() * _node.GetPurityMultiplier(), Constants.MaxItemsPerMinute);
             return _amount > amountExtractable;
         }

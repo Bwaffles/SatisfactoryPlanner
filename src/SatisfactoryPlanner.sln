@@ -47,11 +47,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{B2AD4575-C5BF-4F62-80EC-1290CCBBBCAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Resources.Application", "Modules\Resources\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj", "{BA00CA4F-D07C-4D40-ABB4-56AE0B9609F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Resources.Application", "Modules\Resources\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj", "{BA00CA4F-D07C-4D40-ABB4-56AE0B9609F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Resources.Infrastructure", "Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj", "{1F79C562-2165-45C5-B2B6-DBCCBF1D5A21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Resources.Infrastructure", "Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj", "{1F79C562-2165-45C5-B2B6-DBCCBF1D5A21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Resources.Domain", "Modules\Resources\Domain\SatisfactoryPlanner.Modules.Resources.Domain.csproj", "{86757EAE-8A50-4547-938C-305DA4BE66B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Resources.Domain", "Modules\Resources\Domain\SatisfactoryPlanner.Modules.Resources.Domain.csproj", "{86757EAE-8A50-4547-938C-305DA4BE66B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BBDCAA45-07ED-4FE2-AE59-525E9E211B85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Resources.UnitTests", "Modules\Resources\Tests\UnitTests\SatisfactoryPlanner.Modules.Resources.UnitTests.csproj", "{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +135,10 @@ Global
 		{86757EAE-8A50-4547-938C-305DA4BE66B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86757EAE-8A50-4547-938C-305DA4BE66B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86757EAE-8A50-4547-938C-305DA4BE66B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +160,8 @@ Global
 		{BA00CA4F-D07C-4D40-ABB4-56AE0B9609F4} = {B2AD4575-C5BF-4F62-80EC-1290CCBBBCAA}
 		{1F79C562-2165-45C5-B2B6-DBCCBF1D5A21} = {B2AD4575-C5BF-4F62-80EC-1290CCBBBCAA}
 		{86757EAE-8A50-4547-938C-305DA4BE66B1} = {B2AD4575-C5BF-4F62-80EC-1290CCBBBCAA}
+		{BBDCAA45-07ED-4FE2-AE59-525E9E211B85} = {B2AD4575-C5BF-4F62-80EC-1290CCBBBCAA}
+		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC} = {BBDCAA45-07ED-4FE2-AE59-525E9E211B85}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}

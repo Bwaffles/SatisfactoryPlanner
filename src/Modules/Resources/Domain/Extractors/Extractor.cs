@@ -9,27 +9,40 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Extractors
     {
         public ExtractorId Id { get; }
 
-        private readonly decimal _extractCycleTime;
+        private readonly ExtractorCycle _cycle;
 
-        private readonly decimal _itemsPerCycle;
-
-        private readonly decimal _maxClockspeed;
-
-        private readonly decimal _maxClockspeedPerShard;
-
-        private readonly int _maxShards;
+        private readonly ExtractorClockspeed _clockspeed;
 
         private readonly List<AllowedResource> _allowedResources;
+
+        public static Extractor CreateNew(
+            ExtractorId id,
+            ExtractorCycle cycle,
+            ExtractorClockspeed clockspeed,
+            List<ResourceId> allowedResources)
+            => new(
+                id,
+                cycle,
+                clockspeed,
+                allowedResources.Select(_ => AllowedResource.CreateNew(id, _)).ToList());
+
+        private Extractor(
+            ExtractorId id,
+            ExtractorCycle cycle,
+            ExtractorClockspeed clockspeed,
+            List<AllowedResource> allowedResources)
+        {
+            Id = id;
+            _cycle = cycle;
+            _clockspeed = clockspeed;
+            _allowedResources = allowedResources;
+        }
 
         private Extractor() { }
 
         public decimal GetPotentialResourcesPerMinute()
         {
-            const int secondsPerMinute = 60;
-            var itemsPerSecond = secondsPerMinute / _extractCycleTime * _itemsPerCycle;
-            var maxPotentialClockspeed = _maxClockspeed + _maxClockspeedPerShard * _maxShards;
-
-            return itemsPerSecond * maxPotentialClockspeed;
+            return _cycle.GetResourcesPerMinute() * _clockspeed.GetMaxPotentialMultiplier();
         }
 
         internal bool CanExtract(ResourceId resourceId) => _allowedResources.Any(_ => _.Is(resourceId));

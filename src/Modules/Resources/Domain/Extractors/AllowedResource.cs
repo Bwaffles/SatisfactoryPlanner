@@ -9,6 +9,17 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Extractors
 
         internal ResourceId ResourceId { get; }
 
+        internal static AllowedResource CreateNew(ExtractorId extractorId, ResourceId resourceId)
+        {
+            return new(extractorId, resourceId);
+        }
+
+        private AllowedResource(ExtractorId extractorId, ResourceId resourceId)
+        {
+            ExtractorId = extractorId;
+            ResourceId = resourceId;
+        }
+
         private AllowedResource() { }
 
         internal bool Is(ResourceId resourceId) => ResourceId == resourceId;

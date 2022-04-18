@@ -6,18 +6,18 @@ using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.ResourceNodeExtractions
 {
-    internal class ResourceNodeExtractionEntityTypeConfiguration : IEntityTypeConfiguration<ResourceNodeExtraction>
+    internal class TappedNodeEntityTypeConfiguration : IEntityTypeConfiguration<TappedNode>
     {
-        public void Configure(EntityTypeBuilder<ResourceNodeExtraction> builder)
+        public void Configure(EntityTypeBuilder<TappedNode> builder)
         {
-            builder.ToTable("resource_node_extractions", "resources");
+            builder.ToTable("tapped_nodes", "resources");
 
             builder.HasKey(_ => _.Id);
 
             builder.Property<ResourceNodeExtractionId>("Id").HasColumnName("id");
             builder.Property<NodeId>("_nodeId").HasColumnName("node_id");
             builder.Property<ExtractorId>("_extractorId").HasColumnName("extractor_id");
-            builder.Property<decimal>("_amount").HasColumnName("amount");
+            builder.Property<decimal>("_amountToExtract").HasColumnName("amount_to_extract");
             builder.Property<string>("_name").HasColumnName("name");
         }
     }

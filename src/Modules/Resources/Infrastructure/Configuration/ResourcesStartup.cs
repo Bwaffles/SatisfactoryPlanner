@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.DataAccess;
+using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Domain;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Logging;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Mediation;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Processing;
@@ -35,6 +36,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration
 
             var loggerFactory = new SerilogLoggerFactory(logger);
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
+            containerBuilder.RegisterModule(new DomainModule());
             containerBuilder.RegisterModule(new ProcessingModule());
             //containerBuilder.RegisterModule(new EventsBusModule(eventsBus));
             containerBuilder.RegisterModule(new MediatorModule());

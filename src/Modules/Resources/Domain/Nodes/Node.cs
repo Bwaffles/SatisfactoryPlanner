@@ -1,5 +1,9 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
+using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
+using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions.Rules;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
+using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
 {
@@ -23,8 +27,16 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
             _resourceId = resourceId;
         }
 
-        internal decimal GetPurityMultiplier() => _purity.GetMultiplier();
+        public TappedNode Tap(Extractor extractor, decimal amountToExtract, string name, ITappedNodeExistenceChecker tappedNodeExistenceChecker)
+        {
+            CheckRule(new NodeCannotAlreadyBeTappedRule(Id, tappedNodeExistenceChecker));
+            CheckRule(new ExtractorMustBeAbleToExtractResourceRule(extractor, _resourceId));
+            // TODO create domain service for calculating the max potentional resources for the node/extractor combo
+            CheckRule(new CannotExtractMoreThanTheAvailableResourcesRule(this, extractor, amountToExtract));
 
-        internal ResourceId GetResourceId() => _resourceId;
+            return TappedNode.CreateNew(Id, extractor.Id, amountToExtract, name);
+        }
+
+        public decimal GetPurityMultiplier() => _purity.GetMultiplier();
     }
 }
