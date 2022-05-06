@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{B876F595-867C-4561-9DA6-14D2169EB0E5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{24103475-57FB-474C-9243-FA0BD6815E3E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{890C0202-8B66-4055-9EB4-3822567ACC8A}"
@@ -55,7 +53,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BBDCAA45-07ED-4FE2-AE59-525E9E211B85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Resources.UnitTests", "Modules\Resources\Tests\UnitTests\SatisfactoryPlanner.Modules.Resources.UnitTests.csproj", "{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Resources.UnitTests", "Modules\Resources\Tests\UnitTests\SatisfactoryPlanner.Modules.Resources.UnitTests.csproj", "{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{139DABEF-84E0-445F-B558-ED7ABC8F994E}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SatisfactoryPlanner.UI", "UI\SatisfactoryPlanner.UI\SatisfactoryPlanner.UI.esproj", "{D51949FB-806C-4320-AC8D-712AB24C3DFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI\UI.csproj", "{7673F6C2-17EF-4929-B113-0624879C7972}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserAccess", "UserAccess", "{389014AC-3278-4F76-BA8D-30F5B4744E82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.UserAccess.Application", "Modules\UserAccess\SatisfactoryPlanner.UserAccess.Application\SatisfactoryPlanner.UserAccess.Application.csproj", "{7AB2C1A5-FB18-4872-96F9-4A66E3747837}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.UserAccess.Domain", "Modules\UserAccess\SatisfactoryPlanner.UserAccess.Domain\SatisfactoryPlanner.UserAccess.Domain.csproj", "{A7C790C0-E88D-485C-A63C-6812F8CD5AF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,10 +73,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B876F595-867C-4561-9DA6-14D2169EB0E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B876F595-867C-4561-9DA6-14D2169EB0E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B876F595-867C-4561-9DA6-14D2169EB0E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B876F595-867C-4561-9DA6-14D2169EB0E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24103475-57FB-474C-9243-FA0BD6815E3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24103475-57FB-474C-9243-FA0BD6815E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24103475-57FB-474C-9243-FA0BD6815E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -139,6 +145,24 @@ Global
 		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7673F6C2-17EF-4929-B113-0624879C7972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7673F6C2-17EF-4929-B113-0624879C7972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7673F6C2-17EF-4929-B113-0624879C7972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7673F6C2-17EF-4929-B113-0624879C7972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AB2C1A5-FB18-4872-96F9-4A66E3747837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AB2C1A5-FB18-4872-96F9-4A66E3747837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AB2C1A5-FB18-4872-96F9-4A66E3747837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AB2C1A5-FB18-4872-96F9-4A66E3747837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7C790C0-E88D-485C-A63C-6812F8CD5AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C790C0-E88D-485C-A63C-6812F8CD5AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C790C0-E88D-485C-A63C-6812F8CD5AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C790C0-E88D-485C-A63C-6812F8CD5AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,6 +186,11 @@ Global
 		{86757EAE-8A50-4547-938C-305DA4BE66B1} = {B2AD4575-C5BF-4F62-80EC-1290CCBBBCAA}
 		{BBDCAA45-07ED-4FE2-AE59-525E9E211B85} = {B2AD4575-C5BF-4F62-80EC-1290CCBBBCAA}
 		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC} = {BBDCAA45-07ED-4FE2-AE59-525E9E211B85}
+		{D51949FB-806C-4320-AC8D-712AB24C3DFD} = {139DABEF-84E0-445F-B558-ED7ABC8F994E}
+		{7673F6C2-17EF-4929-B113-0624879C7972} = {139DABEF-84E0-445F-B558-ED7ABC8F994E}
+		{389014AC-3278-4F76-BA8D-30F5B4744E82} = {AFD54224-7CB0-4B3B-A3A2-BA4E4FFAEE77}
+		{7AB2C1A5-FB18-4872-96F9-4A66E3747837} = {389014AC-3278-4F76-BA8D-30F5B4744E82}
+		{A7C790C0-E88D-485C-A63C-6812F8CD5AF6} = {389014AC-3278-4F76-BA8D-30F5B4744E82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}
