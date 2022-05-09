@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SatisfactoryPlanner.UserAccess.Domain.UserRegistrations;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Domain.UserRegistrations
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Domain.UserRegistrations
 {
     public class UserRegistrationRepository : IUserRegistrationRepository
     {

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.BuildingBlocks.Application.Events;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching;
-using SatisfactoryPlanner.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Events;
@@ -12,7 +12,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.Outbox
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox
 {
     internal class ProcessOutboxCommandHandler : ICommandHandler<ProcessOutboxCommand>
     {
@@ -35,8 +35,8 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
         public async Task<Unit> Handle(ProcessOutboxCommand command, CancellationToken cancellationToken)
         {
             //TODO fix
-            var connection = this._dbConnectionFactory.GetOpenConnection();
-            string sql = "SELECT " +
+            var connection = _dbConnectionFactory.GetOpenConnection();
+            var sql = "SELECT " +
                          $"[OutboxMessage].[Id] AS [{nameof(OutboxMessageDto.Id)}], " +
                          $"[OutboxMessage].[Type] AS [{nameof(OutboxMessageDto.Type)}], " +
                          $"[OutboxMessage].[Data] AS [{nameof(OutboxMessageDto.Data)}] " +
@@ -59,7 +59,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
 
                     using (LogContext.Push(new OutboxMessageContextEnricher(@event)))
                     {
-                        await this._mediator.Publish(@event, cancellationToken);
+                        await _mediator.Publish(@event, cancellationToken);
 
                         await connection.ExecuteAsync(sqlUpdateProcessedDate, new
                         {

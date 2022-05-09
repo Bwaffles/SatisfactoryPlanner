@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Serilog;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Logging
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Logging
 {
     internal class LoggingModule : Module
     {

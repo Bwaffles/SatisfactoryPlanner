@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Application.Contracts
+namespace SatisfactoryPlanner.Modules.UserAccess.Application.Contracts
 {
     public interface IUserAccessModule
     {

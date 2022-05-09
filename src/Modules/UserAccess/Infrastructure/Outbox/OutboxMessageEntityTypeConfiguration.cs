@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Outbox
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Outbox
 {
     internal class OutboxMessageEntityTypeConfiguration : IEntityTypeConfiguration<OutboxMessage>
     {

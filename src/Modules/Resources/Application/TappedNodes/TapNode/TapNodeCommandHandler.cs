@@ -3,7 +3,6 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Commands;
 using SatisfactoryPlanner.Modules.Resources.Application.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 using System;
 using System.Threading;

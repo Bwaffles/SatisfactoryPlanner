@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using Serilog;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.EventsBus
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.EventsBus
 {
     public static class EventsBusStartup
     {

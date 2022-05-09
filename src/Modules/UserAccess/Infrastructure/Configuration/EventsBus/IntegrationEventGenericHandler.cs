@@ -6,7 +6,7 @@ using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Serialization;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.EventsBus
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.EventsBus
 {
     internal class IntegrationEventGenericHandler<T> : IIntegrationEventHandler<T>
         where T : IntegrationEvent
@@ -17,7 +17,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.EventsBus
             {
                 using (var connection = scope.Resolve<IDbConnectionFactory>().GetOpenConnection())
                 {
-                    string type = @event.GetType().FullName;
+                    var type = @event.GetType().FullName;
                     var data = JsonConvert.SerializeObject(@event, new JsonSerializerSettings
                     {
                         ContractResolver = new AllPropertiesContractResolver()

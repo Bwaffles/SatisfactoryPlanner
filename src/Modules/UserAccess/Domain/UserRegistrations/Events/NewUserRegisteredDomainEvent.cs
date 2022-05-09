@@ -1,7 +1,8 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 using System;
 
-namespace SatisfactoryPlanner.UserAccess.Domain.UserRegistrations.Events
+namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Events
 {
     public class NewUserRegisteredDomainEvent : DomainEventBase
     {

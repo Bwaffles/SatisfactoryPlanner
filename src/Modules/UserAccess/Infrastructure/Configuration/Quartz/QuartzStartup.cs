@@ -1,13 +1,13 @@
 ﻿using Quartz;
 using Quartz.Impl;
 using Quartz.Logging;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.Inbox;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.InternalCommands;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.Outbox;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Inbox;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.InternalCommands;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox;
 using Serilog;
 using System.Collections.Specialized;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Quartz
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Quartz
 {
     internal static class QuartzStartup
     {
@@ -19,12 +19,12 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Quartz
             schedulerConfiguration.Add("quartz.scheduler.instanceName", "Meetings");
 
             ISchedulerFactory schedulerFactory = new StdSchedulerFactory(schedulerConfiguration);
-            IScheduler scheduler = schedulerFactory.GetScheduler().GetAwaiter().GetResult();
+            var scheduler = schedulerFactory.GetScheduler().GetAwaiter().GetResult();
 
             LogProvider.SetCurrentLogProvider(new SerilogLogProvider(logger));
 
             scheduler.Start().GetAwaiter().GetResult();
-            
+
             var processOutboxJob = JobBuilder.Create<ProcessOutboxJob>().Build();
             var trigger =
                 TriggerBuilder

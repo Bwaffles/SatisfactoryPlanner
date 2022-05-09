@@ -2,7 +2,7 @@
 using Serilog;
 using System;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Quartz
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Quartz
 {
     internal class SerilogLogProvider : ILogProvider
     {
@@ -18,34 +18,22 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Quartz
             return (level, func, exception, parameters) =>
             {
                 if (func == null)
-                {
                     return true;
-                }
 
                 if (level == LogLevel.Debug || level == LogLevel.Trace)
-                {
                     _logger.Debug(exception, func(), parameters);
-                }
 
                 if (level == LogLevel.Info)
-                {
                     _logger.Information(exception, func(), parameters);
-                }
 
                 if (level == LogLevel.Warn)
-                {
                     _logger.Warning(exception, func(), parameters);
-                }
 
                 if (level == LogLevel.Error)
-                {
                     _logger.Error(exception, func(), parameters);
-                }
 
                 if (level == LogLevel.Fatal)
-                {
                     _logger.Fatal(exception, func(), parameters);
-                }
 
                 return true;
             };

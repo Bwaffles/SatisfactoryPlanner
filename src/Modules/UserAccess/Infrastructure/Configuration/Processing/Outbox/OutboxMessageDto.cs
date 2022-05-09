@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.Outbox
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox
 {
     public class OutboxMessageDto
     {

@@ -1,7 +1,7 @@
-﻿using SatisfactoryPlanner.UserAccess.Application.Contracts;
+﻿using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Application.Configuration.Commands
+namespace SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands
 {
     public interface ICommandsScheduler
     {

@@ -18,7 +18,7 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\Domain\SatisfactoryPlanner.UserAccess.Domain.csproj">
+    <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.UserAccess.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
   </ItemGroup>

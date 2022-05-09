@@ -1,11 +1,11 @@
 ﻿using Autofac;
 using MediatR;
-using SatisfactoryPlanner.UserAccess.Application.Contracts;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure
 {
     public class UserAccessModule : IUserAccessModule
     {

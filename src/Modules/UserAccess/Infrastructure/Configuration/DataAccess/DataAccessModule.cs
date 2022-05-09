@@ -6,7 +6,7 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.DataAccess
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.DataAccess
 {
     /// <summary>
     ///     Dependency injection setup for Data Access of the User Access module.

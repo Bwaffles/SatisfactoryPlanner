@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.Inbox
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Inbox
 {
     public class InboxMessageDto
     {

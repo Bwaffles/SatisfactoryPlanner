@@ -1,7 +1,7 @@
-﻿using SatisfactoryPlanner.UserAccess.Application.Contracts;
+﻿using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using System;
 
-namespace SatisfactoryPlanner.UserAccess.Application.UserRegistrations.RegisterNewUser
+namespace SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser
 {
     public class RegisterNewUserCommand : CommandBase<Guid>
     {

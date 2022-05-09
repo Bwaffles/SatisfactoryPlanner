@@ -1,11 +1,11 @@
-﻿using SatisfactoryPlanner.UserAccess.Application.Authentication;
-using SatisfactoryPlanner.UserAccess.Application.Configuration.Commands;
-using SatisfactoryPlanner.UserAccess.Domain.UserRegistrations;
+﻿using SatisfactoryPlanner.Modules.UserAccess.Application.Authentication;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Application.UserRegistrations.RegisterNewUser
+namespace SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser
 {
     internal class RegisterNewUserCommandHandler : ICommandHandler<RegisterNewUserCommand, Guid>
     {

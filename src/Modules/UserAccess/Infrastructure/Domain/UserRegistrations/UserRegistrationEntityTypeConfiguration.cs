@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SatisfactoryPlanner.UserAccess.Domain.UserRegistrations;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 using System;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Domain.UserRegistrations
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Domain.UserRegistrations
 {
     internal class UserRegistrationEntityTypeConfiguration : IEntityTypeConfiguration<UserRegistration>
     {

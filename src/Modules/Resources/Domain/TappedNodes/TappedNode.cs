@@ -3,7 +3,7 @@ using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions
+namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
 {
     public class TappedNode : Entity, IAggregateRoot
     {

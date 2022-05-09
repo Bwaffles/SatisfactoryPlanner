@@ -1,7 +1,7 @@
-﻿using SatisfactoryPlanner.UserAccess.Application.Contracts;
+﻿using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using System.Reflection;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
 {
     internal static class Assemblies
     {

@@ -18,8 +18,8 @@ using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
-using SatisfactoryPlanner.UserAccess.Application.IdentityServer;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.UserAccess.Application.IdentityServer;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Formatting.Compact;
 

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.UserAccess.Application.Configuration.Commands;
-using SatisfactoryPlanner.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
@@ -10,7 +10,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing
 {
     internal class LoggingCommandHandlerDecorator<T> : ICommandHandler<T>
         where T : ICommand
@@ -32,9 +32,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
         public async Task<Unit> Handle(T command, CancellationToken cancellationToken)
         {
             if (command is IRecurringCommand)
-            {
                 return await _decorated.Handle(command, cancellationToken);
-            }
 
             using (
                 LogContext.Push(
@@ -43,19 +41,19 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
             {
                 try
                 {
-                    this._logger.Information(
+                    _logger.Information(
                         "Executing command {Command}",
                         command.GetType().Name);
 
                     var result = await _decorated.Handle(command, cancellationToken);
 
-                    this._logger.Information("Command {Command} processed successful", command.GetType().Name);
+                    _logger.Information("Command {Command} processed successful", command.GetType().Name);
 
                     return result;
                 }
                 catch (Exception exception)
                 {
-                    this._logger.Error(exception, "Command {Command} processing failed", command.GetType().Name);
+                    _logger.Error(exception, "Command {Command} processing failed", command.GetType().Name);
                     throw;
                 }
             }
@@ -88,9 +86,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
             public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
             {
                 if (_executionContextAccessor.IsAvailable)
-                {
                     logEvent.AddOrUpdateProperty(new LogEventProperty("CorrelationId", new ScalarValue(_executionContextAccessor.CorrelationId)));
-                }
             }
         }
     }

@@ -1,9 +1,8 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
-using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions.Rules
+namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules
 {
     public class CannotExtractMoreThanTheAvailableResourcesRule : IBusinessRule
     {

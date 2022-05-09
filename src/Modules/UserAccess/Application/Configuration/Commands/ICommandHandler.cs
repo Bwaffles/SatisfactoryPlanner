@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using SatisfactoryPlanner.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 
-namespace SatisfactoryPlanner.UserAccess.Application.Configuration.Commands
+namespace SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands
 {
     public interface ICommandHandler<in TCommand> :
         IRequestHandler<TCommand>

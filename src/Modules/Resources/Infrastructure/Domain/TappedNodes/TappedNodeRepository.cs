@@ -1,7 +1,7 @@
-﻿using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
+﻿using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.ResourceNodeExtractions
+namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.TappedNodes
 {
     internal class TappedNodeRepository : ITappedNodeRepository
     {

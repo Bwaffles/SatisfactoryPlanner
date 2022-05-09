@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 
-namespace SatisfactoryPlanner.UserAccess.Domain.Users
+namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
 {
     public class UserRole : ValueObject
     {

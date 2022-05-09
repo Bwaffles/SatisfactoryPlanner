@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-namespace SatisfactoryPlanner.UserAccess.Application.Authentication
+namespace SatisfactoryPlanner.Modules.UserAccess.Application.Authentication
 {
     public class PasswordManager
     {
@@ -11,9 +11,7 @@ namespace SatisfactoryPlanner.UserAccess.Application.Authentication
             byte[] salt;
             byte[] buffer2;
             if (password == null)
-            {
                 throw new ArgumentNullException(nameof(password));
-            }
 
             using (var bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
             {
@@ -31,20 +29,14 @@ namespace SatisfactoryPlanner.UserAccess.Application.Authentication
         {
             byte[] buffer4;
             if (hashedPassword == null)
-            {
                 return false;
-            }
 
             if (password == null)
-            {
                 throw new ArgumentNullException(nameof(password));
-            }
 
             var src = Convert.FromBase64String(hashedPassword);
-            if ((src.Length != 0x31) || (src[0] != 0))
-            {
+            if (src.Length != 0x31 || src[0] != 0)
                 return false;
-            }
 
             var dst = new byte[0x10];
             Buffer.BlockCopy(src, 1, dst, 0, 0x10);
@@ -62,14 +54,10 @@ namespace SatisfactoryPlanner.UserAccess.Application.Authentication
         private static bool ByteArraysEqual(byte[] a, byte[] b)
         {
             if (ReferenceEquals(a, b))
-            {
                 return true;
-            }
 
             if (a == null || b == null || a.Length != b.Length)
-            {
                 return false;
-            }
 
             var areSame = true;
             for (var i = 0; i < a.Length; i++)

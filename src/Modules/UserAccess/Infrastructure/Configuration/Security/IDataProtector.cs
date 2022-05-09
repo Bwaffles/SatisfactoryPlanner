@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Security
+﻿namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Security
 {
     public interface IDataProtector
     {

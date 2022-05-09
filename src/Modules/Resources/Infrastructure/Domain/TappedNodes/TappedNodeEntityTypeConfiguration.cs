@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
+using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 
-namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.ResourceNodeExtractions
+namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.TappedNodes
 {
     internal class TappedNodeEntityTypeConfiguration : IEntityTypeConfiguration<TappedNode>
     {

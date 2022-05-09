@@ -63,11 +63,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI\UI.csproj", "{7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserAccess", "UserAccess", "{389014AC-3278-4F76-BA8D-30F5B4744E82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.UserAccess.Application", "Modules\UserAccess\Application\SatisfactoryPlanner.UserAccess.Application.csproj", "{7AB2C1A5-FB18-4872-96F9-4A66E3747837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.Application", "Modules\UserAccess\Application\SatisfactoryPlanner.Modules.UserAccess.Application.csproj", "{7AB2C1A5-FB18-4872-96F9-4A66E3747837}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.UserAccess.Domain", "Modules\UserAccess\Domain\SatisfactoryPlanner.UserAccess.Domain.csproj", "{A7C790C0-E88D-485C-A63C-6812F8CD5AF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.Domain", "Modules\UserAccess\Domain\SatisfactoryPlanner.Modules.UserAccess.Domain.csproj", "{A7C790C0-E88D-485C-A63C-6812F8CD5AF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.UserAccess.Infrastructure", "Modules\UserAccess\Infrastructure\SatisfactoryPlanner.UserAccess.Infrastructure.csproj", "{835A3C9C-B0EB-4FDB-A408-37FD542B23C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.Infrastructure", "Modules\UserAccess\Infrastructure\SatisfactoryPlanner.Modules.UserAccess.Infrastructure.csproj", "{835A3C9C-B0EB-4FDB-A408-37FD542B23C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.BuildingBlocks.EventBus", "BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj", "{553EFEE4-859B-4FD6-AFE9-DB1A4A2F2D16}"
 EndProject

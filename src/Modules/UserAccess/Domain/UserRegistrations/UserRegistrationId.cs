@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using System;
 
-namespace SatisfactoryPlanner.UserAccess.Domain.UserRegistrations
+namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
 {
     public class UserRegistrationId : TypedIdValueBase
     {

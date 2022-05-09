@@ -1,9 +1,9 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application.Events;
-using SatisfactoryPlanner.UserAccess.Domain.UserRegistrations.Events;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Events;
 using System;
 using System.Text.Json.Serialization;
 
-namespace SatisfactoryPlanner.UserAccess.Application.UserRegistrations.RegisterNewUser
+namespace SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser
 {
     public class NewUserRegisteredNotification : DomainNotificationBase<NewUserRegisteredDomainEvent>
     {

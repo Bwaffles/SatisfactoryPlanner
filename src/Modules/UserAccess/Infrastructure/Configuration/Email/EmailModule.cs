@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.BuildingBlocks.Application.Emails;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Email
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Email
 {
     internal class EmailModule : Module
     {
@@ -20,9 +20,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Email
         protected override void Load(ContainerBuilder builder)
         {
             if (_emailSender != null)
-            {
                 builder.RegisterInstance(_emailSender);
-            }
             else
             {
                 builder.RegisterType<EmailSender>()

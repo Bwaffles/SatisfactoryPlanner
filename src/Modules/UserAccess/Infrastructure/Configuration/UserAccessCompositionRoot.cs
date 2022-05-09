@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
 {
     internal static class UserAccessCompositionRoot
     {

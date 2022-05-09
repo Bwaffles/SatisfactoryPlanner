@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Outbox
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Outbox
 {
     public class OutboxAccessor : IOutbox
     {

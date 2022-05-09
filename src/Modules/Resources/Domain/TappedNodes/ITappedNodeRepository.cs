@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions
+namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
 {
     /// <summary>
     ///     Handles the database access for the <see cref="TappedNode"/> through EntityFramework.

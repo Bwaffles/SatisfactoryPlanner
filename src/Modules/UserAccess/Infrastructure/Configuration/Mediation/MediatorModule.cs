@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Mediation
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Mediation
 {
     public class MediatorModule : Autofac.Module
     {
@@ -59,14 +59,10 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Mediation
             public ScopedContravariantRegistrationSource(params Type[] types)
             {
                 if (types == null)
-                {
                     throw new ArgumentNullException(nameof(types));
-                }
 
                 if (!types.All(x => x.IsGenericTypeDefinition))
-                {
                     throw new ArgumentException("Supplied types should be generic type definitions");
-                }
 
                 _types.AddRange(types);
             }
@@ -83,9 +79,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Mediation
                         .Select(x => x.ServiceType.GetGenericTypeDefinition());
 
                     if (defs.Any(_types.Contains))
-                    {
                         yield return c;
-                    }
                 }
             }
 

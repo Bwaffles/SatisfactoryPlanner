@@ -4,7 +4,7 @@ using IdentityModel;
 using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace SatisfactoryPlanner.UserAccess.Application.IdentityServer
+namespace SatisfactoryPlanner.Modules.UserAccess.Application.IdentityServer
 {
     public class IdentityServerConfiguration
     {

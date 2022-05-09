@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
+using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure
 {

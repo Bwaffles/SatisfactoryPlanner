@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Security
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Security
 {
     public class AesDataProtector : IDataProtector
     {

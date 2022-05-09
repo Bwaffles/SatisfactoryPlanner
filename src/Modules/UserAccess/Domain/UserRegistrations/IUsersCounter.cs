@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.UserAccess.Domain.UserRegistrations
+﻿namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
 {
     public interface IUsersCounter
     {

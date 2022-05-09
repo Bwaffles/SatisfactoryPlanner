@@ -41,10 +41,10 @@
     <ProjectReference Include="..\..\Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\Modules\UserAccess\Application\SatisfactoryPlanner.UserAccess.Application.csproj">
+    <ProjectReference Include="..\..\Modules\UserAccess\Application\SatisfactoryPlanner.Modules.UserAccess.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\Modules\UserAccess\Infrastructure\SatisfactoryPlanner.UserAccess.Infrastructure.csproj">
+    <ProjectReference Include="..\..\Modules\UserAccess\Infrastructure\SatisfactoryPlanner.Modules.UserAccess.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
   </ItemGroup>

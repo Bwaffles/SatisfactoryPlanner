@@ -1,9 +1,9 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.UserAccess.Domain.UserRegistrations.Events;
-using SatisfactoryPlanner.UserAccess.Domain.UserRegistrations.Rules;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Events;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Rules;
 using System;
 
-namespace SatisfactoryPlanner.UserAccess.Domain.UserRegistrations
+namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
 {
     public class UserRegistration : Entity, IAggregateRoot
     {

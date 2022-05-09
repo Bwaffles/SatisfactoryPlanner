@@ -3,12 +3,14 @@ using MediatR;
 using Newtonsoft.Json;
 using Polly;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
-using SatisfactoryPlanner.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.InternalCommands
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.InternalCommands
 {
     internal class ProcessInternalCommandsCommandHandler : ICommandHandler<ProcessInternalCommandsCommand>
     {
@@ -22,9 +24,9 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
 
         public async Task<Unit> Handle(ProcessInternalCommandsCommand command, CancellationToken cancellationToken)
         {
-            var connection = this._dbConnectionFactory.GetOpenConnection();
+            var connection = _dbConnectionFactory.GetOpenConnection();
 
-            string sql = "SELECT " +
+            var sql = "SELECT " +
                                $"[Command].[Id] AS [{nameof(InternalCommandDto.Id)}], " +
                                $"[Command].[Type] AS [{nameof(InternalCommandDto.Type)}], " +
                                $"[Command].[Data] AS [{nameof(InternalCommandDto.Data)}] " +
@@ -71,7 +73,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
         private async Task ProcessCommand(
             InternalCommandDto internalCommand)
         {
-            Type type = Assemblies.Application.GetType(internalCommand.Type);
+            var type = Assemblies.Application.GetType(internalCommand.Type);
             dynamic commandToProcess = JsonConvert.DeserializeObject(internalCommand.Data, type);
 
             await CommandsExecutor.Execute(commandToProcess);

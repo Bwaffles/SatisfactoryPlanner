@@ -1,7 +1,7 @@
 ﻿using Quartz;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.InternalCommands
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.InternalCommands
 {
     [DisallowConcurrentExecution]
     public class ProcessInternalCommandsJob : IJob

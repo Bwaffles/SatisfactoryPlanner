@@ -1,8 +1,7 @@
 ﻿using Moq;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions;
-using SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions.Rules;
+using SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 using System;

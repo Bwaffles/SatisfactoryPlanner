@@ -1,13 +1,14 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration.Processing;
-using SatisfactoryPlanner.UserAccess.Application.Configuration.Commands;
-using SatisfactoryPlanner.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing
 {
     internal class UnitOfWorkCommandHandlerDecorator<T> : ICommandHandler<T>
         where T : ICommand
@@ -28,19 +29,17 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
 
         public async Task<Unit> Handle(T command, CancellationToken cancellationToken)
         {
-            await this._decorated.Handle(command, cancellationToken);
+            await _decorated.Handle(command, cancellationToken);
 
             if (command is InternalCommandBase)
             {
                 var internalCommand = await _userAccessContext.InternalCommands.FirstOrDefaultAsync(x => x.Id == command.Id, cancellationToken: cancellationToken);
 
                 if (internalCommand != null)
-                {
                     internalCommand.ProcessedDate = DateTime.UtcNow;
-                }
             }
 
-            await this._unitOfWork.CommitAsync(cancellationToken);
+            await _unitOfWork.CommitAsync(cancellationToken);
 
             return Unit.Value;
         }

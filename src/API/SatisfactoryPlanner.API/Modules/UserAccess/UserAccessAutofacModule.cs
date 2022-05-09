@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using SatisfactoryPlanner.UserAccess.Application.Contracts;
-using SatisfactoryPlanner.UserAccess.Infrastructure;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
 
 namespace SatisfactoryPlanner.API.Modules.UserAccess
 {

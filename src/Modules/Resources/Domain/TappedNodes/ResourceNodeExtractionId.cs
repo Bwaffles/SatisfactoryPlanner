@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions
+namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
 {
     public class ResourceNodeExtractionId : TypedIdValueBase
     {

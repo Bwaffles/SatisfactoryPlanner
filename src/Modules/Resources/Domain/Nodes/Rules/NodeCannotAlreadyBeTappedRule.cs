@@ -1,8 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.ResourceNodeExtractions.Rules
+namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules
 {
     public class NodeCannotAlreadyBeTappedRule : IBusinessRule
     {

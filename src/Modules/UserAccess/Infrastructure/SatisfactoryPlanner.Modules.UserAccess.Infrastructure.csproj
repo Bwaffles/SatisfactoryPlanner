@@ -28,10 +28,10 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\Application\SatisfactoryPlanner.UserAccess.Application.csproj">
+    <ProjectReference Include="..\Application\SatisfactoryPlanner.Modules.UserAccess.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\Domain\SatisfactoryPlanner.UserAccess.Domain.csproj">
+    <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.UserAccess.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
   </ItemGroup>

@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
-using SatisfactoryPlanner.UserAccess.Domain.UserRegistrations;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 
-namespace SatisfactoryPlanner.UserAccess.Application.UserRegistrations.RegisterNewUser
+namespace SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser
 {
     public class UsersCounter : IUsersCounter
     {

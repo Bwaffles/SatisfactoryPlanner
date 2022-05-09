@@ -3,22 +3,22 @@ using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Application.Emails;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
-using SatisfactoryPlanner.UserAccess.Application.UserRegistrations.RegisterNewUser;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.DataAccess;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Domain;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Email;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.EventsBus;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Logging;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Mediation;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.Outbox;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Quartz;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Security;
+using SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.DataAccess;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Domain;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Email;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.EventsBus;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Logging;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Mediation;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Quartz;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Security;
 using Serilog;
 using Serilog.Extensions.Logging;
 using System;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
 {
     public class UserAccessStartup
     {

@@ -2,13 +2,13 @@
 using MediatR;
 using Newtonsoft.Json;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
-using SatisfactoryPlanner.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.Inbox
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Inbox
 {
     internal class ProcessInboxCommandHandler : ICommandHandler<ProcessInboxCommand>
     {
@@ -24,8 +24,8 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
         public async Task<Unit> Handle(ProcessInboxCommand command, CancellationToken cancellationToken)
         {
             //TODO fix
-            var connection = this._dbConnectionFactory.GetOpenConnection();
-            string sql = "SELECT " +
+            var connection = _dbConnectionFactory.GetOpenConnection();
+            var sql = "SELECT " +
                          $"[InboxMessage].[Id] AS [{nameof(InboxMessageDto.Id)}], " +
                          $"[InboxMessage].[Type] AS [{nameof(InboxMessageDto.Type)}], " +
                          $"[InboxMessage].[Data] AS [{nameof(InboxMessageDto.Data)}] " +
@@ -44,7 +44,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
                 var messageAssembly = AppDomain.CurrentDomain.GetAssemblies()
                     .SingleOrDefault(assembly => message.Type.Contains(assembly.GetName().Name));
 
-                Type type = messageAssembly.GetType(message.Type);
+                var type = messageAssembly.GetType(message.Type);
                 var request = JsonConvert.DeserializeObject(message.Data, type);
 
                 try

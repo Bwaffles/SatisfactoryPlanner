@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Security
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Security
 {
     internal class SecurityModule : Module
     {

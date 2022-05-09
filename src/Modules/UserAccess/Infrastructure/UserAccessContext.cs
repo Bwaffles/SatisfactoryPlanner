@@ -2,12 +2,12 @@
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
-using SatisfactoryPlanner.UserAccess.Domain.UserRegistrations;
-using SatisfactoryPlanner.UserAccess.Domain.Users;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Domain.UserRegistrations;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Outbox;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.Users;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Domain.UserRegistrations;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Outbox;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure
 {
     public class UserAccessContext : DbContext
     {

@@ -1,6 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 
-namespace SatisfactoryPlanner.UserAccess.Domain.UserRegistrations.Rules
+namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Rules
 {
     public class UserLoginMustBeUniqueRule : IBusinessRule
     {

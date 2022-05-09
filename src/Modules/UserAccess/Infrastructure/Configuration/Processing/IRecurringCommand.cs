@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
+﻿namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing
 {
     public interface IRecurringCommand
     {

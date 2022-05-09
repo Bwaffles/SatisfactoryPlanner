@@ -1,13 +1,13 @@
 ﻿using FluentValidation;
 using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.UserAccess.Application.Configuration.Commands;
-using SatisfactoryPlanner.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing
 {
     internal class ValidationCommandHandlerWithResultDecorator<T, TResult> : ICommandHandler<T, TResult>
         where T : ICommand<TResult>
@@ -20,7 +20,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
             IList<IValidator<T>> validators,
             ICommandHandler<T, TResult> decorated)
         {
-            this._validators = validators;
+            _validators = validators;
             _decorated = decorated;
         }
 
@@ -33,9 +33,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
                 .ToList();
 
             if (errors.Any())
-            {
                 throw new InvalidCommandException(errors.Select(x => x.ErrorMessage).ToList());
-            }
 
             return _decorated.Handle(command, cancellationToken);
         }

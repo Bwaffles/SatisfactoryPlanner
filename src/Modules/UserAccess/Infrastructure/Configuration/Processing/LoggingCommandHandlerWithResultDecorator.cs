@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.UserAccess.Application.Configuration.Commands;
-using SatisfactoryPlanner.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
@@ -9,7 +9,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing
 {
     internal class LoggingCommandHandlerWithResultDecorator<T, TResult> : ICommandHandler<T, TResult>
         where T : ICommand<TResult>
@@ -37,19 +37,19 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
             {
                 try
                 {
-                    this._logger.Information(
+                    _logger.Information(
                         "Executing command {@Command}",
                         command);
 
                     var result = await _decorated.Handle(command, cancellationToken);
 
-                    this._logger.Information("Command processed successful, result {Result}", result);
+                    _logger.Information("Command processed successful, result {Result}", result);
 
                     return result;
                 }
                 catch (Exception exception)
                 {
-                    this._logger.Error(exception, "Command processing failed");
+                    _logger.Error(exception, "Command processing failed");
                     throw;
                 }
             }
@@ -82,9 +82,7 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
             public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
             {
                 if (_executionContextAccessor.IsAvailable)
-                {
                     logEvent.AddOrUpdateProperty(new LogEventProperty("CorrelationId", new ScalarValue(_executionContextAccessor.CorrelationId)));
-                }
             }
         }
     }

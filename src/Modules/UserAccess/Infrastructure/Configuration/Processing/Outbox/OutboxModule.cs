@@ -4,13 +4,13 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching;
-using SatisfactoryPlanner.UserAccess.Infrastructure.Outbox;
+using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Outbox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Module = Autofac.Module;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing.Outbox
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox
 {
     internal class OutboxModule : Module
     {
@@ -44,21 +44,17 @@ namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Processing
                 .Where(x => x.GetInterfaces().Contains(typeof(IDomainEventNotification)))
                 .ToList();
 
-            List<Type> notMappedNotifications = new List<Type>();
+            var notMappedNotifications = new List<Type>();
             foreach (var domainEventNotification in domainEventNotifications)
             {
                 _domainNotificationsMap.TryGetBySecond(domainEventNotification, out var name);
 
                 if (name == null)
-                {
                     notMappedNotifications.Add(domainEventNotification);
-                }
             }
 
             if (notMappedNotifications.Any())
-            {
                 throw new ApplicationException($"Domain Event Notifications {notMappedNotifications.Select(x => x.FullName).Aggregate((x, y) => x + "," + y)} not mapped");
-            }
         }
     }
 }

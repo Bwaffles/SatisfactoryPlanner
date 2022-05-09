@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization;
-using SatisfactoryPlanner.UserAccess.Application.Contracts;
-using SatisfactoryPlanner.UserAccess.Application.UserRegistrations.RegisterNewUser;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Modules.UserAccess

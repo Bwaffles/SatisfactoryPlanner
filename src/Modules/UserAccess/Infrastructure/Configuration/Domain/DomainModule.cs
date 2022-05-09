@@ -1,8 +1,8 @@
 ﻿using Autofac;
-using SatisfactoryPlanner.UserAccess.Application.UserRegistrations.RegisterNewUser;
-using SatisfactoryPlanner.UserAccess.Domain.UserRegistrations;
+using SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 
-namespace SatisfactoryPlanner.UserAccess.Infrastructure.Configuration.Domain
+namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Domain
 {
     internal class DomainModule : Module
     {
