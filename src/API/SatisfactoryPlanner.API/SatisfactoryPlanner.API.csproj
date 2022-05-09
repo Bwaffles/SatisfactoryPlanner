@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Duende.IdentityServer" Version="5.2.4" />
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="4.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Serilog.Formatting.Compact" Version="1.1.0" />
@@ -25,6 +26,9 @@
     <ProjectReference Include="..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
+    <ProjectReference Include="..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
     <ProjectReference Include="..\..\Modules\Factories\Application\SatisfactoryPlanner.Modules.Factories.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
@@ -35,6 +39,12 @@
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
     <ProjectReference Include="..\..\Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\UserAccess\Application\SatisfactoryPlanner.UserAccess.Application.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\UserAccess\Infrastructure\SatisfactoryPlanner.UserAccess.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
   </ItemGroup>

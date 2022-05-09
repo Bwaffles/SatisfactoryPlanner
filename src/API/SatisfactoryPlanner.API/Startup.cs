@@ -12,10 +12,14 @@ using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.API.Modules.Factories;
 using SatisfactoryPlanner.API.Modules.Resources;
+using SatisfactoryPlanner.API.Modules.UserAccess;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
+using SatisfactoryPlanner.UserAccess.Application.IdentityServer;
+using SatisfactoryPlanner.UserAccess.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Formatting.Compact;
 
@@ -48,7 +52,7 @@ namespace SatisfactoryPlanner.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SatisfactoryPlanner.API", Version = "v1" });
             });
 
-            // ConfigureIdentityServer(services);
+            ConfigureIdentityServer(services);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
@@ -58,24 +62,36 @@ namespace SatisfactoryPlanner.API
                 x.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
                 x.Map<BusinessRuleValidationException>(ex => new BusinessRuleValidationExceptionProblemDetails(ex));
             });
-            /*
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy(HasPermissionAttribute.HasPermissionPolicyName, policyBuilder =>
-                {
-                    policyBuilder.Requirements.Add(new HasPermissionAuthorizationRequirement());
-                    policyBuilder.AddAuthenticationSchemes(IdentityServerAuthenticationDefaults.AuthenticationScheme);
-                });
-            });
 
-            services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
-            */
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy(HasPermissionAttribute.HasPermissionPolicyName, policyBuilder =>
+            //    {
+            //        policyBuilder.Requirements.Add(new HasPermissionAuthorizationRequirement());
+            //        policyBuilder.AddAuthenticationSchemes(IdentityServerAuthenticationDefaults.AuthenticationScheme);
+            //    });
+            //});
+
+            //services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
+
+        }
+
+        private void ConfigureIdentityServer(IServiceCollection services)
+        {
+            services.AddIdentityServer()
+                .AddInMemoryIdentityResources(IdentityServerConfiguration.IdentityResources)
+                .AddInMemoryApiResources(IdentityServerConfiguration.ApiResources)
+                .AddInMemoryClients(IdentityServerConfiguration.Clients)
+                .AddInMemoryApiScopes(IdentityServerConfiguration.ApiScopes)
+                .AddTestUsers(IdentityServerConfiguration.TestUsers)
+                .AddDeveloperSigningCredential();
         }
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterModule(new ResourcesAutofacModule());
             containerBuilder.RegisterModule(new FactoriesAutofacModule());
+            containerBuilder.RegisterModule(new UserAccessAutofacModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,7 +99,7 @@ namespace SatisfactoryPlanner.API
         {
             var container = app.ApplicationServices.GetAutofacRoot();
 
-            // app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             InitializeModules(container);
 
@@ -91,7 +107,7 @@ namespace SatisfactoryPlanner.API
 
             //app.UseSwaggerDocumentation();
 
-            //app.UseIdentityServer();
+            app.UseIdentityServer();
 
             if (env.IsDevelopment())
             {
@@ -129,7 +145,7 @@ namespace SatisfactoryPlanner.API
             var httpContextAccessor = container.Resolve<IHttpContextAccessor>();
             var executionContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
 
-            //var emailsConfiguration = new EmailsConfiguration(_configuration["EmailsConfiguration:FromEmail"]);
+            var emailsConfiguration = new EmailsConfiguration(_configuration.GetValue<string>("EmailsConfiguration:FromEmail"));
 
             ResourcesStartup.Initialize(
                    _configuration.GetConnectionString(FactoriesConnectionString),
@@ -148,6 +164,14 @@ namespace SatisfactoryPlanner.API
                    //emailsConfiguration,
                    //null
                    );
+
+            UserAccessStartup.Initialize(
+                _configuration.GetConnectionString(FactoriesConnectionString),
+                executionContextAccessor,
+                _logger,
+                emailsConfiguration,
+                _configuration["Security:TextEncryptionKey"],
+                null);
         }
     }
 }
