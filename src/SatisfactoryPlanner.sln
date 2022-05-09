@@ -69,7 +69,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.Infrastructure", "Modules\UserAccess\Infrastructure\SatisfactoryPlanner.Modules.UserAccess.Infrastructure.csproj", "{835A3C9C-B0EB-4FDB-A408-37FD542B23C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.BuildingBlocks.EventBus", "BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj", "{553EFEE4-859B-4FD6-AFE9-DB1A4A2F2D16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.EventBus", "BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj", "{553EFEE4-859B-4FD6-AFE9-DB1A4A2F2D16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A9902063-00BE-46CE-B0D4-95CB9E98C2BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.ArchTests", "Modules\UserAccess\Tests\ArchTests\SatisfactoryPlanner.Modules.UserAccess.ArchTests.csproj", "{1894AB87-EED2-4E36-BB38-11E7C282D56B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -175,6 +179,10 @@ Global
 		{553EFEE4-859B-4FD6-AFE9-DB1A4A2F2D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{553EFEE4-859B-4FD6-AFE9-DB1A4A2F2D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{553EFEE4-859B-4FD6-AFE9-DB1A4A2F2D16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1894AB87-EED2-4E36-BB38-11E7C282D56B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1894AB87-EED2-4E36-BB38-11E7C282D56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1894AB87-EED2-4E36-BB38-11E7C282D56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1894AB87-EED2-4E36-BB38-11E7C282D56B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -205,6 +213,8 @@ Global
 		{A7C790C0-E88D-485C-A63C-6812F8CD5AF6} = {389014AC-3278-4F76-BA8D-30F5B4744E82}
 		{835A3C9C-B0EB-4FDB-A408-37FD542B23C2} = {389014AC-3278-4F76-BA8D-30F5B4744E82}
 		{553EFEE4-859B-4FD6-AFE9-DB1A4A2F2D16} = {757C2086-53D1-4FF4-8A4D-76CE49614DC2}
+		{A9902063-00BE-46CE-B0D4-95CB9E98C2BD} = {389014AC-3278-4F76-BA8D-30F5B4744E82}
+		{1894AB87-EED2-4E36-BB38-11E7C282D56B} = {A9902063-00BE-46CE-B0D4-95CB9E98C2BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}
