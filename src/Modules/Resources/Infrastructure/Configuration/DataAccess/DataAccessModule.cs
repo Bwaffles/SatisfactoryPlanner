@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
-using System.Linq;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.DataAccess
 {

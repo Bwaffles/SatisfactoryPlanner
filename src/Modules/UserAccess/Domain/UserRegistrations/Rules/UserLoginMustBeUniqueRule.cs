@@ -1,5 +1,4 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Rules
 {

@@ -1,5 +1,4 @@
 ﻿using Quartz;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Inbox

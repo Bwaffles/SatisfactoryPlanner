@@ -1,5 +1,4 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 using System;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Events

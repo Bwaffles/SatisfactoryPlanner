@@ -2,7 +2,6 @@
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration.Processing;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

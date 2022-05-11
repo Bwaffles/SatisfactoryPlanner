@@ -4,8 +4,6 @@ using Newtonsoft.Json;
 using Polly;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
