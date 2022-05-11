@@ -16,10 +16,10 @@ namespace SatisfactoryPlanner.BuildingBlocks.Application.Outbox
 
         public OutboxMessage(Guid id, DateTime occurredOn, string type, string data)
         {
-            this.Id = id;
-            this.OccurredOn = occurredOn;
-            this.Type = type;
-            this.Data = data;
+            Id = id;
+            OccurredOn = occurredOn;
+            Type = type;
+            Data = data;
         }
 
         private OutboxMessage()

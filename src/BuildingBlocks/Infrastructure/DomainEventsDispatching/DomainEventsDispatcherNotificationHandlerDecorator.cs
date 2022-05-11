@@ -20,9 +20,9 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
 
         public async Task Handle(T notification, CancellationToken cancellationToken)
         {
-            await this._decorated.Handle(notification, cancellationToken);
+            await _decorated.Handle(notification, cancellationToken);
 
-            await this._domainEventsDispatcher.DispatchEventsAsync();
+            await _domainEventsDispatcher.DispatchEventsAsync();
         }
     }
 }

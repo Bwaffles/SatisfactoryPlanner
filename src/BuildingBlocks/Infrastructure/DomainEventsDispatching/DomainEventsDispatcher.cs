@@ -60,11 +60,15 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
 
             _domainEventsProvider.ClearAllDomainEvents();
 
+            // Publish domain events to be handled immediately.
+            // Domain events are handled as part of the transaction that caused it.
             foreach (var domainEvent in domainEvents)
             {
                 await _mediator.Publish(domainEvent);
             }
 
+            // Save domain event notifications to the outbox to be handled when able.
+            // Notifications are not guaranteed to be handled in the same transaction that caused it.
             foreach (var domainEventNotification in domainEventNotifications)
             {
                 var type = _domainNotificationsMapper.GetName(domainEventNotification.GetType());

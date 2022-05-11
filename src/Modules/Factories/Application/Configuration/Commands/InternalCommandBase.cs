@@ -9,7 +9,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Configuration.Comman
 
         protected InternalCommandBase(Guid id)
         {
-            this.Id = id;
+            Id = id;
         }
     }
 
@@ -19,12 +19,12 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Configuration.Comman
 
         protected InternalCommandBase()
         {
-            this.Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         protected InternalCommandBase(Guid id)
         {
-            this.Id = id;
+            Id = id;
         }
     }
 }

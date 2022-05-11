@@ -15,7 +15,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.Serialization
                     BindingFlags.Public |
                     BindingFlags.NonPublic |
                     BindingFlags.Instance)
-                .Select(p => this.CreateProperty(p, memberSerialization))
+                .Select(p => CreateProperty(p, memberSerialization))
                 .ToList();
 
             properties.ForEach(p =>

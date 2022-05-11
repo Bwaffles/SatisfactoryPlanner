@@ -33,7 +33,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Domain
 
         public bool Equals(TypedIdValueBase other)
         {
-            return this.Value == other?.Value;
+            return Value == other?.Value;
         }
 
         public static bool operator ==(TypedIdValueBase obj1, TypedIdValueBase obj2)
