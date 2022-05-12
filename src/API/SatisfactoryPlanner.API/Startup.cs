@@ -37,7 +37,7 @@ namespace SatisfactoryPlanner.API
 
             _configuration = configuration;
 
-            _loggerForApi.Information("Connection string:" + _configuration[FactoriesConnectionString]);
+            _loggerForApi.Information("Connection string:" + _configuration.GetConnectionString(FactoriesConnectionString));
         }
 
         private readonly IConfiguration _configuration;

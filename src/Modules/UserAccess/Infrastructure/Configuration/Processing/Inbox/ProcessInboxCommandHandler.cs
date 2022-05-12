@@ -12,8 +12,8 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
 {
     internal class ProcessInboxCommandHandler : ICommandHandler<ProcessInboxCommand>
     {
-        private readonly IMediator _mediator;
         private readonly IDbConnectionFactory _dbConnectionFactory;
+        private readonly IMediator _mediator;
 
         public ProcessInboxCommandHandler(IMediator mediator, IDbConnectionFactory dbConnectionFactory)
         {
@@ -23,26 +23,21 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
 
         public async Task<Unit> Handle(ProcessInboxCommand command, CancellationToken cancellationToken)
         {
-            //TODO fix
             var connection = _dbConnectionFactory.GetOpenConnection();
-            var sql = "SELECT " +
-                         $"[InboxMessage].[Id] AS [{nameof(InboxMessageDto.Id)}], " +
-                         $"[InboxMessage].[Type] AS [{nameof(InboxMessageDto.Type)}], " +
-                         $"[InboxMessage].[Data] AS [{nameof(InboxMessageDto.Data)}] " +
-                         "FROM [users].[InboxMessages] AS [InboxMessage] " +
-                         "WHERE [InboxMessage].[ProcessedDate] IS NULL " +
-                         "ORDER BY [InboxMessage].[OccurredOn]";
+            var sql =
+                $" SELECT inbox_message.id AS {nameof(InboxMessageDto.Id)}, " +
+                $"        inbox_message.type AS {nameof(InboxMessageDto.Type)}, " +
+                $"        inbox_message.data AS {nameof(InboxMessageDto.Data)} " +
+                "    FROM users.inbox_messages AS inbox_message " +
+                "   WHERE inbox_message.processed_date IS NULL " +
+                "ORDER BY inbox_message.occurred_on";
 
             var messages = await connection.QueryAsync<InboxMessageDto>(sql);
-
-            const string sqlUpdateProcessedDate = "UPDATE [users].[InboxMessages] " +
-                                                  "SET [ProcessedDate] = @Date " +
-                                                  "WHERE [Id] = @Id";
 
             foreach (var message in messages)
             {
                 var messageAssembly = AppDomain.CurrentDomain.GetAssemblies()
-                    .SingleOrDefault(assembly => message.Type.Contains(assembly.GetName().Name));
+                    .Single(assembly => message.Type.Contains(assembly.GetName().Name));
 
                 var type = messageAssembly.GetType(message.Type);
                 var request = JsonConvert.DeserializeObject(message.Data, type);
@@ -56,11 +51,13 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
                     Console.WriteLine(e);
                     throw;
                 }
-
+                
+                const string sqlUpdateProcessedDate = "UPDATE users.inbox_messages " +
+                                                      "   SET processed_date = @Date " +
+                                                      " WHERE id = @Id";
                 await connection.ExecuteAsync(sqlUpdateProcessedDate, new
                 {
-                    Date = DateTime.UtcNow,
-                    message.Id
+                    Date = DateTime.UtcNow, message.Id
                 });
             }
 

@@ -15,18 +15,36 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Qu
         {
             logger.Information("Quartz starting...");
 
-            var schedulerConfiguration = new NameValueCollection();
-            schedulerConfiguration.Add("quartz.scheduler.instanceName", "Meetings");
+            var scheduler = StartScheduler(logger);
 
-            ISchedulerFactory schedulerFactory = new StdSchedulerFactory(schedulerConfiguration);
+            ScheduleProcessOutboxJob(scheduler);
+            ScheduleProcessInboxJob(scheduler);
+            ScheduleProcessInternalCommandsJob(scheduler);
+
+            logger.Information("Quartz started.");
+        }
+
+        private static IScheduler StartScheduler(ILogger logger)
+        {
+            var schedulerConfiguration = new NameValueCollection
+            {
+                { "quartz.scheduler.instanceName", "SatisfactoryPlanner" }
+            };
+
+            var schedulerFactory = new StdSchedulerFactory(schedulerConfiguration);
             var scheduler = schedulerFactory.GetScheduler().GetAwaiter().GetResult();
 
             LogProvider.SetCurrentLogProvider(new SerilogLogProvider(logger));
 
             scheduler.Start().GetAwaiter().GetResult();
 
-            var processOutboxJob = JobBuilder.Create<ProcessOutboxJob>().Build();
-            var trigger =
+            return scheduler;
+        }
+
+        private static void ScheduleProcessInternalCommandsJob(IScheduler scheduler)
+        {
+            var processInternalCommandsJob = JobBuilder.Create<ProcessInternalCommandsJob>().Build();
+            var triggerCommandsProcessing =
                 TriggerBuilder
                     .Create()
                     .StartNow()
@@ -34,9 +52,12 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Qu
                     .Build();
 
             scheduler
-                .ScheduleJob(processOutboxJob, trigger)
+                .ScheduleJob(processInternalCommandsJob, triggerCommandsProcessing)
                 .GetAwaiter().GetResult();
+        }
 
+        private static void ScheduleProcessInboxJob(IScheduler scheduler)
+        {
             var processInboxJob = JobBuilder.Create<ProcessInboxJob>().Build();
             var processInboxTrigger =
                 TriggerBuilder
@@ -48,17 +69,21 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Qu
             scheduler
                 .ScheduleJob(processInboxJob, processInboxTrigger)
                 .GetAwaiter().GetResult();
+        }
 
-            var processInternalCommandsJob = JobBuilder.Create<ProcessInternalCommandsJob>().Build();
-            var triggerCommandsProcessing =
+        private static void ScheduleProcessOutboxJob(IScheduler scheduler)
+        {
+            var processOutboxJob = JobBuilder.Create<ProcessOutboxJob>().Build();
+            var trigger =
                 TriggerBuilder
                     .Create()
                     .StartNow()
                     .WithCronSchedule("0/15 * * ? * *")
                     .Build();
-            scheduler.ScheduleJob(processInternalCommandsJob, triggerCommandsProcessing).GetAwaiter().GetResult();
 
-            logger.Information("Quartz started.");
+            scheduler
+                .ScheduleJob(processOutboxJob, trigger)
+                .GetAwaiter().GetResult();
         }
     }
 }

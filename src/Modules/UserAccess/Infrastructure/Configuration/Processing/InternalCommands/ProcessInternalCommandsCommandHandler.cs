@@ -5,6 +5,7 @@ using Polly;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
 using System;
+using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,57 +16,53 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
         private readonly IDbConnectionFactory _dbConnectionFactory;
 
         public ProcessInternalCommandsCommandHandler(
-            IDbConnectionFactory dbConnectionFactory)
-        {
+            IDbConnectionFactory dbConnectionFactory) =>
             _dbConnectionFactory = dbConnectionFactory;
-        }
 
         public async Task<Unit> Handle(ProcessInternalCommandsCommand command, CancellationToken cancellationToken)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
-            var sql = "SELECT " +
-                               $"[Command].[Id] AS [{nameof(InternalCommandDto.Id)}], " +
-                               $"[Command].[Type] AS [{nameof(InternalCommandDto.Type)}], " +
-                               $"[Command].[Data] AS [{nameof(InternalCommandDto.Data)}] " +
-                               "FROM [users].[InternalCommands] AS [Command] " +
-                               "WHERE [Command].[ProcessedDate] IS NULL " +
-                               "ORDER BY [Command].[EnqueueDate]";
-            var commands = await connection.QueryAsync<InternalCommandDto>(sql);
-
-            var internalCommandsList = commands.AsList();
+            var sql =
+                $" SELECT command.id AS {nameof(InternalCommandDto.Id)}, " +
+                $"        command.type AS {nameof(InternalCommandDto.Type)}, " +
+                $"        command.data AS {nameof(InternalCommandDto.Data)} " +
+                "    FROM users.internal_commands AS command " +
+                "   WHERE command.processed_date IS NULL " +
+                "ORDER BY command.enqueue_date";
+            var internalCommands = await connection.QueryAsync<InternalCommandDto>(sql);
 
             var policy = Policy
                 .Handle<Exception>()
                 .WaitAndRetryAsync(new[]
                 {
-                    TimeSpan.FromSeconds(1),
-                    TimeSpan.FromSeconds(2),
-                    TimeSpan.FromSeconds(3)
+                    TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3)
                 });
 
-            foreach (var internalCommand in internalCommandsList)
+            foreach (var internalCommand in internalCommands)
             {
-                var result = await policy.ExecuteAndCaptureAsync(() => ProcessCommand(
-                    internalCommand));
+                var result = await policy.ExecuteAndCaptureAsync(() => ProcessCommand(internalCommand));
 
                 if (result.Outcome == OutcomeType.Failure)
-                {
-                    await connection.ExecuteScalarAsync(
-                        "UPDATE [users].[InternalCommands] " +
-                            "SET ProcessedDate = @NowDate, " +
-                            "Error = @Error " +
-                            "WHERE [Id] = @Id",
-                        new
-                        {
-                            NowDate = DateTime.UtcNow,
-                            Error = result.FinalException.ToString(),
-                            internalCommand.Id
-                        });
-                }
+                    await UpdateCommandWithError(connection, result, internalCommand.Id);
             }
 
             return Unit.Value;
+        }
+
+        private static async Task UpdateCommandWithError(IDbConnection connection, PolicyResult result,
+            Guid id)
+        {
+            const string errorSql = "UPDATE users.internal_commands " +
+                                    "   SET processed_date = @NowDate, " +
+                                    "       error          = @Error " +
+                                    " WHERE id = @Id";
+            await connection.ExecuteScalarAsync(
+                errorSql,
+                new
+                {
+                    NowDate = DateTime.UtcNow, Error = result.FinalException.ToString(), Id = id
+                });
         }
 
         private async Task ProcessCommand(

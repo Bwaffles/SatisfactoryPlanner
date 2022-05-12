@@ -13,7 +13,7 @@ namespace DatabaseMigrator
 
             if (args.Length != 2)
             {
-                Console.WriteLine("Invalid arguments. Execution: DatabaseMigrator [masterConnectionString] [connectionString].");
+                Console.WriteLine("Invalid arguments. Execution: DatabaseMigrator [masterConnectionString] [connectionString].\r\n");
                 return -1;
             }
 
@@ -43,21 +43,50 @@ namespace DatabaseMigrator
             return 0;
         }
 
-        /// <summary>
-        /// Update the database
-        /// </sumamry>
         private static void UpdateDatabase(string connectionString, IServiceProvider serviceProvider)
         {
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
 
             runner.ListMigrations();
 
-            // Data model changes
-            //RollbackMigrations(runner);
-            //MigrateNext(runner);
-            //RetestPreviousMigrations(runner);
+            bool quit = false;
+            while (!quit)
+            {
+                quit = SelectOption(runner);
+            }
+        }
 
-            runner.ListMigrations();
+        private static bool SelectOption(IMigrationRunner runner)
+        {
+            Console.WriteLine("\r\nSelect option\r\n" +
+                              "\t(1) Rollback\r\n" +
+                              "\t(2) Migrate Next\r\n" +
+                              "\t(3) Retest Last Migration\r\n" +
+                              "\t(Q) Quit:");
+
+            var option = Console.ReadLine();
+            switch (option)
+            {
+                case "1":
+                    RollbackMigrations(runner);
+                    runner.ListMigrations();
+                    return false;
+                case "2":
+                    MigrateNext(runner);
+                    runner.ListMigrations();
+                    return false;
+                case "3":
+                    RetestPreviousMigrations(runner);
+                    runner.ListMigrations();
+                    return false;
+                case "Q":
+                case "q":
+                    return true;
+                default:
+                    Console.WriteLine("Invalid option.");
+                    return false;
+
+            }
         }
 
         private static void RollbackMigrations(IMigrationRunner runner, int steps = 1)

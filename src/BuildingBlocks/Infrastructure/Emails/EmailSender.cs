@@ -27,10 +27,9 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails
         public void SendEmail(EmailMessage message)
         {
             var sqlConnection = _dbConnectionFactory.GetOpenConnection();
-
-            // TODO this won't work in my db
+            
             sqlConnection.ExecuteScalar(
-                "INSERT INTO [app].[Emails] ([Id], [From], [To], [Subject], [Content], [Date]) " +
+                "INSERT INTO app.emails (id, \"from\", \"to\", subject, content, date) " +
                 "VALUES (@Id, @From, @To, @Subject, @Content, @Date) ",
                 new
                 {

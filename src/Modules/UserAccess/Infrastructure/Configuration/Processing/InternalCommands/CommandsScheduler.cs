@@ -21,8 +21,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
         public async Task EnqueueAsync(ICommand command)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
-            // TODO fix
-            const string sqlInsert = "INSERT INTO [users].[InternalCommands] ([Id], [EnqueueDate] , [Type], [Data]) VALUES " +
+            const string sqlInsert = "INSERT INTO users.internal_commands (id, enqueue_date, type, data) VALUES " +
                                      "(@Id, @EnqueueDate, @Type, @Data)";
 
             await connection.ExecuteAsync(sqlInsert, new
@@ -40,8 +39,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
         public async Task EnqueueAsync<T>(ICommand<T> command)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
-            // TODO fix
-            const string sqlInsert = "INSERT INTO [users].[InternalCommands] ([Id], [EnqueueDate] , [Type], [Data]) VALUES " +
+            const string sqlInsert = "INSERT INTO users.internal_commands (id, enqueue_date, type, data) VALUES " +
                                      "(@Id, @EnqueueDate, @Type, @Data)";
 
             await connection.ExecuteAsync(sqlInsert, new

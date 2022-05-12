@@ -16,11 +16,10 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
 {
     internal class ProcessOutboxCommandHandler : ICommandHandler<ProcessOutboxCommand>
     {
-        private readonly IMediator _mediator;
-
         private readonly IDbConnectionFactory _dbConnectionFactory;
 
         private readonly IDomainNotificationsMapper _domainNotificationsMapper;
+        private readonly IMediator _mediator;
 
         public ProcessOutboxCommandHandler(
             IMediator mediator,
@@ -34,39 +33,31 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
 
         public async Task<Unit> Handle(ProcessOutboxCommand command, CancellationToken cancellationToken)
         {
-            //TODO fix
             var connection = _dbConnectionFactory.GetOpenConnection();
-            var sql = "SELECT " +
-                         $"[OutboxMessage].[Id] AS [{nameof(OutboxMessageDto.Id)}], " +
-                         $"[OutboxMessage].[Type] AS [{nameof(OutboxMessageDto.Type)}], " +
-                         $"[OutboxMessage].[Data] AS [{nameof(OutboxMessageDto.Data)}] " +
-                         "FROM [users].[OutboxMessages] AS [OutboxMessage] " +
-                         "WHERE [OutboxMessage].[ProcessedDate] IS NULL " +
-                         "ORDER BY [OutboxMessage].[OccurredOn]";
+            var sql =
+                $"  SELECT outbox_message.id AS {nameof(OutboxMessageDto.Id)}, " +
+                $"         outbox_message.type AS {nameof(OutboxMessageDto.Type)}, " +
+                $"         outbox_message.data AS {nameof(OutboxMessageDto.Data)} " +
+                "     FROM users.outbox_messages AS outbox_message " +
+                "    WHERE outbox_message.processed_date IS NULL " +
+                " ORDER BY outbox_message.occurred_on";
 
             var messages = await connection.QueryAsync<OutboxMessageDto>(sql);
-            var messagesList = messages.AsList();
 
-            const string sqlUpdateProcessedDate = "UPDATE [users].[OutboxMessages] " +
-                                                  "SET [ProcessedDate] = @Date " +
-                                                  "WHERE [Id] = @Id";
-            if (messagesList.Count > 0)
+            foreach (var message in messages)
             {
-                foreach (var message in messagesList)
+                var type = _domainNotificationsMapper.GetType(message.Type);
+                var @event = JsonConvert.DeserializeObject(message.Data, type) as IDomainEventNotification;
+
+                using (LogContext.Push(new OutboxMessageContextEnricher(@event)))
                 {
-                    var type = _domainNotificationsMapper.GetType(message.Type);
-                    var @event = JsonConvert.DeserializeObject(message.Data, type) as IDomainEventNotification;
+                    await _mediator.Publish(@event, cancellationToken);
 
-                    using (LogContext.Push(new OutboxMessageContextEnricher(@event)))
-                    {
-                        await _mediator.Publish(@event, cancellationToken);
-
-                        await connection.ExecuteAsync(sqlUpdateProcessedDate, new
-                        {
-                            Date = DateTime.UtcNow,
-                            message.Id
-                        });
-                    }
+                    const string sqlUpdateProcessedDate = "UPDATE users.outbox_messages " +
+                                                          "   SET processed_date = @Date " +
+                                                          " WHERE id = @Id";
+                    await connection.ExecuteAsync(sqlUpdateProcessedDate,
+                        new { Date = DateTime.UtcNow, message.Id });
                 }
             }
 
@@ -77,15 +68,11 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
         {
             private readonly IDomainEventNotification _notification;
 
-            public OutboxMessageContextEnricher(IDomainEventNotification notification)
-            {
-                _notification = notification;
-            }
+            public OutboxMessageContextEnricher(IDomainEventNotification notification) => _notification = notification;
 
-            public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
-            {
-                logEvent.AddOrUpdateProperty(new LogEventProperty("Context", new ScalarValue($"OutboxMessage:{_notification.Id.ToString()}")));
-            }
+            public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) =>
+                logEvent.AddOrUpdateProperty(new LogEventProperty("Context",
+                    new ScalarValue($"OutboxMessage:{_notification.Id}")));
         }
     }
 }

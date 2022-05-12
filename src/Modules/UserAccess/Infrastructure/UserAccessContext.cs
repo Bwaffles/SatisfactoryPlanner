@@ -4,13 +4,13 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.Users;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Domain.UserRegistrations;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Outbox;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure
 {
     public class UserAccessContext : DbContext
     {
+        private readonly ILoggerFactory _loggerFactory;
+
         public DbSet<UserRegistration> UserRegistrations { get; set; }
 
         public DbSet<User> Users { get; set; }
@@ -19,20 +19,17 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure
 
         public DbSet<InternalCommand> InternalCommands { get; set; }
 
-        private readonly ILoggerFactory _loggerFactory;
-
         public UserAccessContext(DbContextOptions options, ILoggerFactory loggerFactory)
-            : base(options)
-        {
+            : base(options) =>
             _loggerFactory = loggerFactory;
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+           // optionsBuilder.UseLoggerFactory(_loggerFactory).EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new UserRegistrationEntityTypeConfiguration());
-            //modelBuilder.ApplyConfiguration(new UserEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new OutboxMessageEntityTypeConfiguration());
-            //modelBuilder.ApplyConfiguration(new InternalCommandEntityTypeConfiguration());
-        }
+            =>
+                modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
     }
 }
