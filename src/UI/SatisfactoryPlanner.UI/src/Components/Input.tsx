@@ -6,6 +6,7 @@ type InputProps = {
     placeholder?: string | undefined;
     type?: React.HTMLInputTypeAttribute | undefined;
     value?: string | ReadonlyArray<string> | number | undefined;
+    maxLength?: number | undefined;
     onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
