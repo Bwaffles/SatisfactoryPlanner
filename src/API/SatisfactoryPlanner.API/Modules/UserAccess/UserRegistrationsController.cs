@@ -26,7 +26,7 @@ namespace SatisfactoryPlanner.API.Modules.UserAccess
         public async Task<IActionResult> RegisterNewUser(RegisterNewUserRequest request)
         {
             await _userAccessModule.ExecuteCommandAsync(new RegisterNewUserCommand(
-                request.Login,
+                request.Username,
                 request.Password,
                 request.Email,
                 request.ConfirmLink));

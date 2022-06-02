@@ -7,7 +7,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Events
     {
         public UserRegistrationId UserRegistrationId { get; }
 
-        public string Login { get; }
+        public string Username { get; }
 
         public string Email { get; }
 
@@ -17,13 +17,13 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Events
 
         public NewUserRegisteredDomainEvent(
             UserRegistrationId userRegistrationId,
-            string login,
+            string username,
             string email,
             DateTime registerDate,
             string confirmLink)
         {
             UserRegistrationId = userRegistrationId;
-            Login = login;
+            Username = username;
             Email = email;
             RegisterDate = registerDate;
             ConfirmLink = confirmLink;

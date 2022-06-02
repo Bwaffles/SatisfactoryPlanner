@@ -10,15 +10,15 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
     public class UserRegistrationTests
     {
         [Fact]
-        public void NewUserRegistration_WithUniqueLogin_IsSuccessful()
+        public void NewUserRegistration_WithUniqueUsername_IsSuccessful()
         {
             var usersCounter = new Mock<IUsersCounter>();
             usersCounter
-                .Setup(_ => _.CountUsersWithLogin("login"))
+                .Setup(_ => _.CountUsersWithUsername("username"))
                 .Returns(0);
 
             var userRegistration = UserRegistration.RegisterNewUser(
-                "login",
+                "username",
                 "password",
                 "test@email",
                 usersCounter.Object,
@@ -32,17 +32,17 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
         }
 
         [Fact]
-        public void NewUserRegistration_WithoutUniqueLogin_BreaksUserLoginMustBeUniqueRule()
+        public void NewUserRegistration_WithoutUniqueUsername_BreaksUserUsernameMustBeUniqueRule()
         {
             var usersCounter = new Mock<IUsersCounter>();
             usersCounter
-                .Setup(_ => _.CountUsersWithLogin("login"))
+                .Setup(_ => _.CountUsersWithUsername("username"))
                 .Returns(1);
 
-            Rules.AssertBrokenRule<UserLoginMustBeUniqueRule>(() =>
+            Rules.AssertBrokenRule<UserUsernameMustBeUniqueRule>(() =>
             {
                 UserRegistration.RegisterNewUser(
-                    "login",
+                    "username",
                     "password",
                     "test@email",
                     usersCounter.Object,

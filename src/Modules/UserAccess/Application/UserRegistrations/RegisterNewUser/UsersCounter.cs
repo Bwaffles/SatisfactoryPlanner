@@ -13,18 +13,18 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.R
             _dbConnectionFactory = dbConnectionFactory;
         }
 
-        public int CountUsersWithLogin(string login)
+        public int CountUsersWithUsername(string username)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
             const string sql = "SELECT COUNT(*) " +
                                "  FROM users.users AS \"user\" " +
-                               " WHERE \"user\".login = @login";
+                               " WHERE \"user\".username = @username";
 
             return connection.QuerySingle<int>(
                 sql,
                 new
                 {
-                    login
+                    username
                 });
         }
     }

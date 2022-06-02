@@ -14,7 +14,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Domain.UserRegis
             builder.HasKey(x => x.Id);
 
             builder.Property<UserRegistrationId>("Id").HasColumnName("id");
-            builder.Property<string>("_login").HasColumnName("login");
+            builder.Property<string>("_username").HasColumnName("username");
             builder.Property<string>("_email").HasColumnName("email");
             builder.Property<string>("_password").HasColumnName("password");
             builder.Property<DateTime>("_registerDate").HasColumnName("register_date");

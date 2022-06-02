@@ -7,7 +7,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
     {
         public UserId Id { get; private set; }
 
-        private readonly string _login;
+        private readonly string _username;
 
         private readonly string _password;
 
@@ -19,15 +19,15 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
 
         private User() { /* Only for EF. */ }
 
-        //internal static User CreateFromUserRegistration(UserRegistrationId userRegistrationId, string login, string password, string email)
+        //internal static User CreateFromUserRegistration(UserRegistrationId userRegistrationId, string username, string password, string email)
         //{
-        //    return new User(userRegistrationId, login, password, email);
+        //    return new User(userRegistrationId, username, password, email);
         //}
 
-        //private User(UserRegistrationId userRegistrationId, string login, string password, string email)
+        //private User(UserRegistrationId userRegistrationId, string username, string password, string email)
         //{
         //    this.Id = new UserId(userRegistrationId.Value);
-        //    _login = login;
+        //    _username = username;
         //    _password = password;
         //    _email = email;
 

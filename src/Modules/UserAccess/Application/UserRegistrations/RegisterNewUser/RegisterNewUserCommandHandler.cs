@@ -25,7 +25,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.R
             var password = PasswordManager.HashPassword(command.Password);
 
             var userRegistration = UserRegistration.RegisterNewUser(
-                command.Login,
+                command.Username,
                 password,
                 command.Email,
                 _usersCounter,

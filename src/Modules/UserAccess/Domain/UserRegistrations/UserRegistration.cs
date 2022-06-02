@@ -9,7 +9,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
     {
         public UserRegistrationId Id { get; }
 
-        private readonly string _login;
+        private readonly string _username;
 
         private readonly string _password;
 
@@ -24,26 +24,26 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
         private UserRegistration() { /* Only EF. */ }
 
         public static UserRegistration RegisterNewUser(
-            string login,
+            string username,
             string password,
             string email,
             IUsersCounter usersCounter,
             string confirmLink)
         {
-            return new UserRegistration(login, password, email, usersCounter, confirmLink);
+            return new UserRegistration(username, password, email, usersCounter, confirmLink);
         }
 
         private UserRegistration(
-            string login,
+            string username,
             string password,
             string email,
             IUsersCounter usersCounter,
             string confirmLink)
         {
-            CheckRule(new UserLoginMustBeUniqueRule(usersCounter, login));
+            CheckRule(new UserUsernameMustBeUniqueRule(usersCounter, username));
 
             Id = new UserRegistrationId(Guid.NewGuid());
-            _login = login;
+            _username = username;
             _password = password;
             _email = email;
             _registerDate = DateTime.UtcNow;
@@ -51,7 +51,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
 
             AddDomainEvent(new NewUserRegisteredDomainEvent(
                 Id,
-                _login,
+                _username,
                 _email,
                 _registerDate,
                 confirmLink));

@@ -6,18 +6,18 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.R
     public class RegisterNewUserCommand : CommandBase<Guid>
     {
         public RegisterNewUserCommand(
-            string login,
+            string username,
             string password,
             string email,
             string confirmLink)
         {
-            Login = login;
+            Username = username;
             Password = password;
             Email = email;
             ConfirmLink = confirmLink;
         }
 
-        public string Login { get; }
+        public string Username { get; }
 
         public string Password { get; }
 
