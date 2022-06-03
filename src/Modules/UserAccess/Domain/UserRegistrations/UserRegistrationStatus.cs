@@ -8,8 +8,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
 
         public static UserRegistrationStatus Confirmed => new(nameof(Confirmed));
 
-        public static UserRegistrationStatus Expired => new(nameof(Expired));
-
         public string Value { get; }
 
         private UserRegistrationStatus(string value)

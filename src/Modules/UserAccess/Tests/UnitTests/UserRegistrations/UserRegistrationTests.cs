@@ -49,5 +49,52 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
                     "confirmLink");
             });
         }
+
+        [Fact]
+        public void ConfirmingUserRegistration_WhenWaitingForConfirmation_IsSuccessful()
+        {
+            var usersCounter = new Mock<IUsersCounter>();
+            usersCounter
+                .Setup(_ => _.CountUsersWithUsername("username"))
+                .Returns(0);
+
+            var userRegistration = UserRegistration.RegisterNewUser(
+                "username",
+                "password",
+                "test@email",
+                usersCounter.Object,
+                "confirmLink");
+
+            userRegistration.Confirm();
+
+            var userRegistrationConfirmedDomainEvent =
+                DomainEvents.AssertPublishedEvent<UserRegistrationConfirmedDomainEvent>(userRegistration);
+
+            userRegistrationConfirmedDomainEvent.UserRegistrationId
+                .Should().BeEquivalentTo(userRegistration.Id);
+        }
+
+        [Fact]
+        public void UserRegistration_WhenAlreadyConfirmed_CannotBeConfirmedAgain()
+        {
+            var usersCounter = new Mock<IUsersCounter>();
+            usersCounter
+                .Setup(_ => _.CountUsersWithUsername("username"))
+                .Returns(0);
+
+            var userRegistration = UserRegistration.RegisterNewUser(
+                "username",
+                "password",
+                "test@email",
+                usersCounter.Object,
+                "confirmLink");
+
+            userRegistration.Confirm();
+
+            Rules.AssertBrokenRule<UserRegistrationCannotBeConfirmedMoreThanOnceRule>(() =>
+            {
+                userRegistration.Confirm();
+            });
+        }
     }
 }

@@ -17,9 +17,9 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
 
         private readonly DateTime _registerDate;
 
-        private readonly UserRegistrationStatus _status;
+        private UserRegistrationStatus _status;
 
-        private readonly DateTime? _confirmedDate;
+        private DateTime? _confirmedDate;
 
         private UserRegistration() { /* Only EF. */ }
 
@@ -68,24 +68,14 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
         //        _email);
         //}
 
-        //public void Confirm()
-        //{
-        //    this.CheckRule(new UserRegistrationCannotBeConfirmedMoreThanOnceRule(_status));
-        //    this.CheckRule(new UserRegistrationCannotBeConfirmedAfterExpirationRule(_status));
+        public void Confirm()
+        {
+            CheckRule(new UserRegistrationCannotBeConfirmedMoreThanOnceRule(_status));
 
-        //    _status = UserRegistrationStatus.Confirmed;
-        //    _confirmedDate = DateTime.UtcNow;
+            _status = UserRegistrationStatus.Confirmed;
+            _confirmedDate = DateTime.UtcNow;
 
-        //    this.AddDomainEvent(new UserRegistrationConfirmedDomainEvent(Id));
-        //}
-
-        //public void Expire()
-        //{
-        //    this.CheckRule(new UserRegistrationCannotBeExpiredMoreThanOnceRule(_status));
-
-        //    _status = UserRegistrationStatus.Expired;
-
-        //    this.AddDomainEvent(new UserRegistrationExpiredDomainEvent(Id));
-        //}
+            AddDomainEvent(new UserRegistrationConfirmedDomainEvent(Id));
+        }
     }
 }

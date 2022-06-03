@@ -51,7 +51,7 @@ function Registration() {
 
                             setSubmitting(true);
 
-                            HttpClient.post<any>("userAccess/userRegistrations", JSON.stringify(request))
+                            HttpClient.post<any>("user-access/user-registrations", JSON.stringify(request))
                                 .then(() => {
                                     setSuccessMessage("You're registered! Before getting started, check your email to confirm your account.");
                                     setSubmitting(false);

@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.ConfirmRegistration;
 using SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser;
+using System;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Modules.UserAccess
 {
-    [Route("userAccess/[controller]")]
+    [Route("user-access/user-registrations")]
     [ApiController]
     public class UserRegistrationsController : ControllerBase
     {
@@ -30,6 +32,17 @@ namespace SatisfactoryPlanner.API.Modules.UserAccess
                 request.Password,
                 request.Email,
                 request.ConfirmLink));
+
+            return Ok();
+        }
+
+        [NoPermissionRequired]
+        [AllowAnonymous]
+        [HttpPost("confirm")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> ConfirmRegistration(Guid userRegistrationId)
+        {
+            await _userAccessModule.ExecuteCommandAsync(new ConfirmRegistrationCommand(userRegistrationId));
 
             return Ok();
         }
