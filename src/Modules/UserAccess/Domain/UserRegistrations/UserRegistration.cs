@@ -70,12 +70,13 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations
 
         public void Confirm()
         {
-            CheckRule(new UserRegistrationCannotBeConfirmedMoreThanOnceRule(_status));
+            if (_status == UserRegistrationStatus.Confirmed)
+                return;
 
             _status = UserRegistrationStatus.Confirmed;
-            _confirmedDate = DateTime.UtcNow;
+            _confirmedDate = SystemClock.Now;
 
-            AddDomainEvent(new UserRegistrationConfirmedDomainEvent(Id));
+            AddDomainEvent(new UserRegistrationConfirmedDomainEvent(Id, _confirmedDate.Value));
         }
     }
 }

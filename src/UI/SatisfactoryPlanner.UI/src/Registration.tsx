@@ -41,7 +41,7 @@ function Registration() {
                                 .required("Required.")
                         })}
                         onSubmit={(values, { setSubmitting }) => {
-                            var confirmLink = `${window.location.origin}/registration-confirm/`;
+                            var confirmLink = `${window.location.origin}/confirm-registration/`;
                             const request = {
                                 username: values.username,
                                 email: values.email,
