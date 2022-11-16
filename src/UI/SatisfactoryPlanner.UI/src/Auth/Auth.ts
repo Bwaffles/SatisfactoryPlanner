@@ -18,7 +18,7 @@ export default class Auth {
         this.auth0.authorize();
     };
 
-    handleAuthentication(navigate: NavigateFunction) {
+    handleAuthentication = (navigate: NavigateFunction) => {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
@@ -31,7 +31,7 @@ export default class Auth {
         })
     }
 
-    setSession(authResult: Auth0DecodedHash) {
+    setSession = (authResult: Auth0DecodedHash) => {
         const expiresAt = JSON.stringify(
             authResult.expiresIn! * 1000 + new Date().getTime()
         );
@@ -41,8 +41,21 @@ export default class Auth {
         localStorage.setItem("expires_at", expiresAt);
     }
 
-    isAuthenticated() {
+    isAuthenticated = () => {
         const expiresAt = JSON.parse(localStorage.getItem("expires_at")!);
         return new Date().getTime() < expiresAt;
+    }
+
+    logout = (navigate: NavigateFunction) => {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("id_token");
+        localStorage.removeItem("expires_at");
+
+        navigate("/");
+
+        this.auth0.logout({
+            clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
+            returnTo: process.env.REACT_APP_AUTH0_LOGOUT_URL
+        });
     }
 }

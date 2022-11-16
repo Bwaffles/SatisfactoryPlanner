@@ -17,7 +17,7 @@ function App() {
     return (
         <BrowserRouter>
             <div className="flex min-h-screen bg-gray-900 text-white">
-                <Nav />
+                <Nav auth={auth} />
                 <div className="m-4">
                     <Routes>
                         <Route path="/" element={<Home auth={auth} />} />
