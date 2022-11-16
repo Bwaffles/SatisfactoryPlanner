@@ -7,9 +7,11 @@ import App from './App';
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
-    <React.StrictMode>
+    //TODO disabled this because it makes the Callback effect fire twice and breaks oauth
+    // https://stackoverflow.com/questions/61254372/my-react-component-is-rendering-twice-because-of-strict-mode/61897567#61897567
+    //<React.StrictMode>
         <App />
-    </React.StrictMode>
+    //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

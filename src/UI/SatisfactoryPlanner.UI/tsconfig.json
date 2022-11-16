@@ -6,6 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "types": [ "node" ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -23,7 +24,9 @@
     "noUnusedParameters": true
   },
   "include": [
+    "src/**/*.ts",
     "src/*.ts",
+    "src/**/*.tsx",
     "src/*.tsx"
   ],
   "exclude": [
