@@ -1,6 +1,5 @@
 import * as React from "react";
 import Auth from "./Auth/Auth";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 interface NavProps {
@@ -9,7 +8,6 @@ interface NavProps {
 
 const Nav = ({ auth }: NavProps) => {
     const { isAuthenticated, logout, login } = auth;
-    const navigate = useNavigate();
 
     return (
         <nav>
@@ -37,9 +35,9 @@ const Nav = ({ auth }: NavProps) => {
                     </li>
                     <li>
                         <button
-                            onClick={() => isAuthenticated() ? logout(navigate) : login()}
+                            onClick={() => isAuthenticated() ? logout() : login()}
                         >
-                            {isAuthenticated() ? "Logout" : "Login"}
+                            {isAuthenticated() ? "Log Out" : "Log In"}
                         </button>
                     </li>
                 </ul>

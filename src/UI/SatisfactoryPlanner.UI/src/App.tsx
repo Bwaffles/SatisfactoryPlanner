@@ -1,36 +1,37 @@
 import * as React from "react";
-import { BrowserRouter as BrowserRouter, Routes, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import Nav from "./Nav";
 import Auth from "./Auth/Auth"
 
-import Login from "./Login";
-import Registration from "./Registration";
-import ConfirmRegistration from "./ConfirmRegistration";
+import Nav from "./Nav";
 import Home from "./Home";
 import Profile from "./Profile";
 import Callback from "./Callback";
+import Login from "./Login";
+import Registration from "./Registration";
+import ConfirmRegistration from "./ConfirmRegistration";
 
-function App() {
-    const auth = new Auth();
+const App = () => {
+    // Passing navigate into auth and passing auth as props to the components means that the components will re-render when navigating to a new page
+    const navigate = useNavigate();
+    const auth = new Auth(navigate);
 
     return (
-        <BrowserRouter>
-            <div className="flex min-h-screen bg-gray-900 text-white">
-                <Nav auth={auth} />
-                <div className="m-4">
-                    <Routes>
-                        <Route path="/" element={<Home auth={auth} />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/callback" element={<Callback auth={auth} />} />
+        <div className="flex min-h-screen bg-gray-900 text-white">
+            <Nav auth={auth} />
+            <div className="m-4">
+                <Routes>
+                    <Route path="/" element={<Home auth={auth} />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/callback" element={<Callback auth={auth} />} />
 
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/registration" element={<Registration />} />
-                        <Route path="/confirm-registration/:registrationId" element={<ConfirmRegistration />} />
-                    </Routes>
-                </div>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/registration" element={<Registration />} />
+                    <Route path="/confirm-registration/:registrationId" element={<ConfirmRegistration />} />
+                </Routes>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 

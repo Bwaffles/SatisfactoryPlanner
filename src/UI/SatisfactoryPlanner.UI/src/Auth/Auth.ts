@@ -1,10 +1,12 @@
-import { Auth0DecodedHash, WebAuth } from "auth0-js";
+import { Auth0DecodedHash, Auth0UserProfile, WebAuth } from "auth0-js";
 import { NavigateFunction } from "react-router-dom";
 
 export default class Auth {
     auth0: WebAuth;
+    navigate: NavigateFunction;
+    userProfile: Auth0UserProfile | null;
 
-    constructor() {
+    constructor(navigate: NavigateFunction) {
         this.auth0 = new WebAuth({
             domain: process.env.REACT_APP_AUTH0_DOMAIN!,
             clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
@@ -12,23 +14,25 @@ export default class Auth {
             responseType: "token id_token",
             scope: "openid profile email"
         });
+        this.navigate = navigate;
+        this.userProfile = null;
     }
 
     login = () => {
         this.auth0.authorize();
     };
 
-    handleAuthentication = (navigate: NavigateFunction) => {
+    handleAuthentication = () => {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
-                navigate("/");
+                this.navigate("/");
             } else if (err) {
-                navigate("/");
+                this.navigate("/");
                 alert(`Error: ${err.error}. Check the console for further details.`);
                 console.log(err);
             }
-        })
+        });
     }
 
     setSession = (authResult: Auth0DecodedHash) => {
@@ -46,16 +50,37 @@ export default class Auth {
         return new Date().getTime() < expiresAt;
     }
 
-    logout = (navigate: NavigateFunction) => {
+    logout = () => {
         localStorage.removeItem("access_token");
         localStorage.removeItem("id_token");
         localStorage.removeItem("expires_at");
 
-        navigate("/");
+        this.userProfile = null;
 
         this.auth0.logout({
             clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
             returnTo: process.env.REACT_APP_AUTH0_LOGOUT_URL
+        });
+    }
+
+    getAccessToken = () => {
+        const accessToken = localStorage.getItem("access_token");
+        if (!accessToken) {
+            throw new Error("No access token found.");
+        }
+
+        return accessToken;
+    }
+
+    getProfile = (cb: any) => {
+        if (this.userProfile)
+            return cb(this.userProfile);
+
+        this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => {
+            if (profile)
+                this.userProfile = profile;
+
+            cb(this.userProfile, err);
         });
     }
 }

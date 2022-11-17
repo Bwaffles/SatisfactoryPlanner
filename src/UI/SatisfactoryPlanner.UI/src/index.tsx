@@ -1,16 +1,20 @@
-import { createRoot } from 'react-dom/client';
-import * as React from 'react';
-import './index.css';
-import App from './App';
+import { createRoot } from "react-dom/client";
+import * as React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import "./index.css";
+import App from "./App";
 //import reportWebVitals from './reportWebVitals';
 
-const container = document.getElementById('root');
-const root = createRoot(container!);
+const root = createRoot(document.getElementById("root")!);
+
 root.render(
     //TODO disabled this because it makes the Callback effect fire twice and breaks oauth
     // https://stackoverflow.com/questions/61254372/my-react-component-is-rendering-twice-because-of-strict-mode/61897567#61897567
     //<React.StrictMode>
-        <App />
+        <Router>
+            <App />
+        </Router>
     //</React.StrictMode>
 );
 

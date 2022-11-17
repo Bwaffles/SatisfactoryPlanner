@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Auth from "./Auth/Auth";
 
 interface CallbackProps {
@@ -8,11 +8,12 @@ interface CallbackProps {
 
 const Callback = ({ auth }: CallbackProps) => {
     const location = useLocation();
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (/access_token|id_token|error/.test(location.hash)) {
-            auth.handleAuthentication(navigate);
+            auth.handleAuthentication();
+        } else {
+            throw new Error("Invalid callback URL.");
         }
     });
 
