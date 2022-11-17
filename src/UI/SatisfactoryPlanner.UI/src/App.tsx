@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Auth from "./Auth/Auth"
 
@@ -23,8 +23,11 @@ const App = () => {
             <div className="m-4">
                 <Routes>
                     <Route path="/" element={<Home auth={auth} />} />
-                    <Route path="/profile" element={<Profile />} />
                     <Route path="/callback" element={<Callback auth={auth} />} />
+                    <Route
+                        path="/profile"
+                        element={auth.isAuthenticated() ? <Profile auth={auth} /> : <Navigate to={"/"} /> }
+                    />
 
                     <Route path="/login" element={<Login />} />
                     <Route path="/registration" element={<Registration />} />
