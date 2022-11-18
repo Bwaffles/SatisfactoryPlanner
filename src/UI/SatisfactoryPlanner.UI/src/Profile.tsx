@@ -24,12 +24,14 @@ const Profile = ({ auth }: ProfileProps) => {
     return (
         <div>
             <PageHeader text="Profile" />
-            <p>{profile?.name}</p>
-            <img
-                style={{ maxWidth: 50, maxHeight: 50 }}
-                src={profile?.picture}
-                alt="profile pic"
-            />
+            <p className="space-x-4 mb-3">
+                <img
+                    className="w-12 h-12 rounded-full inline "
+                    src={profile?.picture}
+                    alt="profile pic"
+                />
+                <span className="text-xl">{profile?.name}</span>
+            </p>
             <pre>{JSON.stringify(profile, null, 2)}</pre>
             <p>{error?.error}</p>
         </div >
