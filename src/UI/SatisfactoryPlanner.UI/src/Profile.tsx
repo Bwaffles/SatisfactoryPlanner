@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Auth from "./Auth/Auth";
 import Auth0 from "auth0-js";
+
+import Auth from "./Auth/Auth";
+import PageHeader from "./PageHeader";
 
 interface ProfileProps {
     auth: Auth;
@@ -21,7 +23,7 @@ const Profile = ({ auth }: ProfileProps) => {
 
     return (
         <div>
-            <h1>Profile</h1>
+            <PageHeader text="Profile" />
             <p>{profile?.name}</p>
             <img
                 style={{ maxWidth: 50, maxHeight: 50 }}

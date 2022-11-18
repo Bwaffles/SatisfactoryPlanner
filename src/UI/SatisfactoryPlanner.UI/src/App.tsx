@@ -20,7 +20,7 @@ const App = () => {
     return (
         <div className="flex min-h-screen bg-gray-900 text-white">
             <Nav auth={auth} />
-            <div className="m-4">
+            <div className="m-4 px-3 w-full h-full">
                 <Routes>
                     <Route path="/" element={<Home auth={auth} />} />
                     <Route path="/callback" element={<Callback auth={auth} />} />

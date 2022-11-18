@@ -11,7 +11,7 @@ const Nav = ({ auth }: NavProps) => {
 
     return (
         <nav>
-            <div className="w-60 h-full shadow-md bg-gray-800 px-3 flex flex-col justify-between">
+            <div className="w-60 h-screen shadow-md bg-gray-800 px-3 flex flex-col justify-between">
                 <div className="mt-3">
                     <NavItem to="/" text="Home" />
                     <NavItem to="/profile" text="Profile" />

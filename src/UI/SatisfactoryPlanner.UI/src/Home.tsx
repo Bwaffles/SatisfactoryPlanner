@@ -1,6 +1,8 @@
 import * as React from "react";
-import Auth from "./Auth/Auth";
 import { Link } from "react-router-dom";
+
+import Auth from "./Auth/Auth";
+import PageHeader from "./PageHeader";
 
 interface HomeProps {
     auth: Auth;
@@ -8,7 +10,7 @@ interface HomeProps {
 
 const Home = ({ auth }: HomeProps) =>
     <div>
-        <h1>Home</h1>
+        <PageHeader text="Home" />
         {auth.isAuthenticated()
             ? <Link to="/profile">View Profile</Link>
             : <button onClick={auth.login}>Log In</button>
