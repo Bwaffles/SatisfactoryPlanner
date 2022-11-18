@@ -14,9 +14,9 @@ const Nav = ({ auth }: NavProps) => {
             <div className="w-60 h-screen shadow-md bg-gray-800 px-3 flex flex-col justify-between">
                 <div className="mt-3">
                     <NavItem to="/" text="Home" />
-                    <NavItem to="/profile" text="Profile" />
                 </div>
                 <div className="mb-3">
+                    <NavItem to="/profile" text="Profile" />
                     <button
                         className="w-full flex items-center py-4 px-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800"
                         onClick={() => isAuthenticated() ? logout() : login()}
