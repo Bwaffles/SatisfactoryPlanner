@@ -3,8 +3,8 @@ import * as React from "react";
 import PageHeader from "./PageHeader";
 
 const Home = () =>
-    <div>
+    <React.Fragment>
         <PageHeader text="Home" />
-    </div>;
+    </React.Fragment>;
 
 export default Home;

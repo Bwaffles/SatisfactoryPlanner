@@ -1,26 +1,33 @@
 import React from 'react';
-import { Link, To } from "react-router-dom";
+import { NavLink, To } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface NavItemProps {
     to: To,
     text: string,
-    authenticated: boolean
+    authenticated: boolean,
 }
 
 const NavItem = ({ to, text, authenticated }: NavItemProps) => {
-    const { isAuthenticated } = useAuth0();
+    const className = ({ isActive }: { isActive: boolean; }) => {
+        const baseClasses = "flex items-center py-4 px-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800";
+        return isActive
+            ? `${baseClasses} bg-gray-700 font-bold`
+            : `${baseClasses}`;
+    };
 
+    const { isAuthenticated } = useAuth0();
+    
     if (authenticated && !isAuthenticated)
         return null;
 
     return (
-        <Link
+        <NavLink
             to={to}
-            className="flex items-center py-4 px-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800"
+            className={className}
         >
             {text}
-        </Link>
+        </NavLink>
     );
 }
 

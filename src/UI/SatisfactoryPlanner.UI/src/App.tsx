@@ -2,39 +2,25 @@ import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import Nav from "./Nav";
+import AutoLogin from "./AutoLogin";
 import Home from "./Home";
+import Layout from "./Layout";
+import NoMatch from "./NoMatch";
 import Profile from "./Profile";
 import Resources from "./Resources";
-import AutoLogin from "./AutoLogin";
-import Login from "./Login";
-import Registration from "./Registration";
-import ConfirmRegistration from "./ConfirmRegistration";
 
 const App = () => {
     const { isAuthenticated } = useAuth0();
 
     return (
-        <div className="flex min-h-screen bg-gray-900 text-white">
-            <Nav />
-            <div className="m-4 px-3 w-full h-full">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route
-                        path="/profile"
-                        element={isAuthenticated ? <Profile /> : <AutoLogin /> }
-                    />
-                    <Route
-                        path="/resources"
-                        element={isAuthenticated ? <Resources /> : <AutoLogin /> }
-                    />
-
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/registration" element={<Registration />} />
-                    <Route path="/confirm-registration/:registrationId" element={<ConfirmRegistration />} />
-                </Routes>
-            </div>
-        </div>
+        <Routes>
+            <Route element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="profile" element={isAuthenticated ? <Profile /> : <AutoLogin />} />
+                <Route path="resources" element={isAuthenticated ? <Resources /> : <AutoLogin />} />
+                <Route path="*" element={<NoMatch />} />
+            </Route>
+        </Routes>
     );
 }
 

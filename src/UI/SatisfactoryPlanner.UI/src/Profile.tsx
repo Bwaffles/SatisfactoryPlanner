@@ -5,9 +5,9 @@ import PageHeader from "./PageHeader";
 
 const Profile = () => {
     const { user } = useAuth0();
-    
+
     return (
-        <div>
+        <React.Fragment>
             <PageHeader text="Profile" />
             <p className="space-x-4 mb-3">
                 <img
@@ -21,7 +21,7 @@ const Profile = () => {
 
             <h3>Profile Data</h3>
             <pre>{JSON.stringify(user, null, 2)}</pre>
-        </div >
+        </React.Fragment>
     );
 }
 

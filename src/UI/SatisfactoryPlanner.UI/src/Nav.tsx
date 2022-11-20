@@ -8,7 +8,7 @@ const Nav = () => {
 
     return (
         <nav>
-            <div className="w-60 h-screen shadow-md bg-gray-800 px-3 flex flex-col justify-between">
+            <div className="sticky top-0 left-0 w-60 h-screen shadow-md bg-gray-800 px-3 flex flex-col justify-between">
                 <div className="mt-3">
                     <NavItem to="/" text="Home" authenticated={false} />
                     <NavItem to="/resources" text="Resources" authenticated={true} />

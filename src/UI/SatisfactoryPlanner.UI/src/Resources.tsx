@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
+import PageHeader from "./PageHeader";
+
 const Resources = () => {
     const { getAccessTokenSilently } = useAuth0();
     const [resources, setResources] = useState(null);
@@ -31,7 +33,10 @@ const Resources = () => {
     }
 
     return (
-        <pre>{JSON.stringify(resources, null, 2)}</pre>
+        <React.Fragment>
+            <PageHeader text="Resources" />
+            <pre>{JSON.stringify(resources, null, 2)}</pre>
+        </React.Fragment>
     );
 };
 
