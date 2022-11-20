@@ -1,10 +1,12 @@
 import * as React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import Nav from "./Nav";
 import Home from "./Home";
 import Profile from "./Profile";
+import Resources from "./Resources";
+import AutoLogin from "./AutoLogin";
 import Login from "./Login";
 import Registration from "./Registration";
 import ConfirmRegistration from "./ConfirmRegistration";
@@ -20,7 +22,11 @@ const App = () => {
                     <Route path="/" element={<Home />} />
                     <Route
                         path="/profile"
-                        element={isAuthenticated ? <Profile  /> : <Navigate to={"/"} />}
+                        element={isAuthenticated ? <Profile /> : <AutoLogin /> }
+                    />
+                    <Route
+                        path="/resources"
+                        element={isAuthenticated ? <Resources /> : <AutoLogin /> }
                     />
 
                     <Route path="/login" element={<Login />} />

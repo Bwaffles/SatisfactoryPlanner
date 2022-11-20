@@ -10,13 +10,11 @@ const Nav = () => {
         <nav>
             <div className="w-60 h-screen shadow-md bg-gray-800 px-3 flex flex-col justify-between">
                 <div className="mt-3">
-                    <NavItem to="/" text="Home" />
+                    <NavItem to="/" text="Home" authenticated={false} />
+                    <NavItem to="/resources" text="Resources" authenticated={true} />
                 </div>
                 <div className="mb-3">
-                    {isAuthenticated
-                        ? <NavItem to="/profile" text="Profile" />
-                        : null
-                    }
+                    <NavItem to="/profile" text="Profile" authenticated={true} />
                     <button
                         className="w-full flex items-center py-4 px-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800"
                         onClick={() => isAuthenticated
