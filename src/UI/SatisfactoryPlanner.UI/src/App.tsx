@@ -1,32 +1,26 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
 import { Routes, Route, Navigate } from "react-router-dom";
-
-import Auth from "./Auth/Auth"
+import { useAuth0 } from "@auth0/auth0-react";
 
 import Nav from "./Nav";
 import Home from "./Home";
 import Profile from "./Profile";
-import Callback from "./Callback";
 import Login from "./Login";
 import Registration from "./Registration";
 import ConfirmRegistration from "./ConfirmRegistration";
 
 const App = () => {
-    // Passing navigate into auth and passing auth as props to the components means that the components will re-render when navigating to a new page
-    const navigate = useNavigate();
-    const auth = new Auth(navigate);
+    const { isAuthenticated } = useAuth0();
 
     return (
         <div className="flex min-h-screen bg-gray-900 text-white">
-            <Nav auth={auth} />
+            <Nav />
             <div className="m-4 px-3 w-full h-full">
                 <Routes>
-                    <Route path="/" element={<Home auth={auth} />} />
-                    <Route path="/callback" element={<Callback auth={auth} />} />
+                    <Route path="/" element={<Home />} />
                     <Route
                         path="/profile"
-                        element={auth.isAuthenticated() ? <Profile auth={auth} /> : <Navigate to={"/"} /> }
+                        element={isAuthenticated ? <Profile  /> : <Navigate to={"/"} />}
                     />
 
                     <Route path="/login" element={<Login />} />

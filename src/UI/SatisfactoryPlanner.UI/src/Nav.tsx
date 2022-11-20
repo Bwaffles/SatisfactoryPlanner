@@ -1,13 +1,10 @@
 import * as React from "react";
-import Auth from "./Auth/Auth";
+import { useAuth0 } from "@auth0/auth0-react";
+
 import NavItem from "./NavItem";
 
-interface NavProps {
-    auth: Auth;
-}
-
-const Nav = ({ auth }: NavProps) => {
-    const { isAuthenticated, logout, login } = auth;
+const Nav = () => {
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
     return (
         <nav>
@@ -16,12 +13,17 @@ const Nav = ({ auth }: NavProps) => {
                     <NavItem to="/" text="Home" />
                 </div>
                 <div className="mb-3">
-                    <NavItem to="/profile" text="Profile" />
+                    {isAuthenticated
+                        ? <NavItem to="/profile" text="Profile" />
+                        : null
+                    }
                     <button
                         className="w-full flex items-center py-4 px-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800"
-                        onClick={() => isAuthenticated() ? logout() : login()}
+                        onClick={() => isAuthenticated
+                            ? logout({ returnTo: window.location.origin })
+                            : loginWithRedirect()}
                     >
-                        {isAuthenticated() ? "Log Out" : "Log In"}
+                        {isAuthenticated ? "Log Out" : "Log In"}
                     </button>
                 </div>
             </div>

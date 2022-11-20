@@ -1,3 +1,4 @@
+import { Auth0Provider } from "@auth0/auth0-react";
 import { createRoot } from "react-dom/client";
 import * as React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -7,14 +8,21 @@ import App from "./App";
 //import reportWebVitals from './reportWebVitals';
 
 const root = createRoot(document.getElementById("root")!);
-
 root.render(
     //TODO disabled this because it makes the Callback effect fire twice and breaks oauth
     // https://stackoverflow.com/questions/61254372/my-react-component-is-rendering-twice-because-of-strict-mode/61897567#61897567
     //<React.StrictMode>
+    <Auth0Provider
+        domain={process.env.REACT_APP_AUTH0_DOMAIN!}
+        clientId={process.env.REACT_APP_AUTH0_CLIENT_ID!}
+        redirectUri="http://localhost:3000"
+        audience="https://satisfactoryplanner-dev.us.auth0.com/api/v2/"
+        scope="read:current_user update:current_user_metadata"
+    >
         <Router>
             <App />
         </Router>
+    </Auth0Provider>
     //</React.StrictMode>
 );
 

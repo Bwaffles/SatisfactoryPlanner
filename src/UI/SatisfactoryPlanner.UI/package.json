@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^1.12.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
@@ -12,7 +13,6 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
-    "auth0-js": "^9.19.2",
     "formik": "^2.2.9",
     "jest-editor-support": "^30.0.2",
     "react": "^18.1.0",
