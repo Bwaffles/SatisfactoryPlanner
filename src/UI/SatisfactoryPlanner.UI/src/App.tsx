@@ -2,12 +2,12 @@ import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import AutoLogin from "./AutoLogin";
-import Home from "./Home";
+import AutoLogin from "./pages/AutoLogin";
+import Home from "./pages/Home";
 import Layout from "./Layout";
-import NoMatch from "./NoMatch";
-import Profile from "./Profile";
-import Resources from "./Resources";
+import NoMatch from "./pages/NoMatch";
+import Profile from "./pages/Profile";
+import Resources from "./pages/Resources";
 
 const App = () => {
     const { isAuthenticated } = useAuth0();

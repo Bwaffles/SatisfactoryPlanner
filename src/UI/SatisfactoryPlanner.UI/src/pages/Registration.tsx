@@ -5,8 +5,8 @@ import { object, string } from "yup";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import Input from "./Components/Input";
-import HttpClient from "./HttpClient";
+import Input from "../Components/Input";
+import HttpClient from "../HttpClient";
 
 function Registration() {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);

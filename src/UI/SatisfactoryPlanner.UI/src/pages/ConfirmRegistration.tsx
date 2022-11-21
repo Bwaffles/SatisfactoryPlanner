@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
-import { HttpClient } from "./HttpClient";
+import { HttpClient } from "../HttpClient";
 
 export function ConfirmRegistration() {
     const { registrationId } = useParams();
