@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import AutoLogin from "./pages/AutoLogin";
 import Home from "./pages/Home";
-import Layout from "./Layout";
+import Layout from "./pages/Layout";
 import NoMatch from "./pages/NoMatch";
 import Profile from "./pages/Profile";
 import Resources from "./pages/Resources";

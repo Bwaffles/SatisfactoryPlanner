@@ -5,7 +5,7 @@ import { object, string } from "yup";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import Input from "../Components/Input";
+import Input from "../components/Input";
 import HttpClient from "../HttpClient";
 
 function Registration() {
