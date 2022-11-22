@@ -23,5 +23,6 @@ Want to use intent based API instead of the typical CRUD Rest API since my appli
 
 ![image](https://user-images.githubusercontent.com/5383859/203396355-00f7ec37-6909-4afc-bc1a-5caf0f04443e.png)
 
-- https://techblog.pointsbet.com/a-structured-approach-to-designing-intent-based-apis-910ed1fc78f2
 - https://codeopinion.com/is-a-rest-api-with-cqrs-possible/
+- https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling
+- https://techblog.pointsbet.com/a-structured-approach-to-designing-intent-based-apis-910ed1fc78f2
