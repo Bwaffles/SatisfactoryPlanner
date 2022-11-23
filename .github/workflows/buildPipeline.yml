@@ -33,5 +33,4 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Run build
-      run: ls
-           ./build.sh RunAllIntegrationTests
+      run: ./build.sh RunAllIntegrationTests
