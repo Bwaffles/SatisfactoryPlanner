@@ -28,11 +28,6 @@ jobs:
     runs-on: ubuntu-latest       
     steps:
     - uses: actions/checkout@v3
-    - name: Open Web Client Directory
-      run: |
-          ls -la
-          cd ./src/webclient
-          ls -la
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:

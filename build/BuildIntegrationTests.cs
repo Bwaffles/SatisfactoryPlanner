@@ -8,7 +8,7 @@ using Utils;
 
 partial class Build
 {
-    AbsolutePath InputFilesDirectory => RootDirectory / ".nuke-working-directory" / "input-files";
+    AbsolutePath InputFilesDirectory => WorkingDirectory / "input-files";
 
     readonly string Environment = IsLocalBuild ? "debug" : "release";
 
@@ -18,9 +18,21 @@ partial class Build
     const string DatabaseMigratorAppName = "DatabaseMigrator.exe";
 
     AbsolutePath LocalDatabaseMigratorApp => InputFilesDirectory / DatabaseMigratorAppName;
+    
+    /// <summary>
+    ///     Compile the database migrator project to ensure it's up to date.
+    /// </summary>
+    Target CompileDatabaseMigrator => _ => _
+        .DependsOn(Clean)
+        .Executes(() =>
+        {
+            DotNetTasks.DotNetBuild(s => s
+                .SetProjectFile(Solution.GetProjects("DatabaseMigrator").First())
+                .SetConfiguration(Configuration));
+        });
 
     Target PrepareInputFiles => _ => _
-        .DependsOn(Clean)
+        .DependsOn(CompileDatabaseMigrator)
         .Executes(() =>
         {
             FileSystemTasks.CopyDirectoryRecursively(DatabaseMigratorDirectory, InputFilesDirectory);
@@ -72,22 +84,10 @@ partial class Build
         });
 
     /// <summary>
-    ///     Compile the database migrator project to ensure it's up to date.
-    /// </summary>
-    Target CompileDatabaseMigrator => _ => _
-        .DependsOn(PreparePostgresContainer)
-        .Executes(() =>
-        {
-            DotNetTasks.DotNetBuild(s => s
-                .SetProjectFile(Solution.GetProjects("DatabaseMigrator").First())
-                .SetConfiguration(Configuration));
-        });
-
-    /// <summary>
     ///     Run the database migrator app to execute all current migrations and bring the new database up to the most recent version.
     /// </summary>
     Target CreateDatabase => _ => _
-        .DependsOn(CompileDatabaseMigrator)
+        .DependsOn(PreparePostgresContainer)
         .Executes(() =>
         {
             var masterConnectionString = $"\"{ConnectionString}\"";
