@@ -15,13 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Cache .nuke/temp, ~/.nuget/packages
-      uses: actions/cache@v2
-      with:
-          path: |
-            .nuke/temp
-            ~/.nuget/packages
-          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -35,16 +28,15 @@ jobs:
     runs-on: ubuntu-latest       
     steps:
     - uses: actions/checkout@v3
-    - name: Cache .nuke/temp, ~/.nuget/packages
-      uses: actions/cache@v2
-      with:
-          path: |
-            .nuke/temp
-            ~/.nuget/packages
-          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
+    - name: Open Web Client Directory
+      run: |
+          ls -la
+          cd ./src/webclient
+          ls -la
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
     - name: Run build
-      run: ./build.sh RunAllIntegrationTests
+      run: ls
+           ./build.sh RunAllIntegrationTests
