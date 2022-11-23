@@ -59,7 +59,7 @@ partial class Build
                     $"POSTGRES_USER={PostgresUser}",
                     $"POSTGRES_PASSWORD={PostgresPassword}")
                 .SetPublish($"{PostgresPort}:5432")
-                .SetMount($"type=bind,source=\"{InputFilesDirectory}\",target=/{InputFilesDirectoryName},readonly")
+                //.SetMount($"type=bind,source=\"{InputFilesDirectory}\",target=/{InputFilesDirectoryName},readonly")
                 .EnableDetach());
 
             PostgresReadinessChecker.WaitForPostgresServer(ConnectionString);
