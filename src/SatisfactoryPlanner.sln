@@ -3,14 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{24103475-57FB-474C-9243-FA0BD6815E3E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{890C0202-8B66-4055-9EB4-3822567ACC8A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{2DD91431-8A92-4993-9546-778DC490E5B6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Tests", "Services.Tests\Services.Tests.csproj", "{C7AF77F7-6738-45FF-8587-538604F479C6}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{B6C1498C-6EF5-4DC7-9C49-3C748CA1DA31}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{AFD54224-7CB0-4B3B-A3A2-BA4E4FFAEE77}"
@@ -59,8 +51,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{139DABEF-84E0-
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SatisfactoryPlanner.UI", "UI\SatisfactoryPlanner.UI\SatisfactoryPlanner.UI.esproj", "{D51949FB-806C-4320-AC8D-712AB24C3DFD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI\UI.csproj", "{7673F6C2-17EF-4929-B113-0624879C7972}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserAccess", "UserAccess", "{389014AC-3278-4F76-BA8D-30F5B4744E82}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.Application", "Modules\UserAccess\Application\SatisfactoryPlanner.Modules.UserAccess.Application.csproj", "{7AB2C1A5-FB18-4872-96F9-4A66E3747837}"
@@ -75,7 +65,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A9902063
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.ArchTests", "Modules\UserAccess\Tests\ArchTests\SatisfactoryPlanner.Modules.UserAccess.ArchTests.csproj", "{1894AB87-EED2-4E36-BB38-11E7C282D56B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.UserAccess.UnitTests", "Modules\UserAccess\Tests\UnitTests\SatisfactoryPlanner.Modules.UserAccess.UnitTests.csproj", "{4D306208-64AB-4A79-82CF-ECFB0968F7D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.UnitTests", "Modules\UserAccess\Tests\UnitTests\SatisfactoryPlanner.Modules.UserAccess.UnitTests.csproj", "{4D306208-64AB-4A79-82CF-ECFB0968F7D9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\build\_build.csproj", "{BCF3FD01-B3C1-4B9E-BA5E-75939B40D987}"
 EndProject
@@ -85,24 +75,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BCF3FD01-B3C1-4B9E-BA5E-75939B40D987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCF3FD01-B3C1-4B9E-BA5E-75939B40D987}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24103475-57FB-474C-9243-FA0BD6815E3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24103475-57FB-474C-9243-FA0BD6815E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24103475-57FB-474C-9243-FA0BD6815E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24103475-57FB-474C-9243-FA0BD6815E3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{890C0202-8B66-4055-9EB4-3822567ACC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{890C0202-8B66-4055-9EB4-3822567ACC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{890C0202-8B66-4055-9EB4-3822567ACC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{890C0202-8B66-4055-9EB4-3822567ACC8A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DD91431-8A92-4993-9546-778DC490E5B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DD91431-8A92-4993-9546-778DC490E5B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DD91431-8A92-4993-9546-778DC490E5B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DD91431-8A92-4993-9546-778DC490E5B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7AF77F7-6738-45FF-8587-538604F479C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7AF77F7-6738-45FF-8587-538604F479C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7AF77F7-6738-45FF-8587-538604F479C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7AF77F7-6738-45FF-8587-538604F479C6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E367A5BB-9A95-4627-9051-5A9CA15343BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E367A5BB-9A95-4627-9051-5A9CA15343BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E367A5BB-9A95-4627-9051-5A9CA15343BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -165,10 +137,6 @@ Global
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{7673F6C2-17EF-4929-B113-0624879C7972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7673F6C2-17EF-4929-B113-0624879C7972}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7673F6C2-17EF-4929-B113-0624879C7972}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7673F6C2-17EF-4929-B113-0624879C7972}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7AB2C1A5-FB18-4872-96F9-4A66E3747837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7AB2C1A5-FB18-4872-96F9-4A66E3747837}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AB2C1A5-FB18-4872-96F9-4A66E3747837}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -193,6 +161,8 @@ Global
 		{4D306208-64AB-4A79-82CF-ECFB0968F7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D306208-64AB-4A79-82CF-ECFB0968F7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D306208-64AB-4A79-82CF-ECFB0968F7D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCF3FD01-B3C1-4B9E-BA5E-75939B40D987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCF3FD01-B3C1-4B9E-BA5E-75939B40D987}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -217,7 +187,6 @@ Global
 		{BBDCAA45-07ED-4FE2-AE59-525E9E211B85} = {B2AD4575-C5BF-4F62-80EC-1290CCBBBCAA}
 		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC} = {BBDCAA45-07ED-4FE2-AE59-525E9E211B85}
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD} = {139DABEF-84E0-445F-B558-ED7ABC8F994E}
-		{7673F6C2-17EF-4929-B113-0624879C7972} = {139DABEF-84E0-445F-B558-ED7ABC8F994E}
 		{389014AC-3278-4F76-BA8D-30F5B4744E82} = {AFD54224-7CB0-4B3B-A3A2-BA4E4FFAEE77}
 		{7AB2C1A5-FB18-4872-96F9-4A66E3747837} = {389014AC-3278-4F76-BA8D-30F5B4744E82}
 		{A7C790C0-E88D-485C-A63C-6812F8CD5AF6} = {389014AC-3278-4F76-BA8D-30F5B4744E82}
