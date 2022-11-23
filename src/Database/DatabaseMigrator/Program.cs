@@ -11,15 +11,25 @@ namespace DatabaseMigrator
         {
             Console.WriteLine("Starting migration...");
 
-            if (args.Length != 2)
+            // TODO this needs to be cleaned up and given better arguments and argument parsing
+            if (args.Length != 3)
             {
-                Console.WriteLine("Invalid arguments. Execution: DatabaseMigrator [masterConnectionString] [connectionString].\r\n");
+                Console.WriteLine("Invalid arguments. Execution: DatabaseMigrator [masterConnectionString] [connectionString] [migrate].\r\n");
                 return -1;
             }
 
-            var masterConnectionString = args[0]; // to be able to create the DB
-            var connectionString = args[1];
+            var environment = args[0];
+            if (environment != "release" && environment != "debug")
+            {
+                // release: used from the BuildIntegrationTests Nuke script to run all migrations
+                // debug: used during dev to have an interactive experience so we can test rollbacks and migration retests
+                Console.WriteLine("Invalid arguments. Execution: DatabaseMigrator [masterConnectionString] [connectionString] [(release|debug)].\r\n");
+                return -1;
+            }
 
+            var masterConnectionString = args[1]; // to be able to create the DB
+            var connectionString = args[2];
+            
             Database.EnsureDatabase(masterConnectionString, "satisfactory-planner");
 
             var servicesProvider = new ServiceCollection()
@@ -37,16 +47,22 @@ namespace DatabaseMigrator
 
             using (var scope = servicesProvider.CreateScope())
             {
-                UpdateDatabase(connectionString, scope.ServiceProvider);
+                UpdateDatabase(connectionString, scope.ServiceProvider, environment);
             }
 
             return 0;
         }
 
-        private static void UpdateDatabase(string connectionString, IServiceProvider serviceProvider)
+        private static void UpdateDatabase(string connectionString, IServiceProvider serviceProvider, string environment)
         {
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
 
+            if (environment == "release")
+            {
+                runner.MigrateUp();
+                return;
+            }
+            
             runner.ListMigrations();
 
             bool quit = false;

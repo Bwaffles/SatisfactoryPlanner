@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Npgsql;
+using System;
 using System.Linq;
 
 namespace DatabaseMigrator.Migrations
@@ -11,6 +12,7 @@ namespace DatabaseMigrator.Migrations
             var parameters = new DynamicParameters();
             parameters.Add("name", name);
 
+            Console.WriteLine($"Connecting to database at {connectionString}...");
             using var connection = new NpgsqlConnection(connectionString);
             var records = connection.Query("SELECT datname " +
                                              "FROM pg_database " +
@@ -20,6 +22,7 @@ namespace DatabaseMigrator.Migrations
             if (!records.Any())
             {
                 connection.Execute($"CREATE DATABASE \"{name}\";");
+                Console.WriteLine($"Database {name} created.");
             }
         }
     }
