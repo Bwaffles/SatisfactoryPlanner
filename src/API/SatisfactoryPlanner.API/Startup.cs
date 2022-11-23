@@ -1,6 +1,8 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SatisfactoryPlanner.API.Configuration;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.API.Modules.Factories;
@@ -30,6 +33,12 @@ namespace SatisfactoryPlanner.API
         private const string FactoriesConnectionString = "FactoriesConnectionString";
         private static ILogger _logger;
         private static ILogger _loggerForApi;
+        private readonly IConfiguration _configuration;
+
+        /// <summary>
+        ///     Get the Auth0 domain.
+        /// </summary>
+        private string Domain => $"https://{_configuration["Auth0:Domain"]}/";
 
         public Startup(IConfiguration configuration)
         {
@@ -37,22 +46,27 @@ namespace SatisfactoryPlanner.API
 
             _configuration = configuration;
 
-            _loggerForApi.Information("Connection string:" + _configuration.GetConnectionString(FactoriesConnectionString));
+            _loggerForApi.Information("Connection string:" +
+                                      _configuration.GetConnectionString(FactoriesConnectionString));
         }
-
-        private readonly IConfiguration _configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigurationAuthorization(services);
+            ConfigurationAuthentication(services);
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SatisfactoryPlanner.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "SatisfactoryPlanner.API", Version = "v1"
+                });
             });
 
-            ConfigureIdentityServer(services);
+            //ConfigureIdentityServer(services);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
@@ -73,11 +87,41 @@ namespace SatisfactoryPlanner.API
             //});
 
             //services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
-
         }
 
-        private void ConfigureIdentityServer(IServiceCollection services)
+        /// <summary>
+        ///     Configure the authorization with Auth0.
+        /// </summary>
+        private void ConfigurationAuthorization(IServiceCollection services)
         {
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("read:resources",
+                    policy => policy.Requirements.Add(new HasScopeRequirement("read:resources", Domain)));
+            });
+
+            // Register the scope authorization handler
+            services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
+        }
+
+        /// <summary>
+        ///     Configure the authentication with Auth0.
+        /// </summary>
+        private void ConfigurationAuthentication(IServiceCollection services) =>
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = Domain;
+                    options.Audience = _configuration["Auth0:Audience"];
+                    // If the access token does not have a `sub` claim, `User.Identity.Name` will be `null`. Map it to a different claim by setting the NameClaimType below.
+                    //options.TokenValidationParameters = new TokenValidationParameters
+                    //{
+                    //    NameClaimType = ClaimTypes.NameIdentifier
+                    //};
+                });
+
+        private void ConfigureIdentityServer(IServiceCollection services) =>
             services.AddIdentityServer()
                 .AddInMemoryIdentityResources(IdentityServerConfiguration.IdentityResources)
                 .AddInMemoryApiResources(IdentityServerConfiguration.ApiResources)
@@ -85,7 +129,6 @@ namespace SatisfactoryPlanner.API
                 .AddInMemoryApiScopes(IdentityServerConfiguration.ApiScopes)
                 .AddTestUsers(IdentityServerConfiguration.TestUsers)
                 .AddDeveloperSigningCredential();
-        }
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
@@ -99,7 +142,12 @@ namespace SatisfactoryPlanner.API
         {
             var container = app.ApplicationServices.GetAutofacRoot();
 
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(builder =>
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+            );
 
             InitializeModules(container);
 
@@ -107,7 +155,7 @@ namespace SatisfactoryPlanner.API
 
             //app.UseSwaggerDocumentation();
 
-            app.UseIdentityServer();
+            //app.UseIdentityServer();
 
             if (env.IsDevelopment())
             {
@@ -120,9 +168,13 @@ namespace SatisfactoryPlanner.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
 
         private static void ConfigureLogger()
@@ -145,25 +197,26 @@ namespace SatisfactoryPlanner.API
             var httpContextAccessor = container.Resolve<IHttpContextAccessor>();
             var executionContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
 
-            var emailsConfiguration = new EmailsConfiguration(_configuration.GetValue<string>("EmailsConfiguration:FromEmail"));
+            var emailsConfiguration =
+                new EmailsConfiguration(_configuration.GetValue<string>("EmailsConfiguration:FromEmail"));
 
             ResourcesStartup.Initialize(
-                   _configuration.GetConnectionString(FactoriesConnectionString),
-                   executionContextAccessor,
-                   _logger
-                   //,
-                   //emailsConfiguration,
-                   //null
-                   );
+                _configuration.GetConnectionString(FactoriesConnectionString),
+                executionContextAccessor,
+                _logger
+                //,
+                //emailsConfiguration,
+                //null
+            );
 
             FactoriesStartup.Initialize(
-                   _configuration.GetConnectionString(FactoriesConnectionString),
-                   executionContextAccessor,
-                   _logger
-                   //,
-                   //emailsConfiguration,
-                   //null
-                   );
+                _configuration.GetConnectionString(FactoriesConnectionString),
+                executionContextAccessor,
+                _logger
+                //,
+                //emailsConfiguration,
+                //null
+            );
 
             UserAccessStartup.Initialize(
                 _configuration.GetConnectionString(FactoriesConnectionString),

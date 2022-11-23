@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Modules.UserAccess
 {
-    [Route("user-access/user-registrations")]
+    [Route("api/user-access/user-registrations")]
     [ApiController]
     public class UserRegistrationsController : ControllerBase
     {
@@ -38,7 +38,7 @@ namespace SatisfactoryPlanner.API.Modules.UserAccess
 
         [NoPermissionRequired]
         [AllowAnonymous]
-        [HttpPost("confirm")]
+        [HttpPost("{userRegistrationId}/confirm")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ConfirmRegistration(Guid userRegistrationId)
         {

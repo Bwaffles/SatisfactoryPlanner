@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourceDetails;
@@ -21,6 +22,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         }
 
         [HttpGet("")]
+        [Authorize]
         [ProducesResponseType(typeof(List<ResourceDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetResources()
         {

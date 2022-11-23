@@ -9,10 +9,16 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests
 {
     public static class DomainEvents
     {
+        public static void AssertEventIsNotPublished<T>(Entity aggregate, string because = "")
+        {
+            var eventIsPublished = GetAllDomainEvents(aggregate).OfType<T>().Any();
+            if (eventIsPublished)
+                throw new Exception($"Expected {typeof(T).Name} event to not be published {because}.");
+        }
+
         public static T AssertPublishedEvent<T>(Entity aggregate)
         {
             var domainEvent = GetAllDomainEvents(aggregate).OfType<T>().SingleOrDefault();
-
             if (domainEvent == null)
                 throw new Exception($"{typeof(T).Name} event not published.");
 

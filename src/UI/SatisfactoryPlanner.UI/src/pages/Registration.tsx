@@ -5,8 +5,8 @@ import { object, string } from "yup";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import Input from "./Components/Input";
-import HttpClient from "./HttpClient";
+import Input from "../components/Input";
+import HttpClient from "../HttpClient";
 
 function Registration() {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -41,7 +41,7 @@ function Registration() {
                                 .required("Required.")
                         })}
                         onSubmit={(values, { setSubmitting }) => {
-                            var confirmLink = `${window.location.origin}/registration-confirm/`;
+                            var confirmLink = `${window.location.origin}/confirm-registration/`;
                             const request = {
                                 username: values.username,
                                 email: values.email,
