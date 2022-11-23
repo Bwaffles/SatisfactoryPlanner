@@ -8,25 +8,31 @@ using Utils;
 
 partial class Build
 {
-    AbsolutePath WorkingDirectory => RootDirectory / ".nuke-working-directory";
-
-    AbsolutePath InputFilesDirectory => WorkingDirectory / "input-files";
+    AbsolutePath InputFilesDirectory => RootDirectory / ".nuke-working-directory" / "input-files";
 
     readonly string Environment = IsLocalBuild ? "debug" : "release";
 
     AbsolutePath DatabaseMigratorDirectory =>
         RootDirectory / "src" / "Database" / "DatabaseMigrator" / "bin" / Environment / "net7.0";
 
-    AbsolutePath DatabaseMigrator => DatabaseMigratorDirectory / "DatabaseMigrator.exe";
+    const string DatabaseMigratorAppName = "DatabaseMigrator.exe";
 
-    const string InputFilesDirectoryName = "input-files";
+    AbsolutePath LocalDatabaseMigratorApp => InputFilesDirectory / DatabaseMigratorAppName;
+
+    Target PrepareInputFiles => _ => _
+        .DependsOn(Clean)
+        .Executes(() =>
+        {
+            FileSystemTasks.CopyDirectoryRecursively(DatabaseMigratorDirectory, InputFilesDirectory);
+        });
     
     const string ContainerName = "postgres-test-db";
-    
+
     /// <summary>
     ///     Kill any previous docker containers for old runs so we can start fresh.
     /// </summary>
     Target CleanDatabaseContainer => _ => _
+        .DependsOn(PrepareInputFiles)
         .Executes(() =>
         {
             var containers = DockerTasks.DockerPs(s => s.SetFilter($"name={ContainerName}").SetQuiet(true));
@@ -88,7 +94,7 @@ partial class Build
             var connectionString = $"\"{ConnectionString};Database=satisfactory-planner;\"";
 
             PowerShellTasks.PowerShell(s => s
-                .SetCommand($"&\"{DatabaseMigrator}\" release {masterConnectionString} {connectionString}"));
+                .SetCommand($"&\"{LocalDatabaseMigratorApp}\" release {masterConnectionString} {connectionString}"));
         });
 
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
