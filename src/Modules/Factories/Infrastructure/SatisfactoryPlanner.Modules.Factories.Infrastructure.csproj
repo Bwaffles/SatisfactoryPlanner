@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 	</PropertyGroup>
 
@@ -19,7 +19,7 @@
 		<ProjectReference Include="..\..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-		<ProjectReference Include="..\..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj" >
+		<ProjectReference Include="..\..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj">
