@@ -38,8 +38,13 @@ class Build : NukeBuild
     Target Restore => _ => _
         .Executes(() =>
         {
-            DotNetRestore(s => s
-                .SetProjectFile(Solution));
+            // When I restore the solution, I get a warning about the Satisfactory.UI project being invalid
+            var projects = Solution.GetProjects("*");
+            foreach (var project in projects)
+            {
+                DotNetRestore(s => s
+                    .SetProjectFile(project));
+            }
         });
 
     Target Compile => _ => _
@@ -51,35 +56,41 @@ class Build : NukeBuild
                 .SetConfiguration(Configuration)
                 .EnableNoRestore());
         });
-
-    // TODO need to fix this... fails because it tries to run tests for the UI project
+    
     Target UnitTests => _ => _
         .DependsOn(Compile)
         .Executes(() =>
         {
-            DotNetTest(s => s
-                .SetProjectFile(Solution)
-                .SetFilter("UnitTestsxxx")
-                .SetConfiguration(Configuration)
-                .EnableNoRestore()
-                .EnableNoBuild());
+            var projects = Solution.GetProjects("*.UnitTests");
+            foreach (var project in projects)
+            {
+                DotNetTest(_ => _
+                    .SetProjectFile(project)
+                    .SetConfiguration(Configuration)
+                    .EnableNoRestore()
+                    .EnableNoBuild()
+                );
+            }
         });
 
     Target ArchitectureTests => _ => _
         .DependsOn(UnitTests)
         .Executes(() =>
         {
-            DotNetTest(s => s
-                .SetProjectFile(Solution)
-                .SetFramework(".net5")
-                .SetFilter("ArchTests")
-                .SetConfiguration(Configuration)
-                .EnableNoRestore()
-                .EnableNoBuild());
+            var projects = Solution.GetProjects("*.ArchTests");
+            foreach (var project in projects)
+            {
+                DotNetTest(_ => _
+                    .SetProjectFile(project)
+                    .SetConfiguration(Configuration)
+                    .EnableNoRestore()
+                    .EnableNoBuild()
+                );
+            }
         });
 
     Target BuildAndUnitTests => _ => _
-        .Triggers(Compile)
+        .Triggers(ArchitectureTests)
         .Executes(() =>
         {
         });
