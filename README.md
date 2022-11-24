@@ -1,5 +1,11 @@
 # SatisfactoryPlanner
 
+## How to Use
+
+### Database Migrations
+From the root folder, run `dotnet run --project src/Database/DatabaseMigrator/` to start the interactive migration app during development.
+
+
 ## Technology
 
 ### UI
