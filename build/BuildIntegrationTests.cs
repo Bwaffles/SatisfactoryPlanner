@@ -31,19 +31,8 @@ partial class Build
                 .SetConfiguration(Configuration));
         });
 
-    /// <summary>
-    ///     Compile the database migrator project to ensure it's up to date.
-    /// </summary>
-    Target GetFolderStructure => _ => _
-        .DependsOn(CompileDatabaseMigrator)
-        .Executes(() =>
-        {
-            PowerShellTasks.PowerShell(s => s
-                .SetCommand("Get-ChildItem"));
-        });
-
     Target PrepareInputFiles => _ => _
-        .DependsOn(GetFolderStructure)
+        .DependsOn(CompileDatabaseMigrator)
         .Executes(() =>
         {
             FileSystemTasks.CopyDirectoryRecursively(DatabaseMigratorDirectory, InputFilesDirectory);
@@ -101,6 +90,8 @@ partial class Build
         .DependsOn(PreparePostgresContainer)
         .Executes(() =>
         {
+            Logger.Info($"Does {LocalDatabaseMigratorApp} exist? {FileSystemTasks.FileExists(LocalDatabaseMigratorApp)}");
+
             var masterConnectionString = $"\"{ConnectionString}\"";
             var connectionString = $"\"{ConnectionString};Database=satisfactory-planner;\"";
 
