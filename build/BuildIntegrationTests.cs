@@ -90,8 +90,7 @@ partial class Build
         .DependsOn(PreparePostgresContainer)
         .Executes(() =>
         {
-            PowerShellTasks.PowerShell(s => s
-                .SetCommand($"Get-Item -Path \"{LocalDatabaseMigratorApp}\""));
+            Logger.Info(LocalDatabaseMigratorApp.GlobFiles());
 
             if (!LocalDatabaseMigratorApp.Exists())
                 Logger.Error($"{LocalDatabaseMigratorApp} file doesn't exist.");
