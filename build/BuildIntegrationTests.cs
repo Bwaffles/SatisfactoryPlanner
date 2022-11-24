@@ -91,7 +91,7 @@ partial class Build
         .Executes(() =>
         {
             PowerShellTasks.PowerShell(s => s
-                .SetCommand($"Get-ChildItem -Path \"{LocalDatabaseMigratorApp.Parent}\""));
+                .SetCommand($"Get-Item -Path \"{LocalDatabaseMigratorApp}\""));
 
             if (!LocalDatabaseMigratorApp.Exists())
                 Logger.Error($"{LocalDatabaseMigratorApp} file doesn't exist.");
