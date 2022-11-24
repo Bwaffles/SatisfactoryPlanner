@@ -20,24 +20,24 @@ partial class Build
 
     AbsolutePath LocalDatabaseMigratorApp => InputFilesDirectory / DatabaseMigratorAppName;
 
-    /// <summary>
-    ///     Compile the database migrator project to ensure it's up to date.
-    /// </summary>
-    Target CompileDatabaseMigrator => _ => _
-        .DependsOn(Clean)
-        .Executes(() =>
-        {
-            DotNetTasks.DotNetBuild(s => s
-                .SetProjectFile(Solution.GetProjects("DatabaseMigrator").First())
-                .SetConfiguration(Configuration));
-        });
+    ///// <summary>
+    /////     Compile the database migrator project to ensure it's up to date.
+    ///// </summary>
+    //Target CompileDatabaseMigrator => _ => _
+    //    .DependsOn(Clean)
+    //    .Executes(() =>
+    //    {
+    //        DotNetTasks.DotNetBuild(s => s
+    //            .SetProjectFile(Solution.GetProjects("DatabaseMigrator").First())
+    //            .SetConfiguration(Configuration));
+    //    });
 
-    Target PrepareInputFiles => _ => _
-        .DependsOn(CompileDatabaseMigrator)
-        .Executes(() =>
-        {
-            FileSystemTasks.CopyDirectoryRecursively(DatabaseMigratorDirectory, InputFilesDirectory);
-        });
+    //Target PrepareInputFiles => _ => _
+    //    .DependsOn(Clean)
+    //    .Executes(() =>
+    //    {
+    //        FileSystemTasks.CopyDirectoryRecursively(DatabaseMigratorDirectory, InputFilesDirectory);
+    //    });
 
     const string ContainerName = "postgres-test-db";
 
@@ -45,7 +45,7 @@ partial class Build
     ///     Kill any previous docker containers for old runs so we can start fresh.
     /// </summary>
     Target CleanDatabaseContainer => _ => _
-        .DependsOn(PrepareInputFiles)
+        .DependsOn(Clean)
         .Executes(() =>
         {
             var containers = DockerTasks.DockerPs(s => s.SetFilter($"name={ContainerName}").SetQuiet(true));
@@ -84,8 +84,6 @@ partial class Build
             PostgresReadinessChecker.WaitForPostgresServer(ConnectionString);
         });
 
-    AbsolutePath Temp => InputFilesDirectory / "DatabaseMigrator.dll";
-
     /// <summary>
     ///     Run the database migrator app to execute all current migrations and bring the new database up to the most recent version.
     /// </summary>
@@ -93,19 +91,13 @@ partial class Build
         .DependsOn(PreparePostgresContainer)
         .Executes(() =>
         {
-            Logger.Info(GitHubActions.Instance.Workspace);
-            Logger.Info(InputFilesDirectory.GlobFiles("*.exe"));
-
-            Logger.Info($"Does {Temp} exist? {Temp.Exists()}");
-
-            if (!LocalDatabaseMigratorApp.Exists())
-                Logger.Error($"{LocalDatabaseMigratorApp} file doesn't exist.");
-
             var masterConnectionString = $"\"{ConnectionString}\"";
             var connectionString = $"\"{ConnectionString};Database=satisfactory-planner;\"";
 
-            PowerShellTasks.PowerShell(s => s
-            .SetCommand($"&\"{LocalDatabaseMigratorApp}\" release {masterConnectionString} {connectionString}"));
+            var databaseMigratorProject = Solution.GetProject("DatabaseMigrator");
+            DotNetTasks.DotNetRun(s => s
+                .SetProjectFile(databaseMigratorProject)
+                .SetApplicationArguments($"release {masterConnectionString} {connectionString}"));
         });
 
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
