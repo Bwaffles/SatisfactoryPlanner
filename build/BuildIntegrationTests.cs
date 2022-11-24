@@ -90,7 +90,7 @@ partial class Build
         .DependsOn(PreparePostgresContainer)
         .Executes(() =>
         {
-            Logger.Info(LocalDatabaseMigratorApp.GlobFiles());
+            Logger.Info(InputFilesDirectory.GlobFiles("*.exe"));
 
             if (!LocalDatabaseMigratorApp.Exists())
                 Logger.Error($"{LocalDatabaseMigratorApp} file doesn't exist.");
