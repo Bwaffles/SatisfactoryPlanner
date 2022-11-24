@@ -70,7 +70,7 @@ namespace DatabaseMigrator.Migrations
             new SeedResourceExtractorsScriptGenerator()
                 .Generate();
 
-            Execute.Script(Scripts.Scripts.Seed_Resource_Extractors);
+            Execute.Script(Scripts.Scripts.SeedResourceExtractors);
 
             Create
                 .Table("resource_extractor_allowed_resources")

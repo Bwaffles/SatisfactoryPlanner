@@ -19,23 +19,14 @@ partial class Build : NukeBuild
     ///   - JetBrains Rider            https://nuke.build/rider
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
-
-    AbsolutePath WorkingDirectory => RootDirectory / ".nuke-working-directory";
-
+    
     public static int Main() => Execute<Build>(x => x.Compile);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Solution] readonly Solution Solution;
-
-    Target Clean => _ => _
-        .Before(Restore)
-        .Executes(() =>
-        {
-            EnsureCleanDirectory(WorkingDirectory);
-        });
-
+    
     Target Restore => _ => _
         .Executes(() =>
         {

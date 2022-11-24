@@ -46,12 +46,12 @@ namespace DatabaseMigrator.Scripts.Generators.SeedResourceExtractors
             var insertScript = insertScriptBuilder.ToString().TrimEnd().TrimEnd(',');
             insertScript += ";";
 
-            File.WriteAllText(Scripts.Seed_Resource_Extractors, insertScript);
+            File.WriteAllText(Scripts.SeedResourceExtractors, insertScript);
         }
 
         internal void Delete()
         {
-            File.Delete(Scripts.Seed_Resource_Extractors);
+            File.Delete(Scripts.SeedResourceExtractors);
         }
 
         private string Escape(string value)
