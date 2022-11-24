@@ -19,7 +19,7 @@ partial class Build
     const string DatabaseMigratorAppName = "DatabaseMigrator.exe";
 
     AbsolutePath LocalDatabaseMigratorApp => InputFilesDirectory / DatabaseMigratorAppName;
-    
+
     /// <summary>
     ///     Compile the database migrator project to ensure it's up to date.
     /// </summary>
@@ -38,7 +38,7 @@ partial class Build
         {
             FileSystemTasks.CopyDirectoryRecursively(DatabaseMigratorDirectory, InputFilesDirectory);
         });
-    
+
     const string ContainerName = "postgres-test-db";
 
     /// <summary>
@@ -84,6 +84,8 @@ partial class Build
             PostgresReadinessChecker.WaitForPostgresServer(ConnectionString);
         });
 
+    AbsolutePath Temp => InputFilesDirectory / "DatabaseMigrator.dll";
+
     /// <summary>
     ///     Run the database migrator app to execute all current migrations and bring the new database up to the most recent version.
     /// </summary>
@@ -94,6 +96,8 @@ partial class Build
             Logger.Info(GitHubActions.Instance.Workspace);
             Logger.Info(InputFilesDirectory.GlobFiles("*.exe"));
 
+            Logger.Info($"Does {Temp} exist? {Temp.Exists()}");
+
             if (!LocalDatabaseMigratorApp.Exists())
                 Logger.Error($"{LocalDatabaseMigratorApp} file doesn't exist.");
 
@@ -101,7 +105,7 @@ partial class Build
             var connectionString = $"\"{ConnectionString};Database=satisfactory-planner;\"";
 
             PowerShellTasks.PowerShell(s => s
-                .SetCommand($"&\"{LocalDatabaseMigratorApp}\" release {masterConnectionString} {connectionString}"));
+            .SetCommand($"&\"{LocalDatabaseMigratorApp}\" release {masterConnectionString} {connectionString}"));
         });
 
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
