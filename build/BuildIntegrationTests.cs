@@ -10,7 +10,7 @@ partial class Build
 {
     AbsolutePath InputFilesDirectory => WorkingDirectory / "input-files";
 
-    readonly string Environment = IsLocalBuild ? "debug" : "release";
+    readonly string Environment = IsLocalBuild ? "Debug" : "Release";
 
     AbsolutePath DatabaseMigratorDirectory =>
         RootDirectory / "src" / "Database" / "DatabaseMigrator" / "bin" / Environment / "net7.0";
@@ -31,8 +31,19 @@ partial class Build
                 .SetConfiguration(Configuration));
         });
 
-    Target PrepareInputFiles => _ => _
+    /// <summary>
+    ///     Compile the database migrator project to ensure it's up to date.
+    /// </summary>
+    Target GetFolderStructure => _ => _
         .DependsOn(CompileDatabaseMigrator)
+        .Executes(() =>
+        {
+            PowerShellTasks.PowerShell(s => s
+                .SetCommand("Get-ChildItem"));
+        });
+
+    Target PrepareInputFiles => _ => _
+        .DependsOn(GetFolderStructure)
         .Executes(() =>
         {
             FileSystemTasks.CopyDirectoryRecursively(DatabaseMigratorDirectory, InputFilesDirectory);
