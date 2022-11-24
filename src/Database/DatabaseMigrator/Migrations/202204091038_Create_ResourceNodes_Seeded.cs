@@ -54,7 +54,7 @@ namespace DatabaseMigrator.Migrations
             Execute.Sql("ALTER TABLE factories.resource_nodes " +
                         "ADD CONSTRAINT purity_check CHECK (purity in ('Impure', 'Normal', 'Pure'));");
 
-            Execute.Script("E:/Projects/SatisfactoryPlanner/src/Database/DatabaseMigrator/Scripts/0002__seed_resource_nodes.sql");
+            Execute.Script(Scripts.Scripts.SeedResourcesNodes);
         }
     }
 }

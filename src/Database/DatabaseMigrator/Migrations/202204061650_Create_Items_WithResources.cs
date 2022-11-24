@@ -71,7 +71,7 @@ namespace DatabaseMigrator.Migrations
                                                                   "'Gas')" +
                                                         ");");
 
-            Execute.Script("src/Database/DatabaseMigrator/Scripts/0001__seed_items_with_resources.sql");
+            Execute.Script(Scripts.Scripts.SeedItemsWithResources);
         }
     }
 }
