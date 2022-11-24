@@ -90,7 +90,11 @@ partial class Build
         .DependsOn(PreparePostgresContainer)
         .Executes(() =>
         {
-            Logger.Info($"Does {LocalDatabaseMigratorApp} exist? {FileSystemTasks.FileExists(LocalDatabaseMigratorApp)}");
+            PowerShellTasks.PowerShell(s => s
+                .SetCommand($"Get-ChildItem -Path \"{LocalDatabaseMigratorApp.Parent}\""));
+
+            if (!LocalDatabaseMigratorApp.Exists())
+                Logger.Error($"{LocalDatabaseMigratorApp} file doesn't exist.");
 
             var masterConnectionString = $"\"{ConnectionString}\"";
             var connectionString = $"\"{ConnectionString};Database=satisfactory-planner;\"";
