@@ -9,36 +9,6 @@ using Utils;
 
 partial class Build
 {
-    AbsolutePath InputFilesDirectory => WorkingDirectory / "input-files";
-
-    readonly string Environment = IsLocalBuild ? "Debug" : "Release";
-
-    AbsolutePath DatabaseMigratorDirectory =>
-        RootDirectory / "src" / "Database" / "DatabaseMigrator" / "bin" / Environment / "net7.0";
-
-    const string DatabaseMigratorAppName = "DatabaseMigrator.exe";
-
-    AbsolutePath LocalDatabaseMigratorApp => InputFilesDirectory / DatabaseMigratorAppName;
-
-    ///// <summary>
-    /////     Compile the database migrator project to ensure it's up to date.
-    ///// </summary>
-    //Target CompileDatabaseMigrator => _ => _
-    //    .DependsOn(Clean)
-    //    .Executes(() =>
-    //    {
-    //        DotNetTasks.DotNetBuild(s => s
-    //            .SetProjectFile(Solution.GetProjects("DatabaseMigrator").First())
-    //            .SetConfiguration(Configuration));
-    //    });
-
-    //Target PrepareInputFiles => _ => _
-    //    .DependsOn(Clean)
-    //    .Executes(() =>
-    //    {
-    //        FileSystemTasks.CopyDirectoryRecursively(DatabaseMigratorDirectory, InputFilesDirectory);
-    //    });
-
     const string ContainerName = "postgres-test-db";
 
     /// <summary>
@@ -97,6 +67,7 @@ partial class Build
             var databaseMigratorProject = Solution.GetProject("DatabaseMigrator");
             DotNetTasks.DotNetRun(s => s
                 .SetProjectFile(databaseMigratorProject)
+                .SetConfiguration(Configuration)
                 .SetApplicationArguments($"release {masterConnectionString} {connectionString}"));
         });
 
