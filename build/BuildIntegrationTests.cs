@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Nuke.Common;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.IO;
 using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
@@ -90,6 +91,7 @@ partial class Build
         .DependsOn(PreparePostgresContainer)
         .Executes(() =>
         {
+            Logger.Info(GitHubActions.Instance.Workspace);
             Logger.Info(InputFilesDirectory.GlobFiles("*.exe"));
 
             if (!LocalDatabaseMigratorApp.Exists())
