@@ -1,10 +1,7 @@
 ﻿using System.Linq;
 using Nuke.Common;
-using Nuke.Common.CI.GitHubActions;
-using Nuke.Common.IO;
 using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Tools.PowerShell;
 using Utils;
 
 partial class Build
@@ -15,7 +12,6 @@ partial class Build
     ///     Kill any previous docker containers for old runs so we can start fresh.
     /// </summary>
     Target CleanDatabaseContainer => _ => _
-        .DependsOn(Clean)
         .Executes(() =>
         {
             var containers = DockerTasks.DockerPs(s => s.SetFilter($"name={ContainerName}").SetQuiet(true));
@@ -27,6 +23,7 @@ partial class Build
             }
         });
 
+    const string PostgresImage = "postgres:13.3";
     const string PostgresPassword = "123qwe!@#QWE";
     const string PostgresUser = "test-user";
     const string PostgresPort = "1401";
@@ -40,10 +37,13 @@ partial class Build
         .DependsOn(CleanDatabaseContainer)
         .Executes(() =>
         {
+            DockerTasks.DockerImagePull(s => s
+                .SetName(PostgresImage));
+
             DockerTasks.DockerRun(s => s
                 .EnableRm()
                 .SetName(ContainerName)
-                .SetImage("postgres:13.3")
+                .SetImage(PostgresImage)
                 .SetEnv(
                     $"POSTGRES_USER={PostgresUser}",
                     $"POSTGRES_PASSWORD={PostgresPassword}")
