@@ -19,7 +19,6 @@ namespace SatisfactoryPlanner.API.Modules.Pioneers.Pioneers
 
         [HttpPost("")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesErrorResponseType(typeof(ProblemDetails))]
         public async Task<IActionResult> SpawnPioneer([FromBody] SpawnPioneerRequest request)
         {
             var pioneerId = await _pioneersModule.ExecuteCommandAsync(new SpawnPioneerCommand(
