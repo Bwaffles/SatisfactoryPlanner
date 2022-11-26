@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
+using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.UserAccess.Domain;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Events;
@@ -41,7 +42,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
                 .Setup(_ => _.CountUsersWithUsername("username"))
                 .Returns(1);
 
-            Rules.AssertBrokenRule<UserUsernameMustBeUniqueRule>(() =>
+            RuleAssertions.AssertBrokenRule<UserUsernameMustBeUniqueRule>((Action)(() =>
             {
                 UserRegistration.RegisterNewUser(
                     "username",
@@ -49,7 +50,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
                     "test@email.com",
                     usersCounter.Object,
                     "confirmLink");
-            });
+            }));
         }
 
         [Fact]

@@ -1,4 +1,5 @@
 ﻿using Moq;
+using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules;
@@ -16,34 +17,34 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
         [Fact]
         public void TapNode_WhenAmountIsGreaterThanAvailableResources_IsNotPossible()
         {
-            Rules.AssertBrokenRule<CannotExtractMoreThanTheAvailableResourcesRule>(() =>
+            RuleAssertions.AssertBrokenRule<CannotExtractMoreThanTheAvailableResourcesRule>((Action)(() =>
             {
                 new TapNodeExecuter()
                     .ExtractTooManyResources()
                     .Execute();
-            });
+            }));
         }
 
         [Fact]
         public void TapNode_WhenNodeIsAlreadyTapped_IsNotPossible()
         {
-            Rules.AssertBrokenRule<NodeCannotAlreadyBeTappedRule>(() =>
+            RuleAssertions.AssertBrokenRule<NodeCannotAlreadyBeTappedRule>((Action)(() =>
             {
                 new TapNodeExecuter()
                     .NodeAlreadyTapped()
                     .Execute();
-            });
+            }));
         }
 
         [Fact]
         public void TapNode_WhenExtractorCannotExtractTheResource_IsNotPossible()
         {
-            Rules.AssertBrokenRule<ExtractorMustBeAbleToExtractResourceRule>(() =>
+            RuleAssertions.AssertBrokenRule<ExtractorMustBeAbleToExtractResourceRule>((Action)(() =>
             {
                 new TapNodeExecuter()
                     .CannotExtractResource()
                     .Execute();
-            });
+            }));
         }
 
         private class TapNodeExecuter
