@@ -1,4 +1,5 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer;
+﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.GetPioneerDetails;
+using SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer;
 using SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.SeedWork;
 
 namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.Pioneers
@@ -9,13 +10,15 @@ namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.Pioneers
         [Test]
         public async Task SpawnPioneer_Test()
         {
-            var id = await PioneersModule.ExecuteCommandAsync(new SpawnPioneerCommand(
+            var pioneerId = await PioneersModule.ExecuteCommandAsync(new SpawnPioneerCommand(
                 "myAuth0UserId"
             ));
 
-            id.Should().NotBeEmpty();
+            pioneerId.Should().NotBeEmpty();
 
-            // TODO write a query to retrieve the pioneer
+            var pioneerDetails = await PioneersModule.ExecuteQueryAsync(new GetPioneerDetailsQuery(pioneerId));
+
+            pioneerDetails.Should().NotBeNull();
         }
     }
 }

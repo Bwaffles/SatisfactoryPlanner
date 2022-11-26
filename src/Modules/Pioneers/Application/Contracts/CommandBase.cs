@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Contracts
+﻿namespace SatisfactoryPlanner.Modules.Pioneers.Application.Contracts
 {
     public abstract class CommandBase : ICommand
     {

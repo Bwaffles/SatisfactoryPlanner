@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using System;
 
 namespace SatisfactoryPlanner.Modules.Pioneers.Application.Contracts
 {

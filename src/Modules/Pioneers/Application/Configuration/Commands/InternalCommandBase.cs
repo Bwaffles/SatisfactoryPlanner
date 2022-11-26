@@ -1,5 +1,4 @@
 ﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
-using System;
 
 namespace SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands
 {
