@@ -67,7 +67,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.UnitTests", "Modules\UserAccess\Tests\UnitTests\SatisfactoryPlanner.Modules.UserAccess.UnitTests.csproj", "{4D306208-64AB-4A79-82CF-ECFB0968F7D9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pioneers", "Pioneers", "{517BACCA-ED32-4774-98FE-48558D025DD4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Pioneers.Application", "Modules\Pioneers\Application\SatisfactoryPlanner.Modules.Pioneers.Application.csproj", "{1D058EC9-828C-47A0-A679-DFA7B1A43247}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\build\_build.csproj", "{BCF3FD01-B3C1-4B9E-BA5E-75939B40D987}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Pioneers.Domain", "Modules\Pioneers\Domain\SatisfactoryPlanner.Modules.Pioneers.Domain.csproj", "{D3840ABA-9457-4CFA-A060-50AD03C9E740}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Pioneers.IntegrationTests", "Modules\Pioneers\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.csproj", "{173D2D7E-9C2F-4BC6-B151-CADE142A9095}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C3E54654-3DB5-4C55-81E2-0978B65FF5CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.BuildingBlocks.IntegrationTests", "BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests.csproj", "{9242D88F-1F6C-4413-80A3-B5B854AB5414}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Pioneers.Infrastructure", "Modules\Pioneers\Infrastructure\SatisfactoryPlanner.Modules.Pioneers.Infrastructure.csproj", "{8D3B667D-CF4C-4602-B243-2408593CF102}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,7 +149,6 @@ Global
 		{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.Deploy.0 = Release|Any CPU
@@ -161,8 +176,28 @@ Global
 		{4D306208-64AB-4A79-82CF-ECFB0968F7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D306208-64AB-4A79-82CF-ECFB0968F7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D306208-64AB-4A79-82CF-ECFB0968F7D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D058EC9-828C-47A0-A679-DFA7B1A43247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D058EC9-828C-47A0-A679-DFA7B1A43247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D058EC9-828C-47A0-A679-DFA7B1A43247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D058EC9-828C-47A0-A679-DFA7B1A43247}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCF3FD01-B3C1-4B9E-BA5E-75939B40D987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BCF3FD01-B3C1-4B9E-BA5E-75939B40D987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3840ABA-9457-4CFA-A060-50AD03C9E740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3840ABA-9457-4CFA-A060-50AD03C9E740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3840ABA-9457-4CFA-A060-50AD03C9E740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3840ABA-9457-4CFA-A060-50AD03C9E740}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173D2D7E-9C2F-4BC6-B151-CADE142A9095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173D2D7E-9C2F-4BC6-B151-CADE142A9095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173D2D7E-9C2F-4BC6-B151-CADE142A9095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173D2D7E-9C2F-4BC6-B151-CADE142A9095}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9242D88F-1F6C-4413-80A3-B5B854AB5414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9242D88F-1F6C-4413-80A3-B5B854AB5414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9242D88F-1F6C-4413-80A3-B5B854AB5414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9242D88F-1F6C-4413-80A3-B5B854AB5414}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D3B667D-CF4C-4602-B243-2408593CF102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D3B667D-CF4C-4602-B243-2408593CF102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D3B667D-CF4C-4602-B243-2408593CF102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D3B667D-CF4C-4602-B243-2408593CF102}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -195,6 +230,14 @@ Global
 		{A9902063-00BE-46CE-B0D4-95CB9E98C2BD} = {389014AC-3278-4F76-BA8D-30F5B4744E82}
 		{1894AB87-EED2-4E36-BB38-11E7C282D56B} = {A9902063-00BE-46CE-B0D4-95CB9E98C2BD}
 		{4D306208-64AB-4A79-82CF-ECFB0968F7D9} = {A9902063-00BE-46CE-B0D4-95CB9E98C2BD}
+		{517BACCA-ED32-4774-98FE-48558D025DD4} = {AFD54224-7CB0-4B3B-A3A2-BA4E4FFAEE77}
+		{1D058EC9-828C-47A0-A679-DFA7B1A43247} = {517BACCA-ED32-4774-98FE-48558D025DD4}
+		{D3840ABA-9457-4CFA-A060-50AD03C9E740} = {517BACCA-ED32-4774-98FE-48558D025DD4}
+		{73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8} = {517BACCA-ED32-4774-98FE-48558D025DD4}
+		{173D2D7E-9C2F-4BC6-B151-CADE142A9095} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
+		{C3E54654-3DB5-4C55-81E2-0978B65FF5CF} = {757C2086-53D1-4FF4-8A4D-76CE49614DC2}
+		{9242D88F-1F6C-4413-80A3-B5B854AB5414} = {C3E54654-3DB5-4C55-81E2-0978B65FF5CF}
+		{8D3B667D-CF4C-4602-B243-2408593CF102} = {517BACCA-ED32-4774-98FE-48558D025DD4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}

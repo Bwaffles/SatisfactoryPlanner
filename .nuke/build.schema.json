@@ -74,12 +74,14 @@
             "enum": [
               "ArchitectureTests",
               "BuildAndUnitTests",
+              "BuildMeetingsModuleIntegrationTests",
               "CleanDatabaseContainer",
               "Compile",
               "CreateDatabase",
               "PreparePostgresContainer",
               "Restore",
               "RunAllIntegrationTests",
+              "RunPioneersModuleIntegrationTests",
               "UnitTests"
             ]
           }
@@ -96,12 +98,14 @@
             "enum": [
               "ArchitectureTests",
               "BuildAndUnitTests",
+              "BuildMeetingsModuleIntegrationTests",
               "CleanDatabaseContainer",
               "Compile",
               "CreateDatabase",
               "PreparePostgresContainer",
               "Restore",
               "RunAllIntegrationTests",
+              "RunPioneersModuleIntegrationTests",
               "UnitTests"
             ]
           }
