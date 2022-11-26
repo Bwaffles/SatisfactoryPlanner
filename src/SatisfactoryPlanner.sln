@@ -87,6 +87,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests", "BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests.csproj", "{3D02F550-E185-4B96-8609-C5EB79C2713D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests", "Modules\Pioneers\Tests\UnitTests\SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests.csproj", "{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -203,6 +205,10 @@ Global
 		{3D02F550-E185-4B96-8609-C5EB79C2713D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D02F550-E185-4B96-8609-C5EB79C2713D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D02F550-E185-4B96-8609-C5EB79C2713D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -244,6 +250,7 @@ Global
 		{73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8} = {517BACCA-ED32-4774-98FE-48558D025DD4}
 		{173D2D7E-9C2F-4BC6-B151-CADE142A9095} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 		{3D02F550-E185-4B96-8609-C5EB79C2713D} = {C3E54654-3DB5-4C55-81E2-0978B65FF5CF}
+		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}
