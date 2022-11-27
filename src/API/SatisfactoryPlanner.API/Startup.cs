@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using SatisfactoryPlanner.API.Configuration;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
+using SatisfactoryPlanner.API.Configuration.Extensions;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.API.Modules.Factories;
 using SatisfactoryPlanner.API.Modules.Pioneers;
@@ -60,13 +60,7 @@ namespace SatisfactoryPlanner.API
 
             services.AddControllers();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "SatisfactoryPlanner.API", Version = "v1"
-                });
-            });
+            services.AddSwaggerDocumentation();
 
             //ConfigureIdentityServer(services);
 
@@ -157,7 +151,7 @@ namespace SatisfactoryPlanner.API
 
             app.UseMiddleware<CorrelationMiddleware>();
 
-            //app.UseSwaggerDocumentation();
+            app.UseSwaggerDocumentation();
 
             //app.UseIdentityServer();
 

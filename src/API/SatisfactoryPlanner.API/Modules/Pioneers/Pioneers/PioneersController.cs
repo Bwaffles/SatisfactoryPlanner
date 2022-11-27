@@ -17,6 +17,10 @@ namespace SatisfactoryPlanner.API.Modules.Pioneers.Pioneers
 
         public PioneersController(IPioneersModule pioneersModule) => _pioneersModule = pioneersModule;
 
+        /// <summary>
+        ///     Spawn a new pioneer.
+        /// </summary>
+        /// <response code="201">Returns the id of the new pioneer as a <see cref="Guid"/>.</response>
         [HttpPost("")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> SpawnPioneer([FromBody] SpawnPioneerRequest request)
