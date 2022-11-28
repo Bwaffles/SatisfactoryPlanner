@@ -17,7 +17,6 @@ root.render(
         clientId={process.env.REACT_APP_AUTH0_CLIENT_ID!}
         redirectUri="http://localhost:3000"
         audience="http://localhost:55915/api"
-        scope=""
     >
         <Router>
             <App />
