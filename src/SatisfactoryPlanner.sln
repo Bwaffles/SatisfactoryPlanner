@@ -85,9 +85,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{73C2F6A2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Pioneers.IntegrationTests", "Modules\Pioneers\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.csproj", "{173D2D7E-9C2F-4BC6-B151-CADE142A9095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests", "BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests.csproj", "{3D02F550-E185-4B96-8609-C5EB79C2713D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests", "BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests.csproj", "{3D02F550-E185-4B96-8609-C5EB79C2713D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests", "Modules\Pioneers\Tests\UnitTests\SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests.csproj", "{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.UserAccess.IntegrationTests", "Modules\UserAccess\Tests\SatisfactoryPlanner.Modules.UserAccess.IntegrationTests\SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.csproj", "{F5713461-28B2-488C-B85D-654A3EBBC4F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -209,6 +211,10 @@ Global
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5713461-28B2-488C-B85D-654A3EBBC4F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5713461-28B2-488C-B85D-654A3EBBC4F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5713461-28B2-488C-B85D-654A3EBBC4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5713461-28B2-488C-B85D-654A3EBBC4F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -251,6 +257,7 @@ Global
 		{173D2D7E-9C2F-4BC6-B151-CADE142A9095} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 		{3D02F550-E185-4B96-8609-C5EB79C2713D} = {C3E54654-3DB5-4C55-81E2-0978B65FF5CF}
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
+		{F5713461-28B2-488C-B85D-654A3EBBC4F6} = {A9902063-00BE-46CE-B0D4-95CB9E98C2BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}

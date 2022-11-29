@@ -5,17 +5,19 @@ export const useApi = (url: string, options: any = {}) => {
     const { getAccessTokenSilently } = useAuth0();
     const [error, setError] = useState<unknown>(null);
     const [loading, setLoading] = useState(true);
+    const [statusCode, setStatusCode] = useState<number>(0);
     const [data, setData] = useState(null);
     const [refreshIndex, setRefreshIndex] = useState(0);
 
     useEffect(() => {
         (async () => {
             try {
+                const baseUrl = "http://localhost:55915/api";
                 const { ...fetchOptions } = options;
                 const accessToken = await getAccessTokenSilently({
-                     audience: "http://localhost:55915/api"
+                    audience: baseUrl
                 });
-                const res = await fetch(url, {
+                const res = await fetch(baseUrl + url, {
                     ...fetchOptions,
                     headers: {
                         ...fetchOptions.headers,
@@ -24,10 +26,12 @@ export const useApi = (url: string, options: any = {}) => {
                     },
                 });
 
-                setData(await res.json());
+                setStatusCode(await res.status);
+                setData(await res.json());;
                 setError(null);
                 setLoading(false);
             } catch (error) {
+                console.error(error);
                 setError(error);
                 setLoading(false);
             }
@@ -37,6 +41,7 @@ export const useApi = (url: string, options: any = {}) => {
     return {
         error,
         loading,
+        statusCode,
         data,
         refresh: () => setRefreshIndex(refreshIndex + 1)
     };

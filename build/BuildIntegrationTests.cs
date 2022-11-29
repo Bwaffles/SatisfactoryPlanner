@@ -73,7 +73,7 @@ partial class Build
     const string Modules = "SatisfactoryPlanner.Modules";
     const string PioneersModuleIntegrationTestsProjectName = $"{Modules}.Pioneers.IntegrationTests";
 
-    Target BuildMeetingsModuleIntegrationTests => _ => _
+    Target BuildPioneersModuleIntegrationTests => _ => _
         .DependsOn(CreateDatabase)
         .Executes(() =>
         {
@@ -87,10 +87,37 @@ partial class Build
     const string SatisfactoryPlannerDatabaseEnvName = "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
 
     Target RunPioneersModuleIntegrationTests => _ => _
-        .DependsOn(BuildMeetingsModuleIntegrationTests)
+        .DependsOn(BuildPioneersModuleIntegrationTests)
         .Executes(() =>
         {
             var integrationTest = Solution.GetProject(PioneersModuleIntegrationTestsProjectName);
+            Environment.SetEnvironmentVariable(
+                SatisfactoryPlannerDatabaseEnvName,
+                ConnectionString);
+
+            DotNetTasks.DotNetTest(s => s
+                .EnableNoBuild()
+                .SetProjectFile(integrationTest));
+        });
+    
+    const string UserAccessModuleIntegrationTestsProjectName = $"{Modules}.UserAccess.IntegrationTests";
+
+    Target BuildUserAccessModuleIntegrationTests => _ => _
+        .DependsOn(CreateDatabase)
+        .Executes(() =>
+        {
+            var integrationTest = Solution.GetProject(UserAccessModuleIntegrationTestsProjectName);
+
+            DotNetTasks.DotNetBuild(s => s
+                .SetProjectFile(integrationTest)
+                .DisableNoRestore());
+        });
+
+    Target RunUserAccessModuleIntegrationTests => _ => _
+        .DependsOn(BuildUserAccessModuleIntegrationTests)
+        .Executes(() =>
+        {
+            var integrationTest = Solution.GetProject(UserAccessModuleIntegrationTestsProjectName);
             Environment.SetEnvironmentVariable(
                 SatisfactoryPlannerDatabaseEnvName,
                 ConnectionString);
@@ -103,6 +130,7 @@ partial class Build
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
     Target RunAllIntegrationTests => _ => _
         .DependsOn(RunPioneersModuleIntegrationTests)
+        .DependsOn(RunUserAccessModuleIntegrationTests)
         .Executes(() =>
         {
 

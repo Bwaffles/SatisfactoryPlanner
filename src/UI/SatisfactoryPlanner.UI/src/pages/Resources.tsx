@@ -1,5 +1,4 @@
 import React from 'react';
-import {  } from '@auth0/auth0-react';
 
 import PageHeader from "../components/PageHeader";
 import { useApi } from "../hooks/use-api";
@@ -11,14 +10,12 @@ const Resources = () => {
     const {
         loading,
         data: resources
-    } = useApi("http://localhost:55915/api/resources", opts);
+    } = useApi("/resources", opts);
     
-
     if (loading) {
         return <div>Loading...</div>;
     }
     
-
     return (
         <React.Fragment>
             <PageHeader text="Resources" />

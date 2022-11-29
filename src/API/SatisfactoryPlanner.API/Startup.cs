@@ -192,8 +192,7 @@ namespace SatisfactoryPlanner.API
 
         private void InitializeModules(ILifetimeScope container)
         {
-            var httpContextAccessor = container.Resolve<IHttpContextAccessor>();
-            var executionContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
+            var executionContextAccessor = container.Resolve<IExecutionContextAccessor>();
 
             var emailsConfiguration =
                 new EmailsConfiguration(_configuration.GetValue<string>("EmailsConfiguration:FromEmail"));

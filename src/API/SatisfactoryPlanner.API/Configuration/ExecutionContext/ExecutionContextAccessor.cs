@@ -1,35 +1,47 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SatisfactoryPlanner.BuildingBlocks.Application;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetUsers;
 using System;
 using System.Linq;
+using System.Security.Claims;
 
 namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
 {
     public class ExecutionContextAccessor : IExecutionContextAccessor
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IUserAccessModule _userAccessModule;
 
-        public ExecutionContextAccessor(IHttpContextAccessor httpContextAccessor)
+        public ExecutionContextAccessor(IHttpContextAccessor httpContextAccessor, IUserAccessModule userAccessModule)
         {
             _httpContextAccessor = httpContextAccessor;
+            _userAccessModule = userAccessModule;
         }
 
         public Guid UserId
         {
             get
             {
-                if (_httpContextAccessor
+                // Get the Auth0 User Id from the Access Token of the request.
+                var auth0UserId = _httpContextAccessor
                     .HttpContext?
-                    .User?
-                    .Claims?
-                    .SingleOrDefault(x => x.Type == "sub")?
-                    .Value != null)
-                {
-                    return Guid.Parse(_httpContextAccessor.HttpContext.User.Claims.Single(
-                        x => x.Type == "sub").Value);
-                }
+                    .User
+                    .Claims
+                    .SingleOrDefault(a => a.Type == ClaimTypes.NameIdentifier)?
+                    .Value;
 
-                throw new ApplicationException("User context is not available");
+                if (auth0UserId == null)
+                    throw new ApplicationException("User context is not available");
+
+                // Get the User Id of the user in our system from the Auth0 User Id. 
+                // Don't want the entire application to be dependent on the 3rd party authentication platform I'm using.
+                var getCurrentUserTask = _userAccessModule.ExecuteQueryAsync(new GetUsersQuery(auth0UserId));
+                var currentUser = getCurrentUserTask.Result.SingleOrDefault();
+                if (currentUser == null) // This should only happen when user first signs up 
+                    throw new ApplicationException("User context is not available");
+
+                return currentUser.Id;
             }
         }
 
@@ -37,12 +49,17 @@ namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
         {
             get
             {
+                var user = _httpContextAccessor
+                    .HttpContext?
+                    .User
+                    .Claims
+                    .SingleOrDefault(a => a.Type == ClaimTypes.NameIdentifier)?
+                    .Value;
+
                 if (IsAvailable && _httpContextAccessor.HttpContext.Request.Headers.Keys.Any(
-                    x => x == CorrelationMiddleware.CorrelationHeaderKey))
-                {
+                        x => x == CorrelationMiddleware.CorrelationHeaderKey))
                     return Guid.Parse(
                         _httpContextAccessor.HttpContext.Request.Headers[CorrelationMiddleware.CorrelationHeaderKey]);
-                }
 
                 throw new ApplicationException("Http context and correlation id is not available");
             }

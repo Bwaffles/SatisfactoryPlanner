@@ -8,6 +8,7 @@ import Layout from "./pages/Layout";
 import NoMatch from "./pages/NoMatch";
 import Profile from "./pages/Profile";
 import Resources from "./pages/Resources";
+import Callback from "./pages/Callback";
 
 const App = () => {
     const { isAuthenticated } = useAuth0();
@@ -18,6 +19,7 @@ const App = () => {
                 <Route index element={<Home />} />
                 <Route path="profile" element={isAuthenticated ? <Profile /> : <AutoLogin />} />
                 <Route path="resources" element={isAuthenticated ? <Resources /> : <AutoLogin />} />
+                <Route path="/callback" element={<Callback />} />
                 <Route path="*" element={<NoMatch />} />
             </Route>
         </Routes>
