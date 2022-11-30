@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
+    "debug": "^4.3.4",
     "formik": "^2.2.9",
     "jest-editor-support": "^30.0.2",
     "react": "^18.1.0",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@types/auth0-js": "^9.14.6",
+    "@types/debug": "^4.1.7",
     "@types/node": "^18.11.9",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.18",

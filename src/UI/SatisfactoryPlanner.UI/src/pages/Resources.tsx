@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PageHeader from "../components/PageHeader";
-import { useApi } from "../hooks/use-api";
+import { useApi, ApiResponse } from "../hooks/use-api";
+
+import makeDebugger from '../utils/makeDebugger';
+const debug = makeDebugger('Resources');
 
 const Resources = () => {
-    const opts: any = {
-        
-    };
-    const {
-        loading,
-        data: resources
-    } = useApi("/resources", opts);
-    
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-    
+    debug("Rendering...");
+
+    const api = useApi();
+    const [resources, setResources] = useState<any>();
+
+    useEffect(() => {
+        api("/resources",
+                {
+                    method: "GET"
+                })
+            .then((value: ApiResponse) => {
+                debug("GetResources response: ", value);
+                setResources(value.data);
+            });
+    }, []);
+
+
     return (
         <React.Fragment>
             <PageHeader text="Resources" />

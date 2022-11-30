@@ -32,14 +32,14 @@ namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
                     .Value;
 
                 if (auth0UserId == null)
-                    throw new ApplicationException("User context is not available");
+                    throw new ApplicationException("Can't retrieve auth0UserId from access token.");
 
                 // Get the User Id of the user in our system from the Auth0 User Id. 
                 // Don't want the entire application to be dependent on the 3rd party authentication platform I'm using.
                 var getCurrentUserTask = _userAccessModule.ExecuteQueryAsync(new GetUsersQuery(auth0UserId));
                 var currentUser = getCurrentUserTask.Result.SingleOrDefault();
                 if (currentUser == null) // This should only happen when user first signs up 
-                    throw new ApplicationException("User context is not available");
+                    throw new ApplicationException($"No user exists for auth0UserId {auth0UserId}.");
 
                 return currentUser.Id;
             }

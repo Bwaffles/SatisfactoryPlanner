@@ -14,7 +14,8 @@ namespace DatabaseMigrator.Migrations.UserAccess
         {
             Alter.Table("users")
                 .InSchema("users")
-                .AddColumn("auth0_user_id").AsString().NotNullable().Unique().WithColumnDescription("The identifier of the user in Auth0.");
+                .AddColumn("auth0_user_id").AsString().NotNullable().Unique()
+                .WithColumnDescription("The identifier of the user in Auth0.").WithDefault(SystemMethods.NewGuid);
         }
     }
 }

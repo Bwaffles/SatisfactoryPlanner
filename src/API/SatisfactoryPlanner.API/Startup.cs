@@ -111,11 +111,6 @@ namespace SatisfactoryPlanner.API
                 {
                     options.Authority = Domain;
                     options.Audience = _configuration["Auth0:Audience"];
-                    // If the access token does not have a `sub` claim, `User.Identity.Name` will be `null`. Map it to a different claim by setting the NameClaimType below.
-                    //options.TokenValidationParameters = new TokenValidationParameters
-                    //{
-                    //    NameClaimType = ClaimTypes.NameIdentifier
-                    //};
                 });
 
         private void ConfigureIdentityServer(IServiceCollection services) =>

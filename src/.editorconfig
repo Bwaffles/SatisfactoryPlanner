@@ -262,6 +262,7 @@ dotnet_style_qualification_for_event = false:silent
 dotnet_style_qualification_for_method = false:silent
 dotnet_diagnostic.CA1505.severity = warning
 
-[{**/Get*/*Dto.cs}]
+# *Request.cs files are used to retrieve values for the api end points and don't have constructors
+[{**/Get*/*Dto.cs,**/*API/**/*Request.cs}]
 # CS8618: Non-nullable field is uninitialized. Consider declaring as nullable.
 dotnet_diagnostic.CS8618.severity = none
