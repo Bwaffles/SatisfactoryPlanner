@@ -43,3 +43,16 @@ Reasoning being that `/pioneers/9` is a resource and the resource does not exist
   - https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-7.0#synchronous-action
   - https://stackoverflow.com/a/61049975
   - FYI dissenting opinion https://jsonapi.org/format/#fetching-resources-responses I think the docs are up to interpretation. On the surface it seems to say to always use `200 Ok` and return null. But I think reading it deeper it means more like return `200 Ok` if pioneer 9 exists but there is no data there.
+
+# Domain Events
+An aggregate can push an XDomainEvent that other aggregates in the module can subscribe to by creating an XNotification. The notifications are registerd in the module startup class to be processed in the Outbox of the module. They will be serialized and saved in the outbox_messages table in the module's schema.
+
+The quartz scheduler watches this table and runs the `ProcessOutboxCommandHandler` that reads unprocessed messages and executes any handlers that inherit from INotificationHandler<XNotification>.
+
+## Internal Commands
+From here you can execute a command, say if you want to publish an event from aggregate 1 and have aggregate 2 respond to it, then you would create a command that can be ran as an internal command. Internal commands are also ran through Quartz and get saved to the internal_commands table in the module schema.
+
+## Integration Events
+You can also trigger an integration event if you need other modules to be able to subscribe to this event. In this case you create a class like `XPublishEventHandler` that inherits from the same `INotificationHandler<XNotification>`. This handler would publish an integration event to the event bus. The event bus is an in memory message system where all modules can publish and subscribe to events. 
+
+Modules can subscribe to events in their Startup EventBusModule. This creates handlers that will load the event into the modules inbox_messages table. There is a job running called `ProcessInboxCommandHandler` that reads unprocessed messages and executes any handlers for that messages.
