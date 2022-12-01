@@ -10,16 +10,16 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users
     public class UserTests
     {
         [Test]
-        public void CreateNewPioneer_WithEmptyAuth0UserId_ThrowsException()
+        public void CreatePioneer_WithEmptyAuth0UserId_ThrowsException()
         {
             var usersCounter = Substitute.For<IUsersCounter>();
 
-            Action createNewUser = () => User.CreateNewPioneer("", usersCounter);
+            Action createNewUser = () => User.CreatePioneer("", usersCounter);
             createNewUser.Should().Throw<ArgumentException>();
         }
 
         [Test]
-        public void CreateNewPioneer_WithoutUniqueAuth0UserId_BreaksUserAuth0UserIdMustBeUniqueRule()
+        public void CreatePioneer_WithoutUniqueAuth0UserId_BreaksUserAuth0UserIdMustBeUniqueRule()
         {
             const string auth0UserId = "myAuth0UserId";
 
@@ -28,12 +28,12 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users
 
             RuleAssertions.AssertBrokenRule<UserAuth0UserIdMustBeUniqueRule>(() =>
             {
-                User.CreateNewPioneer(auth0UserId, pioneersCounter);
+                User.CreatePioneer(auth0UserId, pioneersCounter);
             });
         }
 
         [Test]
-        public void CreateNewPioneer_WithUniqueAuth0UserId_IsSuccessful()
+        public void CreatePioneer_WithUniqueAuth0UserId_IsSuccessful()
         {
             const string auth0UserId = "myAuth0UserId";
 
@@ -41,8 +41,8 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users
             pioneersCounter.CountUsersWithAuth0UserId(auth0UserId).Returns(x => 0);
 
             User user;
-            Action createNewPioneer = () => user = User.CreateNewPioneer(auth0UserId, pioneersCounter);
-            createNewPioneer.Should().NotThrow();
+            Action createPioneer = () => user = User.CreatePioneer(auth0UserId, pioneersCounter);
+            createPioneer.Should().NotThrow();
         }
     }
 }

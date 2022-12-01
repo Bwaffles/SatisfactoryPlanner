@@ -34,9 +34,10 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
 
             Id = new UserId(Guid.NewGuid());
             _auth0UserId = auth0UserId;
+
         }
 
-        public static User CreateNewPioneer(string auth0UserId, IUsersCounter usersCounter) 
+        public static User CreatePioneer(string auth0UserId, IUsersCounter usersCounter) 
             => new (auth0UserId, usersCounter);
     }
 }

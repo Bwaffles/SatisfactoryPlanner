@@ -19,7 +19,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrent
 
         public async Task<Guid> Handle(CreateCurrentUserCommand request, CancellationToken cancellationToken)
         {
-            var user = User.CreateNewPioneer(
+            var user = User.CreatePioneer(
                 request.Auth0UserId,
                 _usersCounter
                 );
