@@ -43,6 +43,7 @@ const Callback = () => {
                             debug("User created. Redirecting to home...");
                             navigate("/");
                         } else {
+                            navigate("/loginError");
                             debug("Something went wrong adding the user");
                         }
                     });
@@ -51,6 +52,7 @@ const Callback = () => {
                 debug("User already exists. Redirecting to home...");
                 navigate("/");
             } else {
+                navigate("/loginError");
                 setError(error);
                 debug("Error: ", value.error);
 
