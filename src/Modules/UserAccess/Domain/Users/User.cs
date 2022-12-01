@@ -1,4 +1,5 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.Users.Events;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.Users.Rules;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
         /// <summary>
         ///     The identifier of the user in Auth0.
         /// </summary>
+        [SuppressMessage("ReSharper", "NotAccessedField.Local")]
         private readonly string _auth0UserId;
 
         private readonly List<UserRole> _roles;
@@ -35,6 +37,8 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
             Id = new UserId(Guid.NewGuid());
             _auth0UserId = auth0UserId;
 
+            // TODO only trigger this even if UserRole is Pioneer
+            AddDomainEvent(new PioneerUserCreatedDomainEvent(Id));
         }
 
         public static User CreatePioneer(string auth0UserId, IUsersCounter usersCounter) 

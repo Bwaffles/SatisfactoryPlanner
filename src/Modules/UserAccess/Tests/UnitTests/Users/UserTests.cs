@@ -1,11 +1,11 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.Users;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.Users.Events;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.Users.Rules;
 using System;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users
 {
-
     [TestFixture]
     public class UserTests
     {
@@ -14,8 +14,8 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users
         {
             var usersCounter = Substitute.For<IUsersCounter>();
 
-            Action createNewUser = () => User.CreatePioneer("", usersCounter);
-            createNewUser.Should().Throw<ArgumentException>();
+            Action createPioneer = () => User.CreatePioneer("", usersCounter);
+            createPioneer.Should().Throw<ArgumentException>();
         }
 
         [Test]
@@ -23,12 +23,12 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users
         {
             const string auth0UserId = "myAuth0UserId";
 
-            var pioneersCounter = Substitute.For<IUsersCounter>();
-            pioneersCounter.CountUsersWithAuth0UserId(auth0UserId).Returns(x => 1);
+            var usersCounter = Substitute.For<IUsersCounter>();
+            usersCounter.CountUsersWithAuth0UserId(auth0UserId).Returns(x => 1);
 
             RuleAssertions.AssertBrokenRule<UserAuth0UserIdMustBeUniqueRule>(() =>
             {
-                User.CreatePioneer(auth0UserId, pioneersCounter);
+                User.CreatePioneer(auth0UserId, usersCounter);
             });
         }
 
@@ -40,9 +40,13 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users
             var pioneersCounter = Substitute.For<IUsersCounter>();
             pioneersCounter.CountUsersWithAuth0UserId(auth0UserId).Returns(x => 0);
 
-            User user;
-            Action createPioneer = () => user = User.CreatePioneer(auth0UserId, pioneersCounter);
-            createPioneer.Should().NotThrow();
+            var user = User.CreatePioneer(auth0UserId, pioneersCounter);
+
+            var pioneerUserCreateDomainEvent = DomainEventAssertions
+                .AssertPublishedEvent<PioneerUserCreatedDomainEvent>(user);
+
+            pioneerUserCreateDomainEvent.UserId
+                .Should().BeEquivalentTo(user.Id);
         }
     }
 }
