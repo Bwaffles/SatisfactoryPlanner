@@ -2,18 +2,19 @@
 {
     public static class DomainEventAssertions
     {
-        public static void AssertEventIsNotPublished<T>(Entity aggregate, string because = "")
+        public static void AssertEventIsNotPublished<TEvent>(Entity aggregate, string because = "")
+            where TEvent : DomainEventBase
         {
-            var eventIsPublished = DomainEventsTestHelper.GetAllDomainEvents(aggregate).OfType<T>().Any();
+            var eventIsPublished = DomainEventsTestHelper.GetAllDomainEvents(aggregate).OfType<TEvent>().Any();
             if (eventIsPublished)
-                throw new Exception($"Expected {typeof(T).Name} event to not be published {because}.");
+                throw new Exception($"Expected {typeof(TEvent).Name} event to not be published {because}.");
         }
 
-        public static T AssertPublishedEvent<T>(Entity aggregate)
+        public static TEvent AssertPublishedEvent<TEvent>(Entity aggregate) where TEvent : DomainEventBase
         {
-            var domainEvent = DomainEventsTestHelper.GetAllDomainEvents(aggregate).OfType<T>().SingleOrDefault();
+            var domainEvent = DomainEventsTestHelper.GetAllDomainEvents(aggregate).OfType<TEvent>().SingleOrDefault();
             if (domainEvent == null)
-                throw new Exception($"{typeof(T).Name} event not published.");
+                throw new Exception($"{typeof(TEvent).Name} event not published.");
 
             return domainEvent;
         }

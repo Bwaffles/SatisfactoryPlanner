@@ -1,4 +1,5 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers.Events;
 using System.Diagnostics.CodeAnalysis;
 
 namespace SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers
@@ -11,13 +12,13 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers
         public PioneerId Id { get; }
 
         [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Used by EF")]
-        private Pioneer() { }
+        private Pioneer() { /* For EF */ }
 
         private Pioneer(Guid pioneerId)
         {
             Id = new PioneerId(pioneerId);
 
-            // TODO PioneerCreateDomainEvent
+            AddDomainEvent(new PioneerSpawnedDomainEvent(Id));
         }
 
         /// <summary>

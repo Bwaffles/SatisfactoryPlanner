@@ -1,4 +1,6 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
+﻿using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
+using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers.Events;
 
 namespace SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests
 {
@@ -10,8 +12,10 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests
         {
             var pioneerId = Guid.NewGuid();
             var pioneer = Pioneer.Spawn(pioneerId);
-            
+
             pioneer.Id.Value.Should().Be(pioneerId);
+
+            DomainEventAssertions.AssertPublishedEvent<PioneerSpawnedDomainEvent>(pioneer);
         }
     }
 }

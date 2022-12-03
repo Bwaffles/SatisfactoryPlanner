@@ -177,7 +177,10 @@ namespace SatisfactoryPlanner.API
                 .WriteTo.Console(
                     outputTemplate:
                     "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
-                .WriteTo.File(new CompactJsonFormatter(), "logs/logs")
+                .WriteTo.File(new CompactJsonFormatter(),
+                    path: "logs/logs.json",
+                    rollOnFileSizeLimit: true,
+                    fileSizeLimitBytes: 5 * 10 * 1024)
                 .CreateLogger();
 
             _loggerForApi = _logger.ForContext("Module", "API");
