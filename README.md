@@ -45,9 +45,14 @@ Reasoning being that `/pioneers/9` is a resource and the resource does not exist
   - FYI dissenting opinion https://jsonapi.org/format/#fetching-resources-responses I think the docs are up to interpretation. On the surface it seems to say to always use `200 Ok` and return null. But I think reading it deeper it means more like return `200 Ok` if pioneer 9 exists but there is no data there.
 
 # Domain Events
-An aggregate can push an XDomainEvent that other aggregates in the module can subscribe to by creating an XNotification. The notifications are registerd in the module startup class to be processed in the Outbox of the module. They will be serialized and saved in the outbox_messages table in the module's schema.
 
-The quartz scheduler watches this table and runs the `ProcessOutboxCommandHandler` that reads unprocessed messages and executes any handlers that inherit from INotificationHandler<XNotification>.
+Domain events are added to entities whenever an action has been performed. Domain events are published at 2 different stages of the transaction. You can handle a domain event within a transaction so that you can ensure the entire transaction completes together, or you can handle it outside the transaction if it's not critical or dependent on some third party integration.
+
+### Inside Transaction
+To handle a domain event within the transaction, create a `XDomainEventHandler` that inherits from `INotificationHandler<XDomainEvent>`. Perform your changes to the domain and it will be saves together with the changes that initiated the domain event when the unit of work has finished.
+
+### Outside Transaction
+To handle a domain event outside a transaction, create a `XNotification` that inherits from `DomainNotificationBase<XDomainEvent>`. The notifications are registerd in the module startup class to be processed in the outbox of the module. They will be serialized and saved in the `outbox_messages` table in the module's schema. The quartz scheduler watches this table and runs the `ProcessOutboxCommandHandler` that reads unprocessed messages and executes any handlers that inherit from `INotificationHandler<XNotification>`.
 
 ## Internal Commands
 From here you can execute a command, say if you want to publish an event from aggregate 1 and have aggregate 2 respond to it, then you would create a command that can be ran as an internal command. Internal commands are also ran through Quartz and get saved to the internal_commands table in the module schema.
