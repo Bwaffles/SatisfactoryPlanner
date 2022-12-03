@@ -1,44 +1,47 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.Users.Events;
+using SatisfactoryPlanner.Modules.UserAccess.Domain.Users.Rules;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
 {
     public class User : Entity, IAggregateRoot
     {
-        public UserId Id { get; private set; }
-
-        private readonly string _username;
-
-        private readonly string _password;
-
-        private readonly string _email;
-
-        private readonly bool _isActive;
+        /// <summary>
+        ///     The identifier of the user in Auth0.
+        /// </summary>
+        [SuppressMessage("ReSharper", "NotAccessedField.Local")]
+        private readonly string _auth0UserId;
 
         private readonly List<UserRole> _roles;
 
-        private User() { /* Only for EF. */ }
+        /// <summary>
+        ///     The unique id of the user.
+        /// </summary>
+        public UserId Id { get; }
 
-        //internal static User CreateFromUserRegistration(UserRegistrationId userRegistrationId, string username, string password, string email)
-        //{
-        //    return new User(userRegistrationId, username, password, email);
-        //}
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
+        private User()
+        { /* Only for EF. */
+        }
 
-        //private User(UserRegistrationId userRegistrationId, string username, string password, string email)
-        //{
-        //    this.Id = new UserId(userRegistrationId.Value);
-        //    _username = username;
-        //    _password = password;
-        //    _email = email;
+        private User(string auth0UserId, IUsersCounter usersCounter)
+        {
+            if (auth0UserId == "")
+                throw new ArgumentException($"{nameof(auth0UserId)} can't be empty", nameof(auth0UserId));
 
-        //    _isActive = true;
+            CheckRule(new UserAuth0UserIdMustBeUniqueRule(auth0UserId, usersCounter));
 
-        //    _roles = new List<UserRole>
-        //    {
-        //        UserRole.Member
-        //    };
+            Id = new UserId(Guid.NewGuid());
+            _auth0UserId = auth0UserId;
 
-        //    this.AddDomainEvent(new UserCreatedDomainEvent(this.Id));
-        //}
+            // TODO only trigger this even if UserRole is Pioneer
+            AddDomainEvent(new PioneerUserCreatedDomainEvent(Id));
+        }
+
+        public static User CreatePioneer(string auth0UserId, IUsersCounter usersCounter) 
+            => new (auth0UserId, usersCounter);
     }
 }

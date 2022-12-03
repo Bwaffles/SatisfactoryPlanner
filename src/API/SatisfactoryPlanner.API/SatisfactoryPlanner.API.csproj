@@ -5,6 +5,9 @@
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <UserSecretsId>85da2702-6815-4906-a76e-daa240260f8f</UserSecretsId>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+	  <NoWarn>$(NoWarn);1591</NoWarn>
+	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,6 +38,12 @@
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
     <ProjectReference Include="..\..\Modules\Factories\Infrastructure\SatisfactoryPlanner.Modules.Factories.Infrastructure.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Pioneers\Application\SatisfactoryPlanner.Modules.Pioneers.Application.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Pioneers\Infrastructure\SatisfactoryPlanner.Modules.Pioneers.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
     <ProjectReference Include="..\..\Modules\Resources\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj">

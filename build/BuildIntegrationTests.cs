@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Nuke.Common;
 using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
@@ -27,11 +28,11 @@ partial class Build
     const string PostgresPassword = "123qwe!@#QWE";
     const string PostgresUser = "test-user";
     const string PostgresPort = "1401";
-    const string ConnectionString = $"Server=127.0.0.1:{PostgresPort};User Id={PostgresUser};Password={PostgresPassword};";
+    const string MasterConnectionString = $"Server=127.0.0.1:{PostgresPort};User Id={PostgresUser};Password={PostgresPassword};";
 
     /// <summary>
     ///     Pull and run the docker container that hosts the postgres database. After this point we should be able to
-    /// connect to it using the <see cref="ConnectionString"/>.
+    /// connect to it using the <see cref="MasterConnectionString"/>.
     /// </summary>
     Target PreparePostgresContainer => _ => _
         .DependsOn(CleanDatabaseContainer)
@@ -51,9 +52,10 @@ partial class Build
                 //.SetMount($"type=bind,source=\"{InputFilesDirectory}\",target=/{InputFilesDirectoryName},readonly")
                 .EnableDetach());
 
-            PostgresReadinessChecker.WaitForPostgresServer(ConnectionString);
+            PostgresReadinessChecker.WaitForPostgresServer(MasterConnectionString);
         });
 
+    const string ConnectionString = $"{MasterConnectionString};Database=satisfactory-planner;";
     /// <summary>
     ///     Run the database migrator app to execute all current migrations and bring the new database up to the most recent version.
     /// </summary>
@@ -61,19 +63,74 @@ partial class Build
         .DependsOn(PreparePostgresContainer)
         .Executes(() =>
         {
-            var masterConnectionString = $"\"{ConnectionString}\"";
-            var connectionString = $"\"{ConnectionString};Database=satisfactory-planner;\"";
-
             var databaseMigratorProject = Solution.GetProject("DatabaseMigrator");
             DotNetTasks.DotNetRun(s => s
                 .SetProjectFile(databaseMigratorProject)
                 .SetConfiguration(Configuration)
-                .SetApplicationArguments($"release {masterConnectionString} {connectionString}"));
+                .SetApplicationArguments($"release \"{MasterConnectionString}\" \"{ConnectionString}\""));
+        });
+
+    const string Modules = "SatisfactoryPlanner.Modules";
+    const string PioneersModuleIntegrationTestsProjectName = $"{Modules}.Pioneers.IntegrationTests";
+
+    Target BuildPioneersModuleIntegrationTests => _ => _
+        .DependsOn(CreateDatabase)
+        .Executes(() =>
+        {
+            var integrationTest = Solution.GetProject(PioneersModuleIntegrationTestsProjectName);
+
+            DotNetTasks.DotNetBuild(s => s
+                .SetProjectFile(integrationTest)
+                .DisableNoRestore());
+        });
+
+    const string SatisfactoryPlannerDatabaseEnvName = "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
+
+    Target RunPioneersModuleIntegrationTests => _ => _
+        .DependsOn(BuildPioneersModuleIntegrationTests)
+        .Executes(() =>
+        {
+            var integrationTest = Solution.GetProject(PioneersModuleIntegrationTestsProjectName);
+            Environment.SetEnvironmentVariable(
+                SatisfactoryPlannerDatabaseEnvName,
+                ConnectionString);
+
+            DotNetTasks.DotNetTest(s => s
+                .EnableNoBuild()
+                .SetProjectFile(integrationTest));
+        });
+    
+    const string UserAccessModuleIntegrationTestsProjectName = $"{Modules}.UserAccess.IntegrationTests";
+
+    Target BuildUserAccessModuleIntegrationTests => _ => _
+        .DependsOn(CreateDatabase)
+        .Executes(() =>
+        {
+            var integrationTest = Solution.GetProject(UserAccessModuleIntegrationTestsProjectName);
+
+            DotNetTasks.DotNetBuild(s => s
+                .SetProjectFile(integrationTest)
+                .DisableNoRestore());
+        });
+
+    Target RunUserAccessModuleIntegrationTests => _ => _
+        .DependsOn(BuildUserAccessModuleIntegrationTests)
+        .Executes(() =>
+        {
+            var integrationTest = Solution.GetProject(UserAccessModuleIntegrationTestsProjectName);
+            Environment.SetEnvironmentVariable(
+                SatisfactoryPlannerDatabaseEnvName,
+                ConnectionString);
+
+            DotNetTasks.DotNetTest(s => s
+                .EnableNoBuild()
+                .SetProjectFile(integrationTest));
         });
 
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
     Target RunAllIntegrationTests => _ => _
-        .DependsOn(CreateDatabase)
+        .DependsOn(RunPioneersModuleIntegrationTests)
+        .DependsOn(RunUserAccessModuleIntegrationTests)
         .Executes(() =>
         {
 

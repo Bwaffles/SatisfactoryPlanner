@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
+using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.UserAccess.Domain;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations.Events;
@@ -27,7 +28,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
                 "confirmLink");
 
             var newUserRegisteredDomainEvent =
-                DomainEvents.AssertPublishedEvent<NewUserRegisteredDomainEvent>(userRegistration);
+                DomainEventAssertions.AssertPublishedEvent<NewUserRegisteredDomainEvent>(userRegistration);
 
             newUserRegisteredDomainEvent.UserRegistrationId
                 .Should().BeEquivalentTo(userRegistration.Id);
@@ -41,7 +42,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
                 .Setup(_ => _.CountUsersWithUsername("username"))
                 .Returns(1);
 
-            Rules.AssertBrokenRule<UserUsernameMustBeUniqueRule>(() =>
+            RuleAssertions.AssertBrokenRule<UserUsernameMustBeUniqueRule>((Action)(() =>
             {
                 UserRegistration.RegisterNewUser(
                     "username",
@@ -49,7 +50,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
                     "test@email.com",
                     usersCounter.Object,
                     "confirmLink");
-            });
+            }));
         }
 
         [Fact]
@@ -72,7 +73,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
 
             userRegistration.Confirm();
 
-            var userRegistrationConfirmed = DomainEvents.AssertPublishedEvent<UserRegistrationConfirmedDomainEvent>(userRegistration);
+            var userRegistrationConfirmed = DomainEventAssertions.AssertPublishedEvent<UserRegistrationConfirmedDomainEvent>(userRegistration);
             userRegistrationConfirmed.UserRegistrationId.Should().Be(userRegistration.Id);
             userRegistrationConfirmed.ConfirmedDate.Should().Be(date);
         }
@@ -93,12 +94,12 @@ namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests.UserRegistrations
                 "confirmLink");
 
             userRegistration.Confirm();
-            DomainEvents.AssertPublishedEvent<UserRegistrationConfirmedDomainEvent>(userRegistration);
+            DomainEventAssertions.AssertPublishedEvent<UserRegistrationConfirmedDomainEvent>(userRegistration);
 
             userRegistration.ClearDomainEvents();
             
             userRegistration.Confirm();
-            DomainEvents.AssertEventIsNotPublished<UserRegistrationConfirmedDomainEvent>(userRegistration,
+            DomainEventAssertions.AssertEventIsNotPublished<UserRegistrationConfirmedDomainEvent>(userRegistration,
                 "because the registration confirmation event was already triggered when the registration was originally confirmed.");
         }
     }

@@ -9,17 +9,19 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using SatisfactoryPlanner.API.Configuration;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
+using SatisfactoryPlanner.API.Configuration.Extensions;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.API.Modules.Factories;
+using SatisfactoryPlanner.API.Modules.Pioneers;
 using SatisfactoryPlanner.API.Modules.Resources;
 using SatisfactoryPlanner.API.Modules.UserAccess;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.UserAccess.Application.IdentityServer;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
@@ -30,10 +32,10 @@ namespace SatisfactoryPlanner.API
 {
     public class Startup
     {
-        private const string FactoriesConnectionString = "FactoriesConnectionString";
         private static ILogger _logger;
         private static ILogger _loggerForApi;
         private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
 
         /// <summary>
         ///     Get the Auth0 domain.
@@ -46,8 +48,8 @@ namespace SatisfactoryPlanner.API
 
             _configuration = configuration;
 
-            _loggerForApi.Information("Connection string:" +
-                                      _configuration.GetConnectionString(FactoriesConnectionString));
+            _connectionString = _configuration.GetConnectionString("FactoriesConnectionString");
+            _loggerForApi.Information($"Connection string: {_connectionString}");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -58,23 +60,18 @@ namespace SatisfactoryPlanner.API
 
             services.AddControllers();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "SatisfactoryPlanner.API", Version = "v1"
-                });
-            });
+            services.AddSwaggerDocumentation();
 
             //ConfigureIdentityServer(services);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
 
-            services.AddProblemDetails(x =>
+            services.AddProblemDetails(options =>
             {
-                x.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
-                x.Map<BusinessRuleValidationException>(ex => new BusinessRuleValidationExceptionProblemDetails(ex));
+                options.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
+                options.Map<BusinessRuleValidationException>(
+                    ex => new BusinessRuleValidationExceptionProblemDetails(ex));
             });
 
             //services.AddAuthorization(options =>
@@ -114,11 +111,6 @@ namespace SatisfactoryPlanner.API
                 {
                     options.Authority = Domain;
                     options.Audience = _configuration["Auth0:Audience"];
-                    // If the access token does not have a `sub` claim, `User.Identity.Name` will be `null`. Map it to a different claim by setting the NameClaimType below.
-                    //options.TokenValidationParameters = new TokenValidationParameters
-                    //{
-                    //    NameClaimType = ClaimTypes.NameIdentifier
-                    //};
                 });
 
         private void ConfigureIdentityServer(IServiceCollection services) =>
@@ -132,6 +124,7 @@ namespace SatisfactoryPlanner.API
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
+            containerBuilder.RegisterModule(new PioneersAutofacModule());
             containerBuilder.RegisterModule(new ResourcesAutofacModule());
             containerBuilder.RegisterModule(new FactoriesAutofacModule());
             containerBuilder.RegisterModule(new UserAccessAutofacModule());
@@ -153,7 +146,7 @@ namespace SatisfactoryPlanner.API
 
             app.UseMiddleware<CorrelationMiddleware>();
 
-            //app.UseSwaggerDocumentation();
+            app.UseSwaggerDocumentation();
 
             //app.UseIdentityServer();
 
@@ -184,7 +177,10 @@ namespace SatisfactoryPlanner.API
                 .WriteTo.Console(
                     outputTemplate:
                     "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
-                .WriteTo.File(new CompactJsonFormatter(), "logs/logs")
+                .WriteTo.File(new CompactJsonFormatter(),
+                    path: "logs/logs.json",
+                    rollOnFileSizeLimit: true,
+                    fileSizeLimitBytes: 5 * 10 * 1024)
                 .CreateLogger();
 
             _loggerForApi = _logger.ForContext("Module", "API");
@@ -194,32 +190,31 @@ namespace SatisfactoryPlanner.API
 
         private void InitializeModules(ILifetimeScope container)
         {
-            var httpContextAccessor = container.Resolve<IHttpContextAccessor>();
-            var executionContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
+            var executionContextAccessor = container.Resolve<IExecutionContextAccessor>();
 
             var emailsConfiguration =
                 new EmailsConfiguration(_configuration.GetValue<string>("EmailsConfiguration:FromEmail"));
 
-            ResourcesStartup.Initialize(
-                _configuration.GetConnectionString(FactoriesConnectionString),
+            FactoriesStartup.Initialize(
+                _connectionString,
                 executionContextAccessor,
                 _logger
-                //,
-                //emailsConfiguration,
-                //null
             );
 
-            FactoriesStartup.Initialize(
-                _configuration.GetConnectionString(FactoriesConnectionString),
+            PioneersStartup.Initialize(
+                _connectionString,
                 executionContextAccessor,
                 _logger
-                //,
-                //emailsConfiguration,
-                //null
+            );
+
+            ResourcesStartup.Initialize(
+                _connectionString,
+                executionContextAccessor,
+                _logger
             );
 
             UserAccessStartup.Initialize(
-                _configuration.GetConnectionString(FactoriesConnectionString),
+                _connectionString,
                 executionContextAccessor,
                 _logger,
                 emailsConfiguration,

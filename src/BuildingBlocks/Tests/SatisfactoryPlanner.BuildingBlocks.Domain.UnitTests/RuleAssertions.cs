@@ -1,10 +1,8 @@
 ﻿using FluentAssertions;
-using SatisfactoryPlanner.BuildingBlocks.Domain;
-using System;
 
-namespace SatisfactoryPlanner.Modules.UserAccess.UnitTests
+namespace SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests
 {
-    internal static class Rules
+    public static class RuleAssertions
     {
         public static void AssertBrokenRule<TRule>(Action action) where TRule : class, IBusinessRule
         {

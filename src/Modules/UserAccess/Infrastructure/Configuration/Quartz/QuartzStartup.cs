@@ -11,6 +11,8 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Qu
 {
     internal static class QuartzStartup
     {
+        private static IScheduler _scheduler;
+
         internal static void Initialize(ILogger logger)
         {
             logger.Information("Quartz starting...");
@@ -24,11 +26,15 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Qu
             logger.Information("Quartz started.");
         }
 
+        internal static void Shutdown() => _scheduler?.Shutdown();
+
         private static IScheduler StartScheduler(ILogger logger)
         {
             var schedulerConfiguration = new NameValueCollection
             {
-                { "quartz.scheduler.instanceName", "SatisfactoryPlanner" }
+                {
+                    "quartz.scheduler.instanceName", "SatisfactoryPlanner"
+                }
             };
 
             var schedulerFactory = new StdSchedulerFactory(schedulerConfiguration);
