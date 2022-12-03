@@ -67,9 +67,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.Infrastructure", "Modules\UserAccess\Infrastructure\SatisfactoryPlanner.Modules.UserAccess.Infrastructure.csproj", "{835A3C9C-B0EB-4FDB-A408-37FD542B23C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.UserAccess.IntegrationEvents", "Modules\UserAccess\IntegrationEvents\SatisfactoryPlanner.Modules.UserAccess.IntegrationEvents.csproj", "{AF0AB01F-BECC-412A-88BE-880FF752696E}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A9902063-00BE-46CE-B0D4-95CB9E98C2BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.ArchTests", "Modules\UserAccess\Tests\ArchTests\SatisfactoryPlanner.Modules.UserAccess.ArchTests.csproj", "{1894AB87-EED2-4E36-BB38-11E7C282D56B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.IntegrationTests", "Modules\UserAccess\Tests\IntegrationTests\SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.csproj", "{F5713461-28B2-488C-B85D-654A3EBBC4F6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.UserAccess.UnitTests", "Modules\UserAccess\Tests\UnitTests\SatisfactoryPlanner.Modules.UserAccess.UnitTests.csproj", "{4D306208-64AB-4A79-82CF-ECFB0968F7D9}"
 EndProject
@@ -88,8 +92,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests", "BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests.csproj", "{3D02F550-E185-4B96-8609-C5EB79C2713D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests", "Modules\Pioneers\Tests\UnitTests\SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests.csproj", "{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.UserAccess.IntegrationTests", "Modules\UserAccess\Tests\SatisfactoryPlanner.Modules.UserAccess.IntegrationTests\SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.csproj", "{F5713461-28B2-488C-B85D-654A3EBBC4F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -215,6 +217,10 @@ Global
 		{F5713461-28B2-488C-B85D-654A3EBBC4F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5713461-28B2-488C-B85D-654A3EBBC4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5713461-28B2-488C-B85D-654A3EBBC4F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF0AB01F-BECC-412A-88BE-880FF752696E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0AB01F-BECC-412A-88BE-880FF752696E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0AB01F-BECC-412A-88BE-880FF752696E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0AB01F-BECC-412A-88BE-880FF752696E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -258,6 +264,7 @@ Global
 		{3D02F550-E185-4B96-8609-C5EB79C2713D} = {C3E54654-3DB5-4C55-81E2-0978B65FF5CF}
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 		{F5713461-28B2-488C-B85D-654A3EBBC4F6} = {A9902063-00BE-46CE-B0D4-95CB9E98C2BD}
+		{AF0AB01F-BECC-412A-88BE-880FF752696E} = {389014AC-3278-4F76-BA8D-30F5B4744E82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}

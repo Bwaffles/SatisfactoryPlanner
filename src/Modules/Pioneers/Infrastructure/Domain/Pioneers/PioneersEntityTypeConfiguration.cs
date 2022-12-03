@@ -13,7 +13,6 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Domain.Pioneers
             builder.HasKey(x => x.Id);
 
             builder.Property<PioneerId>("Id").HasColumnName("id");
-            builder.Property<string>("Auth0UserId").HasColumnName("auth0_user_id");
         }
     }
 }

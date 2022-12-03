@@ -15,8 +15,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.GetPioneerDe
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
-            const string sql = $"  SELECT pioneer.id AS {nameof(PioneerDetailsDto.Id)}, " +
-                               $"         pioneer.auth0_user_id AS {nameof(PioneerDetailsDto.Auth0UserId)} " +
+            const string sql = $"  SELECT pioneer.id AS {nameof(PioneerDetailsDto.Id)} " +
                                "     FROM pioneers.pioneers AS pioneer " +
                                $"   WHERE pioneer.id = @{nameof(GetPioneerDetailsQuery.PioneerId)}";
             return await connection.QuerySingleOrDefaultAsync<PioneerDetailsDto>(

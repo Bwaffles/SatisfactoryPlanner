@@ -20,10 +20,10 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure
             : base(options) =>
             _loggerFactory = loggerFactory;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //optionsBuilder.UseLoggerFactory(_loggerFactory).EnableSensitiveDataLogging();
-        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
+            optionsBuilder
+                .UseLoggerFactory(_loggerFactory)
+                .EnableSensitiveDataLogging();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
             => modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);

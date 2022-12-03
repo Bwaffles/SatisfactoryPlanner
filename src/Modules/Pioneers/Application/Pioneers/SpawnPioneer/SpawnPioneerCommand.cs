@@ -1,11 +1,13 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
+﻿using Newtonsoft.Json;
+using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
 
 namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer
 {
-    public class SpawnPioneerCommand : CommandBase<Guid>
+    public class SpawnPioneerCommand : InternalCommandBase
     {
-        public string Auth0UserId { get; }
+        internal Guid PioneerId { get; }
 
-        public SpawnPioneerCommand(string auth0UserId) => Auth0UserId = auth0UserId;
+        [JsonConstructor]
+        public SpawnPioneerCommand(Guid id, Guid pioneerId) : base(id) => PioneerId = pioneerId;
     }
 }

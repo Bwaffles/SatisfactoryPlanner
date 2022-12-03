@@ -1,4 +1,5 @@
 using Dapper;
+using MediatR;
 using Npgsql;
 using NSubstitute;
 using SatisfactoryPlanner.BuildingBlocks.Application.Emails;
@@ -53,10 +54,19 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
             UserAccessModule = new UserAccessModule();
         }
 
+        protected async Task<T> GetLastOutboxMessage<T>()
+            where T : class, INotification
+        {
+            await using var connection = new NpgsqlConnection(ConnectionString);
+            var messages = await OutboxMessagesHelper.GetOutboxMessages(connection);
+
+            return OutboxMessagesHelper.Deserialize<T>(messages.Last());
+        }
+
         [TearDown]
         public void AfterEachTest()
         {
-            //PioneersStartup.Stop();
+            UserAccessStartup.Stop();
             //SystemClock.Reset();
         }
 

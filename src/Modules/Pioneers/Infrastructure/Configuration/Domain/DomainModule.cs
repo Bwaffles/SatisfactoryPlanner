@@ -1,6 +1,4 @@
 ﻿using Autofac;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
 
 namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Domain
 {
@@ -9,9 +7,6 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Doma
     /// </summary>
     internal class DomainModule : Module
     {
-        protected override void Load(ContainerBuilder builder) =>
-            builder.RegisterType<PioneersCounter>()
-                .As<IPioneersCounter>()
-                .InstancePerLifetimeScope();
+        protected override void Load(ContainerBuilder builder) { }
     }
 }

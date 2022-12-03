@@ -10,11 +10,12 @@ namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.Pioneers
         [Test]
         public async Task SpawnPioneer_Test()
         {
-            var pioneerId = await PioneersModule.ExecuteCommandAsync(new SpawnPioneerCommand(
-                "myAuth0UserId"
-            ));
+            var pioneerId = ExecutionContext.UserId;
 
-            pioneerId.Should().NotBeEmpty();
+            await PioneersModule.ExecuteCommandAsync(new SpawnPioneerCommand(
+                Guid.NewGuid(),
+                pioneerId
+            ));
 
             var pioneerDetails = await PioneersModule.ExecuteQueryAsync(new GetPioneerDetailsQuery(pioneerId));
 

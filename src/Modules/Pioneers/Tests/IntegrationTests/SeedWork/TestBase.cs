@@ -50,23 +50,14 @@ namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.SeedWork
         [TearDown]
         public void AfterEachTest()
         {
-            //PioneersStartup.Stop();
-            //SystemClock.Reset();
-        }
-
-        protected static void AssertBrokenRule<TRule>(AsyncTestDelegate testDelegate)
-            where TRule : class, IBusinessRule
-        {
-            var message = $"Expected {typeof(TRule).Name} broken rule";
-            var businessRuleValidationException =
-                Assert.CatchAsync<BusinessRuleValidationException>(testDelegate, message);
-            if (businessRuleValidationException != null)
-                Assert.That(businessRuleValidationException.BrokenRule, Is.TypeOf<TRule>(), message);
+            PioneersStartup.Stop();
         }
 
         private static async Task ClearDatabase(IDbConnection connection)
         {
-            const string sql = "DELETE FROM pioneers.pioneers;";
+            const string sql = "DELETE FROM pioneers.inbox_messages;" +
+                               "DELETE FROM pioneers.internal_commands;" +
+                               "DELETE FROM pioneers.pioneers;";
 
             await connection.ExecuteScalarAsync(sql);
         }

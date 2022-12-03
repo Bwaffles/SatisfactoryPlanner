@@ -1,13 +1,13 @@
 ﻿using Quartz;
 using Quartz.Impl;
 using Quartz.Logging;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Inbox;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.InternalCommands;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox;
+using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Inbox;
+using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.InternalCommands;
+using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Outbox;
 using Serilog;
 using System.Collections.Specialized;
 
-namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Quartz
+namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Quartz
 {
     internal static class QuartzStartup
     {

@@ -4,6 +4,7 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Emails;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrentUser;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.DataAccess;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Domain;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Email;
@@ -37,7 +38,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
             ConfigureCompositionRoot(
                 connectionString,
                 executionContextAccessor,
-                logger,
+                moduleLogger,
                 emailsConfiguration,
                 textEncryptionKey,
                 emailSender);
@@ -45,6 +46,11 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
             QuartzStartup.Initialize(moduleLogger);
 
             EventsBusStartup.Initialize(moduleLogger);
+        }
+
+        public static void Stop()
+        {
+            QuartzStartup.Shutdown();
         }
 
         private static void ConfigureCompositionRoot(
@@ -57,7 +63,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
         {
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterModule(new LoggingModule(logger.ForContext("Module", "UserAccess")));
+            containerBuilder.RegisterModule(new LoggingModule(logger));
 
             var loggerFactory = new SerilogLoggerFactory(logger);
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
@@ -67,7 +73,8 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
             containerBuilder.RegisterModule(new MediatorModule());
 
             var domainNotificationsMap = new BiDictionary<string, Type>();
-            domainNotificationsMap.Add("NewUserRegisteredNotification", typeof(NewUserRegisteredNotification));
+            domainNotificationsMap.Add(nameof(NewUserRegisteredNotification), typeof(NewUserRegisteredNotification));
+            domainNotificationsMap.Add(nameof(PioneerUserCreatedNotification), typeof(PioneerUserCreatedNotification));
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
 
             containerBuilder.RegisterModule(new QuartzModule());

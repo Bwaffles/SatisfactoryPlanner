@@ -1,26 +1,26 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
+﻿using MediatR;
+using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
 using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
 
 namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer
 {
     // ReSharper disable once UnusedMember.Global
-    public class SpawnPioneerCommandHandler : ICommandHandler<SpawnPioneerCommand, Guid>
+    public class SpawnPioneerCommandHandler : ICommandHandler<SpawnPioneerCommand>
     {
-        private readonly IPioneersCounter _pioneersCounter;
         private readonly IPioneersRepository _pioneersRepository;
 
-        public SpawnPioneerCommandHandler(IPioneersRepository pioneersRepository, IPioneersCounter pioneersCounter)
+        public SpawnPioneerCommandHandler(IPioneersRepository pioneersRepository)
         {
             _pioneersRepository = pioneersRepository;
-            _pioneersCounter = pioneersCounter;
         }
 
-        public async Task<Guid> Handle(SpawnPioneerCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(SpawnPioneerCommand request, CancellationToken cancellationToken)
         {
-            var pioneer = Pioneer.Spawn(request.Auth0UserId, _pioneersCounter);
+            var pioneer = Pioneer.Spawn(request.PioneerId);
+
             await _pioneersRepository.AddAsync(pioneer);
 
-            return pioneer.Id.Value;
+            return Unit.Value;
         }
     }
 }

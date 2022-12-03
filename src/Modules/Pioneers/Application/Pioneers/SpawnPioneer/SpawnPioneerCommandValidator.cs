@@ -6,8 +6,8 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer
     {
         public SpawnPioneerCommandValidator()
         {
-            RuleFor(_ => _.Auth0UserId).NotEmpty()
-                .WithMessage("Auth0UserId cannot be empty.");
+            RuleFor(_ => _.PioneerId).NotEmpty()
+                .WithMessage("PioneerId cannot be empty.");
         }
     }
 }
