@@ -23,7 +23,7 @@ const UserDropdown = () => {
     return (
         <div className="relative">
             <div
-                className="flex items-center justify-between py-4 px-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800 cursor-pointer"
+                className="flex items-center justify-between py-4 px-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800 cursor-pointer select-none"
                 onClick={isOpen ? closeMenu : openMenu}
             >
                 <div>
@@ -49,7 +49,7 @@ const UserDropdown = () => {
                             Profile
                         </NavLink>
                         <div
-                            className="flex justify-between items-center cursor-pointer"
+                            className="flex justify-between items-center cursor-pointer select-none"
                             onClick={() =>
                                 logout({ returnTo: window.location.origin })
                             }
