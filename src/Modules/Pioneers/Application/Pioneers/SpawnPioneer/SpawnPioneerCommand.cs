@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.SpawnPioneer
 {
     public class SpawnPioneerCommand : InternalCommandBase
     {

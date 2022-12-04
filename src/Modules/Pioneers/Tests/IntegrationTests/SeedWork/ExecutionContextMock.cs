@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.SeedWork
+namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork
 {
     public class ExecutionContextMock : IExecutionContextAccessor
     {

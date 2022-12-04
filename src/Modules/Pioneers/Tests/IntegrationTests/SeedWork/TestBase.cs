@@ -1,15 +1,14 @@
 using Dapper;
 using Npgsql;
 using NSubstitute;
-using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
 using System.Data;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.SeedWork
+namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork
 {
     public class TestBase
     {
@@ -17,7 +16,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.SeedWork
 
         protected ILogger Logger { get; private set; }
 
-        protected IPioneersModule PioneersModule { get; private set; }
+        protected IWorldsModule WorldsModule { get; private set; }
 
         protected ExecutionContextMock ExecutionContext { get; private set; }
 
@@ -39,25 +38,27 @@ namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.SeedWork
             Logger = Substitute.For<ILogger>();
             ExecutionContext = new ExecutionContextMock(Guid.NewGuid());
 
-            PioneersStartup.Initialize(
+            WorldsStartup.Initialize(
                 ConnectionString,
                 ExecutionContext,
                 Logger);
 
-            PioneersModule = new PioneersModule();
+            WorldsModule = new WorldsModule();
         }
 
         [TearDown]
         public void AfterEachTest()
         {
-            PioneersStartup.Stop();
+            WorldsStartup.Stop();
         }
 
         private static async Task ClearDatabase(IDbConnection connection)
         {
-            const string sql = "DELETE FROM pioneers.inbox_messages;" +
-                               "DELETE FROM pioneers.internal_commands;" +
-                               "DELETE FROM pioneers.pioneers;";
+            const string sql = "DELETE FROM worlds.inbox_messages;" +
+                               "DELETE FROM worlds.internal_commands;" +
+                               "DELETE FROM worlds.outbox_messages;" +
+                               "DELETE FROM worlds.pioneers;" +
+                               "DELETE FROM worlds.worlds;";
 
             await connection.ExecuteScalarAsync(sql);
         }

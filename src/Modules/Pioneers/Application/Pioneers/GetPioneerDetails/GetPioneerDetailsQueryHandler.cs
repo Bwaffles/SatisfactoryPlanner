@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Queries;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Queries;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.GetPioneerDetails
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.GetPioneerDetails
 {
     internal class GetPioneerDetailsQueryHandler : IQueryHandler<GetPioneerDetailsQuery, PioneerDetailsDto?>
     {
@@ -16,7 +16,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.GetPioneerDe
             var connection = _dbConnectionFactory.GetOpenConnection();
 
             const string sql = $"  SELECT pioneer.id AS {nameof(PioneerDetailsDto.Id)} " +
-                               "     FROM pioneers.pioneers AS pioneer " +
+                               "     FROM worlds.pioneers AS pioneer " +
                                $"   WHERE pioneer.id = @{nameof(GetPioneerDetailsQuery.PioneerId)}";
             return await connection.QuerySingleOrDefaultAsync<PioneerDetailsDto>(
                 sql,

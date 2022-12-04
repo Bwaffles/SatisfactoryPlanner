@@ -1,25 +1,25 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.DataAccess;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Domain;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.EventsBus;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Logging;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Mediation;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Outbox;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Quartz;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.DataAccess;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Domain;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.EventsBus;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Logging;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Mediation;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Outbox;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Quartz;
 using Serilog;
 using Serilog.Extensions.Logging;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
 {
     /// <summary>
-    ///     Initialize the services and configurations for the Pioneers module.
+    ///     Initialize the services and configurations for the Worlds module.
     ///     This will set up the logging, domain services and dependency injection for this module.
     ///     Should be called from the main application Startup.
     /// </summary>
-    public class PioneersStartup
+    public class WorldsStartup
     {
         private static IContainer _container;
 

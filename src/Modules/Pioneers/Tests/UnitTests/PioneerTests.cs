@@ -1,8 +1,8 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers.Events;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers.Events;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests
+namespace SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests
 {
     [TestFixture]
     public class PioneerTests

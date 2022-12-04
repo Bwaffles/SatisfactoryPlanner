@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Outbox
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Outbox
 {
     internal class OutboxMessageEntityTypeConfiguration : IEntityTypeConfiguration<OutboxMessage>
     {
         public void Configure(EntityTypeBuilder<OutboxMessage> builder)
         {
-            builder.ToTable("outbox_messages", "pioneers");
+            builder.ToTable("outbox_messages", "worlds");
 
             builder.HasKey(b => b.Id);
 

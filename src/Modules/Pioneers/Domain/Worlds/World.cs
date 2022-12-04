@@ -1,8 +1,8 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Worlds.Events;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds.Events;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Domain.Worlds
+namespace SatisfactoryPlanner.Modules.Worlds.Domain.Worlds
 {
     public class World : Entity, IAggregateRoot
     {

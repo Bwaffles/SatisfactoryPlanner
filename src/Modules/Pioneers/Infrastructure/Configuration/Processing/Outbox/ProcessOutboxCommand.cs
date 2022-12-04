@@ -1,6 +1,6 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
+﻿using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Outbox
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Outbox
 {
     public class ProcessOutboxCommand : CommandBase, IRecurringCommand { }
 }

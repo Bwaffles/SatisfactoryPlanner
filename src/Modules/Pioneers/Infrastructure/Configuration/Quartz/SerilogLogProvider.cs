@@ -1,7 +1,7 @@
 ﻿using Quartz.Logging;
 using Serilog;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Quartz
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Quartz
 {
     internal class SerilogLogProvider : ILogProvider
     {

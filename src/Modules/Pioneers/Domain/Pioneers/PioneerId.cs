@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers
+namespace SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers
 {
     public class PioneerId : TypedIdValueBase
     {

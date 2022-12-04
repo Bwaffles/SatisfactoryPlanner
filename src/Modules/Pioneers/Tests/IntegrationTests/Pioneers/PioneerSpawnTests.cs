@@ -1,8 +1,8 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.GetPioneerDetails;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer;
-using SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.SeedWork;
+﻿using SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.GetPioneerDetails;
+using SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.SpawnPioneer;
+using SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.Pioneers
+namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.Pioneers
 {
     [TestFixture]
     public class PioneerSpawnTests : TestBase
@@ -12,14 +12,16 @@ namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.Pioneers
         {
             var pioneerId = ExecutionContext.UserId;
 
-            await PioneersModule.ExecuteCommandAsync(new SpawnPioneerCommand(
+            await WorldsModule.ExecuteCommandAsync(new SpawnPioneerCommand(
                 Guid.NewGuid(),
                 pioneerId
             ));
 
-            var pioneerDetails = await PioneersModule.ExecuteQueryAsync(new GetPioneerDetailsQuery(pioneerId));
+            var pioneerDetails = await WorldsModule.ExecuteQueryAsync(new GetPioneerDetailsQuery(pioneerId));
 
             pioneerDetails.Should().NotBeNull();
+
+            // Get world?
         }
     }
 }

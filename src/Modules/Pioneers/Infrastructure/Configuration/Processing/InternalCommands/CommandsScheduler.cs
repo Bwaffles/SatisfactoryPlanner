@@ -2,10 +2,10 @@
 using Newtonsoft.Json;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Serialization;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.InternalCommands
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.InternalCommands
 {
     public class CommandsScheduler : ICommandsScheduler
     {
@@ -19,7 +19,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Proc
         public async Task EnqueueAsync(ICommand command)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
-            const string sqlInsert = "INSERT INTO pioneers.internal_commands (id, enqueue_date, type, data) VALUES " +
+            const string sqlInsert = "INSERT INTO worlds.internal_commands (id, enqueue_date, type, data) VALUES " +
                                      "(@Id, @EnqueueDate, @Type, @Data)";
 
             await connection.ExecuteAsync(sqlInsert, new
@@ -37,7 +37,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Proc
         public async Task EnqueueAsync<T>(ICommand<T> command)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
-            const string sqlInsert = "INSERT INTO pioneers.internal_commands (id, enqueue_date, type, data) VALUES " +
+            const string sqlInsert = "INSERT INTO worlds.internal_commands (id, enqueue_date, type, data) VALUES " +
                                      "(@Id, @EnqueueDate, @Type, @Data)";
 
             await connection.ExecuteAsync(sqlInsert, new

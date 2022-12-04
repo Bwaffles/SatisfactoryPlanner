@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
 {
     internal static class PioneersCompositionRoot
     {

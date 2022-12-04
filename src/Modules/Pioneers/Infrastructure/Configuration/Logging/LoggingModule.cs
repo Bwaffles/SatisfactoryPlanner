@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Serilog;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Logging
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Logging
 {
     // TODO can we just centralize this in building blocks?
     internal class LoggingModule : Module

@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests
+﻿namespace SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests
 {
     public class TestBase
     {

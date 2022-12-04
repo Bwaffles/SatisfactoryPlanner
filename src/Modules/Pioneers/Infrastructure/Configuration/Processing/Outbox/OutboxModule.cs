@@ -4,9 +4,9 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Outbox;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Outbox;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Outbox
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Outbox
 {
     internal class OutboxModule : Module
     {

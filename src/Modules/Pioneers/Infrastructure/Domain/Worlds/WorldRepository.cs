@@ -1,6 +1,6 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Domain.Worlds;
+﻿using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Domain.Worlds
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Domain.Worlds
 {
     public class WorldRepository : IWorldRepository
     {

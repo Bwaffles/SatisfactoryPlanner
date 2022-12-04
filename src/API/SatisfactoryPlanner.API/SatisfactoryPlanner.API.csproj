@@ -40,10 +40,10 @@
     <ProjectReference Include="..\..\Modules\Factories\Infrastructure\SatisfactoryPlanner.Modules.Factories.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\Modules\Pioneers\Application\SatisfactoryPlanner.Modules.Pioneers.Application.csproj">
+    <ProjectReference Include="..\..\Modules\Pioneers\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\Modules\Pioneers\Infrastructure\SatisfactoryPlanner.Modules.Pioneers.Infrastructure.csproj">
+    <ProjectReference Include="..\..\Modules\Pioneers\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
     <ProjectReference Include="..\..\Modules\Resources\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj">

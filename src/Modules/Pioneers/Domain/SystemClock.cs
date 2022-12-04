@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Pioneers.Domain
+﻿namespace SatisfactoryPlanner.Modules.Worlds.Domain
 {
     public static class SystemClock
     {

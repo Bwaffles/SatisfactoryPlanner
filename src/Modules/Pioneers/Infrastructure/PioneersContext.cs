@@ -2,10 +2,10 @@
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Worlds;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
 {
     public class PioneersContext : DbContext
     {

@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations.Pioneers
+namespace DatabaseMigrator.Migrations.Worlds
 {
     [Migration(202211250011)]
     public class CreateTable_Pioneers : Migration

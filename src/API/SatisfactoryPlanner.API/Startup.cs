@@ -14,17 +14,17 @@ using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Extensions;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.API.Modules.Factories;
-using SatisfactoryPlanner.API.Modules.Pioneers;
 using SatisfactoryPlanner.API.Modules.Resources;
 using SatisfactoryPlanner.API.Modules.UserAccess;
+using SatisfactoryPlanner.API.Modules.Worlds;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.UserAccess.Application.IdentityServer;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Formatting.Compact;
 
@@ -124,7 +124,7 @@ namespace SatisfactoryPlanner.API
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterModule(new PioneersAutofacModule());
+            containerBuilder.RegisterModule(new WorldsAutofacModule());
             containerBuilder.RegisterModule(new ResourcesAutofacModule());
             containerBuilder.RegisterModule(new FactoriesAutofacModule());
             containerBuilder.RegisterModule(new UserAccessAutofacModule());
@@ -201,7 +201,7 @@ namespace SatisfactoryPlanner.API
                 _logger
             );
 
-            PioneersStartup.Initialize(
+            WorldsStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
                 _logger

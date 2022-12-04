@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations.Pioneers
+namespace DatabaseMigrator.Migrations.Worlds
 {
     [Migration(202212011146)]
     public class Create_InboxMessages : Migration

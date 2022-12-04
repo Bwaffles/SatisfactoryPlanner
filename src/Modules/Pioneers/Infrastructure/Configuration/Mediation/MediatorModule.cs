@@ -6,7 +6,7 @@ using MediatR;
 using MediatR.Pipeline;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Mediation
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Mediation
 {
     public class MediatorModule : Module
     {

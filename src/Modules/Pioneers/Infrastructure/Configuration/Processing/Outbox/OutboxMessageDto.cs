@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Outbox
+﻿namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Outbox
 {
     public class OutboxMessageDto
     {

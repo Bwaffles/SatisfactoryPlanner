@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Contracts
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Contracts
 {
     public interface ICommand<out TResult> : IRequest<TResult>
     {

@@ -36,7 +36,7 @@
     <ProjectReference Include="..\..\..\..\BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\Domain\SatisfactoryPlanner.Modules.Pioneers.Domain.csproj">
+    <ProjectReference Include="..\..\Domain\SatisfactoryPlanner.Modules.Worlds.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
   </ItemGroup>

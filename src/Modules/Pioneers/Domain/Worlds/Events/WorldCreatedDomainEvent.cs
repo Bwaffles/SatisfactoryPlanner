@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Domain.Worlds.Events
+namespace SatisfactoryPlanner.Modules.Worlds.Domain.Worlds.Events
 {
     public class WorldCreatedDomainEvent : DomainEventBase
     {

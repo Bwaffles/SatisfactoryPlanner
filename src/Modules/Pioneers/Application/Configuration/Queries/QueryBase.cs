@@ -1,6 +1,6 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
+﻿using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Queries
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Queries
 {
     public abstract class QueryBase<TResult> : IQuery<TResult>
     {

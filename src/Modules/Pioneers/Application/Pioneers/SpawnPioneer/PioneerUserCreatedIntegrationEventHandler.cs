@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
 using SatisfactoryPlanner.Modules.UserAccess.IntegrationEvents;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.SpawnPioneer
 {
     public class PioneerUserCreatedIntegrationEventHandler : INotificationHandler<PioneerUserCreatedIntegrationEvent>
     {

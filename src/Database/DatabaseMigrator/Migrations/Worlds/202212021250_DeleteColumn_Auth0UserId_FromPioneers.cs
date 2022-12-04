@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations.Pioneers
+namespace DatabaseMigrator.Migrations.Worlds
 {
     [Migration(202212021250)]
     public class DeleteColumn_Auth0UserId_FromPioneers : Migration

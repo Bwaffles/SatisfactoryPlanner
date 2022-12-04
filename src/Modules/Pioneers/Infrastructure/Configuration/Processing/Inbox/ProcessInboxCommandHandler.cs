@@ -2,9 +2,9 @@
 using MediatR;
 using Newtonsoft.Json;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Inbox
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Inbox
 {
     internal class ProcessInboxCommandHandler : ICommandHandler<ProcessInboxCommand>
     {
@@ -24,7 +24,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Proc
                 $" SELECT inbox_message.id AS {nameof(InboxMessageDto.Id)}, " +
                 $"        inbox_message.type AS {nameof(InboxMessageDto.Type)}, " +
                 $"        inbox_message.data AS {nameof(InboxMessageDto.Data)} " +
-                "    FROM pioneers.inbox_messages AS inbox_message " +
+                "    FROM worlds.inbox_messages AS inbox_message " +
                 "   WHERE inbox_message.processed_date IS NULL " +
                 "ORDER BY inbox_message.occurred_on";
 
@@ -48,7 +48,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Proc
                     throw;
                 }
                 
-                const string sqlUpdateProcessedDate = "UPDATE pioneers.inbox_messages " +
+                const string sqlUpdateProcessedDate = "UPDATE worlds.inbox_messages " +
                                                       "   SET processed_date = @Date " +
                                                       " WHERE id = @Id";
                 await connection.ExecuteAsync(sqlUpdateProcessedDate, new

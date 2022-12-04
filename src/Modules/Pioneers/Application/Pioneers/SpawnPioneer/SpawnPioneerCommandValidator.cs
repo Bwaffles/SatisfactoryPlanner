@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.SpawnPioneer
 {
     internal class SpawnPioneerCommandValidator : AbstractValidator<SpawnPioneerCommand>
     {

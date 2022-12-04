@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers.Events;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Worlds;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers.Events;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Worlds.CreateStarterWorld
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Worlds.CreateStarterWorld
 {
     public class CreateStarterWorldOnPioneerSpawnedEvent : INotificationHandler<PioneerSpawnedDomainEvent>
     {

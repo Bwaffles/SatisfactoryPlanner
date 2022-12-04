@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Outbox
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Outbox
 {
     public class OutboxAccessor : IOutbox
     {

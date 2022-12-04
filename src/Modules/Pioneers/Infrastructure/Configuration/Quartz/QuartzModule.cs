@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Quartz;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Quartz
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Quartz
 {
     public class QuartzModule : Module
     {

@@ -4,10 +4,10 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Events;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration.Processing;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.InternalCommands;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.InternalCommands;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing
 {
     internal class ProcessingModule : Module
     {

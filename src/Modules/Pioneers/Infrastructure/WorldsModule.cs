@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using MediatR;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing;
+using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
 {
-    public class PioneersModule : IPioneersModule
+    public class WorldsModule : IWorldsModule
     {
         public async Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command) =>
             await CommandsExecutor.Execute(command);

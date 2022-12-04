@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration.Processing;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing
 {
     internal class UnitOfWorkCommandHandlerDecorator<T> : ICommandHandler<T> where T : ICommand
     {

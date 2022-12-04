@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Worlds;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Domain.Worlds
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Domain.Worlds
 {
     public class WorldsEntityTypeConfiguration : IEntityTypeConfiguration<World>
     {
         public void Configure(EntityTypeBuilder<World> builder)
         {
-            builder.ToTable("worlds", "pioneers");
+            builder.ToTable("worlds", "worlds");
 
             builder.HasKey(x => x.Id);
 

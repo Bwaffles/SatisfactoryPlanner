@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Pioneers.Application.Contracts
+﻿namespace SatisfactoryPlanner.Modules.Worlds.Application.Contracts
 {
     public abstract class CommandBase : ICommand
     {

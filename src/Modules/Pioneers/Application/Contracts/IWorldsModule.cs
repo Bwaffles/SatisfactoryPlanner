@@ -1,6 +1,6 @@
-﻿namespace SatisfactoryPlanner.Modules.Pioneers.Application.Contracts
+﻿namespace SatisfactoryPlanner.Modules.Worlds.Application.Contracts
 {
-    public interface IPioneersModule
+    public interface IWorldsModule
     {
         Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command);
 

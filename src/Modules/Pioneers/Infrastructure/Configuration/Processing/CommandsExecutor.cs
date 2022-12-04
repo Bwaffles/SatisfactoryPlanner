@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using MediatR;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
+using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing
 {
     internal static class CommandsExecutor
     {

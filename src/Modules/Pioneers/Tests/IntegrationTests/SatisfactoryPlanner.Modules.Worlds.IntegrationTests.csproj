@@ -33,10 +33,10 @@
     <ProjectReference Include="..\..\..\..\BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\Application\SatisfactoryPlanner.Modules.Pioneers.Application.csproj">
+    <ProjectReference Include="..\..\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\SatisfactoryPlanner.Modules.Pioneers.Infrastructure.csproj">
+    <ProjectReference Include="..\..\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
   </ItemGroup>
