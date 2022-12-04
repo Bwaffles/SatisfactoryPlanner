@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
 {
     [ApiController]
-    [Route("api/resources/nodes")]
+    [Route("api/resources/[controller]")]
     public class NodesController : Controller
     {
         private readonly IResourcesModule _module;

@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SatisfactoryPlanner.API.Configuration;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Extensions;
+using SatisfactoryPlanner.API.Configuration.Routing;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.API.Modules.Factories;
 using SatisfactoryPlanner.API.Modules.Resources;
@@ -58,7 +60,10 @@ namespace SatisfactoryPlanner.API
             ConfigurationAuthorization(services);
             ConfigurationAuthentication(services);
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+            });
 
             services.AddSwaggerDocumentation();
 
@@ -72,6 +77,11 @@ namespace SatisfactoryPlanner.API
                 options.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
                 options.Map<BusinessRuleValidationException>(
                     ex => new BusinessRuleValidationExceptionProblemDetails(ex));
+            });
+
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
             });
 
             //services.AddAuthorization(options =>
@@ -178,7 +188,7 @@ namespace SatisfactoryPlanner.API
                     outputTemplate:
                     "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
                 .WriteTo.File(new CompactJsonFormatter(),
-                    path: "logs/logs.json",
+                    "logs/logs.json",
                     rollOnFileSizeLimit: true,
                     fileSizeLimitBytes: 5 * 1024 * 1024)
                 .CreateLogger();

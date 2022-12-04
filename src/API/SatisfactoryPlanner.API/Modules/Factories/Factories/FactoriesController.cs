@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.API.Modules.Factories.Factories
 {
     [ApiController]
-    [Route("api/factories/factories")]
+    [Route("api/factories/[controller]")]
     public class FactoriesController : ControllerBase
     {
         private readonly IFactoriesModule factoriesModule;
