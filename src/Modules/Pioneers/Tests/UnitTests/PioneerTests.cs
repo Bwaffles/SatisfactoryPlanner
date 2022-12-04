@@ -15,7 +15,9 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests
 
             pioneer.Id.Value.Should().Be(pioneerId);
 
-            DomainEventAssertions.AssertPublishedEvent<PioneerSpawnedDomainEvent>(pioneer);
+            var pioneerSpawnedDomainEvent = DomainEventAssertions.AssertPublishedEvent<PioneerSpawnedDomainEvent>(pioneer);
+
+            pioneerSpawnedDomainEvent.PioneerId.Should().Be(pioneer.Id);
         }
     }
 }

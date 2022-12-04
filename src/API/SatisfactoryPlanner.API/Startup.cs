@@ -180,7 +180,7 @@ namespace SatisfactoryPlanner.API
                 .WriteTo.File(new CompactJsonFormatter(),
                     path: "logs/logs.json",
                     rollOnFileSizeLimit: true,
-                    fileSizeLimitBytes: 5 * 10 * 1024)
+                    fileSizeLimitBytes: 5 * 1024 * 1024)
                 .CreateLogger();
 
             _loggerForApi = _logger.ForContext("Module", "API");
