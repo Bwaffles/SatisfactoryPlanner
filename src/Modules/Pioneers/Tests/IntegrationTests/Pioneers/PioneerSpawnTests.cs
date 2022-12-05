@@ -1,5 +1,6 @@
 ﻿using SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.GetPioneerDetails;
 using SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.SpawnPioneer;
+using SatisfactoryPlanner.Modules.Worlds.Application.Worlds.GetCurrentPioneerWorlds;
 using SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork;
 
 namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.Pioneers
@@ -21,7 +22,17 @@ namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.Pioneers
 
             pioneerDetails.Should().NotBeNull();
 
-            // Get world?
+            // This can't really test if my query filter is wrong. At this point I've only added 1 world, so that's all i'm going to get.
+            var pioneersWorlds = await WorldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
+
+            pioneersWorlds.Count.Should().Be(1);
+            pioneersWorlds.Single().Name.Should().Be("Starter World");
+            
+            // Trying to switch the "current pioneer" to see if no records get returned. I don't know if this is the right place, but want to capture this.
+            ExecutionContext.UserId = Guid.NewGuid();
+            var otherPioneerWorlds = await WorldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
+
+            otherPioneerWorlds.Count.Should().Be(0);
         }
     }
 }

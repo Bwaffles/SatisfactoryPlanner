@@ -6,7 +6,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork
     {
         public ExecutionContextMock(Guid userId) => UserId = userId;
 
-        public Guid UserId { get; }
+        public Guid UserId { get; set; }
 
         public Guid CorrelationId { get; }
 

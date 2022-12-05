@@ -12,6 +12,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Domain.Worlds
         public WorldId Id { get; }
 
         private string _name;
+        private List<WorldInhabitant> _inhabitants;
         private PioneerId _creatorId;
         private DateTime _createDate;
 
@@ -23,10 +24,14 @@ namespace SatisfactoryPlanner.Modules.Worlds.Domain.Worlds
         {
             Id = new WorldId(Guid.NewGuid());
             _name = name;
+            _inhabitants = new List<WorldInhabitant>
+            {
+                WorldInhabitant.Create(Id, creatorId)
+            };
             _creatorId = creatorId;
             _createDate = SystemClock.Now;
 
-            AddDomainEvent(new WorldCreatedDomainEvent(Id, _name, _creatorId, _createDate));
+            AddDomainEvent(new WorldCreatedDomainEvent(Id));
         }
 
         public static World CreateStarterWorld(PioneerId creatorId)

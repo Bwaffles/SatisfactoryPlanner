@@ -17,6 +17,15 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Domain.Worlds
             builder.Property<string>("_name").HasColumnName("name");
             builder.Property<PioneerId>("_creatorId").HasColumnName("creator_id");
             builder.Property<DateTime>("_createDate").HasColumnName("create_date");
+
+            builder.OwnsMany<WorldInhabitant>("_inhabitants", _ =>
+            {
+                _.WithOwner().HasForeignKey("WorldId");
+                _.ToTable("world_inhabitants", "worlds");
+                _.Property<PioneerId>("PioneerId").HasColumnName("pioneer_id");
+                _.Property<WorldId>("WorldId").HasColumnName("world_id");
+                _.HasKey("PioneerId", "WorldId");
+            });
         }
     }
 }
