@@ -13,7 +13,7 @@ const Resources = () => {
     const [resources, setResources] = useState<any>();
 
     useEffect(() => {
-        api("/resources",
+        api("/resources/resources",
                 {
                     method: "GET"
                 })
