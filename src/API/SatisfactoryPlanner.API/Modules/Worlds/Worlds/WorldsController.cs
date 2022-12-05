@@ -24,12 +24,12 @@ namespace SatisfactoryPlanner.API.Modules.Worlds.Worlds
         ///     Get the worlds for the currently logged in pioneer.
         /// </summary>
         /// <response code="200">
-        ///     Returns their worlds as a list of <see cref="WorldDto" />.
+        ///     Returns their worlds as a list of <see cref="PioneerWorldDto" />.
         /// </response>
         [Authorize]
         [NoPermissionRequired]
         [HttpGet("@me")]
-        [ProducesResponseType(typeof(List<WorldDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<PioneerWorldDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCurrentPioneerWorlds()
         {
             var worlds = await _module.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());

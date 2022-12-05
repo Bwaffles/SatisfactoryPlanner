@@ -1,6 +1,6 @@
 ﻿namespace SatisfactoryPlanner.Modules.Worlds.Application.Worlds.GetCurrentPioneerWorlds
 {
-    public class WorldDto
+    public class PioneerWorldDto
     {
         public Guid Id { get; set; }
 

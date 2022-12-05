@@ -2,5 +2,5 @@
 
 namespace SatisfactoryPlanner.Modules.Worlds.Application.Worlds.GetCurrentPioneerWorlds
 {
-    public class GetCurrentPioneerWorldsQuery : QueryBase<List<WorldDto>> { }
+    public class GetCurrentPioneerWorldsQuery : QueryBase<List<PioneerWorldDto>> { }
 }
