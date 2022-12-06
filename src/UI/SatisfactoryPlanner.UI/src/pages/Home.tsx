@@ -1,9 +1,7 @@
 import * as React from "react";
 
-import PageHeader from "../components/PageHeader";
+import { ContentLayout } from "../components/Layout/ContentLayout";
 
 export const Home = () => (
-    <React.Fragment>
-        <PageHeader text="Home" />
-    </React.Fragment>
+    <ContentLayout title="Home">This is the home page.</ContentLayout>
 );

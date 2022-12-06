@@ -1,14 +1,13 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import PageHeader from "../components/PageHeader";
+import { ContentLayout } from "../components/Layout/ContentLayout";
 
 export const Profile = () => {
     const { user } = useAuth0();
 
     return (
-        <React.Fragment>
-            <PageHeader text="Profile" />
+        <ContentLayout title="Profile">
             <p className="space-x-4 mb-3">
                 <img
                     className="w-12 h-12 rounded-full inline "
@@ -21,6 +20,6 @@ export const Profile = () => {
 
             <h3>Profile Data</h3>
             <pre>{JSON.stringify(user, null, 2)}</pre>
-        </React.Fragment>
+        </ContentLayout>
     );
 };

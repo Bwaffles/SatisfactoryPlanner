@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import PageHeader from "../components/PageHeader";
+import { ContentLayout } from "../components/Layout/ContentLayout";
 import { useApi, ApiResponse } from "../hooks/use-api";
 
 import makeDebugger from "../utils/makeDebugger";
@@ -22,9 +22,8 @@ export const Resources = () => {
     }, []);
 
     return (
-        <React.Fragment>
-            <PageHeader text="Resources" />
+        <ContentLayout title="Resources">
             <pre>{JSON.stringify(resources, null, 2)}</pre>
-        </React.Fragment>
+        </ContentLayout>
     );
 };
