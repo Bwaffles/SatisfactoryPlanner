@@ -23,7 +23,7 @@ const UserDropdown = () => {
     return (
         <div className="relative">
             <div
-                className="flex items-center justify-between py-4 px-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800 cursor-pointer select-none"
+                className="flex items-center justify-between py-4 px-3 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800 cursor-pointer select-none"
                 onClick={isOpen ? closeMenu : openMenu}
             >
                 <div>
