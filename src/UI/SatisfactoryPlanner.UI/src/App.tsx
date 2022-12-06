@@ -2,6 +2,7 @@ import * as React from "react";
 import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
+import * as Config from "./config";
 import { AppRoutes } from "./routes";
 
 const Auth0ProviderWithRedirectCallback = ({ children, ...props }: any) => {
@@ -25,10 +26,10 @@ const App = () => {
     return (
         <Router>
             <Auth0ProviderWithRedirectCallback
-                domain={process.env.REACT_APP_AUTH0_DOMAIN!}
-                clientId={process.env.REACT_APP_AUTH0_CLIENT_ID!}
-                redirectUri="http://localhost:3000"
-                audience="http://localhost:55915/api"
+                domain={Config.AUTH0_DOMAIN}
+                clientId={Config.AUTH0_CLIENT_ID}
+                redirectUri={Config.REDIRECT_URL}
+                audience={Config.API_URL}
             >
                 <AppRoutes />
             </Auth0ProviderWithRedirectCallback>
