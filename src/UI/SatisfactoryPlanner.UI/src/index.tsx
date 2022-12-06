@@ -10,10 +10,10 @@ import App from "./App";
 
 const Auth0ProviderWithRedirectCallback = ({ children, ...props }: any) => {
     const navigate = useNavigate();
-    
+
     const onRedirectCallback = () => {
         // redirect to the callback page so that I can ensure the user is created after sign up
-        navigate("/callback"); 
+        navigate("/callback");
     };
     return (
         <Auth0Provider
