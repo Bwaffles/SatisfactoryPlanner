@@ -1,9 +1,9 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import { Outlet } from "react-router-dom";
 
-import Nav from "../components/Nav";
+import Nav from "../Nav";
 
-const Layout = () => {
+const MainLayout = () => {
     return (
         <div className="flex min-h-screen bg-gray-900 text-white">
             <Nav />
@@ -14,6 +14,6 @@ const Layout = () => {
             </div>
         </div>
     );
-}
+};
 
-export default Layout;
+export default MainLayout;

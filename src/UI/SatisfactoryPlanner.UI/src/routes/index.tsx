@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import AutoLogin from "../pages/AutoLogin";
 import Home from "../pages/Home";
-import Layout from "../pages/Layout";
+import MainLayout from "../components/Layout/MainLayout";
 import NoMatch from "../pages/NoMatch";
 import Profile from "../pages/Profile";
 import Resources from "../pages/Resources";
@@ -16,7 +16,7 @@ export const AppRoutes = () => {
 
     return (
         <Routes>
-            <Route element={<Layout />}>
+            <Route element={<MainLayout />}>
                 <Route
                     index
                     element={<Home />}
