@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 
-const MainLayout = () => {
+export const MainLayout = () => {
     return (
         <div className="flex min-h-screen bg-gray-900 text-white">
             <Sidebar />
@@ -15,5 +15,3 @@ const MainLayout = () => {
         </div>
     );
 };
-
-export default MainLayout;

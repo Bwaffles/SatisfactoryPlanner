@@ -2,9 +2,9 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
+import { MainLayout } from "../components/Layout";
 import AutoLogin from "../pages/AutoLogin";
 import Home from "../pages/Home";
-import MainLayout from "../components/Layout/MainLayout";
 import NoMatch from "../pages/NoMatch";
 import Profile from "../pages/Profile";
 import Resources from "../pages/Resources";
