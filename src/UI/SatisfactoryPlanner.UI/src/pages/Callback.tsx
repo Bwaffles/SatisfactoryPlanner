@@ -7,7 +7,7 @@ import { useApi, ApiResponse } from "../hooks/use-api";
 import makeDebugger from "../utils/makeDebugger";
 const debug = makeDebugger("Callback");
 
-const Callback = () => {
+export const Callback = () => {
     const navigate = useNavigate();
     const api = useApi();
     const { user } = useAuth0();
@@ -53,5 +53,3 @@ const Callback = () => {
 
     return <h1>Loading...</h1>;
 };
-
-export default Callback;

@@ -6,7 +6,7 @@ import { useApi, ApiResponse } from "../hooks/use-api";
 import makeDebugger from "../utils/makeDebugger";
 const debug = makeDebugger("Resources");
 
-const Resources = () => {
+export const Resources = () => {
     debug("Rendering...");
 
     const api = useApi();
@@ -28,5 +28,3 @@ const Resources = () => {
         </React.Fragment>
     );
 };
-
-export default Resources;

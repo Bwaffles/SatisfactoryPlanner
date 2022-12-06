@@ -2,14 +2,25 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
+import { lazyImport } from "../utils/lazyimports";
 import { MainLayout } from "../components/Layout";
-import AutoLogin from "../pages/AutoLogin";
-import Home from "../pages/Home";
-import NoMatch from "../pages/NoMatch";
-import Profile from "../pages/Profile";
-import Resources from "../pages/Resources";
-import Callback from "../pages/Callback";
-import LoginError from "../pages/LoginError";
+
+const { AutoLogin } = lazyImport(
+    () => import("../pages/AutoLogin"),
+    "AutoLogin"
+);
+const { Home } = lazyImport(() => import("../pages/Home"), "Home");
+const { Profile } = lazyImport(() => import("../pages/Profile"), "Profile");
+const { Resources } = lazyImport(
+    () => import("../pages/Resources"),
+    "Resources"
+);
+const { Callback } = lazyImport(() => import("../pages/Callback"), "Callback");
+const { LoginError } = lazyImport(
+    () => import("../pages/LoginError"),
+    "LoginError"
+);
+const { NoMatch } = lazyImport(() => import("../pages/NoMatch"), "NoMatch");
 
 export const AppRoutes = () => {
     const { isAuthenticated } = useAuth0();

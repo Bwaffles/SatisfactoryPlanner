@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import PageHeader from "../components/PageHeader";
 
-const Profile = () => {
+export const Profile = () => {
     const { user } = useAuth0();
 
     return (
@@ -23,6 +23,4 @@ const Profile = () => {
             <pre>{JSON.stringify(user, null, 2)}</pre>
         </React.Fragment>
     );
-}
-
-export default Profile;
+};
