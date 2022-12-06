@@ -1,22 +1,22 @@
 import * as React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import NavItem from "./NavItem";
-import UserDropdown from "./UserDropdown";
+import SidebarNavLink from "./SidebarNavLink";
+import UserDropdown from "../UserDropdown";
 
-const Nav = () => {
+const Sidebar = () => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 
     return (
         <nav>
             <div className="sticky top-0 left-0 w-60 h-screen shadow-md bg-gray-800 px-3 flex flex-col justify-between">
                 <div className="mt-3">
-                    <NavItem
+                    <SidebarNavLink
                         to="/"
                         text="Home"
                         authenticated={false}
                     />
-                    <NavItem
+                    <SidebarNavLink
                         to="/resources"
                         text="Resources"
                         authenticated={true}
@@ -39,4 +39,4 @@ const Nav = () => {
     );
 };
 
-export default Nav;
+export default Sidebar;
