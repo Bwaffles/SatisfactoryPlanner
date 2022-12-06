@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
@@ -48,16 +49,18 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             }
         >
             <ErrorBoundary FallbackComponent={ErrorFallback}>
-                <Router>
-                    <Auth0ProviderWithRedirectCallback
-                        domain={Config.AUTH0_DOMAIN}
-                        clientId={Config.AUTH0_CLIENT_ID}
-                        redirectUri={Config.REDIRECT_URL}
-                        audience={Config.API_URL}
-                    >
-                        {children}
-                    </Auth0ProviderWithRedirectCallback>
-                </Router>
+                <HelmetProvider>
+                    <Router>
+                        <Auth0ProviderWithRedirectCallback
+                            domain={Config.AUTH0_DOMAIN}
+                            clientId={Config.AUTH0_CLIENT_ID}
+                            redirectUri={Config.REDIRECT_URL}
+                            audience={Config.API_URL}
+                        >
+                            {children}
+                        </Auth0ProviderWithRedirectCallback>
+                    </Router>
+                </HelmetProvider>
             </ErrorBoundary>
         </React.Suspense>
     );
