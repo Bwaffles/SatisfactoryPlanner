@@ -24,7 +24,6 @@ using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
-using SatisfactoryPlanner.Modules.UserAccess.Application.IdentityServer;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
@@ -66,8 +65,6 @@ namespace SatisfactoryPlanner.API
             });
 
             services.AddSwaggerDocumentation();
-
-            //ConfigureIdentityServer(services);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
@@ -123,15 +120,6 @@ namespace SatisfactoryPlanner.API
                     options.Audience = _configuration["Auth0:Audience"];
                 });
 
-        private void ConfigureIdentityServer(IServiceCollection services) =>
-            services.AddIdentityServer()
-                .AddInMemoryIdentityResources(IdentityServerConfiguration.IdentityResources)
-                .AddInMemoryApiResources(IdentityServerConfiguration.ApiResources)
-                .AddInMemoryClients(IdentityServerConfiguration.Clients)
-                .AddInMemoryApiScopes(IdentityServerConfiguration.ApiScopes)
-                .AddTestUsers(IdentityServerConfiguration.TestUsers)
-                .AddDeveloperSigningCredential();
-
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterModule(new WorldsAutofacModule());
@@ -157,8 +145,6 @@ namespace SatisfactoryPlanner.API
             app.UseMiddleware<CorrelationMiddleware>();
 
             app.UseSwaggerDocumentation();
-
-            //app.UseIdentityServer();
 
             if (env.IsDevelopment())
             {
@@ -228,7 +214,6 @@ namespace SatisfactoryPlanner.API
                 executionContextAccessor,
                 _logger,
                 emailsConfiguration,
-                _configuration["Security:TextEncryptionKey"],
                 null);
         }
     }

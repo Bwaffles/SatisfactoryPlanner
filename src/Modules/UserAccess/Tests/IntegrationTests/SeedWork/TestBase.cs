@@ -48,7 +48,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
                 ExecutionContext,
                 Logger,
                 new EmailsConfiguration("from@email.com"),
-                "key",
                 EmailSender);
 
             UserAccessModule = new UserAccessModule();

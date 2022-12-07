@@ -3,7 +3,6 @@ using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Application.Emails;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
-using SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.RegisterNewUser;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrentUser;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.DataAccess;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Domain;
@@ -14,7 +13,6 @@ using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Mediat
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Quartz;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Security;
 using Serilog;
 using Serilog.Extensions.Logging;
 using System;
@@ -30,7 +28,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
             IExecutionContextAccessor executionContextAccessor,
             ILogger logger,
             EmailsConfiguration emailsConfiguration,
-            string textEncryptionKey,
             IEmailSender emailSender)
         {
             var moduleLogger = logger.ForContext("Module", "UserAccess");
@@ -40,7 +37,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
                 executionContextAccessor,
                 moduleLogger,
                 emailsConfiguration,
-                textEncryptionKey,
                 emailSender);
 
             QuartzStartup.Initialize(moduleLogger);
@@ -58,7 +54,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
             IExecutionContextAccessor executionContextAccessor,
             ILogger logger,
             EmailsConfiguration emailsConfiguration,
-            string textEncryptionKey,
             IEmailSender emailSender)
         {
             var containerBuilder = new ContainerBuilder();
@@ -73,13 +68,11 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
             containerBuilder.RegisterModule(new MediatorModule());
 
             var domainNotificationsMap = new BiDictionary<string, Type>();
-            domainNotificationsMap.Add(nameof(NewUserRegisteredNotification), typeof(NewUserRegisteredNotification));
             domainNotificationsMap.Add(nameof(PioneerUserCreatedNotification), typeof(PioneerUserCreatedNotification));
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
 
             containerBuilder.RegisterModule(new QuartzModule());
             containerBuilder.RegisterModule(new EmailModule(emailsConfiguration, emailSender));
-            containerBuilder.RegisterModule(new SecurityModule(textEncryptionKey));
 
             containerBuilder.RegisterInstance(executionContextAccessor);
 
