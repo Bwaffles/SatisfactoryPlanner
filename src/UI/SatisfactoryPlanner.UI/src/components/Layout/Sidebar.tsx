@@ -1,8 +1,9 @@
 import * as React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import UserDropdown from "../UserDropdown";
+import UserDropdown from "./UserDropdown";
 import { SidebarNavigation } from "./SidebarNavigation";
+import { WorldSidebarItem } from "../../features/worlds";
 
 const Sidebar = () => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -18,18 +19,17 @@ const Sidebar = () => {
             <div className="flex flex-col grow gap-2">
                 <SidebarNavigation />
             </div>
-            <div>
-                {isAuthenticated ? (
-                    <UserDropdown />
-                ) : (
-                    <button
-                        className="flex items-center w-full py-4 px-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800"
-                        onClick={() => loginWithRedirect()}
-                    >
-                        Log In
-                    </button>
-                )}
-            </div>
+            <WorldSidebarItem />
+            {isAuthenticated ? (
+                <UserDropdown />
+            ) : (
+                <button
+                    className="flex items-center w-full py-4 px-4 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800"
+                    onClick={() => loginWithRedirect()}
+                >
+                    Log In
+                </button>
+            )}
         </nav>
     );
 };

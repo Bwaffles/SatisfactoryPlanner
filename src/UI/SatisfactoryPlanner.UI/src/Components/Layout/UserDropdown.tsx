@@ -23,20 +23,18 @@ const UserDropdown = () => {
     return (
         <div className="relative">
             <div
-                className="flex items-center justify-between py-4 px-3 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800 cursor-pointer select-none"
+                className="flex items-center p-4 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800 cursor-pointer select-none"
                 onClick={isOpen ? closeMenu : openMenu}
             >
-                <div>
-                    <img
-                        className="w-7 h-7 mr-3 rounded-full inline"
-                        src={user?.picture}
-                        alt="profile pic"
-                    />
-                    {user?.name}
-                </div>
+                <img
+                    className="w-7 h-7 mr-2 rounded-full inline"
+                    src={user?.picture}
+                    alt="profile pic"
+                />
+                {user?.name}
             </div>
             {isOpen && (
-                <div className="fixed bottom-0 left-60 w-48 py-3 px-4 flex flex-col justify-between bg-gray-700 rounded-tr border-t border-r border-gray-600">
+                <div className="fixed bottom-0 left-60 w-48 p-4 flex flex-col justify-between bg-gray-700 rounded-tr border-t border-r border-gray-600">
                     <div className="mb-4 text-white font-bold underline decoration-white">
                         Settings
                     </div>
