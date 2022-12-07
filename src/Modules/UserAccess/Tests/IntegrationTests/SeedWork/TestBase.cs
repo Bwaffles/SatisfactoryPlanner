@@ -2,8 +2,6 @@ using Dapper;
 using MediatR;
 using Npgsql;
 using NSubstitute;
-using SatisfactoryPlanner.BuildingBlocks.Application.Emails;
-using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
@@ -20,8 +18,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
         protected ILogger Logger { get; private set; }
 
         protected IUserAccessModule UserAccessModule { get; private set; }
-
-        protected IEmailSender EmailSender { get; private set; }
 
         protected ExecutionContextMock ExecutionContext { get; private set; }
 
@@ -46,9 +42,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
             UserAccessStartup.Initialize(
                 ConnectionString,
                 ExecutionContext,
-                Logger,
-                new EmailsConfiguration("from@email.com"),
-                EmailSender);
+                Logger);
 
             UserAccessModule = new UserAccessModule();
         }

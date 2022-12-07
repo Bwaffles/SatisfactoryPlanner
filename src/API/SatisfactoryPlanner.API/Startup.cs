@@ -21,7 +21,6 @@ using SatisfactoryPlanner.API.Modules.UserAccess;
 using SatisfactoryPlanner.API.Modules.Worlds;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
@@ -187,10 +186,7 @@ namespace SatisfactoryPlanner.API
         private void InitializeModules(ILifetimeScope container)
         {
             var executionContextAccessor = container.Resolve<IExecutionContextAccessor>();
-
-            var emailsConfiguration =
-                new EmailsConfiguration(_configuration.GetValue<string>("EmailsConfiguration:FromEmail"));
-
+            
             FactoriesStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
@@ -212,9 +208,7 @@ namespace SatisfactoryPlanner.API
             UserAccessStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
-                _logger,
-                emailsConfiguration,
-                null);
+                _logger);
         }
     }
 }

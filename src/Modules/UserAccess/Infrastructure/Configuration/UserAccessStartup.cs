@@ -1,12 +1,9 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.BuildingBlocks.Application.Emails;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
-using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrentUser;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.DataAccess;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Domain;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Email;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.EventsBus;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Logging;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Mediation;
@@ -26,18 +23,14 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
         public static void Initialize(
             string connectionString,
             IExecutionContextAccessor executionContextAccessor,
-            ILogger logger,
-            EmailsConfiguration emailsConfiguration,
-            IEmailSender emailSender)
+            ILogger logger)
         {
             var moduleLogger = logger.ForContext("Module", "UserAccess");
 
             ConfigureCompositionRoot(
                 connectionString,
                 executionContextAccessor,
-                moduleLogger,
-                emailsConfiguration,
-                emailSender);
+                moduleLogger);
 
             QuartzStartup.Initialize(moduleLogger);
 
@@ -52,9 +45,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
         private static void ConfigureCompositionRoot(
             string connectionString,
             IExecutionContextAccessor executionContextAccessor,
-            ILogger logger,
-            EmailsConfiguration emailsConfiguration,
-            IEmailSender emailSender)
+            ILogger logger)
         {
             var containerBuilder = new ContainerBuilder();
 
@@ -72,7 +63,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
 
             containerBuilder.RegisterModule(new QuartzModule());
-            containerBuilder.RegisterModule(new EmailModule(emailsConfiguration, emailSender));
 
             containerBuilder.RegisterInstance(executionContextAccessor);
 
