@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.API.Modules.Resources.Extractors
 {
     [ApiController]
-    [Route("api/resources/extractors")]
+    [Route("api/resources/[controller]")]
     public class ExtractorsController : Controller
     {
         private readonly IResourcesModule _module;

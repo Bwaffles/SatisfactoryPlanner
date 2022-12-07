@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Inbox
+﻿namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Inbox
 {
     public class InboxMessageDto
     {

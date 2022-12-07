@@ -2,9 +2,10 @@
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
 {
     public class PioneersContext : DbContext
     {
@@ -15,6 +16,8 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure
         public DbSet<InternalCommand> InternalCommands { get; set; }
 
         public DbSet<OutboxMessage> OutboxMessages { get; set; }
+
+        public DbSet<World> Worlds { get; set; }
 
         public PioneersContext(DbContextOptions options, ILoggerFactory loggerFactory)
             : base(options) =>

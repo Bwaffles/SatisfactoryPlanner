@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.API.Modules.Resources.Resources
 {
     [ApiController]
-    [Route("api/resources")]
+    [Route("api/resources/[controller]")]
     public class ResourcesController : Controller
     {
         private readonly IResourcesModule _resourcesModule;

@@ -1,6 +1,6 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Queries;
+﻿using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Queries;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.GetPioneerDetails
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.GetPioneerDetails
 {
     public class GetPioneerDetailsQuery : QueryBase<PioneerDetailsDto?>
     {

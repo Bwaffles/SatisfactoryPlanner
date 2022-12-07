@@ -1,8 +1,8 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers.Events;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers.Events;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests
+namespace SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests
 {
     [TestFixture]
     public class PioneerTests
@@ -15,7 +15,9 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Domain.UnitTests
 
             pioneer.Id.Value.Should().Be(pioneerId);
 
-            DomainEventAssertions.AssertPublishedEvent<PioneerSpawnedDomainEvent>(pioneer);
+            var pioneerSpawnedDomainEvent = DomainEventAssertions.AssertPublishedEvent<PioneerSpawnedDomainEvent>(pioneer);
+
+            pioneerSpawnedDomainEvent.PioneerId.Should().Be(pioneer.Id);
         }
     }
 }

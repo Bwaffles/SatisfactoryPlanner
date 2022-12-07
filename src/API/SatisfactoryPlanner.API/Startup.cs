@@ -6,25 +6,27 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SatisfactoryPlanner.API.Configuration;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Extensions;
+using SatisfactoryPlanner.API.Configuration.Routing;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.API.Modules.Factories;
-using SatisfactoryPlanner.API.Modules.Pioneers;
 using SatisfactoryPlanner.API.Modules.Resources;
 using SatisfactoryPlanner.API.Modules.UserAccess;
+using SatisfactoryPlanner.API.Modules.Worlds;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Emails;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
-using SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.UserAccess.Application.IdentityServer;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Formatting.Compact;
 
@@ -58,7 +60,10 @@ namespace SatisfactoryPlanner.API
             ConfigurationAuthorization(services);
             ConfigurationAuthentication(services);
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+            });
 
             services.AddSwaggerDocumentation();
 
@@ -72,6 +77,11 @@ namespace SatisfactoryPlanner.API
                 options.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
                 options.Map<BusinessRuleValidationException>(
                     ex => new BusinessRuleValidationExceptionProblemDetails(ex));
+            });
+
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
             });
 
             //services.AddAuthorization(options =>
@@ -124,7 +134,7 @@ namespace SatisfactoryPlanner.API
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterModule(new PioneersAutofacModule());
+            containerBuilder.RegisterModule(new WorldsAutofacModule());
             containerBuilder.RegisterModule(new ResourcesAutofacModule());
             containerBuilder.RegisterModule(new FactoriesAutofacModule());
             containerBuilder.RegisterModule(new UserAccessAutofacModule());
@@ -178,9 +188,9 @@ namespace SatisfactoryPlanner.API
                     outputTemplate:
                     "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
                 .WriteTo.File(new CompactJsonFormatter(),
-                    path: "logs/logs.json",
+                    "logs/logs.json",
                     rollOnFileSizeLimit: true,
-                    fileSizeLimitBytes: 5 * 10 * 1024)
+                    fileSizeLimitBytes: 5 * 1024 * 1024)
                 .CreateLogger();
 
             _loggerForApi = _logger.ForContext("Module", "API");
@@ -201,7 +211,7 @@ namespace SatisfactoryPlanner.API
                 _logger
             );
 
-            PioneersStartup.Initialize(
+            WorldsStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
                 _logger

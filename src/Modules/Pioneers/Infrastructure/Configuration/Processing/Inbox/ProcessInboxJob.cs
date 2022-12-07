@@ -1,6 +1,6 @@
 ﻿using Quartz;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Inbox
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Inbox
 {
     [DisallowConcurrentExecution]
     public class ProcessInboxJob : IJob

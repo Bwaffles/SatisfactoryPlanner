@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Domain
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Domain
 {
     /// <summary>
     ///     Register the domain services for the module.

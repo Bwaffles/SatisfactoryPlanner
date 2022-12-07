@@ -1,6 +1,6 @@
 ﻿using Quartz;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.InternalCommands
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.InternalCommands
 {
     [DisallowConcurrentExecution]
     public class ProcessInternalCommandsJob : IJob

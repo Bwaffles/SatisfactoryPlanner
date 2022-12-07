@@ -1,10 +1,7 @@
 import * as React from "react";
 
-import PageHeader from "../components/PageHeader";
+import { ContentLayout } from "../components/Layout/ContentLayout";
 
-const Home = () =>
-    <React.Fragment>
-        <PageHeader text="Home" />
-    </React.Fragment>;
-
-export default Home;
+export const Home = () => (
+    <ContentLayout title="Home">This is the home page.</ContentLayout>
+);

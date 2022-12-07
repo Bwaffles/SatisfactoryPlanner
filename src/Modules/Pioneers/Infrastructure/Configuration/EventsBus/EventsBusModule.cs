@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.BuildingBlocks.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.EventsBus
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.EventsBus
 {
     internal class EventsBusModule : Module
     {

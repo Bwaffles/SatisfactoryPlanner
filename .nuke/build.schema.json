@@ -74,16 +74,16 @@
             "enum": [
               "ArchitectureTests",
               "BuildAndUnitTests",
-              "BuildPioneersModuleIntegrationTests",
               "BuildUserAccessModuleIntegrationTests",
+              "BuildWorldsModuleIntegrationTests",
               "CleanDatabaseContainer",
               "Compile",
               "CreateDatabase",
               "PreparePostgresContainer",
               "Restore",
               "RunAllIntegrationTests",
-              "RunPioneersModuleIntegrationTests",
               "RunUserAccessModuleIntegrationTests",
+              "RunWorldsModuleIntegrationTests",
               "UnitTests"
             ]
           }
@@ -100,16 +100,16 @@
             "enum": [
               "ArchitectureTests",
               "BuildAndUnitTests",
-              "BuildPioneersModuleIntegrationTests",
               "BuildUserAccessModuleIntegrationTests",
+              "BuildWorldsModuleIntegrationTests",
               "CleanDatabaseContainer",
               "Compile",
               "CreateDatabase",
               "PreparePostgresContainer",
               "Restore",
               "RunAllIntegrationTests",
-              "RunPioneersModuleIntegrationTests",
               "RunUserAccessModuleIntegrationTests",
+              "RunWorldsModuleIntegrationTests",
               "UnitTests"
             ]
           }

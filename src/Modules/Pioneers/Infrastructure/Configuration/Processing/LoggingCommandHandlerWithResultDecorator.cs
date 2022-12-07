@@ -1,12 +1,12 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing
 {
     internal class LoggingCommandHandlerWithResultDecorator<T, TResult> : ICommandHandler<T, TResult>
         where T : ICommand<TResult>

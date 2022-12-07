@@ -71,13 +71,13 @@ partial class Build
         });
 
     const string Modules = "SatisfactoryPlanner.Modules";
-    const string PioneersModuleIntegrationTestsProjectName = $"{Modules}.Pioneers.IntegrationTests";
+    const string WorldsModuleIntegrationTestsProjectName = $"{Modules}.Worlds.IntegrationTests";
 
-    Target BuildPioneersModuleIntegrationTests => _ => _
+    Target BuildWorldsModuleIntegrationTests => _ => _
         .DependsOn(CreateDatabase)
         .Executes(() =>
         {
-            var integrationTest = Solution.GetProject(PioneersModuleIntegrationTestsProjectName);
+            var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
 
             DotNetTasks.DotNetBuild(s => s
                 .SetProjectFile(integrationTest)
@@ -86,11 +86,11 @@ partial class Build
 
     const string SatisfactoryPlannerDatabaseEnvName = "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
 
-    Target RunPioneersModuleIntegrationTests => _ => _
-        .DependsOn(BuildPioneersModuleIntegrationTests)
+    Target RunWorldsModuleIntegrationTests => _ => _
+        .DependsOn(BuildWorldsModuleIntegrationTests)
         .Executes(() =>
         {
-            var integrationTest = Solution.GetProject(PioneersModuleIntegrationTestsProjectName);
+            var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
             Environment.SetEnvironmentVariable(
                 SatisfactoryPlannerDatabaseEnvName,
                 ConnectionString);
@@ -129,7 +129,7 @@ partial class Build
 
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
     Target RunAllIntegrationTests => _ => _
-        .DependsOn(RunPioneersModuleIntegrationTests)
+        .DependsOn(RunWorldsModuleIntegrationTests)
         .DependsOn(RunUserAccessModuleIntegrationTests)
         .Executes(() =>
         {

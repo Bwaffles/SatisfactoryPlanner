@@ -6,7 +6,7 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.DataAccess
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.DataAccess
 {
     /// <summary>
     ///     Dependency injection setup for Data Access of the Pioneers module.

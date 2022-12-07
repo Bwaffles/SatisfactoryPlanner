@@ -4,12 +4,12 @@ using Newtonsoft.Json;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.BuildingBlocks.Application.Events;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.Outbox
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Outbox
 {
     internal class ProcessOutboxCommandHandler : ICommandHandler<ProcessOutboxCommand>
     {
@@ -34,7 +34,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Proc
                 $"  SELECT outbox_message.id AS {nameof(OutboxMessageDto.Id)}, " +
                 $"         outbox_message.type AS {nameof(OutboxMessageDto.Type)}, " +
                 $"         outbox_message.data AS {nameof(OutboxMessageDto.Data)} " +
-                "     FROM pioneers.outbox_messages AS outbox_message " +
+                "     FROM worlds.outbox_messages AS outbox_message " +
                 "    WHERE outbox_message.processed_date IS NULL " +
                 " ORDER BY outbox_message.occurred_on";
 
@@ -49,7 +49,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Proc
                 {
                     await _mediator.Publish(@event, cancellationToken);
 
-                    const string sqlUpdateProcessedDate = "UPDATE pioneers.outbox_messages " +
+                    const string sqlUpdateProcessedDate = "UPDATE worlds.outbox_messages " +
                                                           "   SET processed_date = @Date " +
                                                           " WHERE id = @Id";
                     await connection.ExecuteAsync(sqlUpdateProcessedDate,

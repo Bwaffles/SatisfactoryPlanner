@@ -5,7 +5,7 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Serialization;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.EventsBus
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.EventsBus
 {
     internal class IntegrationEventGenericHandler<T> : IIntegrationEventHandler<T>
         where T : IntegrationEvent
@@ -20,7 +20,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Even
                 ContractResolver = new AllPropertiesContractResolver()
             });
             
-            const string sql = "INSERT INTO pioneers.inbox_messages (id, occurred_on, type, data) " +
+            const string sql = "INSERT INTO worlds.inbox_messages (id, occurred_on, type, data) " +
                       $"VALUES (@{nameof(@event.Id)}, @{nameof(@event.OccurredOn)}, @{nameof(type)}, @{nameof(data)})";
             var param = new
             {

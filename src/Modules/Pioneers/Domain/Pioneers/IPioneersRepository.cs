@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers
+﻿namespace SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers
 {
     /// <summary>
     ///     Handles the database access for the <see cref="Pioneer" /> through EntityFramework.

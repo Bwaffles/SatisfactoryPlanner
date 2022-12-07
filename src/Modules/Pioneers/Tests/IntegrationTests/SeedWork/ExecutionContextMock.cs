@@ -1,12 +1,12 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.IntegrationTests.SeedWork
+namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork
 {
     public class ExecutionContextMock : IExecutionContextAccessor
     {
         public ExecutionContextMock(Guid userId) => UserId = userId;
 
-        public Guid UserId { get; }
+        public Guid UserId { get; set; }
 
         public Guid CorrelationId { get; }
 

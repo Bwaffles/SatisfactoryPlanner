@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.GetPioneerDetails
+﻿namespace SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.GetPioneerDetails
 {
     public class PioneerDetailsDto
     {

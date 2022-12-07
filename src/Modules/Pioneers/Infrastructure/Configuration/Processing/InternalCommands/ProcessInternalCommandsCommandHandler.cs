@@ -3,10 +3,10 @@ using MediatR;
 using Newtonsoft.Json;
 using Polly;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
 using System.Data;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Processing.InternalCommands
+namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.InternalCommands
 {
     internal class ProcessInternalCommandsCommandHandler : ICommandHandler<ProcessInternalCommandsCommand>
     {
@@ -24,7 +24,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Proc
                 $" SELECT command.id AS {nameof(InternalCommandDto.Id)}, " +
                 $"        command.type AS {nameof(InternalCommandDto.Type)}, " +
                 $"        command.data AS {nameof(InternalCommandDto.Data)} " +
-                "    FROM pioneers.internal_commands AS command " +
+                "    FROM worlds.internal_commands AS command " +
                 "   WHERE command.processed_date IS NULL " +
                 "ORDER BY command.enqueue_date";
             var internalCommands = await connection.QueryAsync<InternalCommandDto>(sql);
@@ -50,7 +50,7 @@ namespace SatisfactoryPlanner.Modules.Pioneers.Infrastructure.Configuration.Proc
         private static async Task UpdateCommandWithError(IDbConnection connection, PolicyResult result,
             Guid id)
         {
-            const string errorSql = "UPDATE pioneers.internal_commands " +
+            const string errorSql = "UPDATE worlds.internal_commands " +
                                     "   SET processed_date = @NowDate, " +
                                     "       error          = @Error " +
                                     " WHERE id = @Id";

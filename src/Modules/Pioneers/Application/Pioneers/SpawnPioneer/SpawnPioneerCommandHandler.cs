@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers;
+using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Pioneers.SpawnPioneer
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.SpawnPioneer
 {
     // ReSharper disable once UnusedMember.Global
     public class SpawnPioneerCommandHandler : ICommandHandler<SpawnPioneerCommand>

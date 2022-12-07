@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.API.Modules.Resources.TappedNodes
 {
     [ApiController]
-    [Route("api/resources/tapped-nodes")]
+    [Route("api/resources/[controller]")]
     public class TappedNodesController : Controller
     {
         private readonly IResourcesModule _module;

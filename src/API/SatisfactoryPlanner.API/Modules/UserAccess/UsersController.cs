@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Modules.UserAccess
 {
-    [Route("api/user-access/users")]
+    [Route("api/user-access/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {

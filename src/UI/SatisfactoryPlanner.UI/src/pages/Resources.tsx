@@ -1,35 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import PageHeader from "../components/PageHeader";
+import { ContentLayout } from "../components/Layout/ContentLayout";
 import { useApi, ApiResponse } from "../hooks/use-api";
 
-import makeDebugger from '../utils/makeDebugger';
-const debug = makeDebugger('Resources');
+import makeDebugger from "../utils/makeDebugger";
+const debug = makeDebugger("Resources");
 
-const Resources = () => {
+export const Resources = () => {
     debug("Rendering...");
 
     const api = useApi();
     const [resources, setResources] = useState<any>();
 
     useEffect(() => {
-        api("/resources",
-                {
-                    method: "GET"
-                })
-            .then((value: ApiResponse) => {
-                debug("GetResources response: ", value);
-                setResources(value.data);
-            });
+        api("/resources/resources", {
+            method: "GET",
+        }).then((value: ApiResponse) => {
+            debug("GetResources response: ", value);
+            setResources(value.data);
+        });
     }, []);
 
-
     return (
-        <React.Fragment>
-            <PageHeader text="Resources" />
+        <ContentLayout title="Resources">
             <pre>{JSON.stringify(resources, null, 2)}</pre>
-        </React.Fragment>
+        </ContentLayout>
     );
 };
-
-export default Resources;

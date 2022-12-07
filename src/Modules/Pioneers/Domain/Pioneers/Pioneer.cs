@@ -1,8 +1,8 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers.Events;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers.Events;
 using System.Diagnostics.CodeAnalysis;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Domain.Pioneers
+namespace SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers
 {
     public class Pioneer : Entity, IAggregateRoot
     {

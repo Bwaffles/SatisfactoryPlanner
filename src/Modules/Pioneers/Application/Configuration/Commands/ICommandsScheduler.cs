@@ -1,6 +1,6 @@
-﻿using SatisfactoryPlanner.Modules.Pioneers.Application.Contracts;
+﻿using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 
-namespace SatisfactoryPlanner.Modules.Pioneers.Application.Configuration.Commands
+namespace SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands
 {
     public interface ICommandsScheduler
     {
