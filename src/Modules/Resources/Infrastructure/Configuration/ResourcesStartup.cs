@@ -12,7 +12,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration
 {
     /// <summary>
     ///     Initialize the services and configurations for the Resources module.
-    ///     This will set up the logging, emailing and dependency injection for this module.
+    ///     This will set up the logging and dependency injection for this module.
     ///     Should be called from the main application Startup.
     /// </summary>
     public class ResourcesStartup
@@ -21,14 +21,10 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration
 
         public static void Initialize(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger)
         {
-            ConfigureCompositionRoot(connectionString, executionContextAccessor, logger
-                //, emailsConfiguration, eventsBus
-                );
+            ConfigureCompositionRoot(connectionString, executionContextAccessor, logger);
         }
 
-        private static void ConfigureCompositionRoot(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger
-            //, EmailsConfiguration emailsConfiguration, IEventsBus eventsBus
-            )
+        private static void ConfigureCompositionRoot(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger)
         {
             var containerBuilder = new ContainerBuilder();
 
@@ -44,16 +40,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration
 
             //var domainNotificationsMap = new BiDictionary<string, Type>();
             //domainNotificationsMap.Add("MeetingGroupProposalAcceptedNotification", typeof(MeetingGroupProposalAcceptedNotification));
-            //domainNotificationsMap.Add("MeetingGroupProposedNotification", typeof(MeetingGroupProposedNotification));
-            //domainNotificationsMap.Add("MeetingGroupCreatedNotification", typeof(MeetingGroupCreatedNotification));
-            //domainNotificationsMap.Add("MeetingAttendeeAddedNotification", typeof(MeetingAttendeeAddedNotification));
-            //domainNotificationsMap.Add("MemberCreatedNotification", typeof(MemberCreatedNotification));
-            //domainNotificationsMap.Add("MemberSubscriptionExpirationDateChangedNotification", typeof(MemberSubscriptionExpirationDateChangedNotification));
-            //domainNotificationsMap.Add("MeetingCommentLikedNotification", typeof(MeetingCommentLikedNotification));
-            //domainNotificationsMap.Add("MeetingCommentUnlikedNotification", typeof(MeetingCommentUnlikedNotification));
             //containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
-
-            //containerBuilder.RegisterModule(new EmailModule(emailsConfiguration));
+            
             //containerBuilder.RegisterModule(new QuartzModule());
 
             containerBuilder.RegisterInstance(executionContextAccessor);

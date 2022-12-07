@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
-using SatisfactoryPlanner.Modules.UserAccess.Domain.UserRegistrations;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.Users;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure
@@ -10,8 +9,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure
     public class UserAccessContext : DbContext
     {
         private readonly ILoggerFactory _loggerFactory;
-
-        public DbSet<UserRegistration> UserRegistrations { get; set; }
 
         public DbSet<User> Users { get; set; }
 

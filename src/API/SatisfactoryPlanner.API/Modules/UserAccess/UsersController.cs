@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
-using SatisfactoryPlanner.Modules.UserAccess.Application.UserRegistrations.ConfirmRegistration;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrentUser;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetCurrentUser;
 using System;
@@ -55,19 +54,8 @@ namespace SatisfactoryPlanner.API.Modules.UserAccess
             var currentUserId = await _userAccessModule.ExecuteCommandAsync(new CreateCurrentUserCommand(
                 request.Auth0UserId
             ));
-            
-            return Created("", currentUserId); 
-        }
 
-        [NoPermissionRequired]
-        [AllowAnonymous]
-        [HttpPost("{userRegistrationId}/confirm")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> ConfirmRegistration(Guid userRegistrationId)
-        {
-            await _userAccessModule.ExecuteCommandAsync(new ConfirmRegistrationCommand(userRegistrationId));
-
-            return Ok();
+            return Created("", currentUserId);
         }
     }
 }

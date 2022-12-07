@@ -11,10 +11,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Do
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Application.UserRegistrations.RegisterNewUser.UsersCounter>()
-                .As<UserAccess.Domain.UserRegistrations.IUsersCounter>()
-                .InstancePerLifetimeScope();
-
             builder.RegisterType<UsersCounter>()
                 .As<IUsersCounter>()
                 .InstancePerLifetimeScope();
