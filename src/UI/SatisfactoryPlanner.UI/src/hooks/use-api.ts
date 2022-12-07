@@ -1,12 +1,13 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 
-import makeDebugger from '../utils/makeDebugger';
-const debug = makeDebugger('useApi');
+import makeDebugger from "../utils/makeDebugger";
+const debug = makeDebugger("useApi");
 
 export interface ApiResponse {
     error: unknown;
-    statusCode: number,
-    data: any,
+    statusCode: number;
+    data: any;
+    response: Response | null;
 }
 
 export const useApi = () => {
@@ -14,11 +15,10 @@ export const useApi = () => {
 
     const fetchResponse = async (url: string, options: any = {}) => {
         try {
-
             const baseUrl = "http://localhost:55915/api";
             const { method, ...fetchOptions } = options;
             const accessToken = await getAccessTokenSilently({
-                audience: baseUrl
+                audience: baseUrl,
             });
 
             debug(`Fetching ${method} ${url}...`);
@@ -30,7 +30,7 @@ export const useApi = () => {
                     ...fetchOptions.headers,
                     // Add the Authorization header to the existing headers
                     Authorization: `Bearer ${accessToken}`,
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
             });
 
@@ -52,21 +52,20 @@ export const useApi = () => {
             var response: ApiResponse = {
                 error: null,
                 statusCode: res.status,
-                data: data
+                data: data,
+                response: res,
             };
             return response;
         } catch (error) {
             var errorResponse: ApiResponse = {
                 error: error,
                 statusCode: 0,
-                data: null
+                data: null,
+                response: null,
             };
             return errorResponse;
         }
-
-
     };
 
     return fetchResponse;
-
 };

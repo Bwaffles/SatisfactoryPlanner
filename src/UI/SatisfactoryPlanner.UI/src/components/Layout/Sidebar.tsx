@@ -19,9 +19,11 @@ const Sidebar = () => {
             <div className="flex flex-col grow gap-2">
                 <SidebarNavigation />
             </div>
-            <WorldSidebarItem />
             {isAuthenticated ? (
-                <UserDropdown />
+                <>
+                    <WorldSidebarItem />
+                    <UserDropdown />
+                </>
             ) : (
                 <button
                     className="flex items-center w-full py-4 px-4 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800"
