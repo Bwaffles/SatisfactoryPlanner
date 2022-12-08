@@ -13,9 +13,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.EventBus
             _logger = logger;
         }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
 
         public async Task Publish<T>(T @event)
             where T : IntegrationEvent
@@ -30,8 +28,6 @@ namespace SatisfactoryPlanner.BuildingBlocks.EventBus
             InMemoryEventBus.Instance.Subscribe(handler);
         }
 
-        public void StartConsuming()
-        {
-        }
+        public void StartConsuming() { }
     }
 }

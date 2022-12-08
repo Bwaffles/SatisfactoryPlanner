@@ -7,18 +7,20 @@ namespace SatisfactoryPlanner.BuildingBlocks.Domain
 {
     public abstract class ValueObject : IEquatable<ValueObject>
     {
-        private List<PropertyInfo> _properties;
+        private List<FieldInfo>? _fields;
+        private List<PropertyInfo>? _properties;
 
-        private List<FieldInfo> _fields;
+        public bool Equals(ValueObject? obj)
+        {
+            return Equals(obj as object);
+        }
 
         public static bool operator ==(ValueObject obj1, ValueObject obj2)
         {
             if (Equals(obj1, null))
             {
                 if (Equals(obj2, null))
-                {
                     return true;
-                }
 
                 return false;
             }
@@ -31,20 +33,13 @@ namespace SatisfactoryPlanner.BuildingBlocks.Domain
             return !(obj1 == obj2);
         }
 
-        public bool Equals(ValueObject obj)
-        {
-            return Equals(obj as object);
-        }
-
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || GetType() != obj.GetType())
-            {
                 return false;
-            }
 
             return GetProperties().All(p => PropertiesAreEqual(obj, p))
-                && GetFields().All(f => FieldsAreEqual(obj, f));
+                   && GetFields().All(f => FieldsAreEqual(obj, f));
         }
 
         public override int GetHashCode()
@@ -68,12 +63,15 @@ namespace SatisfactoryPlanner.BuildingBlocks.Domain
             }
         }
 
+        /// <summary>
+        ///     Check if any rules have been broken.
+        /// </summary>
+        /// <param name="rule">The rule to check.</param>
+        /// <exception cref="BusinessRuleValidationException">Thrown when the <paramref name="rule" /> has been broken.</exception>
         protected static void CheckRule(IBusinessRule rule)
         {
             if (rule.IsBroken())
-            {
                 throw new BusinessRuleValidationException(rule);
-            }
         }
 
         private bool PropertiesAreEqual(object obj, PropertyInfo p)
@@ -88,33 +86,21 @@ namespace SatisfactoryPlanner.BuildingBlocks.Domain
 
         private IEnumerable<PropertyInfo> GetProperties()
         {
-            if (_properties == null)
-            {
-                _properties = GetType()
-                    .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(IgnoreMemberAttribute)) == null)
-                    .ToList();
-
-                // Not available in Core
-                // !Attribute.IsDefined(p, typeof(IgnoreMemberAttribute))).ToList();
-            }
-
-            return _properties;
+            return _properties ??= GetType()
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Where(p => p.GetCustomAttribute(typeof(IgnoreMemberAttribute)) == null)
+                .ToList();
         }
 
         private IEnumerable<FieldInfo> GetFields()
         {
-            if (_fields == null)
-            {
-                _fields = GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                    .Where(p => p.GetCustomAttribute(typeof(IgnoreMemberAttribute)) == null)
-                    .ToList();
-            }
-
-            return _fields;
+            return _fields ??= GetType()
+                .GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                .Where(p => p.GetCustomAttribute(typeof(IgnoreMemberAttribute)) == null)
+                .ToList();
         }
 
-        private int HashValue(int seed, object value)
+        private int HashValue(int seed, object? value)
         {
             var currentHash = value?.GetHashCode() ?? 0;
 

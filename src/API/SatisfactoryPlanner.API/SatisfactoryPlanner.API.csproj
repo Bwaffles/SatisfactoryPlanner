@@ -10,6 +10,14 @@
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.0" />
@@ -28,9 +36,6 @@
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
     <ProjectReference Include="..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
     <ProjectReference Include="..\..\Modules\Factories\Application\SatisfactoryPlanner.Modules.Factories.Application.csproj">
