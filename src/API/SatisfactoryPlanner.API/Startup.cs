@@ -27,13 +27,15 @@ using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Formatting.Compact;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SatisfactoryPlanner.API
 {
     public class Startup
     {
-        private static ILogger _logger;
-        private static ILogger _loggerForApi;
+        private static ILogger _logger = null!;
+        private static ILogger _loggerForApi = null!;
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
 
@@ -47,8 +49,8 @@ namespace SatisfactoryPlanner.API
             ConfigureLogger();
 
             _configuration = configuration;
-
-            _connectionString = _configuration.GetConnectionString("FactoriesConnectionString");
+            _connectionString = _configuration.GetConnectionString("FactoriesConnectionString") ?? throw new InvalidOperationException("FactoriesConnectionString not defined.");
+            
             _loggerForApi.Information($"Connection string: {_connectionString}");
         }
 
@@ -119,6 +121,7 @@ namespace SatisfactoryPlanner.API
                     options.Audience = _configuration["Auth0:Audience"];
                 });
 
+        [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Called by the framework.")]
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterModule(new WorldsAutofacModule());
@@ -164,7 +167,7 @@ namespace SatisfactoryPlanner.API
                 endpoints.MapControllers();
             });
         }
-
+        
         private static void ConfigureLogger()
         {
             _logger = new LoggerConfiguration()
