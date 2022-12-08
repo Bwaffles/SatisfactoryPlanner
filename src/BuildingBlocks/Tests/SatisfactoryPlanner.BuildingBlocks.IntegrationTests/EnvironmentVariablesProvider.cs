@@ -14,7 +14,12 @@
             if (!string.IsNullOrEmpty(environmentVariable))
                 return environmentVariable;
 
-            return Environment.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.Machine);
+            environmentVariable = Environment.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.Machine);
+            if (!string.IsNullOrEmpty(environmentVariable))
+                return environmentVariable;
+
+            throw new ApplicationException(
+                $"Define connection string to integration tests database using environment variable: {variableName}.");
         }
     }
 }

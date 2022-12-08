@@ -9,19 +9,20 @@ namespace SatisfactoryPlanner.BuildingBlocks.Domain
         protected TypedIdValueBase(Guid value)
         {
             if (value == Guid.Empty)
-            {
                 throw new InvalidOperationException("Id value cannot be empty!");
-            }
 
             Value = value;
         }
 
-        public override bool Equals(object obj)
+        public bool Equals(TypedIdValueBase? other)
+        {
+            return Value == other?.Value;
+        }
+
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj))
-            {
                 return false;
-            }
 
             return obj is TypedIdValueBase other && Equals(other);
         }
@@ -31,19 +32,12 @@ namespace SatisfactoryPlanner.BuildingBlocks.Domain
             return Value.GetHashCode();
         }
 
-        public bool Equals(TypedIdValueBase other)
-        {
-            return Value == other?.Value;
-        }
-
         public static bool operator ==(TypedIdValueBase obj1, TypedIdValueBase obj2)
         {
-            if (object.Equals(obj1, null))
+            if (Equals(obj1, null))
             {
-                if (object.Equals(obj2, null))
-                {
+                if (Equals(obj2, null))
                     return true;
-                }
 
                 return false;
             }

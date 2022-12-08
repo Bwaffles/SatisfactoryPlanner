@@ -184,7 +184,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
                 var constructors = entityType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
                 foreach (var constructorInfo in constructors)
                 {
-                    var parameters = constructorInfo.GetParameters().Select(x => x.Name.ToLower()).ToList();
+                    var parameters = constructorInfo.GetParameters().Select(x => x.Name?.ToLower()).ToList();
 
                     if (names.Intersect(parameters).Count() == names.Count)
                     {
