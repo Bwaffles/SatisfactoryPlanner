@@ -3,6 +3,7 @@ using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetUsers;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Claims;
 
@@ -12,6 +13,8 @@ namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserAccessModule _userAccessModule;
+
+        private HttpContext? HttpContext => _httpContextAccessor.HttpContext;
 
         public ExecutionContextAccessor(IHttpContextAccessor httpContextAccessor, IUserAccessModule userAccessModule)
         {
@@ -23,9 +26,11 @@ namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
         {
             get
             {
+                if (!IsAvailable)
+                    throw new ApplicationException("Http context is not available.");
+
                 // Get the Auth0 User Id from the Access Token of the request.
-                var auth0UserId = _httpContextAccessor
-                    .HttpContext?
+                var auth0UserId = HttpContext
                     .User
                     .Claims
                     .SingleOrDefault(a => a.Type == ClaimTypes.NameIdentifier)?
@@ -49,22 +54,18 @@ namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
         {
             get
             {
-                var user = _httpContextAccessor
-                    .HttpContext?
-                    .User
-                    .Claims
-                    .SingleOrDefault(a => a.Type == ClaimTypes.NameIdentifier)?
-                    .Value;
+                if (!IsAvailable)
+                    throw new ApplicationException("Http context is not available.");
 
-                if (IsAvailable && _httpContextAccessor.HttpContext.Request.Headers.Keys.Any(
-                        x => x == CorrelationMiddleware.CorrelationHeaderKey))
-                    return Guid.Parse(
-                        _httpContextAccessor.HttpContext.Request.Headers[CorrelationMiddleware.CorrelationHeaderKey]);
+                if (!HttpContext.Request.Headers.ContainsKey(CorrelationMiddleware.CorrelationHeaderKey))
+                    throw new ApplicationException("Correlation id is not available.");
 
-                throw new ApplicationException("Http context and correlation id is not available");
+                var correlationId = HttpContext.Request.Headers[CorrelationMiddleware.CorrelationHeaderKey].ToString();
+                return Guid.Parse(correlationId);
             }
         }
 
-        public bool IsAvailable => _httpContextAccessor.HttpContext != null;
+        [MemberNotNullWhen(true, nameof(HttpContext))]
+        public bool IsAvailable => HttpContext != null;
     }
 }
