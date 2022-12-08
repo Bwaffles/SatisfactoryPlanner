@@ -6,18 +6,16 @@ namespace SatisfactoryPlanner.BuildingBlocks.EventBus
 {
     public sealed class InMemoryEventBus
     {
-        static InMemoryEventBus()
-        {
-        }
+        private readonly IDictionary<string, List<IIntegrationEventHandler>> _handlersDictionary;
+
+        public static InMemoryEventBus Instance { get; } = new();
+
+        static InMemoryEventBus() { }
 
         private InMemoryEventBus()
         {
             _handlersDictionary = new Dictionary<string, List<IIntegrationEventHandler>>();
         }
-
-        public static InMemoryEventBus Instance { get; } = new InMemoryEventBus();
-
-        private readonly IDictionary<string, List<IIntegrationEventHandler>> _handlersDictionary;
 
         public void Subscribe<T>(IIntegrationEventHandler<T> handler)
             where T : IntegrationEvent
@@ -32,7 +30,10 @@ namespace SatisfactoryPlanner.BuildingBlocks.EventBus
                 }
                 else
                 {
-                    _handlersDictionary.Add(eventType, new List<IIntegrationEventHandler> { handler });
+                    _handlersDictionary.Add(eventType, new List<IIntegrationEventHandler>
+                    {
+                        handler
+                    });
                 }
             }
         }
@@ -43,19 +44,13 @@ namespace SatisfactoryPlanner.BuildingBlocks.EventBus
             var eventType = @event.GetType().FullName;
 
             if (eventType == null)
-            {
                 return;
-            }
 
             var integrationEventHandlers = _handlersDictionary[eventType];
 
             foreach (var integrationEventHandler in integrationEventHandlers)
-            {
                 if (integrationEventHandler is IIntegrationEventHandler<T> handler)
-                {
                     await handler.Handle(@event);
-                }
-            }
         }
     }
 }
