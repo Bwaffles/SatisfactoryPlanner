@@ -15,7 +15,11 @@ const { Resources } = lazyImport(
     () => import("../pages/Resources"),
     "Resources"
 );
-const { Callback } = lazyImport(() => import("../pages/Callback"), "Callback");
+const { LoginRedirect } = lazyImport(
+    () => import("../pages/LoginRedirect"),
+    "LoginRedirect"
+);
+const { Login } = lazyImport(() => import("../pages/Login"), "Login");
 const { LoginError } = lazyImport(
     () => import("../pages/LoginError"),
     "LoginError"
@@ -41,10 +45,6 @@ export const AppRoutes = () => {
                     element={isAuthenticated ? <Resources /> : <AutoLogin />}
                 />
                 <Route
-                    path="/callback"
-                    element={<Callback />}
-                />
-                <Route
                     path="/loginError"
                     element={<LoginError />}
                 />
@@ -53,6 +53,14 @@ export const AppRoutes = () => {
                     element={<NoMatch />}
                 />
             </Route>
+            <Route
+                path="/loginRedirect"
+                element={<LoginRedirect />}
+            />
+            <Route
+                path="/login"
+                element={<Login />}
+            />
         </Routes>
     );
 };
