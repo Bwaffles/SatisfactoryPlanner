@@ -3,6 +3,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import * as Config from "../config";
 import { Spinner } from "../components/Elements/Spinner";
@@ -26,6 +27,8 @@ type AppProviderProps = {
     children: React.ReactNode;
 };
 
+const queryClient = new QueryClient();
+
 export const AppProvider = ({ children }: AppProviderProps) => {
     return (
         <React.Suspense
@@ -44,7 +47,9 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                             redirectUri={Config.REDIRECT_URL}
                             audience={Config.API_URL}
                         >
-                            {children}
+                            <QueryClientProvider client={queryClient}>
+                                {children}
+                            </QueryClientProvider>
                         </AuthProvider>
                     </Router>
                 </HelmetProvider>

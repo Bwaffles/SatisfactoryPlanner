@@ -1,54 +1,90 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import { useCurrentUser } from "../features/users/api/getCurrentUser";
-import makeDebugger from "../utils/makeDebugger";
 import { Spinner } from "../components/Elements/Spinner";
-import { useCreateCurrentUser } from "../features/users/api/createCurrentUser";
-const debug = makeDebugger("Login");
+import { getCurrentUser } from "../features/users/api/getCurrentUser";
+import { createCurrentUser } from "../features/users/api/createCurrentUser";
+import { useNavigate } from "react-router-dom";
+import { getCurrentPioneerWorlds } from "../features/worlds/api/getCurrentPioneerWorlds";
+import { CurrentPioneerWorld } from "../features/worlds/types";
 
 export const Login = () => {
     const navigate = useNavigate();
-    const { data: currentUserData, isRejected: currentUserIsRejected } =
-        useCurrentUser();
-    const {
-        run: runCreateCurrentUser,
-        isFulfilled: createCurrentUserIsFufilled,
-        isRejected: createCurrentUserIsRejected,
-    } = useCreateCurrentUser();
+    const { isSuccess, isError } = useLogin();
 
-    debug("Rendering...");
-
-    // TODO can I break this up better? It's basically 2 workflows but they're intwined so I'd love to make this cleaner.
+    // Need to wrap my navigate call in useEffect so that it runs after the component finishes rendering
     useEffect(() => {
-        // Using useEffect because without it calling navigate causes a console error. Need to navigate after rendering is finished.
-        debug("Data effect...", currentUserData);
-        if (currentUserData) {
-            debug("User already exists. Redirecting to home...");
-            navigate("/");
-        } else if (currentUserData == "") {
-            debug("User not created. Starting creation process...");
-            runCreateCurrentUser();
-        }
-    }, [currentUserData]);
-
-    useEffect(() => {
-        if (createCurrentUserIsFufilled) {
-            debug("User created. Redirecting to home...");
+        if (isSuccess) {
             navigate("/");
         }
-    }, [createCurrentUserIsFufilled]);
+    }, [isSuccess]);
 
     useEffect(() => {
-        // TODO do I really need to redirect to a new page here?
-        if (currentUserIsRejected || createCurrentUserIsRejected) {
-            navigate("/loginError"); // if finishing the login process on the server fails, need to log the user out of auth0 so we're in a consistent state
+        if (isError) {
+            navigate("/loginError");
         }
-    }, [currentUserIsRejected, createCurrentUserIsRejected]);
+    }, [isError]);
 
     return (
         <div className="flex items-center justify-center w-screen h-screen bg-gray-900">
             <Spinner size="xl" />
         </div>
     );
+};
+
+const useLogin = () => {
+    const { getAccessTokenSilently, user } = useAuth0();
+    const auth0UserId = user!.sub!;
+
+    // ? is it bad to do a mutation inside of this query?
+    return useQuery("login", async () => {
+        const currentUser = await getCurrentUser(getAccessTokenSilently);
+        if (currentUser) {
+            return true;
+        }
+
+        await createCurrentUser(getAccessTokenSilently, auth0UserId);
+
+        // Polling to see if the spawn pioneer process has finished--it should take around 4-5 seconds to complete
+        // TODO better polling.
+        const currentWorlds = await poll({
+            fn: () => getCurrentPioneerWorlds(getAccessTokenSilently),
+            validate: (worlds: CurrentPioneerWorld[]) => worlds.length,
+            interval: 3000,
+            maxAttempts: 10,
+        });
+        if (currentWorlds.length) {
+            return true;
+        }
+    });
+};
+
+const poll = async ({
+    fn,
+    validate,
+    interval,
+    maxAttempts,
+}: {
+    fn: any;
+    validate: any;
+    interval: number;
+    maxAttempts: number;
+}): Promise<CurrentPioneerWorld[]> => {
+    let attempts = 0;
+
+    const executePoll = async (resolve: any, reject: any) => {
+        const result = await fn();
+        attempts++;
+
+        if (validate(result)) {
+            return resolve(result);
+        } else if (maxAttempts && attempts === maxAttempts) {
+            return reject(new Error("Exceeded max attempts"));
+        } else {
+            setTimeout(executePoll, interval, resolve, reject);
+        }
+    };
+
+    return new Promise(executePoll);
 };
