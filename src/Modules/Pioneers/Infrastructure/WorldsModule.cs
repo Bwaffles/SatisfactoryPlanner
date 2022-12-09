@@ -15,7 +15,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
 
         public async Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
         {
-            using (var scope = PioneersCompositionRoot.BeginLifetimeScope())
+            using (var scope = WorldsCompositionRoot.BeginLifetimeScope())
             {
                 var mediator = scope.Resolve<IMediator>();
 

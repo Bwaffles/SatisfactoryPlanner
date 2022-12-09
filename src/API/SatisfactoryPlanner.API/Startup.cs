@@ -48,10 +48,10 @@ namespace SatisfactoryPlanner.API
         {
             ConfigureLogger();
 
+            _loggerForApi.Information("Application started.");
+
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("FactoriesConnectionString") ?? throw new InvalidOperationException("FactoriesConnectionString not defined.");
-            
-            _loggerForApi.Information($"Connection string: {_connectionString}");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -182,8 +182,6 @@ namespace SatisfactoryPlanner.API
                 .CreateLogger();
 
             _loggerForApi = _logger.ForContext("Module", "API");
-
-            _loggerForApi.Information("Logger configured");
         }
 
         private void InitializeModules(ILifetimeScope container)

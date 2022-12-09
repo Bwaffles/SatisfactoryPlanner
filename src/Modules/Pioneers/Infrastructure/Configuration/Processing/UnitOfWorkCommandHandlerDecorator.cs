@@ -9,15 +9,15 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Proces
     internal class UnitOfWorkCommandHandlerDecorator<T> : ICommandHandler<T> where T : ICommand
     {
         private readonly ICommandHandler<T> _decorated;
-        private readonly PioneersContext _pioneersContext;
+        private readonly WorldsContext _context;
         private readonly IUnitOfWork _unitOfWork;
 
         public UnitOfWorkCommandHandlerDecorator(ICommandHandler<T> decorated, IUnitOfWork unitOfWork,
-            PioneersContext pioneersContext)
+            WorldsContext context)
         {
             _decorated = decorated;
             _unitOfWork = unitOfWork;
-            _pioneersContext = pioneersContext;
+            _context = context;
         }
 
         public async Task<Unit> Handle(T command, CancellationToken cancellationToken)
@@ -27,7 +27,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Proces
             if (command is InternalCommandBase)
             {
                 var internalCommand =
-                    await _pioneersContext.InternalCommands.FirstOrDefaultAsync(
+                    await _context.InternalCommands.FirstOrDefaultAsync(
                         x => x.Id == command.Id,
                         cancellationToken);
 

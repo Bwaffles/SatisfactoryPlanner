@@ -15,7 +15,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Events
 
         private static void SubscribeToIntegrationEvents(ILogger logger)
         {
-            var eventBus = PioneersCompositionRoot.BeginLifetimeScope().Resolve<IEventsBus>();
+            var eventBus = WorldsCompositionRoot.BeginLifetimeScope().Resolve<IEventsBus>();
 
             SubscribeToIntegrationEvent<PioneerUserCreatedIntegrationEvent>(eventBus, logger);
         }

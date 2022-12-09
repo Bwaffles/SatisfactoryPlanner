@@ -12,7 +12,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Events
     {
         public async Task Handle(T @event)
         {
-            using var scope = PioneersCompositionRoot.BeginLifetimeScope();
+            using var scope = WorldsCompositionRoot.BeginLifetimeScope();
             using var connection = scope.Resolve<IDbConnectionFactory>().GetOpenConnection();
             var type = @event.GetType().FullName;
             var data = JsonConvert.SerializeObject(@event, new JsonSerializerSettings

@@ -10,9 +10,9 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Domain.Pioneers
     /// </remarks>
     internal class PioneersRepository : IPioneersRepository
     {
-        private readonly PioneersContext _context;
+        private readonly WorldsContext _context;
 
-        internal PioneersRepository(PioneersContext context) => _context = context;
+        internal PioneersRepository(WorldsContext context) => _context = context;
 
         public async Task AddAsync(Pioneer pioneer) => await _context.Pioneers.AddAsync(pioneer);
 

@@ -28,7 +28,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
             IExecutionContextAccessor executionContextAccessor,
             ILogger logger)
         {
-            var moduleLogger = logger.ForContext("Module", "Pioneers");
+            var moduleLogger = logger.ForContext("Module", "Worlds");
 
             ConfigureCompositionRoot(connectionString, executionContextAccessor, moduleLogger);
 
@@ -66,7 +66,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
 
             _container = containerBuilder.Build();
 
-            PioneersCompositionRoot.SetContainer(_container);
+            WorldsCompositionRoot.SetContainer(_container);
         }
     }
 }
