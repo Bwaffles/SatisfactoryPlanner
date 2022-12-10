@@ -1,18 +1,15 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useQuery } from "react-query";
-
 import * as Config from "../../../config";
-import { CurrentPioneerWorld } from "../types";
+import { CurrentUser } from "../types";
 
-export const getCurrentPioneerWorlds = async (
+export const getCurrentUser = async (
     getAccessTokenSilently: any
-): Promise<CurrentPioneerWorld[]> => {
+): Promise<CurrentUser | undefined> => {
     const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
         audience: baseUrl,
     });
 
-    const response = await fetch(baseUrl + "/worlds/worlds/@me", {
+    const response = await fetch(baseUrl + "/user-access/users/@me", {
         method: "GET",
         headers: {
             // Add the Authorization header to the existing headers
@@ -23,12 +20,7 @@ export const getCurrentPioneerWorlds = async (
     });
 
     if (!response.ok) throw new Error(response.statusText);
-    return response.json();
-};
+    if (response.status === 204) return undefined;
 
-export const useCurrentPioneerWorlds = () => {
-    const { getAccessTokenSilently } = useAuth0();
-    return useQuery("getCurrentPioneersWorlds", () =>
-        getCurrentPioneerWorlds(getAccessTokenSilently)
-    );
+    return response.json();
 };

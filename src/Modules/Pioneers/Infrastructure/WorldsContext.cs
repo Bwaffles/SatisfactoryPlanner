@@ -7,7 +7,7 @@ using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
 
 namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
 {
-    public class PioneersContext : DbContext
+    public class WorldsContext : DbContext
     {
         private readonly ILoggerFactory _loggerFactory;
 
@@ -19,14 +19,14 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
 
         public DbSet<World> Worlds { get; set; }
 
-        public PioneersContext(DbContextOptions options, ILoggerFactory loggerFactory)
+        public WorldsContext(DbContextOptions options, ILoggerFactory loggerFactory)
             : base(options) =>
             _loggerFactory = loggerFactory;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
-            optionsBuilder
-                .UseLoggerFactory(_loggerFactory)
-                .EnableSensitiveDataLogging();
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+             //optionsBuilder.UseLoggerFactory(_loggerFactory).EnableSensitiveDataLogging();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
             => modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);

@@ -2,7 +2,7 @@
 
 namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
 {
-    internal static class PioneersCompositionRoot
+    internal static class WorldsCompositionRoot
     {
         private static IContainer _container;
 

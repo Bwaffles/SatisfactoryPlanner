@@ -36,12 +36,12 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.DataAc
             builder
                 .Register(c =>
                 {
-                    var dbContextOptionsBuilder = new DbContextOptionsBuilder<PioneersContext>();
+                    var dbContextOptionsBuilder = new DbContextOptionsBuilder<WorldsContext>();
                     dbContextOptionsBuilder.UseNpgsql(_databaseConnectionString);
                     dbContextOptionsBuilder
                         .ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();
 
-                    return new PioneersContext(dbContextOptionsBuilder.Options, _loggerFactory);
+                    return new WorldsContext(dbContextOptionsBuilder.Options, _loggerFactory);
                 })
                 .AsSelf()
                 .As<DbContext>()

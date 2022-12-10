@@ -11,22 +11,22 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Qu
 {
     internal static class QuartzStartup
     {
-        private static IScheduler _scheduler;
+        private static IScheduler _scheduler = null!;
 
         internal static void Initialize(ILogger logger)
         {
             logger.Information("Quartz starting...");
 
-            var scheduler = StartScheduler(logger);
+            _scheduler = StartScheduler(logger);
 
-            ScheduleProcessOutboxJob(scheduler);
-            ScheduleProcessInboxJob(scheduler);
-            ScheduleProcessInternalCommandsJob(scheduler);
+            ScheduleProcessOutboxJob();
+            ScheduleProcessInboxJob();
+            ScheduleProcessInternalCommandsJob();
 
             logger.Information("Quartz started.");
         }
 
-        internal static void Shutdown() => _scheduler?.Shutdown();
+        internal static void Shutdown() => _scheduler.Shutdown();
 
         private static IScheduler StartScheduler(ILogger logger)
         {
@@ -47,47 +47,47 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Qu
             return scheduler;
         }
 
-        private static void ScheduleProcessInternalCommandsJob(IScheduler scheduler)
+        private static void ScheduleProcessInternalCommandsJob()
         {
             var processInternalCommandsJob = JobBuilder.Create<ProcessInternalCommandsJob>().Build();
             var triggerCommandsProcessing =
                 TriggerBuilder
                     .Create()
                     .StartNow()
-                    .WithCronSchedule("0/15 * * ? * *")
+                    .WithCronSchedule("0/2 * * ? * *")
                     .Build();
 
-            scheduler
+            _scheduler
                 .ScheduleJob(processInternalCommandsJob, triggerCommandsProcessing)
                 .GetAwaiter().GetResult();
         }
 
-        private static void ScheduleProcessInboxJob(IScheduler scheduler)
+        private static void ScheduleProcessInboxJob()
         {
             var processInboxJob = JobBuilder.Create<ProcessInboxJob>().Build();
             var processInboxTrigger =
                 TriggerBuilder
                     .Create()
                     .StartNow()
-                    .WithCronSchedule("0/15 * * ? * *")
+                    .WithCronSchedule("0/2 * * ? * *")
                     .Build();
 
-            scheduler
+            _scheduler
                 .ScheduleJob(processInboxJob, processInboxTrigger)
                 .GetAwaiter().GetResult();
         }
 
-        private static void ScheduleProcessOutboxJob(IScheduler scheduler)
+        private static void ScheduleProcessOutboxJob()
         {
             var processOutboxJob = JobBuilder.Create<ProcessOutboxJob>().Build();
             var trigger =
                 TriggerBuilder
                     .Create()
                     .StartNow()
-                    .WithCronSchedule("0/15 * * ? * *")
+                    .WithCronSchedule("0/2 * * ? * *")
                     .Build();
 
-            scheduler
+            _scheduler
                 .ScheduleJob(processOutboxJob, trigger)
                 .GetAwaiter().GetResult();
         }

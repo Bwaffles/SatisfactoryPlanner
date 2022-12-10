@@ -17,7 +17,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
         /// <summary>
         ///     The assembly of our Worlds.Infrastructure project.
         /// </summary>
-        internal static readonly Assembly Infrastructure = typeof(PioneersContext).Assembly;
+        internal static readonly Assembly Infrastructure = typeof(WorldsContext).Assembly;
 
         /// <summary>
         ///     The assembly of the MediatR library.

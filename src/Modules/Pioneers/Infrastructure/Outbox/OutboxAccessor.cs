@@ -4,9 +4,9 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Outbox
 {
     public class OutboxAccessor : IOutbox
     {
-        private readonly PioneersContext _context;
+        private readonly WorldsContext _context;
 
-        public OutboxAccessor(PioneersContext context) => _context = context;
+        public OutboxAccessor(WorldsContext context) => _context = context;
 
         public void Add(OutboxMessage message) => _context.OutboxMessages.Add(message);
 

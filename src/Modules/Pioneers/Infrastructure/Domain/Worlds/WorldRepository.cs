@@ -4,9 +4,9 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Domain.Worlds
 {
     public class WorldRepository : IWorldRepository
     {
-        private readonly PioneersContext _context;
+        private readonly WorldsContext _context;
 
-        public WorldRepository(PioneersContext context)
+        public WorldRepository(WorldsContext context)
         {
             _context = context;
         }

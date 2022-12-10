@@ -6,11 +6,11 @@ import { useCurrentPioneerWorlds } from "../api/getCurrentPioneerWorlds";
 import storage from "../../../utils/storage";
 
 export const WorldSidebarItem = () => {
-    const { data } = useCurrentPioneerWorlds();
+    const { data: worlds } = useCurrentPioneerWorlds();
 
-    if (data) {
+    if (worlds) {
         // TODO need better support for the "current world" instead of just getting index 0--will add when you can create more worlds
-        const currentWorld = data[0];
+        const currentWorld = worlds[0];
         storage.setWorldId(currentWorld.id);
 
         return (
