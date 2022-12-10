@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { ContentLayout } from "../components/Layout/ContentLayout";
-import { useApi, ApiResponse } from "../hooks/use-api";
-
-import makeDebugger from "../utils/makeDebugger";
-const debug = makeDebugger("Resources");
+import { useGetResources } from "../features/resources/api/getResources";
 
 export const Resources = () => {
-    debug("Rendering...");
+    const { isError, data: resources, error } = useGetResources();
 
-    const api = useApi();
-    const [resources, setResources] = useState<any>();
-
-    useEffect(() => {
-        api("/resources/resources", {
-            method: "GET",
-        }).then((value: ApiResponse) => {
-            debug("GetResources response: ", value);
-            setResources(value.data);
-        });
-    }, []);
+    if (isError) {
+        return <span>Error: {(error as Error).message}</span>;
+    }
 
     return (
         <ContentLayout title="Resources">
