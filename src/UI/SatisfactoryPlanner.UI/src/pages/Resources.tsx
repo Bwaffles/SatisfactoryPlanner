@@ -1,18 +1,15 @@
 import React from "react";
 
 import { ContentLayout } from "../components/Layout/ContentLayout";
-import { useGetResources } from "../features/resources/api/getResources";
+import { ResourcesList } from "../features/resources/components/ResourcesList";
 
 export const Resources = () => {
-    const { isError, data: resources, error } = useGetResources();
-
-    if (isError) {
-        return <span>Error: {(error as Error).message}</span>;
-    }
-
     return (
         <ContentLayout title="Resources">
-            <pre>{JSON.stringify(resources, null, 2)}</pre>
+            <p className="text-gray-300">
+                Select a resource to view its details and manage your nodes.
+            </p>
+            <ResourcesList />
         </ContentLayout>
     );
 };
