@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetCurrentUser
 {
@@ -13,5 +14,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetCurrentUse
         ///     The identifier of the user in Auth0.
         /// </summary>
         public string Auth0UserId { get; set; }
+
+        public IEnumerable<UserRoleDto> Roles { get; set; } = new List<UserRoleDto>();
     }
 }

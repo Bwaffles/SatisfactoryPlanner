@@ -4,7 +4,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
 {
     public class UserRole : ValueObject
     {
-        public static UserRole Member => new(nameof(Member));
+        public static UserRole Pioneer => new(nameof(Pioneer));
 
         public string Value { get; }
 

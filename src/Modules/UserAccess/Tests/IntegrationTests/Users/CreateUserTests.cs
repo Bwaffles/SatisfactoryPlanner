@@ -9,7 +9,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.Users
     public class CreateUserTests : TestBase
     {
         [Test]
-        public async Task CreateUser_Test()
+        public async Task CreatePioneerUser_Test()
         {
             ExecutionContext.UserId = Guid.Empty;
 
@@ -26,6 +26,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.Users
             user.Should().NotBeNull();
             user!.Id.Should().Be(newUserId);
             user.Auth0UserId.Should().Be("myAuth0UserId");
+            user.Roles.Should().OnlyContain(userRole => userRole.RoleCode == "Pioneer");
 
             var connection = new NpgsqlConnection(ConnectionString);
             var messagesList = await OutboxMessagesHelper.GetOutboxMessages(connection);
