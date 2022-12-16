@@ -33,14 +33,17 @@ Want to use intent based API instead of the typical CRUD Rest API since my appli
 - https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling
 - https://techblog.pointsbet.com/a-structured-approach-to-designing-intent-based-apis-910ed1fc78f2
 
-#### GET ####
+#### Authorization
+All routes need to be decorated with either `NoPermissionRequired` or `HasPermission` attribute. `NoPermissionRequired` marks a route as one that is accessible to all roles, typically this is reserved for `@me` routes since you will always have permission to access your own data. `HasPermission` requires you to state the name of the permission. The user making the request must have a role with the given permission or they will get a `403 Forbidden` error.
+
+#### GET
 200, 204, or 404 when the item wasn't found? I researched this for hours and I'm going to make the final decision (for now) indicated below:
 - If pioneer is found at `/pioneers/9`, return `200 Ok`.
 - If pioneer is found at `/pioneers?id=9`, return `200 Ok`.
 - If no pioneer is found at `/pioneers/9`, return `404 Not Found`.
 - If no pioneer is found at `/pioneers?id=9`, return `204 No Content`.
 
-Reasoning being that `/pioneers/9` is a resource and the resource does not exist. There is no such thing as pioneer 9. However, if you call pioneers and you want to filter to only pioneers with id of 9, then the resource of pioneers does exist but your search yielded no results.
+Reasoning being that `/pioneers/9` is a resource and the resource does not exist. There is no such thing as pioneer 9. How did you even get that url? However, if you call the pioneers collection and you want to filter to only pioneers with id of 9, then the resource of pioneers does exist but your search yielded no results.
 
   - https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-7.0#synchronous-action
   - https://stackoverflow.com/a/61049975
