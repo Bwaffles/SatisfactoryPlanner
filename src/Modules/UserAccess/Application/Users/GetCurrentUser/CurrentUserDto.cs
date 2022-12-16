@@ -15,6 +15,9 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetCurrentUse
         /// </summary>
         public string Auth0UserId { get; set; }
 
+        /// <summary>
+        ///     The roles assigned to the current user.
+        /// </summary>
         public IEnumerable<UserRoleDto> Roles { get; set; } = new List<UserRoleDto>();
     }
 }

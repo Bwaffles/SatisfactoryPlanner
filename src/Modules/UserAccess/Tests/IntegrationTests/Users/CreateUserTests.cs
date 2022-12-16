@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Authorization.GetUserPermissions;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrentUser;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetCurrentUser;
 using SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork;
@@ -27,6 +28,9 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.Users
             user!.Id.Should().Be(newUserId);
             user.Auth0UserId.Should().Be("myAuth0UserId");
             user.Roles.Should().OnlyContain(userRole => userRole.RoleCode == "Pioneer");
+
+            var permissions = await UserAccessModule.ExecuteQueryAsync(new GetUserPermissionsQuery(user.Id));
+            permissions.Should().NotBeEmpty();
 
             var connection = new NpgsqlConnection(ConnectionString);
             var messagesList = await OutboxMessagesHelper.GetOutboxMessages(connection);
