@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SatisfactoryPlanner.API.Configuration.Authorization;
+using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
+using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourceDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResources;
@@ -22,12 +23,12 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
             _resourcesModule = resourcesModule;
         }
 
-        [HttpGet("")]
         [Authorize]
         [HasPermission("Resources.GetResources")]
+        [WorldAuthorization]
         [HttpGet("")]
         [ProducesResponseType(typeof(List<ResourceDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetResources()
+        public async Task<IActionResult> GetResources([FromQuery] Guid worldId)
         {
             var resources = await _resourcesModule.ExecuteQueryAsync(new GetResourcesQuery());
             return Ok(resources);

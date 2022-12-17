@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SatisfactoryPlanner.API.Configuration.Authorization;
+using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
+using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Extensions;
 using SatisfactoryPlanner.API.Configuration.Routing;
@@ -94,11 +95,15 @@ namespace SatisfactoryPlanner.API
                 options.AddPolicy(HasPermissionAttribute.HasPermissionPolicyName, policyBuilder =>
                 {
                     policyBuilder.Requirements.Add(new HasPermissionAuthorizationRequirement());
-                    //policyBuilder.AddAuthenticationSchemes(IdentityServerAuthenticationDefaults.AuthenticationScheme);
+                });
+                options.AddPolicy(WorldAuthorizationAttribute.HasPermissionPolicyName, policyBuilder =>
+                {
+                    policyBuilder.Requirements.Add(new WorldAuthorizationRequirement());
                 });
             });
 
             services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
+            services.AddScoped<IAuthorizationHandler, WorldAuthorizationHandler>();
         }
 
         /// <summary>

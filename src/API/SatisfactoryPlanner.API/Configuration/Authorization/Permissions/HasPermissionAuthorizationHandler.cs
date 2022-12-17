@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.API.Configuration.Authorization
+namespace SatisfactoryPlanner.API.Configuration.Authorization.Permissions
 {
     internal class HasPermissionAuthorizationHandler : AttributeAuthorizationHandler<
         HasPermissionAuthorizationRequirement, HasPermissionAttribute>

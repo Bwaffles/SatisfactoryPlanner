@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System;
 
-namespace SatisfactoryPlanner.API.Configuration.Authorization
+namespace SatisfactoryPlanner.API.Configuration.Authorization.Permissions
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     internal class HasPermissionAttribute : AuthorizeAttribute
