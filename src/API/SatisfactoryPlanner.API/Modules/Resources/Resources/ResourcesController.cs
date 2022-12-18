@@ -24,7 +24,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         }
 
         [Authorize]
-        [HasPermission("Resources.GetResources")]
+        [HasPermission(ResourcesPermissions.GetResources)]
         [WorldAuthorization]
         [HttpGet("")]
         [ProducesResponseType(typeof(List<ResourceDto>), StatusCodes.Status200OK)]
