@@ -1,4 +1,6 @@
-﻿using FluentMigrator;
+﻿using DatabaseMigrator.Scripts.Generators._0002_SeedResourceNodes;
+using DatabaseMigrator.Scripts.Generators.SeedResourceExtractors;
+using FluentMigrator;
 
 namespace DatabaseMigrator.Migrations.Factories
 {
@@ -53,6 +55,9 @@ namespace DatabaseMigrator.Migrations.Factories
 
             Execute.Sql("ALTER TABLE factories.resource_nodes " +
                         "ADD CONSTRAINT purity_check CHECK (purity in ('Impure', 'Normal', 'Pure'));");
+
+            new SeedResourceNodesScriptGenerator()
+                .Generate();
 
             Execute.Script(Scripts.Scripts.SeedResourcesNodes);
         }
