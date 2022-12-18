@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Factories
 {
     [Migration(202204061650)]
     public class Create_Items_WithResources : Migration

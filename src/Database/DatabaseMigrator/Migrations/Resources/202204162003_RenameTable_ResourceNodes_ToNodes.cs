@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Resources
 {
     [Migration(202204162003)]
     public class RenameTable_ResourceNodes_ToNodes : Migration

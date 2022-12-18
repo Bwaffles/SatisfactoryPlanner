@@ -1,7 +1,7 @@
 ﻿using DatabaseMigrator.Scripts.Generators.SeedResourceExtractors;
 using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Factories
 {
     [Migration(202204101100)]
     public class Create_ResourceExtractors_Seeded : Migration

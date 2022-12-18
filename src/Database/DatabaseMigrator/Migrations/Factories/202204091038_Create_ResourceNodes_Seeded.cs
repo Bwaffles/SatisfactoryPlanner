@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Factories
 {
     [Migration(202204091038)]
     public class Create_ResourceNodes_Seeded : Migration

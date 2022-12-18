@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Factories
 {
     [Migration(202204091730)]
     public class Update_ItemForm_ToForeignKey : Migration

@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Factories
 {
     [Migration(202203301745)]
     public class Create_Factories : Migration

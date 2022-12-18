@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Factories
 {
     [Migration(202204021156)]
     public class AddColumn_BuiltUnderFactoryId_ToFactories : Migration

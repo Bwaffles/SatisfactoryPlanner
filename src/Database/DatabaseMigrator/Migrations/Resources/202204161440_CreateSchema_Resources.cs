@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Resources
 {
     [Migration(202204161440)]
     public class CreateSchema_Resources : Migration

@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Factories
 {
     /// <summary>
     /// Switching the primary key of this table to a Guid id instead of the game's code.

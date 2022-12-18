@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Resources
 {
     [Migration(202204161452)]
     public class Rename_ItemsToResources : Migration
@@ -62,7 +62,7 @@ namespace DatabaseMigrator.Migrations
                 .OnTable("resource_extractor_allowed_resources")
                 .InSchema("resources")
                 .To("resource_id");
-            
+
             // Remove some columns that don't make sense in a resource context
             // Not removing all of them because it'd be hard to revert data and I don't want to deal with that now
             Delete

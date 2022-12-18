@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations
+namespace DatabaseMigrator.Migrations.Resources
 {
     [Migration(202204180115)]
     public class AlterColumns_Extractors : Migration
