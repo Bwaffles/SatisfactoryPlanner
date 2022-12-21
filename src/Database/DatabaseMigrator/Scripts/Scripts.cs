@@ -20,5 +20,10 @@
         ///     Seeds resource extractors from game files.
         /// </summary>
         public static string SeedResourceExtractors = $"{Path}/0003__seed_resource_extractors.sql";
+
+        /// <summary>
+        ///     Update the resource nodes for update 7.
+        /// </summary>
+        public static string UpdateResourceNodes = $"{Path}/0004__update_resource_nodes.sql";
     }
 }

@@ -1,0 +1,57 @@
+[
+  {
+    "ItemCode": "Desc_OreUranium_C",
+    "Purity": "Impure",
+    "Biome": "Rocky Desert",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode632",
+    "Position": {
+      "X": -132772.219,
+      "Y": -187579.234,
+      "Z": 46528.31
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode633",
+    "Position": {
+      "X": 106047.648,
+      "Y": 50478.7852,
+      "Z": 9765.116
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode634",
+    "Position": {
+      "X": 116877.539,
+      "Y": 51510.9063,
+      "Z": 17359.5059
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Impure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode635",
+    "Position": {
+      "X": 103317.648,
+      "Y": 67498.78,
+      "Z": 9540.116
+    }
+  },
+  {
+    "ItemCode": "Desc_OreBauxite_C",
+    "Purity": "Impure",
+    "Biome": "Titan Forest",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode636",
+    "Position": {
+      "X": 89592.65,
+      "Y": 62638.78,
+      "Z": 10375.1162
+    }
+  }
+]
