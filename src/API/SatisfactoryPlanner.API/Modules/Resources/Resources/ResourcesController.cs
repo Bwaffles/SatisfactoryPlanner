@@ -30,7 +30,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         [ProducesResponseType(typeof(List<ResourceDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetResources([FromQuery] Guid worldId)
         {
-            var resources = await _resourcesModule.ExecuteQueryAsync(new GetResourcesQuery());
+            var resources = await _resourcesModule.ExecuteQueryAsync(new GetResourcesQuery(worldId));
             return Ok(resources);
         }
 

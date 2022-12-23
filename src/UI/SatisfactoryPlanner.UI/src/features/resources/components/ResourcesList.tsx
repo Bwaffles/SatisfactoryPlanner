@@ -30,7 +30,7 @@ export const ResourcesList = () => {
                             <div className="text-right text-xs text-gray-400">
                                 Extracted
                             </div>
-                            <span className="text-right text-lg">70,380</span>
+                            <span className="text-right text-lg">{resource.extractedResources}</span>
                         </div>
                         <span className="text-2xl font-semibold">/</span>
                         <div>
