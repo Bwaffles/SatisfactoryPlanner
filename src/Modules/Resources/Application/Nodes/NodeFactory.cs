@@ -11,6 +11,19 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
 {
     public static class NodeFactory
     {
+        // TODO maybe I need a repository for Nodes? I don't remember why I chose to do it this way
+        public static async Task<IEnumerable<Node>> GetNodes(IDbConnection connection, Guid? resourceId)
+        {
+            return (await GetAvailableNodes(connection, resourceId))
+                .Select(CreateNode);
+        }
+
+        private static Node CreateNode(NodeDto node) =>
+            Node.CreateNew(
+                new NodeId(node.Id),
+                NodePurity.Of(node.Purity),
+                new ResourceId(node.ResourceId));
+
         public static async Task<Node> GetNode(IDbConnection connection, Guid nodeId)
         {
             var availableNodes = await GetAvailableNodes(connection, null);
@@ -19,32 +32,29 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
             if (node == null)
                 return null;
 
-            return Node.CreateNew(
-                new NodeId(node.Id),
-                NodePurity.Of(node.Purity),
-                new ResourceId(node.ResourceId));
+            return CreateNode(node);
         }
 
         public static async Task<List<NodeDto>> GetAvailableNodes(IDbConnection connection, Guid? resourceId)
         {
             return (await connection.QueryAsync<NodeDto>(
-               "    SELECT " +
-               $"          node.id AS {nameof(NodeDto.Id)}, " +
-               $"          resource.id AS {nameof(NodeDto.ResourceId)}, " +
-               $"          resource.name AS {nameof(NodeDto.ResourceName)}, " +
-               $"          node.purity AS {nameof(NodeDto.Purity)}, " +
-               $"          node.biome AS {nameof(NodeDto.Biome)}, " +
-               $"          node.map_position_x AS {nameof(NodeDto.MapPositionX)}, " +
-               $"          node.map_position_y AS {nameof(NodeDto.MapPositionY)}, " +
-               $"          node.map_position_z AS {nameof(NodeDto.MapPositionZ)} " +
-               "      FROM resources.nodes AS node " +
-               "INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
-               "     WHERE (@resourceId is null or node.resource_id = @resourceId) " +
-               "  ORDER BY node.purity",
-               new
-               {
-                   resourceId
-               })).ToList();
+                "    SELECT " +
+                $"          node.id AS {nameof(NodeDto.Id)}, " +
+                $"          resource.id AS {nameof(NodeDto.ResourceId)}, " +
+                $"          resource.name AS {nameof(NodeDto.ResourceName)}, " +
+                $"          node.purity AS {nameof(NodeDto.Purity)}, " +
+                $"          node.biome AS {nameof(NodeDto.Biome)}, " +
+                $"          node.map_position_x AS {nameof(NodeDto.MapPositionX)}, " +
+                $"          node.map_position_y AS {nameof(NodeDto.MapPositionY)}, " +
+                $"          node.map_position_z AS {nameof(NodeDto.MapPositionZ)} " +
+                "      FROM resources.nodes AS node " +
+                "INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
+                "     WHERE (@resourceId is null or node.resource_id = @resourceId) " +
+                "  ORDER BY node.purity",
+                new
+                {
+                    resourceId
+                })).ToList();
         }
     }
 }

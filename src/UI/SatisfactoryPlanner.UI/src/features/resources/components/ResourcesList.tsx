@@ -1,6 +1,7 @@
 import React from "react";
 
 import Doggo from "../../../assets/Lizard_Doggo.png";
+import { formatNumber, formatPercent } from "../../../utils/format";
 import { useGetResources } from "../api/getResources";
 
 export const ResourcesList = () => {
@@ -11,6 +12,11 @@ export const ResourcesList = () => {
     }
 
     var resourceList = resources?.map((resource) => {
+        var percentResourceExtracted =
+            resource.totalResources == 0
+                ? 0
+                : resource.extractedResources / resource.totalResources;
+
         return (
             <div
                 key={resource.id}
@@ -30,18 +36,24 @@ export const ResourcesList = () => {
                             <div className="text-right text-xs text-gray-400">
                                 Extracted
                             </div>
-                            <span className="text-right text-lg">{resource.extractedResources}</span>
+                            <span className="text-right text-lg">
+                                {formatNumber(resource.extractedResources)}
+                            </span>
                         </div>
                         <span className="text-2xl font-semibold">/</span>
                         <div>
                             <div className="text-right text-xs text-gray-400">
                                 Total
                             </div>
-                            <span className="text-lg">70,380</span>
+                            <span className="text-lg">
+                                {formatNumber(resource.totalResources)}
+                            </span>
                         </div>
                     </div>
                     <span className="bg-gray-500 w-px h-full"></span>
-                    <span className="text-lg">100%</span>
+                    <span className="text-lg">
+                        {formatPercent(percentResourceExtracted)}
+                    </span>
                 </div>
             </div>
         );

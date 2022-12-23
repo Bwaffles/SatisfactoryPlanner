@@ -1,6 +1,9 @@
 ﻿using Dapper;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Queries;
+using SatisfactoryPlanner.Modules.Resources.Application.Extractors;
+using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
+using SatisfactoryPlanner.Modules.Resources.Domain;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,9 +31,20 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
                                "    FROM resources.resources AS resource " +
                                "ORDER BY resource.resource_form desc " +
                                "       , resource.resource_sink_points;";
-            return (await connection.QueryAsync<ResourceDto>(
+            var resources = (await connection.QueryAsync<ResourceDto>(
                     sql))
                 .AsList();
+
+            foreach (var resource in resources)
+            {
+                var extractor = await ExtractorFactory.GetFastestExtractor(connection, resource.Id);
+                var nodes = await NodeFactory.GetNodes(connection, resource.Id);
+
+                foreach (var node in nodes)
+                    resource.TotalResources += ResourceExtractionCalculator.GetAmountExtractable(extractor, node);
+            }
+
+            return resources;
         }
     }
 }
