@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Buildin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C3E54654-3DB5-4C55-81E2-0978B65FF5CF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests", "BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests.csproj", "{3D02F550-E185-4B96-8609-C5EB79C2713D}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.IntegrationTests", "BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests.csproj", "{9242D88F-1F6C-4413-80A3-B5B854AB5414}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{B6C1498C-6EF5-4DC7-9C49-3C748CA1DA31}"
@@ -53,11 +55,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BBDCAA45-07ED-4FE2-AE59-525E9E211B85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Resources.ArchTests", "Modules\Resources\Tests\ArchTests\SatisfactoryPlanner.Modules.Resources.ArchTests.csproj", "{1694258D-1D26-4055-A567-83FA84B9DE99}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Resources.UnitTests", "Modules\Resources\Tests\UnitTests\SatisfactoryPlanner.Modules.Resources.UnitTests.csproj", "{DE1B4B8B-4B34-465E-910B-2C36C15C03FC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{139DABEF-84E0-445F-B558-ED7ABC8F994E}"
-EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SatisfactoryPlanner.UI", "UI\SatisfactoryPlanner.UI\SatisfactoryPlanner.UI.esproj", "{D51949FB-806C-4320-AC8D-712AB24C3DFD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserAccess", "UserAccess", "{389014AC-3278-4F76-BA8D-30F5B4744E82}"
 EndProject
@@ -89,9 +89,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{73C2F6A2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.IntegrationTests", "Modules\Pioneers\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Worlds.IntegrationTests.csproj", "{173D2D7E-9C2F-4BC6-B151-CADE142A9095}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests", "BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests\SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests.csproj", "{3D02F550-E185-4B96-8609-C5EB79C2713D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests", "Modules\Pioneers\Tests\UnitTests\SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests.csproj", "{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{139DABEF-84E0-445F-B558-ED7ABC8F994E}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SatisfactoryPlanner.UI", "UI\SatisfactoryPlanner.UI\SatisfactoryPlanner.UI.esproj", "{D51949FB-806C-4320-AC8D-712AB24C3DFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -221,6 +223,10 @@ Global
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1694258D-1D26-4055-A567-83FA84B9DE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1694258D-1D26-4055-A567-83FA84B9DE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1694258D-1D26-4055-A567-83FA84B9DE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1694258D-1D26-4055-A567-83FA84B9DE99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,6 +271,7 @@ Global
 		{173D2D7E-9C2F-4BC6-B151-CADE142A9095} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 		{3D02F550-E185-4B96-8609-C5EB79C2713D} = {C3E54654-3DB5-4C55-81E2-0978B65FF5CF}
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
+		{1694258D-1D26-4055-A567-83FA84B9DE99} = {BBDCAA45-07ED-4FE2-AE59-525E9E211B85}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}

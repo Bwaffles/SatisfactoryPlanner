@@ -20,6 +20,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
             return new(id, purity, resourceId);
         }
 
+        private Node() { }
+
         private Node(NodeId id, NodePurity purity, ResourceId resourceId)
         {
             Id = id;
