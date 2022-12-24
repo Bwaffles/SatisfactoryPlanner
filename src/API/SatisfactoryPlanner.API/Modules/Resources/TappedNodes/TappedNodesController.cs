@@ -17,11 +17,13 @@ namespace SatisfactoryPlanner.API.Modules.Resources.TappedNodes
             _module = module;
         }
 
+        // TODO this should be in the NodeController
         [HttpPost("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> TapNode([FromBody] TapNodeRequest request)
-        {
+        { // TODO authorization, permissions, return id when working on the tap node ui
             await _module.ExecuteCommandAsync(new TapNodeCommand(
+                request.WorldId,
                 request.NodeId,
                 request.ExtractorId,
                 request.AmountToExtract,

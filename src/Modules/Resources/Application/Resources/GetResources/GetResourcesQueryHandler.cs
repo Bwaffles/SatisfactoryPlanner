@@ -27,12 +27,17 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
             const string sql = "  SELECT " +
                                $"        resource.id AS {nameof(ResourceDto.Id)}, " +
                                $"        resource.name AS {nameof(ResourceDto.Name)}, " +
-                               $"        0 AS {nameof(ResourceDto.ExtractedResources)} " +
+                               "         (SELECT COALESCE (SUM(tapped_node.amount_to_extract), 0) " +
+                               "            FROM resources.tapped_nodes AS tapped_node " +
+                               "            JOIN resources.nodes AS node ON node.id = tapped_node.node_id " +
+                               $"          WHERE tapped_node.world_id = @WorldId " +
+                               $"            AND node.resource_id = resource.id) AS {nameof(ResourceDto.ExtractedResources)} " +
                                "    FROM resources.resources AS resource " +
                                "ORDER BY resource.resource_form desc " +
                                "       , resource.resource_sink_points;";
-            var resources = (await connection.QueryAsync<ResourceDto>(
-                    sql))
+
+            var param = new { request.WorldId };
+            var resources = (await connection.QueryAsync<ResourceDto>(sql, param))
                 .AsList();
 
             foreach (var resource in resources)

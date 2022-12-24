@@ -5,6 +5,7 @@ using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 using System;
 using Xunit;
 
@@ -59,11 +60,12 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
             {
                 var resourceId = new ResourceId(Guid.NewGuid());
 
+                var worldId = new WorldId(Guid.NewGuid());
                 var node = GetNode(resourceId);
                 var extractor = GetExtractor(resourceId);
                 var tappedNodeExistenceChecker = GetTappedNodeExistenceChecked(node);
 
-                return node.Tap(extractor, _amountToExtract, "name", tappedNodeExistenceChecker);
+                return node.Tap(worldId, extractor, _amountToExtract, "name", tappedNodeExistenceChecker);
             }
 
             internal TapNodeExecuter NodeAlreadyTapped()

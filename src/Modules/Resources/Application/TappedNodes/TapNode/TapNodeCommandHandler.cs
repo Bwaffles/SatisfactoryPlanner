@@ -4,12 +4,14 @@ using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Commands;
 using SatisfactoryPlanner.Modules.Resources.Application.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.TapNode
 {
+    // ReSharper disable once UnusedMember.Global
     internal class TapNodeCommandHandler : ICommandHandler<TapNodeCommand, Guid>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
@@ -39,6 +41,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.TapNode
                 throw new InvalidCommandException("Extractor to tap the node with must exist.");
 
             var tappedNode = node.Tap(
+                new WorldId(command.WorldId),
                 extractor,
                 command.AmountToExtract,
                 command.Name,
