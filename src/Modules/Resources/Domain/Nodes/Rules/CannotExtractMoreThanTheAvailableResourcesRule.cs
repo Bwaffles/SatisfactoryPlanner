@@ -20,7 +20,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules
 
         public bool IsBroken()
         {
-            var amountExtractable = ResourceExtractionCalculator.GetAmountExtractable(_extractor, _node);
+            var amountExtractable = ResourceExtractionCalculator.GetMaxAmountExtractable(_extractor, _node);
             return _amount > amountExtractable;
         }
     }

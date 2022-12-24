@@ -6,13 +6,24 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain
 {
     public class ResourceExtractionCalculator
     {
-        public static decimal GetAmountExtractable(Extractor extractor, Node node)
-        { // TODO liquids have a potential resources per minute * 1000 and they're theoretical max is 600, not 780
-            // get resource form which has the max items per minute for that form
-            // get the multiplier for the purity of the node
-            // get the max potential of the extractor (mk1, 2, 3 can extract different amounts)
-            return Math.Min(extractor.GetPotentialResourcesPerMinute() * node.GetPurityMultiplier(),
-                Constants.MaxItemsPerMinute);
+        /// <summary>
+        ///     Get the maximum amount extractable from the <paramref name="node" /> using the <paramref name="extractor" />.
+        ///     This assumes the extractor is overclocked to 250%.
+        /// </summary>
+        public static decimal GetMaxAmountExtractable(Extractor extractor, Node node)
+        { // TODO liquids have a potential resources per minute * 1000 and their theoretical max is 600, not 780
+            // TODO need resource well extractors
+
+            var maxItemsPerMinute = Constants.MaxItemsPerMinute;
+
+            var potentialResourcesPerMinute = extractor.GetPotentialResourcesPerMinute();
+            if (potentialResourcesPerMinute > 1200)
+            {
+                potentialResourcesPerMinute /= 1000;
+                maxItemsPerMinute = 600;
+            }
+
+            return Math.Min(potentialResourcesPerMinute * node.GetPurityMultiplier(), maxItemsPerMinute);
         }
     }
 }

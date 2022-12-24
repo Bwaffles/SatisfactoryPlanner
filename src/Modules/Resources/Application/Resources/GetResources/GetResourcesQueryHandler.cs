@@ -46,7 +46,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
                 var nodes = await NodeFactory.GetNodes(connection, resource.Id);
 
                 foreach (var node in nodes)
-                    resource.TotalResources += ResourceExtractionCalculator.GetAmountExtractable(extractor, node);
+                    resource.TotalResources += ResourceExtractionCalculator.GetMaxAmountExtractable(extractor, node);
             }
 
             return resources;
