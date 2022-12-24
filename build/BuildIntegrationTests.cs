@@ -70,27 +70,31 @@ partial class Build
                 .SetApplicationArguments($"release \"{MasterConnectionString}\" \"{ConnectionString}\""));
         });
 
-    const string Modules = "SatisfactoryPlanner.Modules";
-    const string WorldsModuleIntegrationTestsProjectName = $"{Modules}.Worlds.IntegrationTests";
+    // ------------------------------------
+    // -  Module Integration Tests Setup  -
+    // ------------------------------------
 
-    Target BuildWorldsModuleIntegrationTests => _ => _
+    const string Modules = "SatisfactoryPlanner.Modules";
+    const string SatisfactoryPlannerDatabaseEnvName = "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
+
+    const string ResourcesModuleIntegrationTestsProjectName = $"{Modules}.Resources.IntegrationTests";
+
+    Target BuildResourcesModuleIntegrationTests => _ => _
         .DependsOn(CreateDatabase)
         .Executes(() =>
         {
-            var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
+            var integrationTest = Solution.GetProject(ResourcesModuleIntegrationTestsProjectName);
 
             DotNetTasks.DotNetBuild(s => s
                 .SetProjectFile(integrationTest)
                 .DisableNoRestore());
         });
 
-    const string SatisfactoryPlannerDatabaseEnvName = "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
-
-    Target RunWorldsModuleIntegrationTests => _ => _
-        .DependsOn(BuildWorldsModuleIntegrationTests)
+    Target RunResourcesModuleIntegrationTests => _ => _
+        .DependsOn(BuildResourcesModuleIntegrationTests)
         .Executes(() =>
         {
-            var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
+            var integrationTest = Solution.GetProject(ResourcesModuleIntegrationTestsProjectName);
             Environment.SetEnvironmentVariable(
                 SatisfactoryPlannerDatabaseEnvName,
                 ConnectionString);
@@ -99,7 +103,7 @@ partial class Build
                 .EnableNoBuild()
                 .SetProjectFile(integrationTest));
         });
-    
+
     const string UserAccessModuleIntegrationTestsProjectName = $"{Modules}.UserAccess.IntegrationTests";
 
     Target BuildUserAccessModuleIntegrationTests => _ => _
@@ -127,10 +131,38 @@ partial class Build
                 .SetProjectFile(integrationTest));
         });
 
+    const string WorldsModuleIntegrationTestsProjectName = $"{Modules}.Worlds.IntegrationTests";
+
+    Target BuildWorldsModuleIntegrationTests => _ => _
+        .DependsOn(CreateDatabase)
+        .Executes(() =>
+        {
+            var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
+
+            DotNetTasks.DotNetBuild(s => s
+                .SetProjectFile(integrationTest)
+                .DisableNoRestore());
+        });
+
+    Target RunWorldsModuleIntegrationTests => _ => _
+        .DependsOn(BuildWorldsModuleIntegrationTests)
+        .Executes(() =>
+        {
+            var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
+            Environment.SetEnvironmentVariable(
+                SatisfactoryPlannerDatabaseEnvName,
+                ConnectionString);
+
+            DotNetTasks.DotNetTest(s => s
+                .EnableNoBuild()
+                .SetProjectFile(integrationTest));
+        });
+
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
     Target RunAllIntegrationTests => _ => _
-        .DependsOn(RunWorldsModuleIntegrationTests)
+        .DependsOn(RunResourcesModuleIntegrationTests)
         .DependsOn(RunUserAccessModuleIntegrationTests)
+        .DependsOn(RunWorldsModuleIntegrationTests)
         .Executes(() =>
         {
 

@@ -5,6 +5,11 @@ namespace SatisfactoryPlanner.API.Modules.Resources.TappedNodes
     public class TapNodeRequest
     {
         /// <summary>
+        ///     The id of the world where the node is being tapped.
+        /// </summary>
+        public Guid WorldId { get; set; }
+
+        /// <summary>
         ///     The id of the node to tap.
         /// </summary>
         public Guid NodeId { get; set; }

@@ -1,12 +1,16 @@
 ﻿using Dapper;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Queries;
+using SatisfactoryPlanner.Modules.Resources.Application.Extractors;
+using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
+using SatisfactoryPlanner.Modules.Resources.Domain;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResources
 {
+    // ReSharper disable once UnusedMember.Global
     internal class GetResourcesQueryHandler : IQueryHandler<GetResourcesQuery, List<ResourceDto>>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
@@ -20,14 +24,32 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
-            return (await connection.QueryAsync<ResourceDto>(
-               "  SELECT " +
-               $"        resource.id AS {nameof(ResourceDto.Id)}, " +
-               $"        resource.name AS {nameof(ResourceDto.Name)} " +
-               "    FROM resources.resources AS resource " +
-               "ORDER BY resource.resource_form desc" +
-               "       , resource.resource_sink_points"))
-               .AsList();
+            const string sql = "  SELECT " +
+                               $"        resource.id AS {nameof(ResourceDto.Id)}, " +
+                               $"        resource.name AS {nameof(ResourceDto.Name)}, " +
+                               "         (SELECT COALESCE (SUM(tapped_node.amount_to_extract), 0) " +
+                               "            FROM resources.tapped_nodes AS tapped_node " +
+                               "            JOIN resources.nodes AS node ON node.id = tapped_node.node_id " +
+                               $"          WHERE tapped_node.world_id = @WorldId " +
+                               $"            AND node.resource_id = resource.id) AS {nameof(ResourceDto.ExtractedResources)} " +
+                               "    FROM resources.resources AS resource " +
+                               "ORDER BY resource.resource_form desc " +
+                               "       , resource.resource_sink_points;";
+
+            var param = new { request.WorldId };
+            var resources = (await connection.QueryAsync<ResourceDto>(sql, param))
+                .AsList();
+
+            foreach (var resource in resources)
+            {
+                var extractor = await ExtractorFactory.GetFastestExtractor(connection, resource.Id);
+                var nodes = await NodeFactory.GetNodes(connection, resource.Id);
+
+                foreach (var node in nodes)
+                    resource.TotalResources += ResourceExtractionCalculator.GetMaxAmountExtractable(extractor, node);
+            }
+
+            return resources;
         }
     }
 }

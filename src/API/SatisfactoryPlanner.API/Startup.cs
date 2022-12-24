@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SatisfactoryPlanner.API.Configuration;
+using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
+using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Extensions;
 using SatisfactoryPlanner.API.Configuration.Routing;
@@ -51,18 +52,24 @@ namespace SatisfactoryPlanner.API
             _loggerForApi.Information("Application started.");
 
             _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("FactoriesConnectionString") ?? throw new InvalidOperationException("FactoriesConnectionString not defined.");
+            _connectionString = _configuration.GetConnectionString("FactoriesConnectionString") ??
+                                throw new InvalidOperationException("FactoriesConnectionString not defined.");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            ConfigurationAuthorization(services);
             ConfigurationAuthentication(services);
+            ConfigurationAuthorization(services);
 
             services.AddControllers(options =>
             {
                 options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+            });
+
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
             });
 
             services.AddSwaggerDocumentation();
@@ -76,37 +83,27 @@ namespace SatisfactoryPlanner.API
                 options.Map<BusinessRuleValidationException>(
                     ex => new BusinessRuleValidationExceptionProblemDetails(ex));
             });
-
-            services.AddRouting(options =>
-            {
-                options.LowercaseUrls = true;
-            });
-
-            //services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy(HasPermissionAttribute.HasPermissionPolicyName, policyBuilder =>
-            //    {
-            //        policyBuilder.Requirements.Add(new HasPermissionAuthorizationRequirement());
-            //        policyBuilder.AddAuthenticationSchemes(IdentityServerAuthenticationDefaults.AuthenticationScheme);
-            //    });
-            //});
-
-            //services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
         }
 
         /// <summary>
-        ///     Configure the authorization with Auth0.
+        ///     Configure the authorization.
         /// </summary>
         private void ConfigurationAuthorization(IServiceCollection services)
         {
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("read:resources",
-                    policy => policy.Requirements.Add(new HasScopeRequirement("read:resources", Domain)));
+                options.AddPolicy(HasPermissionAttribute.HasPermissionPolicyName, policyBuilder =>
+                {
+                    policyBuilder.Requirements.Add(new HasPermissionAuthorizationRequirement());
+                });
+                options.AddPolicy(WorldAuthorizationAttribute.HasPermissionPolicyName, policyBuilder =>
+                {
+                    policyBuilder.Requirements.Add(new WorldAuthorizationRequirement());
+                });
             });
 
-            // Register the scope authorization handler
-            services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
+            services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
+            services.AddScoped<IAuthorizationHandler, WorldAuthorizationHandler>();
         }
 
         /// <summary>
@@ -167,7 +164,7 @@ namespace SatisfactoryPlanner.API
                 endpoints.MapControllers();
             });
         }
-        
+
         private static void ConfigureLogger()
         {
             _logger = new LoggerConfiguration()
@@ -187,7 +184,7 @@ namespace SatisfactoryPlanner.API
         private void InitializeModules(ILifetimeScope container)
         {
             var executionContextAccessor = container.Resolve<IExecutionContextAccessor>();
-            
+
             FactoriesStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,

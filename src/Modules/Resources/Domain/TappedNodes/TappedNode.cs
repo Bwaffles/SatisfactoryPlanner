@@ -1,6 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
@@ -8,6 +9,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
     public class TappedNode : Entity, IAggregateRoot
     {
         public ResourceNodeExtractionId Id { get; private set; }
+
+        private readonly WorldId _worldId;
 
         private readonly NodeId _nodeId;
 
@@ -17,12 +20,14 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
 
         private readonly string _name;
 
-        public static TappedNode CreateNew(NodeId nodeId, ExtractorId extractorId, decimal amount, string name)
-            => new(nodeId, extractorId, amount, name);
+        public static TappedNode CreateNew(WorldId worldId, NodeId nodeId, ExtractorId extractorId, decimal amount,
+            string name)
+            => new(worldId, nodeId, extractorId, amount, name);
 
-        private TappedNode(NodeId nodeId, ExtractorId extractorId, decimal amountToExtract, string name)
+        private TappedNode(WorldId worldId, NodeId nodeId, ExtractorId extractorId, decimal amountToExtract, string name)
         {
             Id = new ResourceNodeExtractionId(Guid.NewGuid());
+            _worldId = worldId;
             _nodeId = nodeId;
             _extractorId = extractorId;
             _amountToExtract = amountToExtract;

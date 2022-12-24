@@ -27,7 +27,13 @@ type AppProviderProps = {
     children: React.ReactNode;
 };
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            suspense: true,
+        },
+    },
+});
 
 export const AppProvider = ({ children }: AppProviderProps) => {
     return (

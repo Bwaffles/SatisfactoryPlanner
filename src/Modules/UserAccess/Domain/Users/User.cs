@@ -27,7 +27,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
         { /* Only for EF. */
         }
 
-        private User(string auth0UserId, IUsersCounter usersCounter)
+        private User(string auth0UserId, UserRole role, IUsersCounter usersCounter)
         {
             if (auth0UserId == "")
                 throw new ArgumentException($"{nameof(auth0UserId)} can't be empty", nameof(auth0UserId));
@@ -36,12 +36,16 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
 
             Id = new UserId(Guid.NewGuid());
             _auth0UserId = auth0UserId;
+            _roles = new List<UserRole>
+            {
+                role
+            };
 
-            // TODO only trigger this even if UserRole is Pioneer
-            AddDomainEvent(new PioneerUserCreatedDomainEvent(Id));
+            if (role == UserRole.Pioneer)
+                AddDomainEvent(new PioneerUserCreatedDomainEvent(Id));
         }
 
-        public static User CreatePioneer(string auth0UserId, IUsersCounter usersCounter) 
-            => new (auth0UserId, usersCounter);
+        public static User CreatePioneer(string auth0UserId, IUsersCounter usersCounter)
+            => new(auth0UserId, UserRole.Pioneer, usersCounter);
     }
 }

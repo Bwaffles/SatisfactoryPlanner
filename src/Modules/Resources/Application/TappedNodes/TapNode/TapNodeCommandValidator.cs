@@ -2,10 +2,14 @@
 
 namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.TapNode
 {
+    // ReSharper disable once UnusedMember.Global
     internal class TapNodeCommandValidator : AbstractValidator<TapNodeCommand>
     {
         public TapNodeCommandValidator()
         {
+            RuleFor(_ => _.WorldId).NotEmpty()
+                .WithMessage("Id of world cannot be empty.");
+
             RuleFor(_ => _.NodeId).NotEmpty()
                 .WithMessage("Id of node cannot be empty.");
 

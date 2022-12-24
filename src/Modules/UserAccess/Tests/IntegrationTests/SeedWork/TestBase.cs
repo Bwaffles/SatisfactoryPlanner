@@ -65,7 +65,11 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
 
         private static async Task ClearDatabase(IDbConnection connection)
         {
-            const string sql = "DELETE FROM users.users;";
+            const string sql = "DELETE FROM users.inbox_messages;" +
+                               "DELETE FROM users.internal_commands;" +
+                               "DELETE FROM users.outbox_messages;" +
+                               "DELETE FROM users.users;" +
+                               "DELETE FROM users.user_roles;";
 
             await connection.ExecuteScalarAsync(sql);
         }

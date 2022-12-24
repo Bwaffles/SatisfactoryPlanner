@@ -1,14 +1,13 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
-using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules
 {
     public class CannotExtractMoreThanTheAvailableResourcesRule : IBusinessRule
     {
-        private readonly Node _node;
-        private readonly Extractor _extractor;
         private readonly decimal _amount;
+        private readonly Extractor _extractor;
+        private readonly Node _node;
 
         public CannotExtractMoreThanTheAvailableResourcesRule(Node node, Extractor extractor, decimal amount)
         {
@@ -20,8 +19,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules
         public string Message => "Cannot extract more than the available resources.";
 
         public bool IsBroken()
-        { // TODO liquids have a potential resources per minute * 1000 and they're theoretical max is 600, not 780
-            var amountExtractable = Math.Min(_extractor.GetPotentialResourcesPerMinute() * _node.GetPurityMultiplier(), Constants.MaxItemsPerMinute);
+        {
+            var amountExtractable = ResourceExtractionCalculator.GetMaxAmountExtractable(_extractor, _node);
             return _amount > amountExtractable;
         }
     }

@@ -5,6 +5,7 @@ using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 using System;
 using Xunit;
 
@@ -12,58 +13,82 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
 {
     public class TapNodeTests
     {
-        // TODO test for oil extractor
-
         [Fact]
-        public void TapNode_WhenAmountIsGreaterThanAvailableResources_IsNotPossible()
+        public void TapNode_WithOilExtractor_WhenAmountIsGreaterThanAvailableResources_IsNotPossible()
         {
-            RuleAssertions.AssertBrokenRule<CannotExtractMoreThanTheAvailableResourcesRule>((Action)(() =>
+            RuleAssertions.AssertBrokenRule<CannotExtractMoreThanTheAvailableResourcesRule>(() =>
             {
                 new TapNodeExecuter()
+                    .WithOilExtractor()
                     .ExtractTooManyResources()
                     .Execute();
-            }));
+            });
         }
 
         [Fact]
-        public void TapNode_WhenNodeIsAlreadyTapped_IsNotPossible()
+        public void TapNode_WithMiner_WhenAmountIsGreaterThanAvailableResources_IsNotPossible()
         {
-            RuleAssertions.AssertBrokenRule<NodeCannotAlreadyBeTappedRule>((Action)(() =>
+            RuleAssertions.AssertBrokenRule<CannotExtractMoreThanTheAvailableResourcesRule>(() =>
             {
                 new TapNodeExecuter()
+                    .WithMiner()
+                    .ExtractTooManyResources()
+                    .Execute();
+            });
+        }
+
+        [Fact]
+        public void TapNode_WithMiner_WhenNodeIsAlreadyTapped_IsNotPossible()
+        {
+            RuleAssertions.AssertBrokenRule<NodeCannotAlreadyBeTappedRule>(() =>
+            {
+                new TapNodeExecuter()
+                    .WithMiner()
                     .NodeAlreadyTapped()
                     .Execute();
-            }));
+            });
         }
 
         [Fact]
-        public void TapNode_WhenExtractorCannotExtractTheResource_IsNotPossible()
+        public void TapNode_WithMiner_WhenExtractorCannotExtractTheResource_IsNotPossible()
         {
-            RuleAssertions.AssertBrokenRule<ExtractorMustBeAbleToExtractResourceRule>((Action)(() =>
+            RuleAssertions.AssertBrokenRule<ExtractorMustBeAbleToExtractResourceRule>(() =>
             {
                 new TapNodeExecuter()
+                    .WithMiner()
                     .CannotExtractResource()
                     .Execute();
-            }));
+            });
         }
 
         private class TapNodeExecuter
         {
-            private static readonly decimal _amountExtractable = 150;
-
-            private bool _nodeTapped = false;
+            private static readonly decimal _amountExtractable = 600;
             private bool _canExtractResource = true;
-            private decimal _amountToExtract = _amountExtractable;
+            private string _extractorType = "Miner";
+            private bool _extractTooManyResources;
+
+            private bool _nodeTapped;
 
             public TappedNode Execute()
             {
                 var resourceId = new ResourceId(Guid.NewGuid());
 
-                var node = GetNode(resourceId);
+                var worldId = new WorldId(Guid.NewGuid());
                 var extractor = GetExtractor(resourceId);
+                var amountToExtract = GetAmountToExtract();
+                var node = GetNode(resourceId);
                 var tappedNodeExistenceChecker = GetTappedNodeExistenceChecked(node);
 
-                return node.Tap(extractor, _amountToExtract, "name", tappedNodeExistenceChecker);
+                return node.Tap(worldId, extractor, amountToExtract, "name", tappedNodeExistenceChecker);
+            }
+
+            private decimal GetAmountToExtract()
+            {
+                if (_extractorType == "OilExtractor")
+                    return _extractTooManyResources ? 301 : 300;
+
+                return _extractTooManyResources ? _amountExtractable + 1 : _amountExtractable;
             }
 
             internal TapNodeExecuter NodeAlreadyTapped()
@@ -80,7 +105,19 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
 
             internal TapNodeExecuter ExtractTooManyResources()
             {
-                _amountToExtract = _amountExtractable + 1;
+                _extractTooManyResources = true;
+                return this;
+            }
+
+            public TapNodeExecuter WithMiner()
+            {
+                _extractorType = "Miner";
+                return this;
+            }
+
+            internal TapNodeExecuter WithOilExtractor()
+            {
+                _extractorType = "OilExtractor";
                 return this;
             }
 
@@ -88,20 +125,23 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
             {
                 var extractorFixture = new ExtractorFixture();
 
-                if (_canExtractResource)
-                    extractorFixture = extractorFixture.CanExtract(resourceId);
-                else
-                    extractorFixture = extractorFixture.CannotExtract(resourceId);
+                extractorFixture = _canExtractResource
+                    ? extractorFixture.CanExtract(resourceId)
+                    : extractorFixture.CannotExtract(resourceId);
+
+                if (_extractorType == "OilExtractor")
+                    extractorFixture = extractorFixture.AsOilExtractor();
 
                 var extractor = extractorFixture.Build();
                 return extractor;
             }
 
             private static Node GetNode(ResourceId resourceId) => new NodeFixture()
-                                .Of(resourceId)
-                                .Build();
+                .Of(resourceId)
+                .WithPurity(NodePurity.Normal)
+                .Build();
 
-            private ITappedNodeExistenceChecker GetTappedNodeExistenceChecked(Domain.Nodes.Node node)
+            private ITappedNodeExistenceChecker GetTappedNodeExistenceChecked(Node node)
             {
                 var mockTappedNodeExistenceChecker = new Mock<ITappedNodeExistenceChecker>();
                 mockTappedNodeExistenceChecker

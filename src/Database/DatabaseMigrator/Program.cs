@@ -1,4 +1,5 @@
 ﻿using DatabaseMigrator.Migrations;
+using DatabaseMigrator.Migrations.Factories;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using System;
