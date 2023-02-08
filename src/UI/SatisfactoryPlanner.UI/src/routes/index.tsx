@@ -15,6 +15,10 @@ const { Resources } = lazyImport(
     () => import("../pages/Resources"),
     "Resources"
 );
+const { ResourceDetails } = lazyImport(
+    () => import("../pages/ResourceDetails"),
+    "ResourceDetails"
+);
 const { LoginRedirect } = lazyImport(
     () => import("../pages/LoginRedirect"),
     "LoginRedirect"
@@ -43,7 +47,13 @@ export const AppRoutes = () => {
                 <Route
                     path="resources"
                     element={isAuthenticated ? <Resources /> : <AutoLogin />}
-                />
+                ></Route>
+                <Route
+                    path="resources/:resourceId"
+                    element={
+                        isAuthenticated ? <ResourceDetails /> : <AutoLogin />
+                    }
+                ></Route>
                 <Route
                     path="/loginError"
                     element={<LoginError />}

@@ -34,6 +34,8 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
             return Ok(resources);
         }
 
+        [Authorize]
+        [HasPermission(ResourcesPermissions.GetResourceDetails)]
         [HttpGet("{resourceId}")]
         [ProducesResponseType(typeof(ResourceDetailsDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetResourceDetails([FromRoute] Guid resourceId)

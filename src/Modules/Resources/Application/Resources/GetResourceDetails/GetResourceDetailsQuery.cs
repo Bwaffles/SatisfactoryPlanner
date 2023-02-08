@@ -5,11 +5,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
 {
     public class GetResourceDetailsQuery : QueryBase<ResourceDetailsDto>
     {
+        public Guid ResourceId { get; set; }
+
         public GetResourceDetailsQuery(Guid resourceId)
         {
             ResourceId = resourceId;
         }
-
-        public Guid ResourceId { get; set; }
     }
 }

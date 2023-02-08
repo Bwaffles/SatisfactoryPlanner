@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourceDetails
 {
+    // ReSharper disable once UnusedMember.Global
     internal class GetResourceDetailsQueryHandler : IQueryHandler<GetResourceDetailsQuery, ResourceDetailsDto>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
@@ -19,18 +20,17 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
-            return await connection.QuerySingleAsync<ResourceDetailsDto>(
-               "SELECT " +
-               $"      resource.id AS {nameof(ResourceDetailsDto.Id)}, " +
-               $"      resource.code AS {nameof(ResourceDetailsDto.Code)}, " +
-               $"      resource.name AS {nameof(ResourceDetailsDto.Name)}, " +
-               $"      resource.description AS {nameof(ResourceDetailsDto.Description)} " +
-               "  FROM resources.resources AS resource " +
-               " WHERE resource.id = @ResourceId",
-               new
-               {
-                   query.ResourceId
-               });
+            const string sql = $"SELECT resource.id AS {nameof(ResourceDetailsDto.Id)}" +
+                               $"     , resource.code AS {nameof(ResourceDetailsDto.Code)}" + 
+                               $"     , resource.name AS {nameof(ResourceDetailsDto.Name)}" + 
+                               $"     , resource.description AS {nameof(ResourceDetailsDto.Description)} " + 
+                               "   FROM resources.resources AS resource " + 
+                               "  WHERE resource.id = @ResourceId";
+            var param = new
+            {
+                query.ResourceId
+            };
+            return await connection.QuerySingleAsync<ResourceDetailsDto>(sql, param);
         }
     }
 }

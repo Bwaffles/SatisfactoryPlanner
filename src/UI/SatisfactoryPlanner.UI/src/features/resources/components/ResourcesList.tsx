@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import Doggo from "../../../assets/Lizard_Doggo.png";
 import { formatNumber, formatPercent } from "../../../utils/format";
@@ -6,6 +7,11 @@ import { useGetResources } from "../api/getResources";
 
 export const ResourcesList = () => {
     const { isError, data: resources, error } = useGetResources();
+    const navigate = useNavigate();
+
+    const handleResourceClick = (resourceId: string) => {
+        navigate(`${resourceId}`);
+    };
 
     if (isError) {
         return <span>Error: {(error as Error).message}</span>;
@@ -21,13 +27,16 @@ export const ResourcesList = () => {
             <div
                 key={resource.id}
                 className="flex flex-col items-center justify-between h-60 w-60 py-4 px-5 bg-gray-800 rounded hover:bg-sky-900 cursor-pointer"
+                onClick={() => {
+                    handleResourceClick(resource.id);
+                }}
             >
                 <div className="text-center text-lg font-bold">
                     {resource.name}
                 </div>
                 <img
                     className="h-28 w-28 text-center"
-                    alt="Icon Image"
+                    alt="Resource Image"
                     src={Doggo}
                 ></img>
                 <div className="flex flex-row justify-between items-end w-full">

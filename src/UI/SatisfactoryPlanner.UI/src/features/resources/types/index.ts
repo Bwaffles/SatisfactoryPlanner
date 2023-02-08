@@ -4,3 +4,10 @@ export type Resource = {
     extractedResources: number;
     totalResources: number;
 };
+
+export type ResourceDetails = {
+    id: string;
+    code: string;
+    name: string;
+    description: string;
+};
