@@ -6,11 +6,14 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes
 {
     public class GetNodesQuery : QueryBase<List<NodeDto>>
     {
-        public GetNodesQuery(Guid? resourceId)
-        {
-            ResourceId = resourceId;
-        }
+        public Guid WorldId { get; set; }
 
         public Guid? ResourceId { get; set; }
+
+        public GetNodesQuery(Guid worldId, Guid? resourceId)
+        {
+            WorldId = worldId;
+            ResourceId = resourceId;
+        }
     }
 }

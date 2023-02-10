@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import Doggo from "../assets/Lizard_Doggo.png";
 import { ContentLayout } from "../components/Layout/ContentLayout";
+import { NodeList } from "../features/nodes/components/NodeList";
 import { useGetResourceDetails } from "../features/resources/api/getResourceDetails";
 
 export const ResourceDetails = () => {
@@ -18,7 +19,6 @@ export const ResourceDetails = () => {
     }
 
     var description = resourceDetails!.description.split("\\r\\n");
-    var nodes = [{ name: "Node 1" }, { name: "Node 2" }, { name: "Node 3" }];
     return (
         <ContentLayout title={resourceDetails!.name}>
             <h2 className="text-xl font-bold mb-6">Resource Details</h2>
@@ -36,14 +36,7 @@ export const ResourceDetails = () => {
                     </div>
                 </div>
             </div>
-            <h2 className="text-xl font-bold mb-6">Nodes</h2>
-            {nodes.map((node) => {
-                return (
-                    <div className="flex flex-row gap-4 mb-4 py-6 px-10 bg-gray-800 rounded">
-                        {node.name}
-                    </div>
-                );
-            })}
+            <NodeList resourceId={resourceId!}></NodeList>
         </ContentLayout>
     );
 };

@@ -5,8 +5,8 @@ import * as Config from "../../../config";
 import { ResourceDetails } from "../types";
 
 export const getResourceDetails = async (
-    resource: string,
-    getAccessTokenSilently: any
+    getAccessTokenSilently: any,
+    resource: string
 ): Promise<ResourceDetails> => {
     const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
@@ -30,6 +30,6 @@ export const getResourceDetails = async (
 export const useGetResourceDetails = (resourceId: string) => {
     const { getAccessTokenSilently } = useAuth0();
     return useQuery("getResourceDetails", () =>
-        getResourceDetails(resourceId, getAccessTokenSilently)
+        getResourceDetails(getAccessTokenSilently, resourceId)
     );
 };
