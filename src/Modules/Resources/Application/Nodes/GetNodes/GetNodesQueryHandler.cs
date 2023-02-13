@@ -27,13 +27,14 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes
                                $"         , resource.name AS {nameof(NodeDto.ResourceName)}" +
                                $"         , node.purity AS {nameof(NodeDto.Purity)}" +
                                $"         , node.biome AS {nameof(NodeDto.Biome)}" +
+                               $"         , node.number AS {nameof(NodeDto.Number)}" +
                                $"         , node.map_position_x AS {nameof(NodeDto.MapPositionX)}" +
                                $"         , node.map_position_y AS {nameof(NodeDto.MapPositionY)}" +
                                $"         , node.map_position_z AS {nameof(NodeDto.MapPositionZ)}" +
                                "       FROM resources.nodes AS node " +
                                " INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
                                "      WHERE (@resourceId is null or node.resource_id = @resourceId) " +
-                               "   ORDER BY resource.resource_sink_points, node.biome, node.purity";
+                               "   ORDER BY resource.resource_sink_points, node.biome, node.number";
 
             var param = new
             {

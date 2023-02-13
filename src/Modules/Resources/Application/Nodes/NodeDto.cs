@@ -10,6 +10,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
 
         public string Biome { get; set; } = null!;
 
+        public int Number { get; set; }
+
         public decimal MapPositionX { get; set; }
 
         public decimal MapPositionY { get; set; }
