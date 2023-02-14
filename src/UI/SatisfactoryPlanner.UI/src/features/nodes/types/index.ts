@@ -6,6 +6,9 @@ export type Node = {
     mapPositionX: number;
     mapPositionY: number;
     mapPositionZ: number;
+    isTapped: boolean;
+    amountToExtract: number;
+    totalResources: number;
     resourceId: string;
     resourceName: string;
 };

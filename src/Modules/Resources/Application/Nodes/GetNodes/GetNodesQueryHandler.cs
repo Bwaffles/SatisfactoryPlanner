@@ -1,7 +1,10 @@
 ﻿using Dapper;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Queries;
+using SatisfactoryPlanner.Modules.Resources.Application.Extractors;
+using SatisfactoryPlanner.Modules.Resources.Domain;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,6 +34,14 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes
                                $"         , node.map_position_x AS {nameof(NodeDto.MapPositionX)}" +
                                $"         , node.map_position_y AS {nameof(NodeDto.MapPositionY)}" +
                                $"         , node.map_position_z AS {nameof(NodeDto.MapPositionZ)}" +
+                               "         , (SELECT exists(SELECT 1" +
+                               "                            FROM resources.tapped_nodes AS tapped_node" +
+                               "                           WHERE tapped_node.world_id = @worldId" +
+                               $"                             AND tapped_node.node_id = node.id)) AS {nameof(NodeDto.IsTapped)}" +
+                               "         , (SELECT tapped_node.amount_to_extract " +
+                               "              FROM resources.tapped_nodes AS tapped_node" +
+                               "              WHERE tapped_node.world_id = @worldId" +
+                               $"                AND tapped_node.node_id = node.id) AS {nameof(NodeDto.AmountToExtract)}" +
                                "       FROM resources.nodes AS node " +
                                " INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
                                "      WHERE (@resourceId is null or node.resource_id = @resourceId) " +
@@ -38,10 +49,21 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes
 
             var param = new
             {
-                query.ResourceId
+                query.ResourceId, query.WorldId
             };
 
-            return (await connection.QueryAsync<NodeDto>(sql, param)).ToList();
+            var nodes = (await connection.QueryAsync<NodeDto>(sql, param)).ToList();
+            foreach (var node in nodes)
+                node.TotalResources = await GetMaxAmountExtractable(connection, node);
+
+            return nodes;
+        }
+
+        private static async Task<decimal> GetMaxAmountExtractable(IDbConnection connection, NodeDto node)
+        {
+            var extractor = await ExtractorFactory.GetFastestExtractor(connection, node.ResourceId);
+            var nodeModel = await NodeFactory.GetNode(connection, node.Id);
+            return ResourceExtractionCalculator.GetMaxAmountExtractable(extractor, nodeModel);
         }
     }
 }
