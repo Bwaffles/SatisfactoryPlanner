@@ -3,11 +3,12 @@ import { useQuery } from "react-query";
 
 import * as Config from "../../../config";
 import storage from "../../../utils/storage";
-import { Resource } from "../types";
+import { Node } from "../types";
 
-export const getResources = async (
-    getAccessTokenSilently: any
-): Promise<Resource[]> => {
+export const getNodes = async (
+    getAccessTokenSilently: any,
+    resourceId: string
+): Promise<Node[]> => {
     const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
         audience: baseUrl,
@@ -15,7 +16,8 @@ export const getResources = async (
 
     const worldId = storage.getWorldId();
     const response = await fetch(
-        baseUrl + `/resources/resources?worldId=${worldId}`,
+        baseUrl +
+            `/resources/nodes?worldId=${worldId}&resourceId=${resourceId}`,
         {
             method: "GET",
 
@@ -32,7 +34,9 @@ export const getResources = async (
     return response.json();
 };
 
-export const useGetResources = () => {
+export const useGetNodes = (resourceId: string) => {
     const { getAccessTokenSilently } = useAuth0();
-    return useQuery("getResources", () => getResources(getAccessTokenSilently));
+    return useQuery("getNodes", () =>
+        getNodes(getAccessTokenSilently, resourceId)
+    );
 };
