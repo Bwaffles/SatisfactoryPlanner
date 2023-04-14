@@ -12,3 +12,14 @@ export type Node = {
     resourceId: string;
     resourceName: string;
 };
+
+export type NodeDetails = {
+    id: string;
+    purity: string;
+    biome: string;
+    number: number;
+    isTapped: boolean;
+    amountToExtract: number;
+    resourceId: string;
+    resourceName: string;
+};
