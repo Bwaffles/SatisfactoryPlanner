@@ -1,0 +1,46 @@
+import React, { useState } from "react";
+
+export const UntappedNodeView = () => {
+    const [isTapping, setIsTapping] = useState(false);
+
+    const handleTapNode = () => {
+        alert("tapping node");
+        setIsTapping(false);
+    };
+
+    return (
+        <>
+            {!isTapping ? (
+                <div
+                    className="flex flex-col items-center gap-4 p-14 bg-gray-800 rounded hover:bg-sky-900 cursor-pointer"
+                    onClick={() => {
+                        setIsTapping(true);
+                    }}
+                >
+                    <span className="text-2xl font-bold">Tap Node</span>
+                </div>
+            ) : (
+                <div className="flex flex-col gap-4 p-6 bg-gray-800 rounded">
+                    <p className="text-lg font-bold mb-4">
+                        Select the extractor to tap the node with
+                    </p>
+                    [Insert list of extractors here]
+                    <div>
+                        <button
+                            className="w-1/2 py-4 px-4 text-white rounded-l bg-sky-800 hover:bg-sky-700"
+                            onClick={() => handleTapNode()}
+                        >
+                            Tap
+                        </button>
+                        <button
+                            className="w-1/2 py-4 px-4 text-white rounded-r bg-red-800 hover:bg-red-700"
+                            onClick={() => setIsTapping(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            )}
+        </>
+    );
+};
