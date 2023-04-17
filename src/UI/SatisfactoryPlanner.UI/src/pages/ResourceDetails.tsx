@@ -31,7 +31,14 @@ export const ResourceDetails = () => {
                     ></img>
                     <div>
                         {description.map((line) => {
-                            return <p className="mb-4">{line}</p>;
+                            return (
+                                <p
+                                    key={line}
+                                    className="mb-4"
+                                >
+                                    {line}
+                                </p>
+                            );
                         })}
                     </div>
                 </div>

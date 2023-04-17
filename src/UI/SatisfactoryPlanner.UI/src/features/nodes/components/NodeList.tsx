@@ -95,6 +95,7 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
 
                             return (
                                 <div
+                                    key={node.id}
                                     className="flex flex-row items-center mb-4 py-6 px-6 bg-gray-700 rounded hover:bg-sky-900 cursor-pointer"
                                     onClick={() => {
                                         handleNodeClick(node.id);

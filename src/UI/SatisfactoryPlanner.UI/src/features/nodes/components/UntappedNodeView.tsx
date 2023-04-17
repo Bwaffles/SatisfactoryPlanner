@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Doggo from "../../../assets/Lizard_Doggo.png";
 import { formatNumber } from "../../../utils/format";
@@ -11,29 +11,50 @@ type UntappedNodeViewProps = {
 export const UntappedNodeView = ({
     nodeDetails: nodeDetails,
 }: UntappedNodeViewProps) => {
+    const [selectedExtractor, setSelectedExtractor] = useState<string | null>(
+        null
+    );
+
     const handleTapNode = () => {
-        alert("tapping node");
+        alert(
+            "Tapping " +
+                nodeDetails.availableExtractors.find(
+                    (e) => e.id == selectedExtractor
+                )?.name +
+                "..."
+        );
     };
 
     return (
         <>
             <div className="flex flex-col gap-4 p-6 bg-gray-800 rounded">
                 <p className="mb-4">
-                    Select the extractor to tap the node with
+                    Select the extractor to tap the node with:
                 </p>
                 <div className="flex gap-12 mb-4">
                     {nodeDetails.availableExtractors?.map((extractor) => {
+                        var selectedExtractorClasses =
+                            extractor.id == selectedExtractor
+                                ? "bg-sky-800 border-white-900"
+                                : "bg-gray-700 hover:bg-sky-900 cursor-pointer border-transparent";
+
                         return (
                             <div
                                 key={extractor.id}
-                                className="flex flex-col items-center rounded bg-gray-700 p-6"
+                                className={
+                                    "flex flex-col items-center rounded p-6 border-4 " +
+                                    selectedExtractorClasses
+                                }
+                                onClick={() =>
+                                    setSelectedExtractor(extractor.id)
+                                }
                             >
                                 <div className="text-lg font-bold">
                                     {extractor.name}
                                 </div>
                                 <img
                                     className="h-40 w-40 text-center"
-                                    alt="Icon Image"
+                                    alt="Extractor Image"
                                     src={Doggo}
                                 ></img>
                                 <div>
