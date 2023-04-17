@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
 {
@@ -22,5 +23,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
         public Guid ResourceId { get; set; }
 
         public string ResourceName { get; set; } = null!;
+
+        public IEnumerable<AvailableExtractorDto> AvailableExtractors { get; set; }
     }
 }

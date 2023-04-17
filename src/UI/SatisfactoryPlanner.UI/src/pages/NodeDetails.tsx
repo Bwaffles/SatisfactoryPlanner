@@ -20,7 +20,11 @@ export const NodeDetails = () => {
 
     return (
         <ContentLayout title={nodeName}>
-            {nodeDetails!.isTapped ? <TappedNodeView /> : <UntappedNodeView />}
+            {nodeDetails!.isTapped ? (
+                <TappedNodeView />
+            ) : (
+                <UntappedNodeView nodeDetails={nodeDetails!} />
+            )}
         </ContentLayout>
     );
 };

@@ -22,4 +22,11 @@ export type NodeDetails = {
     amountToExtract: number;
     resourceId: string;
     resourceName: string;
+    availableExtractors: AvailableExtractor[];
+};
+
+export type AvailableExtractor = {
+    id: string;
+    name: string;
+    maxAmountExtractable: number;
 };
