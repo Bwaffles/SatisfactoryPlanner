@@ -9,7 +9,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
 
         public Guid WorldId { get; }
 
-        public GetNodeDetailsQuery(Guid nodeId, Guid worldId)
+        public GetNodeDetailsQuery(Guid worldId, Guid nodeId)
         {
             NodeId = nodeId;
             WorldId = worldId;

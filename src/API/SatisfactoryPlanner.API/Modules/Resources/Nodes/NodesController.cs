@@ -54,7 +54,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
         [ProducesResponseType(typeof(NodeDetailsDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetNodeDetails([FromRoute] Guid nodeId, [FromQuery] GetNodeDetailsRequest request)
         {
-            var nodeDetails = await _module.ExecuteQueryAsync(new GetNodeDetailsQuery(nodeId, request.WorldId));
+            var nodeDetails = await _module.ExecuteQueryAsync(new GetNodeDetailsQuery(request.WorldId, nodeId));
             return Ok(nodeDetails);
         }
     }

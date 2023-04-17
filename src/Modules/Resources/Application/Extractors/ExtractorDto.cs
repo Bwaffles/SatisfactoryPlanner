@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.Extractors.GetExtractors
+namespace SatisfactoryPlanner.Modules.Resources.Application.Extractors
 {
     public class ExtractorDto
     {

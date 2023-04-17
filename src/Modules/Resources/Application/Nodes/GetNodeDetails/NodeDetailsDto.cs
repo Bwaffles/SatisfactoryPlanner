@@ -24,6 +24,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
 
         public string ResourceName { get; set; } = null!;
 
+        /// <summary>
+        ///     The extractors that are available to tap this node.
+        /// </summary>
         public IEnumerable<AvailableExtractorDto> AvailableExtractors { get; set; }
     }
 }
