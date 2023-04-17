@@ -55,7 +55,10 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
                 });
 
                 return (
-                    <div className="mb-4 p-6 bg-gray-800 rounded">
+                    <div
+                        key={biome}
+                        className="mb-4 p-6 bg-gray-800 rounded"
+                    >
                         <div className="flex flex-col mb-6">
                             <h3 className="text-lg font-bold mb-4">{biome}</h3>
                             <div className="flex">
