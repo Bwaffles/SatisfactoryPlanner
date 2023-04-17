@@ -2,7 +2,7 @@
 
 namespace DatabaseMigrator.Migrations.UserAccess.Permissions
 {
-    [Migration(202392212396)]
+    [Migration(202302212396)]
     public class AddPermission_GetNodeDetails : AutoReversingMigration
     {
         public override void Up()
