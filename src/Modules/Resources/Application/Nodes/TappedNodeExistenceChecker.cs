@@ -3,7 +3,7 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes
+namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
 {
     public class TappedNodeExistenceChecker : ITappedNodeExistenceChecker
     {
@@ -18,11 +18,12 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
-
-            return connection.QuerySingle<int>(
+            const string sql =
                 "SELECT COUNT(*) " +
                 "  FROM resources.tapped_nodes AS tapped_node " +
-                " WHERE tapped_node.node_id = @nodeId",
+                " WHERE tapped_node.node_id = @nodeId";
+            return connection.QuerySingle<int>(
+                sql,
                 new
                 {
                     nodeId

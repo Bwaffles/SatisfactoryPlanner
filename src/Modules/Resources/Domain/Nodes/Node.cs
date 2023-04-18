@@ -29,15 +29,12 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
             _resourceId = resourceId;
         }
 
-        public TappedNode Tap(WorldId worldId, Extractor extractor, decimal amountToExtract, string name,
-            ITappedNodeExistenceChecker tappedNodeExistenceChecker)
+        public TappedNode Tap(WorldId worldId, Extractor extractor, ITappedNodeExistenceChecker tappedNodeExistenceChecker)
         {
             CheckRule(new NodeCannotAlreadyBeTappedRule(Id, tappedNodeExistenceChecker));
             CheckRule(new ExtractorMustBeAbleToExtractResourceRule(extractor, _resourceId));
-            // TODO create domain service for calculating the max potentional resources for the node/extractor combo
-            CheckRule(new CannotExtractMoreThanTheAvailableResourcesRule(this, extractor, amountToExtract));
 
-            return TappedNode.CreateNew(worldId, Id, extractor.Id, amountToExtract, name);
+            return TappedNode.CreateNew(worldId, Id, extractor.Id);
         }
 
         public decimal GetPurityMultiplier() => _purity.GetMultiplier();

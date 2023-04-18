@@ -7,6 +7,7 @@ using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
+using SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -56,6 +57,24 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
         {
             var nodeDetails = await _module.ExecuteQueryAsync(new GetNodeDetailsQuery(request.WorldId, nodeId));
             return Ok(nodeDetails);
+        }
+
+        /// <summary>
+        ///     Tap the node with an extractor.
+        /// </summary>
+        [Authorize]
+        [HasPermission(ResourcesPermissions.TapNode)]
+        [HttpPost("{nodeId}/tap")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> TapNode([FromRoute] Guid nodeId, [FromBody] TapNodeRequest request)
+        {
+            await _module.ExecuteCommandAsync(new TapNodeCommand(
+                request.WorldId,
+                nodeId,
+                request.ExtractorId
+            ));
+
+            return Ok();
         }
     }
 }

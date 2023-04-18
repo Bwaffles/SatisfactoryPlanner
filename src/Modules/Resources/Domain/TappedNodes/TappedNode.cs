@@ -8,32 +8,33 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
 {
     public class TappedNode : Entity, IAggregateRoot
     {
-        public ResourceNodeExtractionId Id { get; private set; }
-
-        private readonly WorldId _worldId;
-
-        private readonly NodeId _nodeId;
+        private readonly decimal _amountToExtract;
 
         private readonly ExtractorId _extractorId;
 
-        private readonly decimal _amountToExtract;
-
         private readonly string _name;
 
-        public static TappedNode CreateNew(WorldId worldId, NodeId nodeId, ExtractorId extractorId, decimal amount,
-            string name)
-            => new(worldId, nodeId, extractorId, amount, name);
+        private readonly NodeId _nodeId;
 
-        private TappedNode(WorldId worldId, NodeId nodeId, ExtractorId extractorId, decimal amountToExtract, string name)
+        private readonly WorldId _worldId;
+
+        public ResourceNodeExtractionId Id { get; }
+
+        private TappedNode(WorldId worldId, NodeId nodeId, ExtractorId extractorId)
         {
             Id = new ResourceNodeExtractionId(Guid.NewGuid());
             _worldId = worldId;
             _nodeId = nodeId;
             _extractorId = extractorId;
-            _amountToExtract = amountToExtract;
-            _name = name;
+            _amountToExtract = 0;
+            _name = "";
         }
 
-        private TappedNode() { /* for EF */ }
+        private TappedNode()
+        { /* for EF */
+        }
+
+        public static TappedNode CreateNew(WorldId worldId, NodeId nodeId, ExtractorId extractorId)
+            => new(worldId, nodeId, extractorId);
     }
 }

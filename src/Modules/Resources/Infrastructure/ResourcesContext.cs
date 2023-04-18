@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 
@@ -10,6 +11,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure
         public DbSet<TappedNode> TappedNodes { get; set; }
 
         public DbSet<InternalCommand> InternalCommands { get; set; }
+
+        public DbSet<OutboxMessage> OutboxMessages { get; set; }
 
         private readonly ILoggerFactory _loggerFactory;
 

@@ -9,14 +9,14 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.TapNode
+namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode
 {
     // ReSharper disable once UnusedMember.Global
     internal class TapNodeCommandHandler : ICommandHandler<TapNodeCommand, Guid>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
-        private readonly ITappedNodeRepository _tappedNodeRepository;
         private readonly ITappedNodeExistenceChecker _tappedNodeExistenceChecker;
+        private readonly ITappedNodeRepository _tappedNodeRepository;
 
         public TapNodeCommandHandler(
             IDbConnectionFactory dbConnectionFactory,
@@ -43,8 +43,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.TapNode
             var tappedNode = node.Tap(
                 new WorldId(command.WorldId),
                 extractor,
-                command.AmountToExtract,
-                command.Name,
                 _tappedNodeExistenceChecker);
             await _tappedNodeRepository.AddAsync(tappedNode);
 

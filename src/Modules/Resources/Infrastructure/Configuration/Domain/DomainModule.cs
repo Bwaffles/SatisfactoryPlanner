@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using SatisfactoryPlanner.Modules.Resources.Application.TappedNodes;
+using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Domain

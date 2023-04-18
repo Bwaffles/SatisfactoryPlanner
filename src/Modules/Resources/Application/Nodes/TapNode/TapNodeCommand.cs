@@ -1,17 +1,15 @@
 ﻿using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.TapNode
+namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode
 {
     public class TapNodeCommand : CommandBase<Guid>
     {
-        public TapNodeCommand(Guid worldId, Guid nodeId, Guid extractorId, decimal amountToExtract, string name)
+        public TapNodeCommand(Guid worldId, Guid nodeId, Guid extractorId)
         {
             WorldId = worldId;
             NodeId = nodeId;
             ExtractorId = extractorId;
-            AmountToExtract = amountToExtract;
-            Name = name;
         }
 
         public Guid WorldId { get; }
@@ -19,9 +17,5 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.TapNode
         public Guid NodeId { get; }
 
         public Guid ExtractorId { get; }
-
-        public decimal AmountToExtract { get; }
-
-        public string Name { get; }
     }
 }
