@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
+using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 
@@ -9,6 +10,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure
 {
     public class ResourcesContext : DbContext
     {
+        public DbSet<Extractor> Extractors { get; set; }
+
         public DbSet<Node> Nodes { get; set; }
 
         public DbSet<TappedNode> TappedNodes { get; set; }
