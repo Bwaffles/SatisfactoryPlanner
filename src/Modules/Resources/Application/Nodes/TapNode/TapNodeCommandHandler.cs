@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Commands;
 using SatisfactoryPlanner.Modules.Resources.Application.Extractors;
-using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 using System;
@@ -15,27 +15,29 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode
     internal class TapNodeCommandHandler : ICommandHandler<TapNodeCommand, Guid>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
+        private readonly INodeRepository _nodeRepository;
         private readonly ITappedNodeExistenceChecker _tappedNodeExistenceChecker;
         private readonly ITappedNodeRepository _tappedNodeRepository;
 
         public TapNodeCommandHandler(
             IDbConnectionFactory dbConnectionFactory,
+            INodeRepository nodeRepository,
             ITappedNodeRepository tappedNodeRepository,
             ITappedNodeExistenceChecker tappedNodeExistenceChecker)
         {
             _dbConnectionFactory = dbConnectionFactory;
+            _nodeRepository = nodeRepository;
             _tappedNodeRepository = tappedNodeRepository;
             _tappedNodeExistenceChecker = tappedNodeExistenceChecker;
         }
 
         public async Task<Guid> Handle(TapNodeCommand command, CancellationToken cancellationToken)
         {
-            var connection = _dbConnectionFactory.GetOpenConnection();
-
-            var node = await NodeFactory.GetNode(connection, command.NodeId);
+            var node = await _nodeRepository.FindByIdAsync(new NodeId(command.NodeId));
             if (node == null)
                 throw new InvalidCommandException("Node to tap must exist.");
 
+            var connection = _dbConnectionFactory.GetOpenConnection();
             var extractor = await ExtractorFactory.GetExtractor(connection, command.ExtractorId);
             if (extractor == null)
                 throw new InvalidCommandException("Extractor to tap the node with must exist.");
