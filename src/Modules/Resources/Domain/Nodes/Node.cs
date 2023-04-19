@@ -35,7 +35,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
         public TappedNode Tap(WorldId worldId, Extractor extractor,
             ITappedNodeExistenceChecker tappedNodeExistenceChecker)
         {
-            CheckRule(new NodeCannotAlreadyBeTappedRule(Id, tappedNodeExistenceChecker));
+            CheckRule(new NodeCannotAlreadyBeTappedRule(Id, worldId, tappedNodeExistenceChecker));
             CheckRule(new ExtractorMustBeAbleToExtractResourceRule(extractor, _resourceId));
 
             return TappedNode.CreateNew(worldId, Id, extractor.Id);

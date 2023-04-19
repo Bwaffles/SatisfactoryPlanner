@@ -133,7 +133,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
             {
                 var mockTappedNodeExistenceChecker = new Mock<ITappedNodeExistenceChecker>();
                 mockTappedNodeExistenceChecker
-                    .Setup(_ => _.IsTapped(node.Id.Value))
+                    .Setup(_ => _.IsTapped(It.IsAny<Guid>(), node.Id.Value))
                     .Returns(_nodeTapped);
                 var tappedNodeExistenceChecker = mockTappedNodeExistenceChecker.Object;
                 return tappedNodeExistenceChecker;

@@ -14,18 +14,20 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
             _dbConnectionFactory = dbConnectionFactory;
         }
 
-        public bool IsTapped(Guid nodeId)
+        public bool IsTapped(Guid worldId, Guid nodeId)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
             const string sql =
                 "SELECT COUNT(*) " +
                 "  FROM resources.tapped_nodes AS tapped_node " +
-                " WHERE tapped_node.node_id = @nodeId";
+                " WHERE tapped_node.world_id = @worldId " +
+                "   AND tapped_node.node_id  = @nodeId";
             return connection.QuerySingle<int>(
                 sql,
                 new
                 {
+                    worldId,
                     nodeId
                 }) > 0;
         }
