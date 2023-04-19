@@ -68,13 +68,13 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> TapNode([FromRoute] Guid nodeId, [FromBody] TapNodeRequest request)
         {
-            await _module.ExecuteCommandAsync(new TapNodeCommand(
+            var tappedNodeId = await _module.ExecuteCommandAsync(new TapNodeCommand(
                 request.WorldId,
                 nodeId,
                 request.ExtractorId
             ));
 
-            return Ok();
+            return Ok(tappedNodeId);
         }
     }
 }

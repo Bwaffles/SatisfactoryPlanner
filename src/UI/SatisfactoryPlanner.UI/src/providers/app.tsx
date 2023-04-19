@@ -3,10 +3,11 @@ import { ErrorBoundary } from "react-error-boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClientProvider } from "react-query";
 
 import * as Config from "../config";
 import { Spinner } from "../components/Elements/Spinner";
+import { queryClient } from "../lib/react-query";
 
 const ErrorFallback = () => {
     return (
@@ -26,14 +27,6 @@ const AuthProvider = ({ children, ...props }: any) => {
 type AppProviderProps = {
     children: React.ReactNode;
 };
-
-const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            suspense: true,
-        },
-    },
-});
 
 export const AppProvider = ({ children }: AppProviderProps) => {
     return (

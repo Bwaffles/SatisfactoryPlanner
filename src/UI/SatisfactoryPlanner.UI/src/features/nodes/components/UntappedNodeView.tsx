@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Doggo from "../../../assets/Lizard_Doggo.png";
 import { formatNumber } from "../../../utils/format";
+import { useTapNode } from "../api/tapNode";
 import { NodeDetails } from "../types";
 
 type UntappedNodeViewProps = {
@@ -14,16 +15,7 @@ export const UntappedNodeView = ({
     const [selectedExtractor, setSelectedExtractor] = useState<string | null>(
         null
     );
-
-    const handleTapNode = () => {
-        alert(
-            "Tapping " +
-                nodeDetails.availableExtractors.find(
-                    (e) => e.id == selectedExtractor
-                )?.name +
-                "..."
-        );
-    };
+    const tapNodeMutation = useTapNode();
 
     return (
         <>
@@ -74,7 +66,12 @@ export const UntappedNodeView = ({
                 <div>
                     <button
                         className="w-full py-4 px-4 text-white rounded bg-sky-800 hover:bg-sky-700"
-                        onClick={() => handleTapNode()}
+                        onClick={() =>
+                            tapNodeMutation.mutate({
+                                nodeId: nodeDetails.id,
+                                extractorId: selectedExtractor!,
+                            })
+                        }
                     >
                         Tap
                     </button>

@@ -7,14 +7,14 @@ import { NodeDetails } from "../types";
 
 export const getNodeDetails = async (
     getAccessTokenSilently: any,
-    nodeId: string
+    nodeId: string,
+    worldId: string
 ): Promise<NodeDetails> => {
     const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
         audience: baseUrl,
     });
 
-    const worldId = storage.getWorldId();
     const response = await fetch(
         baseUrl + `/resources/nodes/${nodeId}?worldId=${worldId}`,
         {
@@ -35,7 +35,10 @@ export const getNodeDetails = async (
 
 export const useGetNodeDetails = (nodeId: string) => {
     const { getAccessTokenSilently } = useAuth0();
-    return useQuery("getNodeDetails", () =>
-        getNodeDetails(getAccessTokenSilently, nodeId)
-    );
+    const worldId = storage.getWorldId();
+
+    return useQuery({
+        queryKey: ["getNodeDetails", nodeId, worldId],
+        queryFn: () => getNodeDetails(getAccessTokenSilently, nodeId, worldId),
+    });
 };
