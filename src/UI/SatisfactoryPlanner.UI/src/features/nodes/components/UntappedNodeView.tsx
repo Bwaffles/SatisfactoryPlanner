@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Doggo from "../../../assets/Lizard_Doggo.png";
+import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
 import { useTapNode } from "../api/tapNode";
 import { NodeDetails } from "../types";
@@ -15,6 +16,9 @@ export const UntappedNodeView = ({
     const [selectedExtractor, setSelectedExtractor] = useState<string | null>(
         null
     );
+    const [validationMessage, setValidationMessage] = useState<string | null>(
+        null
+    );
     const tapNodeMutation = useTapNode();
 
     return (
@@ -23,7 +27,7 @@ export const UntappedNodeView = ({
                 <p className="mb-4">
                     Select the extractor to tap the node with:
                 </p>
-                <div className="flex gap-12 mb-4">
+                <div className="flex gap-12">
                     {nodeDetails.availableExtractors?.map((extractor) => {
                         var selectedExtractorClasses =
                             extractor.id == selectedExtractor
@@ -37,8 +41,15 @@ export const UntappedNodeView = ({
                                     "flex flex-col items-center rounded p-6 border-4 " +
                                     selectedExtractorClasses
                                 }
-                                onClick={() =>
-                                    setSelectedExtractor(extractor.id)
+                                onClick={
+                                    tapNodeMutation.isLoading
+                                        ? () => {}
+                                        : () => {
+                                              setSelectedExtractor(
+                                                  extractor.id
+                                              );
+                                              setValidationMessage(null);
+                                          }
                                 }
                             >
                                 <div className="text-lg font-bold">
@@ -63,18 +74,29 @@ export const UntappedNodeView = ({
                         );
                     })}
                 </div>
+                {validationMessage != null && (
+                    <div className="text-red-500">{validationMessage}</div>
+                )}
                 <div>
-                    <button
-                        className="w-full py-4 px-4 text-white rounded bg-sky-800 hover:bg-sky-700"
-                        onClick={() =>
+                    <Button
+                        isLoading={tapNodeMutation.isLoading}
+                        className="mt-4"
+                        onClick={() => {
+                            if (selectedExtractor == null) {
+                                setValidationMessage(
+                                    "Please select an extractor."
+                                );
+                                return;
+                            }
+
                             tapNodeMutation.mutate({
                                 nodeId: nodeDetails.id,
                                 extractorId: selectedExtractor!,
-                            })
-                        }
+                            });
+                        }}
                     >
                         Tap
-                    </button>
+                    </Button>
                 </div>
             </div>
         </>
