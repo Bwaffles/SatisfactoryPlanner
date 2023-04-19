@@ -13,7 +13,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.TappedNodes
         public async Task TapNode_Test()
         {
             var worldId = Guid.NewGuid();
-
+            
             var preTapResources = await ResourcesModule.ExecuteQueryAsync(new GetResourcesQuery(worldId));
             preTapResources.Should().OnlyContain(resource => resource.ExtractedResources == 0);
 

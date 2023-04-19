@@ -9,18 +9,16 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
 {
     public class Node : Entity, IAggregateRoot
     {
-        public NodeId Id { get; }
-
         private readonly NodePurity _purity;
 
         private readonly ResourceId _resourceId;
 
-        public static Node CreateNew(NodeId id, NodePurity purity, ResourceId resourceId)
-        {
-            return new(id, purity, resourceId);
-        }
+        public NodeId Id { get; }
 
-        private Node() { }
+        // ReSharper disable once UnusedMember.Local
+        private Node()
+        { /* for EF */
+        }
 
         private Node(NodeId id, NodePurity purity, ResourceId resourceId)
         {
@@ -29,7 +27,13 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
             _resourceId = resourceId;
         }
 
-        public TappedNode Tap(WorldId worldId, Extractor extractor, ITappedNodeExistenceChecker tappedNodeExistenceChecker)
+        public static Node CreateNew(NodeId id, NodePurity purity, ResourceId resourceId)
+        {
+            return new Node(id, purity, resourceId);
+        }
+
+        public TappedNode Tap(WorldId worldId, Extractor extractor,
+            ITappedNodeExistenceChecker tappedNodeExistenceChecker)
         {
             CheckRule(new NodeCannotAlreadyBeTappedRule(Id, tappedNodeExistenceChecker));
             CheckRule(new ExtractorMustBeAbleToExtractResourceRule(extractor, _resourceId));

@@ -1,6 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Events;
 using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 using System;
 
@@ -18,23 +19,26 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
 
         private readonly WorldId _worldId;
 
-        public ResourceNodeExtractionId Id { get; }
+        public TappedNodeId Id { get; }
 
         private TappedNode(WorldId worldId, NodeId nodeId, ExtractorId extractorId)
         {
-            Id = new ResourceNodeExtractionId(Guid.NewGuid());
+            Id = new TappedNodeId(Guid.NewGuid());
             _worldId = worldId;
             _nodeId = nodeId;
             _extractorId = extractorId;
             _amountToExtract = 0;
-            _name = "";
+            _name = ""; // TODO can probably remove this since I've pre-created the names for the nodes already
+
+            AddDomainEvent(new NodeTappedDomainEvent(Id, _worldId, _nodeId, _extractorId));
         }
 
+        // ReSharper disable once UnusedMember.Local
         private TappedNode()
         { /* for EF */
         }
 
-        public static TappedNode CreateNew(WorldId worldId, NodeId nodeId, ExtractorId extractorId)
+        internal static TappedNode CreateNew(WorldId worldId, NodeId nodeId, ExtractorId extractorId)
             => new(worldId, nodeId, extractorId);
     }
 }

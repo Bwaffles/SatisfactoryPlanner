@@ -3,8 +3,8 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
 {
-    public class ResourceNodeExtractionId : TypedIdValueBase
+    public class TappedNodeId : TypedIdValueBase
     {
-        public ResourceNodeExtractionId(Guid value) : base(value) { }
+        public TappedNodeId(Guid value) : base(value) { }
     }
 }
