@@ -7,24 +7,13 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Extractors
 {
     public class Extractor : Entity, IAggregateRoot
     {
-        public ExtractorId Id { get; }
-
-        private readonly ExtractorCycle _cycle;
+        private readonly List<AllowedResource> _allowedResources;
 
         private readonly ExtractorClockspeed _clockspeed;
 
-        private readonly List<AllowedResource> _allowedResources;
+        private readonly ExtractorCycle _cycle;
 
-        public static Extractor CreateNew(
-            ExtractorId id,
-            ExtractorCycle cycle,
-            ExtractorClockspeed clockspeed,
-            List<ResourceId> allowedResources)
-            => new(
-                id,
-                cycle,
-                clockspeed,
-                allowedResources.Select(_ => AllowedResource.CreateNew(id, _)).ToList());
+        public ExtractorId Id { get; }
 
         private Extractor(
             ExtractorId id,
@@ -38,7 +27,21 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Extractors
             _allowedResources = allowedResources;
         }
 
-        private Extractor() { }
+        // ReSharper disable once UnusedMember.Local
+        private Extractor()
+        { /* for EF */
+        }
+
+        public static Extractor CreateNew(
+            ExtractorId id,
+            ExtractorCycle cycle,
+            ExtractorClockspeed clockspeed,
+            List<ResourceId> allowedResources)
+            => new(
+                id,
+                cycle,
+                clockspeed,
+                allowedResources.Select(_ => AllowedResource.CreateNew(id, _)).ToList());
 
         public decimal GetPotentialResourcesPerMinute()
         {

@@ -1,7 +1,9 @@
-﻿using Moq;
+﻿using FluentAssertions;
+using Moq;
 using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Events;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
@@ -13,30 +15,6 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
 {
     public class TapNodeTests
     {
-        [Fact]
-        public void TapNode_WithOilExtractor_WhenAmountIsGreaterThanAvailableResources_IsNotPossible()
-        {
-            RuleAssertions.AssertBrokenRule<CannotExtractMoreThanTheAvailableResourcesRule>(() =>
-            {
-                new TapNodeExecuter()
-                    .WithOilExtractor()
-                    .ExtractTooManyResources()
-                    .Execute();
-            });
-        }
-
-        [Fact]
-        public void TapNode_WithMiner_WhenAmountIsGreaterThanAvailableResources_IsNotPossible()
-        {
-            RuleAssertions.AssertBrokenRule<CannotExtractMoreThanTheAvailableResourcesRule>(() =>
-            {
-                new TapNodeExecuter()
-                    .WithMiner()
-                    .ExtractTooManyResources()
-                    .Execute();
-            });
-        }
-
         [Fact]
         public void TapNode_WithMiner_WhenNodeIsAlreadyTapped_IsNotPossible()
         {
@@ -61,34 +39,50 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
             });
         }
 
+        [Fact]
+        public void TapNode_WithOilExtractor_WhenExtractorCannotExtractTheResource_IsNotPossible()
+        {
+            RuleAssertions.AssertBrokenRule<ExtractorMustBeAbleToExtractResourceRule>(() =>
+            {
+                new TapNodeExecuter()
+                    .WithOilExtractor()
+                    .CannotExtractResource()
+                    .Execute();
+            });
+        }
+
+        [Fact]
+        public void TapNode_Succeeds()
+        {
+            var executionResult = new TapNodeExecuter().Execute();
+
+            var domainEvent =
+                DomainEventAssertions.AssertPublishedEvent<NodeTappedDomainEvent>(executionResult.TappedNode);
+            domainEvent.ExtractorId.Should().Be(executionResult.ExtractorId);
+            domainEvent.WorldId.Should().Be(executionResult.WorldId);
+            domainEvent.NodeId.Should().Be(executionResult.NodeId);
+        }
+
         private class TapNodeExecuter
         {
-            private static readonly decimal _amountExtractable = 600;
             private bool _canExtractResource = true;
             private string _extractorType = "Miner";
-            private bool _extractTooManyResources;
-
             private bool _nodeTapped;
 
-            public TappedNode Execute()
+            public (TappedNode TappedNode, WorldId WorldId, NodeId NodeId, ExtractorId ExtractorId) Execute()
             {
                 var resourceId = new ResourceId(Guid.NewGuid());
-
                 var worldId = new WorldId(Guid.NewGuid());
                 var extractor = GetExtractor(resourceId);
-                var amountToExtract = GetAmountToExtract();
                 var node = GetNode(resourceId);
                 var tappedNodeExistenceChecker = GetTappedNodeExistenceChecked(node);
 
-                return node.Tap(worldId, extractor, amountToExtract, "name", tappedNodeExistenceChecker);
-            }
+                var tappedNode = node.Tap(worldId, extractor, tappedNodeExistenceChecker);
 
-            private decimal GetAmountToExtract()
-            {
-                if (_extractorType == "OilExtractor")
-                    return _extractTooManyResources ? 301 : 300;
-
-                return _extractTooManyResources ? _amountExtractable + 1 : _amountExtractable;
+                return (tappedNode,
+                    worldId,
+                    node.Id,
+                    extractor.Id);
             }
 
             internal TapNodeExecuter NodeAlreadyTapped()
@@ -100,12 +94,6 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
             internal TapNodeExecuter CannotExtractResource()
             {
                 _canExtractResource = false;
-                return this;
-            }
-
-            internal TapNodeExecuter ExtractTooManyResources()
-            {
-                _extractTooManyResources = true;
                 return this;
             }
 
@@ -122,7 +110,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
             }
 
             private Extractor GetExtractor(ResourceId resourceId)
-            {
+            { // TODO I don't think I need to test both miners and oil extractors here
                 var extractorFixture = new ExtractorFixture();
 
                 extractorFixture = _canExtractResource
@@ -145,7 +133,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
             {
                 var mockTappedNodeExistenceChecker = new Mock<ITappedNodeExistenceChecker>();
                 mockTappedNodeExistenceChecker
-                    .Setup(_ => _.IsTapped(node.Id.Value))
+                    .Setup(_ => _.IsTapped(It.IsAny<Guid>(), node.Id.Value))
                     .Returns(_nodeTapped);
                 var tappedNodeExistenceChecker = mockTappedNodeExistenceChecker.Object;
                 return tappedNodeExistenceChecker;

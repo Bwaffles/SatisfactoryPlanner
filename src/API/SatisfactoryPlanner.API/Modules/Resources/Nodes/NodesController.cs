@@ -5,7 +5,10 @@ using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
+using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
+using SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -37,6 +40,41 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
         {
             var nodes = await _module.ExecuteQueryAsync(new GetNodesQuery(request.WorldId, request.ResourceId));
             return Ok(nodes);
+        }
+
+        /// <summary>
+        ///     Get the details of a node.
+        /// </summary>
+        /// <response code="200">
+        ///     Returns the node as a <see cref="NodeDetailsDto" />.
+        /// </response>
+        [Authorize]
+        [HasPermission(ResourcesPermissions.GetNodeDetails)]
+        [WorldAuthorization]
+        [HttpGet("{nodeId}")]
+        [ProducesResponseType(typeof(NodeDetailsDto), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetNodeDetails([FromRoute] Guid nodeId, [FromQuery] GetNodeDetailsRequest request)
+        {
+            var nodeDetails = await _module.ExecuteQueryAsync(new GetNodeDetailsQuery(request.WorldId, nodeId));
+            return Ok(nodeDetails);
+        }
+
+        /// <summary>
+        ///     Tap the node with an extractor.
+        /// </summary>
+        [Authorize]
+        [HasPermission(ResourcesPermissions.TapNode)]
+        [HttpPost("{nodeId}/tap")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> TapNode([FromRoute] Guid nodeId, [FromBody] TapNodeRequest request)
+        {
+            var tappedNodeId = await _module.ExecuteCommandAsync(new TapNodeCommand(
+                request.WorldId,
+                nodeId,
+                request.ExtractorId
+            ));
+
+            return Ok(tappedNodeId);
         }
     }
 }

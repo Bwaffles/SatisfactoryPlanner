@@ -58,15 +58,23 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
         [TearDown]
         public void AfterEachTest()
         {
-            //ResourcesStartup.Stop();
+            ResourcesStartup.Stop();
             //SystemClock.Reset();
         }
 
         private static async Task ClearDatabase(IDbConnection connection)
         {
-            const string sql = //"DELETE FROM resources.inbox_messages;" +
-                               //"DELETE FROM resources.internal_commands;" +
-                               //"DELETE FROM resources.outbox_messages;" +
+            /* Not clearing the following tables since they're pre-loaded reference tables:
+            *   extractor_allowed_resources,
+            *   extractors,
+            *   nodes,
+            *   resource_forms,
+            *   resources
+            */
+
+            const string sql = "DELETE FROM resources.inbox_messages;" +
+                               "DELETE FROM resources.internal_commands;" +
+                               "DELETE FROM resources.outbox_messages;" +
                                "DELETE FROM resources.tapped_nodes;";
 
             await connection.ExecuteScalarAsync(sql);

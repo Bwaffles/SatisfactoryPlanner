@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using MediatR;
+using SatisfactoryPlanner.BuildingBlocks.Application.Events;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration.Processing;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Commands;
@@ -32,14 +35,14 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
             builder.RegisterGenericDecorator(typeof(LoggingCommandHandlerDecorator<>), typeof(ICommandHandler<>));
             builder.RegisterGenericDecorator(typeof(LoggingCommandHandlerWithResultDecorator<,>), typeof(ICommandHandler<,>));
 
-            //builder.RegisterGenericDecorator(
-            //    typeof(DomainEventsDispatcherNotificationHandlerDecorator<>),
-            //    typeof(INotificationHandler<>));
+            builder.RegisterGenericDecorator(
+                typeof(DomainEventsDispatcherNotificationHandlerDecorator<>),
+                typeof(INotificationHandler<>));
 
-            //builder.RegisterAssemblyTypes(Assemblies.Application)
-            //    .AsClosedTypesOf(typeof(IDomainEventNotification<>))
-            //    .InstancePerDependency()
-            //    .FindConstructorsWith(new AllConstructorFinder());
+            builder.RegisterAssemblyTypes(Assemblies.Application)
+                .AsClosedTypesOf(typeof(IDomainEventNotification<>))
+                .InstancePerDependency()
+                .FindConstructorsWith(new AllConstructorFinder());
         }
     }
 }

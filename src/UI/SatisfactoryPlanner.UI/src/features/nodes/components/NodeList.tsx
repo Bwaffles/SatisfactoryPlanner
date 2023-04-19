@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { formatNumber } from "../../../utils/format";
 
 import { useGetNodes } from "../api/getNodes";
@@ -10,6 +11,11 @@ type NodeListProps = {
 
 export const NodeList = ({ resourceId }: NodeListProps) => {
     const { isError, data: nodes, error } = useGetNodes(resourceId);
+    const navigate = useNavigate();
+
+    const handleNodeClick = (nodeId: string) => {
+        navigate(`/nodes/${nodeId}`);
+    };
 
     if (isError) {
         return <span>Error: {(error as Error).message}</span>;
@@ -49,7 +55,10 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
                 });
 
                 return (
-                    <div className="mb-4 p-6 bg-gray-800 rounded">
+                    <div
+                        key={biome}
+                        className="mb-4 p-6 bg-gray-800 rounded"
+                    >
                         <div className="flex flex-col mb-6">
                             <h3 className="text-lg font-bold mb-4">{biome}</h3>
                             <div className="flex">
@@ -85,7 +94,13 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
                                     : "";
 
                             return (
-                                <div className="flex flex-row items-center mb-4 py-6 px-6 bg-gray-700 rounded">
+                                <div
+                                    key={node.id}
+                                    className="flex flex-row items-center mb-4 py-6 px-6 bg-gray-700 rounded hover:bg-sky-900 cursor-pointer"
+                                    onClick={() => {
+                                        handleNodeClick(node.id);
+                                    }}
+                                >
                                     <div className="py-4 mr-6 w-16 text-3xl text-center font-bold bg-sky-800 rounded">
                                         {node.number}
                                     </div>

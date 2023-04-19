@@ -15,7 +15,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.TappedNode
 
             builder.HasKey(_ => _.Id);
 
-            builder.Property<ResourceNodeExtractionId>("Id").HasColumnName("id");
+            builder.Property<TappedNodeId>("Id").HasColumnName("id");
             builder.Property<WorldId>("_worldId").HasColumnName("world_id");
             builder.Property<NodeId>("_nodeId").HasColumnName("node_id");
             builder.Property<ExtractorId>("_extractorId").HasColumnName("extractor_id");

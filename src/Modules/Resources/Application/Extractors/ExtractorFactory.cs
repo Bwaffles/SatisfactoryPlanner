@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using SatisfactoryPlanner.Modules.Resources.Application.Extractors.GetExtractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using System;

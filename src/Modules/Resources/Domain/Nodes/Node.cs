@@ -9,18 +9,16 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
 {
     public class Node : Entity, IAggregateRoot
     {
-        public NodeId Id { get; }
-
         private readonly NodePurity _purity;
 
         private readonly ResourceId _resourceId;
 
-        public static Node CreateNew(NodeId id, NodePurity purity, ResourceId resourceId)
-        {
-            return new(id, purity, resourceId);
-        }
+        public NodeId Id { get; }
 
-        private Node() { }
+        // ReSharper disable once UnusedMember.Local
+        private Node()
+        { /* for EF */
+        }
 
         private Node(NodeId id, NodePurity purity, ResourceId resourceId)
         {
@@ -29,15 +27,18 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
             _resourceId = resourceId;
         }
 
-        public TappedNode Tap(WorldId worldId, Extractor extractor, decimal amountToExtract, string name,
+        public static Node CreateNew(NodeId id, NodePurity purity, ResourceId resourceId)
+        {
+            return new Node(id, purity, resourceId);
+        }
+
+        public TappedNode Tap(WorldId worldId, Extractor extractor,
             ITappedNodeExistenceChecker tappedNodeExistenceChecker)
         {
-            CheckRule(new NodeCannotAlreadyBeTappedRule(Id, tappedNodeExistenceChecker));
+            CheckRule(new NodeCannotAlreadyBeTappedRule(Id, worldId, tappedNodeExistenceChecker));
             CheckRule(new ExtractorMustBeAbleToExtractResourceRule(extractor, _resourceId));
-            // TODO create domain service for calculating the max potentional resources for the node/extractor combo
-            CheckRule(new CannotExtractMoreThanTheAvailableResourcesRule(this, extractor, amountToExtract));
 
-            return TappedNode.CreateNew(worldId, Id, extractor.Id, amountToExtract, name);
+            return TappedNode.CreateNew(worldId, Id, extractor.Id);
         }
 
         public decimal GetPurityMultiplier() => _purity.GetMultiplier();

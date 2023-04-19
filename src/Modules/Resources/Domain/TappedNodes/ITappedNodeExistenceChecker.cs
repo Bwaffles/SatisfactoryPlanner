@@ -4,6 +4,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
 {
     public interface ITappedNodeExistenceChecker
     {
-        bool IsTapped(Guid nodeId);
+        bool IsTapped(Guid worldId, Guid nodeId);
     }
 }
