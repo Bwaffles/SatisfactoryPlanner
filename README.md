@@ -52,6 +52,19 @@ Reasoning being that `/pioneers/9` is a resource and the resource does not exist
   - https://stackoverflow.com/a/61049975
   - FYI dissenting opinion https://jsonapi.org/format/#fetching-resources-responses I think the docs are up to interpretation. On the surface it seems to say to always use `200 Ok` and return null. But I think reading it deeper it means more like return `200 Ok` if pioneer 9 exists but there is no data there.
 
+# Validation
+
+I use 3 levels of validation in this order: UI, Request, and Domain.
+
+## UI
+TODO
+
+## Request
+These are validations performed on Commands and Queries before the Handler will execute. These validations are very simple and do not involve any system data, other than what is provided in the request. For example, checking that an Id it not empty.
+
+## Domain
+TODO
+
 # Domain Events
 
 Domain events are added to entities whenever an action has been performed. Domain events are published at 2 different stages of the transaction. You can handle a domain event within a transaction so that you can ensure the entire transaction completes together, or you can handle it outside the transaction if it's not critical or dependent on some third party integration.
