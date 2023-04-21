@@ -19,8 +19,12 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.TappedNode
             builder.Property<WorldId>("_worldId").HasColumnName("world_id");
             builder.Property<NodeId>("_nodeId").HasColumnName("node_id");
             builder.Property<ExtractorId>("_extractorId").HasColumnName("extractor_id");
-            builder.Property<decimal>("_amountToExtract").HasColumnName("amount_to_extract");
             builder.Property<string>("_name").HasColumnName("name");
+
+            builder.OwnsOne<ExtractionRate>("_extractionRate", b =>
+            {
+                b.Property(extractionRate => extractionRate.Rate).HasColumnName("extraction_rate");
+            });
         }
     }
 }

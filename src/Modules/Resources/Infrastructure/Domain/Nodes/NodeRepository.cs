@@ -15,5 +15,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.Nodes
 
         public async Task<Node?> FindByIdAsync(NodeId nodeId)
             => await _context.Nodes.FindAsync(nodeId);
+
+        public Node? FindById(NodeId nodeId)
+            => _context.Nodes.Find(nodeId);
     }
 }

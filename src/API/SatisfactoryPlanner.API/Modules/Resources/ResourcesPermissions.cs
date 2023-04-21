@@ -7,5 +7,6 @@
         public const string GetNodes = "Resources.GetNodes";
         public const string GetNodeDetails = "Resources.GetNodeDetails";
         public const string TapNode = "Resources.TapNode";
+        public const string IncreaseNodeExtractionRate = "Resources.IncreaseNodeExtractionRate";
     }
 }

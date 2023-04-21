@@ -1,0 +1,100 @@
+﻿using SatisfactoryPlanner.BuildingBlocks.Application;
+using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails;
+using SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.IncreaseExtractionRate;
+using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
+
+namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.TappedNodes
+{
+    [TestFixture]
+    public class IncreaseExtractionRateTests : TestBase
+    {
+        [Test]
+        public async Task WhenDataIsValid_IsSuccessful()
+        {
+            var worldId = Guid.NewGuid();
+            var (_, nodeId, tappedNodeId) = await new TappedNodeFixture()
+                .WithWorldId(worldId)
+                .CreateTappedNode(ResourcesModule);
+
+            await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, tappedNodeId, 21));
+
+            var postTapNodeDetails = await ResourcesModule.ExecuteQueryAsync(new GetNodeDetailsQuery(worldId, nodeId));
+            postTapNodeDetails.IsTapped.Should().BeTrue();
+            postTapNodeDetails.ExtractionRate.Should().Be(21);
+        }
+
+        // CommandValidator Tests
+        [Test]
+        public void WhenWorldIdIsEmpty_ThrowsInvalidCommandException()
+        {
+            Assert.CatchAsync<InvalidCommandException>(async () =>
+            {
+                await ResourcesModule.ExecuteCommandAsync(
+                    new IncreaseExtractionRateCommand(Guid.Empty, Guid.NewGuid(), 1));
+            });
+        }
+
+        [Test]
+        public void WhenTappedNodeIdIsEmpty_ThrowsInvalidCommandException()
+        {
+            Assert.CatchAsync<InvalidCommandException>(async () =>
+            {
+                await ResourcesModule.ExecuteCommandAsync(
+                    new IncreaseExtractionRateCommand(Guid.NewGuid(), Guid.Empty, 1));
+            });
+        }
+
+        [Test]
+        public async Task WhenNewExtractionRateIsZero_ThrowsInvalidCommandException()
+        {
+            var (worldId, _, tappedNodeId) = await new TappedNodeFixture()
+                .CreateTappedNode(ResourcesModule);
+
+            Assert.CatchAsync<InvalidCommandException>(async () =>
+            {
+                await ResourcesModule.ExecuteCommandAsync(
+                    new IncreaseExtractionRateCommand(worldId, tappedNodeId, 0));
+            });
+        }
+
+        [Test]
+        public async Task WhenNewExtractionRateIsNegative_ThrowsInvalidCommandException()
+        {
+            var (worldId, _, tappedNodeId) = await new TappedNodeFixture()
+                .CreateTappedNode(ResourcesModule);
+
+            Assert.CatchAsync<InvalidCommandException>(async () =>
+            {
+                await ResourcesModule.ExecuteCommandAsync(
+                    new IncreaseExtractionRateCommand(worldId, tappedNodeId, -1));
+            });
+        }
+
+        // Command Tests
+        [Test]
+        public void WhenTappedNodeDoesNotExist_ThrowsInvalidCommandException()
+        {
+            Assert.CatchAsync<InvalidCommandException>(async () =>
+            {
+                await ResourcesModule.ExecuteCommandAsync(
+                    new IncreaseExtractionRateCommand(Guid.NewGuid(), Guid.NewGuid(), 1));
+            });
+        }
+
+        [Test]
+        public async Task WhenTappedNodeIsInWrongWorld_ThrowsInvalidCommandException()
+        {
+            var myWorldId = Guid.NewGuid();
+            var (_, _, tappedNodeId) = await new TappedNodeFixture()
+                .WithWorldId(myWorldId)
+                .CreateTappedNode(ResourcesModule);
+
+            var otherPioneersWorldId = Guid.NewGuid();
+            Assert.CatchAsync<InvalidCommandException>(async () =>
+            {
+                await ResourcesModule.ExecuteCommandAsync(
+                    new IncreaseExtractionRateCommand(otherPioneersWorldId, tappedNodeId, 1));
+            });
+        }
+    }
+}

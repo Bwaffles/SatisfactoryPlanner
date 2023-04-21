@@ -9,9 +9,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
         public string Name { get; set; }
 
         /// <summary>
-        ///     The maximum amount extractable from the node using this extractor.
-        ///     This assumes the extractor is overclocked to 250%.
+        ///     The maximum number of resources that can be extracted per minute.
+        ///     This assumes the extractor is overclocked to 250%, up to the max belt/pipe capacity.
         /// </summary>
-        public decimal MaxAmountExtractable { get; set; }
+        public decimal MaxExtractionRate { get; set; }
     }
 }

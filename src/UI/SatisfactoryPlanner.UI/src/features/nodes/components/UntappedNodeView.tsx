@@ -62,11 +62,11 @@ export const UntappedNodeView = ({
                                 ></img>
                                 <div>
                                     <div className="text-xs text-gray-400">
-                                        Max Extractable
+                                        Max Extraction Rate
                                     </div>
                                     <div className="text-lg text-right">
                                         {formatNumber(
-                                            extractor.maxAmountExtractable
+                                            extractor.maxExtractionRate
                                         )}
                                     </div>
                                 </div>

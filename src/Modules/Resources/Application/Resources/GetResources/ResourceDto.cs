@@ -11,11 +11,12 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
         /// <summary>
         ///     The number of resources being extracted per minute.
         /// </summary>
-        public decimal ExtractedResources { get; set; }
+        public decimal ExtractionRate { get; set; }
 
         /// <summary>
-        ///     The total number of resources per minute available to extract on the map.
+        ///     The maximum number of resources that can be extracted per minute.
+        ///     This assumes the extractor is overclocked to 250%, up to the max belt/pipe capacity.
         /// </summary>
-        public decimal TotalResources { get; set; }
+        public decimal MaxExtractionRate { get; set; }
     }
 }

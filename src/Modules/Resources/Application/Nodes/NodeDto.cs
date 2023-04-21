@@ -23,12 +23,13 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
         /// <summary>
         ///     The number of resources being extracted per minute.
         /// </summary>
-        public decimal AmountToExtract { get; set; }
-        
+        public decimal ExtractionRate { get; set; }
+
         /// <summary>
-        ///     The total number of resources per minute available to extract from this node.
+        ///     The maximum number of resources that can be extracted per minute.
+        ///     This assumes the extractor is overclocked to 250%, up to the max belt/pipe capacity.
         /// </summary>
-        public decimal TotalResources { get; set; }
+        public decimal MaxExtractionRate { get; set; }
 
         public Guid ResourceId { get; set; }
 

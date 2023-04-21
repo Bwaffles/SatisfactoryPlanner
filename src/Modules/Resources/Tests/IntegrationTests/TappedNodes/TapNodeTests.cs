@@ -16,7 +16,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.TappedNodes
             var worldId = Guid.NewGuid();
             
             var preTapResources = await ResourcesModule.ExecuteQueryAsync(new GetResourcesQuery(worldId));
-            preTapResources.Should().OnlyContain(resource => resource.ExtractedResources == 0);
+            preTapResources.Should().OnlyContain(resource => resource.ExtractionRate == 0);
 
             var bauxite = preTapResources.First(resource => resource.Name == "Bauxite");
 
@@ -33,11 +33,11 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.TappedNodes
             await ResourcesModule.ExecuteCommandAsync(new TapNodeCommand(worldId, node.Id, extractor.Id));
             
             var postTapResources = await ResourcesModule.ExecuteQueryAsync(new GetResourcesQuery(worldId));
-            postTapResources.Should().OnlyContain(resource => resource.ExtractedResources == 0);
+            postTapResources.Should().OnlyContain(resource => resource.ExtractionRate == 0);
 
             var postTapNodeDetails = await ResourcesModule.ExecuteQueryAsync(new GetNodeDetailsQuery(worldId, node.Id));
             postTapNodeDetails.IsTapped.Should().BeTrue();
-            postTapNodeDetails.AmountToExtract.Should().Be(0);
+            postTapNodeDetails.ExtractionRate.Should().Be(0);
         }
 
         [Test]

@@ -18,7 +18,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
         /// <summary>
         ///     The number of resources being extracted per minute.
         /// </summary>
-        public decimal AmountToExtract { get; set; }
+        public decimal ExtractionRate { get; set; }
 
         public Guid ResourceId { get; set; }
 

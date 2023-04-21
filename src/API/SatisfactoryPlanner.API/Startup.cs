@@ -157,6 +157,12 @@ namespace SatisfactoryPlanner.API
             app.UseRouting();
 
             app.UseAuthentication();
+
+            // To be used by WorldAuthorization to get world id from the body of the request
+            app.Use((context, next) => {
+                context.Request.EnableBuffering(1_000_000);
+                return next();
+            });
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

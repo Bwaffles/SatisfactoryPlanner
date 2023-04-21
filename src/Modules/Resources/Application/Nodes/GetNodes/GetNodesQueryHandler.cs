@@ -38,10 +38,10 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes
                                "                            FROM resources.tapped_nodes AS tapped_node" +
                                "                           WHERE tapped_node.world_id = @worldId" +
                                $"                             AND tapped_node.node_id = node.id)) AS {nameof(NodeDto.IsTapped)}" +
-                               "         , (SELECT tapped_node.amount_to_extract " +
+                               "         , (SELECT tapped_node.extraction_rate " +
                                "              FROM resources.tapped_nodes AS tapped_node" +
                                "              WHERE tapped_node.world_id = @worldId" +
-                               $"                AND tapped_node.node_id = node.id) AS {nameof(NodeDto.AmountToExtract)}" +
+                               $"                AND tapped_node.node_id = node.id) AS {nameof(NodeDto.ExtractionRate)}" +
                                "       FROM resources.nodes AS node " +
                                " INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
                                "      WHERE (@resourceId is null or node.resource_id = @resourceId) " +
@@ -54,16 +54,16 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes
 
             var nodes = (await connection.QueryAsync<NodeDto>(sql, param)).ToList();
             foreach (var node in nodes)
-                node.TotalResources = await GetMaxAmountExtractable(connection, node);
+                node.MaxExtractionRate = await GetMaxExtractionRate(connection, node);
 
             return nodes;
         }
 
-        private static async Task<decimal> GetMaxAmountExtractable(IDbConnection connection, NodeDto node)
+        private static async Task<decimal> GetMaxExtractionRate(IDbConnection connection, NodeDto node)
         {
             var extractor = await ExtractorFactory.GetFastestExtractor(connection, node.ResourceId);
             var nodeModel = await NodeFactory.GetNode(connection, node.Id);
-            return ResourceExtractionCalculator.GetMaxAmountExtractable(extractor, nodeModel);
+            return ResourceExtractionCalculator.GetMaxExtractionRate(extractor, nodeModel);
         }
     }
 }

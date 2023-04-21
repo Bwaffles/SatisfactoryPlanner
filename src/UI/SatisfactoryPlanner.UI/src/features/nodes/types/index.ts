@@ -7,8 +7,8 @@ export type Node = {
     mapPositionY: number;
     mapPositionZ: number;
     isTapped: boolean;
-    amountToExtract: number;
-    totalResources: number;
+    extractionRate: number;
+    maxExtractionRate: number;
     resourceId: string;
     resourceName: string;
 };
@@ -19,7 +19,7 @@ export type NodeDetails = {
     biome: string;
     number: number;
     isTapped: boolean;
-    amountToExtract: number;
+    extractionRate: number;
     resourceId: string;
     resourceName: string;
     availableExtractors: AvailableExtractor[];
@@ -28,5 +28,5 @@ export type NodeDetails = {
 export type AvailableExtractor = {
     id: string;
     name: string;
-    maxAmountExtractable: number;
+    maxExtractionRate: number;
 };

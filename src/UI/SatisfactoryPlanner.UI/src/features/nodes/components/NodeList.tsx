@@ -45,13 +45,13 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
 
                 var numberOfNodes = biomeNodes.length;
 
-                var resourcesExtracted = 0;
+                var currentBiomeExtractionRate = 0;
                 biomeNodes.forEach((node) => {
-                    resourcesExtracted += node.amountToExtract;
+                    currentBiomeExtractionRate += node.extractionRate;
                 });
-                var totalResources = 0;
+                var maxBiomeExtractionRate = 0;
                 biomeNodes.forEach((node) => {
-                    totalResources += node.totalResources;
+                    maxBiomeExtractionRate += node.maxExtractionRate;
                 });
 
                 return (
@@ -61,8 +61,8 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
                     >
                         <div className="flex flex-col mb-6">
                             <h3 className="text-lg font-bold mb-4">{biome}</h3>
-                            <div className="flex">
-                                <div className="w-36">
+                            <div className="flex gap-10">
+                                <div>
                                     <div className="text-gray-400">
                                         Nodes Tapped
                                     </div>
@@ -70,14 +70,19 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
                                         {nodesTapped} / {numberOfNodes}
                                     </div>
                                 </div>
-                                <div className="w-36">
+                                <div>
                                     <div className="text-gray-400">
-                                        Amount Extracted
+                                        Extraction Rate
                                     </div>
                                     <div className="text-xl font-bold">
-                                        {formatNumber(resourcesExtracted)}
+                                        {formatNumber(
+                                            currentBiomeExtractionRate
+                                        )}
                                         {" / "}
-                                        {formatNumber(totalResources)}
+                                        {formatNumber(maxBiomeExtractionRate)}
+                                        <span className="ml-2 text-gray-400 text-xs">
+                                            per min
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -127,12 +132,17 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
                                     </div>
                                     <div className="w-36">
                                         <div className="text-gray-400">
-                                            Amount Extracted
+                                            Extraction Rate
                                         </div>
                                         <div className="text-xl font-bold">
-                                            {formatNumber(node.amountToExtract)}
+                                            {formatNumber(node.extractionRate)}
                                             {" / "}
-                                            {formatNumber(node.totalResources)}
+                                            {formatNumber(
+                                                node.maxExtractionRate
+                                            )}
+                                            <span className="ml-2 text-gray-400 text-xs">
+                                                per min
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

@@ -33,10 +33,10 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
                 "                             FROM resources.tapped_nodes AS tapped_node" +
                 "                            WHERE tapped_node.world_id = @worldId" +
                 $"                             AND tapped_node.node_id = node.id)) AS {nameof(NodeDetailsDto.IsTapped)}" +
-                "          , (SELECT tapped_node.amount_to_extract " +
+                "          , (SELECT tapped_node.extraction_rate " +
                 "               FROM resources.tapped_nodes AS tapped_node" +
                 "              WHERE tapped_node.world_id = @worldId" +
-                $"               AND tapped_node.node_id = node.id) AS {nameof(NodeDetailsDto.AmountToExtract)}" +
+                $"               AND tapped_node.node_id = node.id) AS {nameof(NodeDetailsDto.ExtractionRate)}" +
                 "       FROM resources.nodes AS node " +
                 " INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
                 "      WHERE node.id = @nodeId";
@@ -68,8 +68,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
             {
                 var extractor = await ExtractorFactory.GetExtractor(connection, availableExtractor.Id);
                 var nodeModel = await NodeFactory.GetNode(connection, nodeDetails.Id);
-                availableExtractor.MaxAmountExtractable =
-                    ResourceExtractionCalculator.GetMaxAmountExtractable(extractor, nodeModel);
+                availableExtractor.MaxExtractionRate =
+                    ResourceExtractionCalculator.GetMaxExtractionRate(extractor, nodeModel);
             }
 
             return nodeDetails;

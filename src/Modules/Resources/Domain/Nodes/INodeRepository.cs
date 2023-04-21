@@ -8,5 +8,10 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
         ///     Find the <see cref="Node" /> with the given <paramref name="nodeId" />, or null if not found.
         /// </summary>
         Task<Node?> FindByIdAsync(NodeId nodeId);
+
+        /// <summary>
+        ///     Find the <see cref="Node" /> with the given <paramref name="nodeId" />, or null if not found.
+        /// </summary>
+        Node? FindById(NodeId nodeId);
     }
 }

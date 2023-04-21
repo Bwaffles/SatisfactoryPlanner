@@ -8,9 +8,14 @@ namespace SatisfactoryPlanner.API.Configuration.Authorization.Worlds
     {
         internal const string HasPermissionPolicyName = "WorldAuthorization";
 
-        public WorldAuthorizationAttribute()
+        public Type? BodyType { get; }
+
+        public WorldAuthorizationAttribute() : base(HasPermissionPolicyName) { }
+
+        public WorldAuthorizationAttribute(Type bodyType)
             : base(HasPermissionPolicyName)
         {
+            BodyType = bodyType;
         }
     }
 }
