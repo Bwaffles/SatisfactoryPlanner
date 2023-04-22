@@ -31,11 +31,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
 
         public async Task<Unit> Handle(T command, CancellationToken cancellationToken)
         {
-            // TODO figure out what this is for
-            //if (command is IRecurringCommand)
-            //{
-            //    return await _decorated.Handle(command, cancellationToken);
-            //}
+            // Don't want to log commands like the OutboxProcessingCommand which runs every 2 seconds
+            if (command is IRecurringCommand)
+                return await _decorated.Handle(command, cancellationToken);
 
             using (
                 LogContext.Push(
