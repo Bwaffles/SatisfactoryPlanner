@@ -4,6 +4,7 @@ using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
 
 namespace SatisfactoryPlanner.Modules.Worlds.Application.Worlds.CreateStarterWorld
 {
+    // ReSharper disable once UnusedMember.Global
     public class CreateStarterWorldOnPioneerSpawnedEvent : INotificationHandler<PioneerSpawnedDomainEvent>
     {
         private readonly IWorldRepository _worldRepository;
