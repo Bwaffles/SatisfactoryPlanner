@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 using System.Threading.Tasks;
@@ -20,11 +21,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.TappedNode
             await _context.TappedNodes.AddAsync(tappedNode);
         }
 
-        public async Task<TappedNode?> FindAsync(WorldId worldId, TappedNodeId tappedNodeId)
+        public async Task<TappedNode?> FindAsync(WorldId worldId, NodeId nodeId)
         {
             return await _context.TappedNodes
                 .SingleOrDefaultAsync(tappedNode =>
-                    tappedNode.Id == tappedNodeId &&
+                    EF.Property<NodeId>(tappedNode, "_nodeId") == nodeId &&
                     EF.Property<WorldId>(tappedNode, "_worldId") == worldId
                 );
         }

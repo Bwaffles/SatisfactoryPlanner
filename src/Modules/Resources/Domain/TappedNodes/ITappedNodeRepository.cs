@@ -1,4 +1,5 @@
-﻿using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
+﻿using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
@@ -11,9 +12,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes
         Task AddAsync(TappedNode tappedNode);
 
         /// <summary>
-        ///     Find the <see cref="TappedNode" /> with the given <paramref name="tappedNodeId" />
+        ///     Find the <see cref="TappedNode" /> for the given <paramref name="nodeId" />
         ///     that exists in the world, or null if not found.
         /// </summary>
-        Task<TappedNode?> FindAsync(WorldId worldId, TappedNodeId tappedNodeId);
+        Task<TappedNode?> FindAsync(WorldId worldId, NodeId nodeId);
     }
 }

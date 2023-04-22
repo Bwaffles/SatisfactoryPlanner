@@ -10,11 +10,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.Increase
             RuleFor(_ => _.WorldId).NotEmpty()
                 .WithMessage("Id of world cannot be empty.");
 
-            RuleFor(_ => _.TappedNodeId).NotEmpty()
-                .WithMessage("Id of tapped node cannot be empty.");
+            RuleFor(_ => _.NodeId).NotEmpty()
+                .WithMessage("Id of node cannot be empty.");
 
-            RuleFor(_ => _.NewExtractionRate).GreaterThan(0)
-                .WithMessage("The new extraction rate must be greater than 0.");
+            RuleFor(_ => _.ExtractionRate).GreaterThan(0)
+                .WithMessage("The extraction rate must be greater than 0.");
         }
     }
 }

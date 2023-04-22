@@ -7,15 +7,15 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.Increase
     {
         public Guid WorldId { get; }
 
-        public Guid TappedNodeId { get; }
+        public Guid NodeId { get; }
 
-        public decimal NewExtractionRate { get; }
+        public decimal ExtractionRate { get; }
 
-        public IncreaseExtractionRateCommand(Guid worldId, Guid tappedNodeId, decimal newExtractionRate)
+        public IncreaseExtractionRateCommand(Guid worldId, Guid nodeId, decimal extractionRate)
         {
             WorldId = worldId;
-            TappedNodeId = tappedNodeId;
-            NewExtractionRate = newExtractionRate;
+            NodeId = nodeId;
+            ExtractionRate = extractionRate;
         }
     }
 }

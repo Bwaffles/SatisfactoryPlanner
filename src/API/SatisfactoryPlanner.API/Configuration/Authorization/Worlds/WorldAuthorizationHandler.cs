@@ -59,6 +59,16 @@ namespace SatisfactoryPlanner.API.Configuration.Authorization.Worlds
                     }
                 }
 
+                if (request.RouteValues.TryGetValue("worldId", out var routeWorldId))
+                {
+                    var worlds = await _worldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
+                    if (worlds.Any(x => x.Id == Guid.Parse((string)routeWorldId!)))
+                    {
+                        context.Succeed(requirement);
+                        return;
+                    }
+                }
+
                 // Try getting WorldId from a query string
                 var query = request.Query;
                 if (query.ContainsKey("worldId"))

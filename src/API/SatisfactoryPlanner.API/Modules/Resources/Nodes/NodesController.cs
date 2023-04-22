@@ -8,6 +8,7 @@ using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode;
+using SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.IncreaseExtractionRate;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,9 +16,9 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
 {
     [ApiController]
-    [Route("api/resources/[controller]")]
+    [Route("api")]
     public class NodesController : Controller
-    {
+    { // TODO big changes here to the routes to force worldId into the route
         private readonly IResourcesModule _module;
 
         public NodesController(IResourcesModule module)
@@ -34,7 +35,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
         [Authorize]
         [HasPermission(ResourcesPermissions.GetNodes)]
         [WorldAuthorization]
-        [HttpGet("")]
+        [HttpGet("resources/[controller]")]
         [ProducesResponseType(typeof(List<NodeDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetNodes([FromQuery] GetNodesRequest request)
         {
@@ -51,7 +52,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
         [Authorize]
         [HasPermission(ResourcesPermissions.GetNodeDetails)]
         [WorldAuthorization]
-        [HttpGet("{nodeId}")]
+        [HttpGet("resources/[controller]/{nodeId}")]
         [ProducesResponseType(typeof(NodeDetailsDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetNodeDetails([FromRoute] Guid nodeId, [FromQuery] GetNodeDetailsRequest request)
         {
@@ -64,7 +65,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
         /// </summary>
         [Authorize]
         [HasPermission(ResourcesPermissions.TapNode)]
-        [HttpPost("{nodeId}/tap")]
+        [HttpPost("resources/[controller]/{nodeId}/tap")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> TapNode([FromRoute] Guid nodeId, [FromBody] TapNodeRequest request)
         {
@@ -75,6 +76,26 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
             ));
 
             return Ok(tappedNodeId);
+        }
+
+        /// <summary>
+        ///     Increase the extraction rate of resources from the node.
+        /// </summary>
+        [Authorize]
+        [HasPermission(ResourcesPermissions.IncreaseNodeExtractionRate)]
+        [WorldAuthorization(typeof(IncreaseExtractionRateRequest))]
+        [HttpPost("worlds/{worldId}/nodes/{nodeId}/increase-extraction-rate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> IncreaseExtractionRate([FromRoute]Guid worldId, [FromRoute] Guid nodeId,
+            [FromBody] IncreaseExtractionRateRequest request)
+        {
+            await _module.ExecuteCommandAsync(new IncreaseExtractionRateCommand(
+                worldId,
+                nodeId,
+                request.ExtractionRate
+            ));
+
+            return Ok();
         }
     }
 }

@@ -12,11 +12,11 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.TappedNodes
         public async Task WhenDataIsValid_IsSuccessful()
         {
             var worldId = Guid.NewGuid();
-            var (_, nodeId, tappedNodeId) = await new TappedNodeFixture()
+            var (_, nodeId, _) = await new TappedNodeFixture()
                 .WithWorldId(worldId)
                 .CreateTappedNode(ResourcesModule);
 
-            await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, tappedNodeId, 21));
+            await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, nodeId, 21));
 
             var postTapNodeDetails = await ResourcesModule.ExecuteQueryAsync(new GetNodeDetailsQuery(worldId, nodeId));
             postTapNodeDetails.IsTapped.Should().BeTrue();
@@ -35,7 +35,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.TappedNodes
         }
 
         [Test]
-        public void WhenTappedNodeIdIsEmpty_ThrowsInvalidCommandException()
+        public void WhenNodeIdIsEmpty_ThrowsInvalidCommandException()
         {
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
@@ -45,28 +45,28 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.TappedNodes
         }
 
         [Test]
-        public async Task WhenNewExtractionRateIsZero_ThrowsInvalidCommandException()
+        public async Task WhenExtractionRateIsZero_ThrowsInvalidCommandException()
         {
-            var (worldId, _, tappedNodeId) = await new TappedNodeFixture()
+            var (worldId, nodeId, _) = await new TappedNodeFixture()
                 .CreateTappedNode(ResourcesModule);
 
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new IncreaseExtractionRateCommand(worldId, tappedNodeId, 0));
+                    new IncreaseExtractionRateCommand(worldId, nodeId, 0));
             });
         }
 
         [Test]
         public async Task WhenNewExtractionRateIsNegative_ThrowsInvalidCommandException()
         {
-            var (worldId, _, tappedNodeId) = await new TappedNodeFixture()
+            var (worldId, nodeId, _) = await new TappedNodeFixture()
                 .CreateTappedNode(ResourcesModule);
 
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new IncreaseExtractionRateCommand(worldId, tappedNodeId, -1));
+                    new IncreaseExtractionRateCommand(worldId, nodeId, -1));
             });
         }
 
@@ -85,7 +85,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.TappedNodes
         public async Task WhenTappedNodeIsInWrongWorld_ThrowsInvalidCommandException()
         {
             var myWorldId = Guid.NewGuid();
-            var (_, _, tappedNodeId) = await new TappedNodeFixture()
+            var (_, nodeId, _) = await new TappedNodeFixture()
                 .WithWorldId(myWorldId)
                 .CreateTappedNode(ResourcesModule);
 
@@ -93,7 +93,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.TappedNodes
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new IncreaseExtractionRateCommand(otherPioneersWorldId, tappedNodeId, 1));
+                    new IncreaseExtractionRateCommand(otherPioneersWorldId, nodeId, 1));
             });
         }
     }
