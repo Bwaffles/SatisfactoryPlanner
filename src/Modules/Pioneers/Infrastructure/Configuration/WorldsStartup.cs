@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
+using SatisfactoryPlanner.Modules.Worlds.Application.Worlds.CreateStarterWorld;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.DataAccess;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Domain;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.EventsBus;
@@ -54,10 +55,9 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
             containerBuilder.RegisterModule(new ProcessingModule());
             containerBuilder.RegisterModule(new EventsBusModule());
             containerBuilder.RegisterModule(new MediatorModule());
-            //containerBuilder.RegisterModule(new AuthenticationModule());
 
             var domainNotificationsMap = new BiDictionary<string, Type>();
-            //domainNotificationsMap.Add("MeetingGroupProposalAcceptedNotification", typeof(MeetingGroupProposalAcceptedNotification));
+            domainNotificationsMap.Add(nameof(WorldCreatedNotification), typeof(WorldCreatedNotification));
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
 
             containerBuilder.RegisterModule(new QuartzModule());
