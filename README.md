@@ -82,3 +82,31 @@ From here you can execute a command, say if you want to publish an event from ag
 You can also trigger an integration event if you need other modules to be able to subscribe to this event. In this case you create a class like `XPublishEventHandler` that inherits from the same `INotificationHandler<XNotification>`. This handler would publish an integration event to the event bus. The event bus is an in memory message system where all modules can publish and subscribe to events. 
 
 Modules can subscribe to events in their Startup EventBusModule. This creates handlers that will load the event into the modules inbox_messages table. There is a job running called `ProcessInboxCommandHandler` that reads unprocessed messages and executes any handlers for that messages.
+
+## Domain
+
+### Nodes
+
+I've gone back and forth probably 5 times now on how this should be implemented. Ideally, you would expect to have a Node object that's your aggregate root and you would Tap, IncreaseExtractionRate etc. However the Node is also an entity with a specific location in the world. This Node is the same for all pioneers so the Node is more like a Node reference. When a new World is created, it should have all the Nodes as untapped. You can think of it as every world has its own copy of the nodes. I ended up with 2 options for implementing this:
+
+ 1. When a world is created, create clones of all the nodes in the world called WorldNode that default to untapped. This would be the main queried table and the one that the UI works with. WorldNode would have a NodeId and WorldId. All actions will be done to the WorldNode entity.
+   
+     **Pros** 
+     - Simplifies the mental model because you would do all work on the WorldNode and it matches the domain.
+     - I can see a list of all the WorldNodes and tell how many are tapped and what at what rate because all Nodes have been pre-populated.
+     
+     **Cons** 
+     - For every world I'm going to add around 350 WorldNodes even if they never get used. (=> Is this me being too concerned with storage at expense of domain?)
+     - Whenever a Node is added/removed the WorldNodes all need to be updated of this change.
+     
+ 2. When you tap a node it creates a new entity called a TappedNode and you then make all node changes to that object.
+   
+    **Cons** 
+    - The mental model is disjointed. Consumers need to switch from using the Node resource to the TappedNode resource. 
+   
+    **Pros** 
+    - No upfront work to configure new worlds.
+    
+ Honestly, after writing all this out, it seems like option 1 is the best option. My fear of wasting database storage, or how to keep it synced ruined the domain model. How do I handle new nodes being added/removed in updates? Just make it part of my script.
+ 
+ Would I call it Node and WorldNode? The api makes so much more sense to be /api/world/{worldId}/nodes/{nodeId}/tap, /api/world/{worldId}/resources. I think forcing myself to split the routes by bounded context also ruins the api experience. Discord has channel id in their routes, GitHub has repo id in the route.
