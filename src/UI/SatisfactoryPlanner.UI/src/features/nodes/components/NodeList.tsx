@@ -90,11 +90,11 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
 
                         {biomeNodes.map((node) => {
                             var purityTextColor =
-                                node.purity == "Pure"
+                                node.purity === "Pure"
                                     ? "text-green-600"
-                                    : node.purity == "Normal"
+                                    : node.purity === "Normal"
                                     ? "text-yellow-600"
-                                    : node.purity == "Impure"
+                                    : node.purity === "Impure"
                                     ? "text-red-600"
                                     : "";
 

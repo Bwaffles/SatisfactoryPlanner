@@ -10,9 +10,7 @@ type UntappedNodeViewProps = {
     nodeDetails: NodeDetails;
 };
 
-export const UntappedNodeView = ({
-    nodeDetails: nodeDetails,
-}: UntappedNodeViewProps) => {
+export const UntappedNodeView = ({ nodeDetails }: UntappedNodeViewProps) => {
     const [selectedExtractor, setSelectedExtractor] = useState<string | null>(
         null
     );
@@ -30,7 +28,7 @@ export const UntappedNodeView = ({
                 <div className="flex gap-12">
                     {nodeDetails.availableExtractors?.map((extractor) => {
                         var selectedExtractorClasses =
-                            extractor.id == selectedExtractor
+                            extractor.id === selectedExtractor
                                 ? "bg-sky-800 border-white-900"
                                 : "bg-gray-700 hover:bg-sky-900 cursor-pointer border-transparent";
 
@@ -57,7 +55,7 @@ export const UntappedNodeView = ({
                                 </div>
                                 <img
                                     className="h-40 w-40 text-center"
-                                    alt="Extractor Image"
+                                    alt="Extractor"
                                     src={Doggo}
                                 ></img>
                                 <div>

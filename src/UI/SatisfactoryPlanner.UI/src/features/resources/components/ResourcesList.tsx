@@ -19,7 +19,7 @@ export const ResourcesList = () => {
 
     var resourceList = resources?.map((resource) => {
         var percentResourceExtractionRate =
-            resource.maxExtractionRate == 0
+            resource.maxExtractionRate === 0
                 ? 0
                 : resource.extractionRate / resource.maxExtractionRate;
 
@@ -36,7 +36,7 @@ export const ResourcesList = () => {
                 </div>
                 <img
                     className="h-28 w-28 text-center"
-                    alt="Resource Image"
+                    alt="Resource"
                     src={Doggo}
                 ></img>
                 <div className="flex flex-row justify-between items-end w-full">
