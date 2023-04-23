@@ -5,6 +5,7 @@ using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration.Processing;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Processing.InternalCommands;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Processing
 {
@@ -24,9 +25,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
                 .As<IUnitOfWork>()
                 .InstancePerLifetimeScope();
 
-            //builder.RegisterType<CommandsScheduler>()
-            //    .As<ICommandsScheduler>()
-            //    .InstancePerLifetimeScope();
+            builder.RegisterType<CommandsScheduler>()
+                .As<ICommandsScheduler>()
+                .InstancePerLifetimeScope();
 
             builder.RegisterGenericDecorator(typeof(UnitOfWorkCommandHandlerDecorator<>), typeof(ICommandHandler<>));
             builder.RegisterGenericDecorator(typeof(UnitOfWorkCommandHandlerWithResultDecorator<,>), typeof(ICommandHandler<,>));

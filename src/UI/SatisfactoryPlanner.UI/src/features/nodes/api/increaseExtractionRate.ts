@@ -5,11 +5,11 @@ import * as Config from "../../../config";
 import { queryClient } from "../../../lib/react-query";
 import storage from "../../../utils/storage";
 
-const tapNode = async (
+const increaseExtractionRate = async (
     getAccessTokenSilently: any,
     worldId: string,
     nodeId: string,
-    extractorId: string
+    extractionRate: number
 ): Promise<string> => {
     const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
@@ -17,11 +17,14 @@ const tapNode = async (
     });
 
     const response = await fetch(
-        baseUrl + `/worlds/${worldId}/nodes/${nodeId}/tap`,
-        {
+        baseUrl + `/resources/nodes/${nodeId}/increase-extraction-rate`,
+        {  // TODO move increase extraction rate to NodeController? I don't like ui having to know about tapped node objects
+            // => I think it does make sense
+            // TODO how about when the user clicks Increase button I take them to a new page? Not sure if I want to use modals
             method: "POST",
             body: JSON.stringify({
-                extractorId: extractorId,
+                worldId,
+                extractionRate,
             }),
             headers: {
                 // Add the Authorization header to the existing headers
@@ -33,36 +36,37 @@ const tapNode = async (
     );
 
     if (!response.ok) throw new Error(response.statusText);
-    return "A";
+    return response.json();
 };
 
-type TapNodeRequest = {
+type IncreaseExtractionRateRequest = {
     nodeId: string;
-    extractorId: string;
+    extractionRate: number;
 };
 
-export const useTapNode = () => {
+export const useIncreaseExtractionRate = () => {
     const { getAccessTokenSilently } = useAuth0();
     const worldId = storage.getWorldId();
 
     return useMutation({
-        onSuccess: () => {
+        onSuccess: (_, variables) => {
             // Invalidating queries that show whether a node has been tapped or not
 
-            // Let this one update behind the scenes since it's not as likely to be needed so fast
-            queryClient.invalidateQueries("getNodes");
+            // Let these ones update behind the scenes since they're not as likely to be needed so fast
+            queryClient.invalidateQueries("getResources"); // resource extraction rate totals
+            queryClient.invalidateQueries("getNodes"); // node extraction rate
 
             // Wait until getNodeDetails finishes updating before ending the mutation so that the node details page updates
             return queryClient.invalidateQueries({
-                queryKey: ["getNodeDetails"],
+                queryKey: ["getNodeDetails", variables.nodeId, worldId],
             });
         },
-        mutationFn: (variables: TapNodeRequest) => {
-            return tapNode(
+        mutationFn: (variables: IncreaseExtractionRateRequest) => {
+            return increaseExtractionRate(
                 getAccessTokenSilently,
                 worldId,
                 variables.nodeId,
-                variables.extractorId
+                variables.extractionRate
             );
         },
     });

@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Rules
+namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes.Rules
 {
     public class ExtractorMustBeAbleToExtractResourceRule : IBusinessRule
     {

@@ -7,6 +7,7 @@ import { Node } from "../types";
 
 export const getNodes = async (
     getAccessTokenSilently: any,
+    worldId: any,
     resourceId: string
 ): Promise<Node[]> => {
     const baseUrl = Config.API_URL;
@@ -14,13 +15,10 @@ export const getNodes = async (
         audience: baseUrl,
     });
 
-    const worldId = storage.getWorldId();
     const response = await fetch(
-        baseUrl +
-            `/resources/nodes?worldId=${worldId}&resourceId=${resourceId}`,
+        baseUrl + `/worlds/${worldId}/nodes?resourceId=${resourceId}`,
         {
             method: "GET",
-
             headers: {
                 // Add the Authorization header to the existing headers
                 Accept: "application/json",
@@ -36,7 +34,8 @@ export const getNodes = async (
 
 export const useGetNodes = (resourceId: string) => {
     const { getAccessTokenSilently } = useAuth0();
+    const worldId = storage.getWorldId();
     return useQuery("getNodes", () =>
-        getNodes(getAccessTokenSilently, resourceId)
+        getNodes(getAccessTokenSilently, worldId, resourceId)
     );
 };

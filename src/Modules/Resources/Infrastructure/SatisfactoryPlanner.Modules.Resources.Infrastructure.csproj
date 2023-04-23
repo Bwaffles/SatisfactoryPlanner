@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -25,7 +25,12 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj" >
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Pioneers\IntegrationEvents\SatisfactoryPlanner.Modules.Worlds.IntegrationEvents.csproj" >
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
     <ProjectReference Include="..\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>

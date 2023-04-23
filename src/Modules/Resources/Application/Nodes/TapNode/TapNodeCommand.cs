@@ -3,7 +3,7 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode
 {
-    public class TapNodeCommand : CommandBase<Guid>
+    public class TapNodeCommand : CommandBase
     {
         public TapNodeCommand(Guid worldId, Guid nodeId, Guid extractorId)
         {

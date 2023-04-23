@@ -1,9 +1,10 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
+using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 
-namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes.Events
+namespace SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes.Events
 {
     public class NodeTappedDomainEvent : DomainEventBase
     {

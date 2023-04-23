@@ -7,8 +7,8 @@ import { NodeDetails } from "../types";
 
 export const getNodeDetails = async (
     getAccessTokenSilently: any,
-    nodeId: string,
-    worldId: string
+    worldId: string,
+    nodeId: string
 ): Promise<NodeDetails> => {
     const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
@@ -16,10 +16,9 @@ export const getNodeDetails = async (
     });
 
     const response = await fetch(
-        baseUrl + `/resources/nodes/${nodeId}?worldId=${worldId}`,
+        baseUrl + `/worlds/${worldId}/nodes/${nodeId}`,
         {
             method: "GET",
-
             headers: {
                 // Add the Authorization header to the existing headers
                 Accept: "application/json",
@@ -38,7 +37,7 @@ export const useGetNodeDetails = (nodeId: string) => {
     const worldId = storage.getWorldId();
 
     return useQuery({
-        queryKey: ["getNodeDetails", nodeId, worldId],
-        queryFn: () => getNodeDetails(getAccessTokenSilently, nodeId, worldId),
+        queryKey: ["getNodeDetails"],
+        queryFn: () => getNodeDetails(getAccessTokenSilently, worldId, nodeId),
     });
 };

@@ -25,27 +25,27 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
-            const string sql = $"    SELECT node.id AS {nameof(NodeDto.Id)}" +
-                               $"         , resource.id AS {nameof(NodeDto.ResourceId)}" +
-                               $"         , resource.name AS {nameof(NodeDto.ResourceName)}" +
-                               $"         , node.purity AS {nameof(NodeDto.Purity)}" +
-                               $"         , node.biome AS {nameof(NodeDto.Biome)}" +
-                               $"         , node.number AS {nameof(NodeDto.Number)}" +
-                               $"         , node.map_position_x AS {nameof(NodeDto.MapPositionX)}" +
-                               $"         , node.map_position_y AS {nameof(NodeDto.MapPositionY)}" +
-                               $"         , node.map_position_z AS {nameof(NodeDto.MapPositionZ)}" +
-                               "         , (SELECT exists(SELECT 1" +
-                               "                            FROM resources.tapped_nodes AS tapped_node" +
-                               "                           WHERE tapped_node.world_id = @worldId" +
-                               $"                             AND tapped_node.node_id = node.id)) AS {nameof(NodeDto.IsTapped)}" +
-                               "         , (SELECT tapped_node.extraction_rate " +
-                               "              FROM resources.tapped_nodes AS tapped_node" +
-                               "              WHERE tapped_node.world_id = @worldId" +
-                               $"                AND tapped_node.node_id = node.id) AS {nameof(NodeDto.ExtractionRate)}" +
-                               "       FROM resources.nodes AS node " +
-                               " INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
-                               "      WHERE (@resourceId is null or node.resource_id = @resourceId) " +
-                               "   ORDER BY resource.resource_sink_points, node.biome, node.number";
+            const string sql =
+                "    SELECT (CASE WHEN tapped_node.extractor_id is null " +
+                "            THEN false " +
+                "            ELSE true " +
+                $"           END) AS {nameof(NodeDto.IsTapped)} " +
+                $"        , tapped_node.extraction_rate AS {nameof(NodeDto.ExtractionRate)} " +
+                $"        , node.id AS {nameof(NodeDto.Id)}" +
+                $"        , node.purity AS {nameof(NodeDto.Purity)}" +
+                $"        , node.biome AS {nameof(NodeDto.Biome)}" +
+                $"        , node.number AS {nameof(NodeDto.Number)}" +
+                $"        , node.map_position_x AS {nameof(NodeDto.MapPositionX)}" +
+                $"        , node.map_position_y AS {nameof(NodeDto.MapPositionY)}" +
+                $"        , node.map_position_z AS {nameof(NodeDto.MapPositionZ)}" +
+                $"        , resource.id AS {nameof(NodeDto.ResourceId)}" +
+                $"        , resource.name AS {nameof(NodeDto.ResourceName)}" +
+                "      FROM resources.tapped_nodes AS tapped_node " +
+                "INNER JOIN resources.nodes AS node ON node.id = tapped_node.node_id " +
+                "INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
+                "     WHERE tapped_node.world_id = @worldId " +
+                "       AND (@resourceId is null or node.resource_id = @resourceId) " +
+                "  ORDER BY resource.resource_sink_points, node.biome, node.number";
 
             var param = new
             {

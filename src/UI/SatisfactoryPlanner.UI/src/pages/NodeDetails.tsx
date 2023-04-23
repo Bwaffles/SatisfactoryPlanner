@@ -21,7 +21,7 @@ export const NodeDetails = () => {
     return (
         <ContentLayout title={nodeName}>
             {nodeDetails!.isTapped ? (
-                <TappedNodeView />
+                <TappedNodeView nodeDetails={nodeDetails!} />
             ) : (
                 <UntappedNodeView nodeDetails={nodeDetails!} />
             )}

@@ -23,23 +23,22 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
             var connection = _dbConnectionFactory.GetOpenConnection();
 
             const string nodeDetailsSql =
-                $"    SELECT node.id AS {nameof(NodeDetailsDto.Id)}" +
-                $"         , resource.id AS {nameof(NodeDetailsDto.ResourceId)}" +
-                $"         , resource.name AS {nameof(NodeDetailsDto.ResourceName)}" +
+                "     SELECT (CASE WHEN tapped_node.extractor_id is null " +
+                "             THEN false " +
+                "             ELSE true " +
+                $"            END) AS {nameof(NodeDto.IsTapped)} " +
+                $"         , tapped_node.extraction_rate AS {nameof(NodeDto.ExtractionRate)} " +
+                $"         , node.id AS {nameof(NodeDetailsDto.Id)}" +
                 $"         , node.purity AS {nameof(NodeDetailsDto.Purity)}" +
                 $"         , node.biome AS {nameof(NodeDetailsDto.Biome)}" +
                 $"         , node.number AS {nameof(NodeDetailsDto.Number)}" +
-                "          , (SELECT exists(SELECT 1" +
-                "                             FROM resources.tapped_nodes AS tapped_node" +
-                "                            WHERE tapped_node.world_id = @worldId" +
-                $"                             AND tapped_node.node_id = node.id)) AS {nameof(NodeDetailsDto.IsTapped)}" +
-                "          , (SELECT tapped_node.extraction_rate " +
-                "               FROM resources.tapped_nodes AS tapped_node" +
-                "              WHERE tapped_node.world_id = @worldId" +
-                $"               AND tapped_node.node_id = node.id) AS {nameof(NodeDetailsDto.ExtractionRate)}" +
-                "       FROM resources.nodes AS node " +
+                $"         , resource.id AS {nameof(NodeDetailsDto.ResourceId)}" +
+                $"         , resource.name AS {nameof(NodeDetailsDto.ResourceName)}" +
+                "       FROM resources.tapped_nodes AS tapped_node " +
+                " INNER JOIN resources.nodes     AS node     ON node.id     = tapped_node.node_id " +
                 " INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
-                "      WHERE node.id = @nodeId";
+                "      WHERE tapped_node.world_id = @worldId" +
+                "        AND tapped_node.node_id = @nodeId";
 
             var param = new
             {

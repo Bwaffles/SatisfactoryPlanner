@@ -6,27 +6,23 @@ import storage from "../../../utils/storage";
 import { Resource } from "../types";
 
 export const getResources = async (
-    getAccessTokenSilently: any
+    getAccessTokenSilently: any,
+    worldId: string
 ): Promise<Resource[]> => {
     const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
         audience: baseUrl,
     });
 
-    const worldId = storage.getWorldId();
-    const response = await fetch(
-        baseUrl + `/resources/resources?worldId=${worldId}`,
-        {
-            method: "GET",
-
-            headers: {
-                // Add the Authorization header to the existing headers
-                Accept: "application/json",
-                Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json",
-            },
-        }
-    );
+    const response = await fetch(baseUrl + `/worlds/${worldId}/resources`, {
+        method: "GET",
+        headers: {
+            // Add the Authorization header to the existing headers
+            Accept: "application/json",
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+        },
+    });
 
     if (!response.ok) throw new Error(response.statusText);
     return response.json();
@@ -34,5 +30,8 @@ export const getResources = async (
 
 export const useGetResources = () => {
     const { getAccessTokenSilently } = useAuth0();
-    return useQuery("getResources", () => getResources(getAccessTokenSilently));
+    const worldId = storage.getWorldId();
+    return useQuery("getResources", () =>
+        getResources(getAccessTokenSilently, worldId)
+    );
 };

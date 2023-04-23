@@ -1,4 +1,6 @@
-﻿using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
+﻿using Microsoft.EntityFrameworkCore;
+using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.Nodes
@@ -18,5 +20,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.Nodes
 
         public Node? FindById(NodeId nodeId)
             => _context.Nodes.Find(nodeId);
+
+        public async Task<List<Node>> GetAllAsync()
+            => await _context.Nodes.ToListAsync();
     }
 }
