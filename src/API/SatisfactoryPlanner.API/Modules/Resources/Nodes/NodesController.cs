@@ -5,8 +5,8 @@ using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
-using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode;
 using System;
@@ -47,17 +47,17 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
         ///     Get the details of a node in the world.
         /// </summary>
         /// <response code="200">
-        ///     Returns the node as a <see cref="NodeDetailsDto" />.
+        ///     Returns the node as a <see cref="WorldNodeDetailsDto" />.
         /// </response>
         [Authorize]
         [HasPermission(ResourcesPermissions.GetNodeDetails)]
         [WorldAuthorization]
         [HttpGet("worlds/{worldId}/nodes/{nodeId}")]
-        [ProducesResponseType(typeof(NodeDetailsDto), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetNodeDetails([FromRoute] Guid worldId, [FromRoute] Guid nodeId)
+        [ProducesResponseType(typeof(WorldNodeDetailsDto), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetWorldNodeDetails([FromRoute] Guid worldId, [FromRoute] Guid nodeId)
         {
-            var nodeDetails = await _module.ExecuteQueryAsync(new GetNodeDetailsQuery(worldId, nodeId));
-            return Ok(nodeDetails);
+            var worldNodeDetails = await _module.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            return Ok(worldNodeDetails);
         }
 
         /// <summary>

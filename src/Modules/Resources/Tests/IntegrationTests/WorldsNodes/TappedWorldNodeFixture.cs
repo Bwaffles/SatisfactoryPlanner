@@ -1,11 +1,11 @@
 ﻿using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
-using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode;
 
 namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
 {
-    public class WorldNodeFixture
+    public class TappedWorldNodeFixture
     {
         private readonly Settings _settings = new();
 
@@ -21,7 +21,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
                 .First(node => node.ResourceName == "Bauxite").Id;
 
             var extractor =
-                (await resourcesModule.ExecuteQueryAsync(new GetNodeDetailsQuery(_settings.WorldId, _settings.NodeId)))
+                (await resourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(_settings.WorldId, _settings.NodeId)))
                 .AvailableExtractors.First(nodeDetail => nodeDetail.Name == "Miner Mk.1");
 
             await resourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(_settings.WorldId, _settings.NodeId,

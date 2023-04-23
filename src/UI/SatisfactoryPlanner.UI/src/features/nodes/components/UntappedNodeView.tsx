@@ -4,13 +4,15 @@ import Doggo from "../../../assets/Lizard_Doggo.png";
 import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
 import { useTapNode } from "../api/tapNode";
-import { NodeDetails } from "../types";
+import { WorldNodeDetails } from "../types";
 
 type UntappedNodeViewProps = {
-    nodeDetails: NodeDetails;
+    worldNodeDetails: WorldNodeDetails;
 };
 
-export const UntappedNodeView = ({ nodeDetails }: UntappedNodeViewProps) => {
+export const UntappedNodeView = ({
+    worldNodeDetails,
+}: UntappedNodeViewProps) => {
     const [selectedExtractor, setSelectedExtractor] = useState<string | null>(
         null
     );
@@ -26,7 +28,7 @@ export const UntappedNodeView = ({ nodeDetails }: UntappedNodeViewProps) => {
                     Select the extractor to tap the node with:
                 </p>
                 <div className="flex gap-12">
-                    {nodeDetails.availableExtractors?.map((extractor) => {
+                    {worldNodeDetails.availableExtractors?.map((extractor) => {
                         var selectedExtractorClasses =
                             extractor.id === selectedExtractor
                                 ? "bg-sky-800 border-white-900"
@@ -88,7 +90,7 @@ export const UntappedNodeView = ({ nodeDetails }: UntappedNodeViewProps) => {
                             }
 
                             tapNodeMutation.mutate({
-                                nodeId: nodeDetails.id,
+                                nodeId: worldNodeDetails.nodeId,
                                 extractorId: selectedExtractor!,
                             });
                         }}

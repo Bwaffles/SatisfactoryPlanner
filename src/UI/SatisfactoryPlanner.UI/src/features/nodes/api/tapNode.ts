@@ -52,9 +52,9 @@ export const useTapNode = () => {
             // Let this one update behind the scenes since it's not as likely to be needed so fast
             queryClient.invalidateQueries("getNodes");
 
-            // Wait until getNodeDetails finishes updating before ending the mutation so that the node details page updates
+            // Wait until getWorldNodeDetails finishes updating before ending the mutation so that the node details page updates
             return queryClient.invalidateQueries({
-                queryKey: ["getNodeDetails"],
+                queryKey: ["getWorldNodeDetails"],
             });
         },
         mutationFn: (variables: TapNodeRequest) => {

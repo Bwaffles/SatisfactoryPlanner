@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
+namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails
 {
-    public class NodeDetailsDto
+    public class WorldNodeDetailsDto
     {
-        public Guid Id { get; set; }
+        public Guid NodeId { get; set; }
 
         public string Purity { get; set; } = null!;
 
@@ -13,16 +13,16 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
 
         public int Number { get; set; }
 
+        public Guid ResourceId { get; set; }
+
+        public string ResourceName { get; set; } = null!;
+
         public bool IsTapped { get; set; }
 
         /// <summary>
         ///     The number of resources being extracted per minute.
         /// </summary>
         public decimal ExtractionRate { get; set; }
-
-        public Guid ResourceId { get; set; }
-
-        public string ResourceName { get; set; } = null!;
 
         /// <summary>
         ///     The extractors that are available to tap this node.

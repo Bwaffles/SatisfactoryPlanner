@@ -13,15 +13,15 @@ export type Node = {
     resourceName: string;
 };
 
-export type NodeDetails = {
-    id: string;
+export type WorldNodeDetails = {
+    nodeId: string;
     purity: string;
     biome: string;
     number: number;
-    isTapped: boolean;
-    extractionRate: number;
     resourceId: string;
     resourceName: string;
+    isTapped: boolean;
+    extractionRate: number;
     availableExtractors: AvailableExtractor[];
 };
 

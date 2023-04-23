@@ -1,11 +1,17 @@
 ﻿using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
+namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails
 {
     public class AvailableExtractorDto
     {
+        /// <summary>
+        ///     The id of the extractor.
+        /// </summary>
         public Guid Id { get; set; }
 
+        /// <summary>
+        ///     The name of the extractor.
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>

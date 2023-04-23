@@ -67,7 +67,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
         private static (WorldNode worldNode, IExtractionRateCalculator extractionRateCalculator) Setup(
             decimal maxExtractionRate)
         {
-            var (worldNode, _, nodeId, extractorId) = new TapNodeExecuter().Execute();
+            var (worldNode, _, nodeId, extractorId) = new TapWorldNodeExecuter().Execute();
             var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
             mockExtractionRateCalculator
                 .Setup(_ => _.GetMaxExtractionRate(nodeId, extractorId))

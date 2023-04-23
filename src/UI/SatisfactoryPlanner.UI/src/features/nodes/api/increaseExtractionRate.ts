@@ -18,7 +18,8 @@ const increaseExtractionRate = async (
 
     const response = await fetch(
         baseUrl + `/resources/nodes/${nodeId}/increase-extraction-rate`,
-        {  // TODO move increase extraction rate to NodeController? I don't like ui having to know about tapped node objects
+        {
+            // TODO move increase extraction rate to NodeController? I don't like ui having to know about tapped node objects
             // => I think it does make sense
             // TODO how about when the user clicks Increase button I take them to a new page? Not sure if I want to use modals
             method: "POST",
@@ -49,16 +50,16 @@ export const useIncreaseExtractionRate = () => {
     const worldId = storage.getWorldId();
 
     return useMutation({
-        onSuccess: (_, variables) => {
+        onSuccess: () => {
             // Invalidating queries that show whether a node has been tapped or not
 
             // Let these ones update behind the scenes since they're not as likely to be needed so fast
             queryClient.invalidateQueries("getResources"); // resource extraction rate totals
             queryClient.invalidateQueries("getNodes"); // node extraction rate
 
-            // Wait until getNodeDetails finishes updating before ending the mutation so that the node details page updates
+            // Wait until getWorldNodeDetails finishes updating before ending the mutation so that the node details page updates
             return queryClient.invalidateQueries({
-                queryKey: ["getNodeDetails", variables.nodeId, worldId],
+                queryKey: ["getWorldNodeDetails"],
             });
         },
         mutationFn: (variables: IncreaseExtractionRateRequest) => {

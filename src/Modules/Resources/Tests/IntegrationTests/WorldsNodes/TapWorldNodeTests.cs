@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode;
 using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 
@@ -17,14 +17,14 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
 
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetNodesQuery(worldId, null)))
                 .First(_ => _.ResourceName == "Bauxite");
-            var nodeDetails = await ResourcesModule.ExecuteQueryAsync(new GetNodeDetailsQuery(worldId, node.Id));
+            var nodeDetails = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
             nodeDetails.IsTapped.Should().BeFalse();
 
             var extractor = nodeDetails.AvailableExtractors.First();
 
             await ResourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(worldId, node.Id, extractor.Id));
 
-            var postTapNodeDetails = await ResourcesModule.ExecuteQueryAsync(new GetNodeDetailsQuery(worldId, node.Id));
+            var postTapNodeDetails = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
             postTapNodeDetails.IsTapped.Should().BeTrue();
         }
 
@@ -67,7 +67,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
 
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetNodesQuery(worldId, null)))
                 .First(_ => _.ResourceName == "Bauxite");
-            var extractor = (await ResourcesModule.ExecuteQueryAsync(new GetNodeDetailsQuery(worldId, node.Id)))
+            var extractor = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id)))
                 .AvailableExtractors.First();
 
             var differentWorldId = Guid.NewGuid();
@@ -85,7 +85,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
 
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetNodesQuery(worldId, null)))
                 .First(_ => _.ResourceName == "Bauxite");
-            var extractor = (await ResourcesModule.ExecuteQueryAsync(new GetNodeDetailsQuery(worldId, node.Id)))
+            var extractor = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id)))
                 .AvailableExtractors.First();
 
             var randomNodeId = Guid.NewGuid();

@@ -1,23 +1,24 @@
 import * as React from "react";
+
 import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
-import { NodeDetails } from "../types";
+import { WorldNodeDetails } from "../types";
 
 type TappedNodeViewProps = {
-    nodeDetails: NodeDetails;
+    worldNodeDetails: WorldNodeDetails;
 };
 
-export const TappedNodeView = ({ nodeDetails }: TappedNodeViewProps) => {
+export const TappedNodeView = ({ worldNodeDetails }: TappedNodeViewProps) => {
     var purityTextColor =
-        nodeDetails.purity === "Pure"
+        worldNodeDetails.purity === "Pure"
             ? "text-green-600"
-            : nodeDetails.purity === "Normal"
+            : worldNodeDetails.purity === "Normal"
             ? "text-yellow-600"
-            : nodeDetails.purity === "Impure"
+            : worldNodeDetails.purity === "Impure"
             ? "text-red-600"
             : "";
 
-    const currentExtractor = nodeDetails.availableExtractors.find(
+    const currentExtractor = worldNodeDetails.availableExtractors.find(
         (extractor) => extractor.id === null
     )!;
 
@@ -26,7 +27,7 @@ export const TappedNodeView = ({ nodeDetails }: TappedNodeViewProps) => {
             <div className="flex flex-col p-6 bg-gray-800 rounded">
                 <label className="text-gray-400">Purity</label>
                 <div className={"text-xl font-bold mb-4 " + purityTextColor}>
-                    {nodeDetails.purity}
+                    {worldNodeDetails.purity}
                 </div>
 
                 <label className="text-gray-400">Extractor</label>
@@ -51,7 +52,7 @@ export const TappedNodeView = ({ nodeDetails }: TappedNodeViewProps) => {
                     <input
                         type="text"
                         className="p-2 pr-0 w-12 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200"
-                        value={formatNumber(nodeDetails.extractionRate)}
+                        value={formatNumber(worldNodeDetails.extractionRate)}
                         disabled={true}
                     />
                     <span className="p-2 text-xs leading-6 border border-l-0 border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-400">

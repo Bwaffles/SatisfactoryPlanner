@@ -2,23 +2,25 @@
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Queries;
 using SatisfactoryPlanner.Modules.Resources.Application.Extractors;
+using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
+namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails
 {
     // ReSharper disable once UnusedMember.Global
-    internal class GetNodeDetailsQueryHandler : IQueryHandler<GetNodeDetailsQuery, NodeDetailsDto>
+    internal class GetWorldNodeDetailsQueryHandler : IQueryHandler<GetWorldNodeDetailsQuery, WorldNodeDetailsDto>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
 
-        public GetNodeDetailsQueryHandler(IDbConnectionFactory dbConnectionFactory)
+        public GetWorldNodeDetailsQueryHandler(IDbConnectionFactory dbConnectionFactory)
         {
             _dbConnectionFactory = dbConnectionFactory;
         }
 
-        public async Task<NodeDetailsDto> Handle(GetNodeDetailsQuery query, CancellationToken cancellationToken)
+        public async Task<WorldNodeDetailsDto> Handle(GetWorldNodeDetailsQuery query,
+            CancellationToken cancellationToken)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
@@ -28,12 +30,12 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
                 "             ELSE true " +
                 $"            END) AS {nameof(NodeDto.IsTapped)} " +
                 $"         , world_node.extraction_rate AS {nameof(NodeDto.ExtractionRate)} " +
-                $"         , node.id AS {nameof(NodeDetailsDto.Id)}" +
-                $"         , node.purity AS {nameof(NodeDetailsDto.Purity)}" +
-                $"         , node.biome AS {nameof(NodeDetailsDto.Biome)}" +
-                $"         , node.number AS {nameof(NodeDetailsDto.Number)}" +
-                $"         , resource.id AS {nameof(NodeDetailsDto.ResourceId)}" +
-                $"         , resource.name AS {nameof(NodeDetailsDto.ResourceName)}" +
+                $"         , node.id AS {nameof(WorldNodeDetailsDto.NodeId)}" +
+                $"         , node.purity AS {nameof(WorldNodeDetailsDto.Purity)}" +
+                $"         , node.biome AS {nameof(WorldNodeDetailsDto.Biome)}" +
+                $"         , node.number AS {nameof(WorldNodeDetailsDto.Number)}" +
+                $"         , resource.id AS {nameof(WorldNodeDetailsDto.ResourceId)}" +
+                $"         , resource.name AS {nameof(WorldNodeDetailsDto.ResourceName)}" +
                 "       FROM resources.world_nodes AS world_node " +
                 " INNER JOIN resources.nodes     AS node     ON node.id     = world_node.node_id " +
                 " INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
@@ -45,7 +47,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
                 query.NodeId, query.WorldId
             };
 
-            var nodeDetails = await connection.QuerySingleAsync<NodeDetailsDto>(nodeDetailsSql, param);
+            var nodeDetails = await connection.QuerySingleAsync<WorldNodeDetailsDto>(nodeDetailsSql, param);
 
             const string availableExtractorSql =
                 $"   SELECT extractor.id AS {nameof(AvailableExtractorDto.Id)}" +
@@ -66,7 +68,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
             foreach (var availableExtractor in nodeDetails.AvailableExtractors)
             {
                 var extractor = await ExtractorFactory.GetExtractor(connection, availableExtractor.Id);
-                var nodeModel = await NodeFactory.GetNode(connection, nodeDetails.Id);
+                var nodeModel = await NodeFactory.GetNode(connection, nodeDetails.NodeId);
                 availableExtractor.MaxExtractionRate =
                     ResourceExtractionCalculator.GetMaxExtractionRate(extractor, nodeModel);
             }

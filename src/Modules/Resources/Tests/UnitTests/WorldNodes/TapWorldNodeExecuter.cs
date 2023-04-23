@@ -8,7 +8,7 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 {
-    internal class TapNodeExecuter
+    internal class TapWorldNodeExecuter
     {
         private readonly bool _canExtractResource = true;
 
