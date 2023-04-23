@@ -7,8 +7,9 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
     [TestFixture]
     public class SpawnWorldNodesTests : TestBase
     {
+        // Happy path tests
         [Test]
-        public async Task IsSuccessful()
+        public async Task WhenDataIsValid_IsSuccessful()
         {
             var anonymousId = Guid.NewGuid();
             var worldId = Guid.NewGuid();

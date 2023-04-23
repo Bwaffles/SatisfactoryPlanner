@@ -24,13 +24,13 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseE
 
         public async Task<Unit> Handle(IncreaseExtractionRateCommand command, CancellationToken cancellationToken)
         {
-            var tappedNode = await _worldNodeRepository.FindAsync(
+            var worldNode = await _worldNodeRepository.FindAsync(
                 new WorldId(command.WorldId),
                 new NodeId(command.NodeId));
-            if (tappedNode == null)
-                throw new InvalidCommandException("Tapped node must exist.");
+            if (worldNode == null)
+                throw new InvalidCommandException("World node must exist.");
 
-            tappedNode.IncreaseExtractionRate(ExtractionRate.Of(command.ExtractionRate), _extractionRateCalculator);
+            worldNode.IncreaseExtractionRate(ExtractionRate.Of(command.ExtractionRate), _extractionRateCalculator);
 
             return Unit.Value;
         }
