@@ -3,23 +3,23 @@ import React, { useState } from "react";
 import Doggo from "../../../assets/Lizard_Doggo.png";
 import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
-import { useTapNode } from "../api/tapNode";
+import { useTapWorldNode } from "../api/tapWorldNode";
 import { WorldNodeDetails } from "../types";
 
-type UntappedNodeViewProps = {
+type UntappedWorldNodeViewProps = {
     worldNodeDetails: WorldNodeDetails;
 };
 
-export const UntappedNodeView = ({
+export const UntappedWorldNodeView = ({
     worldNodeDetails,
-}: UntappedNodeViewProps) => {
+}: UntappedWorldNodeViewProps) => {
     const [selectedExtractor, setSelectedExtractor] = useState<string | null>(
         null
     );
     const [validationMessage, setValidationMessage] = useState<string | null>(
         null
     );
-    const tapNodeMutation = useTapNode();
+    const tapNodeMutation = useTapWorldNode();
 
     return (
         <>

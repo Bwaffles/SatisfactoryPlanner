@@ -1,16 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import { formatNumber } from "../../../utils/format";
+import { useGetWorldNodes } from "../api/getWorldNodes";
+import { WorldNode } from "../types";
 
-import { useGetNodes } from "../api/getNodes";
-import { Node } from "../types";
-
-type NodeListProps = {
+type WorldNodeListProps = {
     resourceId: string;
 };
 
-export const NodeList = ({ resourceId }: NodeListProps) => {
-    const { isError, data: nodes, error } = useGetNodes(resourceId);
+export const WorldNodeList = ({ resourceId }: WorldNodeListProps) => {
+    const { isError, data: worldNodes, error } = useGetWorldNodes(resourceId);
     const navigate = useNavigate();
 
     const handleNodeClick = (nodeId: string) => {
@@ -21,7 +21,7 @@ export const NodeList = ({ resourceId }: NodeListProps) => {
         return <span>Error: {(error as Error).message}</span>;
     }
 
-    const nodesByBiome = nodes!.reduce<Record<string, Node[]>>(
+    const nodesByBiome = worldNodes!.reduce<Record<string, WorldNode[]>>(
         (group, node) => {
             const { biome } = node;
             group[biome] = group[biome] ?? [];

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
+namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes
 {
-    public class NodeDto
+    public class WorldNodeDto
     {
         public Guid Id { get; set; }
 

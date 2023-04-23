@@ -19,9 +19,9 @@ const { ResourceDetails } = lazyImport(
     () => import("../pages/ResourceDetails"),
     "ResourceDetails"
 );
-const { NodeDetails } = lazyImport(
-    () => import("../pages/NodeDetails"),
-    "NodeDetails"
+const { WorldNodeDetails } = lazyImport(
+    () => import("../pages/WorldNodeDetails"),
+    "WorldNodeDetails"
 );
 const { LoginRedirect } = lazyImport(
     () => import("../pages/LoginRedirect"),
@@ -58,9 +58,11 @@ export const AppRoutes = () => {
                         isAuthenticated ? <ResourceDetails /> : <AutoLogin />
                     }
                 ></Route>
-                <Route
+                <Route // TODO add the world name into the url like site/StarterWorld/nodes/
                     path="nodes/:nodeId"
-                    element={isAuthenticated ? <NodeDetails /> : <AutoLogin />}
+                    element={
+                        isAuthenticated ? <WorldNodeDetails /> : <AutoLogin />
+                    }
                 ></Route>
                 <Route
                     path="/loginError"

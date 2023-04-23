@@ -1,5 +1,5 @@
-﻿using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
-using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
+﻿using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 
 namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
@@ -12,7 +12,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
         public async Task WhenDataIsValid_IsSuccessful()
         {
             var worldId = await new WorldFixture().Create(ResourcesModule);
-            var node = (await ResourcesModule.ExecuteQueryAsync(new GetNodesQuery(worldId, null)))
+            var node = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
                 .First(node => node.ResourceName == "Bauxite"
                                && node.Purity == "Pure"
                                && node.Biome == "Red Bamboo Fields"

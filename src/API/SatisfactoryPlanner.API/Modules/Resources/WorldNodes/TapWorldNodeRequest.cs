@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 
-namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
+namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
 {
-    public class TapNodeRequest
+    public class TapWorldNodeRequest
     {
         /// <summary>
         ///     The id of the extractor being used to extract the resources.

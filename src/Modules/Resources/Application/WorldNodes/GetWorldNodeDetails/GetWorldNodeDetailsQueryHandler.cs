@@ -28,8 +28,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldN
                 "     SELECT (CASE WHEN world_node.extractor_id is null " +
                 "             THEN false " +
                 "             ELSE true " +
-                $"            END) AS {nameof(NodeDto.IsTapped)} " +
-                $"         , world_node.extraction_rate AS {nameof(NodeDto.ExtractionRate)} " +
+                $"            END) AS {nameof(WorldNodeDetailsDto.IsTapped)} " +
+                $"         , world_node.extraction_rate AS {nameof(WorldNodeDetailsDto.ExtractionRate)} " +
                 $"         , node.id AS {nameof(WorldNodeDetailsDto.NodeId)}" +
                 $"         , node.purity AS {nameof(WorldNodeDetailsDto.Purity)}" +
                 $"         , node.biome AS {nameof(WorldNodeDetailsDto.Biome)}" +

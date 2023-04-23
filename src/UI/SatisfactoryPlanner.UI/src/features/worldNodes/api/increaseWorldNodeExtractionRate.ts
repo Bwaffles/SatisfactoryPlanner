@@ -5,11 +5,11 @@ import * as Config from "../../../config";
 import { queryClient } from "../../../lib/react-query";
 import storage from "../../../utils/storage";
 
-const tapNode = async (
+const increaseWorldNodeExtractionRate = async (
     getAccessTokenSilently: any,
     worldId: string,
     nodeId: string,
-    extractorId: string
+    extractionRate: number
 ): Promise<string> => {
     const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
@@ -17,11 +17,12 @@ const tapNode = async (
     });
 
     const response = await fetch(
-        baseUrl + `/worlds/${worldId}/nodes/${nodeId}/tap`,
+        baseUrl + `/worlds/${worldId}/nodes/${nodeId}/increase-extraction-rate`,
         {
             method: "POST",
             body: JSON.stringify({
-                extractorId: extractorId,
+                worldId,
+                extractionRate,
             }),
             headers: {
                 // Add the Authorization header to the existing headers
@@ -33,15 +34,15 @@ const tapNode = async (
     );
 
     if (!response.ok) throw new Error(response.statusText);
-    return "A";
+    return response.json();
 };
 
-type TapNodeRequest = {
+type IncreaseWorldNodeExtractionRateRequest = {
     nodeId: string;
-    extractorId: string;
+    extractionRate: number;
 };
 
-export const useTapNode = () => {
+export const useIncreaseWorldNodeExtractionRate = () => {
     const { getAccessTokenSilently } = useAuth0();
     const worldId = storage.getWorldId();
 
@@ -49,20 +50,21 @@ export const useTapNode = () => {
         onSuccess: () => {
             // Invalidating queries that show whether a node has been tapped or not
 
-            // Let this one update behind the scenes since it's not as likely to be needed so fast
-            queryClient.invalidateQueries("getNodes");
+            // Let these ones update behind the scenes since they're not as likely to be needed so fast
+            queryClient.invalidateQueries("getResources"); // resource extraction rate totals
+            queryClient.invalidateQueries("getWorldNodes"); // node extraction rate
 
             // Wait until getWorldNodeDetails finishes updating before ending the mutation so that the node details page updates
             return queryClient.invalidateQueries({
                 queryKey: ["getWorldNodeDetails"],
             });
         },
-        mutationFn: (variables: TapNodeRequest) => {
-            return tapNode(
+        mutationFn: (variables: IncreaseWorldNodeExtractionRateRequest) => {
+            return increaseWorldNodeExtractionRate(
                 getAccessTokenSilently,
                 worldId,
                 variables.nodeId,
-                variables.extractorId
+                variables.extractionRate
             );
         },
     });

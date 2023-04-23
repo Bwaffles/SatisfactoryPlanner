@@ -1,4 +1,4 @@
-export type Node = {
+export type WorldNode = {
     id: string;
     purity: string;
     biome: string;

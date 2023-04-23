@@ -3,13 +3,13 @@ import { useQuery } from "react-query";
 
 import * as Config from "../../../config";
 import storage from "../../../utils/storage";
-import { Node } from "../types";
+import { WorldNode } from "../types";
 
-export const getNodes = async (
+export const getWorldNodes = async (
     getAccessTokenSilently: any,
     worldId: any,
     resourceId: string
-): Promise<Node[]> => {
+): Promise<WorldNode[]> => {
     const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
         audience: baseUrl,
@@ -32,10 +32,10 @@ export const getNodes = async (
     return response.json();
 };
 
-export const useGetNodes = (resourceId: string) => {
+export const useGetWorldNodes = (resourceId: string) => {
     const { getAccessTokenSilently } = useAuth0();
     const worldId = storage.getWorldId();
-    return useQuery("getNodes", () =>
-        getNodes(getAccessTokenSilently, worldId, resourceId)
+    return useQuery("getWorldNodes", () =>
+        getWorldNodes(getAccessTokenSilently, worldId, resourceId)
     );
 };

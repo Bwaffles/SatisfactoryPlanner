@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
-using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode;
 
 namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
@@ -17,7 +17,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
         {
             _settings.WorldId = await new WorldFixture().Create(resourcesModule);
 
-            _settings.NodeId = (await resourcesModule.ExecuteQueryAsync(new GetNodesQuery(_settings.WorldId, null)))
+            _settings.NodeId = (await resourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(_settings.WorldId, null)))
                 .First(node => node.ResourceName == "Bauxite").Id;
 
             var extractor =

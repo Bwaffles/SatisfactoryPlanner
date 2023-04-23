@@ -4,11 +4,13 @@ import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
 import { WorldNodeDetails } from "../types";
 
-type TappedNodeViewProps = {
+type TappedWorldNodeViewProps = {
     worldNodeDetails: WorldNodeDetails;
 };
 
-export const TappedNodeView = ({ worldNodeDetails }: TappedNodeViewProps) => {
+export const TappedWorldNodeView = ({
+    worldNodeDetails,
+}: TappedWorldNodeViewProps) => {
     var purityTextColor =
         worldNodeDetails.purity === "Pure"
             ? "text-green-600"

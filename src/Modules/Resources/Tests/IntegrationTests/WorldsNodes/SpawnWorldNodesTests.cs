@@ -1,4 +1,4 @@
-﻿using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
+﻿using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.SpawnWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 
@@ -14,12 +14,12 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
             var anonymousId = Guid.NewGuid();
             var worldId = Guid.NewGuid();
 
-            (await ResourcesModule.ExecuteQueryAsync(new GetNodesQuery(worldId, null)))
+            (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
                 .Should().BeEmpty();
 
             await ResourcesModule.ExecuteCommandAsync(new SpawnWorldNodesCommand(anonymousId, worldId));
 
-            (await ResourcesModule.ExecuteQueryAsync(new GetNodesQuery(worldId, null)))
+            (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
                 .Should().NotBeEmpty();
         }
     }

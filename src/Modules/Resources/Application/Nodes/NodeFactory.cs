@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using System;
@@ -18,11 +19,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
                 .Select(CreateNode);
         }
 
-        private static Node CreateNode(NodeDto node) =>
+        private static Node CreateNode(WorldNodeDto worldNode) =>
             Node.CreateNew(
-                new NodeId(node.Id),
-                NodePurity.Of(node.Purity),
-                new ResourceId(node.ResourceId));
+                new NodeId(worldNode.Id),
+                NodePurity.Of(worldNode.Purity),
+                new ResourceId(worldNode.ResourceId));
 
         public static async Task<Node> GetNode(IDbConnection connection, Guid nodeId)
         {
@@ -35,18 +36,18 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
             return CreateNode(node);
         }
 
-        public static async Task<List<NodeDto>> GetAvailableNodes(IDbConnection connection, Guid? resourceId)
+        public static async Task<List<WorldNodeDto>> GetAvailableNodes(IDbConnection connection, Guid? resourceId)
         {
-            return (await connection.QueryAsync<NodeDto>(
+            return (await connection.QueryAsync<WorldNodeDto>(
                 "    SELECT " +
-                $"          node.id AS {nameof(NodeDto.Id)}, " +
-                $"          resource.id AS {nameof(NodeDto.ResourceId)}, " +
-                $"          resource.name AS {nameof(NodeDto.ResourceName)}, " +
-                $"          node.purity AS {nameof(NodeDto.Purity)}, " +
-                $"          node.biome AS {nameof(NodeDto.Biome)}, " +
-                $"          node.map_position_x AS {nameof(NodeDto.MapPositionX)}, " +
-                $"          node.map_position_y AS {nameof(NodeDto.MapPositionY)}, " +
-                $"          node.map_position_z AS {nameof(NodeDto.MapPositionZ)} " +
+                $"          node.id AS {nameof(WorldNodeDto.Id)}, " +
+                $"          resource.id AS {nameof(WorldNodeDto.ResourceId)}, " +
+                $"          resource.name AS {nameof(WorldNodeDto.ResourceName)}, " +
+                $"          node.purity AS {nameof(WorldNodeDto.Purity)}, " +
+                $"          node.biome AS {nameof(WorldNodeDto.Biome)}, " +
+                $"          node.map_position_x AS {nameof(WorldNodeDto.MapPositionX)}, " +
+                $"          node.map_position_y AS {nameof(WorldNodeDto.MapPositionY)}, " +
+                $"          node.map_position_z AS {nameof(WorldNodeDto.MapPositionZ)} " +
                 "      FROM resources.nodes AS node " +
                 "INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
                 "     WHERE (@resourceId is null or node.resource_id = @resourceId) " +
