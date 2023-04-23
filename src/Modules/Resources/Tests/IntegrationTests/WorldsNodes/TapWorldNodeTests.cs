@@ -11,7 +11,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
     {
         // Happy path tests
         [Test]
-        public async Task ValidData_IsSuccessful()
+        public async Task WhenDataIsValid_IsSuccessful()
         {
             var worldId = await new WorldFixture().Create(ResourcesModule);
 
@@ -86,10 +86,11 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
                 .First(_ => _.ResourceName == "Bauxite");
             var extractor = (await ResourcesModule.ExecuteQueryAsync(new GetNodeDetailsQuery(worldId, node.Id)))
                 .AvailableExtractors.First();
-            
+
+            var randomNodeId = Guid.NewGuid();
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
-                await ResourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(worldId, Guid.NewGuid(), extractor.Id));
+                await ResourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(worldId, randomNodeId, extractor.Id));
             });
         }
 

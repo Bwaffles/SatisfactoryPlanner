@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
-using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules;
@@ -14,7 +13,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
     {
         // Happy path tests
         [Fact]
-        public void ValidData_IsSuccessful()
+        public void WhenDataIsValid_IsSuccessful()
         {
             var (worldNode, worldId, nodeId) = new WorldNodeFixture().Create();
             var resourceId = new ResourceId(Guid.NewGuid());
