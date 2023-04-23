@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
-using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain
 {

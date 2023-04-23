@@ -4,7 +4,7 @@ using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
-using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure
 {
@@ -14,7 +14,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure
 
         public DbSet<Node> Nodes { get; set; }
 
-        public DbSet<TappedNode> TappedNodes { get; set; }
+        public DbSet<WorldNode> WorldNodes { get; set; }
 
         public DbSet<InternalCommand> InternalCommands { get; set; }
 

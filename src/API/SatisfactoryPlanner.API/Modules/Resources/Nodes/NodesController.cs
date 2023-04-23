@@ -8,7 +8,7 @@ using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode;
-using SatisfactoryPlanner.Modules.Resources.Application.TappedNodes.IncreaseExtractionRate;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.Modules.Resources.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
-using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
 using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Application

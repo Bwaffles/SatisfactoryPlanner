@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
-using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 using System;
 
@@ -11,17 +11,17 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
     {
         private bool _canExtractResource = true;
 
-        public (TappedNode TappedNode, WorldId WorldId, NodeId NodeId, ExtractorId ExtractorId) Execute()
+        public (WorldNode WorldNode, WorldId WorldId, NodeId NodeId, ExtractorId ExtractorId) Execute()
         {
             var resourceId = new ResourceId(Guid.NewGuid());
             var worldId = new WorldId(Guid.NewGuid());
             var node = GetNode(resourceId);
-            var tappedNode = TappedNode.Spawn(worldId, node.Id);
+            var worldNode = WorldNode.Spawn(worldId, node.Id);
             var extractor = GetExtractor(resourceId);
 
-            tappedNode.Tap(extractor.Id);
+            worldNode.Tap(extractor.Id);
 
-            return (tappedNode,
+            return (worldNode,
                 worldId,
                 node.Id,
                 extractor.Id);
