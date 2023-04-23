@@ -11,67 +11,69 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 {
     public class IncreaseExtractionRateTests
     {
+        // Happy path tests
         [Fact]
-        public void ValidData_IsSuccessful()
+        public void WhenDataIsValid_IsSuccessful()
         {
-            var (tappedNode, extractionRateCalculator) = Setup(120);
+            var (worldNode, extractionRateCalculator) = Setup(120);
 
-            tappedNode.IncreaseExtractionRate(ExtractionRate.Of(120), extractionRateCalculator);
+            worldNode.IncreaseExtractionRate(ExtractionRate.Of(120), extractionRateCalculator);
 
             var domainEvent =
-                DomainEventAssertions.AssertPublishedEvent<ExtractionRateIncreasedDomainEvent>(tappedNode);
-            domainEvent.WorldNodeId.Should().Be(tappedNode.Id);
+                DomainEventAssertions.AssertPublishedEvent<ExtractionRateIncreasedDomainEvent>(worldNode);
+            domainEvent.WorldNodeId.Should().Be(worldNode.Id);
             domainEvent.ExtractionRate.Should().Be(ExtractionRate.Of(120));
         }
 
         [Fact]
-        public void NewRateIsSameAsTheCurrentRate_IsIgnored()
+        public void WhenNewRateIsSameAsTheCurrentRate_IsIgnored()
         {
-            var (tappedNode, extractionRateCalculator) = Setup(120);
+            var (worldNode, extractionRateCalculator) = Setup(120);
 
-            tappedNode.IncreaseExtractionRate(ExtractionRate.Of(120), extractionRateCalculator);
-            tappedNode.ClearDomainEvents();
+            worldNode.IncreaseExtractionRate(ExtractionRate.Of(120), extractionRateCalculator);
+            worldNode.ClearDomainEvents();
 
-            tappedNode.IncreaseExtractionRate(ExtractionRate.Of(120), extractionRateCalculator);
+            worldNode.IncreaseExtractionRate(ExtractionRate.Of(120), extractionRateCalculator);
 
-            DomainEventAssertions.AssertEventIsNotPublished<ExtractionRateIncreasedDomainEvent>(tappedNode,
+            DomainEventAssertions.AssertEventIsNotPublished<ExtractionRateIncreasedDomainEvent>(worldNode,
                 "because the rate didn't change");
         }
 
+        // Business rule tests
         [Fact]
-        public void IncreasingHigherThanMaxRate_IsNotPossible()
+        public void WhenIncreasingHigherThanMaxRate_RuleIsBroken()
         {
-            var (tappedNode, extractionRateCalculator) = Setup(120);
+            var (worldNode, extractionRateCalculator) = Setup(120);
 
             RuleAssertions.AssertBrokenRule<CannotIncreaseExtractionRateAboveTheMaxExtractionRateRule>(() =>
             {
-                tappedNode.IncreaseExtractionRate(ExtractionRate.Of(121), extractionRateCalculator);
+                worldNode.IncreaseExtractionRate(ExtractionRate.Of(121), extractionRateCalculator);
             });
         }
 
         [Fact]
-        public void NewRateIsLessThanCurrentRate_IsNotPossible()
+        public void WhenNewRateIsLessThanCurrentRate_RuleIsBroken()
         {
-            var (tappedNode, extractionRateCalculator) = Setup(120);
+            var (worldNode, extractionRateCalculator) = Setup(120);
 
-            tappedNode.IncreaseExtractionRate(ExtractionRate.Of(60), extractionRateCalculator);
+            worldNode.IncreaseExtractionRate(ExtractionRate.Of(60), extractionRateCalculator);
 
             RuleAssertions.AssertBrokenRule<CannotLowerExtractionRateBelowCurrentExtractionRateRule>(() =>
             {
-                tappedNode.IncreaseExtractionRate(ExtractionRate.Of(59), extractionRateCalculator);
+                worldNode.IncreaseExtractionRate(ExtractionRate.Of(59), extractionRateCalculator);
             });
         }
 
-        private static (WorldNode tappedNode, IExtractionRateCalculator extractionRateCalculator) Setup(
+        private static (WorldNode worldNode, IExtractionRateCalculator extractionRateCalculator) Setup(
             decimal maxExtractionRate)
         {
-            var (tappedNode, _, nodeId, extractorId) = new TapNodeExecuter().Execute();
+            var (worldNode, _, nodeId, extractorId) = new TapNodeExecuter().Execute();
             var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
             mockExtractionRateCalculator
                 .Setup(_ => _.GetMaxExtractionRate(nodeId, extractorId))
                 .Returns(ExtractionRate.Of(maxExtractionRate));
 
-            return (tappedNode, mockExtractionRateCalculator.Object);
+            return (worldNode, mockExtractionRateCalculator.Object);
         }
     }
 }
