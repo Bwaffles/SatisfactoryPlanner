@@ -11,14 +11,14 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.TappedNode
     {
         public void Configure(EntityTypeBuilder<TappedNode> builder)
         {
-            builder.ToTable("tapped_nodes", "resources");
+            builder.ToTable("world_nodes", "resources");
 
             builder.HasKey(_ => _.Id);
 
             builder.Property<TappedNodeId>("Id").HasColumnName("id");
             builder.Property<WorldId>("_worldId").HasColumnName("world_id");
             builder.Property<NodeId>("_nodeId").HasColumnName("node_id");
-            builder.Property<ExtractorId>("_extractorId").HasColumnName("extractor_id");
+            builder.Property<ExtractorId?>("_extractorId").HasColumnName("extractor_id");
             builder.Property<string>("_name").HasColumnName("name");
 
             builder.OwnsOne<ExtractionRate>("_extractionRate", b =>

@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations.Resources.TappedNodes
+namespace DatabaseMigrator.Migrations.Resources.WorldNodes
 {
     [Migration(202304222027)]
     public class AlterColumn_ExtractorId_ToNullable : Migration

@@ -23,22 +23,22 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails
             var connection = _dbConnectionFactory.GetOpenConnection();
 
             const string nodeDetailsSql =
-                "     SELECT (CASE WHEN tapped_node.extractor_id is null " +
+                "     SELECT (CASE WHEN world_node.extractor_id is null " +
                 "             THEN false " +
                 "             ELSE true " +
                 $"            END) AS {nameof(NodeDto.IsTapped)} " +
-                $"         , tapped_node.extraction_rate AS {nameof(NodeDto.ExtractionRate)} " +
+                $"         , world_node.extraction_rate AS {nameof(NodeDto.ExtractionRate)} " +
                 $"         , node.id AS {nameof(NodeDetailsDto.Id)}" +
                 $"         , node.purity AS {nameof(NodeDetailsDto.Purity)}" +
                 $"         , node.biome AS {nameof(NodeDetailsDto.Biome)}" +
                 $"         , node.number AS {nameof(NodeDetailsDto.Number)}" +
                 $"         , resource.id AS {nameof(NodeDetailsDto.ResourceId)}" +
                 $"         , resource.name AS {nameof(NodeDetailsDto.ResourceName)}" +
-                "       FROM resources.tapped_nodes AS tapped_node " +
-                " INNER JOIN resources.nodes     AS node     ON node.id     = tapped_node.node_id " +
+                "       FROM resources.world_nodes AS world_node " +
+                " INNER JOIN resources.nodes     AS node     ON node.id     = world_node.node_id " +
                 " INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
-                "      WHERE tapped_node.world_id = @worldId" +
-                "        AND tapped_node.node_id = @nodeId";
+                "      WHERE world_node.world_id = @worldId" +
+                "        AND world_node.node_id = @nodeId";
 
             var param = new
             {

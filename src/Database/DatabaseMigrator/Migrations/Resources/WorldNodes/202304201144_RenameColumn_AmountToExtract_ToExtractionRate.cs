@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations.Resources.TappedNodes
+namespace DatabaseMigrator.Migrations.Resources.WorldNodes
 {
     [Migration(202304201144)]
     public class RenameColumn_AmountToExtract_ToExtractionRate : Migration
