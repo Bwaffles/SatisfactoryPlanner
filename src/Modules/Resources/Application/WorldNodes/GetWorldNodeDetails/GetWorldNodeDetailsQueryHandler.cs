@@ -29,6 +29,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldN
                 "             THEN false " +
                 "             ELSE true " +
                 $"            END) AS {nameof(WorldNodeDetailsDto.IsTapped)} " +
+                $"         , world_node.extractor_id AS {nameof(WorldNodeDetailsDto.ExtractorId)} " +
                 $"         , world_node.extraction_rate AS {nameof(WorldNodeDetailsDto.ExtractionRate)} " +
                 $"         , node.id AS {nameof(WorldNodeDetailsDto.NodeId)}" +
                 $"         , node.purity AS {nameof(WorldNodeDetailsDto.Purity)}" +

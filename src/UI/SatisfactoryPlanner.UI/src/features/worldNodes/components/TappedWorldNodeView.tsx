@@ -21,7 +21,7 @@ export const TappedWorldNodeView = ({
             : "";
 
     const currentExtractor = worldNodeDetails.availableExtractors.find(
-        (extractor) => extractor.id === null
+        (extractor) => extractor.id === worldNodeDetails.extractorId
     )!;
 
     return (
@@ -35,14 +35,14 @@ export const TappedWorldNodeView = ({
                 <label className="text-gray-400">Extractor</label>
                 <div className="flex mb-4">
                     <div className="text-xl font-bold">
-                        {currentExtractor?.name}
+                        {currentExtractor.name}
                     </div>
                 </div>
 
                 <label className="text-gray-400">Max Extraction Rate</label>
                 <div className="flex mb-4">
                     <div className="text-xl font-bold">
-                        {formatNumber(currentExtractor?.maxExtractionRate)}
+                        {formatNumber(currentExtractor.maxExtractionRate)}
                     </div>
                     <div className="ml-2 text-gray-400 text-xs leading-8">
                         per min

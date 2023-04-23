@@ -20,6 +20,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldN
         public bool IsTapped { get; set; }
 
         /// <summary>
+        ///     The id of the extractor that was used to tap the node, or null if node is untapped.
+        /// </summary>
+        public Guid? ExtractorId { get; set; }
+
+        /// <summary>
         ///     The number of resources being extracted per minute.
         /// </summary>
         public decimal ExtractionRate { get; set; }

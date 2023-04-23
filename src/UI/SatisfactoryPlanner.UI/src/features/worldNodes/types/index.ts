@@ -21,6 +21,7 @@ export type WorldNodeDetails = {
     resourceId: string;
     resourceName: string;
     isTapped: boolean;
+    extractorId: string | null;
     extractionRate: number;
     availableExtractors: AvailableExtractor[];
 };

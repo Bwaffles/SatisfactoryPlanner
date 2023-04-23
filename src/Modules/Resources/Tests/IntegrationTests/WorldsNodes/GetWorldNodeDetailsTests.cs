@@ -30,6 +30,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
             worldNodeDetails.ResourceId.Should().Be(node.ResourceId);
             worldNodeDetails.ResourceName.Should().Be("Bauxite");
             worldNodeDetails.IsTapped.Should().BeFalse();
+            worldNodeDetails.ExtractorId.Should().BeNull();
             worldNodeDetails.ExtractionRate.Should().Be(0);
             worldNodeDetails.AvailableExtractors.Should().HaveCount(3);
         }

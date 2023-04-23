@@ -26,6 +26,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
 
             var postTapNodeDetails = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
             postTapNodeDetails.IsTapped.Should().BeTrue();
+            postTapNodeDetails.ExtractorId.Should().Be(extractor.Id);
         }
 
         // CommandValidator tests
