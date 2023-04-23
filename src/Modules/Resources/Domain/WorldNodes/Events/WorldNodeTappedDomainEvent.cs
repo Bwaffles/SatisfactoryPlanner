@@ -5,7 +5,7 @@ using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events
 {
-    public class NodeTappedDomainEvent : DomainEventBase
+    public class WorldNodeTappedDomainEvent : DomainEventBase
     {
         public WorldNodeId WorldNodeId { get; }
 
@@ -15,7 +15,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events
 
         public ExtractorId ExtractorId { get; }
 
-        public NodeTappedDomainEvent(WorldNodeId worldNodeId, WorldId worldId, NodeId nodeId, ExtractorId extractorId)
+        public WorldNodeTappedDomainEvent(WorldNodeId worldNodeId, WorldId worldId, NodeId nodeId,
+            ExtractorId extractorId)
         {
             WorldNodeId = worldNodeId;
             WorldId = worldId;

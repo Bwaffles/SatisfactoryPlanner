@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.UnitTests
+namespace SatisfactoryPlanner.Modules.Resources.UnitTests.Nodes
 {
     internal class NodeFixture
     {

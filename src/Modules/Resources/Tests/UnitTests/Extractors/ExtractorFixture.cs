@@ -3,14 +3,14 @@ using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using System;
 using System.Collections.Generic;
 
-namespace SatisfactoryPlanner.Modules.Resources.UnitTests
+namespace SatisfactoryPlanner.Modules.Resources.UnitTests.Extractors
 {
     internal class ExtractorFixture
     {
         private readonly List<ResourceId> _allowedResources = new List<ResourceId>();
         private string _type = "Miner";
 
-        public Extractor Build()
+        public Extractor Create()
         {
             return Extractor.CreateNew(
                 new ExtractorId(Guid.NewGuid()),
@@ -23,9 +23,12 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
         {
             switch (_type)
             {
-                case "Miner": return ExtractorCycle.CreateNew(0.25m, 1); // Mk. 3
-                case "OilExtractor": return ExtractorCycle.CreateNew(1, 2000);
-                default: throw new InvalidOperationException();
+                case "Miner":
+                    return ExtractorCycle.CreateNew(0.25m, 1); // Mk. 3
+                case "OilExtractor":
+                    return ExtractorCycle.CreateNew(1, 2000);
+                default:
+                    throw new InvalidOperationException();
             }
         }
 

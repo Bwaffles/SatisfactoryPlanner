@@ -3,9 +3,11 @@ using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
+using SatisfactoryPlanner.Modules.Resources.UnitTests.Extractors;
+using SatisfactoryPlanner.Modules.Resources.UnitTests.Nodes;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.UnitTests
+namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 {
     internal class TapNodeExecuter
     {
@@ -19,7 +21,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
             var worldNode = WorldNode.Spawn(worldId, node.Id);
             var extractor = GetExtractor(resourceId);
 
-            worldNode.Tap(extractor.Id);
+            worldNode.Tap(extractor, resourceId);
 
             return (worldNode,
                 worldId,
@@ -41,7 +43,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests
                 ? extractorFixture.CanExtract(resourceId)
                 : extractorFixture.CannotExtract(resourceId);
 
-            return extractorFixture.Build();
+            return extractorFixture.Create();
         }
 
         private static Node GetNode(ResourceId resourceId) => new NodeFixture()

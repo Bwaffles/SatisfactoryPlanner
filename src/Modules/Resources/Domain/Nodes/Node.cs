@@ -29,5 +29,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
         }
 
         public decimal GetPurityMultiplier() => _purity.GetMultiplier();
+
+        public ResourceId GetResourceId() => _resourceId;
     }
 }

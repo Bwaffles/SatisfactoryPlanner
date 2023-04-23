@@ -7,8 +7,8 @@ using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Nodes.GetNodes;
-using SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -67,9 +67,9 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Nodes
         [HasPermission(ResourcesPermissions.TapNode)]
         [HttpPost("worlds/{worldId}/nodes/{nodeId}/tap")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> TapNode([FromRoute] Guid worldId, [FromRoute] Guid nodeId, [FromBody] TapNodeRequest request)
+        public async Task<IActionResult> Tap([FromRoute] Guid worldId, [FromRoute] Guid nodeId, [FromBody] TapNodeRequest request)
         {
-            await _module.ExecuteCommandAsync(new TapNodeCommand(
+            await _module.ExecuteCommandAsync(new TapWorldNodeCommand(
                 worldId,
                 nodeId,
                 request.ExtractorId

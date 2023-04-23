@@ -1,11 +1,11 @@
 ﻿using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode
+namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode
 {
-    public class TapNodeCommand : CommandBase
+    public class TapWorldNodeCommand : CommandBase
     {
-        public TapNodeCommand(Guid worldId, Guid nodeId, Guid extractorId)
+        public TapWorldNodeCommand(Guid worldId, Guid nodeId, Guid extractorId)
         {
             WorldId = worldId;
             NodeId = nodeId;

@@ -15,13 +15,13 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.Nodes
             _context = context;
         }
 
-        public async Task<Node?> FindByIdAsync(NodeId nodeId)
-            => await _context.Nodes.FindAsync(nodeId);
-
         public Node? FindById(NodeId nodeId)
             => _context.Nodes.Find(nodeId);
 
         public async Task<List<Node>> GetAllAsync()
             => await _context.Nodes.ToListAsync();
+
+        public async Task<Node> GetByIdAsync(NodeId nodeId)
+            => await _context.Nodes.SingleAsync(node => node.Id == nodeId);
     }
 }

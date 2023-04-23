@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 
-namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes.TapNode
+namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode
 {
     // ReSharper disable once UnusedMember.Global
-    internal class TapNodeCommandValidator : AbstractValidator<TapNodeCommand>
+    internal class TapWorldNodeCommandValidator : AbstractValidator<TapWorldNodeCommand>
     {
-        public TapNodeCommandValidator()
+        public TapWorldNodeCommandValidator()
         {
             RuleFor(_ => _.WorldId).NotEmpty()
                 .WithMessage("Id of world cannot be empty.");

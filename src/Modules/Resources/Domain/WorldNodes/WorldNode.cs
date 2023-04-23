@@ -1,6 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
+using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules;
 using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
@@ -36,14 +37,14 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
         public static WorldNode Spawn(WorldId worldId, NodeId nodeId)
             => new(worldId, nodeId);
 
-        public void Tap(ExtractorId extractorId)
+        public void Tap(Extractor extractor, ResourceId resourceId)
         {
-            CheckRule(new NodeCannotAlreadyBeTappedRule(_extractorId));
-            //CheckRule(new ExtractorMustBeAbleToExtractResourceRule(extractor, _resourceId));
+            CheckRule(new CannotAlreadyBeTappedRule(_extractorId));
+            CheckRule(new ExtractorMustBeAbleToExtractResourceRule(extractor, resourceId));
 
-            _extractorId = extractorId;
+            _extractorId = extractor.Id;
 
-            AddDomainEvent(new NodeTappedDomainEvent(Id, _worldId, _nodeId, _extractorId));
+            AddDomainEvent(new WorldNodeTappedDomainEvent(Id, _worldId, _nodeId, _extractorId));
         }
 
         public void IncreaseExtractionRate(ExtractionRate newExtractionRate, IExtractionRateCalculator extractionRateCalculator)
