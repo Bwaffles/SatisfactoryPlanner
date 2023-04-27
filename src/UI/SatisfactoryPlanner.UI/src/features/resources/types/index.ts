@@ -1,8 +1,8 @@
 export type Resource = {
     id: string;
     name: string;
-    extractedResources: number;
-    totalResources: number;
+    extractionRate: number;
+    maxExtractionRate: number;
 };
 
 export type ResourceDetails = {

@@ -18,10 +18,10 @@ export const ResourcesList = () => {
     }
 
     var resourceList = resources?.map((resource) => {
-        var percentResourceExtracted =
-            resource.totalResources == 0
+        var percentResourceExtractionRate =
+            resource.maxExtractionRate === 0
                 ? 0
-                : resource.extractedResources / resource.totalResources;
+                : resource.extractionRate / resource.maxExtractionRate;
 
         return (
             <div
@@ -36,7 +36,7 @@ export const ResourcesList = () => {
                 </div>
                 <img
                     className="h-28 w-28 text-center"
-                    alt="Resource Image"
+                    alt="Resource"
                     src={Doggo}
                 ></img>
                 <div className="flex flex-row justify-between items-end w-full">
@@ -46,7 +46,7 @@ export const ResourcesList = () => {
                                 Extracted
                             </div>
                             <span className="text-right text-lg">
-                                {formatNumber(resource.extractedResources)}
+                                {formatNumber(resource.extractionRate)}
                             </span>
                         </div>
                         <span className="text-2xl font-semibold">/</span>
@@ -55,13 +55,13 @@ export const ResourcesList = () => {
                                 Total
                             </div>
                             <span className="text-lg">
-                                {formatNumber(resource.totalResources)}
+                                {formatNumber(resource.maxExtractionRate)}
                             </span>
                         </div>
                     </div>
                     <span className="bg-gray-500 w-px h-full"></span>
                     <span className="text-lg">
-                        {formatPercent(percentResourceExtracted)}
+                        {formatPercent(percentResourceExtractionRate)}
                     </span>
                 </div>
             </div>

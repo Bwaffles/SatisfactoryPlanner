@@ -19,9 +19,13 @@ const { ResourceDetails } = lazyImport(
     () => import("../pages/ResourceDetails"),
     "ResourceDetails"
 );
-const { NodeDetails } = lazyImport(
-    () => import("../pages/NodeDetails"),
-    "NodeDetails"
+const { WorldNodeDetails } = lazyImport(
+    () => import("../pages/WorldNodeDetails"),
+    "WorldNodeDetails"
+);
+const { IncreaseWorldNodeExtractionRate } = lazyImport(
+    () => import("../pages/IncreaseWorldNodeExtractionRate"),
+    "IncreaseWorldNodeExtractionRate"
 );
 const { LoginRedirect } = lazyImport(
     () => import("../pages/LoginRedirect"),
@@ -60,7 +64,21 @@ export const AppRoutes = () => {
                 ></Route>
                 <Route
                     path="nodes/:nodeId"
-                    element={isAuthenticated ? <NodeDetails /> : <AutoLogin />}
+                    element={
+                        isAuthenticated ? <WorldNodeDetails /> : <AutoLogin />
+                    }
+                ></Route>
+                // TODO I'd like to think about nested routes but for now, new
+                page for simplicity to move forward
+                <Route
+                    path="nodes/:nodeId/increase-extraction-rate"
+                    element={
+                        isAuthenticated ? (
+                            <IncreaseWorldNodeExtractionRate />
+                        ) : (
+                            <AutoLogin />
+                        )
+                    }
                 ></Route>
                 <Route
                     path="/loginError"

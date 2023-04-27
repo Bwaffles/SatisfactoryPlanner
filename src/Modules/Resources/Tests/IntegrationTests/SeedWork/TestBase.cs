@@ -75,7 +75,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
             const string sql = "DELETE FROM resources.inbox_messages;" +
                                "DELETE FROM resources.internal_commands;" +
                                "DELETE FROM resources.outbox_messages;" +
-                               "DELETE FROM resources.tapped_nodes;";
+                               "DELETE FROM resources.world_nodes;";
 
             await connection.ExecuteScalarAsync(sql);
         }

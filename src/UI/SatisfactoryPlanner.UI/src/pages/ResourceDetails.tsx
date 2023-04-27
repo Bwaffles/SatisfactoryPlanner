@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import Doggo from "../assets/Lizard_Doggo.png";
 import { ContentLayout } from "../components/Layout/ContentLayout";
-import { NodeList } from "../features/nodes/components/NodeList";
+import { WorldNodeList } from "../features/worldNodes/components/WorldNodeList";
 import { useGetResourceDetails } from "../features/resources/api/getResourceDetails";
 
 export const ResourceDetails = () => {
@@ -26,7 +26,7 @@ export const ResourceDetails = () => {
                 <div className="flex flex-row gap-4">
                     <img
                         className="h-40 w-40 text-center"
-                        alt="Icon Image"
+                        alt="Icon"
                         src={Doggo}
                     ></img>
                     <div>
@@ -43,7 +43,7 @@ export const ResourceDetails = () => {
                     </div>
                 </div>
             </div>
-            <NodeList resourceId={resourceId!}></NodeList>
+            <WorldNodeList resourceId={resourceId!}></WorldNodeList>
         </ContentLayout>
     );
 };

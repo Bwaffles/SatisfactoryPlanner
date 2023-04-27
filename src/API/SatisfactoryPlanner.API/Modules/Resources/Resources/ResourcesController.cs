@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Modules.Resources.Resources
 {
-    [Route("api/resources/[controller]")]
+    [Route("api")]
     [ApiController]
     public class ResourcesController : Controller
     {
@@ -32,11 +32,11 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         [Authorize]
         [HasPermission(ResourcesPermissions.GetResources)]
         [WorldAuthorization]
-        [HttpGet("")]
+        [HttpGet("worlds/{worldId}/[controller]")]
         [ProducesResponseType(typeof(List<ResourceDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetResources([FromQuery] GetResourcesRequest request)
+        public async Task<IActionResult> GetResources([FromRoute] Guid worldId)
         {
-            var resources = await _resourcesModule.ExecuteQueryAsync(new GetResourcesQuery(request.WorldId));
+            var resources = await _resourcesModule.ExecuteQueryAsync(new GetResourcesQuery(worldId));
             return Ok(resources);
         }
 
@@ -49,7 +49,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         /// </response>
         [Authorize]
         [HasPermission(ResourcesPermissions.GetResourceDetails)]
-        [HttpGet("{resourceId}")]
+        [HttpGet("resources/[controller]/{resourceId}")]
         [ProducesResponseType(typeof(ResourceDetailsDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetResourceDetails([FromRoute] Guid resourceId)
         {

@@ -27,17 +27,24 @@ namespace SatisfactoryPlanner.API.Configuration.Authorization.Permissions
             HasPermissionAuthorizationRequirement requirement,
             HasPermissionAttribute attribute)
         {
-            var permissions =
-                await _userAccessModule.ExecuteQueryAsync(
-                    new GetUserPermissionsQuery(_executionContextAccessor.UserId));
-
-            if (!await AuthorizeAsync(attribute.Name, permissions))
+            try
             {
-                context.Fail();
-                return;
-            }
+                var permissions =
+                    await _userAccessModule.ExecuteQueryAsync(
+                        new GetUserPermissionsQuery(_executionContextAccessor.UserId));
 
-            context.Succeed(requirement);
+                if (!await AuthorizeAsync(attribute.Name, permissions))
+                {
+                    context.Fail();
+                    return;
+                }
+
+                context.Succeed(requirement);
+            }
+            catch
+            { // Catching exceptions so that it runs through all handlers and gives the correct response code
+                context.Fail();
+            }
         }
 
         private Task<bool> AuthorizeAsync(string permission, List<UserPermissionDto> permissions)

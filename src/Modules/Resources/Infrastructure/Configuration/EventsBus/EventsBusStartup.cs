@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
+using SatisfactoryPlanner.Modules.Worlds.IntegrationEvents;
 using Serilog;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.EventsBus
@@ -16,7 +17,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Eve
         {
             var eventBus = ResourcesCompositionRoot.BeginLifetimeScope().Resolve<IEventsBus>();
 
-            //SubscribeToIntegrationEvent<PioneerUserCreatedIntegrationEvent>(eventBus, logger);
+            SubscribeToIntegrationEvent<WorldCreatedIntegrationEvent>(eventBus, logger);
         }
 
         private static void SubscribeToIntegrationEvent<T>(IEventsBus eventBus, ILogger logger)

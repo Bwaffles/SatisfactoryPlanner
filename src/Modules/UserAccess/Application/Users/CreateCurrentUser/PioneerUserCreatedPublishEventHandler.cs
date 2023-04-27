@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrentUser
 {
+    // ReSharper disable once UnusedMember.Global
     public class PioneerUserCreatedPublishEventHandler : INotificationHandler<PioneerUserCreatedNotification>
     {
         private readonly IEventsBus _eventsBus;

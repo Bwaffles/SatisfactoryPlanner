@@ -5,6 +5,7 @@ using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
 namespace SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.SpawnPioneer
 {
     public class
+        // ReSharper disable once UnusedMember.Global
         SpawnPioneerOnPioneerUserCreatedEvent : INotificationHandler<PioneerUserCreatedIntegrationEvent>
     {
         private readonly ICommandsScheduler _commandsScheduler;

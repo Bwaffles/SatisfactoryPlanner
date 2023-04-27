@@ -10,7 +10,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain
         ///     Get the maximum amount extractable from the <paramref name="node" /> using the <paramref name="extractor" />.
         ///     This assumes the extractor is overclocked to 250%.
         /// </summary>
-        public static decimal GetMaxAmountExtractable(Extractor extractor, Node node)
+        public static decimal GetMaxExtractionRate(Extractor extractor, Node node)
         { // TODO liquids have a potential resources per minute * 1000 and their theoretical max is 600, not 780
             // TODO need resource well extractors
 

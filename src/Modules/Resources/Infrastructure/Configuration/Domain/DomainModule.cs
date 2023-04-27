@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using SatisfactoryPlanner.Modules.Resources.Application.Nodes;
-using SatisfactoryPlanner.Modules.Resources.Domain.TappedNodes;
+using SatisfactoryPlanner.Modules.Resources.Application;
+using SatisfactoryPlanner.Modules.Resources.Domain;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Domain
 {
@@ -11,8 +11,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Dom
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<TappedNodeExistenceChecker>()
-                .As<ITappedNodeExistenceChecker>()
+            builder.RegisterType<ExtractionRateCalculator>()
+                .As<IExtractionRateCalculator>()
                 .InstancePerLifetimeScope();
         }
     }

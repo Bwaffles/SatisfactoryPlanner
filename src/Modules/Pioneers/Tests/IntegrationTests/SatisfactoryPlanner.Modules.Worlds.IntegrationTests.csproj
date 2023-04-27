@@ -44,6 +44,9 @@
     <ProjectReference Include="..\..\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
+    <ProjectReference Include="..\..\Domain\SatisfactoryPlanner.Modules.Worlds.Domain.csproj" >
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
