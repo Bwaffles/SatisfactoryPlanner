@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
@@ -11,6 +12,7 @@ type TappedWorldNodeViewProps = {
 export const TappedWorldNodeView = ({
     worldNodeDetails,
 }: TappedWorldNodeViewProps) => {
+    const navigate = useNavigate();
     var purityTextColor =
         worldNodeDetails.purity === "Pure"
             ? "text-green-600"
@@ -27,20 +29,26 @@ export const TappedWorldNodeView = ({
     return (
         <>
             <div className="flex flex-col p-6 bg-gray-800 rounded">
-                <label className="text-gray-400">Purity</label>
-                <div className={"text-xl font-bold mb-4 " + purityTextColor}>
+                <label className="inline-block text-gray-400 mb-2">
+                    Purity
+                </label>
+                <div className={"text-xl font-bold mb-6 " + purityTextColor}>
                     {worldNodeDetails.purity}
                 </div>
 
-                <label className="text-gray-400">Extractor</label>
-                <div className="flex mb-4">
+                <label className="inline-block text-gray-400 mb-2">
+                    Extractor
+                </label>
+                <div className="flex mb-6">
                     <div className="text-xl font-bold">
                         {currentExtractor.name}
                     </div>
                 </div>
 
-                <label className="text-gray-400">Max Extraction Rate</label>
-                <div className="flex mb-4">
+                <label className="inline-block text-gray-400 mb-2">
+                    Max Extraction Rate
+                </label>
+                <div className="flex mb-6">
                     <div className="text-xl font-bold">
                         {formatNumber(currentExtractor.maxExtractionRate)}
                     </div>
@@ -49,7 +57,9 @@ export const TappedWorldNodeView = ({
                     </div>
                 </div>
 
-                <label className="text-gray-400 mb-2">Extraction Rate</label>
+                <label className="inline-block text-gray-400 mb-2">
+                    Extraction Rate
+                </label>
                 <div className="relative flex mb-4">
                     <input
                         type="text"
@@ -60,7 +70,10 @@ export const TappedWorldNodeView = ({
                     <span className="p-2 text-xs leading-6 border border-l-0 border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-400">
                         per min
                     </span>
-                    <Button className="py-2 px-3 rounded-l-none rounded-r">
+                    <Button
+                        className="py-2 px-3 rounded-l-none rounded-r"
+                        onClick={() => navigate(`increase-extraction-rate`)}
+                    >
                         Increase
                     </Button>
                 </div>

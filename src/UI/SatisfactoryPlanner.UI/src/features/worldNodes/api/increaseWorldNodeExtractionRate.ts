@@ -34,7 +34,7 @@ const increaseWorldNodeExtractionRate = async (
     );
 
     if (!response.ok) throw new Error(response.statusText);
-    return response.json();
+    return "";
 };
 
 type IncreaseWorldNodeExtractionRateRequest = {
