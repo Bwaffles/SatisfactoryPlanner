@@ -85,7 +85,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
         [HasPermission(ResourcesPermissions.IncreaseWorldNodeExtractionRate)]
         [WorldAuthorization]
         [HttpPost("worlds/{worldId}/nodes/{nodeId}/increase-extraction-rate")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> IncreaseWorldNodeExtractionRate([FromRoute]Guid worldId, [FromRoute] Guid nodeId,
             [FromBody] IncreaseWorldNodeExtractionRateRequest request)
         {
@@ -95,7 +95,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
                 request.ExtractionRate
             ));
 
-            return Ok();
+            return NoContent();
         }
     }
 }

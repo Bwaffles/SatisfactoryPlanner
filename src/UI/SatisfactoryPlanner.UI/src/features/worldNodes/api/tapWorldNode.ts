@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query";
 
 import * as Config from "../../../config";
+import { axios } from "../../../lib/axios";
 import { queryClient } from "../../../lib/react-query";
 import storage from "../../../utils/storage";
 
@@ -16,24 +17,17 @@ const tapWorldNode = async (
         audience: baseUrl,
     });
 
-    const response = await fetch(
-        baseUrl + `/worlds/${worldId}/nodes/${nodeId}/tap`,
+    return axios.post(
+        `/worlds/${worldId}/nodes/${nodeId}/tap`,
         {
-            method: "POST",
-            body: JSON.stringify({
-                extractorId: extractorId,
-            }),
+            extractorId,
+        },
+        {
             headers: {
-                // Add the Authorization header to the existing headers
-                Accept: "application/json",
                 Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json",
             },
         }
     );
-
-    if (!response.ok) throw new Error(response.statusText);
-    return "A";
 };
 
 type TapWorldNodeRequest = {

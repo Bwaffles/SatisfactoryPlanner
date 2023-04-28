@@ -10,7 +10,7 @@ namespace SatisfactoryPlanner.API.Configuration.Validation
         {
             Title = "Business rule broken";
             Status = StatusCodes.Status409Conflict;
-            Detail = exception.Message;
+            Detail = exception.Details;
             Type = "https://somedomain/business-rule-validation-error";
         }
     }
