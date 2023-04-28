@@ -6,10 +6,12 @@ import { useGetWorldNodeDetails } from "../features/worldNodes/api/getWorldNodeD
 import { formatNumber } from "../utils/format";
 import { Button } from "../components/Elements/Button";
 import { useIncreaseWorldNodeExtractionRate } from "../features/worldNodes/api/increaseWorldNodeExtractionRate";
+import { ErrorResponse } from "../lib/axios";
 
 export const IncreaseWorldNodeExtractionRate = () => {
     const { nodeId } = useParams();
     const [extractionRate, setExtractionRate] = useState<number | null>(null);
+    const [errorMessages, setErrorMessages] = useState<string[] | null>(null);
     const navigate = useNavigate();
     const {
         isError,
@@ -79,6 +81,20 @@ export const IncreaseWorldNodeExtractionRate = () => {
                         </span>
                     </div>
                 </div>
+                {errorMessages != null && (
+                    <div className="text-red-500 mb-6">
+                        {errorMessages.map((message) => {
+                            return (
+                                <p
+                                    key={message}
+                                    className="mb-2"
+                                >
+                                    {message}
+                                </p>
+                            );
+                        })}
+                    </div>
+                )}
                 <div className="flex gap-3">
                     <Button
                         className="py-2 px-3 w-1/4 rounded-r"
@@ -95,10 +111,10 @@ export const IncreaseWorldNodeExtractionRate = () => {
                                 {
                                     onSuccess: () =>
                                         navigate(`/nodes/${nodeId}`),
-                                    onError: () => {
-                                        // TODO get problem details working so i can pull the error messages
-                                        alert("something went wrong");
-                                    },
+                                    onError: (error) =>
+                                        setErrorMessages(
+                                            (error as ErrorResponse).messages
+                                        ),
                                 }
                             );
                         }}
