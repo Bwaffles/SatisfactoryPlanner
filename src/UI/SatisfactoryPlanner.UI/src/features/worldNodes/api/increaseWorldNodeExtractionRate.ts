@@ -12,9 +12,8 @@ const increaseWorldNodeExtractionRate = async (
     nodeId: string,
     extractionRate: number
 ): Promise<string> => {
-    const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
-        audience: baseUrl,
+        audience: Config.API_URL,
     });
 
     return axios.post(

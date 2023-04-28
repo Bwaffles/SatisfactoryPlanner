@@ -4,34 +4,27 @@ import { useQuery } from "react-query";
 import * as Config from "../../../config";
 import storage from "../../../utils/storage";
 import { Resource } from "../types";
+import { axios } from "../../../lib/axios";
 
 export const getResources = async (
     getAccessTokenSilently: any,
     worldId: string
 ): Promise<Resource[]> => {
-    const baseUrl = Config.API_URL;
     const accessToken = await getAccessTokenSilently({
-        audience: baseUrl,
+        audience: Config.API_URL,
     });
-
-    const response = await fetch(baseUrl + `/worlds/${worldId}/resources`, {
-        method: "GET",
+    return axios.get(`/worlds/${worldId}/resources`, {
         headers: {
-            // Add the Authorization header to the existing headers
-            Accept: "application/json",
             Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
         },
     });
-
-    if (!response.ok) throw new Error(response.statusText);
-    return response.json();
 };
 
 export const useGetResources = () => {
     const { getAccessTokenSilently } = useAuth0();
     const worldId = storage.getWorldId();
-    return useQuery("getResources", () =>
-        getResources(getAccessTokenSilently, worldId)
-    );
+    return useQuery({
+        queryKey: ["getResources"],
+        queryFn: () => getResources(getAccessTokenSilently, worldId),
+    });
 };
