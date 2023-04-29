@@ -130,7 +130,7 @@ export const WorldNodeList = ({ resourceId }: WorldNodeListProps) => {
                                             {node.isTapped ? "Yes" : "No"}
                                         </div>
                                     </div>
-                                    <div className="w-36">
+                                    <div className="w-48">
                                         <div className="text-gray-400">
                                             Extraction Rate
                                         </div>
