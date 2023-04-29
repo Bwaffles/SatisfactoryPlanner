@@ -9,18 +9,15 @@ import { axios } from "../../../lib/axios";
 const increaseWorldNodeExtractionRate = async (
     getAccessTokenSilently: any,
     worldId: string,
-    nodeId: string,
-    extractionRate: number
+    request: IncreaseWorldNodeExtractionRateRequest
 ): Promise<string> => {
     const accessToken = await getAccessTokenSilently({
         audience: Config.API_URL,
     });
 
     return axios.post(
-        `/worlds/${worldId}/nodes/${nodeId}/increase-extraction-rate`,
-        {
-            extractionRate,
-        },
+        `/worlds/${worldId}/nodes/${request.nodeId}/increase-extraction-rate`,
+        request.data,
         {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -29,9 +26,11 @@ const increaseWorldNodeExtractionRate = async (
     );
 };
 
-type IncreaseWorldNodeExtractionRateRequest = {
+export type IncreaseWorldNodeExtractionRateRequest = {
     nodeId: string;
-    extractionRate: number;
+    data: {
+        extractionRate: number;
+    };
 };
 
 export const useIncreaseWorldNodeExtractionRate = () => {
@@ -55,8 +54,7 @@ export const useIncreaseWorldNodeExtractionRate = () => {
             return increaseWorldNodeExtractionRate(
                 getAccessTokenSilently,
                 worldId,
-                variables.nodeId,
-                variables.extractionRate
+                variables
             );
         },
     });

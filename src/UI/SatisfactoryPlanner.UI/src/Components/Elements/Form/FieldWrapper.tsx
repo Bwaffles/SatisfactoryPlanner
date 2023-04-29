@@ -16,7 +16,7 @@ export const FieldWrapper = (props: FieldWrapperProps) => {
     return (
         <div className={className}>
             <label className={"inline-block text-gray-400 mb-2"}>{label}</label>
-            <div className="flex">{children}</div>
+            <div>{children}</div>
         </div>
     );
 };
