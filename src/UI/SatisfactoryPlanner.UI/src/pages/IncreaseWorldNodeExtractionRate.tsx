@@ -7,6 +7,7 @@ import { formatNumber } from "../utils/format";
 import { Button } from "../components/Elements/Button";
 import { useIncreaseWorldNodeExtractionRate } from "../features/worldNodes/api/increaseWorldNodeExtractionRate";
 import { ErrorResponse } from "../lib/axios";
+import { FieldWrapper } from "../components/Elements/Form/FieldWrapper";
 
 export const IncreaseWorldNodeExtractionRate = () => {
     const { nodeId } = useParams();
@@ -32,62 +33,51 @@ export const IncreaseWorldNodeExtractionRate = () => {
 
     return (
         <ContentLayout title="Increase Extraction Rate">
-            <div className="p-6 bg-gray-800 rounded w-1/2">
-                <div className="flex mb-6">
-                    <div className="w-1/2">
-                        <label className="inline-block text-gray-400 mb-2">
-                            Current Extraction Rate
-                        </label>
-                        <div className="flex">
-                            <div className={"text-xl font-bold mb-4"}>
-                                {formatNumber(
-                                    worldNodeDetails?.extractionRate!
-                                )}
-                            </div>
-                            <div className="ml-2 text-gray-400 text-xs leading-8">
-                                per min
-                            </div>
-                        </div>
+            <div className="p-6 bg-gray-800 rounded w-1/2 grid grid-cols-2 gap-y-6">
+                <FieldWrapper
+                    label="Current Extraction Rate"
+                    className="col-auto"
+                >
+                    <div className={"text-xl font-bold"}>
+                        {formatNumber(worldNodeDetails?.extractionRate!)}
                     </div>
-                    <div className="w-1/2">
-                        <label className="inline-block text-gray-400 mb-2">
-                            Max Extraction Rate
-                        </label>
-
-                        <div className="flex">
-                            <div className={"text-xl font-bold mb-4"}>
-                                {formatNumber(
-                                    currentExtractor.maxExtractionRate
-                                )}
-                            </div>
-                            <div className="ml-2 text-gray-400 text-xs leading-8">
-                                per min
-                            </div>
-                        </div>
+                    <div className="ml-2 text-gray-400 text-xs leading-8">
+                        per min
                     </div>
-                </div>
-                <div className="mb-6">
-                    <p className="mb-4">Enter your new extraction rate:</p>
-                    <div className="relative flex">
-                        <input
-                            type="text"
-                            className="p-2 pr-0 w-16 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200 focus:outline-none outline-none"
-                            onChange={(a) =>
-                                setExtractionRate(parseInt(a.target.value))
-                            }
-                        />
-                        <span className="p-2 text-xs leading-6 rounded-r border border-l-0 border-solid bg-gray-800 border-gray-600 text-gray-400">
-                            per min
-                        </span>
+                </FieldWrapper>
+                <FieldWrapper
+                    label="Max Extraction Rate"
+                    className="col-auto"
+                >
+                    <div className={"text-xl font-bold"}>
+                        {formatNumber(currentExtractor.maxExtractionRate)}
                     </div>
-                </div>
+                    <div className="ml-2 text-gray-400 text-xs leading-8">
+                        per min
+                    </div>
+                </FieldWrapper>
+                <FieldWrapper
+                    label="New Extraction Rate"
+                    className="col-span-2"
+                >
+                    <input
+                        type="text"
+                        className="p-2 pr-0 w-16 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200 focus:outline-none outline-none"
+                        onChange={(a) =>
+                            setExtractionRate(parseInt(a.target.value))
+                        }
+                    />
+                    <span className="p-2 text-xs leading-6 rounded-r border border-l-0 border-solid bg-gray-800 border-gray-600 text-gray-400">
+                        per min
+                    </span>
+                </FieldWrapper>
                 {errorMessages != null && (
-                    <div className="text-red-500 mb-6">
+                    <div className="col-span-2">
                         {errorMessages.map((message) => {
                             return (
                                 <p
                                     key={message}
-                                    className="mb-2"
+                                    className="mb-2 text-red-600"
                                 >
                                     {message}
                                 </p>
@@ -95,12 +85,20 @@ export const IncreaseWorldNodeExtractionRate = () => {
                         })}
                     </div>
                 )}
-                <div className="flex gap-3">
+                <div className="col-span-2">
                     <Button
-                        className="py-2 px-3 w-1/4 rounded-r"
+                        variant="secondary"
+                        className="py-2 px-3 rounded-r mr-3"
+                        onClick={() => navigate(`/nodes/${nodeId}`)}
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        className="py-2 px-3 rounded-r"
                         onClick={() => {
                             if (extractionRate == null) {
-                                alert("Enter an extraction rate.");
+                                setErrorMessages(["Enter an extraction rate."]);
+                                return;
                             }
 
                             increaseWorldNodeExtractionRateMutation.mutate(
@@ -120,12 +118,6 @@ export const IncreaseWorldNodeExtractionRate = () => {
                         }}
                     >
                         Increase
-                    </Button>
-                    <Button
-                        className="py-2 px-3 w-1/4 rounded-r"
-                        onClick={() => navigate(`/nodes/${nodeId}`)}
-                    >
-                        Cancel
                     </Button>
                 </div>
             </div>
