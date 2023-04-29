@@ -115,11 +115,13 @@ export const IncreaseWorldNodeExtractionRate = () => {
                     </FieldWrapper>
                     <FieldWrapper
                         label="New Extraction Rate"
+                        labelHtmlFor="extractionRate"
                         className="col-span-2"
                         error={methods.formState.errors?.extractionRate}
                     >
                         <div className="flex">
                             <input
+                                id="extractionRate"
                                 type="text"
                                 className="p-2 pr-0 w-24 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200 focus:outline-none outline-none"
                                 {...methods.register("extractionRate", {
