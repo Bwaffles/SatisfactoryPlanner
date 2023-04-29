@@ -68,8 +68,6 @@ export const AppRoutes = () => {
                         isAuthenticated ? <WorldNodeDetails /> : <AutoLogin />
                     }
                 ></Route>
-                // TODO I'd like to think about nested routes but for now, new
-                page for simplicity to move forward
                 <Route
                     path="nodes/:nodeId/increase-extraction-rate"
                     element={
