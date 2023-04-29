@@ -64,7 +64,7 @@ export const IncreaseWorldNodeExtractionRate = () => {
                         type="text"
                         className="p-2 pr-0 w-16 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200 focus:outline-none outline-none"
                         onChange={(a) =>
-                            setExtractionRate(parseInt(a.target.value))
+                            setExtractionRate(parseFloat(a.target.value))
                         }
                     />
                     <span className="p-2 text-xs leading-6 rounded-r border border-l-0 border-solid bg-gray-800 border-gray-600 text-gray-400">
