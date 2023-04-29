@@ -116,6 +116,7 @@ export const IncreaseWorldNodeExtractionRate = () => {
                     <FieldWrapper
                         label="New Extraction Rate"
                         className="col-span-2"
+                        error={methods.formState.errors?.extractionRate}
                     >
                         <div className="flex">
                             <input
@@ -129,14 +130,6 @@ export const IncreaseWorldNodeExtractionRate = () => {
                                 per min
                             </span>
                         </div>
-                        {methods.formState.errors?.extractionRate?.message && (
-                            <div className="mt-1 text-sm font-semibold text-red-500">
-                                {
-                                    methods.formState.errors.extractionRate
-                                        .message
-                                }
-                            </div>
-                        )}
                     </FieldWrapper>
                     {errorMessages != null && (
                         <div className="col-span-2">
