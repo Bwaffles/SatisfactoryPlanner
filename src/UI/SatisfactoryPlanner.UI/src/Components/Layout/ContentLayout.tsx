@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Head } from "./Head";
-import PageHeader from "../PageHeader";
+import PageHeader from "./PageHeader";
 
 type ContentLayoutProps = {
     children: React.ReactNode;

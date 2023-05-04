@@ -63,7 +63,7 @@ export const TappedWorldNodeView = ({
                 <div className="relative flex mb-4">
                     <input
                         type="text"
-                        className="p-2 pr-0 w-12 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200"
+                        className="p-2 pr-0 w-24 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200"
                         value={formatNumber(worldNodeDetails.extractionRate)}
                         disabled={true}
                     />

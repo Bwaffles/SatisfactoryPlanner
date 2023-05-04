@@ -18,13 +18,13 @@ export const Login = () => {
         if (isSuccess) {
             navigate("/");
         }
-    }, [isSuccess]);
+    }, [isSuccess, navigate]);
 
     useEffect(() => {
         if (isError) {
             navigate("/loginError");
         }
-    }, [isError]);
+    }, [isError, navigate]);
 
     return (
         <div className="flex items-center justify-center w-screen h-screen bg-gray-900">

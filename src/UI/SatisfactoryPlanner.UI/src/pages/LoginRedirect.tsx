@@ -14,7 +14,7 @@ export const LoginRedirect = () => {
         if (isAuthenticated) {
             navigate("/login");
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, navigate]);
 
     return (
         <div className="flex items-center justify-center w-screen h-screen bg-gray-900">
