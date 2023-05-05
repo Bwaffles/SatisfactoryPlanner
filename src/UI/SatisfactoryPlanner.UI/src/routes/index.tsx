@@ -27,6 +27,10 @@ const { IncreaseWorldNodeExtractionRate } = lazyImport(
     () => import("../pages/IncreaseWorldNodeExtractionRate"),
     "IncreaseWorldNodeExtractionRate"
 );
+const { DecreaseWorldNodeExtractionRate } = lazyImport(
+    () => import("../pages/DecreaseWorldNodeExtractionRate"),
+    "DecreaseWorldNodeExtractionRate"
+);
 const { LoginRedirect } = lazyImport(
     () => import("../pages/LoginRedirect"),
     "LoginRedirect"
@@ -73,6 +77,16 @@ export const AppRoutes = () => {
                     element={
                         isAuthenticated ? (
                             <IncreaseWorldNodeExtractionRate />
+                        ) : (
+                            <AutoLogin />
+                        )
+                    }
+                ></Route>
+                <Route
+                    path="nodes/:nodeId/decrease-extraction-rate"
+                    element={
+                        isAuthenticated ? (
+                            <DecreaseWorldNodeExtractionRate />
                         ) : (
                             <AutoLogin />
                         )
