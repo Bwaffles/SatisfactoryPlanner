@@ -41,11 +41,11 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 
         // Business rule tests
         [Fact]
-        public void WhenIncreasingHigherThanMaxRate_RuleIsBroken()
+        public void WhenIncreasingAboveTheMaxRate_RuleIsBroken()
         {
             var (worldNode, extractionRateCalculator) = Setup(120);
 
-            RuleAssertions.AssertBrokenRule<CannotIncreaseExtractionRateAboveTheMaxExtractionRateRule>(() =>
+            RuleAssertions.AssertBrokenRule<CannotIncreaseExtractionRateAboveMaxExtractionRateRule>(() =>
             {
                 worldNode.IncreaseExtractionRate(ExtractionRate.Of(121), extractionRateCalculator);
             });
@@ -58,7 +58,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 
             worldNode.IncreaseExtractionRate(ExtractionRate.Of(60), extractionRateCalculator);
 
-            RuleAssertions.AssertBrokenRule<CannotLowerExtractionRateBelowCurrentExtractionRateRule>(() =>
+            RuleAssertions.AssertBrokenRule<CannotIncreaseExtractionRateBelowCurrentExtractionRateRule>(() =>
             {
                 worldNode.IncreaseExtractionRate(ExtractionRate.Of(59), extractionRateCalculator);
             });

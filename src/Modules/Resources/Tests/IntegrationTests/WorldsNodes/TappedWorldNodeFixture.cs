@@ -17,11 +17,13 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
         {
             _settings.WorldId = await new WorldFixture().Create(resourcesModule);
 
-            _settings.NodeId = (await resourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(_settings.WorldId, null)))
+            _settings.NodeId =
+                (await resourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(_settings.WorldId, null)))
                 .First(node => node.ResourceName == "Bauxite").Id;
 
             var extractor =
-                (await resourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(_settings.WorldId, _settings.NodeId)))
+                (await resourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(_settings.WorldId,
+                    _settings.NodeId)))
                 .AvailableExtractors.First(nodeDetail => nodeDetail.Name == "Miner Mk.1");
 
             await resourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(_settings.WorldId, _settings.NodeId,
