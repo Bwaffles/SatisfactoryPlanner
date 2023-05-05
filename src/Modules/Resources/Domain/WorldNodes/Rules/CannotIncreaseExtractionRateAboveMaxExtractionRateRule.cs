@@ -4,14 +4,14 @@ using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules
 {
-    public class CannotIncreaseExtractionRateAboveTheMaxExtractionRateRule : IBusinessRule
+    public class CannotIncreaseExtractionRateAboveMaxExtractionRateRule : IBusinessRule
     {
         private readonly ExtractionRate _extractionRate;
         private readonly IExtractionRateCalculator _extractionRateCalculator;
         private readonly ExtractorId _extractorId;
         private readonly NodeId _nodeId;
 
-        public CannotIncreaseExtractionRateAboveTheMaxExtractionRateRule(ExtractionRate extractionRate,
+        public CannotIncreaseExtractionRateAboveMaxExtractionRateRule(ExtractionRate extractionRate,
             NodeId nodeId, ExtractorId extractorId, IExtractionRateCalculator extractionRateCalculator)
         {
             _extractionRate = extractionRate;

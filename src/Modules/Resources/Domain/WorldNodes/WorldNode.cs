@@ -47,17 +47,29 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
             AddDomainEvent(new WorldNodeTappedDomainEvent(Id, _worldId, _nodeId, _extractorId));
         }
 
-        public void IncreaseExtractionRate(ExtractionRate newExtractionRate, IExtractionRateCalculator extractionRateCalculator)
+        public void IncreaseExtractionRate(ExtractionRate extractionRate, IExtractionRateCalculator extractionRateCalculator)
         {
-            CheckRule(new CannotLowerExtractionRateBelowCurrentExtractionRateRule(newExtractionRate, _extractionRate));
-            CheckRule(new CannotIncreaseExtractionRateAboveTheMaxExtractionRateRule(newExtractionRate, _nodeId, _extractorId, extractionRateCalculator));
+            CheckRule(new CannotIncreaseExtractionRateBelowCurrentExtractionRateRule(extractionRate, _extractionRate));
+            CheckRule(new CannotIncreaseExtractionRateAboveMaxExtractionRateRule(extractionRate, _nodeId, _extractorId, extractionRateCalculator));
 
-            if (_extractionRate == newExtractionRate)
+            if (_extractionRate == extractionRate)
                 return;
 
-            _extractionRate = newExtractionRate;
+            _extractionRate = extractionRate;
 
             AddDomainEvent(new ExtractionRateIncreasedDomainEvent(Id, _extractionRate));
+        }
+
+        public void DecreaseExtractionRate(ExtractionRate extractionRate)
+        {
+            CheckRule(new CannotDecreaseExtractionRateAboveCurrentExtractionRateRule(extractionRate, _extractionRate));
+
+            if (_extractionRate == extractionRate)
+                return;
+
+            _extractionRate = extractionRate;
+
+            AddDomainEvent(new ExtractionRateDecreasedDomainEvent(Id, _extractionRate));
         }
     }
 }

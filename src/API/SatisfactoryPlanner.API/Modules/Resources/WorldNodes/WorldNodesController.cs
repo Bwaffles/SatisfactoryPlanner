@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DecreaseExtractionRate;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
@@ -36,7 +37,8 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
         [WorldAuthorization]
         [HttpGet("worlds/{worldId}/nodes")]
         [ProducesResponseType(typeof(List<WorldNodeDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetWorldNodes([FromRoute] Guid worldId, [FromQuery] GetWorldNodesRequest request)
+        public async Task<IActionResult> GetWorldNodes([FromRoute] Guid worldId,
+            [FromQuery] GetWorldNodesRequest request)
         {
             var worldNodes = await _module.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, request.ResourceId));
             return Ok(worldNodes);
@@ -67,7 +69,8 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
         [WorldAuthorization]
         [HttpPost("worlds/{worldId}/nodes/{nodeId}/tap")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> TapWorldNode([FromRoute] Guid worldId, [FromRoute] Guid nodeId, [FromBody] TapWorldNodeRequest request)
+        public async Task<IActionResult> TapWorldNode([FromRoute] Guid worldId, [FromRoute] Guid nodeId,
+            [FromBody] TapWorldNodeRequest request)
         {
             await _module.ExecuteCommandAsync(new TapWorldNodeCommand(
                 worldId,
@@ -86,10 +89,32 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
         [WorldAuthorization]
         [HttpPost("worlds/{worldId}/nodes/{nodeId}/increase-extraction-rate")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> IncreaseWorldNodeExtractionRate([FromRoute]Guid worldId, [FromRoute] Guid nodeId,
+        public async Task<IActionResult> IncreaseWorldNodeExtractionRate([FromRoute] Guid worldId,
+            [FromRoute] Guid nodeId,
             [FromBody] IncreaseWorldNodeExtractionRateRequest request)
         {
             await _module.ExecuteCommandAsync(new IncreaseExtractionRateCommand(
+                worldId,
+                nodeId,
+                request.ExtractionRate
+            ));
+
+            return NoContent();
+        }
+
+        /// <summary>
+        ///     Decrease the extraction rate of resources from the world node.
+        /// </summary>
+        [Authorize]
+        [HasPermission(ResourcesPermissions.DecreaseWorldNodeExtractionRate)]
+        [WorldAuthorization]
+        [HttpPost("worlds/{worldId}/nodes/{nodeId}/decrease-extraction-rate")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DecreaseWorldNodeExtractionRate([FromRoute] Guid worldId,
+            [FromRoute] Guid nodeId, 
+            [FromBody] DecreaseWorldNodeExtractionRateRequest request)
+        {
+            await _module.ExecuteCommandAsync(new DecreaseExtractionRateCommand(
                 worldId,
                 nodeId,
                 request.ExtractionRate

@@ -2,12 +2,12 @@
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules
 {
-    public class CannotLowerExtractionRateBelowCurrentExtractionRateRule : IBusinessRule
+    public class CannotIncreaseExtractionRateBelowCurrentExtractionRateRule : IBusinessRule
     {
         private readonly ExtractionRate _newExtractionRate;
         private readonly ExtractionRate _currentExtractionRate;
 
-        public CannotLowerExtractionRateBelowCurrentExtractionRateRule(ExtractionRate newExtractionRate, ExtractionRate currentExtractionRate)
+        public CannotIncreaseExtractionRateBelowCurrentExtractionRateRule(ExtractionRate newExtractionRate, ExtractionRate currentExtractionRate)
         {
             _newExtractionRate = newExtractionRate;
             _currentExtractionRate = currentExtractionRate;
@@ -15,6 +15,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules
 
         public bool IsBroken() => _newExtractionRate < _currentExtractionRate;
 
-        public string Message => "Cannot lower the extraction rate below the current extraction rate.";
+        public string Message => "Cannot increase the extraction rate to a rate below the current extraction rate.";
     }
 }
