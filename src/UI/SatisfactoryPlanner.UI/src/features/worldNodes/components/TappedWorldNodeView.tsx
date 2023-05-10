@@ -1,11 +1,11 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
-import { WorldNodeDetails } from "../types";
+import { AvailableExtractor, WorldNodeDetails } from "../types";
 import { FieldWrapper } from "../../../components/Elements/Form/FieldWrapper";
 
 type TappedWorldNodeViewProps = {
@@ -56,33 +56,63 @@ export const TappedWorldNodeView = ({
                 </FieldWrapper>
 
                 <FieldWrapper label="Extraction Rate">
-                    <div className="relative flex mb-4">
-                        <Button
-                            className="py-2 px-3 rounded-r-none rounded-l"
-                            onClick={() => navigate(`decrease-extraction-rate`)}
-                        >
-                            <FontAwesomeIcon icon={faMinus} />
-                        </Button>
-                        <input
-                            type="text"
-                            className="p-2 pr-0 w-24 text-right border border-x-0 border-solid bg-gray-700 border-gray-600 text-gray-200"
-                            value={formatNumber(
-                                worldNodeDetails.extractionRate
-                            )}
-                            disabled={true}
-                        />
-                        <span className="p-2 text-xs leading-6 border border-l-0 border-r-0 border-solid bg-gray-700 border-gray-600 text-gray-400">
-                            per min
-                        </span>
-                        <Button
-                            className="py-2 px-3 rounded-l-none rounded-r"
-                            onClick={() => navigate(`increase-extraction-rate`)}
-                        >
-                            <FontAwesomeIcon icon={faPlus} />
-                        </Button>
-                    </div>
+                    {renderExtractionRate(
+                        navigate,
+                        worldNodeDetails,
+                        currentExtractor
+                    )}
                 </FieldWrapper>
             </div>
         </>
     );
 };
+
+function renderExtractionRate(
+    navigate: NavigateFunction,
+    worldNodeDetails: WorldNodeDetails,
+    currentExtractor: AvailableExtractor
+) {
+    const canDecreaseRate = worldNodeDetails.extractionRate > 0;
+    const canIncreaseRate =
+        worldNodeDetails.extractionRate < currentExtractor.maxExtractionRate;
+
+    return (
+        <div className="relative flex mb-4">
+            {canDecreaseRate && (
+                <Button
+                    className="py-2 px-2 rounded-r-none rounded-l"
+                    title="Decrease the extraction rate"
+                    onClick={() => navigate(`decrease-extraction-rate`)}
+                >
+                    <FontAwesomeIcon icon={faMinus} />
+                </Button>
+            )}
+            <input
+                type="text"
+                className={
+                    "p-2 pr-0 w-24 text-right border border-solid bg-gray-700 border-gray-600 text-gray-200 " +
+                    (canDecreaseRate ? "border-x-0" : "border-r-0 rounded-l")
+                }
+                value={formatNumber(worldNodeDetails.extractionRate)}
+                disabled={true}
+            />
+            <span
+                className={
+                    "p-2 text-xs leading-6 border border-solid bg-gray-700 border-gray-600 text-gray-400 " +
+                    (canIncreaseRate ? "border-x-0" : "border-l-0 rounded-r")
+                }
+            >
+                per min
+            </span>
+            {canIncreaseRate && (
+                <Button
+                    className="py-2 px-2 rounded-l-none rounded-r"
+                    title="Incease the extraction rate"
+                    onClick={() => navigate(`increase-extraction-rate`)}
+                >
+                    <FontAwesomeIcon icon={faPlus} />
+                </Button>
+            )}
+        </div>
+    );
+}

@@ -62,108 +62,118 @@ export const IncreaseWorldNodeExtractionRate = () => {
         return <span>Error: {(error as Error).message}</span>;
     }
 
+    const canIncreaseRate =
+        worldNodeDetails!.extractionRate < currentExtractor.maxExtractionRate;
+
     return (
         <ContentLayout title="Increase Extraction Rate">
-            <form
-                id="increase-extraction-rate"
-                onSubmit={methods.handleSubmit((values) => {
-                    increaseWorldNodeExtractionRateMutation.mutate(
-                        {
-                            nodeId: nodeId!,
-                            data: values,
-                        },
-                        {
-                            onSuccess: () => navigate(`/nodes/${nodeId}`),
-                            onError: (error) =>
-                                setErrorMessages(
-                                    (error as ErrorResponse).messages
-                                ),
-                        }
-                    );
-                })}
-            >
-                <div className="p-6 bg-gray-800 rounded w-1/2 grid grid-cols-2 gap-y-6">
-                    <FieldWrapper
-                        label="Current Extraction Rate"
-                        className="col-auto"
-                    >
-                        <div className="flex">
-                            <div className={"text-xl font-bold"}>
-                                {formatNumber(
-                                    worldNodeDetails?.extractionRate!
-                                )}
+            {canIncreaseRate ? (
+                <form
+                    id="increase-extraction-rate"
+                    onSubmit={methods.handleSubmit((values) => {
+                        increaseWorldNodeExtractionRateMutation.mutate(
+                            {
+                                nodeId: nodeId!,
+                                data: values,
+                            },
+                            {
+                                onSuccess: () => navigate(`/nodes/${nodeId}`),
+                                onError: (error) =>
+                                    setErrorMessages(
+                                        (error as ErrorResponse).messages
+                                    ),
+                            }
+                        );
+                    })}
+                >
+                    <div className="p-6 bg-gray-800 rounded w-1/2 grid grid-cols-2 gap-y-6">
+                        <FieldWrapper
+                            label="Current Extraction Rate"
+                            className="col-auto"
+                        >
+                            <div className="flex">
+                                <div className={"text-xl font-bold"}>
+                                    {formatNumber(
+                                        worldNodeDetails?.extractionRate!
+                                    )}
+                                </div>
+                                <div className="ml-2 text-gray-400 text-xs leading-8">
+                                    per min
+                                </div>
                             </div>
-                            <div className="ml-2 text-gray-400 text-xs leading-8">
-                                per min
+                        </FieldWrapper>
+                        <FieldWrapper
+                            label="Max Extraction Rate"
+                            className="col-auto"
+                        >
+                            <div className="flex">
+                                <div className={"text-xl font-bold"}>
+                                    {formatNumber(
+                                        currentExtractor.maxExtractionRate
+                                    )}
+                                </div>
+                                <div className="ml-2 text-gray-400 text-xs leading-8">
+                                    per min
+                                </div>
                             </div>
-                        </div>
-                    </FieldWrapper>
-                    <FieldWrapper
-                        label="Max Extraction Rate"
-                        className="col-auto"
-                    >
-                        <div className="flex">
-                            <div className={"text-xl font-bold"}>
-                                {formatNumber(
-                                    currentExtractor.maxExtractionRate
-                                )}
+                        </FieldWrapper>
+                        <FieldWrapper
+                            label="New Extraction Rate"
+                            labelHtmlFor="extractionRate"
+                            className="col-span-2"
+                            error={methods.formState.errors?.extractionRate}
+                        >
+                            <div className="flex">
+                                <input
+                                    id="extractionRate"
+                                    type="text"
+                                    className="p-2 pr-0 w-24 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200 focus:outline-none outline-none"
+                                    {...methods.register("extractionRate", {
+                                        valueAsNumber: true,
+                                    })}
+                                />
+                                <span className="p-2 text-xs leading-6 rounded-r border border-l-0 border-solid bg-gray-800 border-gray-600 text-gray-400">
+                                    per min
+                                </span>
                             </div>
-                            <div className="ml-2 text-gray-400 text-xs leading-8">
-                                per min
-                            </div>
-                        </div>
-                    </FieldWrapper>
-                    <FieldWrapper
-                        label="New Extraction Rate"
-                        labelHtmlFor="extractionRate"
-                        className="col-span-2"
-                        error={methods.formState.errors?.extractionRate}
-                    >
-                        <div className="flex">
-                            <input
-                                id="extractionRate"
-                                type="text"
-                                className="p-2 pr-0 w-24 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200 focus:outline-none outline-none"
-                                {...methods.register("extractionRate", {
-                                    valueAsNumber: true,
+                        </FieldWrapper>
+                        {errorMessages != null && (
+                            <div className="col-span-2">
+                                {errorMessages.map((message) => {
+                                    return (
+                                        <p
+                                            key={message}
+                                            className="mb-2 text-red-600"
+                                        >
+                                            {message}
+                                        </p>
+                                    );
                                 })}
-                            />
-                            <span className="p-2 text-xs leading-6 rounded-r border border-l-0 border-solid bg-gray-800 border-gray-600 text-gray-400">
-                                per min
-                            </span>
-                        </div>
-                    </FieldWrapper>
-                    {errorMessages != null && (
+                            </div>
+                        )}
                         <div className="col-span-2">
-                            {errorMessages.map((message) => {
-                                return (
-                                    <p
-                                        key={message}
-                                        className="mb-2 text-red-600"
-                                    >
-                                        {message}
-                                    </p>
-                                );
-                            })}
+                            <Button
+                                variant="secondary"
+                                className="py-2 px-3 rounded-r mr-3"
+                                onClick={() => navigate(`/nodes/${nodeId}`)}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className="py-2 px-3 rounded-r"
+                                type="submit"
+                            >
+                                Increase
+                            </Button>
                         </div>
-                    )}
-                    <div className="col-span-2">
-                        <Button
-                            variant="secondary"
-                            className="py-2 px-3 rounded-r mr-3"
-                            onClick={() => navigate(`/nodes/${nodeId}`)}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            className="py-2 px-3 rounded-r"
-                            type="submit"
-                        >
-                            Increase
-                        </Button>
                     </div>
+                </form>
+            ) : (
+                <div className="p-24 bg-gray-800 rounded w-1/2 text-center text-lg font-semibold">
+                    The extraction rate is already maxed out and can't be
+                    increased any further.
                 </div>
-            </form>
+            )}
         </ContentLayout>
     );
 };
