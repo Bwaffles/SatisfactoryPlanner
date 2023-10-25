@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.SpawnWorldNodes;
 
-namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
+namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 {
     internal class WorldFixture
     {

@@ -3,7 +3,7 @@ using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeD
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode;
 
-namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
+namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 {
     public class TappedWorldNodeFixture
     {
