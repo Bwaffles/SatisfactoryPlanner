@@ -154,13 +154,13 @@ export const IncreaseWorldNodeExtractionRate = () => {
                         <div className="col-span-2">
                             <Button
                                 variant="secondary"
-                                className="py-2 px-3 rounded-r mr-3"
+                                className="rounded-r mr-3"
                                 onClick={() => navigate(`/nodes/${nodeId}`)}
                             >
                                 Cancel
                             </Button>
                             <Button
-                                className="py-2 px-3 rounded-r"
+                                className="rounded-r"
                                 type="submit"
                             >
                                 Increase
