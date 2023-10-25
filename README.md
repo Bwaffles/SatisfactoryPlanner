@@ -30,7 +30,9 @@ Design methodology is to use task based UI.
 - Each module is designed using clean architecture.
 
 ### Intent Based API
-Want to use intent based API instead of the typical CRUD Rest API since my application is using more of a command query design. So intead of a generic edit factory method, you would have commands to edit specific pieces of information about that factory. 
+Using intent based API instead of the typical CRUD Rest API since this application is using CQRS architecture. So intead of a generic edit factory method, you would have commands to edit specific pieces of information about that factory. 
+
+Because of this, most API will be either a GET or POST request. There's a good argument that endpoints such as `worlds/worldId/nodes/nodeId/increase-extraction-rate` could be a PATCH because it's just updating a small piece of a world node, but the thinking here is that increase-extraction-rate is the resource and the resource is a command. We're not exposing the resource so that it can be Created, Updated, or Deleted, we're providing explicit actions that can be performed. If the client wants to change information about the worldNode, we'll provide specific end points of all the available actions instead of leaving it up to the client to figure out what combination of fields can be changed and when. 
 
 - https://codeopinion.com/is-a-rest-api-with-cqrs-possible/
 - https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling
@@ -51,6 +53,10 @@ Reasoning being that `/pioneers/9` is a resource and the resource does not exist
   - https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-7.0#synchronous-action
   - https://stackoverflow.com/a/61049975
   - FYI dissenting opinion https://jsonapi.org/format/#fetching-resources-responses I think the docs are up to interpretation. On the surface it seems to say to always use `200 Ok` and return null. But I think reading it deeper it means more like return `200 Ok` if pioneer 9 exists but there is no data there.
+
+#### POST
+`200 Ok` - When the request completes successfully and there is data to be returned. The data will be returned in the body of the response.
+`204 No Content` - When the request completes successfully and there is no data to be returned.
 
 ## Validation
 
