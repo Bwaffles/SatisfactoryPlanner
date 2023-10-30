@@ -116,3 +116,21 @@ I've gone back and forth probably 5 times now on how this should be implemented.
  Honestly, after writing all this out, it seems like option 1 is the best option. My fear of wasting database storage, or how to keep it synced ruined the domain model. How do I handle new nodes being added/removed in updates? Just make it part of my script.
  
  Would I call it Node and WorldNode? The api makes so much more sense to be /api/world/{worldId}/nodes/{nodeId}/tap, /api/world/{worldId}/resources. I think forcing myself to split the routes by bounded context also ruins the api experience. Discord has channel id in their routes, GitHub has repo id in the route.
+
+ ## Extractors
+
+ Currently there are 4 extractors. They come from the game data files and there would never be new or different ones unless there is a game update. Initially I chose to add the extractor as an entity in my database, with its own id and with the game code as a column that I can use in future updates to perform updates by cross checking the game data files. After working with this on more complicated code, I'm now starting to see the flaws:
+
+   1. My entity can be any kind of extractor, so when I'm testing and I want to write a test using the Miner Mk.2 I have to create a fake testing extractor. I don't need to have an infinite number of test cases, I just want to test against the extractor that I know exists and I want to do it easily.
+   2. Since this is an entity and not owned by the WorldNode, it only has a reference to the ExtractorId and anytime I need to get information from the extractor (like the max extraction rate, or what kind of resources are allowed) I need to get the whole extractor to give to my domain model.
+
+My first thought was can I just reference the entire extractor on the WorldNode? Then I started to think that the WorldNode doesn't own the Extractor. If the WorldNode has an Extractor then I'd have to make sure it's completely immutable so that when I save my WorldNode it doesn't update the Extractor in the database for everyone. I think that this breaks some good domain modeling practices and gives off a bit of a smell.
+
+So I like the idea of referencing the entire extractor on the WorldNode, but not as an entity. What if it was a value object? What's the difference between this and what I did with the NodePurity? Does this need to be in the database at all? What if I had the 4 extractors in memory. I could have a MinerMk1, MinerMk2, MinerMk3 and OilExtractor extractor classes that has all the same information that was in my database. This means that instead of my tests need a factory class to create the MinerMk1, I can use the production code factory to create it. My WorldNode would no longer just have reference to ExtractorId, but it would have the Extractor itself since I would make it a value object.
+
+* Need to refactor Extractor to use a Code for it's primary key instead of Id for easier reference
+* Update extractor_allowed_resources to use code
+* Update world_nodes to use code
+* Update references to use code instead of id
+* Change Extractor from an entity to a value object with the 4 subclasses
+* Replace all access to extractors from the database table to use the ExtractorFactory
