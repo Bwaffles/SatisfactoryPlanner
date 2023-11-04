@@ -47,13 +47,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 disabled={props.disabled || isLoading}
                 {...props}
             >
-                <span className="mx-2">{props.children}</span>{" "}
-                {isLoading && (
-                    <Spinner
-                        size="sm"
-                        className="text-current"
-                    />
-                )}
+                <div className="flex items-center">
+                    <span className="mx-2">{props.children}</span>
+                    {isLoading && (
+                        <Spinner
+                            size="sm"
+                            className="text-current"
+                        />
+                    )}
+                </div>
             </button>
         );
     }
