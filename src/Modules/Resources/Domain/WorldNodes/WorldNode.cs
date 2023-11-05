@@ -27,11 +27,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
             _extractionRate = ExtractionRate.Of(0);
         }
 
-        // ReSharper disable once UnusedMember.Local
-        private WorldNode()
-        { /* for EF */
-        }
-
         public static WorldNode Spawn(WorldId worldId, NodeId nodeId)
             => new(worldId, nodeId);
 
