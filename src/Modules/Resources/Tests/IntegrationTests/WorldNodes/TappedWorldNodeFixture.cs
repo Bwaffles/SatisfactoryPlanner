@@ -13,7 +13,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         ///     Create a new tapped node.
         /// </summary>
         /// <returns>Returns the settings that were used to create the tapped node.</returns>
-        public async Task<Settings> Create(IResourcesModule resourcesModule)
+        public async Task<Settings> Create(IResourcesModule resourcesModule,
+            string extractorName = "Miner Mk.1")
         {
             _settings.WorldId = await new WorldFixture().Create(resourcesModule);
 
@@ -24,7 +25,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             var extractor =
                 (await resourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(_settings.WorldId,
                     _settings.NodeId)))
-                .AvailableExtractors.First(nodeDetail => nodeDetail.Name == "Miner Mk.1");
+                .AvailableExtractors.First(nodeDetail => nodeDetail.Name == extractorName);
 
             await resourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(_settings.WorldId, _settings.NodeId,
                 extractor.Id));

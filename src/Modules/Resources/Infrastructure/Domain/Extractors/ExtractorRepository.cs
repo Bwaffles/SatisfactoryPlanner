@@ -13,7 +13,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Domain.Extractors
             _context = context;
         }
 
-        public async Task<Extractor?> FindByIdAsync(ExtractorId extractorId)
+        public async Task<Extractor?> FindByIdAsync(ExtractorId? extractorId)
             => await _context.Extractors.FindAsync(extractorId);
 
         public Extractor? FindById(ExtractorId extractorId)

@@ -71,5 +71,23 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 
             AddDomainEvent(new ExtractionRateDecreasedDomainEvent(Id, _extractionRate));
         }
+
+        public void UpgradeExtractor(Extractor extractor, ResourceId resourceId, Extractor? currentExtractor)
+        {
+            CheckRule(new MustBeTappedRule(IsTapped()));
+            CheckRule(new ExtractorMustBeAbleToExtractResourceRule(extractor, resourceId));
+            CheckRule(new CannotUpgradeToASlowerExtractorRule(extractor, currentExtractor!));
+
+            if (_extractorId! == extractor.Id)
+                return;
+
+            _extractorId = extractor.Id;
+
+            AddDomainEvent(new ExtractorUpgradedDomainEvent(Id, _extractorId));
+        }
+
+        private bool IsTapped() => _extractorId is not null;
+
+        public ExtractorId? GetExtractorId() => _extractorId;
     }
 }

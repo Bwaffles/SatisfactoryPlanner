@@ -9,5 +9,6 @@
         public const string TapWorldNode = "Resources.TapWorldNode";
         public const string IncreaseWorldNodeExtractionRate = "Resources.IncreaseWorldNodeExtractionRate";
         public const string DecreaseWorldNodeExtractionRate = "Resources.DecreaseWorldNodeExtractionRate";
+        public const string UpgradeExtractor = "Resources.UpgradeExtractor";
     }
 }
