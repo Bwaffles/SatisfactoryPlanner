@@ -9,9 +9,9 @@ const variants = {
 };
 
 const sizes = {
-    sm: "py-2 px-4 text-sm",
-    md: "p-4 text-md",
-    lg: "py-4 px-8 text-lg",
+    sm: "py-2 px-2 text-sm",
+    md: "py-2 px-4 text-md",
+    lg: "py-2 px-4 text-lg",
 };
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -47,13 +47,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 disabled={props.disabled || isLoading}
                 {...props}
             >
-                <span className="mx-2">{props.children}</span>{" "}
-                {isLoading && (
-                    <Spinner
-                        size="sm"
-                        className="text-current"
-                    />
-                )}
+                <div className="flex items-center">
+                    <span className="mx-2">{props.children}</span>
+                    {isLoading && (
+                        <Spinner
+                            size="sm"
+                            className="text-current"
+                        />
+                    )}
+                </div>
             </button>
         );
     }

@@ -1,13 +1,12 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DecreaseExtractionRate;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
 using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 
-namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
+namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 {
     [TestFixture]
-    public class DecreaseExtractionRateTests : TestBase
+    public class IncreaseExtractionRateTests : TestBase
     {
         // Happy path tests
         [Test]
@@ -16,24 +15,10 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
             var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule);
 
             await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, nodeId, 21));
-            await ResourcesModule.ExecuteCommandAsync(new DecreaseExtractionRateCommand(worldId, nodeId, 10));
 
             var postTapNodeDetails =
                 await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
-            postTapNodeDetails.ExtractionRate.Should().Be(10);
-        }
-
-        [Test]
-        public async Task WhenExtractionRateIsZero_IsSuccessful()
-        {
-            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule);
-
-            await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, nodeId, 21));
-            await ResourcesModule.ExecuteCommandAsync(new DecreaseExtractionRateCommand(worldId, nodeId, 0));
-
-            var postTapNodeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
-            postTapNodeDetails.ExtractionRate.Should().Be(0);
+            postTapNodeDetails.ExtractionRate.Should().Be(21);
         }
 
         // CommandValidator tests
@@ -43,7 +28,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new DecreaseExtractionRateCommand(Guid.Empty, Guid.NewGuid(), 1));
+                    new IncreaseExtractionRateCommand(Guid.Empty, Guid.NewGuid(), 1));
             });
         }
 
@@ -53,7 +38,19 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new DecreaseExtractionRateCommand(Guid.NewGuid(), Guid.Empty, 1));
+                    new IncreaseExtractionRateCommand(Guid.NewGuid(), Guid.Empty, 1));
+            });
+        }
+
+        [Test]
+        public async Task WhenExtractionRateIsZero_ThrowsInvalidCommandException()
+        {
+            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule);
+
+            Assert.CatchAsync<InvalidCommandException>(async () =>
+            {
+                await ResourcesModule.ExecuteCommandAsync(
+                    new IncreaseExtractionRateCommand(worldId, nodeId, 0));
             });
         }
 
@@ -65,7 +62,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new DecreaseExtractionRateCommand(worldId, nodeId, -1));
+                    new IncreaseExtractionRateCommand(worldId, nodeId, -1));
             });
         }
 
@@ -79,7 +76,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new DecreaseExtractionRateCommand(differentWorldId, nodeId, -1));
+                    new IncreaseExtractionRateCommand(differentWorldId, nodeId, -1));
             });
         }
 
@@ -92,7 +89,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new DecreaseExtractionRateCommand(worldId, randomNodeId, -1));
+                    new IncreaseExtractionRateCommand(worldId, randomNodeId, -1));
             });
         }
     }

@@ -50,15 +50,17 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 
         private static WorldNode Setup(decimal extractionRate)
         {
-            var (worldNode, _, nodeId, extractorId) = new TapWorldNodeExecuter().Execute();
+            var worldNodeTestData = new WorldNodeFixture()
+                .IsTapped()
+                .Create();
             var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
             mockExtractionRateCalculator
-                .Setup(_ => _.GetMaxExtractionRate(nodeId, extractorId))
+                .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, worldNodeTestData.Extractor!.Id))
                 .Returns(ExtractionRate.Of(300));
 
-            worldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate), mockExtractionRateCalculator.Object);
+            worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate), mockExtractionRateCalculator.Object);
 
-            return worldNode;
+            return worldNodeTestData.WorldNode;
         }
     }
 }

@@ -5,6 +5,7 @@ import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
 import { useTapWorldNode } from "../api/tapWorldNode";
 import { WorldNodeDetails } from "../types";
+import { FieldWrapper } from "../../../components/Elements/Form/FieldWrapper";
 
 type UntappedWorldNodeViewProps = {
     worldNodeDetails: WorldNodeDetails;
@@ -23,11 +24,9 @@ export const UntappedWorldNodeView = ({
 
     return (
         <>
-            <div className="flex flex-col gap-4 p-6 bg-gray-800 rounded">
-                <p className="mb-4">
-                    Select the extractor to tap the node with:
-                </p>
-                <div className="flex gap-12">
+            <div className="flex flex-col gap-6 p-6 w-fit bg-gray-800 rounded">
+                <p>Select the extractor to tap the node with:</p>
+                <div className="flex flex-wrap gap-12">
                     {worldNodeDetails.availableExtractors?.map((extractor) => {
                         var selectedExtractorClasses =
                             extractor.id === selectedExtractor
@@ -38,7 +37,7 @@ export const UntappedWorldNodeView = ({
                             <div
                                 key={extractor.id}
                                 className={
-                                    "flex flex-col items-center rounded p-6 border-4 " +
+                                    "flex flex-col items-center rounded p-6 w-64 border-4 " +
                                     selectedExtractorClasses
                                 }
                                 onClick={
@@ -60,16 +59,21 @@ export const UntappedWorldNodeView = ({
                                     alt="Extractor"
                                     src={Doggo}
                                 ></img>
-                                <div>
-                                    <div className="text-xs text-gray-400">
-                                        Max Extraction Rate
+                                <FieldWrapper
+                                    label="Max Extraction Rate"
+                                    className="col-auto"
+                                >
+                                    <div className="flex">
+                                        <div className={"text-xl font-bold"}>
+                                            {formatNumber(
+                                                extractor.maxExtractionRate
+                                            )}
+                                        </div>
+                                        <div className="ml-2 text-gray-400 text-xs leading-8">
+                                            per min
+                                        </div>
                                     </div>
-                                    <div className="text-lg text-right">
-                                        {formatNumber(
-                                            extractor.maxExtractionRate
-                                        )}
-                                    </div>
-                                </div>
+                                </FieldWrapper>
                             </div>
                         );
                     })}
@@ -83,9 +87,7 @@ export const UntappedWorldNodeView = ({
                         className="mt-4"
                         onClick={() => {
                             if (selectedExtractor == null) {
-                                setValidationMessage(
-                                    "Please select an extractor."
-                                );
+                                setValidationMessage("Select an extractor.");
                                 return;
                             }
 

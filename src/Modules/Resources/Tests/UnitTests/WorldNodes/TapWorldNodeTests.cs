@@ -1,10 +1,8 @@
 ﻿using FluentAssertions;
 using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
-using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules;
 using SatisfactoryPlanner.Modules.Resources.UnitTests.Extractors;
-using System;
 using Xunit;
 
 namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
@@ -15,18 +13,18 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
         [Fact]
         public void WhenDataIsValid_IsSuccessful()
         {
-            var (worldNode, worldId, nodeId) = new WorldNodeFixture().Create();
-            var resourceId = new ResourceId(Guid.NewGuid());
+            var worldNodeTestData = new WorldNodeFixture().Create();
             var extractor = new ExtractorFixture()
-                .CanExtract(resourceId)
+                .CanExtract(worldNodeTestData.ResourceId)
                 .Create();
 
-            worldNode.Tap(extractor, resourceId);
+            worldNodeTestData.WorldNode.Tap(extractor, worldNodeTestData.ResourceId);
 
-            var domainEvent = DomainEventAssertions.AssertPublishedEvent<WorldNodeTappedDomainEvent>(worldNode);
-            domainEvent.WorldNodeId.Should().Be(worldNode.Id);
-            domainEvent.WorldId.Should().Be(worldId);
-            domainEvent.NodeId.Should().Be(nodeId);
+            var domainEvent =
+                DomainEventAssertions.AssertPublishedEvent<WorldNodeTappedDomainEvent>(worldNodeTestData.WorldNode);
+            domainEvent.WorldNodeId.Should().Be(worldNodeTestData.WorldNode.Id);
+            domainEvent.WorldId.Should().Be(worldNodeTestData.WorldId);
+            domainEvent.NodeId.Should().Be(worldNodeTestData.NodeId);
             domainEvent.ExtractorId.Should().Be(extractor.Id);
         }
 
@@ -34,32 +32,30 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
         [Fact]
         public void WhenNodeIsAlreadyTapped_RuleIsBroken()
         {
-            var (worldNode, _, _) = new WorldNodeFixture().Create();
-            var resourceId = new ResourceId(Guid.NewGuid());
+            var worldNodeTestData = new WorldNodeFixture().Create();
             var extractor = new ExtractorFixture()
-                .CanExtract(resourceId)
+                .CanExtract(worldNodeTestData.ResourceId)
                 .Create();
 
-            worldNode.Tap(extractor, resourceId);
+            worldNodeTestData.WorldNode.Tap(extractor, worldNodeTestData.ResourceId);
 
             RuleAssertions.AssertBrokenRule<CannotAlreadyBeTappedRule>(() =>
             {
-                worldNode.Tap(extractor, resourceId);
+                worldNodeTestData.WorldNode.Tap(extractor, worldNodeTestData.ResourceId);
             });
         }
 
         [Fact]
         public void WhenExtractorCannotExtractTheResource_RuleIsBroken()
         {
-            var (worldNode, _, _) = new WorldNodeFixture().Create();
-            var resourceId = new ResourceId(Guid.NewGuid());
+            var worldNodeTestData = new WorldNodeFixture().Create();
             var extractor = new ExtractorFixture()
-                .CannotExtract(resourceId)
+                .CannotExtract(worldNodeTestData.ResourceId)
                 .Create();
 
             RuleAssertions.AssertBrokenRule<ExtractorMustBeAbleToExtractResourceRule>(() =>
             {
-                worldNode.Tap(extractor, resourceId);
+                worldNodeTestData.WorldNode.Tap(extractor, worldNodeTestData.ResourceId);
             });
         }
     }

@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.SpawnWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 
-namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldsNodes
+namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 {
     [TestFixture]
     public class SpawnWorldNodesTests : TestBase

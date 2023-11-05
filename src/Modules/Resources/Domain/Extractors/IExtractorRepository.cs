@@ -8,7 +8,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Extractors
         ///     Find the <see cref="Extractor" /> with the given <paramref name="extractorId" />,
         ///     or null if not found.
         /// </summary>
-        Task<Extractor?> FindByIdAsync(ExtractorId extractorId);
+        Task<Extractor?> FindByIdAsync(ExtractorId? extractorId);
 
         /// <summary>
         ///     Find the <see cref="Extractor" /> with the given <paramref name="extractorId" />,

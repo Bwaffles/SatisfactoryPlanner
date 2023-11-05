@@ -9,6 +9,7 @@ using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeD
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.UpgradeExtractor;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -118,6 +119,27 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
                 worldId,
                 nodeId,
                 request.ExtractionRate
+            ));
+
+            return NoContent();
+        }
+
+        /// <summary>
+        ///     Upgrade the extractor used to extract resources from the world node.
+        /// </summary>
+        [Authorize]
+        [HasPermission(ResourcesPermissions.UpgradeExtractor)]
+        [WorldAuthorization]
+        [HttpPost("worlds/{worldId}/nodes/{nodeId}/upgrade-extractor")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> UpgradeExtractor([FromRoute] Guid worldId,
+            [FromRoute] Guid nodeId,
+            [FromBody] UpgradeExtractorRequest request)
+        {
+            await _module.ExecuteCommandAsync(new UpgradeExtractorCommand(
+                worldId,
+                nodeId,
+                request.ExtractorId
             ));
 
             return NoContent();
