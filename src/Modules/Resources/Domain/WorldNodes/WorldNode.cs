@@ -12,7 +12,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
     public class WorldNode : Entity, IAggregateRoot
     {
         private ExtractorId? _extractorId;
-        private readonly string _name;
         private readonly NodeId _nodeId;
         private readonly WorldId _worldId;
         private ExtractionRate _extractionRate;
@@ -26,7 +25,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
             _nodeId = nodeId;
             _extractorId = null;
             _extractionRate = ExtractionRate.Of(0);
-            _name = ""; // TODO can probably remove this since I've pre-created the names for the nodes already
         }
 
         // ReSharper disable once UnusedMember.Local
