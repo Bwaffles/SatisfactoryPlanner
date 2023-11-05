@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace DatabaseMigrator.Migrations.Resources
+namespace DatabaseMigrator.Migrations.Resources.WorldNodes
 {
     [Migration(202212232105)]
     public class AddColumn_WorldId_ToTappedNodes : Migration
