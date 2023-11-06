@@ -12,17 +12,19 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
     public class DecreaseExtractionRateTests
     {
         // Happy path tests
-        [Fact]
-        public void WhenDataIsValid_IsSuccessful()
+        [Theory]
+        [InlineData(60)]
+        [InlineData(0)]
+        public void WhenDataIsValid_IsSuccessful(int extractionRate)
         {
             var worldNode = Setup(120);
 
-            worldNode.DecreaseExtractionRate(ExtractionRate.Of(60));
+            worldNode.DecreaseExtractionRate(ExtractionRate.Of(extractionRate));
 
             var domainEvent =
                 DomainEventAssertions.AssertPublishedEvent<ExtractionRateDecreasedDomainEvent>(worldNode);
             domainEvent.WorldNodeId.Should().Be(worldNode.Id);
-            domainEvent.ExtractionRate.Should().Be(ExtractionRate.Of(60));
+            domainEvent.ExtractionRate.Should().Be(ExtractionRate.Of(extractionRate));
         }
 
         [Fact]
@@ -38,6 +40,17 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 
         // Business rule tests
         [Fact]
+        public void WhenWorldNodeIsNotTapped_RuleIsBroken()
+        {
+            var worldNode = Setup(isTapped: false);
+
+            RuleAssertions.AssertBrokenRule<MustBeTappedRule>(() =>
+            {
+                worldNode.DecreaseExtractionRate(ExtractionRate.Of(0));
+            });
+        }
+
+        [Fact]
         public void WhenNewRateIsGreaterThanCurrentRate_RuleIsBroken()
         {
             var worldNode = Setup(120);
@@ -48,17 +61,22 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             });
         }
 
-        private static WorldNode Setup(decimal extractionRate)
+        private static WorldNode Setup(decimal? extractionRate = null, bool isTapped = true)
         {
-            var worldNodeTestData = new WorldNodeFixture()
-                .IsTapped()
-                .Create();
+            var worldNodeFixture = new WorldNodeFixture();
+            if (isTapped)
+                worldNodeFixture.IsTapped();
+
+            var worldNodeTestData = worldNodeFixture.Create();
             var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
-            mockExtractionRateCalculator
+
+            if (isTapped)
+                mockExtractionRateCalculator
                 .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, worldNodeTestData.Extractor!.Id))
                 .Returns(ExtractionRate.Of(300));
 
-            worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate), mockExtractionRateCalculator.Object);
+            if (extractionRate != null)
+                worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate.Value), mockExtractionRateCalculator.Object);
 
             return worldNodeTestData.WorldNode;
         }
