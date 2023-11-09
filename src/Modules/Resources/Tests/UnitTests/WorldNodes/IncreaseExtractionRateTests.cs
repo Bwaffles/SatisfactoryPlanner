@@ -41,6 +41,17 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 
         // Business rule tests
         [Fact]
+        public void WhenWorldNodeIsNotTapped_RuleIsBroken()
+        {
+            var (worldNode, extractionRateCalculator) = Setup(120, false);
+
+            RuleAssertions.AssertBrokenRule<MustBeTappedRule>(() =>
+            {
+                worldNode.IncreaseExtractionRate(ExtractionRate.Of(120), extractionRateCalculator);
+            });
+        }
+
+        [Fact]
         public void WhenIncreasingAboveTheMaxRate_RuleIsBroken()
         {
             var (worldNode, extractionRateCalculator) = Setup(120);
@@ -65,15 +76,19 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
         }
 
         private static (WorldNode worldNode, IExtractionRateCalculator extractionRateCalculator) Setup(
-            decimal maxExtractionRate)
+            decimal maxExtractionRate, bool isTapped = true)
         {
-            var worldNodeTestData = new WorldNodeFixture()
-                .IsTapped()
-                .Create();
+            var worldNodeFixture = new WorldNodeFixture();
+            if (isTapped)
+                worldNodeFixture.IsTapped();
+
+            var worldNodeTestData = worldNodeFixture.Create();
             var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
-            mockExtractionRateCalculator
-                .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, worldNodeTestData.Extractor.Id))
-                .Returns(ExtractionRate.Of(maxExtractionRate));
+
+            if (isTapped)
+                mockExtractionRateCalculator
+                    .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, worldNodeTestData.Extractor!.Id))
+                    .Returns(ExtractionRate.Of(maxExtractionRate));
 
             return (worldNodeTestData.WorldNode, mockExtractionRateCalculator.Object);
         }

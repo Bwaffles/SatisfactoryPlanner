@@ -42,8 +42,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 
         public void IncreaseExtractionRate(ExtractionRate extractionRate, IExtractionRateCalculator extractionRateCalculator)
         {
+            CheckRule(new MustBeTappedRule(IsTapped()));
             CheckRule(new CannotIncreaseExtractionRateBelowCurrentExtractionRateRule(extractionRate, _extractionRate));
-            CheckRule(new CannotIncreaseExtractionRateAboveMaxExtractionRateRule(extractionRate, _nodeId, _extractorId, extractionRateCalculator));
+            CheckRule(new CannotIncreaseExtractionRateAboveMaxExtractionRateRule(extractionRate, _nodeId, _extractorId!, extractionRateCalculator));
 
             if (_extractionRate == extractionRate)
                 return;
@@ -55,6 +56,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 
         public void DecreaseExtractionRate(ExtractionRate extractionRate)
         {
+            CheckRule(new MustBeTappedRule(IsTapped()));
             CheckRule(new CannotDecreaseExtractionRateAboveCurrentExtractionRateRule(extractionRate, _extractionRate));
 
             if (_extractionRate == extractionRate)
