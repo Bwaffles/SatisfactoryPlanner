@@ -5,6 +5,7 @@ using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DecreaseExtractionRate;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DowngradeExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
@@ -137,6 +138,27 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
             [FromBody] UpgradeExtractorRequest request)
         {
             await _module.ExecuteCommandAsync(new UpgradeExtractorCommand(
+                worldId,
+                nodeId,
+                request.ExtractorId
+            ));
+
+            return NoContent();
+        }
+
+        /// <summary>
+        ///     Downgrade the extractor used to extract resources from the world node.
+        /// </summary>
+        [Authorize]
+        [HasPermission(ResourcesPermissions.DowngradeExtractor)]
+        [WorldAuthorization]
+        [HttpPost("worlds/{worldId}/nodes/{nodeId}/downgrade-extractor")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DowngradeExtractor([FromRoute] Guid worldId,
+            [FromRoute] Guid nodeId,
+            [FromBody] DowngradeExtractorRequest request)
+        {
+            await _module.ExecuteCommandAsync(new DowngradeExtractorCommand(
                 worldId,
                 nodeId,
                 request.ExtractorId

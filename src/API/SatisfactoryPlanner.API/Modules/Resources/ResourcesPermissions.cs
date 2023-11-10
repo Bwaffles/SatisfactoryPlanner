@@ -10,5 +10,6 @@
         public const string IncreaseWorldNodeExtractionRate = "Resources.IncreaseWorldNodeExtractionRate";
         public const string DecreaseWorldNodeExtractionRate = "Resources.DecreaseWorldNodeExtractionRate";
         public const string UpgradeExtractor = "Resources.UpgradeExtractor";
+        public const string DowngradeExtractor = "Resources.DowngradeExtractor";
     }
 }
