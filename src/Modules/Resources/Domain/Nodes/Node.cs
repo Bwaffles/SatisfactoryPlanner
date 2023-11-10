@@ -14,6 +14,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
         // ReSharper disable once UnusedMember.Local
         private Node()
         { /* for EF */
+            _purity = default!;
+            _resourceId = default!;
+            Id = default!;
         }
 
         private Node(NodeId id, NodePurity purity, ResourceId resourceId)

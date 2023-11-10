@@ -28,7 +28,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
             if (typeName == null)
                 throw new InvalidOperationException();
 
-            var type = Assembly.GetAssembly(typeof(PioneerUserCreatedNotification))!.GetType(typeName);
+            var type = Assembly.GetAssembly(typeof(PioneerUserCreatedNotification))!.GetType(typeName)!;
             return JsonConvert.DeserializeObject(message.Data, type) as T ?? throw new InvalidOperationException();
         }
     }

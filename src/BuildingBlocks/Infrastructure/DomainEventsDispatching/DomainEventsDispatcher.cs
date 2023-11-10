@@ -53,9 +53,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
                 });
 
                 if (domainNotification != null)
-                {
-                    domainEventNotifications.Add(domainNotification as IDomainEventNotification<IDomainEvent>);
-                }
+                    domainEventNotifications.Add((domainNotification as IDomainEventNotification<IDomainEvent>)!);
             }
 
             _domainEventsProvider.ClearAllDomainEvents();

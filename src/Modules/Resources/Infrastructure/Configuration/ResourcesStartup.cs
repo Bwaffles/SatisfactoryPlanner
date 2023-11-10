@@ -22,8 +22,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration
     /// </summary>
     public class ResourcesStartup
     {
-        private static IContainer _container;
-
         public static void Initialize(string connectionString, IExecutionContextAccessor executionContextAccessor,
             ILogger logger)
         {
@@ -62,9 +60,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration
 
             containerBuilder.RegisterInstance(executionContextAccessor);
 
-            _container = containerBuilder.Build();
-
-            ResourcesCompositionRoot.SetContainer(_container);
+            ResourcesCompositionRoot.SetContainer(containerBuilder.Build());
         }
     }
 }

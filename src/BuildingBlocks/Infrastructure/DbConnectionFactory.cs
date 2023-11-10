@@ -7,7 +7,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure
 {
     public class DbConnectionFactory : IDbConnectionFactory, IDisposable
     {
-        private IDbConnection _connection;
+        private IDbConnection? _connection;
         private readonly string _connectionString;
 
         public DbConnectionFactory(string connectionString)
@@ -30,7 +30,8 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure
 
         public IDbConnection GetOpenConnection()
         {
-            if (_connection == null || _connection.State != ConnectionState.Open)
+            // ReSharper disable once InvertIf
+            if (_connection is not { State: ConnectionState.Open })
             {
                 _connection = new NpgsqlConnection(_connectionString);
                 _connection.Open();
@@ -40,10 +41,8 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure
         }
         public void Dispose()
         {
-            if (_connection != null && _connection.State == ConnectionState.Open)
-            {
+            if (_connection is { State: ConnectionState.Open })
                 _connection.Dispose();
-            }
         }
     }
 }

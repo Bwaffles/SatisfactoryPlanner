@@ -6,7 +6,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Extractors
     {
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         public decimal SecondsToCompleteCycle { get; set; }
 
