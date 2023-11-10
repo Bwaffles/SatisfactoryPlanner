@@ -19,39 +19,37 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
                 .Select(CreateNode);
         }
 
+        public static async Task<Node> GetNode(IDbConnection connection, Guid nodeId)
+        {
+            var availableNodes = await GetAvailableNodes(connection, null);
+            var node = availableNodes.First(_ => _.Id == nodeId);
+
+            return CreateNode(node);
+        }
+
         private static Node CreateNode(WorldNodeDto worldNode) =>
             Node.CreateNew(
                 new NodeId(worldNode.Id),
                 NodePurity.Of(worldNode.Purity),
                 new ResourceId(worldNode.ResourceId));
 
-        public static async Task<Node> GetNode(IDbConnection connection, Guid nodeId)
-        {
-            var availableNodes = await GetAvailableNodes(connection, null);
-
-            var node = availableNodes.FirstOrDefault(_ => _.Id == nodeId);
-            if (node == null)
-                return null;
-
-            return CreateNode(node);
-        }
-
         public static async Task<List<WorldNodeDto>> GetAvailableNodes(IDbConnection connection, Guid? resourceId)
         {
+            const string sql = "    SELECT " +
+                               $"          node.id AS {nameof(WorldNodeDto.Id)}, " +
+                               $"          resource.id AS {nameof(WorldNodeDto.ResourceId)}, " +
+                               $"          resource.name AS {nameof(WorldNodeDto.ResourceName)}, " +
+                               $"          node.purity AS {nameof(WorldNodeDto.Purity)}, " +
+                               $"          node.biome AS {nameof(WorldNodeDto.Biome)}, " +
+                               $"          node.map_position_x AS {nameof(WorldNodeDto.MapPositionX)}, " +
+                               $"          node.map_position_y AS {nameof(WorldNodeDto.MapPositionY)}, " +
+                               $"          node.map_position_z AS {nameof(WorldNodeDto.MapPositionZ)} " +
+                               "      FROM resources.nodes AS node " +
+                               "INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
+                               "     WHERE (@resourceId is null or node.resource_id = @resourceId) " +
+                               "  ORDER BY node.purity";
             return (await connection.QueryAsync<WorldNodeDto>(
-                "    SELECT " +
-                $"          node.id AS {nameof(WorldNodeDto.Id)}, " +
-                $"          resource.id AS {nameof(WorldNodeDto.ResourceId)}, " +
-                $"          resource.name AS {nameof(WorldNodeDto.ResourceName)}, " +
-                $"          node.purity AS {nameof(WorldNodeDto.Purity)}, " +
-                $"          node.biome AS {nameof(WorldNodeDto.Biome)}, " +
-                $"          node.map_position_x AS {nameof(WorldNodeDto.MapPositionX)}, " +
-                $"          node.map_position_y AS {nameof(WorldNodeDto.MapPositionY)}, " +
-                $"          node.map_position_z AS {nameof(WorldNodeDto.MapPositionZ)} " +
-                "      FROM resources.nodes AS node " +
-                "INNER JOIN resources.resources AS resource ON resource.id = node.resource_id " +
-                "     WHERE (@resourceId is null or node.resource_id = @resourceId) " +
-                "  ORDER BY node.purity",
+                sql,
                 new
                 {
                     resourceId

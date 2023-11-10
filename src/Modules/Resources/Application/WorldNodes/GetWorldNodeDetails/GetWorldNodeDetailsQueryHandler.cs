@@ -65,11 +65,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldN
             };
             nodeDetails.AvailableExtractors =
                 await connection.QueryAsync<AvailableExtractorDto>(availableExtractorSql, availableExtractorParam);
+            var nodeModel = await NodeFactory.GetNode(connection, nodeDetails.NodeId);
 
             foreach (var availableExtractor in nodeDetails.AvailableExtractors)
             {
                 var extractor = await ExtractorFactory.GetExtractor(connection, availableExtractor.Id);
-                var nodeModel = await NodeFactory.GetNode(connection, nodeDetails.NodeId);
                 availableExtractor.MaxExtractionRate =
                     ResourceExtractionCalculator.GetMaxExtractionRate(extractor, nodeModel);
             }

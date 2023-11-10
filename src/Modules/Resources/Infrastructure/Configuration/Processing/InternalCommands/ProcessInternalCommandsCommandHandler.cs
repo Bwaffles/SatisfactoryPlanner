@@ -15,21 +15,19 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
 
-        public ProcessInternalCommandsCommandHandler(
-            IDbConnectionFactory dbConnectionFactory) =>
+        public ProcessInternalCommandsCommandHandler(IDbConnectionFactory dbConnectionFactory) =>
             _dbConnectionFactory = dbConnectionFactory;
 
         public async Task<Unit> Handle(ProcessInternalCommandsCommand command, CancellationToken cancellationToken)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
 
-            var sql =
-                $" SELECT command.id AS {nameof(InternalCommandDto.Id)}, " +
-                $"        command.type AS {nameof(InternalCommandDto.Type)}, " +
-                $"        command.data AS {nameof(InternalCommandDto.Data)} " +
-                "    FROM resources.internal_commands AS command " +
-                "   WHERE command.processed_date IS NULL " +
-                "ORDER BY command.enqueue_date";
+            const string sql = $" SELECT command.id AS {nameof(InternalCommandDto.Id)}, " +
+                               $"        command.type AS {nameof(InternalCommandDto.Type)}, " +
+                               $"        command.data AS {nameof(InternalCommandDto.Data)} " +
+                               "    FROM resources.internal_commands AS command " +
+                               "   WHERE command.processed_date IS NULL " +
+                               "ORDER BY command.enqueue_date";
             var internalCommands = await connection.QueryAsync<InternalCommandDto>(sql);
 
             var policy = Policy
@@ -65,11 +63,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
                 });
         }
 
-        private async Task ProcessCommand(
+        private static async Task ProcessCommand(
             InternalCommandDto internalCommand)
         {
-            var type = Assemblies.Application.GetType(internalCommand.Type);
-            dynamic commandToProcess = JsonConvert.DeserializeObject(internalCommand.Data, type);
+            var type = Assemblies.Application.GetType(internalCommand.Type, true)!;
+            dynamic? commandToProcess = JsonConvert.DeserializeObject(internalCommand.Data, type);
 
             await CommandsExecutor.Execute(commandToProcess);
         }
@@ -78,9 +76,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
         {
             public Guid Id { get; set; }
 
-            public string Type { get; set; }
+            public required string Type { get; set; }
 
-            public string Data { get; set; }
+            public required string Data { get; set; }
         }
     }
 }

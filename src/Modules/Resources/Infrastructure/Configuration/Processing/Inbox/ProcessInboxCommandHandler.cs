@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Processing.Inbox
 {
+    // ReSharper disable once UnusedMember.Global
     internal class ProcessInboxCommandHandler : ICommandHandler<ProcessInboxCommand>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
@@ -24,38 +25,37 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
         public async Task<Unit> Handle(ProcessInboxCommand command, CancellationToken cancellationToken)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
-            var sql =
-                $" SELECT inbox_message.id AS {nameof(InboxMessageDto.Id)}, " +
-                $"        inbox_message.type AS {nameof(InboxMessageDto.Type)}, " +
-                $"        inbox_message.data AS {nameof(InboxMessageDto.Data)} " +
-                "    FROM resources.inbox_messages AS inbox_message " +
-                "   WHERE inbox_message.processed_date IS NULL " +
-                "ORDER BY inbox_message.occurred_on";
 
-            var messages = await connection.QueryAsync<InboxMessageDto>(sql);
+            const string getInboxMessages = $" SELECT inbox_message.id AS {nameof(InboxMessageDto.Id)}, " +
+                                            $"        inbox_message.type AS {nameof(InboxMessageDto.Type)}, " +
+                                            $"        inbox_message.data AS {nameof(InboxMessageDto.Data)} " +
+                                            "    FROM resources.inbox_messages AS inbox_message " +
+                                            "   WHERE inbox_message.processed_date IS NULL " +
+                                            "ORDER BY inbox_message.occurred_on";
+            var messages = await connection.QueryAsync<InboxMessageDto>(getInboxMessages);
 
             foreach (var message in messages)
             {
                 var messageAssembly = AppDomain.CurrentDomain.GetAssemblies()
-                    .Single(assembly => message.Type.Contains(assembly.GetName().Name));
+                    .Single(assembly => message.Type.Contains(assembly.GetName().Name!));
 
-                var type = messageAssembly.GetType(message.Type);
-                var request = JsonConvert.DeserializeObject(message.Data, type);
+                var type = messageAssembly.GetType(message.Type, true)!;
+                var request = (JsonConvert.DeserializeObject(message.Data, type) as INotification)!;
 
                 try
                 {
-                    await _mediator.Publish((INotification)request, cancellationToken);
+                    await _mediator.Publish(request, cancellationToken);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                     throw;
                 }
-                
-                const string sqlUpdateProcessedDate = "UPDATE resources.inbox_messages " +
-                                                      "   SET processed_date = @Date " +
-                                                      " WHERE id = @Id";
-                await connection.ExecuteAsync(sqlUpdateProcessedDate, new
+
+                const string updateProcessedDate = "UPDATE resources.inbox_messages " +
+                                                   "   SET processed_date = @Date " +
+                                                   " WHERE id = @Id";
+                await connection.ExecuteAsync(updateProcessedDate, new
                 {
                     Date = DateTime.UtcNow, message.Id
                 });

@@ -4,7 +4,7 @@ using System;
 namespace DatabaseMigrator.Migrations.Resources.WorldNodes
 {
     [Migration(202311042300)]
-    public class DeleteColumn_Node_FromWorldNodes : Migration
+    public class DeleteColumn_Name_FromWorldNodes : Migration
     {
         public override void Up()
         {

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Processing.Outbox
 {
+    // ReSharper disable once UnusedMember.Global
     internal class ProcessOutboxCommandHandler : ICommandHandler<ProcessOutboxCommand>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
@@ -33,20 +34,19 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
         public async Task<Unit> Handle(ProcessOutboxCommand command, CancellationToken cancellationToken)
         {
             var connection = _dbConnectionFactory.GetOpenConnection();
-            var sql =
-                $"  SELECT outbox_message.id AS {nameof(OutboxMessageDto.Id)}, " +
-                $"         outbox_message.type AS {nameof(OutboxMessageDto.Type)}, " +
-                $"         outbox_message.data AS {nameof(OutboxMessageDto.Data)} " +
-                "     FROM resources.outbox_messages AS outbox_message " +
-                "    WHERE outbox_message.processed_date IS NULL " +
-                " ORDER BY outbox_message.occurred_on";
 
-            var messages = await connection.QueryAsync<OutboxMessageDto>(sql);
+            const string getOutboxMessages = $"  SELECT outbox_message.id AS {nameof(OutboxMessageDto.Id)}, " +
+                               $"         outbox_message.type AS {nameof(OutboxMessageDto.Type)}, " +
+                               $"         outbox_message.data AS {nameof(OutboxMessageDto.Data)} " +
+                               "     FROM resources.outbox_messages AS outbox_message " +
+                               "    WHERE outbox_message.processed_date IS NULL " +
+                               " ORDER BY outbox_message.occurred_on";
+            var messages = await connection.QueryAsync<OutboxMessageDto>(getOutboxMessages);
 
             foreach (var message in messages)
             {
                 var type = _domainNotificationsMapper.GetType(message.Type);
-                var @event = JsonConvert.DeserializeObject(message.Data, type) as IDomainEventNotification;
+                var @event = (JsonConvert.DeserializeObject(message.Data, type) as IDomainEventNotification)!;
 
                 using (LogContext.Push(new OutboxMessageContextEnricher(@event)))
                 {

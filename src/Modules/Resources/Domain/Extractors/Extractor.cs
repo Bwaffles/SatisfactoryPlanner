@@ -8,9 +8,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Extractors
     public class Extractor : Entity, IAggregateRoot
     {
         private readonly List<AllowedResource> _allowedResources;
-
         private readonly ExtractorClockspeed _clockspeed;
-
         private readonly ExtractorCycle _cycle;
 
         public ExtractorId Id { get; }
@@ -30,6 +28,10 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Extractors
         // ReSharper disable once UnusedMember.Local
         private Extractor()
         { /* for EF */
+            _allowedResources = default!;
+            _clockspeed = default!;
+            _cycle = default!;
+            Id = default!;
         }
 
         public static Extractor CreateNew(

@@ -21,9 +21,5 @@ namespace SatisfactoryPlanner.BuildingBlocks.Application.Outbox
             Type = type;
             Data = data;
         }
-
-        private OutboxMessage()
-        {
-        }
     }
 }
