@@ -1,40 +1,40 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DowngradeExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
-using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.UpgradeExtractor;
 using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 
 namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 {
     [TestFixture]
-    public class UpgradeExtractorTests : TestBase
+    public class DowngradeExtractorTests : TestBase
     {
         // Happy path tests
         [Test]
         public async Task WhenDataIsValid_IsSuccessful()
         {
-            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             var worldNodeDetails =
                 await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
 
-            var differentExtractorId = worldNodeDetails.AvailableExtractors
-                .First(availableExtractor => availableExtractor.Name == "Miner Mk.3").Id;
+            var slowerExtractorId = worldNodeDetails.AvailableExtractors
+                .First(availableExtractor => availableExtractor.Name == "Miner Mk.1").Id;
 
             await ResourcesModule.ExecuteCommandAsync(
-                new UpgradeExtractorCommand(worldId, nodeId, differentExtractorId));
+                new DowngradeExtractorCommand(worldId, nodeId, slowerExtractorId));
 
             var postUpgradeDetails =
                 await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
-            postUpgradeDetails.ExtractorId.Should().Be(differentExtractorId);
+            postUpgradeDetails.ExtractorId.Should().Be(slowerExtractorId);
         }
 
         [Test]
         public async Task WhenAlreadyUsingGivenExtractor_IsSuccessful()
         {
-            var (worldId, nodeId, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (worldId, nodeId, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             await ResourcesModule.ExecuteCommandAsync(
-                new UpgradeExtractorCommand(worldId, nodeId, extractorId));
+                new DowngradeExtractorCommand(worldId, nodeId, extractorId));
 
             var postUpgradeDetails =
                 await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
@@ -45,36 +45,36 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         [Test]
         public async Task WhenWorldIdIsEmpty_ThrowsInvalidCommandException()
         {
-            var (_, nodeId, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (_, nodeId, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new UpgradeExtractorCommand(Guid.Empty, nodeId, extractorId));
+                    new DowngradeExtractorCommand(Guid.Empty, nodeId, extractorId));
             });
         }
 
         [Test]
         public async Task WhenNodeIdIsEmpty_ThrowsInvalidCommandException()
         {
-            var (worldId, _, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (worldId, _, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new UpgradeExtractorCommand(worldId, Guid.Empty, extractorId));
+                    new DowngradeExtractorCommand(worldId, Guid.Empty, extractorId));
             });
         }
 
         [Test]
         public async Task WhenExtractorIdIsEmpty_ThrowsInvalidCommandException()
         {
-            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new UpgradeExtractorCommand(worldId, nodeId, Guid.Empty));
+                    new DowngradeExtractorCommand(worldId, nodeId, Guid.Empty));
             });
         }
 
@@ -88,7 +88,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new UpgradeExtractorCommand(randomWorldId, nodeId, Guid.NewGuid()));
+                    new DowngradeExtractorCommand(randomWorldId, nodeId, Guid.NewGuid()));
             });
         }
 
@@ -101,7 +101,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new UpgradeExtractorCommand(worldId, randomNodeId, Guid.NewGuid()));
+                    new DowngradeExtractorCommand(worldId, randomNodeId, Guid.NewGuid()));
             });
         }
 
@@ -114,7 +114,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
                 await ResourcesModule.ExecuteCommandAsync(
-                    new UpgradeExtractorCommand(worldId, nodeId, randomExtractorId));
+                    new DowngradeExtractorCommand(worldId, nodeId, randomExtractorId));
             });
         }
     }

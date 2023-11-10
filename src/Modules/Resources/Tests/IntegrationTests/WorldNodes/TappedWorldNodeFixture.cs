@@ -22,13 +22,13 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
                 (await resourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(_settings.WorldId, null)))
                 .First(node => node.ResourceName == "Bauxite").Id;
 
-            var extractor =
+            _settings.ExtractorId =
                 (await resourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(_settings.WorldId,
                     _settings.NodeId)))
-                .AvailableExtractors.First(nodeDetail => nodeDetail.Name == extractorName);
+                .AvailableExtractors.First(nodeDetail => nodeDetail.Name == extractorName).Id;
 
             await resourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(_settings.WorldId, _settings.NodeId,
-                extractor.Id));
+                _settings.ExtractorId));
 
             return _settings;
         }
@@ -39,10 +39,19 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 
             public Guid NodeId { get; set; }
 
+            public Guid ExtractorId { get; set; }
+
             public void Deconstruct(out Guid worldId, out Guid nodeId)
             {
                 worldId = WorldId;
                 nodeId = NodeId;
+            }
+
+            public void Deconstruct(out Guid worldId, out Guid nodeId, out Guid extractorId)
+            {
+                worldId = WorldId;
+                nodeId = NodeId;
+                extractorId = ExtractorId;
             }
         }
     }

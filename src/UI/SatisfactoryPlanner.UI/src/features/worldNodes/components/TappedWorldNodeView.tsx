@@ -8,6 +8,7 @@ import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
 import { AvailableExtractor, WorldNodeDetails } from "../types";
 import { FieldWrapper } from "../../../components/Elements/Form/FieldWrapper";
+import { useDowngradeExtractor } from "../api/downgradeExtractor";
 import { useUpgradeExtractor } from "../api/upgradeExtractor";
 import { useState } from "react";
 
@@ -19,6 +20,7 @@ export const TappedWorldNodeView = ({
     worldNodeDetails,
 }: TappedWorldNodeViewProps) => {
     const navigate = useNavigate();
+    const downgradeExtractorMutation = useDowngradeExtractor();
     const upgradeExtractorMutation = useUpgradeExtractor();
     const [selectedExtractor, setSelectedExtractor] = useState<string | null>(
         null
@@ -50,6 +52,7 @@ export const TappedWorldNodeView = ({
                     {renderExtractor(
                         worldNodeDetails,
                         currentExtractor,
+                        downgradeExtractorMutation,
                         upgradeExtractorMutation,
                         selectedExtractor,
                         setSelectedExtractor
@@ -71,6 +74,7 @@ export const TappedWorldNodeView = ({
 function renderExtractor(
     worldNodeDetails: WorldNodeDetails,
     currentExtractor: AvailableExtractor,
+    downgradeExtractorMutation: any,
     upgradeExtractorMutation: any,
     selectedExtractor: string | null,
     setSelectedExtractor: React.Dispatch<React.SetStateAction<string | null>>
@@ -123,7 +127,20 @@ function renderExtractor(
                         </FieldWrapper>
                         <div>
                             {canDowngrade && (
-                                <Button title="Downgrade to this extractor">
+                                <Button
+                                    title="Downgrade to this extractor"
+                                    isLoading={
+                                        selectedExtractor == extractor.id &&
+                                        downgradeExtractorMutation.isLoading
+                                    }
+                                    onClick={() => {
+                                        setSelectedExtractor(extractor.id);
+                                        downgradeExtractorMutation.mutate({
+                                            nodeId: worldNodeDetails.nodeId,
+                                            extractorId: extractor.id,
+                                        });
+                                    }}
+                                >
                                     Downgrade
                                     <span className="ml-1 text-red-500">
                                         (-
