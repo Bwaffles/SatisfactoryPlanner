@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Doggo from "../../../assets/Lizard_Doggo.png";
 import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
 import { useTapWorldNode } from "../api/tapWorldNode";
@@ -51,14 +50,9 @@ export const UntappedWorldNodeView = ({
                                           }
                                 }
                             >
-                                <div className="text-lg font-bold">
+                                <div className="text-lg font-bold mb-3">
                                     {extractor.name}
                                 </div>
-                                <img
-                                    className="h-40 w-40 text-center"
-                                    alt="Extractor"
-                                    src={Doggo}
-                                ></img>
                                 <FieldWrapper
                                     label="Max Extraction Rate"
                                     className="col-auto"

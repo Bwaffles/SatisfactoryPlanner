@@ -3,7 +3,6 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-import Doggo from "../../../assets/Lizard_Doggo.png";
 import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
 import { AvailableExtractor, WorldNodeDetails } from "../types";
@@ -104,14 +103,9 @@ function renderExtractor(
                             currentExtractorClasses
                         }
                     >
-                        <div className="text-lg font-bold">
+                        <div className="text-lg font-bold mb-3">
                             {extractor.name}
                         </div>
-                        <img
-                            className="h-40 w-40 text-center"
-                            alt="Extractor"
-                            src={Doggo}
-                        ></img>
                         <FieldWrapper
                             label="Max Extraction Rate"
                             className="col-auto"
@@ -130,7 +124,7 @@ function renderExtractor(
                                 <Button
                                     title="Downgrade to this extractor"
                                     isLoading={
-                                        selectedExtractor == extractor.id &&
+                                        selectedExtractor === extractor.id &&
                                         downgradeExtractorMutation.isLoading
                                     }
                                     onClick={() => {
@@ -152,7 +146,7 @@ function renderExtractor(
                                 <Button
                                     title="Upgrade to this extractor"
                                     isLoading={
-                                        selectedExtractor == extractor.id &&
+                                        selectedExtractor === extractor.id &&
                                         upgradeExtractorMutation.isLoading
                                     }
                                     onClick={() => {
