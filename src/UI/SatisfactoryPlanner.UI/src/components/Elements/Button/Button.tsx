@@ -48,7 +48,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 {...props}
             >
                 <div className="flex items-center">
-                    <span className="mx-2">{props.children}</span>
+                    <span className="mx-2 whitespace-nowrap">
+                        {props.children}
+                    </span>
                     {isLoading && (
                         <Spinner
                             size="sm"
