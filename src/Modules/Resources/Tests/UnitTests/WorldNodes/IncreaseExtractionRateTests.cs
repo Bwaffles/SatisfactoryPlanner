@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Moq;
+using NSubstitute;
 using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.Resources.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
@@ -83,14 +83,14 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 worldNodeFixture.IsTapped();
 
             var worldNodeTestData = worldNodeFixture.Create();
-            var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
+            var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
 
             if (isTapped)
                 mockExtractionRateCalculator
-                    .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, worldNodeTestData.Extractor!.Id))
+                    .GetMaxExtractionRate(worldNodeTestData.NodeId, worldNodeTestData.Extractor!.Id)
                     .Returns(ExtractionRate.Of(maxExtractionRate));
 
-            return (worldNodeTestData.WorldNode, mockExtractionRateCalculator.Object);
+            return (worldNodeTestData.WorldNode, mockExtractionRateCalculator);
         }
     }
 }

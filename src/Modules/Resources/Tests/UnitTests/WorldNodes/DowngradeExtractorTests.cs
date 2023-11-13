@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Moq;
+using NSubstitute;
 using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.Resources.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
@@ -33,12 +33,12 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 .IsSlowest()
                 .Create();
 
-            var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
+            var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
             mockExtractionRateCalculator
-                .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, slowestExtractor.Id))
+                .GetMaxExtractionRate(worldNodeTestData.NodeId, slowestExtractor.Id)
                 .Returns(ExtractionRate.Of(780));
 
-            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor, mockExtractionRateCalculator.Object);
+            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor, mockExtractionRateCalculator);
 
             var domainEvent =
                 DomainEventAssertions.AssertPublishedEvent<ExtractorDowngradedDomainEvent>(worldNodeTestData.WorldNode);
@@ -53,10 +53,10 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 .IsTapped()
                 .Create();
 
-            var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
+            var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
 
             worldNodeTestData.WorldNode.DowngradeExtractor(worldNodeTestData.Extractor!, worldNodeTestData.ResourceId,
-                worldNodeTestData.Extractor, mockExtractionRateCalculator.Object);
+                worldNodeTestData.Extractor, mockExtractionRateCalculator);
 
             DomainEventAssertions.AssertEventIsNotPublished<ExtractorDowngradedDomainEvent>(worldNodeTestData.WorldNode,
                 "because the extractor didn't change");
@@ -80,19 +80,18 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 .IsSlowest()
                 .Create();
 
-            var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
-            mockExtractionRateCalculator
-                .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, fastestExtractor.Id))
+            var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
+            mockExtractionRateCalculator.GetMaxExtractionRate(worldNodeTestData.NodeId, fastestExtractor.Id)
                 .Returns(ExtractionRate.Of(780));
 
             mockExtractionRateCalculator
-                .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, slowestExtractor.Id))
+                .GetMaxExtractionRate(worldNodeTestData.NodeId, slowestExtractor.Id)
                 .Returns(ExtractionRate.Of(300));
 
             worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(780),
-                mockExtractionRateCalculator.Object);
+                mockExtractionRateCalculator);
 
-            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor, mockExtractionRateCalculator.Object);
+            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor, mockExtractionRateCalculator);
 
             var domainEvent =
                 DomainEventAssertions.AssertPublishedEvent<ExtractionRateDecreasedDomainEvent>(worldNodeTestData.WorldNode);
@@ -120,19 +119,19 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 .IsSlowest()
                 .Create();
 
-            var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
+            var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
             mockExtractionRateCalculator
-                .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, fastestExtractor.Id))
+                .GetMaxExtractionRate(worldNodeTestData.NodeId, fastestExtractor.Id)
                 .Returns(ExtractionRate.Of(780));
 
             mockExtractionRateCalculator
-                .Setup(_ => _.GetMaxExtractionRate(worldNodeTestData.NodeId, slowestExtractor.Id))
+                .GetMaxExtractionRate(worldNodeTestData.NodeId, slowestExtractor.Id)
                 .Returns(ExtractionRate.Of(newMaxExtractionRate));
 
             worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate),
-                mockExtractionRateCalculator.Object);
+                mockExtractionRateCalculator);
 
-            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor, mockExtractionRateCalculator.Object);
+            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor, mockExtractionRateCalculator);
 
             DomainEventAssertions.AssertEventIsNotPublished<ExtractionRateDecreasedDomainEvent>(worldNodeTestData.WorldNode);
         }
@@ -143,12 +142,12 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
         {
             var worldNodeTestData = new WorldNodeFixture().Create();
 
-            var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
+            var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
 
             RuleAssertions.AssertBrokenRule<MustBeTappedRule>(() =>
             {
                 worldNodeTestData.WorldNode.DowngradeExtractor(worldNodeTestData.Extractor!,
-                    worldNodeTestData.ResourceId, null, mockExtractionRateCalculator.Object);
+                    worldNodeTestData.ResourceId, null, mockExtractionRateCalculator);
             });
         }
 
@@ -163,12 +162,12 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 .CannotExtract(worldNodeTestData.ResourceId)
                 .Create();
 
-            var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
+            var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
 
             RuleAssertions.AssertBrokenRule<ExtractorMustBeAbleToExtractResourceRule>(() =>
             {
                 worldNodeTestData.WorldNode.DowngradeExtractor(badExtractor, worldNodeTestData.ResourceId,
-                    worldNodeTestData.Extractor, mockExtractionRateCalculator.Object);
+                    worldNodeTestData.Extractor, mockExtractionRateCalculator);
             });
         }
 
@@ -190,12 +189,12 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 .IsFastest()
                 .Create();
 
-            var mockExtractionRateCalculator = new Mock<IExtractionRateCalculator>();
+            var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
 
             RuleAssertions.AssertBrokenRule<CannotDowngradeToAFasterExtractorRule>(() =>
             {
                 worldNodeTestData.WorldNode.DowngradeExtractor(fastestExtractor, worldNodeTestData.ResourceId,
-                    worldNodeTestData.Extractor, mockExtractionRateCalculator.Object);
+                    worldNodeTestData.Extractor, mockExtractionRateCalculator);
             });
         }
     }
