@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Outlet } from "react-router-dom";
 
-import { Spinner } from "../../components/Elements/Spinner";
+import { Spinner } from "@/components/Elements/Spinner";
 import Sidebar from "./Sidebar";
 
 export const MainLayout = () => {

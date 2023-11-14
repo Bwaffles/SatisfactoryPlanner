@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import Doggo from "../../../assets/Lizard_Doggo.png";
-import { formatNumber, formatPercent } from "../../../utils/format";
+import Doggo from "@/assets/Lizard_Doggo.png";
+import { formatNumber, formatPercent } from "@/utils/format";
+
 import { useGetResources } from "../api/getResources";
 
 export const ResourcesList = () => {

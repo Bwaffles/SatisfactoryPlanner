@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { ContentLayout } from "../components/Layout/ContentLayout";
-import { useGetWorldNodeDetails } from "../features/worldNodes/api/getWorldNodeDetails";
-import { TappedWorldNodeView } from "../features/worldNodes/components/TappedWorldNodeView";
-import { UntappedWorldNodeView } from "../features/worldNodes/components/UntappedWorldNodeView";
-import { FieldWrapper } from "../components/Elements/Form/FieldWrapper";
-import { formatNumber } from "../utils/format";
+import { ContentLayout } from "@/components/Layout/ContentLayout";
+import { useGetWorldNodeDetails } from "@/features/worldNodes/api/getWorldNodeDetails";
+import { TappedWorldNodeView } from "@/features/worldNodes/components/TappedWorldNodeView";
+import { UntappedWorldNodeView } from "@/features/worldNodes/components/UntappedWorldNodeView";
+import { FieldWrapper } from "@/components/Elements/Form/FieldWrapper";
+import { formatNumber } from "@/utils/format";
 
 export const WorldNodeDetails = () => {
     const { nodeId } = useParams();

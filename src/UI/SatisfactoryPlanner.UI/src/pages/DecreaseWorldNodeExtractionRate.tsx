@@ -4,16 +4,16 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { ContentLayout } from "../components/Layout/ContentLayout";
-import { useGetWorldNodeDetails } from "../features/worldNodes/api/getWorldNodeDetails";
-import { formatNumber } from "../utils/format";
-import { Button } from "../components/Elements/Button";
+import { Button } from "@/components/Elements/Button";
+import { ContentLayout } from "@/components/Layout/ContentLayout";
+import { FieldWrapper } from "@/components/Elements/Form/FieldWrapper";
+import { useGetWorldNodeDetails } from "@/features/worldNodes/api/getWorldNodeDetails";
 import {
     DecreaseWorldNodeExtractionRateRequest,
     useDecreaseWorldNodeExtractionRate,
-} from "../features/worldNodes/api/decreaseWorldNodeExtractionRate";
-import { ErrorResponse } from "../lib/axios";
-import { FieldWrapper } from "../components/Elements/Form/FieldWrapper";
+} from "@/features/worldNodes/api/decreaseWorldNodeExtractionRate";
+import { ErrorResponse } from "@/lib/axios";
+import { formatNumber } from "@/utils/format";
 
 export const DecreaseWorldNodeExtractionRate = () => {
     const { nodeId } = useParams();

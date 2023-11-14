@@ -2,8 +2,9 @@ import * as React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobeAmericas } from "@fortawesome/free-solid-svg-icons";
 
+import storage from "@/utils/storage";
+
 import { useCurrentPioneerWorlds } from "../api/getCurrentPioneerWorlds";
-import storage from "../../../utils/storage";
 
 export const WorldSidebarItem = () => {
     const { data: worlds } = useCurrentPioneerWorlds();

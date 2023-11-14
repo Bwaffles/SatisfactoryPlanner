@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { formatNumber } from "../../../utils/format";
+import { formatNumber } from "@/utils/format";
+
 import { useGetWorldNodes } from "../api/getWorldNodes";
 import { WorldNode } from "../types";
 
