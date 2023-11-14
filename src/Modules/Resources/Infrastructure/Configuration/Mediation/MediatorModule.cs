@@ -21,22 +21,18 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Med
 
             var mediatorOpenTypes = new[]
             {
-                typeof(IRequestHandler<,>),
-                typeof(IRequestHandler<>),
-                typeof(INotificationHandler<>),
+                typeof(IRequestHandler<,>), typeof(IRequestHandler<>), typeof(INotificationHandler<>),
                 typeof(IValidator<>)
             };
 
             builder.RegisterSource(new ScopedContravariantRegistrationSource(mediatorOpenTypes));
 
             foreach (var mediatorOpenType in mediatorOpenTypes)
-            {
                 builder
                     .RegisterAssemblyTypes(ThisAssembly, Assemblies.Application)
                     .AsClosedTypesOf(mediatorOpenType)
                     .AsImplementedInterfaces()
                     .FindConstructorsWith(new AllConstructorFinder());
-            }
 
             builder.RegisterGeneric(typeof(RequestPostProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
             builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
@@ -51,7 +47,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Med
         private class ScopedContravariantRegistrationSource : IRegistrationSource
         {
             private readonly IRegistrationSource _source = new ContravariantRegistrationSource();
-            private readonly List<Type> _types = new List<Type>();
+            private readonly List<Type> _types = new();
 
             public ScopedContravariantRegistrationSource(params Type[] types)
             {
@@ -64,7 +60,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Med
                 _types.AddRange(types);
             }
 
-            public IEnumerable<IComponentRegistration> RegistrationsFor(Service service, Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
+            public IEnumerable<IComponentRegistration> RegistrationsFor(Service service,
+                Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
             {
                 var components = _source.RegistrationsFor(service, registrationAccessor);
                 foreach (var c in components)

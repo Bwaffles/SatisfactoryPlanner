@@ -19,7 +19,7 @@ namespace SatisfactoryPlanner.API.Modules.Worlds.Pioneers
         [HttpGet("{pioneerId:guid}")]
         [ProducesResponseType(typeof(List<PioneerDetailsDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetPioneerDetails([FromRoute]Guid pioneerId)
+        public async Task<IActionResult> GetPioneerDetails([FromRoute] Guid pioneerId)
         {
             var pioneerDetails = await _worldsModule.ExecuteQueryAsync(new GetPioneerDetailsQuery(pioneerId));
             return pioneerDetails == null ? NotFound() : Ok(pioneerDetails);

@@ -2,7 +2,5 @@
 
 namespace SatisfactoryPlanner.API.Configuration.Authorization.Permissions
 {
-    public class HasPermissionAuthorizationRequirement : IAuthorizationRequirement
-    {
-    }
+    public class HasPermissionAuthorizationRequirement : IAuthorizationRequirement { }
 }

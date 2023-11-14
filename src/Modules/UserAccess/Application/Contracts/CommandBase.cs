@@ -4,8 +4,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Contracts
 {
     public abstract class CommandBase : ICommand
     {
-        public Guid Id { get; }
-
         protected CommandBase()
         {
             Id = Guid.NewGuid();
@@ -15,12 +13,12 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Contracts
         {
             Id = id;
         }
+
+        public Guid Id { get; }
     }
 
     public abstract class CommandBase<TResult> : ICommand<TResult>
     {
-        public Guid Id { get; }
-
         protected CommandBase()
         {
             Id = Guid.NewGuid();
@@ -30,5 +28,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Contracts
         {
             Id = id;
         }
+
+        public Guid Id { get; }
     }
 }

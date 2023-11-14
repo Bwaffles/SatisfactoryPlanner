@@ -17,7 +17,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldN
         public decimal MapPositionY { get; set; }
 
         public decimal MapPositionZ { get; set; }
-        
+
         public bool IsTapped { get; set; }
 
         /// <summary>

@@ -5,7 +5,8 @@ using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Queries;
 
 namespace SatisfactoryPlanner.Modules.Worlds.Application.Worlds.GetCurrentPioneerWorlds
 {
-    internal class GetCurrentPioneerWorldsQueryHandler : IQueryHandler<GetCurrentPioneerWorldsQuery, List<PioneerWorldDto>>
+    internal class
+        GetCurrentPioneerWorldsQueryHandler : IQueryHandler<GetCurrentPioneerWorldsQuery, List<PioneerWorldDto>>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
         private readonly IExecutionContextAccessor _executionContextAccessor;

@@ -9,7 +9,10 @@ namespace SatisfactoryPlanner.BuildingBlocks.Application
 
         public InvalidCommandException(string error)
         {
-            Errors = new List<string> { error };
+            Errors = new List<string>
+            {
+                error
+            };
         }
 
         public InvalidCommandException(List<string> errors)

@@ -22,8 +22,10 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure
             _secondToFirst.Add(second, first);
         }
 
-        public bool TryGetByFirst(TFirst first, [MaybeNullWhen(false)] out TSecond second) => _firstToSecond.TryGetValue(first, out second);
+        public bool TryGetByFirst(TFirst first, [MaybeNullWhen(false)] out TSecond second) =>
+            _firstToSecond.TryGetValue(first, out second);
 
-        public bool TryGetBySecond(TSecond second, [MaybeNullWhen(false)] out TFirst first) => _secondToFirst.TryGetValue(second, out first);
+        public bool TryGetBySecond(TSecond second, [MaybeNullWhen(false)] out TFirst first) =>
+            _secondToFirst.TryGetValue(second, out first);
     }
 }

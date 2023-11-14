@@ -5,18 +5,16 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Comma
 {
     public abstract class InternalCommandBase : ICommand
     {
-        public Guid Id { get; }
-
         protected InternalCommandBase(Guid id)
         {
             Id = id;
         }
+
+        public Guid Id { get; }
     }
 
     public abstract class InternalCommandBase<TResult> : ICommand<TResult>
     {
-        public Guid Id { get; }
-
         protected InternalCommandBase()
         {
             Id = Guid.NewGuid();
@@ -26,5 +24,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Comma
         {
             Id = id;
         }
+
+        public Guid Id { get; }
     }
 }

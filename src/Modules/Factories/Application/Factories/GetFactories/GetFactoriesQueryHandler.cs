@@ -21,11 +21,11 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.GetFactori
             var connection = _dbConnectionFactory.GetOpenConnection();
 
             return (await connection.QueryAsync<FactoryDto>(
-                "SELECT " +
-                $"factory.id AS {nameof(FactoryDto.Id)}, " +
-                $"factory.name AS {nameof(FactoryDto.Name)}, " +
-                $"factory.built_under_factory_id AS {nameof(FactoryDto.BuiltUnderFactoryId)} " +
-                "FROM factories.factories AS factory"))
+                    "SELECT " +
+                    $"factory.id AS {nameof(FactoryDto.Id)}, " +
+                    $"factory.name AS {nameof(FactoryDto.Name)}, " +
+                    $"factory.built_under_factory_id AS {nameof(FactoryDto.BuiltUnderFactoryId)} " +
+                    "FROM factories.factories AS factory"))
                 .AsList();
         }
     }

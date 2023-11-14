@@ -12,6 +12,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
         ///     The identifier of the user in Auth0.
         /// </summary>
         private readonly string _auth0UserId;
+
         private readonly List<UserRole> _roles;
 
         /// <summary>

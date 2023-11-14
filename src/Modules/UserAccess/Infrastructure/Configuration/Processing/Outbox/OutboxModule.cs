@@ -6,9 +6,7 @@ using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Outbox;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Module = Autofac.Module;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox
 {
@@ -45,11 +43,13 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
                 .ToList();
 
             var notMappedNotifications = domainEventNotifications
-                .Where(domainEventNotification => !_domainNotificationsMap.TryGetBySecond(domainEventNotification, out _))
+                .Where(domainEventNotification =>
+                    !_domainNotificationsMap.TryGetBySecond(domainEventNotification, out _))
                 .ToList();
 
             if (notMappedNotifications.Any())
-                throw new ApplicationException($"Domain Event Notifications {notMappedNotifications.Select(x => x.FullName).Aggregate((x, y) => x + "," + y)} not mapped");
+                throw new ApplicationException(
+                    $"Domain Event Notifications {notMappedNotifications.Select(x => x.FullName).Aggregate((x, y) => x + "," + y)} not mapped");
         }
     }
 }

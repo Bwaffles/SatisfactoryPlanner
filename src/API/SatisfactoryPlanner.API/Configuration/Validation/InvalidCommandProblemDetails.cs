@@ -7,6 +7,8 @@ namespace SatisfactoryPlanner.API.Configuration.Validation
 {
     public class InvalidCommandProblemDetails : ProblemDetails
     {
+        public List<string> Errors { get; }
+
         public InvalidCommandProblemDetails(InvalidCommandException exception)
         {
             Title = "Command validation error";
@@ -14,7 +16,5 @@ namespace SatisfactoryPlanner.API.Configuration.Validation
             Type = "https://somedomain/validation-error";
             Errors = exception.Errors;
         }
-
-        public List<string> Errors { get; }
     }
 }

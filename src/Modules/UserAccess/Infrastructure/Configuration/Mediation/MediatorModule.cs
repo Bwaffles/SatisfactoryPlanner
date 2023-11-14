@@ -9,10 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Module = Autofac.Module;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Mediation
 {
-    public class MediatorModule : Autofac.Module
+    public class MediatorModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -27,19 +28,15 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Me
 
             var mediatorOpenTypes = new[]
             {
-                typeof(IRequestHandler<,>),
-                typeof(INotificationHandler<>),
-                typeof(IValidator<>)
+                typeof(IRequestHandler<,>), typeof(INotificationHandler<>), typeof(IValidator<>)
             };
 
             foreach (var mediatorOpenType in mediatorOpenTypes)
-            {
                 builder
                     .RegisterAssemblyTypes(ThisAssembly, Assemblies.Application)
                     .AsClosedTypesOf(mediatorOpenType)
                     .AsImplementedInterfaces()
                     .FindConstructorsWith(new AllConstructorFinder());
-            }
 
             builder.RegisterGeneric(typeof(RequestPostProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
             builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
@@ -54,7 +51,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Me
         private class ScopedContravariantRegistrationSource : IRegistrationSource
         {
             private readonly IRegistrationSource _source = new ContravariantRegistrationSource();
-            private readonly List<Type> _types = new List<Type>();
+            private readonly List<Type> _types = new();
 
             public ScopedContravariantRegistrationSource(params Type[] types)
             {

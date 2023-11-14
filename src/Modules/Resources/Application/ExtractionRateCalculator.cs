@@ -16,7 +16,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application
             _nodeRepository = nodeRepository;
             _extractorRepository = extractorRepository;
         }
-        
+
         public ExtractionRate GetMaxExtractionRate(NodeId nodeId, ExtractorId extractorId)
         {
             var node = _nodeRepository.FindById(nodeId);

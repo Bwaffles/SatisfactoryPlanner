@@ -76,7 +76,8 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                     .Returns(ExtractionRate.Of(300));
 
             if (extractionRate != null)
-                worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate.Value), mockExtractionRateCalculator);
+                worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate.Value),
+                    mockExtractionRateCalculator);
 
             return worldNodeTestData.WorldNode;
         }

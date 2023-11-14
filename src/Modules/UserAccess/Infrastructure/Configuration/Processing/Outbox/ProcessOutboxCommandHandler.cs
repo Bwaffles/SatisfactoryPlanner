@@ -58,7 +58,10 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
                                                           "   SET processed_date = @Date " +
                                                           " WHERE id = @Id";
                     await connection.ExecuteAsync(sqlUpdateProcessedDate,
-                        new { Date = DateTime.UtcNow, message.Id });
+                        new
+                        {
+                            Date = DateTime.UtcNow, message.Id
+                        });
                 }
             }
 

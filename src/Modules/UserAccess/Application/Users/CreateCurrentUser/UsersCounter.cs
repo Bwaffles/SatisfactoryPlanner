@@ -15,10 +15,10 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrent
 
         public int CountUsersWithAuth0UserId(string auth0UserId)
         {
-            var connection = _dbConnectionFactory.GetOpenConnection(); 
-            string sql = "SELECT COUNT(*) " + 
-                         "  FROM users.users AS \"user\" " + 
-                         $"WHERE \"user\".auth0_user_id = @{nameof(auth0UserId)}";
+            var connection = _dbConnectionFactory.GetOpenConnection();
+            var sql = "SELECT COUNT(*) " +
+                      "  FROM users.users AS \"user\" " +
+                      $"WHERE \"user\".auth0_user_id = @{nameof(auth0UserId)}";
             var param = new
             {
                 auth0UserId

@@ -5,14 +5,14 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.Dismantle
 {
     public class DismantleExtractorCommand : CommandBase
     {
+        public Guid WorldId { get; }
+
+        public Guid NodeId { get; }
+
         public DismantleExtractorCommand(Guid worldId, Guid nodeId)
         {
             WorldId = worldId;
             NodeId = nodeId;
         }
-
-        public Guid WorldId { get; }
-
-        public Guid NodeId { get; }
     }
 }

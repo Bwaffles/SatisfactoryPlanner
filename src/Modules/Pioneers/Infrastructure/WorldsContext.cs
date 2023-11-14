@@ -25,7 +25,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-             //optionsBuilder.UseLoggerFactory(_loggerFactory).EnableSensitiveDataLogging();
+            //optionsBuilder.UseLoggerFactory(_loggerFactory).EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

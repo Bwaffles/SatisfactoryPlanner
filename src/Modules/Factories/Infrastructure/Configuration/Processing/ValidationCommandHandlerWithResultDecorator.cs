@@ -12,8 +12,8 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Pro
     internal class ValidationCommandHandlerWithResultDecorator<T, TResult> : ICommandHandler<T, TResult>
         where T : ICommand<TResult>
     {
-        private readonly IList<IValidator<T>> _validators;
         private readonly ICommandHandler<T, TResult> _decorated;
+        private readonly IList<IValidator<T>> _validators;
 
         public ValidationCommandHandlerWithResultDecorator(
             IList<IValidator<T>> validators,
@@ -32,9 +32,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Pro
                 .ToList();
 
             if (errors.Any())
-            {
                 throw new InvalidCommandException(errors.Select(x => x.ErrorMessage).ToList());
-            }
 
             return _decorated.Handle(command, cancellationToken);
         }

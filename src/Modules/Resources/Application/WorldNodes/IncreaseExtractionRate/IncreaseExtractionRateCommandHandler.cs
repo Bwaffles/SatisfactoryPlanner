@@ -13,10 +13,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseE
     // ReSharper disable once UnusedMember.Global
     internal class IncreaseExtractionRateCommandHandler : ICommandHandler<IncreaseExtractionRateCommand>
     {
-        private readonly IWorldNodeRepository _worldNodeRepository;
         private readonly IExtractionRateCalculator _extractionRateCalculator;
+        private readonly IWorldNodeRepository _worldNodeRepository;
 
-        public IncreaseExtractionRateCommandHandler(IWorldNodeRepository worldNodeRepository, IExtractionRateCalculator extractionRateCalculator)
+        public IncreaseExtractionRateCommandHandler(IWorldNodeRepository worldNodeRepository,
+            IExtractionRateCalculator extractionRateCalculator)
         {
             _worldNodeRepository = worldNodeRepository;
             _extractionRateCalculator = extractionRateCalculator;

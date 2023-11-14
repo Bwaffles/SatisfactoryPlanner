@@ -39,7 +39,8 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Proces
                 .ToList();
 
             var notMappedNotifications = domainEventNotifications
-                .Where(domainEventNotification => !_domainNotificationsMap.TryGetBySecond(domainEventNotification, out _))
+                .Where(domainEventNotification =>
+                    !_domainNotificationsMap.TryGetBySecond(domainEventNotification, out _))
                 .ToList();
 
             if (notMappedNotifications.Any())

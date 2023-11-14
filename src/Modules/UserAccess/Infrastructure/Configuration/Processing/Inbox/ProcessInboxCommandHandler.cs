@@ -52,7 +52,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
                     Console.WriteLine(e);
                     throw;
                 }
-                
+
                 const string sqlUpdateProcessedDate = "UPDATE users.inbox_messages " +
                                                       "   SET processed_date = @Date " +
                                                       " WHERE id = @Id";

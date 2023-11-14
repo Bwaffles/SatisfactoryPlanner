@@ -11,7 +11,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Da
     /// <summary>
     ///     Dependency injection setup for Data Access of the User Access module.
     ///     This registers the classes that handle the database connections for this module.
-    ///     
     ///     Should be called from the module Startup.
     /// </summary>
     internal class DataAccessModule : Module

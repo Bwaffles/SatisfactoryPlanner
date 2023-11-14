@@ -11,10 +11,10 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 {
     public class WorldNode : Entity, IAggregateRoot
     {
-        private ExtractorId? _extractorId;
         private readonly NodeId _nodeId;
         private readonly WorldId _worldId;
         private ExtractionRate _extractionRate;
+        private ExtractorId? _extractorId;
 
         public WorldNodeId Id { get; }
 
@@ -40,11 +40,13 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
             AddDomainEvent(new WorldNodeTappedDomainEvent(Id, _worldId, _nodeId, _extractorId));
         }
 
-        public void IncreaseExtractionRate(ExtractionRate extractionRate, IExtractionRateCalculator extractionRateCalculator)
+        public void IncreaseExtractionRate(ExtractionRate extractionRate,
+            IExtractionRateCalculator extractionRateCalculator)
         {
             CheckRule(new MustBeTappedRule(IsTapped()));
             CheckRule(new CannotIncreaseExtractionRateBelowCurrentExtractionRateRule(extractionRate, _extractionRate));
-            CheckRule(new CannotIncreaseExtractionRateAboveMaxExtractionRateRule(extractionRate, _nodeId, _extractorId!, extractionRateCalculator));
+            CheckRule(new CannotIncreaseExtractionRateAboveMaxExtractionRateRule(extractionRate, _nodeId, _extractorId!,
+                extractionRateCalculator));
 
             if (_extractionRate == extractionRate)
                 return;
@@ -81,7 +83,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
             AddDomainEvent(new ExtractorUpgradedDomainEvent(Id, _extractorId));
         }
 
-        public void DowngradeExtractor(Extractor extractor, ResourceId resourceId, Extractor? currentExtractor, IExtractionRateCalculator extractionRateCalculator)
+        public void DowngradeExtractor(Extractor extractor, ResourceId resourceId, Extractor? currentExtractor,
+            IExtractionRateCalculator extractionRateCalculator)
         {
             CheckRule(new MustBeTappedRule(IsTapped()));
             CheckRule(new ExtractorMustBeAbleToExtractResourceRule(extractor, resourceId));
@@ -100,7 +103,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
                 _extractionRate = maxExtractionRate;
                 AddDomainEvent(new ExtractionRateDecreasedDomainEvent(Id, _extractionRate));
             }
-
         }
 
         public void DismantleExtractor()

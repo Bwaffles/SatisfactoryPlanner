@@ -14,8 +14,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldN
     internal class TapWorldNodeCommandHandler : ICommandHandler<TapWorldNodeCommand>
     {
         private readonly IExtractorRepository _extractorRepository;
-        private readonly IWorldNodeRepository _worldNodeRepository;
         private readonly INodeRepository _nodeRepository;
+        private readonly IWorldNodeRepository _worldNodeRepository;
 
         public TapWorldNodeCommandHandler(IExtractorRepository extractorRepository,
             IWorldNodeRepository worldNodeRepository,

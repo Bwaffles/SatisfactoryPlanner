@@ -10,6 +10,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure
 {
     public class ResourcesContext : DbContext
     {
+        private readonly ILoggerFactory _loggerFactory;
+
         public DbSet<Extractor> Extractors { get; set; }
 
         public DbSet<Node> Nodes { get; set; }
@@ -19,8 +21,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure
         public DbSet<InternalCommand> InternalCommands { get; set; }
 
         public DbSet<OutboxMessage> OutboxMessages { get; set; }
-
-        private readonly ILoggerFactory _loggerFactory;
 
         public ResourcesContext(DbContextOptions options, ILoggerFactory loggerFactory)
             : base(options)

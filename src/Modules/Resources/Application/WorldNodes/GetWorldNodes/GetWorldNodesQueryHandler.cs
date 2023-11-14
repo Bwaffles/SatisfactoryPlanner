@@ -50,8 +50,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldN
 
             var param = new
             {
-                query.ResourceId,
-                query.WorldId
+                query.ResourceId, query.WorldId
             };
 
             var nodes = (await connection.QueryAsync<WorldNodeDto>(sql, param)).ToList();

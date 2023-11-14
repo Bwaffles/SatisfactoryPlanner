@@ -19,9 +19,9 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Events
             {
                 ContractResolver = new AllPropertiesContractResolver()
             });
-            
+
             const string sql = "INSERT INTO worlds.inbox_messages (id, occurred_on, type, data) " +
-                      $"VALUES (@{nameof(@event.Id)}, @{nameof(@event.OccurredOn)}, @{nameof(type)}, @{nameof(data)})";
+                               $"VALUES (@{nameof(@event.Id)}, @{nameof(@event.OccurredOn)}, @{nameof(type)}, @{nameof(data)})";
             var param = new
             {
                 @event.Id, @event.OccurredOn, type, data

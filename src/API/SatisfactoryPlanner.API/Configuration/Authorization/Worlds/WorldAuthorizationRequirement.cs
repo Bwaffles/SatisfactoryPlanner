@@ -2,7 +2,5 @@
 
 namespace SatisfactoryPlanner.API.Configuration.Authorization.Worlds
 {
-    public class WorldAuthorizationRequirement : IAuthorizationRequirement
-    {
-    }
+    public class WorldAuthorizationRequirement : IAuthorizationRequirement { }
 }

@@ -1,7 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DismantleExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
-using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.UpgradeExtractor;
 using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 
 namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes

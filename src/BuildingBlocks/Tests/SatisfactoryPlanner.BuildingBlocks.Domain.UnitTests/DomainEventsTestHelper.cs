@@ -44,7 +44,6 @@ namespace SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests
                 if (isEntity && field.GetValue(aggregate) is Entity entity)
                     ClearAllDomainEvents(entity);
 
-
                 if (field.FieldType == typeof(string) || !typeof(IEnumerable).IsAssignableFrom(field.FieldType))
                     continue;
 

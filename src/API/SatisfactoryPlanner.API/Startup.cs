@@ -159,7 +159,8 @@ namespace SatisfactoryPlanner.API
             app.UseAuthentication();
 
             // To be used by WorldAuthorization to get world id from the body of the request
-            app.Use((context, next) => {
+            app.Use((context, next) =>
+            {
                 context.Request.EnableBuffering(1_000_000);
                 return next();
             });

@@ -48,7 +48,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Proces
                     Console.WriteLine(e);
                     throw;
                 }
-                
+
                 const string sqlUpdateProcessedDate = "UPDATE worlds.inbox_messages " +
                                                       "   SET processed_date = @Date " +
                                                       " WHERE id = @Id";

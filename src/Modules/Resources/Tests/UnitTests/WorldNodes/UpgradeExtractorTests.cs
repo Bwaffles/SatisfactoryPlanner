@@ -45,7 +45,8 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 .IsTapped()
                 .Create();
 
-            worldNodeTestData.WorldNode.UpgradeExtractor(worldNodeTestData.Extractor!, worldNodeTestData.ResourceId, worldNodeTestData.Extractor);
+            worldNodeTestData.WorldNode.UpgradeExtractor(worldNodeTestData.Extractor!, worldNodeTestData.ResourceId,
+                worldNodeTestData.Extractor);
 
             DomainEventAssertions.AssertEventIsNotPublished<ExtractorUpgradedDomainEvent>(worldNodeTestData.WorldNode,
                 "because the extractor didn't change");
@@ -59,7 +60,8 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 
             RuleAssertions.AssertBrokenRule<MustBeTappedRule>(() =>
             {
-                worldNodeTestData.WorldNode.UpgradeExtractor(worldNodeTestData.Extractor!, worldNodeTestData.ResourceId, null);
+                worldNodeTestData.WorldNode.UpgradeExtractor(worldNodeTestData.Extractor!, worldNodeTestData.ResourceId,
+                    null);
             });
         }
 
@@ -76,7 +78,8 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 
             RuleAssertions.AssertBrokenRule<ExtractorMustBeAbleToExtractResourceRule>(() =>
             {
-                worldNodeTestData.WorldNode.UpgradeExtractor(badExtractor, worldNodeTestData.ResourceId, worldNodeTestData.Extractor);
+                worldNodeTestData.WorldNode.UpgradeExtractor(badExtractor, worldNodeTestData.ResourceId,
+                    worldNodeTestData.Extractor);
             });
         }
 
@@ -100,7 +103,8 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 
             RuleAssertions.AssertBrokenRule<CannotUpgradeToASlowerExtractorRule>(() =>
             {
-                worldNodeTestData.WorldNode.UpgradeExtractor(slowerExtractor, worldNodeTestData.ResourceId, worldNodeTestData.Extractor);
+                worldNodeTestData.WorldNode.UpgradeExtractor(slowerExtractor, worldNodeTestData.ResourceId,
+                    worldNodeTestData.Extractor);
             });
         }
     }

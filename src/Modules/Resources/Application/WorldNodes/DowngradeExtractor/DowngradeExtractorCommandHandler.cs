@@ -14,10 +14,10 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.Downgrade
     // ReSharper disable once UnusedMember.Global
     internal class DowngradeExtractorCommandHandler : ICommandHandler<DowngradeExtractorCommand>
     {
-        private readonly IExtractorRepository _extractorRepository;
-        private readonly IWorldNodeRepository _worldNodeRepository;
-        private readonly INodeRepository _nodeRepository;
         private readonly IExtractionRateCalculator _extractionRateCalculator;
+        private readonly IExtractorRepository _extractorRepository;
+        private readonly INodeRepository _nodeRepository;
+        private readonly IWorldNodeRepository _worldNodeRepository;
 
         public DowngradeExtractorCommandHandler(IExtractorRepository extractorRepository,
             IWorldNodeRepository worldNodeRepository,

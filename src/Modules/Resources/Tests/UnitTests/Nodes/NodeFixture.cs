@@ -7,7 +7,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.Nodes
     internal class NodeFixture
     {
         private NodePurity _purity = NodePurity.Normal;
-        private ResourceId _resourceId = new ResourceId(Guid.NewGuid());
+        private ResourceId _resourceId = new(Guid.NewGuid());
 
         internal Node Build()
         {

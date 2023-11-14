@@ -26,11 +26,14 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Pro
             //    .InstancePerLifetimeScope();
 
             builder.RegisterGenericDecorator(typeof(UnitOfWorkCommandHandlerDecorator<>), typeof(ICommandHandler<>));
-            builder.RegisterGenericDecorator(typeof(UnitOfWorkCommandHandlerWithResultDecorator<,>), typeof(ICommandHandler<,>));
+            builder.RegisterGenericDecorator(typeof(UnitOfWorkCommandHandlerWithResultDecorator<,>),
+                typeof(ICommandHandler<,>));
             builder.RegisterGenericDecorator(typeof(ValidationCommandHandlerDecorator<>), typeof(ICommandHandler<>));
-            builder.RegisterGenericDecorator(typeof(ValidationCommandHandlerWithResultDecorator<,>), typeof(ICommandHandler<,>));
+            builder.RegisterGenericDecorator(typeof(ValidationCommandHandlerWithResultDecorator<,>),
+                typeof(ICommandHandler<,>));
             builder.RegisterGenericDecorator(typeof(LoggingCommandHandlerDecorator<>), typeof(ICommandHandler<>));
-            builder.RegisterGenericDecorator(typeof(LoggingCommandHandlerWithResultDecorator<,>), typeof(ICommandHandler<,>));
+            builder.RegisterGenericDecorator(typeof(LoggingCommandHandlerWithResultDecorator<,>),
+                typeof(ICommandHandler<,>));
 
             //builder.RegisterGenericDecorator(
             //    typeof(DomainEventsDispatcherNotificationHandlerDecorator<>),

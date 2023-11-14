@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Processing
 {
-    internal class UnitOfWorkCommandHandlerWithResultDecorator<T, TResult> : ICommandHandler<T, TResult> where T : ICommand<TResult>
+    internal class UnitOfWorkCommandHandlerWithResultDecorator<T, TResult> : ICommandHandler<T, TResult>
+        where T : ICommand<TResult>
     {
         private readonly ICommandHandler<T, TResult> _decorated;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly FactoriesContext _factoriesContext;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UnitOfWorkCommandHandlerWithResultDecorator(ICommandHandler<T, TResult> decorated, IUnitOfWork unitOfWork,
+        public UnitOfWorkCommandHandlerWithResultDecorator(ICommandHandler<T, TResult> decorated,
+            IUnitOfWork unitOfWork,
             FactoriesContext factoriesContext)
         {
             _decorated = decorated;
@@ -30,12 +32,10 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Pro
             {
                 var internalCommand = await _factoriesContext
                     .InternalCommands
-                    .FirstOrDefaultAsync(x => x.Id == command.Id, cancellationToken: cancellationToken);
+                    .FirstOrDefaultAsync(x => x.Id == command.Id, cancellationToken);
 
                 if (internalCommand != null)
-                {
                     internalCommand.ProcessedDate = DateTime.UtcNow;
-                }
             }
 
             await _unitOfWork.CommitAsync(cancellationToken);

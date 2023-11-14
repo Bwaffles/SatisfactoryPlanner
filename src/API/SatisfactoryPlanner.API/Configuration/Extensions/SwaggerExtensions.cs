@@ -44,8 +44,7 @@ namespace SatisfactoryPlanner.API.Configuration.Extensions
                         {
                             Reference = new OpenApiReference
                             {
-                                Type = ReferenceType.SecurityScheme, 
-                                Id = "Bearer"
+                                Type = ReferenceType.SecurityScheme, Id = "Bearer"
                             }
                         },
                         new List<string>()

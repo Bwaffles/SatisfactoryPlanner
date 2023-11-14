@@ -21,7 +21,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure
             _loggerFactory = loggerFactory;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
+        {
             //optionsBuilder.UseLoggerFactory(_loggerFactory).EnableSensitiveDataLogging();
         }
 

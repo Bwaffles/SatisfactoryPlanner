@@ -4,8 +4,8 @@ using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.DataAcc
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Logging;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Mediation;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Processing;
+using Serilog;
 using Serilog.Extensions.Logging;
-using ILogger = Serilog.ILogger;
 
 namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration
 {
@@ -16,12 +16,14 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration
     /// </summary>
     public class FactoriesStartup
     {
-        public static void Initialize(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger)
+        public static void Initialize(string connectionString, IExecutionContextAccessor executionContextAccessor,
+            ILogger logger)
         {
             ConfigureCompositionRoot(connectionString, executionContextAccessor, logger);
         }
 
-        private static void ConfigureCompositionRoot(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger)
+        private static void ConfigureCompositionRoot(string connectionString,
+            IExecutionContextAccessor executionContextAccessor, ILogger logger)
         {
             var containerBuilder = new ContainerBuilder();
 
@@ -37,11 +39,11 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration
             //var domainNotificationsMap = new BiDictionary<string, Type>();
             //domainNotificationsMap.Add("MeetingGroupProposalAcceptedNotification", typeof(MeetingGroupProposalAcceptedNotification));
             //containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
-            
+
             //containerBuilder.RegisterModule(new QuartzModule());
 
             containerBuilder.RegisterInstance(executionContextAccessor);
-            
+
             FactoriesCompositionRoot.SetContainer(containerBuilder.Build());
         }
     }

@@ -31,7 +31,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         [Test]
         public async Task WhenAlreadyUsingGivenExtractor_IsSuccessful()
         {
-            var (worldId, nodeId, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
+            var (worldId, nodeId, extractorId) =
+                await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             await ResourcesModule.ExecuteCommandAsync(
                 new DowngradeExtractorCommand(worldId, nodeId, extractorId));

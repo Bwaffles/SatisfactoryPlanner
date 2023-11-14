@@ -2,7 +2,5 @@
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox
 {
-    public class ProcessOutboxCommand : CommandBase, IRecurringCommand
-    {
-    }
+    public class ProcessOutboxCommand : CommandBase, IRecurringCommand { }
 }

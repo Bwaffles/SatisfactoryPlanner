@@ -38,7 +38,8 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 .GetMaxExtractionRate(worldNodeTestData.NodeId, slowestExtractor.Id)
                 .Returns(ExtractionRate.Of(780));
 
-            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor, mockExtractionRateCalculator);
+            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor,
+                mockExtractionRateCalculator);
 
             var domainEvent =
                 DomainEventAssertions.AssertPublishedEvent<ExtractorDowngradedDomainEvent>(worldNodeTestData.WorldNode);
@@ -91,10 +92,12 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(780),
                 mockExtractionRateCalculator);
 
-            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor, mockExtractionRateCalculator);
+            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor,
+                mockExtractionRateCalculator);
 
             var domainEvent =
-                DomainEventAssertions.AssertPublishedEvent<ExtractionRateDecreasedDomainEvent>(worldNodeTestData.WorldNode);
+                DomainEventAssertions.AssertPublishedEvent<ExtractionRateDecreasedDomainEvent>(worldNodeTestData
+                    .WorldNode);
             domainEvent.WorldNodeId.Should().Be(worldNodeTestData.WorldNode.Id);
             domainEvent.ExtractionRate.Should().Be(ExtractionRate.Of(300));
         }
@@ -131,9 +134,11 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate),
                 mockExtractionRateCalculator);
 
-            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor, mockExtractionRateCalculator);
+            worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor,
+                mockExtractionRateCalculator);
 
-            DomainEventAssertions.AssertEventIsNotPublished<ExtractionRateDecreasedDomainEvent>(worldNodeTestData.WorldNode);
+            DomainEventAssertions.AssertEventIsNotPublished<ExtractionRateDecreasedDomainEvent>(worldNodeTestData
+                .WorldNode);
         }
 
         // Business rule tests

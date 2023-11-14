@@ -36,11 +36,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
             var connection = _dbConnectionFactory.GetOpenConnection();
 
             const string getOutboxMessages = $"  SELECT outbox_message.id AS {nameof(OutboxMessageDto.Id)}, " +
-                               $"         outbox_message.type AS {nameof(OutboxMessageDto.Type)}, " +
-                               $"         outbox_message.data AS {nameof(OutboxMessageDto.Data)} " +
-                               "     FROM resources.outbox_messages AS outbox_message " +
-                               "    WHERE outbox_message.processed_date IS NULL " +
-                               " ORDER BY outbox_message.occurred_on";
+                                             $"         outbox_message.type AS {nameof(OutboxMessageDto.Type)}, " +
+                                             $"         outbox_message.data AS {nameof(OutboxMessageDto.Data)} " +
+                                             "     FROM resources.outbox_messages AS outbox_message " +
+                                             "    WHERE outbox_message.processed_date IS NULL " +
+                                             " ORDER BY outbox_message.occurred_on";
             var messages = await connection.QueryAsync<OutboxMessageDto>(getOutboxMessages);
 
             foreach (var message in messages)

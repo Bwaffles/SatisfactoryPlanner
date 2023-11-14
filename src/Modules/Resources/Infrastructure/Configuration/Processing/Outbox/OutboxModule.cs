@@ -6,7 +6,6 @@ using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Outbox;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Processing.Outbox
@@ -42,7 +41,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
                 .ToList();
 
             var notMappedNotifications = domainEventNotifications
-                .Where(domainEventNotification => !_domainNotificationsMap.TryGetBySecond(domainEventNotification, out _))
+                .Where(domainEventNotification =>
+                    !_domainNotificationsMap.TryGetBySecond(domainEventNotification, out _))
                 .ToList();
 
             if (notMappedNotifications.Any())
