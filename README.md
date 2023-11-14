@@ -3,7 +3,9 @@
 ## How to Use
 
 ### Database Migrations
-From the root folder, run `dotnet run --project src/Database/DatabaseMigrator/` to start the interactive migration app during development.
+From the root folder, run `dotnet run --project src/Database/DatabaseMigrator/ [debug|release] [masterConnectionString] [connectionString]` to start the interactive migration app during development.
+
+e.g. `dotnet run --project src/Database/DatabaseMigrator/ debug "Server=127.0.0.1;User Id=myusername;Password=mypassword" "Server=127.0.0.1;Database=satisfactory-planner;User Id=myusername;Password=mypassword"`
 
 ### Run Integration Tests
 From the root folder, run `Nuke RunAllIntegrationTests`. You need to have Docker Desktop running for the database container to be created.
