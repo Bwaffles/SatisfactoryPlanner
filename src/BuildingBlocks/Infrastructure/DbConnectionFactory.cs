@@ -7,8 +7,8 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure
 {
     public class DbConnectionFactory : IDbConnectionFactory, IDisposable
     {
-        private IDbConnection? _connection;
         private readonly string _connectionString;
+        private IDbConnection? _connection;
 
         public DbConnectionFactory(string connectionString)
         {
@@ -39,6 +39,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure
 
             return _connection;
         }
+
         public void Dispose()
         {
             if (_connection is { State: ConnectionState.Open })

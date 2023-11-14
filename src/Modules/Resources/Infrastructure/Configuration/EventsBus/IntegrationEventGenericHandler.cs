@@ -20,9 +20,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Eve
             {
                 ContractResolver = new AllPropertiesContractResolver()
             });
-            
+
             const string sql = "INSERT INTO resources.inbox_messages (id, occurred_on, type, data) " +
-                      $"VALUES (@{nameof(@event.Id)}, @{nameof(@event.OccurredOn)}, @{nameof(type)}, @{nameof(data)})";
+                               $"VALUES (@{nameof(@event.Id)}, @{nameof(@event.OccurredOn)}, @{nameof(type)}, @{nameof(data)})";
             var param = new
             {
                 @event.Id, @event.OccurredOn, type, data

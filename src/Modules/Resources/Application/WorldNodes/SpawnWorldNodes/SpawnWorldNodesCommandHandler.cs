@@ -20,6 +20,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.SpawnWorl
             _nodeRepository = nodeRepository;
             _worldNodeRepository = worldNodeRepository;
         }
+
         public async Task<Unit> Handle(SpawnWorldNodesCommand request, CancellationToken cancellationToken)
         {
             var allNodes = await _nodeRepository.GetAllAsync();

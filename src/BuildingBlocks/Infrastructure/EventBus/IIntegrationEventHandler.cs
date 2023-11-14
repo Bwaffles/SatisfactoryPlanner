@@ -8,7 +8,5 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus
         Task Handle(TIntegrationEvent @event);
     }
 
-    public interface IIntegrationEventHandler
-    {
-    }
+    public interface IIntegrationEventHandler { }
 }

@@ -12,8 +12,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
     internal class ValidationCommandHandlerWithResultDecorator<T, TResult> : ICommandHandler<T, TResult>
         where T : ICommand<TResult>
     {
-        private readonly IList<IValidator<T>> _validators;
         private readonly ICommandHandler<T, TResult> _decorated;
+        private readonly IList<IValidator<T>> _validators;
 
         public ValidationCommandHandlerWithResultDecorator(
             IList<IValidator<T>> validators,

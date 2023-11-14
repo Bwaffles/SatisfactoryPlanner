@@ -44,6 +44,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Qu
             throw new NotImplementedException();
         }
 
-        public IDisposable OpenMappedContext(string key, object value, bool destructure = false) => throw new NotImplementedException();
+        public IDisposable OpenMappedContext(string key, object value, bool destructure = false) =>
+            throw new NotImplementedException();
     }
 }

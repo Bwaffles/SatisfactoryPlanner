@@ -8,8 +8,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration
 {
     public class AllConstructorFinder : IConstructorFinder
     {
-        private static readonly ConcurrentDictionary<Type, ConstructorInfo[]> Cache =
-            new ConcurrentDictionary<Type, ConstructorInfo[]>();
+        private static readonly ConcurrentDictionary<Type, ConstructorInfo[]> Cache = new();
 
         public ConstructorInfo[] FindConstructors(Type targetType)
         {

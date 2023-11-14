@@ -47,7 +47,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetCurrentUse
                 {
                     _executionContextAccessor.UserId
                 };
-                user.Roles = (await connection.QueryAsync<UserRoleDto>(rolesSql, rolesParam));
+                user.Roles = await connection.QueryAsync<UserRoleDto>(rolesSql, rolesParam);
 
                 return user;
             }

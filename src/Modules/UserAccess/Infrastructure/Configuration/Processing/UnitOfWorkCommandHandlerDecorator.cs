@@ -32,7 +32,9 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
 
             if (command is InternalCommandBase)
             {
-                var internalCommand = await _userAccessContext.InternalCommands.FirstOrDefaultAsync(x => x.Id == command.Id, cancellationToken: cancellationToken);
+                var internalCommand =
+                    await _userAccessContext.InternalCommands.FirstOrDefaultAsync(x => x.Id == command.Id,
+                        cancellationToken);
 
                 if (internalCommand != null)
                     internalCommand.ProcessedDate = DateTime.UtcNow;

@@ -26,9 +26,9 @@ namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.Pioneers
 
             // This can't really test if my query filter is wrong. At this point I've only added 1 world, so that's all i'm going to get.
             var starterWorld = (await WorldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery())).Single();
-            
+
             starterWorld.Name.Should().Be("Starter World");
-            
+
             // Trying to switch the "current pioneer" to see if no records get returned. I don't know if this is the right place, but want to capture this.
             ExecutionContext.UserId = Guid.NewGuid();
             var otherPioneerWorlds = await WorldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());

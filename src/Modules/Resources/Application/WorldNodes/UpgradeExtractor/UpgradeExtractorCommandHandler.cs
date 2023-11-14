@@ -14,8 +14,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.UpgradeEx
     internal class UpgradeExtractorCommandHandler : ICommandHandler<UpgradeExtractorCommand>
     {
         private readonly IExtractorRepository _extractorRepository;
-        private readonly IWorldNodeRepository _worldNodeRepository;
         private readonly INodeRepository _nodeRepository;
+        private readonly IWorldNodeRepository _worldNodeRepository;
 
         public UpgradeExtractorCommandHandler(IExtractorRepository extractorRepository,
             IWorldNodeRepository worldNodeRepository,

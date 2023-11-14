@@ -2,7 +2,5 @@
 
 namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Inbox
 {
-    public class ProcessInboxCommand : CommandBase, IRecurringCommand
-    {
-    }
+    public class ProcessInboxCommand : CommandBase, IRecurringCommand { }
 }

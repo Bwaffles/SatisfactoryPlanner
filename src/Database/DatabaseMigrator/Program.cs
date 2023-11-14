@@ -1,6 +1,7 @@
 ﻿using DatabaseMigrator.Migrations;
 using DatabaseMigrator.Migrations.Factories;
 using FluentMigrator.Runner;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -12,26 +13,31 @@ namespace DatabaseMigrator
         {
             Console.WriteLine("Starting migration...");
 
-            // TODO this needs to be cleaned up and given better arguments and argument parsing
-            if (args.Length != 3)
-            {
-                Console.WriteLine("Invalid arguments. Execution: DatabaseMigrator [masterConnectionString] [connectionString] [migrate].\r\n");
-                return -1;
-            }
-
-            var environment = args[0];
+            var environment = args.Length > 0 ? args[0] : "debug";
             if (environment != "release" && environment != "debug")
             {
                 // release: used from the BuildIntegrationTests Nuke script to run all migrations
                 // debug: used during dev to have an interactive experience so we can test rollbacks and migration retests
-                Console.WriteLine("Invalid arguments. Execution: DatabaseMigrator [masterConnectionString] [connectionString] [(release|debug)].\r\n");
+                WriterCommandArgumentError();
                 return -1;
             }
 
-            var masterConnectionString = args[1]; // to be able to create the DB
-            var connectionString = args[2];
-            
-            Database.EnsureDatabase(masterConnectionString, "satisfactory-planner");
+            string serverConnectionString; // to be able to create the DB
+            string connectionString; // to be able to create the DB
+            if (args.Length > 1)
+            {
+                serverConnectionString = args[1];
+                connectionString = args[2];
+            }
+            else
+            {
+                var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
+
+                serverConnectionString = config.GetConnectionString("Server");
+                connectionString = config.GetConnectionString("SatisfactoryPlanner");
+            }
+
+            Database.EnsureDatabase(serverConnectionString, "satisfactory-planner");
 
             var servicesProvider = new ServiceCollection()
                 .AddFluentMigratorCore()
@@ -53,6 +59,10 @@ namespace DatabaseMigrator
 
             return 0;
         }
+
+        private static void WriterCommandArgumentError() =>
+            Console.WriteLine(
+                "Invalid arguments. Execution: DatabaseMigrator [(release|debug)] [serverConnectionString] [connectionString].\r\n");
 
         private static void UpdateDatabase(string connectionString, IServiceProvider serviceProvider, string environment)
         {

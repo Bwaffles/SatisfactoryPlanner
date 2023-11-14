@@ -8,8 +8,8 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Proces
     internal class UnitOfWorkCommandHandlerWithResultDecorator<T, TResult> : ICommandHandler<T, TResult>
         where T : ICommand<TResult>
     {
-        private readonly ICommandHandler<T, TResult> _decorated;
         private readonly WorldsContext _context;
+        private readonly ICommandHandler<T, TResult> _decorated;
         private readonly IUnitOfWork _unitOfWork;
 
         public UnitOfWorkCommandHandlerWithResultDecorator(ICommandHandler<T, TResult> decorated,

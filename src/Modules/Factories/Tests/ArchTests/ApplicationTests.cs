@@ -51,7 +51,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             var result = Types.InAssembly(ApplicationAssembly)
                 .That()
                 .ImplementInterface(typeof(ICommandHandler<>))
-                    .Or()
+                .Or()
                 .ImplementInterface(typeof(ICommandHandler<,>))
                 .And()
                 .DoNotHaveNameMatching(".*Decorator.*").Should()
@@ -79,11 +79,11 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
         {
             var types = Types.InAssembly(ApplicationAssembly)
                 .That()
-                    .ImplementInterface(typeof(IQueryHandler<,>))
-                        .Or()
-                    .ImplementInterface(typeof(ICommandHandler<>))
-                        .Or()
-                    .ImplementInterface(typeof(ICommandHandler<,>))
+                .ImplementInterface(typeof(IQueryHandler<,>))
+                .Or()
+                .ImplementInterface(typeof(ICommandHandler<>))
+                .Or()
+                .ImplementInterface(typeof(ICommandHandler<,>))
                 .Should().NotBePublic().GetResult().FailingTypes;
 
             AssertFailingTypes(types);
@@ -128,10 +128,12 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             foreach (var type in types)
             {
                 var hasJsonConstructorDefined = false;
-                var constructors = type.GetConstructors(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                var constructors =
+                    type.GetConstructors(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
                 foreach (var constructorInfo in constructors)
                 {
-                    var jsonConstructorAttribute = constructorInfo.GetCustomAttributes(typeof(JsonConstructorAttribute), false);
+                    var jsonConstructorAttribute =
+                        constructorInfo.GetCustomAttributes(typeof(JsonConstructorAttribute), false);
                     if (jsonConstructorAttribute.Length > 0)
                     {
                         hasJsonConstructorDefined = true;
@@ -140,9 +142,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
                 }
 
                 if (!hasJsonConstructorDefined)
-                {
                     failingTypes.Add(type);
-                }
             }
 
             AssertFailingTypes(failingTypes);
@@ -169,9 +169,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
                     x.IsGenericType &&
                     x.GetGenericTypeDefinition() == typeof(IQueryHandler<,>));
                 if (!isCommandHandler && !isCommandWithResultHandler && !isQueryHandler)
-                {
                     failingTypes.Add(type);
-                }
             }
 
             AssertFailingTypes(failingTypes);
@@ -190,9 +188,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             {
                 var interfaceType = type.GetInterface(commandWithResultHandlerType.Name);
                 if (interfaceType?.GenericTypeArguments[1] == typeof(Unit))
-                {
                     failingTypes.Add(type);
-                }
             }
 
             AssertFailingTypes(failingTypes);

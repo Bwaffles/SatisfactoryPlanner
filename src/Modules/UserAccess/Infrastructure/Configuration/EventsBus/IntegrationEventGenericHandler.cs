@@ -29,10 +29,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Ev
 
                     await connection.ExecuteScalarAsync(sql, new
                     {
-                        @event.Id,
-                        @event.OccurredOn,
-                        type,
-                        data
+                        @event.Id, @event.OccurredOn, type, data
                     });
                 }
             }

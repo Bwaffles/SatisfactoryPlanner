@@ -6,7 +6,5 @@
     public interface IPioneersRepository
     {
         Task AddAsync(Pioneer pioneer);
-
-        Task<Pioneer> GetByIdAsync(PioneerId pioneerId);
     }
 }

@@ -8,12 +8,12 @@ namespace SatisfactoryPlanner.API.Configuration.Authorization.Permissions
     {
         internal const string HasPermissionPolicyName = "HasPermission";
 
+        public string Name { get; }
+
         public HasPermissionAttribute(string name)
             : base(HasPermissionPolicyName)
         {
             Name = name;
         }
-
-        public string Name { get; }
     }
 }

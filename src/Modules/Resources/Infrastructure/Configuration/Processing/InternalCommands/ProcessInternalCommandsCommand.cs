@@ -2,7 +2,5 @@
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Processing.InternalCommands
 {
-    internal class ProcessInternalCommandsCommand : CommandBase, IRecurringCommand
-    {
-    }
+    internal class ProcessInternalCommandsCommand : CommandBase, IRecurringCommand { }
 }

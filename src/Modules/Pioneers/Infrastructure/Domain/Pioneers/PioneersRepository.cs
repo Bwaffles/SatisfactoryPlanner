@@ -15,7 +15,5 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Domain.Pioneers
         internal PioneersRepository(WorldsContext context) => _context = context;
 
         public async Task AddAsync(Pioneer pioneer) => await _context.Pioneers.AddAsync(pioneer);
-
-        public async Task<Pioneer> GetByIdAsync(PioneerId pioneerId) => await _context.Pioneers.FindAsync(pioneerId);
     }
 }

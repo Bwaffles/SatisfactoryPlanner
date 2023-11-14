@@ -7,11 +7,11 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure
 {
     public class FactoriesContext : DbContext
     {
+        private readonly ILoggerFactory _loggerFactory;
+
         public DbSet<Factory> Factories { get; set; }
 
         public DbSet<InternalCommand> InternalCommands { get; set; }
-
-        private readonly ILoggerFactory _loggerFactory;
 
         public FactoriesContext(DbContextOptions options, ILoggerFactory loggerFactory)
             : base(options)

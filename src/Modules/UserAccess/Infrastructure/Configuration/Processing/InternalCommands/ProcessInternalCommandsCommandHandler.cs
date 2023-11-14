@@ -68,8 +68,8 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
         private async Task ProcessCommand(
             InternalCommandDto internalCommand)
         {
-            var type = Assemblies.Application.GetType(internalCommand.Type);
-            dynamic commandToProcess = JsonConvert.DeserializeObject(internalCommand.Data, type);
+            var type = Assemblies.Application.GetType(internalCommand.Type, true)!;
+            dynamic? commandToProcess = JsonConvert.DeserializeObject(internalCommand.Data, type);
 
             await CommandsExecutor.Execute(commandToProcess);
         }
@@ -78,9 +78,9 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
         {
             public Guid Id { get; set; }
 
-            public string Type { get; set; }
+            public required string Type { get; set; }
 
-            public string Data { get; set; }
+            public required string Data { get; set; }
         }
     }
 }

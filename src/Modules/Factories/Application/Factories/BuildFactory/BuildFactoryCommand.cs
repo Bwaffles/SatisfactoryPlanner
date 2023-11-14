@@ -5,11 +5,11 @@ namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildFacto
 {
     public class BuildFactoryCommand : CommandBase<Guid>
     {
+        public string Name { get; }
+
         public BuildFactoryCommand(string name)
         {
             Name = name;
         }
-
-        public string Name { get; }
     }
 }

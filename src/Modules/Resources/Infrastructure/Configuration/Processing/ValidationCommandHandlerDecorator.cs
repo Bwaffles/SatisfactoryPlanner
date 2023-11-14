@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Processing
 {
     internal class ValidationCommandHandlerDecorator<T> : ICommandHandler<T>
-       where T : ICommand
+        where T : ICommand
     {
-        private readonly IList<IValidator<T>> _validators;
         private readonly ICommandHandler<T> _decorated;
+        private readonly IList<IValidator<T>> _validators;
 
         public ValidationCommandHandlerDecorator(
             IList<IValidator<T>> validators,

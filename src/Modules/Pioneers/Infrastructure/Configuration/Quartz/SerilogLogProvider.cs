@@ -43,6 +43,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Quartz
             throw new NotImplementedException();
         }
 
-        public IDisposable OpenMappedContext(string key, object value, bool destructure = false) => throw new NotImplementedException();
+        public IDisposable OpenMappedContext(string key, object value, bool destructure = false) =>
+            throw new NotImplementedException();
     }
 }

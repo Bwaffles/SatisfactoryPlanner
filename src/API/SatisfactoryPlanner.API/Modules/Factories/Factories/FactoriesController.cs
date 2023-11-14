@@ -52,7 +52,8 @@ namespace SatisfactoryPlanner.API.Modules.Factories.Factories
         /// </summary>
         [HttpPost("{factoryId}/sub-factories")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> BuildSubFactory([FromRoute] Guid factoryId, [FromBody] BuildSubFactoryRequest request)
+        public async Task<IActionResult> BuildSubFactory([FromRoute] Guid factoryId,
+            [FromBody] BuildSubFactoryRequest request)
         {
             await factoriesModule.ExecuteCommandAsync(new BuildSubFactoryCommand(
                 factoryId,

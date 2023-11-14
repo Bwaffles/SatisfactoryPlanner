@@ -14,19 +14,19 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Extractors
         /// </summary>
         public decimal ResourcesExtracted { get; }
 
-        public static ExtractorCycle CreateNew(decimal secondsToComplete, decimal resourcesExtracted)
-            => new(secondsToComplete, resourcesExtracted);
-
         private ExtractorCycle(decimal secondsToComplete, decimal resourcesExtracted)
         {
             SecondsToComplete = secondsToComplete;
             ResourcesExtracted = resourcesExtracted;
         }
 
+        public static ExtractorCycle CreateNew(decimal secondsToComplete, decimal resourcesExtracted)
+            => new(secondsToComplete, resourcesExtracted);
+
         internal decimal GetResourcesPerMinute()
         {
             const int secondsPerMinute = 60;
-            return (secondsPerMinute / SecondsToComplete) * ResourcesExtracted;
+            return secondsPerMinute / SecondsToComplete * ResourcesExtracted;
         }
     }
 }

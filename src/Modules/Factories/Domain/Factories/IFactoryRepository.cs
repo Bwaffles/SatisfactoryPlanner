@@ -3,7 +3,7 @@
 namespace SatisfactoryPlanner.Modules.Factories.Domain.Factories
 {
     /// <summary>
-    ///     Handles the database access for the <see cref="Factory"/> through EntityFramework.
+    ///     Handles the database access for the <see cref="Factory" /> through EntityFramework.
     /// </summary>
     public interface IFactoryRepository
     {

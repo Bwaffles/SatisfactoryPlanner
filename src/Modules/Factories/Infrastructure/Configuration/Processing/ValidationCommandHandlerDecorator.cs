@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Processing
 {
     internal class ValidationCommandHandlerDecorator<T> : ICommandHandler<T>
-       where T : ICommand
+        where T : ICommand
     {
-        private readonly IList<IValidator<T>> _validators;
         private readonly ICommandHandler<T> _decorated;
+        private readonly IList<IValidator<T>> _validators;
 
         public ValidationCommandHandlerDecorator(
             IList<IValidator<T>> validators,
@@ -33,9 +33,7 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Pro
                 .ToList();
 
             if (errors.Any())
-            {
                 throw new InvalidCommandException(errors.Select(x => x.ErrorMessage).ToList());
-            }
 
             return _decorated.Handle(command, cancellationToken);
         }

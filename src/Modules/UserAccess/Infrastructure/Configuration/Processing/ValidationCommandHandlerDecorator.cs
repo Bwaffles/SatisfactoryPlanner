@@ -13,8 +13,8 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
     internal class ValidationCommandHandlerDecorator<T> : ICommandHandler<T>
         where T : ICommand
     {
-        private readonly IList<IValidator<T>> _validators;
         private readonly ICommandHandler<T> _decorated;
+        private readonly IList<IValidator<T>> _validators;
 
         public ValidationCommandHandlerDecorator(
             IList<IValidator<T>> validators,

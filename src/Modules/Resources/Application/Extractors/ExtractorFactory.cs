@@ -13,7 +13,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Extractors
     { // TODO maybe I need a repository for Extractors? I don't remember why I chose to do it this way
         public static async Task<Extractor> GetExtractor(IDbConnection connection, Guid extractorId)
         {
-            var extractor = (await GetAvailableExtractors(connection, null)).First(availableExtractor => availableExtractor.Id == extractorId);
+            var extractor =
+                (await GetAvailableExtractors(connection, null)).First(availableExtractor =>
+                    availableExtractor.Id == extractorId);
             var allowedResourceIds = await GetAllowedResourceIds(connection, extractor.Id);
 
             return CreateExtractor(extractor, allowedResourceIds);
@@ -22,7 +24,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Extractors
         public static async Task<Extractor> GetFastestExtractor(IDbConnection connection, Guid resourceId)
         {
             // Water and nitrogen gas don't have extractors yet...
-            var fastestExtractor = (await GetAvailableExtractors(connection, resourceId)).MinBy(availableExtractor => availableExtractor.SecondsToCompleteCycle);
+            var fastestExtractor =
+                (await GetAvailableExtractors(connection, resourceId)).MinBy(availableExtractor =>
+                    availableExtractor.SecondsToCompleteCycle);
             if (fastestExtractor == null)
                 return null; // TODO fix this
 

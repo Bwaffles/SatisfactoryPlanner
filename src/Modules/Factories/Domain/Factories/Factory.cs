@@ -1,28 +1,31 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using System;
 
 namespace SatisfactoryPlanner.Modules.Factories.Domain.Factories
 {
     public class Factory : Entity, IAggregateRoot
     {
-        public FactoryId Id { get; private set; }
+        private FactoryId? _builtUnderFactoryId;
+        private string _name;
 
-        private string _name { get; }
+        public FactoryId Id { get; }
 
-        private FactoryId? _builtUnderFactoryId { get; }
-
-        private Factory() { }
+        // ReSharper disable once UnusedMember.Local
+        private Factory()
+        { /* for EF */
+            _name = default!;
+            Id = default!;
+        }
 
         private Factory(string name, FactoryId? builtUnderFactoryId)
         {
-            Id = new FactoryId(System.Guid.NewGuid());
+            Id = new FactoryId(Guid.NewGuid());
             _name = name;
             _builtUnderFactoryId = builtUnderFactoryId;
         }
 
-        public static Factory Build(string name)
-            => new Factory(name, builtUnderFactoryId: null);
+        public static Factory Build(string name) => new(name, null);
 
-        public Factory BuildSubFactory(string name)
-            => new Factory(name, Id);
+        public Factory BuildSubFactory(string name) => new(name, Id);
     }
 }

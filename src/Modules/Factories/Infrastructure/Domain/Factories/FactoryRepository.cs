@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Domain.Factories
 {
     /// <summary>
-    ///     Handles the database access for the <see cref="Factory"/> through EntityFramework.
+    ///     Handles the database access for the <see cref="Factory" /> through EntityFramework.
     /// </summary>
     /// <remarks>
     ///     This is registered in the Factories.DataAccessModule by naming convention.

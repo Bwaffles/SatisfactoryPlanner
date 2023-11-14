@@ -114,7 +114,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
         [HttpPost("worlds/{worldId}/nodes/{nodeId}/decrease-extraction-rate")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DecreaseWorldNodeExtractionRate([FromRoute] Guid worldId,
-            [FromRoute] Guid nodeId, 
+            [FromRoute] Guid nodeId,
             [FromBody] DecreaseWorldNodeExtractionRateRequest request)
         {
             await _module.ExecuteCommandAsync(new DecreaseExtractionRateCommand(

@@ -30,13 +30,16 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
                                "         (SELECT COALESCE (SUM(world_node.extraction_rate), 0) " +
                                "            FROM resources.world_nodes AS world_node " +
                                "            JOIN resources.nodes AS node ON node.id = world_node.node_id " +
-                               $"          WHERE world_node.world_id = @WorldId " +
+                               "          WHERE world_node.world_id = @WorldId " +
                                $"            AND node.resource_id = resource.id) AS {nameof(ResourceDto.ExtractionRate)} " +
                                "    FROM resources.resources AS resource " +
                                "ORDER BY resource.resource_form desc " +
                                "       , resource.resource_sink_points;";
 
-            var param = new { request.WorldId };
+            var param = new
+            {
+                request.WorldId
+            };
             var resources = (await connection.QueryAsync<ResourceDto>(sql, param))
                 .AsList();
 

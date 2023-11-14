@@ -7,7 +7,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Application.Worlds.CreateStarterWor
     public class WorldCreatedNotification : DomainNotificationBase<WorldCreatedDomainEvent>
     {
         [JsonConstructor]
-        public WorldCreatedNotification(WorldCreatedDomainEvent domainEvent, Guid id) 
+        public WorldCreatedNotification(WorldCreatedDomainEvent domainEvent, Guid id)
             : base(domainEvent, id) { }
     }
 }

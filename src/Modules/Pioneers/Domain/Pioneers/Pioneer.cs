@@ -12,7 +12,10 @@ namespace SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers
         public PioneerId Id { get; }
 
         [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Used by EF")]
-        private Pioneer() { /* For EF */ }
+        private Pioneer()
+        { /* For EF */
+            Id = default!;
+        }
 
         private Pioneer(Guid pioneerId)
         {

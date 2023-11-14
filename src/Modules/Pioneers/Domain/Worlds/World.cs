@@ -6,18 +6,24 @@ namespace SatisfactoryPlanner.Modules.Worlds.Domain.Worlds
 {
     public class World : Entity, IAggregateRoot
     {
+        private DateTime _createDate;
+        private PioneerId _creatorId;
+        private List<WorldInhabitant> _inhabitants;
+
+        private string _name;
+
         /// <summary>
         ///     The unique id of the <see cref="World" />.
         /// </summary>
         public WorldId Id { get; }
 
-        private string _name;
-        private List<WorldInhabitant> _inhabitants;
-        private PioneerId _creatorId;
-        private DateTime _createDate;
-
         private World()
         { /* For EF */
+            Id = default!;
+            _name = default!;
+            _inhabitants = default!;
+            _creatorId = default!;
+            _createDate = default!;
         }
 
         private World(PioneerId creatorId, string name)

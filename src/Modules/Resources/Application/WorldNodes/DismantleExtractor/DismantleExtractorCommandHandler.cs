@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.Modules.Resources.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.Resources.Domain;
-using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;

@@ -15,9 +15,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
     internal class LoggingCommandHandlerDecorator<T> : ICommandHandler<T>
         where T : ICommand
     {
-        private readonly ILogger _logger;
-        private readonly IExecutionContextAccessor _executionContextAccessor;
         private readonly ICommandHandler<T> _decorated;
+        private readonly IExecutionContextAccessor _executionContextAccessor;
+        private readonly ILogger _logger;
 
         public LoggingCommandHandlerDecorator(
             ILogger logger,
@@ -71,7 +71,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
 
             public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
             {
-                logEvent.AddOrUpdateProperty(new LogEventProperty("Context", new ScalarValue($"Command:{_command.Id.ToString()}")));
+                logEvent.AddOrUpdateProperty(new LogEventProperty("Context",
+                    new ScalarValue($"Command:{_command.Id.ToString()}")));
             }
         }
 
@@ -87,7 +88,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
             public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
             {
                 if (_executionContextAccessor.IsAvailable)
-                    logEvent.AddOrUpdateProperty(new LogEventProperty("CorrelationId", new ScalarValue(_executionContextAccessor.CorrelationId)));
+                    logEvent.AddOrUpdateProperty(new LogEventProperty("CorrelationId",
+                        new ScalarValue(_executionContextAccessor.CorrelationId)));
             }
         }
     }

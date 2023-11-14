@@ -6,7 +6,6 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Log
     /// <summary>
     ///     Dependency injection setup for Logging of the Factories module.
     ///     This registers the classes that handle the logging for this module.
-    ///     
     ///     Should be called from the module Startup.
     /// </summary>
     internal class LoggingModule : Module

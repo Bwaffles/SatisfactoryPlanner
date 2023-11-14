@@ -3,7 +3,6 @@ using SatisfactoryPlanner.Modules.UserAccess.Domain.Users.Events;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.Users.Rules;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
 {
@@ -12,7 +11,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
         /// <summary>
         ///     The identifier of the user in Auth0.
         /// </summary>
-        [SuppressMessage("ReSharper", "NotAccessedField.Local")]
         private readonly string _auth0UserId;
 
         private readonly List<UserRole> _roles;
@@ -22,9 +20,12 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Domain.Users
         /// </summary>
         public UserId Id { get; }
 
-        [SuppressMessage("ReSharper", "UnusedMember.Local")]
+        // ReSharper disable once UnusedMember.Local
         private User()
         { /* Only for EF. */
+            _auth0UserId = default!;
+            _roles = default!;
+            Id = default!;
         }
 
         private User(string auth0UserId, UserRole role, IUsersCounter usersCounter)

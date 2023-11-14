@@ -19,7 +19,8 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Outbox
 
         public Task Save()
         {
-            return Task.CompletedTask; // Save is done automatically using EF Core Change Tracking mechanism during SaveChanges.
+            return
+                Task.CompletedTask; // Save is done automatically using EF Core Change Tracking mechanism during SaveChanges.
         }
     }
 }

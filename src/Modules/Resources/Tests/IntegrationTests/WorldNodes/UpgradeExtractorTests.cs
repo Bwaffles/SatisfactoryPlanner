@@ -12,7 +12,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         [Test]
         public async Task WhenDataIsValid_IsSuccessful()
         {
-            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             var worldNodeDetails =
                 await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
@@ -31,7 +31,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         [Test]
         public async Task WhenAlreadyUsingGivenExtractor_IsSuccessful()
         {
-            var (worldId, nodeId, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (worldId, nodeId, extractorId) =
+                await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             await ResourcesModule.ExecuteCommandAsync(
                 new UpgradeExtractorCommand(worldId, nodeId, extractorId));
@@ -45,7 +46,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         [Test]
         public async Task WhenWorldIdIsEmpty_ThrowsInvalidCommandException()
         {
-            var (_, nodeId, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (_, nodeId, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
@@ -57,7 +58,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         [Test]
         public async Task WhenNodeIdIsEmpty_ThrowsInvalidCommandException()
         {
-            var (worldId, _, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (worldId, _, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {
@@ -69,7 +70,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         [Test]
         public async Task WhenExtractorIdIsEmpty_ThrowsInvalidCommandException()
         {
-            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, extractorName: "Miner Mk.2");
+            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
             Assert.CatchAsync<InvalidCommandException>(async () =>
             {

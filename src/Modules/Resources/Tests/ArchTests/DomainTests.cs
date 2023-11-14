@@ -11,9 +11,9 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
         {
             var types = Types.InAssembly(DomainAssembly)
                 .That()
-                    .Inherit(typeof(DomainEventBase))
-                        .Or()
-                    .ImplementInterface(typeof(IDomainEvent))
+                .Inherit(typeof(DomainEventBase))
+                .Or()
+                .ImplementInterface(typeof(IDomainEvent))
                 .GetTypes();
 
             AssertAreImmutable(types);
@@ -51,9 +51,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
                 var publicMethods = type.GetMethods(bindingFlags);
 
                 if (publicFields.Any() || publicProperties.Any() || publicMethods.Any())
-                {
                     failingTypes.Add(type);
-                }
             }
 
             AssertFailingTypes(failingTypes);
@@ -79,25 +77,21 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
                 var fields = type.GetFields(bindingFlags);
 
                 foreach (var field in fields)
-                {
                     if (aggregateRoots.Contains(field.FieldType) ||
                         field.FieldType.GenericTypeArguments.Any(x => aggregateRoots.Contains(x)))
                     {
                         failingTypes.Add(type);
                         break;
                     }
-                }
 
                 var properties = type.GetProperties(bindingFlags);
                 foreach (var property in properties)
-                {
                     if (aggregateRoots.Contains(property.PropertyType) ||
                         property.PropertyType.GenericTypeArguments.Any(x => aggregateRoots.Contains(x)))
                     {
                         failingTypes.Add(type);
                         break;
                     }
-                }
             }
 
             AssertFailingTypes(failingTypes);
@@ -108,22 +102,20 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
         {
             var domainObjectTypes = Types.InAssembly(DomainAssembly)
                 .That()
-                        .Inherit(typeof(Entity))
-                    .Or()
-                        .Inherit(typeof(ValueObject))
+                .Inherit(typeof(Entity))
+                .Or()
+                .Inherit(typeof(ValueObject))
                 .GetTypes();
 
             var failingTypes = new List<Type>();
             foreach (var domainObjectType in domainObjectTypes)
             {
-                var constructors = domainObjectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                var constructors =
+                    domainObjectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Public |
+                                                     BindingFlags.Instance);
                 foreach (var constructorInfo in constructors)
-                {
                     if (!constructorInfo.IsPrivate)
-                    {
                         failingTypes.Add(domainObjectType);
-                    }
-                }
             }
 
             AssertFailingTypes(failingTypes);
@@ -160,14 +152,12 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
                 }
 
                 if (!hasExpectedConstructor)
-                {
                     failingTypes.Add(entityType);
-                }
             }
 
             AssertFailingTypes(failingTypes);
         }
-        
+
         [Fact]
         public void DomainEvent_Should_Have_DomainEventPostfix()
         {

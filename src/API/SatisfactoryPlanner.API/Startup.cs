@@ -52,8 +52,8 @@ namespace SatisfactoryPlanner.API
             _loggerForApi.Information("Application started.");
 
             _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("FactoriesConnectionString") ??
-                                throw new InvalidOperationException("FactoriesConnectionString not defined.");
+            _connectionString = _configuration.GetConnectionString("SatisfactoryPlanner") ??
+                                throw new InvalidOperationException("SatisfactoryPlanner connection string not defined.");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -159,7 +159,8 @@ namespace SatisfactoryPlanner.API
             app.UseAuthentication();
 
             // To be used by WorldAuthorization to get world id from the body of the request
-            app.Use((context, next) => {
+            app.Use((context, next) =>
+            {
                 context.Request.EnableBuffering(1_000_000);
                 return next();
             });

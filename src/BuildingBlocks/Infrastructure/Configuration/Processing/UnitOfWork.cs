@@ -17,7 +17,8 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration.Proces
             _domainEventsDispatcher = domainEventsDispatcher;
         }
 
-        public async Task<int> CommitAsync(CancellationToken cancellationToken = default, Guid? internalCommandId = null)
+        public async Task<int> CommitAsync(CancellationToken cancellationToken = default,
+            Guid? internalCommandId = null)
         {
             await _domainEventsDispatcher.DispatchEventsAsync();
 

@@ -22,13 +22,11 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
         {
             IList<Type> failingTypes = new List<Type>();
             foreach (var type in types)
-            {
                 if (type.GetFields().Any(x => !x.IsInitOnly) || type.GetProperties().Any(x => x.CanWrite))
                 {
                     failingTypes.Add(type);
                     break;
                 }
-            }
 
             AssertFailingTypes(failingTypes);
         }

@@ -65,12 +65,12 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
         private static async Task ClearDatabase(IDbConnection connection)
         {
             /* Not clearing the following tables since they're pre-loaded reference tables:
-            *   extractor_allowed_resources,
-            *   extractors,
-            *   nodes,
-            *   resource_forms,
-            *   resources
-            */
+             *   extractor_allowed_resources,
+             *   extractors,
+             *   nodes,
+             *   resource_forms,
+             *   resources
+             */
 
             const string sql = "DELETE FROM resources.inbox_messages;" +
                                "DELETE FROM resources.internal_commands;" +

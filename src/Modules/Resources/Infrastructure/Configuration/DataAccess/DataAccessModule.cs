@@ -11,7 +11,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Dat
     /// <summary>
     ///     Dependency injection setup for Data Access of the Factories module.
     ///     This registers the classes that handle the database connections for this module.
-    ///     
     ///     Should be called from the module Startup.
     /// </summary>
     internal class DataAccessModule : Module
@@ -39,7 +38,8 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Dat
                 {
                     var dbContextOptionsBuilder = new DbContextOptionsBuilder<ResourcesContext>();
                     dbContextOptionsBuilder.UseNpgsql(_databaseConnectionString);
-                    dbContextOptionsBuilder.ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();
+                    dbContextOptionsBuilder
+                        .ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();
 
                     return new ResourcesContext(dbContextOptionsBuilder.Options, _loggerFactory);
                 })

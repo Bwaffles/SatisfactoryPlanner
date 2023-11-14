@@ -11,6 +11,7 @@ using Serilog.Events;
 
 namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Processing.Outbox
 {
+    // ReSharper disable once UnusedMember.Global
     internal class ProcessOutboxCommandHandler : ICommandHandler<ProcessOutboxCommand>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
@@ -43,7 +44,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Proces
             foreach (var message in messages)
             {
                 var type = _domainNotificationsMapper.GetType(message.Type);
-                var @event = JsonConvert.DeserializeObject(message.Data, type) as IDomainEventNotification;
+                var @event = (JsonConvert.DeserializeObject(message.Data, type) as IDomainEventNotification)!;
 
                 using (LogContext.Push(new OutboxMessageContextEnricher(@event)))
                 {

@@ -4,10 +4,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules
 {
     public class CannotDecreaseExtractionRateAboveCurrentExtractionRateRule : IBusinessRule
     {
-        private readonly ExtractionRate _newExtractionRate;
         private readonly ExtractionRate _currentExtractionRate;
+        private readonly ExtractionRate _newExtractionRate;
 
-        public CannotDecreaseExtractionRateAboveCurrentExtractionRateRule(ExtractionRate newExtractionRate, ExtractionRate currentExtractionRate)
+        public CannotDecreaseExtractionRateAboveCurrentExtractionRateRule(ExtractionRate newExtractionRate,
+            ExtractionRate currentExtractionRate)
         {
             _newExtractionRate = newExtractionRate;
             _currentExtractionRate = currentExtractionRate;

@@ -7,11 +7,16 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
     {
         public string Value { get; }
 
-        public static NodePurity Impure => new NodePurity(nameof(Impure));
+        public static NodePurity Impure => new(nameof(Impure));
 
-        public static NodePurity Normal => new NodePurity(nameof(Normal));
+        public static NodePurity Normal => new(nameof(Normal));
 
-        public static NodePurity Pure => new NodePurity(nameof(Pure));
+        public static NodePurity Pure => new(nameof(Pure));
+
+        private NodePurity(string value)
+        {
+            Value = value;
+        }
 
         public decimal GetMultiplier()
         {
@@ -29,12 +34,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.Nodes
 
         public static NodePurity Of(string value)
         {
-            return new(value);
-        }
-
-        private NodePurity(string value)
-        {
-            Value = value;
+            return new NodePurity(value);
         }
     }
 }

@@ -21,10 +21,10 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
             var connection = _dbConnectionFactory.GetOpenConnection();
 
             const string sql = $"SELECT resource.id AS {nameof(ResourceDetailsDto.Id)}" +
-                               $"     , resource.code AS {nameof(ResourceDetailsDto.Code)}" + 
-                               $"     , resource.name AS {nameof(ResourceDetailsDto.Name)}" + 
-                               $"     , resource.description AS {nameof(ResourceDetailsDto.Description)} " + 
-                               "   FROM resources.resources AS resource " + 
+                               $"     , resource.code AS {nameof(ResourceDetailsDto.Code)}" +
+                               $"     , resource.name AS {nameof(ResourceDetailsDto.Name)}" +
+                               $"     , resource.description AS {nameof(ResourceDetailsDto.Description)} " +
+                               "   FROM resources.resources AS resource " +
                                "  WHERE resource.id = @ResourceId";
             var param = new
             {
