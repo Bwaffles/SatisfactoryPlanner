@@ -128,17 +128,17 @@ export const DecreaseWorldNodeExtractionRate = () => {
                         )}
                         <div className="col-span-2">
                             <Button
-                                variant="secondary"
                                 className="rounded-r mr-3"
-                                onClick={() => navigate(`/nodes/${nodeId}`)}
-                            >
-                                Cancel
-                            </Button>
-                            <Button
-                                className="rounded-r"
                                 type="submit"
                             >
                                 Decrease
+                            </Button>
+                            <Button
+                                variant="secondary"
+                                className="rounded-r"
+                                onClick={() => navigate(`/nodes/${nodeId}`)}
+                            >
+                                Cancel
                             </Button>
                         </div>
                     </div>

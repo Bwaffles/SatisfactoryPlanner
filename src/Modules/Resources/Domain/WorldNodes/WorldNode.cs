@@ -103,6 +103,17 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 
         }
 
+        public void DismantleExtractor()
+        {
+            if (_extractorId is null)
+                return;
+
+            _extractorId = null;
+            _extractionRate = ExtractionRate.Of(0);
+
+            AddDomainEvent(new ExtractorDismantledDomainEvent(Id));
+        }
+
         private bool IsTapped() => _extractorId is not null;
 
         public ExtractorId? GetExtractorId() => _extractorId;

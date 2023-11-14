@@ -1,7 +1,13 @@
 import * as React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import {
+    faPlus,
+    faMinus,
+    faBan,
+    faArrowUp,
+    faArrowDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { Button } from "../../../components/Elements/Button";
 import { formatNumber } from "../../../utils/format";
@@ -10,6 +16,7 @@ import { FieldWrapper } from "../../../components/Elements/Form/FieldWrapper";
 import { useDowngradeExtractor } from "../api/downgradeExtractor";
 import { useUpgradeExtractor } from "../api/upgradeExtractor";
 import { useState } from "react";
+import { useDismantleExtractor } from "../api/dismantleExtractor";
 
 type TappedWorldNodeViewProps = {
     worldNodeDetails: WorldNodeDetails;
@@ -21,18 +28,10 @@ export const TappedWorldNodeView = ({
     const navigate = useNavigate();
     const downgradeExtractorMutation = useDowngradeExtractor();
     const upgradeExtractorMutation = useUpgradeExtractor();
+    const dismantleExtractorMutation = useDismantleExtractor();
     const [selectedExtractor, setSelectedExtractor] = useState<string | null>(
         null
     );
-
-    var purityTextColor =
-        worldNodeDetails.purity === "Pure"
-            ? "text-green-600"
-            : worldNodeDetails.purity === "Normal"
-            ? "text-yellow-600"
-            : worldNodeDetails.purity === "Impure"
-            ? "text-red-600"
-            : "";
 
     const currentExtractor = worldNodeDetails.availableExtractors.find(
         (extractor) => extractor.id === worldNodeDetails.extractorId
@@ -40,29 +39,26 @@ export const TappedWorldNodeView = ({
 
     return (
         <>
+            <h2 className="text-xl font-bold mb-6">Extraction Details</h2>
             <div className="flex flex-col gap-6 p-6 w-fit bg-gray-800 rounded">
-                <FieldWrapper label="Purity">
-                    <div className={"text-xl font-bold " + purityTextColor}>
-                        {worldNodeDetails.purity}
-                    </div>
-                </FieldWrapper>
-
+                <div className="flex flex-wrap gap-x-12 gap-y-4">
+                    <FieldWrapper label="Extraction Rate">
+                        {renderExtractionRate(
+                            navigate,
+                            worldNodeDetails,
+                            currentExtractor
+                        )}
+                    </FieldWrapper>
+                </div>
                 <FieldWrapper label="Extractor">
                     {renderExtractor(
                         worldNodeDetails,
                         currentExtractor,
                         downgradeExtractorMutation,
                         upgradeExtractorMutation,
+                        dismantleExtractorMutation,
                         selectedExtractor,
                         setSelectedExtractor
-                    )}
-                </FieldWrapper>
-
-                <FieldWrapper label="Extraction Rate">
-                    {renderExtractionRate(
-                        navigate,
-                        worldNodeDetails,
-                        currentExtractor
                     )}
                 </FieldWrapper>
             </div>
@@ -75,54 +71,27 @@ function renderExtractor(
     currentExtractor: AvailableExtractor,
     downgradeExtractorMutation: any,
     upgradeExtractorMutation: any,
+    dismantleExtractorMutation: any,
     selectedExtractor: string | null,
     setSelectedExtractor: React.Dispatch<React.SetStateAction<string | null>>
 ) {
     return (
-        <div className="flex flex-wrap gap-12">
-            {worldNodeDetails.availableExtractors?.map((extractor) => {
-                var canUpgrade =
-                    extractor.maxExtractionRate >
-                    currentExtractor.maxExtractionRate;
-                var canDowngrade =
-                    extractor.maxExtractionRate <
-                    currentExtractor.maxExtractionRate;
-                var extractionRateDifference = Math.abs(
-                    extractor.maxExtractionRate -
-                        currentExtractor.maxExtractionRate
-                );
-                var currentExtractorClasses =
-                    extractor.id === currentExtractor.id
-                        ? "border-white-900"
-                        : "border-transparent";
-                return (
-                    <div
-                        key={extractor.id}
-                        className={
-                            "flex flex-col gap-4 items-center rounded p-6 w-64 border-4 bg-gray-700 " +
-                            currentExtractorClasses
-                        }
-                    >
-                        <div className="text-lg font-bold mb-3">
-                            {extractor.name}
-                        </div>
-                        <FieldWrapper
-                            label="Max Extraction Rate"
-                            className="col-auto"
-                        >
-                            <div className="flex">
-                                <div className={"text-xl font-bold"}>
-                                    {formatNumber(extractor.maxExtractionRate)}
-                                </div>
-                                <div className="ml-2 text-gray-400 text-xs leading-8">
-                                    per min
-                                </div>
-                            </div>
-                        </FieldWrapper>
-                        <div>
+        <div className="flex flex-col gap-3">
+            <div className="text-lg font-bold">{currentExtractor.name}</div>
+            <div className="flex flex-wrap gap-3">
+                {worldNodeDetails.availableExtractors.map((extractor) => {
+                    if (extractor.id == currentExtractor.id) return null;
+                    var canUpgrade =
+                        extractor.maxExtractionRate >
+                        currentExtractor.maxExtractionRate;
+                    var canDowngrade =
+                        extractor.maxExtractionRate <
+                        currentExtractor.maxExtractionRate;
+                    return (
+                        <div key={extractor.id}>
                             {canDowngrade && (
                                 <Button
-                                    title="Downgrade to this extractor"
+                                    title="Downgrade to this extractor and decrease your max extraction rate."
                                     isLoading={
                                         selectedExtractor === extractor.id &&
                                         downgradeExtractorMutation.isLoading
@@ -135,16 +104,16 @@ function renderExtractor(
                                         });
                                     }}
                                 >
-                                    Downgrade
-                                    <span className="ml-1 text-red-500">
-                                        (-
-                                        {extractionRateDifference})
-                                    </span>
+                                    <FontAwesomeIcon
+                                        icon={faArrowDown}
+                                        className="font-bold"
+                                    />{" "}
+                                    Downgrade to {extractor.name}
                                 </Button>
                             )}
                             {canUpgrade && (
                                 <Button
-                                    title="Upgrade to this extractor"
+                                    title="Upgrade to this extractor and increase your max extraction rate."
                                     isLoading={
                                         selectedExtractor === extractor.id &&
                                         upgradeExtractorMutation.isLoading
@@ -157,17 +126,26 @@ function renderExtractor(
                                         });
                                     }}
                                 >
-                                    Upgrade
-                                    <span className="ml-1 text-emerald-500">
-                                        (+
-                                        {extractionRateDifference})
-                                    </span>
+                                    <FontAwesomeIcon icon={faArrowUp} /> Upgrade
+                                    to {extractor.name}
                                 </Button>
                             )}
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
+                <Button
+                    variant="secondary"
+                    title="Dismantle the current extractor to stop tapping this node."
+                    isLoading={dismantleExtractorMutation.isLoading}
+                    onClick={() => {
+                        dismantleExtractorMutation.mutate({
+                            nodeId: worldNodeDetails.nodeId,
+                        });
+                    }}
+                >
+                    <FontAwesomeIcon icon={faBan} /> Dismantle
+                </Button>
+            </div>
         </div>
     );
 }
@@ -182,7 +160,7 @@ function renderExtractionRate(
         worldNodeDetails.extractionRate < currentExtractor.maxExtractionRate;
 
     return (
-        <div className="relative flex mb-4">
+        <div className="relative flex">
             {canDecreaseRate && (
                 <Button
                     className="py-2 px-2 rounded-r-none rounded-l"
@@ -203,7 +181,7 @@ function renderExtractionRate(
             />
             <span
                 className={
-                    "p-2 text-xs leading-6 border border-solid bg-gray-700 border-gray-600 text-gray-400 " +
+                    "p-2 text-xs whitespace-nowrap leading-6 border border-solid bg-gray-700 border-gray-600 text-gray-400 " +
                     (canIncreaseRate ? "border-x-0" : "border-l-0 rounded-r")
                 }
             >
