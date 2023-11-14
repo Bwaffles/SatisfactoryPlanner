@@ -20,6 +20,7 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 - [Tailwind CSS 3.0.24](https://tailwindcss.com/docs/installation) - Styling as an alternative to bootstrap
 - [Formik 2.2.9](https://formik.org/docs/overview) - Handling forms
 - [Yup 0.32.11](https://github.com/jquense/yup) - Form validation
+- [craco 7.1.0](https://www.npmjs.com/package/@craco/craco) - Path mapping
 
 Design methodology is to use task based UI.
 - https://codeopinion.com/decomposing-crud-to-a-task-based-ui/
@@ -141,3 +142,12 @@ So I like the idea of referencing the entire extractor on the WorldNode, but not
 * Update references to use code instead of id
 * Change Extractor from an entity to a value object with the 4 subclasses
 * Replace all access to extractors from the database table to use the ExtractorFactory
+
+## Frontend
+
+### Path Mapping
+Using Typescript and craco to simplify my paths. This allows me to turn `import { Button } from "../../../components/Elements/Button";` into `import { Button } from "@/components/Elements/Button";` which improves the readability and maintability of the code.
+
+The setup involved in this starts in `tsconfig.json` by setting up the "paths" value to set up the initial path aliases that I want to use. This allows me to work with the new alias in the IDE, but with just this I'll get compilation errors that it can't figure out how to load the modules. To fix this issue I'm using [craco](https://www.npmjs.com/package/@craco/craco). In `package.json`, I changed my scripts to run craco instead of react-scriptsm. And I added `craco.config.js` which sets up the @ alias for webpack so it understands the file paths when creating the bundle.
+
+https://blog.logrocket.com/using-path-aliases-cleaner-react-typescript-imports/
