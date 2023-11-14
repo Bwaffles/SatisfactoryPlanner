@@ -23,6 +23,7 @@ export const UntappedWorldNodeView = ({
 
     return (
         <>
+            <h2 className="text-xl font-bold mb-6">Extraction Details</h2>
             <div className="flex flex-col gap-6 p-6 w-fit bg-gray-800 rounded">
                 <p>Select the extractor to tap the node with:</p>
                 <div className="flex flex-wrap gap-12">

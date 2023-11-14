@@ -33,57 +33,12 @@ export const TappedWorldNodeView = ({
         null
     );
 
-    var purityTextColor =
-        worldNodeDetails.purity === "Pure"
-            ? "text-green-600"
-            : worldNodeDetails.purity === "Normal"
-            ? "text-yellow-600"
-            : worldNodeDetails.purity === "Impure"
-            ? "text-red-600"
-            : "";
-
     const currentExtractor = worldNodeDetails.availableExtractors.find(
         (extractor) => extractor.id === worldNodeDetails.extractorId
     )!;
 
-    const fastestExtractor =
-        worldNodeDetails.availableExtractors[
-            worldNodeDetails.availableExtractors.length - 1
-        ];
-
     return (
         <>
-            <h2 className="text-xl font-bold mb-6">Node Details</h2>
-            <div className="flex flex-wrap gap-x-12 gap-y-4 p-6 w-fit bg-gray-800 rounded mb-6">
-                <FieldWrapper label="Purity">
-                    <div className={"text-xl font-bold " + purityTextColor}>
-                        {worldNodeDetails.purity}
-                    </div>
-                </FieldWrapper>
-
-                <FieldWrapper label="Max Extraction Rate with Current Extractor">
-                    <div className="flex">
-                        <div className={"text-xl font-bold"}>
-                            {formatNumber(currentExtractor.maxExtractionRate)}
-                        </div>
-                        <div className="ml-2 text-gray-400 text-xs leading-8">
-                            per min
-                        </div>
-                    </div>
-                </FieldWrapper>
-
-                <FieldWrapper label="Max Extraction Rate with Fastest Extractor">
-                    <div className="flex">
-                        <div className={"text-xl font-bold"}>
-                            {formatNumber(fastestExtractor.maxExtractionRate)}
-                        </div>
-                        <div className="ml-2 text-gray-400 text-xs leading-8">
-                            per min
-                        </div>
-                    </div>
-                </FieldWrapper>
-            </div>
-
             <h2 className="text-xl font-bold mb-6">Extraction Details</h2>
             <div className="flex flex-col gap-6 p-6 w-fit bg-gray-800 rounded">
                 <div className="flex flex-wrap gap-x-12 gap-y-4">
