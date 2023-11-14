@@ -2,45 +2,45 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { lazyImport } from "../utils/lazyimports";
-import { MainLayout } from "../components/Layout";
+import { lazyImport } from "@/utils/lazyimports";
+import { MainLayout } from "@/components/Layout";
 
 const { AutoLogin } = lazyImport(
-    () => import("../pages/AutoLogin"),
+    () => import("@/pages/AutoLogin"),
     "AutoLogin"
 );
-const { Home } = lazyImport(() => import("../pages/Home"), "Home");
-const { Profile } = lazyImport(() => import("../pages/Profile"), "Profile");
+const { Home } = lazyImport(() => import("@/pages/Home"), "Home");
+const { Profile } = lazyImport(() => import("@/pages/Profile"), "Profile");
 const { Resources } = lazyImport(
-    () => import("../pages/Resources"),
+    () => import("@/pages/Resources"),
     "Resources"
 );
 const { ResourceDetails } = lazyImport(
-    () => import("../pages/ResourceDetails"),
+    () => import("@/pages/ResourceDetails"),
     "ResourceDetails"
 );
 const { WorldNodeDetails } = lazyImport(
-    () => import("../pages/WorldNodeDetails"),
+    () => import("@/pages/WorldNodeDetails"),
     "WorldNodeDetails"
 );
 const { IncreaseWorldNodeExtractionRate } = lazyImport(
-    () => import("../pages/IncreaseWorldNodeExtractionRate"),
+    () => import("@/pages/IncreaseWorldNodeExtractionRate"),
     "IncreaseWorldNodeExtractionRate"
 );
 const { DecreaseWorldNodeExtractionRate } = lazyImport(
-    () => import("../pages/DecreaseWorldNodeExtractionRate"),
+    () => import("@/pages/DecreaseWorldNodeExtractionRate"),
     "DecreaseWorldNodeExtractionRate"
 );
 const { LoginRedirect } = lazyImport(
-    () => import("../pages/LoginRedirect"),
+    () => import("@/pages/LoginRedirect"),
     "LoginRedirect"
 );
-const { Login } = lazyImport(() => import("../pages/Login"), "Login");
+const { Login } = lazyImport(() => import("@/pages/Login"), "Login");
 const { LoginError } = lazyImport(
-    () => import("../pages/LoginError"),
+    () => import("@/pages/LoginError"),
     "LoginError"
 );
-const { NoMatch } = lazyImport(() => import("../pages/NoMatch"), "NoMatch");
+const { NoMatch } = lazyImport(() => import("@/pages/NoMatch"), "NoMatch");
 
 export const AppRoutes = () => {
     const { isAuthenticated } = useAuth0();
