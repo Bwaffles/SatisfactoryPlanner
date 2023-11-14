@@ -16,8 +16,6 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration
     /// </summary>
     public class FactoriesStartup
     {
-        private static IContainer _container;
-
         public static void Initialize(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger)
         {
             ConfigureCompositionRoot(connectionString, executionContextAccessor, logger);
@@ -43,10 +41,8 @@ namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration
             //containerBuilder.RegisterModule(new QuartzModule());
 
             containerBuilder.RegisterInstance(executionContextAccessor);
-
-            _container = containerBuilder.Build();
-
-            FactoriesCompositionRoot.SetContainer(_container);
+            
+            FactoriesCompositionRoot.SetContainer(containerBuilder.Build());
         }
     }
 }

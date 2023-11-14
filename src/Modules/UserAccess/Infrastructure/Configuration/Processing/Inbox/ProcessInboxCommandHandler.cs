@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Inbox
 {
+    // ReSharper disable once UnusedMember.Global
     internal class ProcessInboxCommandHandler : ICommandHandler<ProcessInboxCommand>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
@@ -37,14 +38,14 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
             foreach (var message in messages)
             {
                 var messageAssembly = AppDomain.CurrentDomain.GetAssemblies()
-                    .Single(assembly => message.Type.Contains(assembly.GetName().Name));
+                    .Single(assembly => message.Type.Contains(assembly.GetName().Name!));
 
-                var type = messageAssembly.GetType(message.Type);
-                var request = JsonConvert.DeserializeObject(message.Data, type);
+                var type = messageAssembly.GetType(message.Type, true)!;
+                var request = (JsonConvert.DeserializeObject(message.Data, type) as INotification)!;
 
                 try
                 {
-                    await _mediator.Publish((INotification)request, cancellationToken);
+                    await _mediator.Publish(request, cancellationToken);
                 }
                 catch (Exception e)
                 {

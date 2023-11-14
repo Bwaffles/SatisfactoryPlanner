@@ -44,14 +44,9 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
                 .Where(x => x.GetInterfaces().Contains(typeof(IDomainEventNotification)))
                 .ToList();
 
-            var notMappedNotifications = new List<Type>();
-            foreach (var domainEventNotification in domainEventNotifications)
-            {
-                _domainNotificationsMap.TryGetBySecond(domainEventNotification, out var name);
-
-                if (name == null)
-                    notMappedNotifications.Add(domainEventNotification);
-            }
+            var notMappedNotifications = domainEventNotifications
+                .Where(domainEventNotification => !_domainNotificationsMap.TryGetBySecond(domainEventNotification, out _))
+                .ToList();
 
             if (notMappedNotifications.Any())
                 throw new ApplicationException($"Domain Event Notifications {notMappedNotifications.Select(x => x.FullName).Aggregate((x, y) => x + "," + y)} not mapped");

@@ -13,12 +13,18 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
 
         public string GetName(Type type)
         {
-            return _domainNotificationsMap.TryGetBySecond(type, out var name) ? name : null;
+            if (_domainNotificationsMap.TryGetBySecond(type, out var name))
+                return name;
+
+            throw new InvalidOperationException();
         }
 
         public Type GetType(string name)
         {
-            return _domainNotificationsMap.TryGetByFirst(name, out var type) ? type : null;
+            if (_domainNotificationsMap.TryGetByFirst(name, out var type))
+                return type;
+
+            throw new InvalidOperationException();
         }
     }
 }

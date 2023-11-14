@@ -22,8 +22,6 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
     /// </summary>
     public class WorldsStartup
     {
-        private static IContainer _container;
-
         public static void Initialize(
             string connectionString,
             IExecutionContextAccessor executionContextAccessor,
@@ -64,9 +62,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
 
             containerBuilder.RegisterInstance(executionContextAccessor);
 
-            _container = containerBuilder.Build();
-
-            WorldsCompositionRoot.SetContainer(_container);
+            WorldsCompositionRoot.SetContainer(containerBuilder.Build());
         }
     }
 }

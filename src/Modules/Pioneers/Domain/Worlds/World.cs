@@ -18,6 +18,11 @@ namespace SatisfactoryPlanner.Modules.Worlds.Domain.Worlds
 
         private World()
         { /* For EF */
+            Id = default!;
+            _name = default!;
+            _inhabitants = default!;
+            _creatorId = default!;
+            _createDate = default!;
         }
 
         private World(PioneerId creatorId, string name)

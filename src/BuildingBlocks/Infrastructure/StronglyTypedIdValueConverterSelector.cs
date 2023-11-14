@@ -12,14 +12,14 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure
     public class StronglyTypedIdValueConverterSelector : ValueConverterSelector
     {
         private readonly ConcurrentDictionary<(Type ModelClrType, Type ProviderClrType), ValueConverterInfo> _converters
-            = new ConcurrentDictionary<(Type ModelClrType, Type ProviderClrType), ValueConverterInfo>();
+            = new();
 
         public StronglyTypedIdValueConverterSelector(ValueConverterSelectorDependencies dependencies)
             : base(dependencies)
         {
         }
 
-        public override IEnumerable<ValueConverterInfo> Select(Type modelClrType, Type providerClrType = null)
+        public override IEnumerable<ValueConverterInfo> Select(Type modelClrType, Type? providerClrType = null)
         {
             var baseConverters = base.Select(modelClrType, providerClrType);
             foreach (var converter in baseConverters)
@@ -27,33 +27,30 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure
                 yield return converter;
             }
 
-            var underlyingModelType = UnwrapNullableType(modelClrType);
             var underlyingProviderType = UnwrapNullableType(providerClrType);
+            var underlyingModelType = UnwrapNullableType(modelClrType);
 
             if (underlyingProviderType is null || underlyingProviderType == typeof(Guid))
             {
-                var isTypedIdValue = typeof(TypedIdValueBase).IsAssignableFrom(underlyingModelType);
-                if (isTypedIdValue)
+                if (underlyingModelType is not null && typeof(TypedIdValueBase).IsAssignableFrom(underlyingModelType))
                 {
-                    var converterType = typeof(TypedIdValueConverter<>).MakeGenericType(underlyingModelType);
-
                     yield return _converters.GetOrAdd((underlyingModelType, typeof(Guid)), _ =>
                     {
+                        var converterType = typeof(TypedIdValueConverter<>).MakeGenericType(underlyingModelType);
+
                         return new ValueConverterInfo(
                             modelClrType: modelClrType,
                             providerClrType: typeof(Guid),
-                            factory: valueConverterInfo => (ValueConverter)Activator.CreateInstance(converterType, valueConverterInfo.MappingHints));
+                            factory: valueConverterInfo => (ValueConverter)(Activator.CreateInstance(converterType, valueConverterInfo.MappingHints))!);
                     });
                 }
             }
         }
 
-        private static Type UnwrapNullableType(Type type)
+        private static Type? UnwrapNullableType(Type? type)
         {
             if (type is null)
-            {
                 return null;
-            }
 
             return Nullable.GetUnderlyingType(type) ?? type;
         }

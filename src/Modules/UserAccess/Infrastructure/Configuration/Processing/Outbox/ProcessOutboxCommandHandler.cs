@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Processing.Outbox
 {
+    // ReSharper disable once UnusedMember.Global
     internal class ProcessOutboxCommandHandler : ICommandHandler<ProcessOutboxCommand>
     {
         private readonly IDbConnectionFactory _dbConnectionFactory;
@@ -47,7 +48,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
             foreach (var message in messages)
             {
                 var type = _domainNotificationsMapper.GetType(message.Type);
-                var @event = JsonConvert.DeserializeObject(message.Data, type) as IDomainEventNotification;
+                var @event = (JsonConvert.DeserializeObject(message.Data, type) as IDomainEventNotification)!;
 
                 using (LogContext.Push(new OutboxMessageContextEnricher(@event)))
                 {

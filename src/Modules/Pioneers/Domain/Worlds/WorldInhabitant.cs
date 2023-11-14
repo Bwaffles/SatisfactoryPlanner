@@ -9,7 +9,11 @@ namespace SatisfactoryPlanner.Modules.Worlds.Domain.Worlds
 
         internal PioneerId PioneerId { get; }
 
-        private WorldInhabitant() { /* For EF */ }
+        private WorldInhabitant()
+        { /* For EF */
+            WorldId = default!;
+            PioneerId = default!;
+        }
 
         private WorldInhabitant(WorldId worldId, PioneerId pioneerId)
         {

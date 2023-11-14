@@ -18,8 +18,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
 {
     public class UserAccessStartup
     {
-        private static IContainer _container;
-
         public static void Initialize(
             string connectionString,
             IExecutionContextAccessor executionContextAccessor,
@@ -66,9 +64,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
 
             containerBuilder.RegisterInstance(executionContextAccessor);
 
-            _container = containerBuilder.Build();
-
-            UserAccessCompositionRoot.SetContainer(_container);
+            UserAccessCompositionRoot.SetContainer(containerBuilder.Build());
         }
     }
 }
