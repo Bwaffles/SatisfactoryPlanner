@@ -16,6 +16,7 @@ import { FieldWrapper } from "../../../components/Elements/Form/FieldWrapper";
 import { useDowngradeExtractor } from "../api/downgradeExtractor";
 import { useUpgradeExtractor } from "../api/upgradeExtractor";
 import { useState } from "react";
+import { useDismantleExtractor } from "../api/dismantleExtractor";
 
 type TappedWorldNodeViewProps = {
     worldNodeDetails: WorldNodeDetails;
@@ -27,6 +28,7 @@ export const TappedWorldNodeView = ({
     const navigate = useNavigate();
     const downgradeExtractorMutation = useDowngradeExtractor();
     const upgradeExtractorMutation = useUpgradeExtractor();
+    const dismantleExtractorMutation = useDismantleExtractor();
     const [selectedExtractor, setSelectedExtractor] = useState<string | null>(
         null
     );
@@ -99,6 +101,7 @@ export const TappedWorldNodeView = ({
                         currentExtractor,
                         downgradeExtractorMutation,
                         upgradeExtractorMutation,
+                        dismantleExtractorMutation,
                         selectedExtractor,
                         setSelectedExtractor
                     )}
@@ -113,6 +116,7 @@ function renderExtractor(
     currentExtractor: AvailableExtractor,
     downgradeExtractorMutation: any,
     upgradeExtractorMutation: any,
+    dismantleExtractorMutation: any,
     selectedExtractor: string | null,
     setSelectedExtractor: React.Dispatch<React.SetStateAction<string | null>>
 ) {
@@ -174,7 +178,16 @@ function renderExtractor(
                         </div>
                     );
                 })}
-                <Button title="Dismantle the current extractor.">
+                <Button
+                    variant="secondary"
+                    title="Dismantle the current extractor to stop tapping this node."
+                    isLoading={dismantleExtractorMutation.isLoading}
+                    onClick={() => {
+                        dismantleExtractorMutation.mutate({
+                            nodeId: worldNodeDetails.nodeId,
+                        });
+                    }}
+                >
                     <FontAwesomeIcon icon={faBan} /> Dismantle
                 </Button>
             </div>
