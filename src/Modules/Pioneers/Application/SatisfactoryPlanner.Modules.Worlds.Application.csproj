@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -28,7 +28,7 @@
 		<ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Worlds.Domain.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-		<ProjectReference Include="..\IntegrationEvents\SatisfactoryPlanner.Modules.Worlds.IntegrationEvents.csproj" >
+		<ProjectReference Include="..\IntegrationEvents\SatisfactoryPlanner.Modules.Worlds.IntegrationEvents.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 	</ItemGroup>

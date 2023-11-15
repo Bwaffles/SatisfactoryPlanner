@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
@@ -26,12 +26,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference
-			Include="..\..\..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
+		<ProjectReference Include="..\..\..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-		<ProjectReference
-			Include="..\..\..\..\BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests.csproj">
+		<ProjectReference Include="..\..\..\..\BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\..\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj">
