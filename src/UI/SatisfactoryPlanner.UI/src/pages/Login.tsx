@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { Spinner } from "@/components/Elements/Spinner";
-import { getCurrentUser } from "@/features/users/api/getCurrentUser";
-import { createCurrentUser } from "@/features/users/api/createCurrentUser";
-import { getCurrentPioneerWorlds } from "@/features/worlds/api/getCurrentPioneerWorlds";
-import { CurrentPioneerWorld } from "@/features/worlds/types";
+import { Spinner } from "../components/Elements/Spinner";
+import { getCurrentUser } from "../features/users/api/getCurrentUser";
+import { createCurrentUser } from "../features/users/api/createCurrentUser";
+import { useNavigate } from "react-router-dom";
+import { getCurrentPioneerWorlds } from "../features/worlds/api/getCurrentPioneerWorlds";
+import { CurrentPioneerWorld } from "../features/worlds/types";
 
 export const Login = () => {
     const navigate = useNavigate();

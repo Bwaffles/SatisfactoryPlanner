@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-import { Button } from "@/components/Elements/Button";
-import { FieldWrapper } from "@/components/Elements/Form/FieldWrapper";
-import { formatNumber } from "@/utils/format";
-
+import { Button } from "../../../components/Elements/Button";
+import { formatNumber } from "../../../utils/format";
 import { useTapWorldNode } from "../api/tapWorldNode";
 import { WorldNodeDetails } from "../types";
+import { FieldWrapper } from "../../../components/Elements/Form/FieldWrapper";
 
 type UntappedWorldNodeViewProps = {
     worldNodeDetails: WorldNodeDetails;

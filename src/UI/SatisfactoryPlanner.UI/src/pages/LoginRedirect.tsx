@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { Spinner } from "@/components/Elements/Spinner";
+import { Spinner } from "../components/Elements/Spinner";
 
 // On login auth0 will redirect here and we will wait until the authentication process is finished.
 // Once the user is authenticated we'll redirect to the Callback page to handle the rest of the process.

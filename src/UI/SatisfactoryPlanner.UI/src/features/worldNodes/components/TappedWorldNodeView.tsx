@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,14 +9,14 @@ import {
     faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Button } from "@/components/Elements/Button";
-import { FieldWrapper } from "@/components/Elements/Form/FieldWrapper";
-import { formatNumber } from "@/utils/format";
-
+import { Button } from "../../../components/Elements/Button";
+import { formatNumber } from "../../../utils/format";
+import { AvailableExtractor, WorldNodeDetails } from "../types";
+import { FieldWrapper } from "../../../components/Elements/Form/FieldWrapper";
 import { useDowngradeExtractor } from "../api/downgradeExtractor";
 import { useUpgradeExtractor } from "../api/upgradeExtractor";
+import { useState } from "react";
 import { useDismantleExtractor } from "../api/dismantleExtractor";
-import { AvailableExtractor, WorldNodeDetails } from "../types";
 
 type TappedWorldNodeViewProps = {
     worldNodeDetails: WorldNodeDetails;
@@ -81,7 +80,7 @@ function renderExtractor(
             <div className="text-lg font-bold">{currentExtractor.name}</div>
             <div className="flex flex-wrap gap-3">
                 {worldNodeDetails.availableExtractors.map((extractor) => {
-                    if (extractor.id === currentExtractor.id) return null;
+                    if (extractor.id == currentExtractor.id) return null;
                     var canUpgrade =
                         extractor.maxExtractionRate >
                         currentExtractor.maxExtractionRate;

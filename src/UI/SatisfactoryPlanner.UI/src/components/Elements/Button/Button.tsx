@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Spinner } from "@/components/Elements/Spinner";
+import { Spinner } from "../Spinner";
 
 const variants = {
     primary: "bg-sky-800 text-white",

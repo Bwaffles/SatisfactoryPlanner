@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import UserDropdown from "./UserDropdown";
 import { SidebarNavigation } from "./SidebarNavigation";
-import { WorldSidebarItem } from "@/features/worlds";
+import { WorldSidebarItem } from "../../features/worlds";
 
 const Sidebar = () => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();

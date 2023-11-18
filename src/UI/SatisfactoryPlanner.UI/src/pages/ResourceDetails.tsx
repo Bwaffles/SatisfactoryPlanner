@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import Doggo from "@/assets/Lizard_Doggo.png";
-import { ContentLayout } from "@/components/Layout/ContentLayout";
-import { WorldNodeList } from "@/features/worldNodes/components/WorldNodeList";
-import { useGetResourceDetails } from "@/features/resources/api/getResourceDetails";
+import Doggo from "../assets/Lizard_Doggo.png";
+import { ContentLayout } from "../components/Layout/ContentLayout";
+import { WorldNodeList } from "../features/worldNodes/components/WorldNodeList";
+import { useGetResourceDetails } from "../features/resources/api/getResourceDetails";
 
 export const ResourceDetails = () => {
     const { resourceId } = useParams();
