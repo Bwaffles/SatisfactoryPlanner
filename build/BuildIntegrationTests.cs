@@ -13,6 +13,7 @@ partial class Build
     ///     Kill any previous docker containers for old runs so we can start fresh.
     /// </summary>
     Target CleanDatabaseContainer => _ => _
+        .Unlisted()
         .Executes(() =>
         {
             var containers = DockerTasks.DockerPs(s => s.SetFilter($"name={ContainerName}").SetQuiet(true));
@@ -35,6 +36,7 @@ partial class Build
     /// connect to it using the <see cref="MasterConnectionString"/>.
     /// </summary>
     Target PreparePostgresContainer => _ => _
+        .Unlisted()
         .DependsOn(CleanDatabaseContainer)
         .Executes(() =>
         {
@@ -60,6 +62,7 @@ partial class Build
     ///     Run the database migrator app to execute all current migrations and bring the new database up to the most recent version.
     /// </summary>
     Target CreateDatabase => _ => _
+        .Unlisted()
         .DependsOn(PreparePostgresContainer)
         .Executes(() =>
         {
@@ -80,6 +83,7 @@ partial class Build
     const string ResourcesModuleIntegrationTestsProjectName = $"{Modules}.Resources.IntegrationTests";
 
     Target BuildResourcesModuleIntegrationTests => _ => _
+        .Unlisted()
         .DependsOn(CreateDatabase)
         .Executes(() =>
         {
@@ -107,6 +111,7 @@ partial class Build
     const string UserAccessModuleIntegrationTestsProjectName = $"{Modules}.UserAccess.IntegrationTests";
 
     Target BuildUserAccessModuleIntegrationTests => _ => _
+        .Unlisted()
         .DependsOn(CreateDatabase)
         .Executes(() =>
         {
@@ -134,6 +139,7 @@ partial class Build
     const string WorldsModuleIntegrationTestsProjectName = $"{Modules}.Worlds.IntegrationTests";
 
     Target BuildWorldsModuleIntegrationTests => _ => _
+        .Unlisted()
         .DependsOn(CreateDatabase)
         .Executes(() =>
         {
