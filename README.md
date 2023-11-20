@@ -28,7 +28,7 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 - [Typescript 4.6.4](https://www.typescriptlang.org/)
 - [Font Awesome 6.1.1](https://fontawesome.com/icons) - Free icons--do not have a paid license
 - [Tailwind CSS 3.0.24](https://tailwindcss.com/docs/installation) - Styling as an alternative to bootstrap
-- [zod 3.21.4]([https://github.com/jquense/yup](https://zod.dev/)) - Form validation
+- [zod 3.21.4](https://zod.dev/) - Form validation
 - [craco 7.1.0](https://www.npmjs.com/package/@craco/craco) - Path mapping
 
 Design methodology is to use task based UI.
