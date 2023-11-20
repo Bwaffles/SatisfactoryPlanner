@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,12 +8,25 @@
     <NukeRootDirectory>..</NukeRootDirectory>
     <NukeScriptDirectory>..</NukeScriptDirectory>
     <NukeTelemetryVersion>1</NukeTelemetryVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Npgsql" Version="7.0.0" />
     <PackageReference Include="Nuke.Common" Version="6.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Nuke.Common" />
+    <Using Include="Nuke.Common.Tools.Docker" />
+    <Using Include="Nuke.Common.Tools.Docker.DockerTasks">
+      <Static>True</Static>
+    </Using>
+    <Using Include="Nuke.Common.Tools.DotNet" />
+    <Using Include="Nuke.Common.Tools.DotNet.DotNetTasks">
+      <Static>True</Static>
+    </Using>
   </ItemGroup>
 
 </Project>

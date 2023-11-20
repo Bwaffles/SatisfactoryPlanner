@@ -72,21 +72,28 @@
           "items": {
             "type": "string",
             "enum": [
-              "ArchitectureTests",
-              "BuildAndUnitTests",
               "BuildResourcesModuleIntegrationTests",
               "BuildUserAccessModuleIntegrationTests",
               "BuildWorldsModuleIntegrationTests",
-              "CleanDatabaseContainer",
-              "Compile",
-              "CreateDatabase",
-              "PreparePostgresContainer",
-              "Restore",
+              "CleanDevelopmentDatabaseContainer",
+              "CleanIntegrationTestDatabaseContainer",
+              "CompileSolution",
+              "CreateDevelopmentDatabase",
+              "CreateIntegrationTestDatabase",
+              "RestoreSolution",
               "RunAllIntegrationTests",
+              "RunArchitectureTests",
+              "RunBuildAndUnitTests",
+              "RunCIBuild",
               "RunResourcesModuleIntegrationTests",
+              "RunUnitTests",
               "RunUserAccessModuleIntegrationTests",
               "RunWorldsModuleIntegrationTests",
-              "UnitTests"
+              "StartApi",
+              "StartApp",
+              "StartDevelopmentDatabaseContainer",
+              "StartDevelopmentEnvironment",
+              "StartIntegrationTestDatabaseContainer"
             ]
           }
         },
@@ -100,21 +107,28 @@
           "items": {
             "type": "string",
             "enum": [
-              "ArchitectureTests",
-              "BuildAndUnitTests",
               "BuildResourcesModuleIntegrationTests",
               "BuildUserAccessModuleIntegrationTests",
               "BuildWorldsModuleIntegrationTests",
-              "CleanDatabaseContainer",
-              "Compile",
-              "CreateDatabase",
-              "PreparePostgresContainer",
-              "Restore",
+              "CleanDevelopmentDatabaseContainer",
+              "CleanIntegrationTestDatabaseContainer",
+              "CompileSolution",
+              "CreateDevelopmentDatabase",
+              "CreateIntegrationTestDatabase",
+              "RestoreSolution",
               "RunAllIntegrationTests",
+              "RunArchitectureTests",
+              "RunBuildAndUnitTests",
+              "RunCIBuild",
               "RunResourcesModuleIntegrationTests",
+              "RunUnitTests",
               "RunUserAccessModuleIntegrationTests",
               "RunWorldsModuleIntegrationTests",
-              "UnitTests"
+              "StartApi",
+              "StartApp",
+              "StartDevelopmentDatabaseContainer",
+              "StartDevelopmentEnvironment",
+              "StartIntegrationTestDatabaseContainer"
             ]
           }
         },
