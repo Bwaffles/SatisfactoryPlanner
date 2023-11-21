@@ -1,73 +1,62 @@
-﻿using System;
-using System.Linq;
-using Nuke.Common;
-using Nuke.Common.Tools.Docker;
-using Nuke.Common.Tools.DotNet;
+﻿using _build;
 using Utils;
 
 partial class Build
 {
-    const string ContainerName = "postgres-test-db";
+    const string IntegrationTestDatabaseContainerName = "satifactory-planner-integration-test-db";
 
     /// <summary>
     ///     Kill any previous docker containers for old runs so we can start fresh.
     /// </summary>
-    Target CleanDatabaseContainer => _ => _
+    Target CleanIntegrationTestDatabaseContainer => _ => _
+        .Unlisted()
         .Executes(() =>
         {
-            var containers = DockerTasks.DockerPs(s => s.SetFilter($"name={ContainerName}").SetQuiet(true));
+            var containers = DockerPs(s => s.SetFilter($"name={IntegrationTestDatabaseContainerName}").SetQuiet(true));
             if (containers.Any())
-            {
-                DockerTasks.DockerKill(config => config
-                    .AddContainers(containers.Select(containers => containers.Text))
-                );
-            }
+                DockerKill(config => config.AddContainers(containers.Select(containers => containers.Text)));
         });
-
-    const string PostgresImage = "postgres:13.3";
-    const string PostgresPassword = "123qwe!@#QWE";
-    const string PostgresUser = "test-user";
-    const string PostgresPort = "1401";
-    const string MasterConnectionString = $"Server=127.0.0.1:{PostgresPort};User Id={PostgresUser};Password={PostgresPassword};";
 
     /// <summary>
-    ///     Pull and run the docker container that hosts the postgres database. After this point we should be able to
-    /// connect to it using the <see cref="MasterConnectionString"/>.
+    ///     Pull and run the docker container that hosts the postgres database.
+    ///     After this point we should be able to connect to it using the <see cref="DatabaseServerConnectionString"/>.
     /// </summary>
-    Target PreparePostgresContainer => _ => _
-        .DependsOn(CleanDatabaseContainer)
+    Target StartIntegrationTestDatabaseContainer => _ => _
+        .Unlisted()
+        .DependsOn(CleanIntegrationTestDatabaseContainer)
         .Executes(() =>
         {
-            DockerTasks.DockerImagePull(s => s
+            DockerImagePull(s => s
                 .SetName(PostgresImage));
 
-            DockerTasks.DockerRun(s => s
+            var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
+            DockerRun(s => s
                 .EnableRm()
-                .SetName(ContainerName)
+                .SetName(IntegrationTestDatabaseContainerName)
                 .SetImage(PostgresImage)
                 .SetEnv(
-                    $"POSTGRES_USER={PostgresUser}",
-                    $"POSTGRES_PASSWORD={PostgresPassword}")
-                .SetPublish($"{PostgresPort}:5432")
-                //.SetMount($"type=bind,source=\"{InputFilesDirectory}\",target=/{InputFilesDirectoryName},readonly")
+                    $"POSTGRES_USER={databaseConfiguration.User}",
+                    $"POSTGRES_PASSWORD={databaseConfiguration.Password}")
+                .SetPublish($"{databaseConfiguration.Port}:5432")
                 .EnableDetach());
 
-            PostgresReadinessChecker.WaitForPostgresServer(MasterConnectionString);
+            PostgresReadinessChecker.WaitForPostgresServer(databaseConfiguration.ServerConnectionString);
         });
 
-    const string ConnectionString = $"{MasterConnectionString};Database=satisfactory-planner;";
     /// <summary>
     ///     Run the database migrator app to execute all current migrations and bring the new database up to the most recent version.
     /// </summary>
-    Target CreateDatabase => _ => _
-        .DependsOn(PreparePostgresContainer)
+    Target CreateIntegrationTestDatabase => _ => _
+        .Unlisted()
+        .DependsOn(StartIntegrationTestDatabaseContainer)
         .Executes(() =>
         {
+            var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
             var databaseMigratorProject = Solution.GetProject("DatabaseMigrator");
-            DotNetTasks.DotNetRun(s => s
+            DotNetRun(s => s
                 .SetProjectFile(databaseMigratorProject)
                 .SetConfiguration(Configuration)
-                .SetApplicationArguments($"release \"{MasterConnectionString}\" \"{ConnectionString}\""));
+                .SetApplicationArguments($"release \"{databaseConfiguration.ServerConnectionString}\" \"{databaseConfiguration.ConnectionString}\""));
         });
 
     // ------------------------------------
@@ -80,26 +69,29 @@ partial class Build
     const string ResourcesModuleIntegrationTestsProjectName = $"{Modules}.Resources.IntegrationTests";
 
     Target BuildResourcesModuleIntegrationTests => _ => _
-        .DependsOn(CreateDatabase)
+        .Unlisted()
+        .DependsOn(CreateIntegrationTestDatabase)
         .Executes(() =>
         {
             var integrationTest = Solution.GetProject(ResourcesModuleIntegrationTestsProjectName);
 
-            DotNetTasks.DotNetBuild(s => s
+            DotNetBuild(s => s
                 .SetProjectFile(integrationTest)
                 .DisableNoRestore());
         });
 
     Target RunResourcesModuleIntegrationTests => _ => _
+        .Unlisted()
         .DependsOn(BuildResourcesModuleIntegrationTests)
         .Executes(() =>
         {
+            var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
             var integrationTest = Solution.GetProject(ResourcesModuleIntegrationTestsProjectName);
             Environment.SetEnvironmentVariable(
                 SatisfactoryPlannerDatabaseEnvName,
-                ConnectionString);
+                databaseConfiguration.ConnectionString);
 
-            DotNetTasks.DotNetTest(s => s
+            DotNetTest(s => s
                 .EnableNoBuild()
                 .SetProjectFile(integrationTest));
         });
@@ -107,26 +99,29 @@ partial class Build
     const string UserAccessModuleIntegrationTestsProjectName = $"{Modules}.UserAccess.IntegrationTests";
 
     Target BuildUserAccessModuleIntegrationTests => _ => _
-        .DependsOn(CreateDatabase)
+        .Unlisted()
+        .DependsOn(CreateIntegrationTestDatabase)
         .Executes(() =>
         {
             var integrationTest = Solution.GetProject(UserAccessModuleIntegrationTestsProjectName);
 
-            DotNetTasks.DotNetBuild(s => s
+            DotNetBuild(s => s
                 .SetProjectFile(integrationTest)
                 .DisableNoRestore());
         });
 
     Target RunUserAccessModuleIntegrationTests => _ => _
+        .Unlisted()
         .DependsOn(BuildUserAccessModuleIntegrationTests)
         .Executes(() =>
         {
+            var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
             var integrationTest = Solution.GetProject(UserAccessModuleIntegrationTestsProjectName);
             Environment.SetEnvironmentVariable(
                 SatisfactoryPlannerDatabaseEnvName,
-                ConnectionString);
+                databaseConfiguration.ConnectionString);
 
-            DotNetTasks.DotNetTest(s => s
+            DotNetTest(s => s
                 .EnableNoBuild()
                 .SetProjectFile(integrationTest));
         });
@@ -134,26 +129,29 @@ partial class Build
     const string WorldsModuleIntegrationTestsProjectName = $"{Modules}.Worlds.IntegrationTests";
 
     Target BuildWorldsModuleIntegrationTests => _ => _
-        .DependsOn(CreateDatabase)
+        .Unlisted()
+        .DependsOn(CreateIntegrationTestDatabase)
         .Executes(() =>
         {
             var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
 
-            DotNetTasks.DotNetBuild(s => s
+            DotNetBuild(s => s
                 .SetProjectFile(integrationTest)
                 .DisableNoRestore());
         });
 
     Target RunWorldsModuleIntegrationTests => _ => _
+        .Unlisted()
         .DependsOn(BuildWorldsModuleIntegrationTests)
         .Executes(() =>
         {
+            var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
             var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
             Environment.SetEnvironmentVariable(
                 SatisfactoryPlannerDatabaseEnvName,
-                ConnectionString);
+                databaseConfiguration.ConnectionString);
 
-            DotNetTasks.DotNetTest(s => s
+            DotNetTest(s => s
                 .EnableNoBuild()
                 .SetProjectFile(integrationTest));
         });

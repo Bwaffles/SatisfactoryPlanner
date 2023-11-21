@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using Dapper;
+﻿using Dapper;
 using Npgsql;
 using Serilog;
 
@@ -11,7 +9,7 @@ public static class PostgresReadinessChecker
     public static void WaitForPostgresServer(string connectionString)
     {
         using var connection = new NpgsqlConnection(connectionString);
-        Thread.Sleep(2000);
+        Thread.Sleep(1000);
 
         const int maxTryCounts = 30;
         var tryCounts = 0;

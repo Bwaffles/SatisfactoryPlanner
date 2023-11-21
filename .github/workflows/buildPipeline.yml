@@ -20,7 +20,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Run build
-      run: ./build.sh BuildAndUnitTests --configuration Release
+      run: ./build.sh RunBuildAndUnitTests --configuration Release
       
   integration:
     name: Build and run Integration Tests
