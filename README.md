@@ -31,6 +31,18 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 - [zod 3.21.4](https://zod.dev/) - Form validation
 - [craco 7.1.0](https://www.npmjs.com/package/@craco/craco) - Path mapping
 
+### Backend
+- [Autofac](https://autofac.org/) - inversion of Control Container
+- [Dapper](https://github.com/DapperLib/Dapper) - micro ORM for read models
+- [Fluent Assertions](https://fluentassertions.com/) - human readable test assertions
+- [Fluent Migrator](https://fluentmigrator.github.io/) - database migrations
+- [Fluent Validation](https://docs.fluentvalidation.net/en/latest/) - validation of commands and queries
+- [Hellang.Middleware.ProblemDetails](https://github.com/khellang/Middleware) - api problem details support
+- [MediatR](https://github.com/jbogard/MediatR) - mediator implementation
+- [Microsoft.AspNetCore.Authentication.JwtBearer](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) - jwt bearer token for authentication
+- [EF Core 7](https://learn.microsoft.com/en-us/ef/core/) - ORM for write models
+
+## UI
 Design methodology is to use task based UI.
 - https://codeopinion.com/decomposing-crud-to-a-task-based-ui/
 
