@@ -13,13 +13,13 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
 {
     public class TestBase
     {
-        protected string ConnectionString { get; private set; }
+        protected string ConnectionString { get; private set; } = default!;
 
-        protected ILogger Logger { get; private set; }
+        protected ILogger Logger { get; private set; } = default!;
 
-        protected IUserAccessModule UserAccessModule { get; private set; }
+        protected IUserAccessModule UserAccessModule { get; private set; } = default!;
 
-        protected ExecutionContextMock ExecutionContext { get; private set; }
+        protected ExecutionContextMock ExecutionContext { get; private set; } = default!;
 
         [SetUp]
         public async Task BeforeEachTest()

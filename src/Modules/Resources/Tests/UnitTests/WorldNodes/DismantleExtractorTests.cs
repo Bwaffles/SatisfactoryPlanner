@@ -1,14 +1,15 @@
 ﻿using FluentAssertions;
+using NUnit.Framework;
 using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events;
-using Xunit;
 
 namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 {
+    [TestFixture]
     public class DismantleExtractorTests
     {
         // Happy path tests
-        [Fact]
+        [Test]
         public void WhenDataIsValid_IsSuccessful()
         {
             var worldNodeTestData = new WorldNodeFixture().IsTapped().Create();
@@ -20,7 +21,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             extractorDismantledDomainEvent.WorldNodeId.Should().Be(worldNodeTestData.WorldNode.Id);
         }
 
-        [Fact]
+        [Test]
         public void WhenNotTapped_IsIgnored()
         {
             var worldNodeTestData = new WorldNodeFixture().Create();

@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using NSubstitute;
+using NUnit.Framework;
 using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.Resources.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
@@ -8,14 +9,14 @@ using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules;
 using SatisfactoryPlanner.Modules.Resources.UnitTests.Extractors;
 using System;
-using Xunit;
 
 namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 {
+    [TestFixture]
     public class DowngradeExtractorTests
     {
         // Happy path tests
-        [Fact]
+        [Test]
         public void WhenDataIsValid_IsSuccessful()
         {
             var resourceId = new ResourceId(Guid.NewGuid());
@@ -47,7 +48,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             domainEvent.ExtractorId.Should().Be(slowestExtractor.Id);
         }
 
-        [Fact]
+        [Test]
         public void WhenExtractorIsSameAsTheCurrentExtractor_IsIgnored()
         {
             var worldNodeTestData = new WorldNodeFixture()
@@ -63,7 +64,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
                 "because the extractor didn't change");
         }
 
-        [Fact]
+        [Test]
         public void WhenExtractingMoreThanNewMaxExtractionRate_ExtractionRateReduced()
         {
             var resourceId = new ResourceId(Guid.NewGuid());
@@ -103,8 +104,8 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
         }
 
         [Theory]
-        [InlineData(300, 300)]
-        [InlineData(300, 299)]
+        [TestCase(300, 300)]
+        [TestCase(300, 299)]
         public void WhenNotExtractingThanNewMaxExtractionRate_IsIgnored(int newMaxExtractionRate, int extractionRate)
         {
             var resourceId = new ResourceId(Guid.NewGuid());
@@ -142,7 +143,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
         }
 
         // Business rule tests
-        [Fact]
+        [Test]
         public void WhenWorldNodeIsNotTapped_RuleIsBroken()
         {
             var worldNodeTestData = new WorldNodeFixture().Create();
@@ -156,7 +157,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             });
         }
 
-        [Fact]
+        [Test]
         public void WhenExtractorCannotExtractTheResource_RuleIsBroken()
         {
             var worldNodeTestData = new WorldNodeFixture()
@@ -176,7 +177,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             });
         }
 
-        [Fact]
+        [Test]
         public void WhenExtractorIsFasterThanCurrentExtractor_RuleIsBroken()
         {
             var resourceId = new ResourceId(Guid.NewGuid());
