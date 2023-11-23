@@ -1,21 +1,17 @@
-﻿using FluentAssertions;
-using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
-using SatisfactoryPlanner.Modules.UserAccess.Domain.Users;
-using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
+using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
+using SatisfactoryPlanner.Modules.Worlds.Infrastructure;
 using System.Reflection;
 
-namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
+namespace SatisfactoryPlanner.Modules.Worlds.ArchTests
 {
     public abstract class TestBase
     {
         protected static Assembly ApplicationAssembly => typeof(CommandBase).Assembly;
 
-        protected static Assembly DomainAssembly => typeof(User).Assembly;
+        protected static Assembly DomainAssembly => typeof(World).Assembly;
 
-        protected static Assembly InfrastructureAssembly => typeof(UserAccessContext).Assembly;
+        protected static Assembly InfrastructureAssembly => typeof(WorldsContext).Assembly;
 
         protected static void AssertAreImmutable(IEnumerable<Type> types)
         {

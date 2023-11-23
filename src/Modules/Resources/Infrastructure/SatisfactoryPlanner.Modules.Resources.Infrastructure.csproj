@@ -28,7 +28,7 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj">
 		<PrivateAssets>All</PrivateAssets>
 	</ProjectReference>
-    <ProjectReference Include="..\..\Pioneers\IntegrationEvents\SatisfactoryPlanner.Modules.Worlds.IntegrationEvents.csproj">
+    <ProjectReference Include="..\..\Worlds\IntegrationEvents\SatisfactoryPlanner.Modules.Worlds.IntegrationEvents.csproj">
 		<PrivateAssets>All</PrivateAssets>
 	</ProjectReference>
     <ProjectReference Include="..\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj">

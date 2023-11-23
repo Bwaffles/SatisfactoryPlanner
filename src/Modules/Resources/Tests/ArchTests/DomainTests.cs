@@ -1,12 +1,12 @@
-﻿using NetArchTest.Rules;
-using SatisfactoryPlanner.BuildingBlocks.Domain;
+﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using System.Reflection;
 
 namespace SatisfactoryPlanner.Modules.Resources.ArchTests
 {
+    [TestFixture]
     public class DomainTests : TestBase
     {
-        [Fact]
+        [Test]
         public void DomainEvent_Should_Be_Immutable()
         {
             var types = Types.InAssembly(DomainAssembly)
@@ -19,7 +19,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
             AssertAreImmutable(types);
         }
 
-        [Fact]
+        [Test]
         public void ValueObject_Should_Be_Immutable()
         {
             var types = Types.InAssembly(DomainAssembly)
@@ -30,7 +30,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
             AssertAreImmutable(types);
         }
 
-        [Fact]
+        [Test]
         public void Entity_Which_Is_Not_Aggregate_Root_Cannot_Have_Public_Members()
         {
             var types = Types.InAssembly(DomainAssembly)
@@ -57,7 +57,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
             AssertFailingTypes(failingTypes);
         }
 
-        [Fact]
+        [Test]
         public void Entity_Cannot_Have_Reference_To_Other_AggregateRoot()
         {
             var entityTypes = Types.InAssembly(DomainAssembly)
@@ -97,7 +97,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
             AssertFailingTypes(failingTypes);
         }
 
-        [Fact]
+        [Test]
         public void Domain_Object_Should_Have_Only_Private_Constructors()
         {
             var domainObjectTypes = Types.InAssembly(DomainAssembly)
@@ -121,7 +121,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
             AssertFailingTypes(failingTypes);
         }
 
-        [Fact]
+        [Test]
         public void ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State()
         {
             var valueObjects = Types.InAssembly(DomainAssembly)
@@ -158,7 +158,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
             AssertFailingTypes(failingTypes);
         }
 
-        [Fact]
+        [Test]
         public void DomainEvent_Should_Have_DomainEventPostfix()
         {
             var result = Types.InAssembly(DomainAssembly)
@@ -172,7 +172,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
             AssertArchTestResult(result);
         }
 
-        [Fact]
+        [Test]
         public void BusinessRule_Should_Have_RulePostfix()
         {
             var result = Types.InAssembly(DomainAssembly)

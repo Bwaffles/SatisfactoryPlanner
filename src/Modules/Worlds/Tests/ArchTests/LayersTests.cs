@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Resources.ArchTests
+﻿namespace SatisfactoryPlanner.Modules.Worlds.ArchTests
 {
     [TestFixture]
     public class LayersTests : TestBase

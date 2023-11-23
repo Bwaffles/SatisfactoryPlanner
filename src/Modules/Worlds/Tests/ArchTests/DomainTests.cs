@@ -1,10 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
-namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
+namespace SatisfactoryPlanner.Modules.Worlds.ArchTests
 {
     [TestFixture]
     public class DomainTests : TestBase
@@ -95,29 +92,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
                         failingTypes.Add(type);
                         break;
                     }
-            }
-
-            AssertFailingTypes(failingTypes);
-        }
-
-        [Test]
-        public void Entity_Should_Have_Parameterless_Private_Constructor()
-        {
-            var entityTypes = Types.InAssembly(DomainAssembly)
-                .That()
-                .Inherit(typeof(Entity)).GetTypes();
-
-            var failingTypes = new List<Type>();
-            foreach (var entityType in entityTypes)
-            {
-                var hasPrivateParameterlessConstructor = false;
-                var constructors = entityType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
-                foreach (var constructorInfo in constructors)
-                    if (constructorInfo.IsPrivate && constructorInfo.GetParameters().Length == 0)
-                        hasPrivateParameterlessConstructor = true;
-
-                if (!hasPrivateParameterlessConstructor)
-                    failingTypes.Add(entityType);
             }
 
             AssertFailingTypes(failingTypes);

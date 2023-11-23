@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using MediatR;
-using NetArchTest.Rules;
 using Newtonsoft.Json;
 using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Commands;
 using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Queries;
@@ -9,13 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Xunit;
 
 namespace SatisfactoryPlanner.Modules.Factories.ArchTests
 {
+    [TestFixture]
     public class ApplicationTests : TestBase
     {
-        [Fact]
+        [Test]
         public void Command_Should_Be_Immutable()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -36,7 +35,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             AssertAreImmutable(types);
         }
 
-        [Fact]
+        [Test]
         public void Query_Should_Be_Immutable()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -45,7 +44,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             AssertAreImmutable(types);
         }
 
-        [Fact]
+        [Test]
         public void CommandHandler_Should_Have_Name_EndingWith_CommandHandler()
         {
             var result = Types.InAssembly(ApplicationAssembly)
@@ -61,7 +60,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             AssertArchTestResult(result);
         }
 
-        [Fact]
+        [Test]
         public void QueryHandler_Should_Have_Name_EndingWith_QueryHandler()
         {
             var result = Types.InAssembly(ApplicationAssembly)
@@ -74,7 +73,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             AssertArchTestResult(result);
         }
 
-        [Fact]
+        [Test]
         public void Command_And_Query_Handlers_Should_Not_Be_Public()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -89,7 +88,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             AssertFailingTypes(types);
         }
 
-        [Fact]
+        [Test]
         public void Validator_Should_Have_Name_EndingWith_Validator()
         {
             var result = Types.InAssembly(ApplicationAssembly)
@@ -102,7 +101,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             AssertArchTestResult(result);
         }
 
-        [Fact]
+        [Test]
         public void Validators_Should_Not_Be_Public()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -113,7 +112,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             AssertFailingTypes(types);
         }
 
-        [Fact]
+        [Test]
         public void InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -148,7 +147,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             AssertFailingTypes(failingTypes);
         }
 
-        [Fact]
+        [Test]
         public void MediatR_RequestHandler_Should_NotBe_Used_Directly()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -175,7 +174,7 @@ namespace SatisfactoryPlanner.Modules.Factories.ArchTests
             AssertFailingTypes(failingTypes);
         }
 
-        [Fact]
+        [Test]
         public void Command_With_Result_Should_Not_Return_Unit()
         {
             var commandWithResultHandlerType = typeof(ICommandHandler<,>);

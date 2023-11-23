@@ -21,7 +21,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Domain.Worlds
             PioneerId = pioneerId;
         }
 
-        public static WorldInhabitant Create(WorldId worldId, PioneerId pioneerId)
+        internal static WorldInhabitant Create(WorldId worldId, PioneerId pioneerId)
         {
             return new WorldInhabitant(worldId, pioneerId);
         }

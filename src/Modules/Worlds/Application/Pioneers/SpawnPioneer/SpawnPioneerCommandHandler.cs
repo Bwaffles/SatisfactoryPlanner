@@ -5,7 +5,7 @@ using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers;
 namespace SatisfactoryPlanner.Modules.Worlds.Application.Pioneers.SpawnPioneer
 {
     // ReSharper disable once UnusedMember.Global
-    public class SpawnPioneerCommandHandler : ICommandHandler<SpawnPioneerCommand>
+    internal class SpawnPioneerCommandHandler : ICommandHandler<SpawnPioneerCommand>
     {
         private readonly IPioneersRepository _pioneersRepository;
 

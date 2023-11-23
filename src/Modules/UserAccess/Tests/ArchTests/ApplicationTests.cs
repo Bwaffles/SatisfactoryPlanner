@@ -1,20 +1,20 @@
 ﻿using FluentValidation;
 using MediatR;
-using NetArchTest.Rules;
 using Newtonsoft.Json;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.UserAccess.Application.Configuration.Queries;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Xunit;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
 {
+    [TestFixture]
     public class ApplicationTests : TestBase
     {
-        [Fact]
+        [Test]
         public void Command_Should_Be_Immutable()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -35,7 +35,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
             AssertAreImmutable(types);
         }
 
-        [Fact]
+        [Test]
         public void Query_Should_Be_Immutable()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -44,7 +44,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
             AssertAreImmutable(types);
         }
 
-        [Fact]
+        [Test]
         public void CommandHandler_Should_Have_Name_EndingWith_CommandHandler()
         {
             var result = Types.InAssembly(ApplicationAssembly)
@@ -60,27 +60,26 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
             AssertArchTestResult(result);
         }
 
-        // TODO bring back when queries are implemented
-        //[Fact]
-        //public void QueryHandler_Should_Have_Name_EndingWith_QueryHandler()
-        //{
-        //    var result = Types.InAssembly(ApplicationAssembly)
-        //        .That()
-        //        .ImplementInterface(typeof(IQueryHandler<,>))
-        //        .Should()
-        //        .HaveNameEndingWith("QueryHandler")
-        //        .GetResult();
+        [Test]
+        public void QueryHandler_Should_Have_Name_EndingWith_QueryHandler()
+        {
+            var result = Types.InAssembly(ApplicationAssembly)
+                .That()
+                .ImplementInterface(typeof(IQueryHandler<,>))
+                .Should()
+                .HaveNameEndingWith("QueryHandler")
+                .GetResult();
 
-        //    AssertArchTestResult(result);
-        //}
+            AssertArchTestResult(result);
+        }
 
-        [Fact]
+        [Test]
         public void Command_And_Query_Handlers_Should_Not_Be_Public()
         {
             var types = Types.InAssembly(ApplicationAssembly)
                 .That()
-                //.ImplementInterface(typeof(IQueryHandler<,>))
-                //    .Or()
+                .ImplementInterface(typeof(IQueryHandler<,>))
+                .Or()
                 .ImplementInterface(typeof(ICommandHandler<>))
                 .Or()
                 .ImplementInterface(typeof(ICommandHandler<,>))
@@ -89,7 +88,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
             AssertFailingTypes(types);
         }
 
-        [Fact]
+        [Test]
         public void Validator_Should_Have_Name_EndingWith_Validator()
         {
             var result = Types.InAssembly(ApplicationAssembly)
@@ -102,7 +101,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
             AssertArchTestResult(result);
         }
 
-        [Fact]
+        [Test]
         public void Validators_Should_Not_Be_Public()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -113,7 +112,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
             AssertFailingTypes(types);
         }
 
-        [Fact]
+        [Test]
         public void InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -148,7 +147,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
             AssertFailingTypes(failingTypes);
         }
 
-        [Fact]
+        [Test]
         public void MediatR_RequestHandler_Should_NotBe_Used_Directly()
         {
             var types = Types.InAssembly(ApplicationAssembly)
@@ -165,17 +164,17 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
                 var isCommandWithResultHandler = type.GetInterfaces().Any(x =>
                     x.IsGenericType &&
                     x.GetGenericTypeDefinition() == typeof(ICommandHandler<,>));
-                //var isQueryHandler = type.GetInterfaces().Any(x =>
-                //    x.IsGenericType &&
-                //    x.GetGenericTypeDefinition() == typeof(IQueryHandler<,>));
-                if (!isCommandHandler && !isCommandWithResultHandler /* && !isQueryHandler*/)
+                var isQueryHandler = type.GetInterfaces().Any(x =>
+                    x.IsGenericType &&
+                    x.GetGenericTypeDefinition() == typeof(IQueryHandler<,>));
+                if (!isCommandHandler && !isCommandWithResultHandler && !isQueryHandler)
                     failingTypes.Add(type);
             }
 
             AssertFailingTypes(failingTypes);
         }
 
-        [Fact]
+        [Test]
         public void Command_With_Result_Should_Not_Return_Unit()
         {
             var commandWithResultHandlerType = typeof(ICommandHandler<,>);

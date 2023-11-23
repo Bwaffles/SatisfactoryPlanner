@@ -81,19 +81,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worlds", "Worlds", "{517BACCA-ED32-4774-98FE-48558D025DD4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.Application", "Modules\Pioneers\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj", "{1D058EC9-828C-47A0-A679-DFA7B1A43247}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.Application", "Modules\Worlds\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj", "{1D058EC9-828C-47A0-A679-DFA7B1A43247}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.Domain", "Modules\Pioneers\Domain\SatisfactoryPlanner.Modules.Worlds.Domain.csproj", "{D3840ABA-9457-4CFA-A060-50AD03C9E740}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.Domain", "Modules\Worlds\Domain\SatisfactoryPlanner.Modules.Worlds.Domain.csproj", "{D3840ABA-9457-4CFA-A060-50AD03C9E740}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.Infrastructure", "Modules\Pioneers\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj", "{8D3B667D-CF4C-4602-B243-2408593CF102}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.Infrastructure", "Modules\Worlds\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj", "{8D3B667D-CF4C-4602-B243-2408593CF102}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Worlds.IntegrationEvents", "Modules\Pioneers\IntegrationEvents\SatisfactoryPlanner.Modules.Worlds.IntegrationEvents.csproj", "{74EF1967-C456-4121-A984-B9303E32FF1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.IntegrationEvents", "Modules\Worlds\IntegrationEvents\SatisfactoryPlanner.Modules.Worlds.IntegrationEvents.csproj", "{74EF1967-C456-4121-A984-B9303E32FF1F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.IntegrationTests", "Modules\Pioneers\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Worlds.IntegrationTests.csproj", "{173D2D7E-9C2F-4BC6-B151-CADE142A9095}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SatisfactoryPlanner.Modules.Worlds.ArchTests", "Modules\Worlds\Tests\ArchTests\SatisfactoryPlanner.Modules.Worlds.ArchTests.csproj", "{DB68501A-A2D1-4AAF-A227-AAF744E35E18}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests", "Modules\Pioneers\Tests\UnitTests\SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests.csproj", "{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.IntegrationTests", "Modules\Worlds\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Worlds.IntegrationTests.csproj", "{173D2D7E-9C2F-4BC6-B151-CADE142A9095}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests", "Modules\Worlds\Tests\UnitTests\SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests.csproj", "{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{139DABEF-84E0-445F-B558-ED7ABC8F994E}"
 EndProject
@@ -223,6 +225,10 @@ Global
 		{8D3B667D-CF4C-4602-B243-2408593CF102}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D3B667D-CF4C-4602-B243-2408593CF102}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D3B667D-CF4C-4602-B243-2408593CF102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74EF1967-C456-4121-A984-B9303E32FF1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74EF1967-C456-4121-A984-B9303E32FF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74EF1967-C456-4121-A984-B9303E32FF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74EF1967-C456-4121-A984-B9303E32FF1F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{173D2D7E-9C2F-4BC6-B151-CADE142A9095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{173D2D7E-9C2F-4BC6-B151-CADE142A9095}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{173D2D7E-9C2F-4BC6-B151-CADE142A9095}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -235,10 +241,10 @@ Global
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{74EF1967-C456-4121-A984-B9303E32FF1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74EF1967-C456-4121-A984-B9303E32FF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74EF1967-C456-4121-A984-B9303E32FF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74EF1967-C456-4121-A984-B9303E32FF1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB68501A-A2D1-4AAF-A227-AAF744E35E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB68501A-A2D1-4AAF-A227-AAF744E35E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB68501A-A2D1-4AAF-A227-AAF744E35E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB68501A-A2D1-4AAF-A227-AAF744E35E18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -281,11 +287,12 @@ Global
 		{1D058EC9-828C-47A0-A679-DFA7B1A43247} = {517BACCA-ED32-4774-98FE-48558D025DD4}
 		{D3840ABA-9457-4CFA-A060-50AD03C9E740} = {517BACCA-ED32-4774-98FE-48558D025DD4}
 		{8D3B667D-CF4C-4602-B243-2408593CF102} = {517BACCA-ED32-4774-98FE-48558D025DD4}
+		{74EF1967-C456-4121-A984-B9303E32FF1F} = {517BACCA-ED32-4774-98FE-48558D025DD4}
 		{73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8} = {517BACCA-ED32-4774-98FE-48558D025DD4}
 		{173D2D7E-9C2F-4BC6-B151-CADE142A9095} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD} = {139DABEF-84E0-445F-B558-ED7ABC8F994E}
-		{74EF1967-C456-4121-A984-B9303E32FF1F} = {517BACCA-ED32-4774-98FE-48558D025DD4}
+		{DB68501A-A2D1-4AAF-A227-AAF744E35E18} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}
