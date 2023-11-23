@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using NetArchTest.Rules;
 using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
 using SatisfactoryPlanner.Modules.Factories.Domain.Factories;
 using SatisfactoryPlanner.Modules.Factories.Infrastructure;

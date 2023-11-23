@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using NetArchTest.Rules;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using SatisfactoryPlanner.Modules.UserAccess.Domain.Users;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
