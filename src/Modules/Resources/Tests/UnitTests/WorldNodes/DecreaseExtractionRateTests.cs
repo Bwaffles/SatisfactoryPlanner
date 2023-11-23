@@ -1,20 +1,20 @@
 ﻿using FluentAssertions;
 using NSubstitute;
+using NUnit.Framework;
 using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.Resources.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules;
-using Xunit;
 
 namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 {
+    [TestFixture]
     public class DecreaseExtractionRateTests
     {
         // Happy path tests
-        [Theory]
-        [InlineData(60)]
-        [InlineData(0)]
+        [TestCase(60)]
+        [TestCase(0)]
         public void WhenDataIsValid_IsSuccessful(int extractionRate)
         {
             var worldNode = Setup(120);
@@ -27,7 +27,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             domainEvent.ExtractionRate.Should().Be(ExtractionRate.Of(extractionRate));
         }
 
-        [Fact]
+        [Test]
         public void WhenNewRateIsSameAsTheCurrentRate_IsIgnored()
         {
             var worldNode = Setup(120);
@@ -39,7 +39,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
         }
 
         // Business rule tests
-        [Fact]
+        [Test]
         public void WhenWorldNodeIsNotTapped_RuleIsBroken()
         {
             var worldNode = Setup(isTapped: false);
@@ -50,7 +50,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             });
         }
 
-        [Fact]
+        [Test]
         public void WhenNewRateIsGreaterThanCurrentRate_RuleIsBroken()
         {
             var worldNode = Setup(120);

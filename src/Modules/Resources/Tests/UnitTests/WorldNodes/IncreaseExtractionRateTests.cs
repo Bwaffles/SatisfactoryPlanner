@@ -1,18 +1,19 @@
 ﻿using FluentAssertions;
 using NSubstitute;
+using NUnit.Framework;
 using SatisfactoryPlanner.BuildingBlocks.Domain.UnitTests;
 using SatisfactoryPlanner.Modules.Resources.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules;
-using Xunit;
 
 namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 {
+    [TestFixture]
     public class IncreaseExtractionRateTests
     {
         // Happy path tests
-        [Fact]
+        [Test]
         public void WhenDataIsValid_IsSuccessful()
         {
             var (worldNode, extractionRateCalculator) = Setup(120);
@@ -25,7 +26,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             domainEvent.ExtractionRate.Should().Be(ExtractionRate.Of(120));
         }
 
-        [Fact]
+        [Test]
         public void WhenNewRateIsSameAsTheCurrentRate_IsIgnored()
         {
             var (worldNode, extractionRateCalculator) = Setup(120);
@@ -40,7 +41,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
         }
 
         // Business rule tests
-        [Fact]
+        [Test]
         public void WhenWorldNodeIsNotTapped_RuleIsBroken()
         {
             var (worldNode, extractionRateCalculator) = Setup(120, false);
@@ -51,7 +52,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             });
         }
 
-        [Fact]
+        [Test]
         public void WhenIncreasingAboveTheMaxRate_RuleIsBroken()
         {
             var (worldNode, extractionRateCalculator) = Setup(120);
@@ -62,7 +63,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             });
         }
 
-        [Fact]
+        [Test]
         public void WhenNewRateIsLessThanCurrentRate_RuleIsBroken()
         {
             var (worldNode, extractionRateCalculator) = Setup(120);
