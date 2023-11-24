@@ -3,7 +3,7 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 {
-    public class WorldNodeId : TypedIdValueBase
+    public record WorldNodeId : TypedIdValueBase
     {
         public WorldNodeId(Guid value) : base(value) { }
     }

@@ -2,7 +2,7 @@
 
 namespace SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers
 {
-    public class PioneerId : TypedIdValueBase
+    public record PioneerId : TypedIdValueBase
     {
         public PioneerId(Guid value) : base(value) { }
     }
