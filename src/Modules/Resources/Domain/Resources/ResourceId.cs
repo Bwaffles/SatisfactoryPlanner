@@ -3,7 +3,7 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.Resources
 {
-    public class ResourceId : TypedIdValueBase
+    public record ResourceId : TypedIdValueBase
     {
         public ResourceId(Guid value) : base(value) { }
     }

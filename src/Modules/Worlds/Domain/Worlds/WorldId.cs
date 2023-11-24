@@ -2,7 +2,7 @@
 
 namespace SatisfactoryPlanner.Modules.Worlds.Domain.Worlds
 {
-    public class WorldId : TypedIdValueBase
+    public record WorldId : TypedIdValueBase
     {
         public WorldId(Guid value) : base(value) { }
     }

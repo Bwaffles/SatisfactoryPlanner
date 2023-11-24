@@ -3,7 +3,7 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.Factories.Domain.Factories
 {
-    public class FactoryId : TypedIdValueBase
+    public record FactoryId : TypedIdValueBase
     {
         public FactoryId(Guid value) : base(value) { }
     }
