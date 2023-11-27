@@ -5,7 +5,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourc
 {
     public class GetResourceDetailsQuery : QueryBase<ResourceDetailsDto>
     {
-        public Guid ResourceId { get; set; }
+        public Guid ResourceId { get; }
 
         public GetResourceDetailsQuery(Guid resourceId)
         {
