@@ -6,9 +6,9 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldN
 {
     public class GetWorldNodesQuery : QueryBase<List<WorldNodeDto>>
     {
-        public Guid WorldId { get; set; }
+        public Guid WorldId { get; }
 
-        public Guid? ResourceId { get; set; }
+        public Guid? ResourceId { get; }
 
         public GetWorldNodesQuery(Guid worldId, Guid? resourceId)
         {

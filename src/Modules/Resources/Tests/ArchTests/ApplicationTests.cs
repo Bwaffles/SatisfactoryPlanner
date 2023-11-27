@@ -12,7 +12,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
     public class ApplicationTests : TestBase
     {
         [Test]
-        public void Command_Should_Be_Immutable()
+        public void Command_ShouldBeImmutable()
         {
             var types = Types.InAssembly(ApplicationAssembly)
                 .That()
@@ -33,10 +33,14 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
         }
 
         [Test]
-        public void Query_Should_Be_Immutable()
+        public void Query_ShouldBeImmutable()
         {
             var types = Types.InAssembly(ApplicationAssembly)
-                .That().ImplementInterface(typeof(IQuery<>)).GetTypes();
+                .That()
+                .ImplementInterface(typeof(IQuery<>))
+                .Or()
+                .Inherit(typeof(QueryBase<>))
+                .GetTypes();
 
             AssertAreImmutable(types);
         }
