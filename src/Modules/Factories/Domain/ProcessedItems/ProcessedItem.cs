@@ -28,5 +28,10 @@ namespace SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems
 
         internal static ProcessedItem CreateNew(ProductionLineId productionLineId, Item item, Recipe recipe) =>
             new(productionLineId, item, recipe);
+
+        public void Dismantle()
+        {
+            AddDomainEvent(new ProcessedItemDismantledDomainEvent(Id));
+        }
     }
 }
