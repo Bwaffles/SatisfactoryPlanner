@@ -1,4 +1,5 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems;
 using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Events;
 using System;
 
@@ -28,6 +29,11 @@ namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines
             _name = name;
 
             AddDomainEvent(new ProductionLineRenamedDomainEvent(Id, _name));
+        }
+
+        public ProcessedItem ProcessItem(Item item, Recipe recipe)
+        {
+            return ProcessedItem.CreateNew(Id, item, recipe);
         }
     }
 }
