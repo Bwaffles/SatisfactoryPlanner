@@ -1,11 +1,10 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using System;
 
 namespace SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems
 {
-    public class Item : ValueObject
+    public record ItemId : TypedIdValueBase
     {
-        private Item() { }
-
-        public static Item As() => new();
+        public ItemId(Guid value) : base(value) { }
     }
 }

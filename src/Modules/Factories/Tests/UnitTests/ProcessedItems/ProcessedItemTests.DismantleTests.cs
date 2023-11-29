@@ -5,7 +5,7 @@ using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines;
 namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProcessedItems
 {
     [TestFixture]
-    public class ProcessedItemTests
+    public partial class ProcessedItemTests
     {
         [TestFixture]
         public class DismantleTests
@@ -14,10 +14,11 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProcessedItems
             public void CanDismantleProcessedItem()
             {
                 var productionLine = ProductionLine.SetUp(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
-                var item = Item.As();
-                var recipe = Recipe.As([item]);
+                var itemId = new ItemId(Guid.NewGuid());
+                var ingredient = Ingredient.Of(itemId);
+                var recipe = Recipe.As([ingredient]);
 
-                var processedItem = productionLine.ProcessItem(item, recipe);
+                var processedItem = productionLine.ProcessItem(itemId, recipe);
 
                 processedItem.Dismantle();
 

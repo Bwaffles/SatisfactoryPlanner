@@ -3,14 +3,17 @@ using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines;
 
 namespace SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems.Events
 {
-    public class ItemProcessedDomainEvent(ProcessedItemId processedItemId, ProductionLineId productionLineId, Item item,
+    public class ItemProcessedDomainEvent(
+        ProcessedItemId processedItemId,
+        ProductionLineId productionLineId,
+        ItemId itemId,
         Recipe recipe) : DomainEventBase
     {
         public ProductionLineId ProductionLineId { get; } = productionLineId;
 
         public ProcessedItemId ProcessedItemId { get; } = processedItemId;
 
-        public Item Item { get; } = item;
+        public ItemId ItemId { get; } = itemId;
 
         public Recipe Recipe { get; } = recipe;
     }

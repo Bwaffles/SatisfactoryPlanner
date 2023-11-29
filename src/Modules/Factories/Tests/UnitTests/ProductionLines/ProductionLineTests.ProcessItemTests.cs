@@ -14,16 +14,17 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             public void CanProcessItem()
             {
                 var productionLine = ProductionLine.SetUp(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
-                var item = Item.As();
-                var recipe = Recipe.As([item]);
+                var itemId = new ItemId(Guid.NewGuid());
+                var ingredient = Ingredient.Of(itemId);
+                var recipe = Recipe.As([ingredient]);
 
-                var processedItem = productionLine.ProcessItem(item, recipe);
+                var processedItem = productionLine.ProcessItem(itemId, recipe);
 
                 var domainEvent = DomainEventAssertions.AssertPublishedEvent<ItemProcessedDomainEvent>(processedItem);
 
                 domainEvent.ProcessedItemId.Should().Be(processedItem.Id);
                 domainEvent.ProductionLineId.Should().Be(productionLine.Id);
-                domainEvent.Item.Should().Be(item);
+                domainEvent.ItemId.Should().Be(itemId);
                 domainEvent.Recipe.Should().Be(recipe);
             }
 
@@ -31,14 +32,15 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             public void CanProcessSameItemMultipleTimes()
             {
                 var productionLine = ProductionLine.SetUp(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
-                var item = Item.As();
-                var recipe = Recipe.As([item]);
+                var itemId = new ItemId(Guid.NewGuid());
+                var ingredient = Ingredient.Of(itemId);
+                var recipe = Recipe.As([ingredient]);
 
-                var firstProcessedItem = productionLine.ProcessItem(item, recipe);
+                var firstProcessedItem = productionLine.ProcessItem(itemId, recipe);
                 var firstDomainEvent = DomainEventAssertions.AssertPublishedEvent<ItemProcessedDomainEvent>(firstProcessedItem);
                 firstDomainEvent.ProcessedItemId.Should().Be(firstProcessedItem.Id);
 
-                var secondProcessedItem = productionLine.ProcessItem(item, recipe);
+                var secondProcessedItem = productionLine.ProcessItem(itemId, recipe);
                 var secondDomainEvent = DomainEventAssertions.AssertPublishedEvent<ItemProcessedDomainEvent>(secondProcessedItem);
                 secondDomainEvent.ProcessedItemId.Should().Be(secondProcessedItem.Id);
             }
@@ -47,11 +49,11 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             public void CannotProcessItemWhenItsNotAnIngredientOfTheRecipe()
             {
                 var productionLine = ProductionLine.SetUp(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
-                var item = Item.As();
+                var itemId = new ItemId(Guid.NewGuid());
                 var recipe = Recipe.As([]);
 
                 RuleAssertions.AssertBrokenRule<ItemMustBeIngredientOfRecipeRule>(
-                    () => productionLine.ProcessItem(item, recipe)
+                    () => productionLine.ProcessItem(itemId, recipe)
                 );
             }
         }

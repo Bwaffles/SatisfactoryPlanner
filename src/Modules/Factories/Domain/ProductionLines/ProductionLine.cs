@@ -31,9 +31,6 @@ namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines
             AddDomainEvent(new ProductionLineRenamedDomainEvent(Id, _name));
         }
 
-        public ProcessedItem ProcessItem(Item item, Recipe recipe)
-        {
-            return ProcessedItem.CreateNew(Id, item, recipe);
-        }
+        public ProcessedItem ProcessItem(ItemId item, Recipe recipe) => ProcessedItem.CreateNew(Id, item, recipe);
     }
 }

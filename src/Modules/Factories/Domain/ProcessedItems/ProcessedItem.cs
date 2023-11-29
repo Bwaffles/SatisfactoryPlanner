@@ -8,25 +8,25 @@ namespace SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems
 {
     public class ProcessedItem : Entity, IAggregateRoot
     {
-        private readonly Item _item;
+        private readonly ItemId _itemId;
         private readonly ProductionLineId _productionLineId;
         private readonly Recipe _recipe;
 
         public ProcessedItemId Id { get; }
 
-        private ProcessedItem(ProductionLineId productionLineId, Item item, Recipe recipe)
+        private ProcessedItem(ProductionLineId productionLineId, ItemId itemId, Recipe recipe)
         {
-            CheckRule(new ItemMustBeIngredientOfRecipeRule(item, recipe));
+            CheckRule(new ItemMustBeIngredientOfRecipeRule(itemId, recipe));
 
             Id = new ProcessedItemId(Guid.NewGuid());
             _productionLineId = productionLineId;
-            _item = item;
+            _itemId = itemId;
             _recipe = recipe;
 
-            AddDomainEvent(new ItemProcessedDomainEvent(Id, _productionLineId, _item, _recipe));
+            AddDomainEvent(new ItemProcessedDomainEvent(Id, _productionLineId, _itemId, _recipe));
         }
 
-        internal static ProcessedItem CreateNew(ProductionLineId productionLineId, Item item, Recipe recipe) =>
+        internal static ProcessedItem CreateNew(ProductionLineId productionLineId, ItemId item, Recipe recipe) =>
             new(productionLineId, item, recipe);
 
         public void Dismantle()
