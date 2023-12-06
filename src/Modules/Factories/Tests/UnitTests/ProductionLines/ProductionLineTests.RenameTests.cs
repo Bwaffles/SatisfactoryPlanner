@@ -1,4 +1,5 @@
-﻿using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines;
+﻿using NSubstitute;
+using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines;
 using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Events;
 
 namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
@@ -11,7 +12,12 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             [Test]
             public void CanRenameAProductionLine()
             {
-                var productionLine = ProductionLine.SetUp(new WorldId(Guid.NewGuid()), ProductionLineName.As("Original Name on Set Up"));
+                var worldId = new WorldId(Guid.NewGuid());
+                var productionLineName = ProductionLineName.As("Original Name on Set Up");
+                var counter = Substitute.For<IProductionLineCounter>();
+                counter.CountProductionLinesWithName(worldId, productionLineName).Returns(0);
+
+                var productionLine = ProductionLine.SetUp(worldId, productionLineName, counter);
 
                 productionLine.Rename(ProductionLineName.As("New Name After Rename"));
 
@@ -25,7 +31,12 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             [Test]
             public void IgnoreWhenRenamingToCurrentName()
             {
-                var productionLine = ProductionLine.SetUp(new WorldId(Guid.NewGuid()), ProductionLineName.As("Original Name on Set Up"));
+                var worldId = new WorldId(Guid.NewGuid());
+                var productionLineName = ProductionLineName.As("Original Name on Set Up");
+                var counter = Substitute.For<IProductionLineCounter>();
+                counter.CountProductionLinesWithName(worldId, productionLineName).Returns(0);
+
+                var productionLine = ProductionLine.SetUp(worldId, productionLineName, counter);
 
                 productionLine.Rename(ProductionLineName.As("Original Name on Set Up"));
 
