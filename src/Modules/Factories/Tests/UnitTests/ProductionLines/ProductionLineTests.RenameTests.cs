@@ -11,7 +11,7 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             [Test]
             public void CanRenameAProductionLine()
             {
-                var productionLine = ProductionLine.SetUp(ProductionLineName.As("Original Name on Set Up"));
+                var productionLine = ProductionLine.SetUp(new WorldId(Guid.NewGuid()), ProductionLineName.As("Original Name on Set Up"));
 
                 productionLine.Rename(ProductionLineName.As("New Name After Rename"));
 
@@ -25,7 +25,7 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             [Test]
             public void IgnoreWhenRenamingToCurrentName()
             {
-                var productionLine = ProductionLine.SetUp(ProductionLineName.As("Original Name on Set Up"));
+                var productionLine = ProductionLine.SetUp(new WorldId(Guid.NewGuid()), ProductionLineName.As("Original Name on Set Up"));
 
                 productionLine.Rename(ProductionLineName.As("Original Name on Set Up"));
 

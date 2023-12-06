@@ -13,7 +13,7 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             [Test]
             public void CanProcessItem()
             {
-                var productionLine = ProductionLine.SetUp(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
+                var productionLine = ProductionLine.SetUp(new WorldId(Guid.NewGuid()), ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
                 var itemId = new ItemId(Guid.NewGuid());
                 var ingredient = Ingredient.Of(itemId);
                 var recipe = Recipe.As([ingredient]);
@@ -31,7 +31,7 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             [Test]
             public void CanProcessSameItemMultipleTimes()
             {
-                var productionLine = ProductionLine.SetUp(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
+                var productionLine = ProductionLine.SetUp(new WorldId(Guid.NewGuid()), ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
                 var itemId = new ItemId(Guid.NewGuid());
                 var ingredient = Ingredient.Of(itemId);
                 var recipe = Recipe.As([ingredient]);
@@ -48,7 +48,7 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             [Test]
             public void CannotProcessItemWhenItsNotAnIngredientOfTheRecipe()
             {
-                var productionLine = ProductionLine.SetUp(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
+                var productionLine = ProductionLine.SetUp(new WorldId(Guid.NewGuid()), ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
                 var itemId = new ItemId(Guid.NewGuid());
                 var recipe = Recipe.As([]);
 

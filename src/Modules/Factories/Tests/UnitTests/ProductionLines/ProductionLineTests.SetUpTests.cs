@@ -12,12 +12,14 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
             [Test]
             public void CanSetUpAValidProductionLine()
             {
-                var productionLine = ProductionLine.SetUp(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
+                var worldId = new WorldId(Guid.NewGuid());
+                var productionLine = ProductionLine.SetUp(worldId, ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
 
                 var domainEvent =
                     DomainEventAssertions.AssertPublishedEvent<ProductionLineSetUpDomainEvent>(productionLine);
 
                 domainEvent.ProductionLineId.Should().Be(productionLine.Id);
+                domainEvent.WorldId.Should().Be(worldId);
                 domainEvent.Name.Should().Be(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
             }
         }

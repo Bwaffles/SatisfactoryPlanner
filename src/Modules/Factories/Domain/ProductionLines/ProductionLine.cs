@@ -1,25 +1,26 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems;
 using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Events;
-using System;
 
 namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines
 {
     public class ProductionLine : Entity, IAggregateRoot
     {
+        private readonly WorldId _worldId;
         private ProductionLineName _name;
 
         public ProductionLineId Id { get; }
 
-        private ProductionLine(ProductionLineName name)
+        private ProductionLine(WorldId worldId, ProductionLineName name)
         {
             Id = new ProductionLineId(Guid.NewGuid());
+            _worldId = worldId;
             _name = name;
 
-            AddDomainEvent(new ProductionLineSetUpDomainEvent(Id, _name));
+            AddDomainEvent(new ProductionLineSetUpDomainEvent(Id, _worldId, _name));
         }
 
-        public static ProductionLine SetUp(ProductionLineName name) => new(name);
+        public static ProductionLine SetUp(WorldId worldId, ProductionLineName name) => new(worldId, name);
 
         public void Rename(ProductionLineName name)
         {

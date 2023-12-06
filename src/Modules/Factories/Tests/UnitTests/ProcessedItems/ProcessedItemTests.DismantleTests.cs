@@ -13,7 +13,7 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProcessedItems
             [Test]
             public void CanDismantleProcessedItem()
             {
-                var productionLine = ProductionLine.SetUp(ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
+                var productionLine = ProductionLine.SetUp(new WorldId(Guid.NewGuid()), ProductionLineName.As("Rocky Desert Iron Ingots - Line 1"));
                 var itemId = new ItemId(Guid.NewGuid());
                 var ingredient = Ingredient.Of(itemId);
                 var recipe = Recipe.As([ingredient]);
