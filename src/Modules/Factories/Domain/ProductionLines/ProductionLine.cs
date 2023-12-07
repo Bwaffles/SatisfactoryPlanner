@@ -26,10 +26,12 @@ namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines
         public static ProductionLine SetUp(WorldId worldId, ProductionLineName name,
             IProductionLineCounter productionLineCounter) => new(worldId, name, productionLineCounter);
 
-        public void Rename(ProductionLineName name)
+        public void Rename(ProductionLineName name, IProductionLineCounter productionLineCounter)
         {
             if (_name == name)
                 return;
+
+            CheckRule(new ProductionLineNameMustBeUniqueRule(_worldId, name, productionLineCounter));
 
             _name = name;
 
