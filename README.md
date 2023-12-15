@@ -1,7 +1,7 @@
 # SatisfactoryPlanner
 
 ## How to Use
-
+TESST
 ### Database Migrations
 From the root folder, run `dotnet run --project src/Database/DatabaseMigrator/ [debug|release] [serverConnectionString] [connectionString]` to start the interactive migration app during development.
 
