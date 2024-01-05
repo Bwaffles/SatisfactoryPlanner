@@ -5,15 +5,15 @@ namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines
 {
     public class ProductionLineName : ValueObject
     {
-        public string Value { get; }
+        public CaseInsensitiveString Value { get; }
 
-        private ProductionLineName(string value)
+        private ProductionLineName(CaseInsensitiveString value)
         {
             CheckRule(new ProductionLineNameCannotBeEmptyRule(value));
 
-            Value = value;
+            Value = new CaseInsensitiveString(value);
         }
 
-        public static ProductionLineName As(string value) => new(value);
+        public static ProductionLineName As(CaseInsensitiveString value) => new(value);
     }
 }

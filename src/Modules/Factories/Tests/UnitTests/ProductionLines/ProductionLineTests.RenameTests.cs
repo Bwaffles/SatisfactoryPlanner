@@ -29,17 +29,16 @@ namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
                 domainEvent.Name.Should().Be(ProductionLineName.As("New Name After Rename"));
             }
 
-            [Test]
-            public void IgnoreWhenRenamingToCurrentName()
+            [TestCase("Original Name on Set Up", "ORIGINAL NAME ON SET UP")]
+            [TestCase("Original Name on Set Up", "Original Name on Set Up")]
+            public void IgnoreWhenRenamingToCurrentName(string initialName, string renameName)
             {
                 var worldId = new WorldId(Guid.NewGuid());
-                var productionLineName = ProductionLineName.As("Original Name on Set Up");
+                var productionLineName = ProductionLineName.As(initialName);
                 var counter = Substitute.For<IProductionLineCounter>();
-                counter.CountProductionLinesWithName(worldId, productionLineName).Returns(0);
-
                 var productionLine = ProductionLine.SetUp(worldId, productionLineName, counter);
 
-                productionLine.Rename(ProductionLineName.As("Original Name on Set Up"), counter);
+                productionLine.Rename(ProductionLineName.As(renameName), counter);
 
                 DomainEventAssertions
                     .AssertEventIsNotPublished<ProductionLineRenamedDomainEvent>(productionLine,

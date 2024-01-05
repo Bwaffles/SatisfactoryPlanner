@@ -2,7 +2,7 @@
 
 namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Rules
 {
-    public class ProductionLineNameCannotBeEmptyRule(string name) : IBusinessRule
+    public class ProductionLineNameCannotBeEmptyRule(CaseInsensitiveString name) : IBusinessRule
     {
         public string Message => "Name cannot be empty.";
 
