@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.BuildingBlocks.Application;
-using System.Collections.Generic;
 
 namespace SatisfactoryPlanner.API.Configuration.Validation
 {

@@ -1,25 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization;
 using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 using SatisfactoryPlanner.Modules.Worlds.Application.Worlds.GetCurrentPioneerWorlds;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Modules.Worlds.Worlds
 {
     [Route("api/worlds/[controller]")]
     [ApiController]
-    public class WorldsController : ControllerBase
+    public class WorldsController(IWorldsModule module) : ControllerBase
     {
-        private readonly IWorldsModule _module;
-
-        public WorldsController(IWorldsModule module)
-        {
-            _module = module;
-        }
-
         /// <summary>
         ///     Get the worlds for the currently logged in pioneer.
         /// </summary>
@@ -32,7 +22,7 @@ namespace SatisfactoryPlanner.API.Modules.Worlds.Worlds
         [ProducesResponseType(typeof(List<PioneerWorldDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCurrentPioneerWorlds()
         {
-            var worlds = await _module.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
+            var worlds = await module.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
             return Ok(worlds);
         }
     }

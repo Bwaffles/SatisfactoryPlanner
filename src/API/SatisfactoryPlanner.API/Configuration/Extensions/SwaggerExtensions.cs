@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 namespace SatisfactoryPlanner.API.Configuration.Extensions

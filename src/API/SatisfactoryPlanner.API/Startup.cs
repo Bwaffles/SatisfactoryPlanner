@@ -3,13 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
@@ -28,8 +22,7 @@ using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Formatting.Compact;
-using System;
-using System.Diagnostics.CodeAnalysis;
+using ILogger = Serilog.ILogger;
 
 namespace SatisfactoryPlanner.API
 {
@@ -53,7 +46,8 @@ namespace SatisfactoryPlanner.API
 
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("SatisfactoryPlanner") ??
-                                throw new InvalidOperationException("SatisfactoryPlanner connection string not defined.");
+                                throw new InvalidOperationException(
+                                    "SatisfactoryPlanner connection string not defined.");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -118,7 +112,6 @@ namespace SatisfactoryPlanner.API
                     options.Audience = _configuration["Auth0:Audience"];
                 });
 
-        [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Called by the framework.")]
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterModule(new WorldsAutofacModule());
@@ -154,8 +147,6 @@ namespace SatisfactoryPlanner.API
 
             //app.UseHttpsRedirection();
 
-            app.UseRouting();
-
             app.UseAuthentication();
 
             // To be used by WorldAuthorization to get world id from the body of the request
@@ -165,11 +156,6 @@ namespace SatisfactoryPlanner.API
                 return next();
             });
             app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
         }
 
         private static void ConfigureLogger()

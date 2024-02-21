@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
+﻿namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
 {
     public class GetWorldNodesRequest
     {

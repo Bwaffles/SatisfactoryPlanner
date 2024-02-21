@@ -1,28 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourceDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResources;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Modules.Resources.Resources
 {
     [Route("api")]
     [ApiController]
-    public class ResourcesController : Controller
+    public class ResourcesController(IResourcesModule module) : Controller
     {
-        private readonly IResourcesModule _resourcesModule;
-
-        public ResourcesController(IResourcesModule resourcesModule)
-        {
-            _resourcesModule = resourcesModule;
-        }
-
         /// <summary>
         ///     Get the resources available in the world.
         /// </summary>
@@ -36,7 +25,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         [ProducesResponseType(typeof(List<ResourceDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetResources([FromRoute] Guid worldId)
         {
-            var resources = await _resourcesModule.ExecuteQueryAsync(new GetResourcesQuery(worldId));
+            var resources = await module.ExecuteQueryAsync(new GetResourcesQuery(worldId));
             return Ok(resources);
         }
 
@@ -53,7 +42,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         [ProducesResponseType(typeof(ResourceDetailsDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetResourceDetails([FromRoute] Guid resourceId)
         {
-            var resource = await _resourcesModule.ExecuteQueryAsync(new GetResourceDetailsQuery(resourceId));
+            var resource = await module.ExecuteQueryAsync(new GetResourceDetailsQuery(resourceId));
             return Ok(resource);
         }
     }

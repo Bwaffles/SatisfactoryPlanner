@@ -1,18 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Threading.Tasks;
-
-namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
+﻿namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
 {
-    internal class CorrelationMiddleware
+    internal class CorrelationMiddleware(RequestDelegate next)
     {
         internal const string CorrelationHeaderKey = "CorrelationId";
-        private readonly RequestDelegate _next;
-
-        public CorrelationMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
 
         public async Task Invoke(HttpContext context)
         {
@@ -20,7 +10,7 @@ namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
 
             context.Request?.Headers.Append(CorrelationHeaderKey, correlationId.ToString());
 
-            await _next.Invoke(context);
+            await next.Invoke(context);
         }
     }
 }

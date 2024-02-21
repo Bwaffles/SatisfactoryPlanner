@@ -1,28 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using SatisfactoryPlanner.API.Configuration.Extensions;
-using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 using SatisfactoryPlanner.Modules.Worlds.Application.Worlds.GetCurrentPioneerWorlds;
-using System;
-using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Configuration.Authorization.Worlds
 {
-    internal class WorldAuthorizationHandler : AttributeAuthorizationHandler<WorldAuthorizationRequirement,
-        WorldAuthorizationAttribute>
+    internal class WorldAuthorizationHandler(IWorldsModule worldsModule)
+        : AttributeAuthorizationHandler<WorldAuthorizationRequirement,
+            WorldAuthorizationAttribute>
     {
-        private readonly IExecutionContextAccessor _executionContextAccessor;
-        private readonly IWorldsModule _worldsModule;
-
-        public WorldAuthorizationHandler(IExecutionContextAccessor executionContextAccessor, IWorldsModule worldsModule)
-        {
-            _executionContextAccessor = executionContextAccessor;
-            _worldsModule = worldsModule;
-        }
-
         protected override async Task HandleRequirementAsync(
             AuthorizationHandlerContext context,
             WorldAuthorizationRequirement requirement,
@@ -50,7 +37,7 @@ namespace SatisfactoryPlanner.API.Configuration.Authorization.Worlds
                         });
 
                         var worldId = (Guid?)worldIdProperty.GetValue(body);
-                        var worlds = await _worldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
+                        var worlds = await worldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
                         if (worlds.Any(x => x.Id == worldId))
                         {
                             context.Succeed(requirement);
@@ -61,7 +48,7 @@ namespace SatisfactoryPlanner.API.Configuration.Authorization.Worlds
 
                 if (request.RouteValues.TryGetValue("worldId", out var routeWorldId))
                 {
-                    var worlds = await _worldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
+                    var worlds = await worldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
                     if (worlds.Any(x => x.Id == Guid.Parse((string)routeWorldId!)))
                     {
                         context.Succeed(requirement);
@@ -74,7 +61,7 @@ namespace SatisfactoryPlanner.API.Configuration.Authorization.Worlds
                 if (query.ContainsKey("worldId"))
                 {
                     var worldId = Guid.Parse(query["worldId"].First()!);
-                    var worlds = await _worldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
+                    var worlds = await worldsModule.ExecuteQueryAsync(new GetCurrentPioneerWorldsQuery());
                     if (worlds.Any(x => x.Id == worldId))
                     {
                         context.Succeed(requirement);

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
 
 namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
 {

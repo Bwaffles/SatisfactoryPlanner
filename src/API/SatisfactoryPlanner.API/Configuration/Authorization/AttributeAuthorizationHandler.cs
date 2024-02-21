@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Configuration.Authorization
 {
