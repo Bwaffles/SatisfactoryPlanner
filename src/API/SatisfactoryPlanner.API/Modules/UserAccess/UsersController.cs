@@ -1,23 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrentUser;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetCurrentUser;
-using System;
-using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Modules.UserAccess
 {
     [Route("api/user-access/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController(IUserAccessModule module) : ControllerBase
     {
-        private readonly IUserAccessModule _userAccessModule;
-
-        public UsersController(IUserAccessModule userAccessModule) => _userAccessModule = userAccessModule;
-
         /// <summary>
         ///     Get the currently logged in user.
         /// </summary>
@@ -34,7 +27,7 @@ namespace SatisfactoryPlanner.API.Modules.UserAccess
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetCurrentUser()
         {
-            var currentUser = await _userAccessModule.ExecuteQueryAsync(new GetCurrentUserQuery());
+            var currentUser = await module.ExecuteQueryAsync(new GetCurrentUserQuery());
             if (currentUser == null)
                 return NoContent();
 
@@ -51,7 +44,7 @@ namespace SatisfactoryPlanner.API.Modules.UserAccess
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateCurrentUser([FromBody] CreateCurrentUserRequest request)
         {
-            var currentUserId = await _userAccessModule.ExecuteCommandAsync(new CreateCurrentUserCommand(
+            var currentUserId = await module.ExecuteCommandAsync(new CreateCurrentUserCommand(
                 request.Auth0UserId
             ));
 

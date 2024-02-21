@@ -1,26 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
 using SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildFactory;
 using SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildSubFactory;
 using SatisfactoryPlanner.Modules.Factories.Application.Factories.GetFactories;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Modules.Factories.Factories
 {
     [ApiController]
     [Route("api/factories/[controller]")]
-    public class FactoriesController : ControllerBase
+    public class FactoriesController(IFactoriesModule module) : ControllerBase
     {
-        private readonly IFactoriesModule factoriesModule;
-
-        public FactoriesController(IFactoriesModule factoriesModule)
-        {
-            this.factoriesModule = factoriesModule;
-        }
-
         /// <summary>
         ///     Get a list of factories.
         /// </summary>
@@ -28,7 +17,7 @@ namespace SatisfactoryPlanner.API.Modules.Factories.Factories
         [ProducesResponseType(typeof(List<FactoryDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetFactories()
         {
-            var factories = await factoriesModule.ExecuteQueryAsync(new GetFactoriesQuery());
+            var factories = await module.ExecuteQueryAsync(new GetFactoriesQuery());
             return Ok(factories);
         }
 
@@ -39,7 +28,7 @@ namespace SatisfactoryPlanner.API.Modules.Factories.Factories
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> BuildFactory([FromBody] BuildFactoryRequest request)
         {
-            await factoriesModule.ExecuteCommandAsync(new BuildFactoryCommand
+            await module.ExecuteCommandAsync(new BuildFactoryCommand
             (
                 request.Name
             ));
@@ -55,7 +44,7 @@ namespace SatisfactoryPlanner.API.Modules.Factories.Factories
         public async Task<IActionResult> BuildSubFactory([FromRoute] Guid factoryId,
             [FromBody] BuildSubFactoryRequest request)
         {
-            await factoriesModule.ExecuteCommandAsync(new BuildSubFactoryCommand(
+            await module.ExecuteCommandAsync(new BuildSubFactoryCommand(
                 factoryId,
                 request.Name
             ));

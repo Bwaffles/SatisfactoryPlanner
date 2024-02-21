@@ -1,5 +1,5 @@
-using Autofac.Extensions.DependencyInjection;
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using SatisfactoryPlanner.API;
 
 var builder = WebApplication.CreateBuilder(args);

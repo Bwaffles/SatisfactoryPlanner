@@ -2,26 +2,15 @@
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Authorization.GetUserPermissions;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.API.Configuration.Authorization.Permissions
 {
-    internal class HasPermissionAuthorizationHandler : AttributeAuthorizationHandler<
-        HasPermissionAuthorizationRequirement, HasPermissionAttribute>
+    internal class HasPermissionAuthorizationHandler(
+        IExecutionContextAccessor executionContextAccessor,
+        IUserAccessModule userAccessModule)
+        : AttributeAuthorizationHandler<
+            HasPermissionAuthorizationRequirement, HasPermissionAttribute>
     {
-        private readonly IExecutionContextAccessor _executionContextAccessor;
-        private readonly IUserAccessModule _userAccessModule;
-
-        public HasPermissionAuthorizationHandler(
-            IExecutionContextAccessor executionContextAccessor,
-            IUserAccessModule userAccessModule)
-        {
-            _executionContextAccessor = executionContextAccessor;
-            _userAccessModule = userAccessModule;
-        }
-
         protected override async Task HandleRequirementAsync(
             AuthorizationHandlerContext context,
             HasPermissionAuthorizationRequirement requirement,
@@ -30,8 +19,8 @@ namespace SatisfactoryPlanner.API.Configuration.Authorization.Permissions
             try
             {
                 var permissions =
-                    await _userAccessModule.ExecuteQueryAsync(
-                        new GetUserPermissionsQuery(_executionContextAccessor.UserId));
+                    await userAccessModule.ExecuteQueryAsync(
+                        new GetUserPermissionsQuery(executionContextAccessor.UserId));
 
                 if (!await AuthorizeAsync(attribute.Name, permissions))
                 {
@@ -47,7 +36,7 @@ namespace SatisfactoryPlanner.API.Configuration.Authorization.Permissions
             }
         }
 
-        private Task<bool> AuthorizeAsync(string permission, List<UserPermissionDto> permissions)
+        private static Task<bool> AuthorizeAsync(string permission, List<UserPermissionDto> permissions)
         {
             return Task.FromResult(permissions.Any(x => x.Code == permission));
         }
