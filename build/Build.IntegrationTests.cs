@@ -156,7 +156,6 @@ partial class Build
                 .SetProjectFile(integrationTest));
         });
 
-    // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
     Target RunAllIntegrationTests => _ => _
         .DependsOn(RunResourcesModuleIntegrationTests)
         .DependsOn(RunUserAccessModuleIntegrationTests)

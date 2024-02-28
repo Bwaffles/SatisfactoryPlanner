@@ -1,4 +1,4 @@
-# Runs tests whenever a pull request is made
+# Triggered whenever a pull request is made to run the Nuke build script.
 
 name: CI Pipeline
 
