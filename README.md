@@ -16,7 +16,7 @@ Note: On local dev you can just run `dotnet run --project src/Database/DatabaseM
 - "SatisfactoryPlanner": [connectionString]
 
 ### Run Integration Tests
-From the root folder, run `Nuke RunAllIntegrationTests`. You need to have Docker Desktop running for the database container to be created.
+Run `Nuke RunAllIntegrationTests`. You need to have `Docker Desktop` running for the database container to be created.
 
 ### Run Client App
 From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
