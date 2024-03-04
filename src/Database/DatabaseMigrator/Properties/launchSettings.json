@@ -2,6 +2,9 @@
   "profiles": {
     "DatabaseMigrator": {
       "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
     }
   }
 }

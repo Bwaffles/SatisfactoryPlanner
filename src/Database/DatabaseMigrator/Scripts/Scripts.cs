@@ -8,8 +8,10 @@
         /* The migrations need to be ran from the SatisfactoryPlanner main folder.
            Git Actions runs the migrations from this folder and this is the easiest way to get integration tests running.
            TODO can we customize the script folder location so we can run the console app from VS?
+
+            Running docker compose up from command line Scripts works because it's under app/Scripts
         */
-        private static readonly string Path = "src/Database/DatabaseMigrator/Scripts";
+        private static readonly string Path = "Scripts";
         public static string GeneratorsPath = $"{Path}/Generators";
 
         public static string SeedItemsWithResources = $"{Path}/0001__seed_items_with_resources.sql";
