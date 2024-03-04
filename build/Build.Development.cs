@@ -10,7 +10,7 @@ partial class Build
     bool DevelopmentEnvironmentIsRunning;
 
     /// <summary>
-    ///     Kill any previous docker containers for old runs so we can start fresh.
+    ///     Kill any previous docker containers for old runs, so we can start fresh.
     /// </summary>
     Target CleanDevelopmentDatabaseContainer => _ => _
         .Unlisted()
@@ -63,9 +63,16 @@ partial class Build
             var databaseMigratorProject = Solution.GetProject("DatabaseMigrator");
             DotNetRun(s => s
                 .SetProjectFile(databaseMigratorProject)
-                .SetProcessWorkingDirectory(Solution.Directory!.Parent)
+                .SetProcessWorkingDirectory(databaseMigratorProject?.Directory)
                 .SetConfiguration(Configuration)
                 .SetApplicationArguments($"release \"{databaseConfiguration.ServerConnectionString}\" \"{databaseConfiguration.ConnectionString}\""));
+        });
+    
+    Target StartApiWithDockerCompose => _ => _
+        .Unlisted()
+        .Executes(() =>
+        {
+            Docker("compose up -d", Solution.Directory);
         });
 
     Target StartApi => _ => _
@@ -94,8 +101,10 @@ partial class Build
         });
 
     Target StartDevelopmentEnvironment => _ => _
-        .DependsOn(StartApi)
+        .DependsOn(StartApiWithDockerCompose)
+        //.DependsOn(StartApi)
         .DependsOn(StartApp)
+
         .Executes(() =>
         {
             DevelopmentEnvironmentIsRunning = true;

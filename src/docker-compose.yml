@@ -1,0 +1,47 @@
+version: '3.4'
+
+name: satisfactory-planner-development
+
+services:
+  api:
+    image: satisfactory-planner.api
+    container_name: api
+    depends_on:
+      databasemigrator:
+        condition: service_completed_successfully
+      db: 
+        condition: service_healthy
+    ports:
+      - 55915:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__SatisfactoryPlanner=Host=db;User Id=build-user;Password=123qwe!@#QWE;Database=satisfactory-planner;
+    build:
+      context: .
+      dockerfile: API/SatisfactoryPlanner.API/Dockerfile
+    # volumes:
+    #   - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+
+  databasemigrator:
+    image: databasemigrator
+    container_name: migrations
+    depends_on:
+      db: 
+       condition: service_healthy
+        
+    command: ["release", "Host=db;User Id=build-user;Password=123qwe!@#QWE;", "Host=db;User Id=build-user;Password=123qwe!@#QWE;Database=satisfactory-planner;" ]
+    build:
+      context: .
+      dockerfile: Database/DatabaseMigrator/Dockerfile
+      
+  db:
+    image: postgres:13.3
+    container_name: db
+    healthcheck:
+        test: ['CMD-SHELL', 'psql --username=build-user -c "SELECT version();"']
+    ports:
+      - 1401:5432
+    environment:
+      - POSTGRES_USER=build-user
+      - POSTGRES_PASSWORD=123qwe!@#QWE
+
