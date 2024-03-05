@@ -15,7 +15,7 @@ services:
       - 55915:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__SatisfactoryPlanner=Host=db;User Id=build-user;Password=123qwe!@#QWE;Database=satisfactory-planner;
+      - ConnectionStrings__SatisfactoryPlanner=Host=db;User Id=${DB_USER};Password=${DB_PASSWORD};Database=satisfactory-planner;
     build:
       context: .
       dockerfile: API/SatisfactoryPlanner.API/Dockerfile
@@ -29,7 +29,7 @@ services:
       db: 
         condition: service_healthy
         
-    command: ["release", "Host=db;User Id=build-user;Password=123qwe!@#QWE;", "Host=db;User Id=build-user;Password=123qwe!@#QWE;Database=satisfactory-planner;" ]
+    command: ["release", "Host=db;User Id=${DB_USER};Password=${DB_PASSWORD};", "Host=db;User Id=${DB_USER};Password=${DB_PASSWORD};Database=satisfactory-planner;" ]
     build:
       context: .
       dockerfile: Database/DatabaseMigrator/Dockerfile
@@ -38,10 +38,10 @@ services:
     image: postgres:13.3
     container_name: db
     healthcheck:
-        test: ['CMD-SHELL', 'psql --username=build-user -c "SELECT version();"']
+        test: ['CMD-SHELL', 'psql --username=${DB_USER} -c "SELECT version();"']
     ports:
       - 1401:5432
     environment:
-      - POSTGRES_USER=build-user
-      - POSTGRES_PASSWORD=123qwe!@#QWE
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
 
