@@ -1,13 +1,13 @@
 version: '3.4'
 
-name: satisfactory-planner-development
+name: satisfactory-planner
 
-services:
+services:  
   api:
     image: satisfactory-planner.api
     container_name: api
     depends_on:
-      databasemigrator:
+      db-migrator:
         condition: service_completed_successfully
       db: 
         condition: service_healthy
@@ -21,13 +21,13 @@ services:
       dockerfile: API/SatisfactoryPlanner.API/Dockerfile
     # volumes:
     #   - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-
-  databasemigrator:
-    image: databasemigrator
-    container_name: migrations
+     
+  db-migrator:
+    image: satisfactory-planner.db-migrator
+    container_name: db-migrator
     depends_on:
       db: 
-       condition: service_healthy
+        condition: service_healthy
         
     command: ["release", "Host=db;User Id=build-user;Password=123qwe!@#QWE;", "Host=db;User Id=build-user;Password=123qwe!@#QWE;Database=satisfactory-planner;" ]
     build:
