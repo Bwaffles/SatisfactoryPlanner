@@ -1,4 +1,5 @@
 ﻿using _build;
+using Nuke.Common.Tooling;
 using Utils;
 
 partial class Build
@@ -56,7 +57,8 @@ partial class Build
             DotNetRun(s => s
                 .SetProjectFile(databaseMigratorProject)
                 .SetConfiguration(Configuration)
-                .SetApplicationArguments($"release \"{databaseConfiguration.ServerConnectionString}\" \"{databaseConfiguration.ConnectionString}\""));
+                .SetApplicationArguments($"release \"{databaseConfiguration.ServerConnectionString}\" \"{databaseConfiguration.ConnectionString}\"")
+                .SetProcessWorkingDirectory(databaseMigratorProject.Directory));
         });
 
     // ------------------------------------
@@ -156,7 +158,6 @@ partial class Build
                 .SetProjectFile(integrationTest));
         });
 
-    // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
     Target RunAllIntegrationTests => _ => _
         .DependsOn(RunResourcesModuleIntegrationTests)
         .DependsOn(RunUserAccessModuleIntegrationTests)

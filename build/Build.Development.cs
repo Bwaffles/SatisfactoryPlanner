@@ -1,54 +1,14 @@
-using _build;
-using Nuke.Common.Tooling;
-using Serilog;
-using Utils;
 using static Nuke.Common.Tools.Npm.NpmTasks;
 
 partial class Build
 {
-    const string DevelopmentDatabaseContainerName = "satifactory-planner-development-db";
     bool DevelopmentEnvironmentIsRunning;
 
-    /// <summary>
-    ///     Kill any previous docker containers for old runs so we can start fresh.
-    /// </summary>
-    Target CleanDevelopmentDatabaseContainer => _ => _
+    Target CleanupDockerProjects => _ => _
         .Unlisted()
         .Executes(() =>
         {
-            var containers = DockerPs(s => s.SetFilter($"name={DevelopmentDatabaseContainerName}").SetQuiet(true));
-            if (containers.Any())
-                DockerKill(config => config.AddContainers(containers.Select(c => c.Text)));
-
-            Log.Information($"Cleaned up previous {DevelopmentDatabaseContainerName} container.");
-        });
-
-    /// <summary>
-    ///     Pull and run the docker container that hosts the development database.
-    ///     After this point we should be able to connect to it using the <see cref="DatabaseServerConnectionString"/>.
-    /// </summary>
-    Target StartDevelopmentDatabaseContainer => _ => _
-        .Unlisted()
-        .DependsOn(CleanDevelopmentDatabaseContainer)
-        .Executes(() =>
-        {
-            DockerImagePull(s => s
-                .SetName(PostgresImage));
-
-            var databaseConfiguration = DatabaseConfiguration.Development;
-            DockerRun(s => s
-                .EnableRm()
-                .SetName(DevelopmentDatabaseContainerName)
-                .SetImage(PostgresImage)
-                .AddEnv($"POSTGRES_USER={databaseConfiguration.User}")
-                .AddEnv($"POSTGRES_PASSWORD={databaseConfiguration.Password}")
-                .SetPublish($"{databaseConfiguration.Port}:5432")
-                .SetDetach(true));
-                //.SetMount($"type=bind,source=\"{InputFilesDirectory}\",target=/{InputFilesDirectoryName},readonly")));
-
-            PostgresReadinessChecker.WaitForPostgresServer(databaseConfiguration.ServerConnectionString);
-
-            Log.Information($"Started {DevelopmentDatabaseContainerName} container.");
+            Docker("compose down", Solution.Directory);
         });
 
     /// <summary>
@@ -56,16 +16,18 @@ partial class Build
     /// </summary>
     Target CreateDevelopmentDatabase => _ => _
         .Unlisted()
-        .DependsOn(StartDevelopmentDatabaseContainer)
+        .DependsOn(CleanupDockerProjects)
         .Executes(() =>
         {
-            var databaseConfiguration = DatabaseConfiguration.Development;
-            var databaseMigratorProject = Solution.GetProject("DatabaseMigrator");
-            DotNetRun(s => s
-                .SetProjectFile(databaseMigratorProject)
-                .SetProcessWorkingDirectory(Solution.Directory!.Parent)
-                .SetConfiguration(Configuration)
-                .SetApplicationArguments($"release \"{databaseConfiguration.ServerConnectionString}\" \"{databaseConfiguration.ConnectionString}\""));
+            Docker("compose up db db-migrator -d", Solution.Directory);
+        });
+    
+    Target RunDockerCompose => _ => _
+        .Unlisted()
+        .DependsOn(CleanupDockerProjects)
+        .Executes(() => 
+        {
+            Docker("compose up -d", Solution.Directory);
         });
 
     Target StartApi => _ => _
@@ -78,12 +40,12 @@ partial class Build
             {
                 var apiProject = Solution.GetProject("SatisfactoryPlanner.API")!;
                 DotNet("watch run", apiProject.Directory);
-
             });
         });
 
     Target StartApp => _ => _
         .Unlisted()
+        .After(StartApi, RunDockerCompose) // run app last since all other services are required first
         .Executes(() =>
         {
             Task.Run(() =>
@@ -94,8 +56,7 @@ partial class Build
         });
 
     Target StartDevelopmentEnvironment => _ => _
-        .DependsOn(StartApi)
-        .DependsOn(StartApp)
+        .DependsOn(StartApi, StartApp)
         .Executes(() =>
         {
             DevelopmentEnvironmentIsRunning = true;
@@ -103,6 +64,24 @@ partial class Build
             Console.CancelKeyPress += (s, a) =>
             {
                 // kill dotnet watch
+                // kill react
+                a.Cancel = true;
+                DevelopmentEnvironmentIsRunning = false;
+            };
+
+            while (DevelopmentEnvironmentIsRunning)
+                Thread.Sleep(10);
+        });
+
+    Target StartApplication => _ => _
+        .DependsOn(RunDockerCompose)
+        .DependsOn(StartApp)
+        .Executes(() =>
+        {
+            DevelopmentEnvironmentIsRunning = true;
+
+            Console.CancelKeyPress += (s, a) =>
+            {
                 // kill react
                 a.Cancel = true;
                 DevelopmentEnvironmentIsRunning = false;

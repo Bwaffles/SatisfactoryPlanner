@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /.nuke-working-directory/input-files
 /src/UI/SatisfactoryPlanner.UI/SatisfactoryPlanner.code-workspace
+
+
+.env
