@@ -61,7 +61,7 @@ jobs:
         with:
           push: true
           tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
-          entrypoint: ./src
+          entrypoint: ${{ github.workspace }}
           file: ./src/API/SatisfactoryPlanner.API/Dockerfile
 
   deploy:
