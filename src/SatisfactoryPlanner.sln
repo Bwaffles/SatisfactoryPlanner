@@ -101,6 +101,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{139DABEF-84E0-
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SatisfactoryPlanner.UI", "UI\SatisfactoryPlanner.UI\SatisfactoryPlanner.UI.esproj", "{D51949FB-806C-4320-AC8D-712AB24C3DFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseMigrator.Functions", "Database\DatabaseMigrator.Functions\DatabaseMigrator.Functions.csproj", "{4F498F5A-98C9-4B17-89D4-E0CAA7D43CF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -243,6 +245,10 @@ Global
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F498F5A-98C9-4B17-89D4-E0CAA7D43CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F498F5A-98C9-4B17-89D4-E0CAA7D43CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F498F5A-98C9-4B17-89D4-E0CAA7D43CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F498F5A-98C9-4B17-89D4-E0CAA7D43CF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -291,6 +297,7 @@ Global
 		{173D2D7E-9C2F-4BC6-B151-CADE142A9095} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 		{E3D973FC-C0B7-4061-95B3-C60C13A72DD9} = {73C2F6A2-80CD-4C8E-9DBF-2B1352327FE8}
 		{D51949FB-806C-4320-AC8D-712AB24C3DFD} = {139DABEF-84E0-445F-B558-ED7ABC8F994E}
+		{4F498F5A-98C9-4B17-89D4-E0CAA7D43CF3} = {B6C1498C-6EF5-4DC7-9C49-3C748CA1DA31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFADD44E-5FD5-421B-8FBD-95AE901D48FE}
