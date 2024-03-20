@@ -36,7 +36,7 @@ env:
   REGISTRY: ghcr.io
 
   AZURE_FUNCTIONAPP_NAME: satisfactory-planner-db-migrator
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.src/Database/DatabaseMigrator.Functions'       # set this to the path to your function app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'src/Database/DatabaseMigrator.Functions'       # set this to the path to your function app project, defaults to the repository root
   DOTNET_VERSION: '8.0.x'
 
 permissions:
