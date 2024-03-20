@@ -1,8 +1,4 @@
-﻿using DatabaseMigrator.Migrations;
-using DatabaseMigrator.Migrations.Factories;
-using FluentMigrator.Runner;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 
 namespace DatabaseMigrator
@@ -37,25 +33,9 @@ namespace DatabaseMigrator
                 connectionString = config.GetConnectionString("SatisfactoryPlanner");
             }
 
-            Database.EnsureDatabase(serverConnectionString, "satisfactory-planner");
+            var runner = new MigrationRunner(serverConnectionString, connectionString);
 
-            var servicesProvider = new ServiceCollection()
-                .AddFluentMigratorCore()
-                .ConfigureRunner(rb => rb
-                    .AddPostgres()
-                    .WithGlobalConnectionString(connectionString)
-                    // Define the assembly containing the migrations
-                    .ScanIn(typeof(Create_Factories).Assembly).For.Migrations())
-                // Enable logging to console in the FluentMigrator way
-                .AddLogging(lb => lb.AddFluentMigratorConsole())
-                //.AddScoped<PostgresQuoter, NoQuoteQuoter>()
-                // Build the service provider
-                .BuildServiceProvider(false);
-
-            using (var scope = servicesProvider.CreateScope())
-            {
-                UpdateDatabase(connectionString, scope.ServiceProvider, environment);
-            }
+            UpdateDatabase(runner, environment);
 
             return 0;
         }
@@ -64,13 +44,11 @@ namespace DatabaseMigrator
             Console.WriteLine(
                 "Invalid arguments. Execution: DatabaseMigrator [(release|debug)] [serverConnectionString] [connectionString].\r\n");
 
-        private static void UpdateDatabase(string connectionString, IServiceProvider serviceProvider, string environment)
+        private static void UpdateDatabase(MigrationRunner runner, string environment)
         {
-            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-
             if (environment == "release")
             {
-                runner.MigrateUp();
+                runner.Migrate();
                 return;
             }
             
@@ -83,7 +61,7 @@ namespace DatabaseMigrator
             }
         }
 
-        private static bool SelectOption(IMigrationRunner runner)
+        private static bool SelectOption(MigrationRunner runner)
         {
             Console.WriteLine("\r\nSelect option\r\n" +
                               "\t(1) Rollback\r\n" +
@@ -95,15 +73,15 @@ namespace DatabaseMigrator
             switch (option)
             {
                 case "1":
-                    RollbackMigrations(runner);
+                    runner.Rollback();
                     runner.ListMigrations();
                     return false;
                 case "2":
-                    MigrateNext(runner);
+                    runner.Migrate();
                     runner.ListMigrations();
                     return false;
                 case "3":
-                    RetestPreviousMigrations(runner);
+                    runner.RerunPreviousMigration();
                     runner.ListMigrations();
                     return false;
                 case "Q":
@@ -114,26 +92,6 @@ namespace DatabaseMigrator
                     return false;
 
             }
-        }
-
-        private static void RollbackMigrations(IMigrationRunner runner, int steps = 1)
-        {
-            runner.Rollback(steps);
-        }
-
-        private static void MigrateNext(IMigrationRunner runner, long? version = null)
-        {
-            if (version == null)
-                runner.MigrateUp();
-            else
-                runner.MigrateUp(version.Value);
-        }
-
-        private static void RetestPreviousMigrations(IMigrationRunner runner)
-        {
-            runner.Rollback(1);
-            runner.ListMigrations();
-            runner.MigrateUp();
         }
     }
 }
