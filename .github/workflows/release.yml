@@ -68,7 +68,7 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.REPO }}:${{ github.sha }}
+          tags: ${{ env.REGISTRY }}/${{ env.REPO }}.api:${{ github.sha }}
           context: ${{ github.workspace }}/src
           file: ./src/API/SatisfactoryPlanner.API/Dockerfile
 
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-api
     environment:
-      name: 'Development'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
