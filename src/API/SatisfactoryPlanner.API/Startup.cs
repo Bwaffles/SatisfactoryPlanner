@@ -20,16 +20,12 @@ using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
-using Serilog;
-using Serilog.Formatting.Compact;
 using ILogger = Serilog.ILogger;
 
 namespace SatisfactoryPlanner.API
 {
     public class Startup
     {
-        private static ILogger _logger = null!;
-        private static ILogger _loggerForApi = null!;
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
 
@@ -40,10 +36,6 @@ namespace SatisfactoryPlanner.API
 
         public Startup(IConfiguration configuration)
         {
-            ConfigureLogger();
-
-            _loggerForApi.Information("Application started.");
-
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("SatisfactoryPlanner") ??
                                 throw new InvalidOperationException(
@@ -121,7 +113,7 @@ namespace SatisfactoryPlanner.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger)
         {
             var container = app.ApplicationServices.GetAutofacRoot();
 
@@ -132,7 +124,7 @@ namespace SatisfactoryPlanner.API
                     .AllowAnyMethod()
             );
 
-            InitializeModules(container);
+            InitializeModules(container, logger);
 
             app.UseMiddleware<CorrelationMiddleware>();
 
@@ -158,48 +150,32 @@ namespace SatisfactoryPlanner.API
             app.UseAuthorization();
         }
 
-        private static void ConfigureLogger()
-        {
-            _logger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .WriteTo.Console(
-                    outputTemplate:
-                    "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
-                .WriteTo.File(new CompactJsonFormatter(),
-                    "logs/logs.json",
-                    rollOnFileSizeLimit: true,
-                    fileSizeLimitBytes: 5 * 1024 * 1024)
-                .CreateLogger();
-
-            _loggerForApi = _logger.ForContext("Module", "API");
-        }
-
-        private void InitializeModules(ILifetimeScope container)
+        private void InitializeModules(ILifetimeScope container, ILogger logger)
         {
             var executionContextAccessor = container.Resolve<IExecutionContextAccessor>();
 
             FactoriesStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
-                _logger
+                logger
             );
 
             WorldsStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
-                _logger
+                logger
             );
 
             ResourcesStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
-                _logger
+                logger
             );
 
             UserAccessStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
-                _logger);
+                logger);
         }
     }
 }
