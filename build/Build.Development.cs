@@ -27,7 +27,7 @@ partial class Build
         .DependsOn(CleanupDockerProjects)
         .Executes(() => 
         {
-            Docker("compose up -d", Solution.Directory);
+            Docker("compose up -d --build", Solution.Directory);
         });
 
     Target StartApi => _ => _
