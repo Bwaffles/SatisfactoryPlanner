@@ -17,18 +17,18 @@ namespace DatabaseMigrator.Functions
         [Function("Migrate")]
         public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
         {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            _logger.LogInformation("Running migrations...");
 
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-
-            //response.WriteString("Welcome to Azure Functions!");
 
             var serverConnectionString = Environment.GetEnvironmentVariable("ConnectionString_Server", EnvironmentVariableTarget.Process);
             var connectionString = Environment.GetEnvironmentVariable("ConnectionString_Database", EnvironmentVariableTarget.Process);
             var migrationRunner = new MigrationRunner(serverConnectionString, connectionString);
             migrationRunner.Migrate();
             migrationRunner.ListMigrations();
+
+            response.WriteString("Migrations completed.");
 
             return response;
         }

@@ -9,10 +9,11 @@ namespace DatabaseMigrator.Migrations
     {
         public static void EnsureDatabase(string connectionString, string name)
         {
+            Console.WriteLine($"Connecting to database '{name}'...");
+
             var parameters = new DynamicParameters();
             parameters.Add("name", name);
 
-            Console.WriteLine($"Connecting to database at {connectionString}...");
             using var connection = new NpgsqlConnection(connectionString);
             var records = connection.Query("SELECT datname " +
                                              "FROM pg_database " +
@@ -20,9 +21,10 @@ namespace DatabaseMigrator.Migrations
                 parameters);
 
             if (!records.Any())
-            {
+            { 
+                Console.WriteLine($"Database '{name}' does not exist. Creating...");
                 connection.Execute($"CREATE DATABASE \"{name}\";");
-                Console.WriteLine($"Database {name} created.");
+                Console.WriteLine($"Database '{name}' created.");
             }
         }
     }
