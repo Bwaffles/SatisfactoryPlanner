@@ -1,15 +1,15 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Npgsql;
-using System;
 using System.Linq;
 
 namespace DatabaseMigrator.Migrations
 {
     public static class Database
     {
-        public static void EnsureDatabase(string connectionString, string name)
+        public static void EnsureDatabase(ILogger logger, string connectionString, string name)
         {
-            Console.WriteLine($"Connecting to database '{name}'...");
+            logger.LogInformation($"Connecting to database '{name}'...");
 
             var parameters = new DynamicParameters();
             parameters.Add("name", name);
@@ -21,10 +21,10 @@ namespace DatabaseMigrator.Migrations
                 parameters);
 
             if (!records.Any())
-            { 
-                Console.WriteLine($"Database '{name}' does not exist. Creating...");
+            {
+                logger.LogInformation($"Database '{name}' does not exist. Creating...");
                 connection.Execute($"CREATE DATABASE \"{name}\";");
-                Console.WriteLine($"Database '{name}' created.");
+                logger.LogInformation($"Database '{name}' created.");
             }
         }
     }

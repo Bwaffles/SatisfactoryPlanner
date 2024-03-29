@@ -2,6 +2,7 @@
 using DatabaseMigrator.Migrations.Factories;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace DatabaseMigrator
 {
@@ -9,9 +10,9 @@ namespace DatabaseMigrator
     {
         private readonly IMigrationRunner _migrationRunner;
 
-        public MigrationRunner(string serverConnectionString, string connectionString)
+        public MigrationRunner(ILogger logger, string serverConnectionString, string connectionString)
         {
-            Database.EnsureDatabase(serverConnectionString, "satisfactory-planner");
+            Database.EnsureDatabase(logger, serverConnectionString, "satisfactory-planner");
 
             var servicesProvider = new ServiceCollection()
                 .AddFluentMigratorCore()

@@ -24,7 +24,7 @@ namespace DatabaseMigrator.Functions
 
             var serverConnectionString = Environment.GetEnvironmentVariable("ConnectionString_Server", EnvironmentVariableTarget.Process);
             var connectionString = Environment.GetEnvironmentVariable("ConnectionString_Database", EnvironmentVariableTarget.Process);
-            var migrationRunner = new MigrationRunner(serverConnectionString, connectionString);
+            var migrationRunner = new MigrationRunner(_logger,serverConnectionString, connectionString);
             migrationRunner.Migrate();
             migrationRunner.ListMigrations();
 
