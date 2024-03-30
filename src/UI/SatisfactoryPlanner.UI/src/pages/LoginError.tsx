@@ -5,7 +5,7 @@ export function LoginError() {
     const { isAuthenticated, logout } = useAuth0();
 
     if (isAuthenticated) {
-        logout({ returnTo: window.location.href });
+        logout({ logoutParams: { returnTo: window.location.href }});
     }
 
     return <p>Something went wrong logging in.</p>;
