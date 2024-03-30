@@ -45,7 +45,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                             clientId={Config.AUTH0_CLIENT_ID}
                             authorizationParams={{
                                 redirect_uri: Config.REDIRECT_URL,
-                                ...(Config.API_URL ? { audience: Config.API_URL } : null)
+                                audience: Config.API_URL
                               }}
                         >
                             <QueryClientProvider client={queryClient}>
