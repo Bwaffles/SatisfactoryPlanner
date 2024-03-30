@@ -49,7 +49,7 @@ const UserDropdown = () => {
                         <div
                             className="flex justify-between items-center cursor-pointer select-none"
                             onClick={() =>
-                                logout({ returnTo: window.location.origin })
+                                logout({ logoutParams: { returnTo: window.location.origin }})
                             }
                         >
                             Log Out

@@ -43,8 +43,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                         <AuthProvider
                             domain={Config.AUTH0_DOMAIN}
                             clientId={Config.AUTH0_CLIENT_ID}
-                            redirectUri={Config.REDIRECT_URL}
-                            audience={Config.API_URL}
+                            authorizationParams={{
+                                redirect_uri: Config.REDIRECT_URL,
+                                audience: Config.API_URL
+                              }}
                         >
                             <QueryClientProvider client={queryClient}>
                                 {children}
