@@ -29,11 +29,6 @@ namespace SatisfactoryPlanner.API
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
 
-        /// <summary>
-        ///     Get the Auth0 domain.
-        /// </summary>
-        private string Domain => $"https://{_configuration["Auth0:Domain"]}/";
-
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -100,7 +95,7 @@ namespace SatisfactoryPlanner.API
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.Authority = Domain;
+                    options.Authority = $"https://{_configuration["Auth0:Domain"]}/";
                     options.Audience = _configuration["Auth0:Audience"];
                 });
 
@@ -136,6 +131,10 @@ namespace SatisfactoryPlanner.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SatisfactoryPlanner.API v1"));
             }
+            // else
+            // {
+            //     app.UseHsts();
+            // }
 
             //app.UseHttpsRedirection();
 

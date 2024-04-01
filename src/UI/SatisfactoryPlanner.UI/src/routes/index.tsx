@@ -1,114 +1,41 @@
-import React from "react";
+import React, { ComponentType } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
-import { lazyImport } from "@/utils/lazyimports";
 import { MainLayout } from "@/components/Layout";
+import { Resources } from "@/pages/Resources";
+import { ResourceDetails } from "@/pages/ResourceDetails";
+import { Home } from "@/pages/Home";
+import { DecreaseWorldNodeExtractionRate } from "@/pages/DecreaseWorldNodeExtractionRate";
+import { IncreaseWorldNodeExtractionRate } from "@/pages/IncreaseWorldNodeExtractionRate";
+import { Login } from "@/pages/Login";
+import { LoginError } from "@/pages/LoginError";
+import { LoginRedirect } from "@/pages/LoginRedirect";
+import { NoMatch } from "@/pages/NoMatch";
+import { Profile } from "@/pages/Profile";
+import { WorldNodeDetails } from "@/pages/WorldNodeDetails";
 
-const { AutoLogin } = lazyImport(
-    () => import("@/pages/AutoLogin"),
-    "AutoLogin"
-);
-const { Home } = lazyImport(() => import("@/pages/Home"), "Home");
-const { Profile } = lazyImport(() => import("@/pages/Profile"), "Profile");
-const { Resources } = lazyImport(
-    () => import("@/pages/Resources"),
-    "Resources"
-);
-const { ResourceDetails } = lazyImport(
-    () => import("@/pages/ResourceDetails"),
-    "ResourceDetails"
-);
-const { WorldNodeDetails } = lazyImport(
-    () => import("@/pages/WorldNodeDetails"),
-    "WorldNodeDetails"
-);
-const { IncreaseWorldNodeExtractionRate } = lazyImport(
-    () => import("@/pages/IncreaseWorldNodeExtractionRate"),
-    "IncreaseWorldNodeExtractionRate"
-);
-const { DecreaseWorldNodeExtractionRate } = lazyImport(
-    () => import("@/pages/DecreaseWorldNodeExtractionRate"),
-    "DecreaseWorldNodeExtractionRate"
-);
-const { LoginRedirect } = lazyImport(
-    () => import("@/pages/LoginRedirect"),
-    "LoginRedirect"
-);
-const { Login } = lazyImport(() => import("@/pages/Login"), "Login");
-const { LoginError } = lazyImport(
-    () => import("@/pages/LoginError"),
-    "LoginError"
-);
-const { NoMatch } = lazyImport(() => import("@/pages/NoMatch"), "NoMatch");
+const ProtectedRoute = ({ component }: { component: ComponentType<object> }) => {
+    const Component = withAuthenticationRequired(component);
+    return <Component />;
+};
 
 export const AppRoutes = () => {
-    const { isAuthenticated } = useAuth0();
-
     return (
         <Routes>
             <Route element={<MainLayout />}>
-                <Route
-                    index
-                    element={<Home />}
-                />
-                <Route
-                    path="profile"
-                    element={isAuthenticated ? <Profile /> : <AutoLogin />}
-                />
-                <Route
-                    path="resources"
-                    element={isAuthenticated ? <Resources /> : <AutoLogin />}
-                ></Route>
-                <Route
-                    path="resources/:resourceId"
-                    element={
-                        isAuthenticated ? <ResourceDetails /> : <AutoLogin />
-                    }
-                ></Route>
-                <Route
-                    path="nodes/:nodeId"
-                    element={
-                        isAuthenticated ? <WorldNodeDetails /> : <AutoLogin />
-                    }
-                ></Route>
-                <Route
-                    path="nodes/:nodeId/increase-extraction-rate"
-                    element={
-                        isAuthenticated ? (
-                            <IncreaseWorldNodeExtractionRate />
-                        ) : (
-                            <AutoLogin />
-                        )
-                    }
-                ></Route>
-                <Route
-                    path="nodes/:nodeId/decrease-extraction-rate"
-                    element={
-                        isAuthenticated ? (
-                            <DecreaseWorldNodeExtractionRate />
-                        ) : (
-                            <AutoLogin />
-                        )
-                    }
-                ></Route>
-                <Route
-                    path="/loginError"
-                    element={<LoginError />}
-                />
-                <Route
-                    path="*"
-                    element={<NoMatch />}
-                />
+                <Route index element={<Home />} />
+                <Route path="profile" element={<ProtectedRoute component={Profile} />} />
+                <Route path="resources" element={<ProtectedRoute component={Resources} />} />
+                <Route path="resources/:resourceId" element={<ProtectedRoute component={ResourceDetails} />} />
+                <Route path="nodes/:nodeId" element={<ProtectedRoute component={WorldNodeDetails} />} />
+                <Route path="nodes/:nodeId/increase-extraction-rate" element={<ProtectedRoute component={IncreaseWorldNodeExtractionRate} />} />
+                <Route path="nodes/:nodeId/decrease-extraction-rate" element={<ProtectedRoute component={DecreaseWorldNodeExtractionRate} />} />
+                <Route path="/loginError" element={<LoginError />} />
+                <Route path="*" element={<NoMatch />} />
             </Route>
-            <Route
-                path="/loginRedirect"
-                element={<LoginRedirect />}
-            />
-            <Route
-                path="/login"
-                element={<Login />}
-            />
+            <Route path="/loginRedirect" element={<LoginRedirect />} />
+            <Route path="/login" element={<Login />} />
         </Routes>
     );
 };

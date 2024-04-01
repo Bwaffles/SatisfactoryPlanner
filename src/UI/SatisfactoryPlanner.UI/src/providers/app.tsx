@@ -1,8 +1,8 @@
 import * as React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { BrowserRouter as Router, useNavigate } from "react-router-dom";
+import { AppState, Auth0Provider } from "@auth0/auth0-react";
 import { QueryClientProvider } from "react-query";
 
 import * as Config from "../config";
@@ -21,7 +21,16 @@ const ErrorFallback = () => {
 };
 
 const AuthProvider = ({ children, ...props }: any) => {
-    return <Auth0Provider {...props}>{children}</Auth0Provider>;
+    const navigate = useNavigate();
+    const onRedirectCallback = (appState: AppState) => {
+        navigate((appState && appState.returnTo) || window.location.pathname);
+    };
+
+    return (
+        <Auth0Provider onRedirectCallback={onRedirectCallback} {...props}>
+            {children}
+        </Auth0Provider>
+    );
 };
 
 type AppProviderProps = {
@@ -43,10 +52,12 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                         <AuthProvider
                             domain={Config.AUTH0_DOMAIN}
                             clientId={Config.AUTH0_CLIENT_ID}
+                            useRefreshTokens={true}
+                            cacheLocation="localstorage"
                             authorizationParams={{
                                 redirect_uri: Config.REDIRECT_URL,
                                 audience: Config.API_URL
-                              }}
+                            }}
                         >
                             <QueryClientProvider client={queryClient}>
                                 {children}
