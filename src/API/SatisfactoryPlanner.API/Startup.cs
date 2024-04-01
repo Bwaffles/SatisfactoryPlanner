@@ -131,12 +131,12 @@ namespace SatisfactoryPlanner.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SatisfactoryPlanner.API v1"));
             }
-            else
-            {
-                app.UseHsts();
-            }
+            // else
+            // {
+            //     app.UseHsts();
+            // }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthentication();
 
