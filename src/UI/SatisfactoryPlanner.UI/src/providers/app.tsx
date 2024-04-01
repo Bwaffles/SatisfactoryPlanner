@@ -43,6 +43,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                         <AuthProvider
                             domain={Config.AUTH0_DOMAIN}
                             clientId={Config.AUTH0_CLIENT_ID}
+                            useRefreshTokens={true}
+                            cacheLocation="localstorage"
                             authorizationParams={{
                                 redirect_uri: Config.REDIRECT_URL,
                                 audience: Config.API_URL

@@ -1,12 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 
 import { MainLayout } from "@/components/Layout";
 import { Resources } from "@/pages/Resources";
 import { ResourceDetails } from "@/pages/ResourceDetails";
 import { Home } from "@/pages/Home";
-import { AutoLogin } from "@/pages/AutoLogin";
 import { DecreaseWorldNodeExtractionRate } from "@/pages/DecreaseWorldNodeExtractionRate";
 import { IncreaseWorldNodeExtractionRate } from "@/pages/IncreaseWorldNodeExtractionRate";
 import { Login } from "@/pages/Login";
@@ -17,8 +15,6 @@ import { Profile } from "@/pages/Profile";
 import { WorldNodeDetails } from "@/pages/WorldNodeDetails";
 
 export const AppRoutes = () => {
-    const { isAuthenticated } = useAuth0();
-
     return (
         <Routes>
             <Route element={<MainLayout />}>
@@ -28,43 +24,27 @@ export const AppRoutes = () => {
                 />
                 <Route
                     path="profile"
-                    element={isAuthenticated ? <Profile /> : <AutoLogin />}
+                    element={<Profile />}
                 />
                 <Route
                     path="resources"
-                    element={isAuthenticated ? <Resources /> : <AutoLogin />}
+                    element={<Resources />}
                 ></Route>
                 <Route
                     path="resources/:resourceId"
-                    element={
-                        isAuthenticated ? <ResourceDetails /> : <AutoLogin />
-                    }
+                    element={<ResourceDetails />}
                 ></Route>
                 <Route
                     path="nodes/:nodeId"
-                    element={
-                        isAuthenticated ? <WorldNodeDetails /> : <AutoLogin />
-                    }
+                    element={<WorldNodeDetails />}
                 ></Route>
                 <Route
                     path="nodes/:nodeId/increase-extraction-rate"
-                    element={
-                        isAuthenticated ? (
-                            <IncreaseWorldNodeExtractionRate />
-                        ) : (
-                            <AutoLogin />
-                        )
-                    }
+                    element={<IncreaseWorldNodeExtractionRate />}
                 ></Route>
                 <Route
                     path="nodes/:nodeId/decrease-extraction-rate"
-                    element={
-                        isAuthenticated ? (
-                            <DecreaseWorldNodeExtractionRate />
-                        ) : (
-                            <AutoLogin />
-                        )
-                    }
+                    element={<DecreaseWorldNodeExtractionRate />}
                 ></Route>
                 <Route
                     path="/loginError"
