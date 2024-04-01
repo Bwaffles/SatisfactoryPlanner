@@ -31,7 +31,7 @@ export const useGetWorldNodes = (resourceId: string) => {
             const data = await getWorldNodes(getAccessTokenSilently, worldId, resourceId);
 
             // When user first signs up, the population of world nodes might not be ready yet so try again until it is
-            if (data.length == 0) {
+            if (data.length === 0) {
                 return Promise.reject(new Error('World nodes not ready yet.'))
             }
 
