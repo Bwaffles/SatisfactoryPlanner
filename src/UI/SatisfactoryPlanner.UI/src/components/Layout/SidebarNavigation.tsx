@@ -1,5 +1,5 @@
 import * as React from "react";
-import { faHome, faPersonDigging } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faOilWell, faHammer } from "@fortawesome/free-solid-svg-icons";
 
 import SidebarNavigationItem, {
     SidebarNavigationItemProps,
@@ -8,12 +8,8 @@ import SidebarNavigationItem, {
 export const SidebarNavigation = () => {
     const navitationItems = [
         { name: "Home", to: "/", icon: faHome, isProtected: false },
-        {
-            name: "Resources",
-            to: "/resources",
-            icon: faPersonDigging,
-            isProtected: true,
-        },
+        { name: "Resources", to: "/resources", icon: faOilWell, isProtected: true },
+        { name: "Production Lines", to: "/production-lines", icon: faHammer, isProtected: true },
     ] as SidebarNavigationItemProps[];
 
     return (

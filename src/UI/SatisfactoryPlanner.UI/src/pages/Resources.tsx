@@ -5,10 +5,7 @@ import { ResourcesList } from "@/features/resources/components/ResourcesList";
 
 export const Resources = () => {
     return (
-        <ContentLayout title="Resources">
-            <p className="text-gray-300">
-                Select a resource to view its details and manage your nodes.
-            </p>
+        <ContentLayout title="Resources" description="Select a resource to view its details and manage your nodes.">
             <ResourcesList />
         </ContentLayout>
     );
