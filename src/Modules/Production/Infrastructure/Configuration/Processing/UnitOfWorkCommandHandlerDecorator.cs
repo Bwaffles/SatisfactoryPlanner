@@ -12,15 +12,15 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Pr
     internal class UnitOfWorkCommandHandlerDecorator<T> : ICommandHandler<T> where T : ICommand
     {
         private readonly ICommandHandler<T> _decorated;
-        private readonly FactoriesContext _factoriesContext;
+        private readonly ProductionContext _context;
         private readonly IUnitOfWork _unitOfWork;
 
         public UnitOfWorkCommandHandlerDecorator(ICommandHandler<T> decorated, IUnitOfWork unitOfWork,
-            FactoriesContext meetingContext)
+            ProductionContext context)
         {
             _decorated = decorated;
             _unitOfWork = unitOfWork;
-            _factoriesContext = meetingContext;
+            _context = context;
         }
 
         public async Task<Unit> Handle(T command, CancellationToken cancellationToken)
@@ -30,7 +30,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Pr
             if (command is InternalCommandBase)
             {
                 var internalCommand =
-                    await _factoriesContext.InternalCommands.FirstOrDefaultAsync(
+                    await _context.InternalCommands.FirstOrDefaultAsync(
                         x => x.Id == command.Id,
                         cancellationToken);
 

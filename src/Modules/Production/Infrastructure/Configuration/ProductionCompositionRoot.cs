@@ -2,7 +2,7 @@
 
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
 {
-    internal static class FactoriesCompositionRoot
+    internal static class ProductionCompositionRoot
     {
         private static IContainer? _container;
 

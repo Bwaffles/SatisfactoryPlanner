@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure
 {
-    public class FactoriesModule : IFactoriesModule
+    public class ProductionModule : IProductionModule
     {
         public async Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command)
         {
@@ -21,7 +21,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure
 
         public async Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
         {
-            using (var scope = FactoriesCompositionRoot.BeginLifetimeScope())
+            using (var scope = ProductionCompositionRoot.BeginLifetimeScope())
             {
                 var mediator = scope.Resolve<IMediator>();
 

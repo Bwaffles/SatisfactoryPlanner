@@ -7,16 +7,16 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
 {
     public class DomainEventsAccessor : IDomainEventsAccessor
     {
-        private readonly DbContext _factoriesContext;
+        private readonly DbContext _context;
 
-        public DomainEventsAccessor(DbContext meetingsContext)
+        public DomainEventsAccessor(DbContext context)
         {
-            _factoriesContext = meetingsContext;
+            _context = context;
         }
 
         public IReadOnlyCollection<IDomainEvent> GetAllDomainEvents()
         {
-            var domainEntities = _factoriesContext.ChangeTracker
+            var domainEntities = _context.ChangeTracker
                 .Entries<Entity>()
                 .Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any()).ToList();
 
@@ -27,7 +27,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
 
         public void ClearAllDomainEvents()
         {
-            var domainEntities = _factoriesContext.ChangeTracker
+            var domainEntities = _context.ChangeTracker
                 .Entries<Entity>()
                 .Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any()).ToList();
 

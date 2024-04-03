@@ -2,7 +2,6 @@
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration.Processing;
 using SatisfactoryPlanner.Modules.Production.Application.Configuration.Commands;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
-using SatisfactoryPlanner.Modules.Production.Infrastructure;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,16 +12,16 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Pr
         where T : ICommand<TResult>
     {
         private readonly ICommandHandler<T, TResult> _decorated;
-        private readonly FactoriesContext _factoriesContext;
+        private readonly ProductionContext _context;
         private readonly IUnitOfWork _unitOfWork;
 
         public UnitOfWorkCommandHandlerWithResultDecorator(ICommandHandler<T, TResult> decorated,
             IUnitOfWork unitOfWork,
-            FactoriesContext factoriesContext)
+            ProductionContext context)
         {
             _decorated = decorated;
             _unitOfWork = unitOfWork;
-            _factoriesContext = factoriesContext;
+            _context = context;
         }
 
         public async Task<TResult> Handle(T command, CancellationToken cancellationToken)
@@ -31,7 +30,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Pr
 
             if (command is InternalCommandBase<TResult>)
             {
-                var internalCommand = await _factoriesContext
+                var internalCommand = await _context
                     .InternalCommands
                     .FirstOrDefaultAsync(x => x.Id == command.Id, cancellationToken);
 

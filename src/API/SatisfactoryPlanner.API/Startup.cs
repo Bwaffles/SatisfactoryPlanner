@@ -153,7 +153,7 @@ namespace SatisfactoryPlanner.API
         {
             var executionContextAccessor = container.Resolve<IExecutionContextAccessor>();
 
-            FactoriesStartup.Initialize(
+            ProductionStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
                 logger

@@ -4,7 +4,7 @@ using Serilog;
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Logging
 {
     /// <summary>
-    ///     Dependency injection setup for Logging of the Factories module.
+    ///     Dependency injection setup for Logging of the Production module.
     ///     This registers the classes that handle the logging for this module.
     ///     Should be called from the module Startup.
     /// </summary>

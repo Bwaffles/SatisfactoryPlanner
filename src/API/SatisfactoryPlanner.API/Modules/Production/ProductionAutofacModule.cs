@@ -8,8 +8,8 @@ namespace SatisfactoryPlanner.API.Modules.Production
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<FactoriesModule>()
-                .As<IFactoriesModule>()
+            builder.RegisterType<ProductionModule>()
+                .As<IProductionModule>()
                 .InstancePerLifetimeScope();
         }
     }

@@ -10,14 +10,14 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
     internal static class Assemblies
     {
         /// <summary>
-        ///     The assembly of our Factories.Application project.
+        ///     The assembly of our Application project.
         /// </summary>
         internal static readonly Assembly Application = typeof(InternalCommandBase).Assembly;
 
         /// <summary>
-        ///     The assembly of our Factories.Infrastructure project.
+        ///     The assembly of our Infrastructure project.
         /// </summary>
-        internal static readonly Assembly Infrastructure = typeof(FactoriesContext).Assembly;
+        internal static readonly Assembly Infrastructure = typeof(ProductionContext).Assembly;
 
         /// <summary>
         ///     The assembly of the MediatR library.

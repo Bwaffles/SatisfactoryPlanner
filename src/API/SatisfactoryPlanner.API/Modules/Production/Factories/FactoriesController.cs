@@ -8,7 +8,7 @@ namespace SatisfactoryPlanner.API.Modules.Production.Factories
 {
     [ApiController]
     [Route("api/production/[controller]")]
-    public class FactoriesController(IFactoriesModule module) : ControllerBase
+    public class FactoriesController(IProductionModule module) : ControllerBase
     {
         /// <summary>
         ///     Get a list of factories.

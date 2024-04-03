@@ -5,13 +5,11 @@ using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
-using SatisfactoryPlanner.Modules.Production.Infrastructure;
-using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration;
 
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.DataAccess
 {
     /// <summary>
-    ///     Dependency injection setup for Data Access of the Factories module.
+    ///     Dependency injection setup for Data Access of the Production module.
     ///     This registers the classes that handle the database connections for this module.
     ///     Should be called from the module Startup.
     /// </summary>
@@ -38,12 +36,12 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Da
             builder
                 .Register(c =>
                 {
-                    var dbContextOptionsBuilder = new DbContextOptionsBuilder<FactoriesContext>();
+                    var dbContextOptionsBuilder = new DbContextOptionsBuilder<ProductionContext>();
                     dbContextOptionsBuilder.UseNpgsql(_databaseConnectionString);
                     dbContextOptionsBuilder
                         .ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();
 
-                    return new FactoriesContext(dbContextOptionsBuilder.Options, _loggerFactory);
+                    return new ProductionContext(dbContextOptionsBuilder.Options, _loggerFactory);
                 })
                 .AsSelf()
                 .As<DbContext>()

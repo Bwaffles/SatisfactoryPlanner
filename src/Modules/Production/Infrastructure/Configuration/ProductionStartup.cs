@@ -10,11 +10,11 @@ using Serilog.Extensions.Logging;
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
 {
     /// <summary>
-    ///     Initialize the services and configurations for the Factories module.
+    ///     Initialize the services and configurations for the Production module.
     ///     This will set up the logging and dependency injection for this module.
     ///     Should be called from the main application Startup.
     /// </summary>
-    public class FactoriesStartup
+    public class ProductionStartup
     {
         public static void Initialize(string connectionString, IExecutionContextAccessor executionContextAccessor,
             ILogger logger)
@@ -27,7 +27,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
         {
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterModule(new LoggingModule(logger.ForContext("Module", "Factories")));
+            containerBuilder.RegisterModule(new LoggingModule(logger.ForContext("Module", "Production")));
 
             var loggerFactory = new SerilogLoggerFactory(logger);
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
@@ -44,7 +44,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
 
             containerBuilder.RegisterInstance(executionContextAccessor);
 
-            FactoriesCompositionRoot.SetContainer(containerBuilder.Build());
+            ProductionCompositionRoot.SetContainer(containerBuilder.Build());
         }
     }
 }

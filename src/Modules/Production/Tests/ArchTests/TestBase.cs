@@ -15,7 +15,7 @@ namespace SatisfactoryPlanner.Modules.Production.ArchTests
 
         protected static Assembly DomainAssembly => typeof(Factory).Assembly;
 
-        protected static Assembly InfrastructureAssembly => typeof(FactoriesContext).Assembly;
+        protected static Assembly InfrastructureAssembly => typeof(ProductionContext).Assembly;
 
         protected static void AssertAreImmutable(IEnumerable<Type> types)
         {

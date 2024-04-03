@@ -6,7 +6,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Domain.Pioneers
     ///     Handles the database access for the <see cref="Pioneer" /> through EntityFramework.
     /// </summary>
     /// <remarks>
-    ///     This is registered in the Factories.DataAccessModule by naming convention.
+    ///     This is registered in the DataAccessModule by naming convention.
     /// </remarks>
     internal class PioneersRepository : IPioneersRepository
     {

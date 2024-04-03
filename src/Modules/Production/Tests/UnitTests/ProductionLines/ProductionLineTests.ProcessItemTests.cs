@@ -4,7 +4,7 @@ using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems.Events;
 using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems.Rules;
 using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines;
 
-namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
+namespace SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines
 {
     public partial class ProductionLineTests
     {

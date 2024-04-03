@@ -2,7 +2,7 @@
 
 namespace SatisfactoryPlanner.Modules.Production.Application.Contracts
 {
-    public interface IFactoriesModule
+    public interface IProductionModule
     {
         Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command);
 

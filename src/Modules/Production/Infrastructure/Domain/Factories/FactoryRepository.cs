@@ -1,5 +1,4 @@
 ﻿using SatisfactoryPlanner.Modules.Production.Domain.Factories;
-using SatisfactoryPlanner.Modules.Production.Infrastructure;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Domain.Factories
@@ -8,13 +7,13 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Domain.Factories
     ///     Handles the database access for the <see cref="Factory" /> through EntityFramework.
     /// </summary>
     /// <remarks>
-    ///     This is registered in the Factories.DataAccessModule by naming convention.
+    ///     This is registered in the DataAccessModule by naming convention.
     /// </remarks>
     internal class FactoryRepository : IFactoryRepository
     {
-        private readonly FactoriesContext _context;
+        private readonly ProductionContext _context;
 
-        internal FactoryRepository(FactoriesContext context)
+        internal FactoryRepository(ProductionContext context)
         {
             _context = context;
         }

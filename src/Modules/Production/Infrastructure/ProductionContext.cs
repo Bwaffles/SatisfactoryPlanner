@@ -5,7 +5,7 @@ using SatisfactoryPlanner.Modules.Production.Domain.Factories;
 
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure
 {
-    public class FactoriesContext : DbContext
+    public class ProductionContext : DbContext
     {
         private readonly ILoggerFactory _loggerFactory;
 
@@ -13,7 +13,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure
 
         public DbSet<InternalCommand> InternalCommands { get; set; }
 
-        public FactoriesContext(DbContextOptions options, ILoggerFactory loggerFactory)
+        public ProductionContext(DbContextOptions options, ILoggerFactory loggerFactory)
             : base(options)
         {
             _loggerFactory = loggerFactory;

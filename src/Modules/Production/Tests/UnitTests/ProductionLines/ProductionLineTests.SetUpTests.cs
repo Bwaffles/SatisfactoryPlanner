@@ -3,7 +3,7 @@ using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines;
 using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines.Events;
 using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines.Rules;
 
-namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
+namespace SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines
 {
     [TestFixture]
     public partial class ProductionLineTests
