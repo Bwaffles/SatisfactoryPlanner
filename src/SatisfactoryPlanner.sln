@@ -31,19 +31,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseMigrator", "Databas
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{AFD54224-7CB0-4B3B-A3A2-BA4E4FFAEE77}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Factories", "Factories", "{F3C703A0-817F-4014-A166-D2EAE5058B3F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Production", "Production", "{F3C703A0-817F-4014-A166-D2EAE5058B3F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Factories.Application", "Modules\Factories\Application\SatisfactoryPlanner.Modules.Factories.Application.csproj", "{05CC273B-57EE-4C24-9BA1-5DA8AFD8C5B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Production.Application", "Modules\Production\Application\SatisfactoryPlanner.Modules.Production.Application.csproj", "{05CC273B-57EE-4C24-9BA1-5DA8AFD8C5B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Factories.Domain", "Modules\Factories\Domain\SatisfactoryPlanner.Modules.Factories.Domain.csproj", "{E367A5BB-9A95-4627-9051-5A9CA15343BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Production.Domain", "Modules\Production\Domain\SatisfactoryPlanner.Modules.Production.Domain.csproj", "{E367A5BB-9A95-4627-9051-5A9CA15343BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Factories.Infrastructure", "Modules\Factories\Infrastructure\SatisfactoryPlanner.Modules.Factories.Infrastructure.csproj", "{4271C040-933B-45A9-887D-317E6E92F250}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Production.Infrastructure", "Modules\Production\Infrastructure\SatisfactoryPlanner.Modules.Production.Infrastructure.csproj", "{4271C040-933B-45A9-887D-317E6E92F250}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{73C5DD36-D873-41DA-87F5-9993C38B147B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Factories.ArchTests", "Modules\Factories\Tests\ArchTests\SatisfactoryPlanner.Modules.Factories.ArchTests.csproj", "{5EFB6D21-EC98-4EFF-9FE3-2CF955EAD6B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Production.ArchTests", "Modules\Production\Tests\ArchTests\SatisfactoryPlanner.Modules.Production.ArchTests.csproj", "{5EFB6D21-EC98-4EFF-9FE3-2CF955EAD6B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Factories.UnitTests", "Modules\Factories\Tests\UnitTests\SatisfactoryPlanner.Modules.Factories.UnitTests.csproj", "{2B736264-F504-48A8-9C9B-BDE28E925085}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisfactoryPlanner.Modules.Production.UnitTests", "Modules\Production\Tests\UnitTests\SatisfactoryPlanner.Modules.Production.UnitTests.csproj", "{2B736264-F504-48A8-9C9B-BDE28E925085}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{B2AD4575-C5BF-4F62-80EC-1290CCBBBCAA}"
 EndProject
@@ -101,7 +101,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{139DABEF-84E0-
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SatisfactoryPlanner.UI", "UI\SatisfactoryPlanner.UI\SatisfactoryPlanner.UI.esproj", "{D51949FB-806C-4320-AC8D-712AB24C3DFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseMigrator.Functions", "Database\DatabaseMigrator.Functions\DatabaseMigrator.Functions.csproj", "{4F498F5A-98C9-4B17-89D4-E0CAA7D43CF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseMigrator.Functions", "Database\DatabaseMigrator.Functions\DatabaseMigrator.Functions.csproj", "{4F498F5A-98C9-4B17-89D4-E0CAA7D43CF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
