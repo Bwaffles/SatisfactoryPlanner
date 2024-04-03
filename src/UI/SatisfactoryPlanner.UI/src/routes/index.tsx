@@ -14,6 +14,7 @@ import { LoginRedirect } from "@/pages/LoginRedirect";
 import { NoMatch } from "@/pages/NoMatch";
 import { Profile } from "@/pages/Profile";
 import { WorldNodeDetails } from "@/pages/WorldNodeDetails";
+import { ProductionLines } from "@/pages/ProductionLines";
 
 const ProtectedRoute = ({ component }: { component: ComponentType<object> }) => {
     const Component = withAuthenticationRequired(component);
@@ -31,6 +32,7 @@ export const AppRoutes = () => {
                 <Route path="nodes/:nodeId" element={<ProtectedRoute component={WorldNodeDetails} />} />
                 <Route path="nodes/:nodeId/increase-extraction-rate" element={<ProtectedRoute component={IncreaseWorldNodeExtractionRate} />} />
                 <Route path="nodes/:nodeId/decrease-extraction-rate" element={<ProtectedRoute component={DecreaseWorldNodeExtractionRate} />} />
+                <Route path="production-lines" element={<ProtectedRoute component={ProductionLines} />} />
                 <Route path="/loginError" element={<LoginError />} />
                 <Route path="*" element={<NoMatch />} />
             </Route>
