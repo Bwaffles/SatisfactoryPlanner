@@ -1,11 +1,11 @@
 ﻿using Autofac;
 using MediatR;
-using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Processing;
+using SatisfactoryPlanner.Modules.Production.Application.Contracts;
+using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Processing;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure
+namespace SatisfactoryPlanner.Modules.Production.Infrastructure
 {
     public class FactoriesModule : IFactoriesModule
     {

@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
-using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
-using SatisfactoryPlanner.Modules.Factories.Domain.Factories;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure;
+using SatisfactoryPlanner.Modules.Production.Application.Contracts;
+using SatisfactoryPlanner.Modules.Production.Domain.Factories;
+using SatisfactoryPlanner.Modules.Production.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace SatisfactoryPlanner.Modules.Factories.ArchTests
+namespace SatisfactoryPlanner.Modules.Production.ArchTests
 {
     public abstract class TestBase
     {

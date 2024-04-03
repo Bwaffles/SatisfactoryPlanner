@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
 using MediatR;
 using Newtonsoft.Json;
-using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Queries;
-using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
+using SatisfactoryPlanner.Modules.Production.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Production.Application.Configuration.Queries;
+using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace SatisfactoryPlanner.Modules.Factories.ArchTests
+namespace SatisfactoryPlanner.Modules.Production.ArchTests
 {
     [TestFixture]
     public class ApplicationTests : TestBase

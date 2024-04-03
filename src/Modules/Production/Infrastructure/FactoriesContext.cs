@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
-using SatisfactoryPlanner.Modules.Factories.Domain.Factories;
+using SatisfactoryPlanner.Modules.Production.Domain.Factories;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure
+namespace SatisfactoryPlanner.Modules.Production.Infrastructure
 {
     public class FactoriesContext : DbContext
     {

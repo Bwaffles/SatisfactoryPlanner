@@ -1,7 +1,7 @@
-﻿using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
+﻿using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildSubFactory
+namespace SatisfactoryPlanner.Modules.Production.Application.Factories.BuildSubFactory
 {
     public class BuildSubFactoryCommand : CommandBase<Guid>
     {

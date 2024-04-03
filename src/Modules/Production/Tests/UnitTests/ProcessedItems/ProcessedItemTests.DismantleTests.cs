@@ -1,9 +1,9 @@
 ﻿using NSubstitute;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems.Events;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines;
+using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems;
+using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems.Events;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines;
 
-namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProcessedItems
+namespace SatisfactoryPlanner.Modules.Production.UnitTests.ProcessedItems
 {
     [TestFixture]
     public partial class ProcessedItemTests

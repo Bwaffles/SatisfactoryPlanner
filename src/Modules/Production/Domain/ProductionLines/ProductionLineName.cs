@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Rules;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines.Rules;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProductionLines
 {
     public class ProductionLineName : ValueObject
     {

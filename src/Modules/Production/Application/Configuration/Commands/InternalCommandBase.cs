@@ -1,7 +1,7 @@
-﻿using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
+﻿using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Factories.Application.Configuration.Commands
+namespace SatisfactoryPlanner.Modules.Production.Application.Configuration.Commands
 {
     public abstract class InternalCommandBase : ICommand
     {

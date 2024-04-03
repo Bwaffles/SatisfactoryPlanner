@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.Factories
+namespace SatisfactoryPlanner.Modules.Production.Domain.Factories
 {
     /// <summary>
     ///     Handles the database access for the <see cref="Factory" /> through EntityFramework.

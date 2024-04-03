@@ -1,9 +1,9 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Events;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Rules;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines.Events;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines.Rules;
+using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProductionLines
 {
     public class ProductionLine : Entity, IAggregateRoot
     {

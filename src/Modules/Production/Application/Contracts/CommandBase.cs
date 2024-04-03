@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SatisfactoryPlanner.Modules.Factories.Application.Contracts
+namespace SatisfactoryPlanner.Modules.Production.Application.Contracts
 {
     public abstract class CommandBase : ICommand
     {

@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Events
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProductionLines.Events
 {
     public class ProductionLineRenamedDomainEvent
         (ProductionLineId productionLineId, ProductionLineName name) : DomainEventBase

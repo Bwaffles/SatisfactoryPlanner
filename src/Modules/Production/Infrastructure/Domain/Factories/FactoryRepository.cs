@@ -1,7 +1,8 @@
-﻿using SatisfactoryPlanner.Modules.Factories.Domain.Factories;
+﻿using SatisfactoryPlanner.Modules.Production.Domain.Factories;
+using SatisfactoryPlanner.Modules.Production.Infrastructure;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Domain.Factories
+namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Domain.Factories
 {
     /// <summary>
     ///     Handles the database access for the <see cref="Factory" /> through EntityFramework.

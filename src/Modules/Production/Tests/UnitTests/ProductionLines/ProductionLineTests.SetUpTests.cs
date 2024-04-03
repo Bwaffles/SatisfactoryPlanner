@@ -1,7 +1,7 @@
 ﻿using NSubstitute;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Events;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines.Rules;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines.Events;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines.Rules;
 
 namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
 {

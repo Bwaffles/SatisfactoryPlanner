@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.API.Modules.Factories.Factories
+﻿namespace SatisfactoryPlanner.API.Modules.Production.Factories
 {
     public class BuildSubFactoryRequest
     {

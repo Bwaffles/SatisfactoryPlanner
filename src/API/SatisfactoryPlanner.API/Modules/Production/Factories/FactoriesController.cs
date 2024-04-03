@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
-using SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildFactory;
-using SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildSubFactory;
-using SatisfactoryPlanner.Modules.Factories.Application.Factories.GetFactories;
+using SatisfactoryPlanner.Modules.Production.Application.Factories.BuildFactory;
+using SatisfactoryPlanner.Modules.Production.Application.Factories.BuildSubFactory;
+using SatisfactoryPlanner.Modules.Production.Application.Contracts;
+using SatisfactoryPlanner.Modules.Production.Application.Factories.GetFactories;
 
-namespace SatisfactoryPlanner.API.Modules.Factories.Factories
+namespace SatisfactoryPlanner.API.Modules.Production.Factories
 {
     [ApiController]
-    [Route("api/factories/[controller]")]
+    [Route("api/production/[controller]")]
     public class FactoriesController(IFactoriesModule module) : ControllerBase
     {
         /// <summary>

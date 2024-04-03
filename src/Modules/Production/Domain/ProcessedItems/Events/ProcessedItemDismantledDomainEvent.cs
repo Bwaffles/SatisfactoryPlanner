@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems.Events
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems.Events
 {
     public class ProcessedItemDismantledDomainEvent(ProcessedItemId processedItemId) : DomainEventBase
     {

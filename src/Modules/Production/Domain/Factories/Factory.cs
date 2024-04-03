@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.Factories
+namespace SatisfactoryPlanner.Modules.Production.Domain.Factories
 {
     public class Factory : Entity, IAggregateRoot
     {

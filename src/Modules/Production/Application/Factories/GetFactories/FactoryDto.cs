@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.GetFactories
+namespace SatisfactoryPlanner.Modules.Production.Application.Factories.GetFactories
 {
     public class FactoryDto
     {

@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems.Events
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems.Events
 {
     public class ItemProcessedDomainEvent(
         ProcessedItemId processedItemId,

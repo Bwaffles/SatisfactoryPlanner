@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Serilog;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Logging
+namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Logging
 {
     /// <summary>
     ///     Dependency injection setup for Logging of the Factories module.

@@ -1,11 +1,11 @@
 ﻿using Dapper;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
-using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Queries;
+using SatisfactoryPlanner.Modules.Production.Application.Configuration.Queries;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.GetFactories
+namespace SatisfactoryPlanner.Modules.Production.Application.Factories.GetFactories
 {
     internal class GetFactoriesQueryHandler : IQueryHandler<GetFactoriesQuery, List<FactoryDto>>
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 {
     public class Recipe : ValueObject
     {

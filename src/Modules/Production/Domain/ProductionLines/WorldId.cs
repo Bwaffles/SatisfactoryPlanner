@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProductionLines
 {
     public record WorldId : TypedIdValueBase
     {

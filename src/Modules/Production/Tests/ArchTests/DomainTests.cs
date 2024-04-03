@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace SatisfactoryPlanner.Modules.Factories.ArchTests
+namespace SatisfactoryPlanner.Modules.Production.ArchTests
 {
     public class DomainTests : TestBase
     {

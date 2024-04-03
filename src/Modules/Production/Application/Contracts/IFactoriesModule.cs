@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Factories.Application.Contracts
+namespace SatisfactoryPlanner.Modules.Production.Application.Contracts
 {
     public interface IFactoriesModule
     {

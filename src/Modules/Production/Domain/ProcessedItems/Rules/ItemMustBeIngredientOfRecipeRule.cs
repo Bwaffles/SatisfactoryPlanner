@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems.Rules
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems.Rules
 {
     public class ItemMustBeIngredientOfRecipeRule(ItemId itemId, Recipe recipe) : IBusinessRule
     {

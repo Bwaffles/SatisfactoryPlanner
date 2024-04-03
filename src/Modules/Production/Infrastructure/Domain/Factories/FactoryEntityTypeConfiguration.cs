@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SatisfactoryPlanner.Modules.Factories.Domain.Factories;
+using SatisfactoryPlanner.Modules.Production.Domain.Factories;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Domain.Factories
+namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Domain.Factories
 {
     internal class FactoryEntityTypeConfiguration : IEntityTypeConfiguration<Factory>
     {

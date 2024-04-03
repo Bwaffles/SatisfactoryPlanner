@@ -1,10 +1,10 @@
-﻿using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Commands;
-using SatisfactoryPlanner.Modules.Factories.Domain.Factories;
+﻿using SatisfactoryPlanner.Modules.Production.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Production.Domain.Factories;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Factories.Application.Factories.BuildFactory
+namespace SatisfactoryPlanner.Modules.Production.Application.Factories.BuildFactory
 {
     internal class BuildFactoryCommandHandler : ICommandHandler<BuildFactoryCommand, Guid>
     {

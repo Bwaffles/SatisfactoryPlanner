@@ -1,6 +1,6 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 
-namespace SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 {
     public class Ingredient : ValueObject
     {

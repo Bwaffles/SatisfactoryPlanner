@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines
+﻿namespace SatisfactoryPlanner.Modules.Production.Domain.ProductionLines
 {
     public interface IProductionLineCounter
     {

@@ -1,13 +1,13 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.DataAccess;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Logging;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Mediation;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Processing;
+using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.DataAccess;
+using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Logging;
+using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Mediation;
+using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Processing;
 using Serilog;
 using Serilog.Extensions.Logging;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration
+namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
 {
     /// <summary>
     ///     Initialize the services and configurations for the Factories module.

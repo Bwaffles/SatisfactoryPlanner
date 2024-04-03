@@ -1,8 +1,8 @@
 ﻿using NSubstitute;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems.Events;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProcessedItems.Rules;
-using SatisfactoryPlanner.Modules.Factories.Domain.ProductionLines;
+using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems;
+using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems.Events;
+using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems.Rules;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines;
 
 namespace SatisfactoryPlanner.Modules.Factories.UnitTests.ProductionLines
 {

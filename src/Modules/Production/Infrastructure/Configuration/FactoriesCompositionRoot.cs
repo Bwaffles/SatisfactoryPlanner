@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration
+namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
 {
     internal static class FactoriesCompositionRoot
     {

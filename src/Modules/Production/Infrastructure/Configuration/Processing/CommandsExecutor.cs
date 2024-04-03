@@ -1,9 +1,10 @@
 ﻿using Autofac;
 using MediatR;
-using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
+using SatisfactoryPlanner.Modules.Production.Application.Contracts;
+using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration.Processing
+namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Processing
 {
     internal static class CommandsExecutor
     {

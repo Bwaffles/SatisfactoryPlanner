@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using SatisfactoryPlanner.Modules.Factories.Application.Configuration.Commands;
+using SatisfactoryPlanner.Modules.Production.Application.Configuration.Commands;
 using System.Reflection;
 
-namespace SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration
+namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
 {
     /// <summary>
     ///     Helper class to find assemblies in this module.

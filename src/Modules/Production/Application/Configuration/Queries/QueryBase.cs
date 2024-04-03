@@ -1,7 +1,7 @@
-﻿using SatisfactoryPlanner.Modules.Factories.Application.Contracts;
+﻿using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Factories.Application.Configuration.Queries
+namespace SatisfactoryPlanner.Modules.Production.Application.Configuration.Queries
 {
     public abstract class QueryBase<TResult> : IQuery<TResult>
     {
