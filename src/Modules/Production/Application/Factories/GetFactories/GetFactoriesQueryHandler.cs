@@ -25,7 +25,7 @@ namespace SatisfactoryPlanner.Modules.Production.Application.Factories.GetFactor
                     $"factory.id AS {nameof(FactoryDto.Id)}, " +
                     $"factory.name AS {nameof(FactoryDto.Name)}, " +
                     $"factory.built_under_factory_id AS {nameof(FactoryDto.BuiltUnderFactoryId)} " +
-                    "FROM factories.factories AS factory"))
+                    "FROM production.factories AS factory"))
                 .AsList();
         }
     }

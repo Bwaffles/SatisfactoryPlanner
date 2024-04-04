@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
 using SatisfactoryPlanner.Modules.Production.Domain.Factories;
 
@@ -12,6 +13,8 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure
         public DbSet<Factory> Factories { get; set; }
 
         public DbSet<InternalCommand> InternalCommands { get; set; }
+
+        public DbSet<OutboxMessage> OutboxMessages { get; set; }
 
         public ProductionContext(DbContextOptions options, ILoggerFactory loggerFactory)
             : base(options)

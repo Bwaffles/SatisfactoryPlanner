@@ -5,7 +5,6 @@ using FluentValidation;
 using MediatR;
 using MediatR.Pipeline;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
-using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;

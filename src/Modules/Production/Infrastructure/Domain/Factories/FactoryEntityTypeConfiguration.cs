@@ -8,7 +8,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Domain.Factories
     {
         public void Configure(EntityTypeBuilder<Factory> builder)
         {
-            builder.ToTable("factories", "factories");
+            builder.ToTable("factories", "production");
 
             builder
                 .HasKey(_ => _.Id);
