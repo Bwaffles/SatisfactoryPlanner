@@ -1,5 +1,4 @@
 ﻿using DatabaseMigrator.Migrations;
-using DatabaseMigrator.Migrations.Factories;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,7 +18,7 @@ namespace DatabaseMigrator
                     .AddPostgres()
                     .WithGlobalConnectionString(connectionString)
                     // Define the assembly containing the migrations
-                    .ScanIn(typeof(Create_Factories).Assembly).For.Migrations())
+                    .ScanIn(typeof(MigrationRunner).Assembly).For.Migrations())
                 // Enable logging to console in the FluentMigrator way
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 //.AddScoped<PostgresQuoter, NoQuoteQuoter>()
