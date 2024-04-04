@@ -19,7 +19,7 @@ partial class Build
         .DependsOn(CleanupDockerProjects)
         .Executes(() =>
         {
-            Docker("compose up db db-migrator -d", Solution.Directory);
+            Docker("compose up db db-migrator -d --build", Solution.Directory);
         });
     
     Target RunDockerCompose => _ => _
