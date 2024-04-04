@@ -1,0 +1,1031 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="SatisfactoryPlanner.Modules.Resources.ArchTests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="SatisfactoryPlanner.Modules.Resources.ArchTests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="ApplicationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.CommandHandler_Should_Have_Name_EndingWith_CommandHandler" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CommandHandler_Should_Have_Name_EndingWith_CommandHandler" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.Command_And_Query_Handlers_Should_Not_Be_Public" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_And_Query_Handlers_Should_Not_Be_Public" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.Command_ShouldBeImmutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_ShouldBeImmutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.Command_With_Result_Should_Not_Return_Unit" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_With_Result_Should_Not_Return_Unit" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.MediatR_RequestHandler_Should_NotBe_Used_Directly" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="MediatR_RequestHandler_Should_NotBe_Used_Directly" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.QueryHandler_Should_Have_Name_EndingWith_QueryHandler" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QueryHandler_Should_Have_Name_EndingWith_QueryHandler" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.Query_ShouldBeImmutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Query_ShouldBeImmutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.Validator_Should_Have_Name_EndingWith_Validator" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Validator_Should_Have_Name_EndingWith_Validator" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.ApplicationTests.Validators_Should_Not_Be_Public" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Validators_Should_Not_Be_Public" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="DomainTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.DomainTests.BusinessRule_Should_Have_RulePostfix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="BusinessRule_Should_Have_RulePostfix" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.DomainTests.DomainEvent_Should_Be_Immutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainEvent_Should_Be_Immutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.DomainTests.DomainEvent_Should_Have_DomainEventPostfix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainEvent_Should_Have_DomainEventPostfix" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.DomainTests.Domain_Object_Should_Have_Only_Private_Constructors" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Domain_Object_Should_Have_Only_Private_Constructors" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.DomainTests.Entity_Cannot_Have_Reference_To_Other_AggregateRoot" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Entity_Cannot_Have_Reference_To_Other_AggregateRoot" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.DomainTests.Entity_Which_Is_Not_Aggregate_Root_Cannot_Have_Public_Members" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Entity_Which_Is_Not_Aggregate_Root_Cannot_Have_Public_Members" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.DomainTests.ValueObject_Should_Be_Immutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ValueObject_Should_Be_Immutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.DomainTests.ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="LayersTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.LayersTests.ApplicationLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ApplicationLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.LayersTests.DomainLayer_DoesNotHaveDependency_ToApplicationLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainLayer_DoesNotHaveDependency_ToApplicationLayer" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.ArchTests.LayersTests.DomainLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+        <Rule Match="All">
+          <Property Name="Project" Value="SatisfactoryPlanner.Modules.Resources.UnitTests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="DecreaseExtractionRateTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DecreaseExtractionRateTests.WhenDataIsValid_IsSuccessful" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenDataIsValid_IsSuccessful(60)" />
+                        <Property Name="DisplayName" Value="WhenDataIsValid_IsSuccessful(0)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DecreaseExtractionRateTests.WhenNewRateIsGreaterThanCurrentRate_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenNewRateIsGreaterThanCurrentRate_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DecreaseExtractionRateTests.WhenNewRateIsSameAsTheCurrentRate_IsIgnored" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenNewRateIsSameAsTheCurrentRate_IsIgnored" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DecreaseExtractionRateTests.WhenWorldNodeIsNotTapped_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenWorldNodeIsNotTapped_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="DismantleExtractorTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DismantleExtractorTests.WhenDataIsValid_IsSuccessful" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenDataIsValid_IsSuccessful" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DismantleExtractorTests.WhenNotTapped_IsIgnored" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenNotTapped_IsIgnored" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="DowngradeExtractorTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DowngradeExtractorTests.WhenDataIsValid_IsSuccessful" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenDataIsValid_IsSuccessful" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DowngradeExtractorTests.WhenExtractingMoreThanNewMaxExtractionRate_ExtractionRateReduced" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenExtractingMoreThanNewMaxExtractionRate_ExtractionRateReduced" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DowngradeExtractorTests.WhenExtractorCannotExtractTheResource_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenExtractorCannotExtractTheResource_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DowngradeExtractorTests.WhenExtractorIsFasterThanCurrentExtractor_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenExtractorIsFasterThanCurrentExtractor_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DowngradeExtractorTests.WhenExtractorIsSameAsTheCurrentExtractor_IsIgnored" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenExtractorIsSameAsTheCurrentExtractor_IsIgnored" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DowngradeExtractorTests.WhenNotExtractingThanNewMaxExtractionRate_IsIgnored" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenNotExtractingThanNewMaxExtractionRate_IsIgnored(300,300)" />
+                        <Property Name="DisplayName" Value="WhenNotExtractingThanNewMaxExtractionRate_IsIgnored(300,299)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.DowngradeExtractorTests.WhenWorldNodeIsNotTapped_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenWorldNodeIsNotTapped_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ExtractionRateTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.ExtractionRateTests.NegativeRate_ThrowsArgumentOutOfRangeException" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="NegativeRate_ThrowsArgumentOutOfRangeException" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.ExtractionRateTests.PositiveRate_Succeeds" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="PositiveRate_Succeeds" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.ExtractionRateTests.ZeroRate_Succeeds" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ZeroRate_Succeeds" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="IncreaseExtractionRateTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.IncreaseExtractionRateTests.WhenDataIsValid_IsSuccessful" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenDataIsValid_IsSuccessful" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.IncreaseExtractionRateTests.WhenIncreasingAboveTheMaxRate_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenIncreasingAboveTheMaxRate_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.IncreaseExtractionRateTests.WhenNewRateIsLessThanCurrentRate_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenNewRateIsLessThanCurrentRate_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.IncreaseExtractionRateTests.WhenNewRateIsSameAsTheCurrentRate_IsIgnored" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenNewRateIsSameAsTheCurrentRate_IsIgnored" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.IncreaseExtractionRateTests.WhenWorldNodeIsNotTapped_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenWorldNodeIsNotTapped_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="TapWorldNodeTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.TapWorldNodeTests.WhenDataIsValid_IsSuccessful" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenDataIsValid_IsSuccessful" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.TapWorldNodeTests.WhenExtractorCannotExtractTheResource_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenExtractorCannotExtractTheResource_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.TapWorldNodeTests.WhenNodeIsAlreadyTapped_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenNodeIsAlreadyTapped_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="UpgradeExtractorTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.UpgradeExtractorTests.WhenDataIsValid_IsSuccessful" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenDataIsValid_IsSuccessful" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.UpgradeExtractorTests.WhenExtractorCannotExtractTheResource_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenExtractorCannotExtractTheResource_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.UpgradeExtractorTests.WhenExtractorIsSameAsTheCurrentExtractor_IsIgnored" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenExtractorIsSameAsTheCurrentExtractor_IsIgnored" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.UpgradeExtractorTests.WhenExtractorIsSlowerThanCurrentExtractor_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenExtractorIsSlowerThanCurrentExtractor_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes.UpgradeExtractorTests.WhenWorldNodeIsNotTapped_RuleIsBroken" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WhenWorldNodeIsNotTapped_RuleIsBroken" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+        <Rule Match="All">
+          <Property Name="Project" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="ApplicationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.CommandHandler_Should_Have_Name_EndingWith_CommandHandler" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CommandHandler_Should_Have_Name_EndingWith_CommandHandler" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.Command_And_Query_Handlers_Should_Not_Be_Public" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_And_Query_Handlers_Should_Not_Be_Public" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.Command_ShouldBeImmutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_ShouldBeImmutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.Command_With_Result_Should_Not_Return_Unit" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_With_Result_Should_Not_Return_Unit" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.MediatR_RequestHandler_Should_NotBe_Used_Directly" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="MediatR_RequestHandler_Should_NotBe_Used_Directly" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.QueryHandler_Should_Have_Name_EndingWith_QueryHandler" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QueryHandler_Should_Have_Name_EndingWith_QueryHandler" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.Query_ShouldBeImmutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Query_ShouldBeImmutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.Validator_Should_Have_Name_EndingWith_Validator" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Validator_Should_Have_Name_EndingWith_Validator" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.ApplicationTests.Validators_Should_Not_Be_Public" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Validators_Should_Not_Be_Public" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="DomainTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.DomainTests.BusinessRule_Should_Have_RulePostfix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="BusinessRule_Should_Have_RulePostfix" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.DomainTests.DomainEvent_Should_Be_Immutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainEvent_Should_Be_Immutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.DomainTests.DomainEvent_Should_Have_DomainEventPostfix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainEvent_Should_Have_DomainEventPostfix" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.DomainTests.Domain_Object_Should_Have_Only_Private_Constructors" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Domain_Object_Should_Have_Only_Private_Constructors" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.DomainTests.Entity_Cannot_Have_Reference_To_Other_AggregateRoot" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Entity_Cannot_Have_Reference_To_Other_AggregateRoot" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.DomainTests.Entity_Should_Have_Parameterless_Private_Constructor" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Entity_Should_Have_Parameterless_Private_Constructor" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.DomainTests.Entity_Which_Is_Not_Aggregate_Root_Cannot_Have_Public_Members" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Entity_Which_Is_Not_Aggregate_Root_Cannot_Have_Public_Members" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.DomainTests.ValueObject_Should_Be_Immutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ValueObject_Should_Be_Immutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.DomainTests.ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="LayersTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.LayersTests.ApplicationLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ApplicationLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.LayersTests.DomainLayer_DoesNotHaveDependency_ToApplicationLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainLayer_DoesNotHaveDependency_ToApplicationLayer" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.ArchTests.LayersTests.DomainLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+        <Rule Match="All">
+          <Property Name="Project" Value="SatisfactoryPlanner.Modules.UserAccess.UnitTests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="UserTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users.UserTests.CreatePioneer_WithEmptyAuth0UserId_ThrowsException" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreatePioneer_WithEmptyAuth0UserId_ThrowsException" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users.UserTests.CreatePioneer_WithUniqueAuth0UserId_IsSuccessful" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreatePioneer_WithUniqueAuth0UserId_IsSuccessful" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.UserAccess.UnitTests.Users.UserTests.CreatePioneer_WithoutUniqueAuth0UserId_BreaksUserAuth0UserIdMustBeUniqueRule" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreatePioneer_WithoutUniqueAuth0UserId_BreaksUserAuth0UserIdMustBeUniqueRule" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+        <Rule Match="All">
+          <Property Name="Project" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="ApplicationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.CommandHandler_Should_Have_Name_EndingWith_CommandHandler" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CommandHandler_Should_Have_Name_EndingWith_CommandHandler" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.Command_And_Query_Handlers_Should_Not_Be_Public" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_And_Query_Handlers_Should_Not_Be_Public" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.Command_ShouldBeImmutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_ShouldBeImmutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.Command_With_Result_Should_Not_Return_Unit" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_With_Result_Should_Not_Return_Unit" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.MediatR_RequestHandler_Should_NotBe_Used_Directly" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="MediatR_RequestHandler_Should_NotBe_Used_Directly" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.QueryHandler_Should_Have_Name_EndingWith_QueryHandler" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QueryHandler_Should_Have_Name_EndingWith_QueryHandler" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.Query_ShouldBeImmutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Query_ShouldBeImmutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.Validator_Should_Have_Name_EndingWith_Validator" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Validator_Should_Have_Name_EndingWith_Validator" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.ApplicationTests.Validators_Should_Not_Be_Public" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Validators_Should_Not_Be_Public" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="DomainTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.DomainTests.BusinessRule_Should_Have_RulePostfix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="BusinessRule_Should_Have_RulePostfix" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.DomainTests.DomainEvent_Should_Be_Immutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainEvent_Should_Be_Immutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.DomainTests.DomainEvent_Should_Have_DomainEventPostfix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainEvent_Should_Have_DomainEventPostfix" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.DomainTests.Domain_Object_Should_Have_Only_Private_Constructors" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Domain_Object_Should_Have_Only_Private_Constructors" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.DomainTests.Entity_Cannot_Have_Reference_To_Other_AggregateRoot" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Entity_Cannot_Have_Reference_To_Other_AggregateRoot" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.DomainTests.Entity_Which_Is_Not_Aggregate_Root_Cannot_Have_Public_Members" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Entity_Which_Is_Not_Aggregate_Root_Cannot_Have_Public_Members" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.DomainTests.ValueObject_Should_Be_Immutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ValueObject_Should_Be_Immutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.DomainTests.ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="LayersTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.LayersTests.ApplicationLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ApplicationLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.LayersTests.DomainLayer_DoesNotHaveDependency_ToApplicationLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainLayer_DoesNotHaveDependency_ToApplicationLayer" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.ArchTests.LayersTests.DomainLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+        <Rule Match="All">
+          <Property Name="Project" Value="SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="PioneerTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests.PioneerTests.SpawnPioneer_IsSuccessful" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SpawnPioneer_IsSuccessful" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="WorldTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Worlds.Domain.UnitTests.WorldTests.CreateStarterWorld_IsSuccessful" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateStarterWorld_IsSuccessful" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+        <Rule Match="All">
+          <Property Name="Project" Value="SatisfactoryPlanner.Modules.Production.ArchTests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="SatisfactoryPlanner.Modules.Production.ArchTests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="ApplicationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.CommandHandler_Should_Have_Name_EndingWith_CommandHandler" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CommandHandler_Should_Have_Name_EndingWith_CommandHandler" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.Command_And_Query_Handlers_Should_Not_Be_Public" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_And_Query_Handlers_Should_Not_Be_Public" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.Command_ShouldBeImmutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_ShouldBeImmutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.Command_With_Result_Should_Not_Return_Unit" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Command_With_Result_Should_Not_Return_Unit" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="InternalCommand_Should_Have_Constructor_With_JsonConstructorAttribute" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.MediatR_RequestHandler_Should_NotBe_Used_Directly" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="MediatR_RequestHandler_Should_NotBe_Used_Directly" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.QueryHandler_Should_Have_Name_EndingWith_QueryHandler" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QueryHandler_Should_Have_Name_EndingWith_QueryHandler" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.Query_ShouldBeImmutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Query_ShouldBeImmutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.Validator_Should_Have_Name_EndingWith_Validator" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Validator_Should_Have_Name_EndingWith_Validator" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.ApplicationTests.Validators_Should_Not_Be_Public" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Validators_Should_Not_Be_Public" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="DomainTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.DomainTests.BusinessRule_Should_Have_RulePostfix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="BusinessRule_Should_Have_RulePostfix" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.DomainTests.DomainEvent_Should_Be_Immutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainEvent_Should_Be_Immutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.DomainTests.DomainEvent_Should_Have_DomainEventPostfix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainEvent_Should_Have_DomainEventPostfix" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.DomainTests.Domain_Object_Should_Have_Only_Private_Constructors" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Domain_Object_Should_Have_Only_Private_Constructors" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.DomainTests.Entity_Cannot_Have_Reference_To_Other_AggregateRoot" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Entity_Cannot_Have_Reference_To_Other_AggregateRoot" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.DomainTests.Entity_Which_Is_Not_Aggregate_Root_Cannot_Have_Public_Members" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Entity_Which_Is_Not_Aggregate_Root_Cannot_Have_Public_Members" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.DomainTests.ValueObject_Should_Be_Immutable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ValueObject_Should_Be_Immutable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.DomainTests.ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="LayersTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.LayersTests.ApplicationLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ApplicationLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.LayersTests.DomainLayer_DoesNotHaveDependency_ToApplicationLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainLayer_DoesNotHaveDependency_ToApplicationLayer" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.ArchTests.LayersTests.DomainLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DomainLayer_DoesNotHaveDependency_ToInfrastructureLayer" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+        <Rule Match="All">
+          <Property Name="Project" Value="SatisfactoryPlanner.Modules.Production.UnitTests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProcessedItems" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="ProcessedItemTests+DismantleTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProcessedItems.ProcessedItemTests+DismantleTests.CanDismantleProcessedItem" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CanDismantleProcessedItem" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="ProductionLineNameTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineNameTests.NameCannotBeEmpty" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="NameCannotBeEmpty(&quot;&quot;)" />
+                        <Property Name="DisplayName" Value="NameCannotBeEmpty(&quot;  &quot;)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineNameTests.NamesAreCaseInsensitive" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="NamesAreCaseInsensitive" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineNameTests.ValueSet" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ValueSet" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ProductionLineTests+ProcessItemTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+ProcessItemTests.CanProcessItem" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CanProcessItem" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+ProcessItemTests.CanProcessSameItemMultipleTimes" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CanProcessSameItemMultipleTimes" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+ProcessItemTests.CannotProcessItemWhenItsNotAnIngredientOfTheRecipe" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CannotProcessItemWhenItsNotAnIngredientOfTheRecipe" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ProductionLineTests+RenameTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+RenameTests.CanRenameAProductionLine" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CanRenameAProductionLine" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+RenameTests.CanRenameToNameUsedInAnotherWorld" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CanRenameToNameUsedInAnotherWorld" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+RenameTests.CannotRenameToAnExistingNameInWorld" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CannotRenameToAnExistingNameInWorld" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+RenameTests.IgnoreWhenRenamingToCurrentName" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="IgnoreWhenRenamingToCurrentName(&quot;Original Name on Set Up&quot;,&quot;ORIGINAL NAME ON SET UP&quot;)" />
+                        <Property Name="DisplayName" Value="IgnoreWhenRenamingToCurrentName(&quot;Original Name on Set Up&quot;,&quot;Original Name on Set Up&quot;)" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ProductionLineTests+SetUpTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+SetUpTests.CanSetUpAValidProductionLine" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CanSetUpAValidProductionLine" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+SetUpTests.CanUseANameFromAnotherWorld" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CanUseANameFromAnotherWorld" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines.ProductionLineTests+SetUpTests.CannotUseAnExistingNameInWorld" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CannotUseAnExistingNameInWorld" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

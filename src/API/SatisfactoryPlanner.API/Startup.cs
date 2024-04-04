@@ -10,13 +10,13 @@ using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Extensions;
 using SatisfactoryPlanner.API.Configuration.Routing;
 using SatisfactoryPlanner.API.Configuration.Validation;
-using SatisfactoryPlanner.API.Modules.Factories;
+using SatisfactoryPlanner.API.Modules.Production;
 using SatisfactoryPlanner.API.Modules.Resources;
 using SatisfactoryPlanner.API.Modules.UserAccess;
 using SatisfactoryPlanner.API.Modules.Worlds;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
-using SatisfactoryPlanner.Modules.Factories.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
@@ -103,7 +103,7 @@ namespace SatisfactoryPlanner.API
         {
             containerBuilder.RegisterModule(new WorldsAutofacModule());
             containerBuilder.RegisterModule(new ResourcesAutofacModule());
-            containerBuilder.RegisterModule(new FactoriesAutofacModule());
+            containerBuilder.RegisterModule(new ProductionAutofacModule());
             containerBuilder.RegisterModule(new UserAccessAutofacModule());
         }
 
@@ -153,7 +153,7 @@ namespace SatisfactoryPlanner.API
         {
             var executionContextAccessor = container.Resolve<IExecutionContextAccessor>();
 
-            FactoriesStartup.Initialize(
+            ProductionStartup.Initialize(
                 _connectionString,
                 executionContextAccessor,
                 logger

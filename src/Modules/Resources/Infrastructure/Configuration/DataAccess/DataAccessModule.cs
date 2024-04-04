@@ -9,7 +9,7 @@ using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.DataAccess
 {
     /// <summary>
-    ///     Dependency injection setup for Data Access of the Factories module.
+    ///     Dependency injection setup for Data Access of the Production module.
     ///     This registers the classes that handle the database connections for this module.
     ///     Should be called from the module Startup.
     /// </summary>
