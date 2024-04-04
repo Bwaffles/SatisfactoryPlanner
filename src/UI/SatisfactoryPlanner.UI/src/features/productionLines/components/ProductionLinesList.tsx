@@ -1,19 +1,22 @@
 import React from "react";
-import { ProductionLine } from "../types";
+
+import { useGetProductionLines } from "../api/getProductionLines";
 
 export const ProductionLinesList = () => {
-  var productionLines: ProductionLine[] = [
-    // { id: "1", name: "Iron Ingots - Line 1" },
-    // { id: "2", name: "Iron Ingots - Line 2" },
-    // { id: "3", name: "Copper Main - Line 1" },
-    // {
-    //   id: "4",
-    //   name: "A really long production line name to test the layout with really long production line names and it's still not long enough so I'm making it longer",
-    // },
-  ];
+  const {
+    isError,
+    error,
+    isSuccess,
+    data: productionLines,
+  } = useGetProductionLines();
+
+  if (isError) {
+    return <span>Error: {(error as Error).message}</span>;
+  }
+
   return (
     <div className="border-gray-700 border rounded">
-      {productionLines.length > 0 && (
+      {isSuccess && productionLines.length ? (
         <ul>
           {productionLines.map((productionLine) => {
             return (
@@ -32,9 +35,7 @@ export const ProductionLinesList = () => {
             );
           })}
         </ul>
-      )}
-
-      {productionLines.length === 0 && (
+      ) : (
         <div className="text-center py-20">
           <h2 className="font-bold text-lg mb-3">
             There are no production Lines.

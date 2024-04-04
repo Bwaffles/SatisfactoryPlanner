@@ -66,102 +66,92 @@ partial class Build
     // ------------------------------------
 
     const string Modules = "SatisfactoryPlanner.Modules";
+
+    Target BuildModuleIntegrationTests => _ => _
+        .Unlisted()
+        .DependsOn(CreateIntegrationTestDatabase)
+        .Executes(() =>
+        {
+            var projects = Solution.GetProjects($"{Modules}.*.IntegrationTests");
+            foreach (var project in projects)
+            {
+                DotNetBuild(s => s
+                    .SetProjectFile(project)
+                    .DisableNoRestore());
+            }
+        });
+
     const string SatisfactoryPlannerDatabaseEnvName = "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
 
-    const string ResourcesModuleIntegrationTestsProjectName = $"{Modules}.Resources.IntegrationTests";
-
-    Target BuildResourcesModuleIntegrationTests => _ => _
+    Target RunResourcesIntegrationTests => _ => _
         .Unlisted()
-        .DependsOn(CreateIntegrationTestDatabase)
-        .Executes(() =>
-        {
-            var integrationTest = Solution.GetProject(ResourcesModuleIntegrationTestsProjectName);
-
-            DotNetBuild(s => s
-                .SetProjectFile(integrationTest)
-                .DisableNoRestore());
-        });
-
-    Target RunResourcesModuleIntegrationTests => _ => _
-        .Unlisted()
-        .DependsOn(BuildResourcesModuleIntegrationTests)
+        .DependsOn(BuildModuleIntegrationTests)
         .Executes(() =>
         {
             var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
-            var integrationTest = Solution.GetProject(ResourcesModuleIntegrationTestsProjectName);
+
             Environment.SetEnvironmentVariable(
                 SatisfactoryPlannerDatabaseEnvName,
                 databaseConfiguration.ConnectionString);
 
             DotNetTest(s => s
                 .EnableNoBuild()
-                .SetProjectFile(integrationTest));
+                .SetProjectFile(Solution.GetProject($"{Modules}.Resources.IntegrationTests")));
         });
 
-    const string UserAccessModuleIntegrationTestsProjectName = $"{Modules}.UserAccess.IntegrationTests";
-
-    Target BuildUserAccessModuleIntegrationTests => _ => _
+    Target RunUserAccessIntegrationTests => _ => _
         .Unlisted()
-        .DependsOn(CreateIntegrationTestDatabase)
-        .Executes(() =>
-        {
-            var integrationTest = Solution.GetProject(UserAccessModuleIntegrationTestsProjectName);
-
-            DotNetBuild(s => s
-                .SetProjectFile(integrationTest)
-                .DisableNoRestore());
-        });
-
-    Target RunUserAccessModuleIntegrationTests => _ => _
-        .Unlisted()
-        .DependsOn(BuildUserAccessModuleIntegrationTests)
+        .DependsOn(BuildModuleIntegrationTests)
         .Executes(() =>
         {
             var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
-            var integrationTest = Solution.GetProject(UserAccessModuleIntegrationTestsProjectName);
+
             Environment.SetEnvironmentVariable(
                 SatisfactoryPlannerDatabaseEnvName,
                 databaseConfiguration.ConnectionString);
 
             DotNetTest(s => s
                 .EnableNoBuild()
-                .SetProjectFile(integrationTest));
+                .SetProjectFile(Solution.GetProject($"{Modules}.UserAccess.IntegrationTests")));
         });
 
-    const string WorldsModuleIntegrationTestsProjectName = $"{Modules}.Worlds.IntegrationTests";
-
-    Target BuildWorldsModuleIntegrationTests => _ => _
+    Target RunWorldsIntegrationTests => _ => _
         .Unlisted()
-        .DependsOn(CreateIntegrationTestDatabase)
-        .Executes(() =>
-        {
-            var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
-
-            DotNetBuild(s => s
-                .SetProjectFile(integrationTest)
-                .DisableNoRestore());
-        });
-
-    Target RunWorldsModuleIntegrationTests => _ => _
-        .Unlisted()
-        .DependsOn(BuildWorldsModuleIntegrationTests)
+        .DependsOn(BuildModuleIntegrationTests)
         .Executes(() =>
         {
             var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
-            var integrationTest = Solution.GetProject(WorldsModuleIntegrationTestsProjectName);
+
             Environment.SetEnvironmentVariable(
                 SatisfactoryPlannerDatabaseEnvName,
                 databaseConfiguration.ConnectionString);
 
             DotNetTest(s => s
                 .EnableNoBuild()
-                .SetProjectFile(integrationTest));
+                .SetProjectFile(Solution.GetProject($"{Modules}.Worlds.IntegrationTests")));
+        });
+
+    Target RunProductionIntegrationTests => _ => _
+        .Unlisted()
+        .DependsOn(BuildModuleIntegrationTests)
+        .Executes(() =>
+        {
+            var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
+
+            Environment.SetEnvironmentVariable(
+                SatisfactoryPlannerDatabaseEnvName,
+                databaseConfiguration.ConnectionString);
+
+            DotNetTest(s => s
+                .EnableNoBuild()
+                .SetProjectFile(Solution.GetProject($"{Modules}.Production.IntegrationTests")));
         });
 
     Target RunAllIntegrationTests => _ => _
-        .DependsOn(RunResourcesModuleIntegrationTests)
-        .DependsOn(RunUserAccessModuleIntegrationTests)
-        .DependsOn(RunWorldsModuleIntegrationTests)
+        .DependsOn(RunResourcesIntegrationTests)
+        .DependsOn(RunUserAccessIntegrationTests)
+        .DependsOn(RunWorldsIntegrationTests)
+        .DependsOn(RunProductionIntegrationTests)
         .Executes(() =>
         {
 
