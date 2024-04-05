@@ -90,4 +90,11 @@ partial class Build
             while (DevelopmentEnvironmentIsRunning)
                 Thread.Sleep(10);
         });
+
+    /// <summary>
+    ///     Start only the api in a container. Useful when doing front end work and just need to keep the server running.
+    /// </summary>
+    Target StartApiContainer => _ => _
+        .DependsOn(RunDockerCompose)
+        .Executes(() => {});
 }
