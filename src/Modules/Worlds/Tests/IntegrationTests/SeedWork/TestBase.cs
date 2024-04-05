@@ -51,11 +51,13 @@ namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork
 
         private static async Task ClearDatabase(IDbConnection connection)
         {
-            const string sql = "DELETE FROM worlds.inbox_messages;" +
-                               "DELETE FROM worlds.internal_commands;" +
-                               "DELETE FROM worlds.outbox_messages;" +
-                               "DELETE FROM worlds.pioneers;" +
-                               "DELETE FROM worlds.worlds;";
+            var sql = ClearDatabaseSqlGenerator.InSchema("worlds")
+                .ClearTable("inbox_messages")
+                .ClearTable("internal_commands")
+                .ClearTable("outbox_messages")
+                .ClearTable("pioneers")
+                .ClearTable("worlds")
+                .GenerateSql();
 
             await connection.ExecuteScalarAsync(sql);
         }

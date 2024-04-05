@@ -72,10 +72,12 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
              *   resources
              */
 
-            const string sql = "DELETE FROM resources.inbox_messages;" +
-                               "DELETE FROM resources.internal_commands;" +
-                               "DELETE FROM resources.outbox_messages;" +
-                               "DELETE FROM resources.world_nodes;";
+            var sql = ClearDatabaseSqlGenerator.InSchema("resources")
+                .ClearTable("inbox_messages")
+                .ClearTable("internal_commands")
+                .ClearTable("outbox_messages")
+                .ClearTable("world_nodes")
+                .GenerateSql();
 
             await connection.ExecuteScalarAsync(sql);
         }
