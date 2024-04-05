@@ -1,7 +1,7 @@
 import React from "react";
 
-import { ContentLayout } from "@/components/Layout/ContentLayout";
-import { ProductionLinesList } from "@/features/productionLines/components/ProductionLinesList";
+import { ContentLayout } from "components/Layout/ContentLayout";
+import { ProductionLinesList } from "features/productionLines/components/ProductionLinesList";
 
 export const ProductionLines = () => {
   return (

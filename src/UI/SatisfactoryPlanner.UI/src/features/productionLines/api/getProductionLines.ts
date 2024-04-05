@@ -1,10 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useQuery } from "react-query";
 
-import * as Config from "@/config";
-import storage from "@/utils/storage";
+import * as Config from "config";
+import storage from "utils/storage";
 import { ProductionLine } from "../types";
-import { axios } from "@/lib/axios";
+import { axios } from "lib/axios";
 
 export const getProductionLines = async (
   getAccessTokenSilently: any,
