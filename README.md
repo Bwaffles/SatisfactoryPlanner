@@ -36,6 +36,8 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 - autoprefixer && postcss - Used for set up of Tailwind Css
 - [Vite 5.2.8](https://vitejs.dev/) - Build and dev server
 - [zod 3.21.4](https://zod.dev/) - Form validation
+  - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers#zod) - used to get some zod resolvers
+  - [react-hook-form](https://react-hook-form.com/) - Working with forms
 
 ### Backend
 
