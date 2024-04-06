@@ -15,6 +15,7 @@ import { Profile } from "pages/Profile";
 import { ResourceDetails } from "pages/ResourceDetails";
 import { Resources } from "pages/Resources";
 import { WorldNodeDetails } from "pages/WorldNodeDetails";
+import { SetUpProductionLine } from "pages/SetUpProductionLine";
 
 const ProtectedRoute = ({
   component,
@@ -61,6 +62,10 @@ export const AppRoutes = () => {
         <Route
           path="production-lines"
           element={<ProtectedRoute component={ProductionLines} />}
+        />
+        <Route
+          path="production-lines/set-up"
+          element={<ProtectedRoute component={SetUpProductionLine} />}
         />
         <Route path="/loginError" element={<LoginError />} />
         <Route path="*" element={<NoMatch />} />
