@@ -1,13 +1,15 @@
-import React from 'react';
+import React from "react";
 
 interface PageHeaderProps {
-    text: string
+  text: string;
 }
 
 const PageHeader = ({ text }: PageHeaderProps) => {
   return (
-      <h1 className="text-3xl font-bold underline decoration-sky-800 mb-6">{text}</h1>
+    <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl mb-6">
+      {text}
+    </h1>
   );
-}
+};
 
 export default PageHeader;

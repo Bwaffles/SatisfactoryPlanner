@@ -5,43 +5,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 export interface SidebarNavigationItemProps {
-    name: string;
-    to: To;
-    isProtected: boolean;
-    icon: IconDefinition;
+  name: string;
+  to: To;
+  isProtected: boolean;
+  icon: IconDefinition;
 }
 
 const SidebarNavigationItem = ({
-    to,
-    name,
-    isProtected,
-    icon,
+  to,
+  name,
+  isProtected,
+  icon,
 }: SidebarNavigationItemProps) => {
-    const className = ({ isActive }: { isActive: boolean }) => {
-        const baseClasses =
-            "flex items-center p-4 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800";
-        return isActive
-            ? `${baseClasses} bg-gray-700 font-bold`
-            : `${baseClasses}`;
-    };
+  const className = ({ isActive }: { isActive: boolean }) => {
+    const baseClasses =
+      "flex items-center p-4 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-950";
+    return isActive ? `${baseClasses} bg-gray-800 font-bold` : `${baseClasses}`;
+  };
 
-    const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
-    if (isProtected && !isAuthenticated) return null;
+  if (isProtected && !isAuthenticated) return null;
 
-    return (
-        <NavLink
-            to={to}
-            className={className}
-        >
-            <FontAwesomeIcon
-                icon={icon}
-                size="xl"
-                className="mr-2"
-            />
-            {name}
-        </NavLink>
-    );
+  return (
+    <NavLink to={to} className={className}>
+      <FontAwesomeIcon icon={icon} size="xl" className="mr-2" />
+      {name}
+    </NavLink>
+  );
 };
 
 export default SidebarNavigationItem;

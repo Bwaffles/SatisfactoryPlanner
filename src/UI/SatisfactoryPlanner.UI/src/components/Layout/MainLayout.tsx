@@ -6,12 +6,12 @@ import Sidebar from "./Sidebar";
 
 export const MainLayout = () => {
   return (
-    <div className="flex min-h-screen bg-gray-900 text-white">
+    <div className="dark flex min-h-screen bg-background text-foreground">
       <Sidebar />
       <main className="w-full h-full min-h-screen">
         <React.Suspense
           fallback={
-            <div className="flex items-center justify-center -my-4 w-full h-full min-h-screen bg-gray-900">
+            <div className="flex items-center justify-center w-full h-full min-h-screen">
               <Spinner size="xl" />
             </div>
           }
