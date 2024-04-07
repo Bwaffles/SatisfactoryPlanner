@@ -38,6 +38,11 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 - [zod 3.21.4](https://zod.dev/) - Form validation
   - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers#zod) - used to get some zod resolvers
   - [react-hook-form](https://react-hook-form.com/) - Working with forms
+- UI Framework
+  - class-variance-authority - create variances for components
+  - clsx - Help merge classes from variables
+  - tailwind-merge - Merge tailwind css classes so there aren't any duplicates
+  - tailwindcss-animate
 
 ### Backend
 
@@ -198,3 +203,7 @@ So I like the idea of referencing the entire extractor on the WorldNode, but not
 ### Vite
 
 Originally the ui project was created using create react app, but it's since been abandoned and won't be updated anymore. I was getting more and more warnings from package vulnerabilities that I couldn't fix. I decided I'd migrate from CRA to Vite and using https://www.freecodecamp.org/news/how-to-migrate-from-create-react-app-to-vite/ I was able to do the migration in less than an hour. I was debating between Vite and a framework like Next.js. While I'm not necessarily against Next.js, it seemed like a lot of extra that I didn't immediately need. My main issue to solve was getting rid of the vulnerabilies. There is an article in the Next.js docs that describes how to migrate from Vite so if I ever need some new features I can just follow that and migrate again. For now, Vite it is.
+
+### UI Framework
+
+I'm using [Shadcn](https://ui.shadcn.com) and TailwindCSS for my components and styling. Shadcn I'm using the gray theme and I'm manually installing the components as needed.

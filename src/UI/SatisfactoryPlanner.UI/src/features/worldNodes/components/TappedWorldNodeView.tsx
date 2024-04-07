@@ -126,8 +126,8 @@ function renderExtractor(
           );
         })}
         <Button
-          variant="secondary"
-          title="Dismantle the current extractor to stop tapping this node."
+          variant="destructive"
+          title="Dismantle the current extractor and stop tapping this node."
           isLoading={dismantleExtractorMutation.isLoading}
           onClick={() => {
             dismantleExtractorMutation.mutate({
@@ -165,7 +165,7 @@ function renderExtractionRate(
       <input
         type="text"
         className={
-          "p-2 pr-0 w-24 text-right border border-solid bg-gray-700 border-gray-600 text-gray-200 " +
+          "h-10 p-2 pr-0 w-24 text-right border border-solid bg-gray-700 border-gray-600 text-gray-200 " +
           (canDecreaseRate ? "border-x-0" : "border-r-0 rounded-l")
         }
         value={formatNumber(worldNodeDetails.extractionRate)}
@@ -173,7 +173,7 @@ function renderExtractionRate(
       />
       <span
         className={
-          "p-2 text-xs whitespace-nowrap leading-6 border border-solid bg-gray-700 border-gray-600 text-gray-400 " +
+          "h-10 p-2 text-xs whitespace-nowrap leading-6 border border-solid bg-gray-700 border-gray-600 text-gray-400 " +
           (canIncreaseRate ? "border-x-0" : "border-l-0 rounded-r")
         }
       >

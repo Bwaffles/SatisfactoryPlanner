@@ -15,12 +15,14 @@ import {
   Button,
   Input,
 } from "components/Elements";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Required." }),
 });
 
 export const SetUpProductionLine = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,7 +56,14 @@ export const SetUpProductionLine = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Set Up</Button>
+          <Button>Set Up</Button>
+          <Button
+            variant="outline"
+            className="ml-3"
+            onClick={() => navigate(`/production-lines`)}
+          >
+            Cancel
+          </Button>
         </form>
       </Form>
     </ContentLayout>

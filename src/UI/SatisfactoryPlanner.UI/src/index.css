@@ -30,6 +30,7 @@
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
+    --destructive-error: 0 84.2% 60.2%;
 
     --ring: 224 71.4% 4.1%;
 
@@ -52,9 +53,11 @@
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
 
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
+    /* Primary colors for <Button /> */
+    --primary: 202 80% 24%;
+    --primary-foreground: 210 20% 98%;
 
+    /* Secondary colors for <Button /> */
     --secondary: 215 27.9% 16.9%;
     --secondary-foreground: 210 20% 98%;
 
@@ -63,6 +66,7 @@
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;
+    --destructive-error: 0 84% 60%; /* For accessibility, this reads better for error text */
 
     --ring: 202, 80%, 24%;
   }

@@ -84,7 +84,7 @@ export const IncreaseWorldNodeExtractionRate = () => {
             );
           })}
         >
-          <div className="p-6 bg-gray-800 rounded w-1/2 grid grid-cols-2 gap-y-6">
+          <div className="py-6 w-1/2 grid grid-cols-2 gap-y-6">
             <FieldWrapper label="Current Extraction Rate" className="col-auto">
               <div className="flex">
                 <div className={"text-xl font-bold"}>
@@ -137,12 +137,11 @@ export const IncreaseWorldNodeExtractionRate = () => {
               </div>
             )}
             <div className="col-span-2">
-              <Button className="rounded-r mr-3" type="submit">
+              <Button className="mr-3" type="submit">
                 Increase
               </Button>
               <Button
-                variant="secondary"
-                className="rounded-r"
+                variant="outline"
                 onClick={() => navigate(`/nodes/${nodeId}`)}
               >
                 Cancel
