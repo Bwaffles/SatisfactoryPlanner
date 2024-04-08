@@ -1,8 +1,11 @@
 using Dapper;
 using Npgsql;
 using NSubstitute;
+using SatisfactoryPlanner.BuildingBlocks.Application;
+using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
+using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine;
 using SatisfactoryPlanner.Modules.Production.Infrastructure;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration;
 using Serilog;
@@ -54,6 +57,20 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork
 
         //    return OutboxMessagesHelper.Deserialize<T>(messages.Last());
         //}
+
+        protected static void AssertInvalidCommand(AsyncTestDelegate testDelegate)
+        {
+            var message = $"Expected invalid command.";
+            Assert.CatchAsync<InvalidCommandException>(testDelegate, message);
+        }
+
+        protected static void AssertBrokenRule<TRule>(AsyncTestDelegate testDelegate)
+            where TRule : class, IBusinessRule
+        {
+            var message = $"Expected {typeof(TRule).Name} broken rule.";
+            var businessRuleValidationException = Assert.CatchAsync<BusinessRuleValidationException>(testDelegate, message);
+            businessRuleValidationException?.BrokenRule.Should().BeOfType<TRule>(message);
+        }
 
         [TearDown]
         public void AfterEachTest()

@@ -12,6 +12,14 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProductionLines
 
         public ProductionLineId Id { get; }
 
+        // ReSharper disable once UnusedMember.Local
+        private ProductionLine()
+        { /* Only for EF. */
+            _worldId = default!;
+            _name = default!;
+            Id = default!;
+        }
+
         private ProductionLine(WorldId worldId, ProductionLineName name, IProductionLineCounter productionLineCounter)
         {
             CheckRule(new ProductionLineNameMustBeUniqueRule(worldId, name, productionLineCounter));

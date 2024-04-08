@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Application.Outbox;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.InternalCommands;
 using SatisfactoryPlanner.Modules.Production.Domain.Factories;
+using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines;
 
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure
 {
@@ -11,6 +12,8 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure
         private readonly ILoggerFactory _loggerFactory;
 
         public DbSet<Factory> Factories { get; set; }
+
+        public DbSet<ProductionLine> ProductionLines { get; set; }
 
         public DbSet<InternalCommand> InternalCommands { get; set; }
 

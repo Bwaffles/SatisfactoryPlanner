@@ -2,6 +2,7 @@
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.DataAccess;
+using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Domain;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.EventsBus;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Logging;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Mediation;
@@ -46,6 +47,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
 
             var loggerFactory = new SerilogLoggerFactory(logger);
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
+            containerBuilder.RegisterModule(new DomainModule());
             containerBuilder.RegisterModule(new ProcessingModule());
             containerBuilder.RegisterModule(new EventsBusModule());
             containerBuilder.RegisterModule(new MediatorModule());

@@ -1,4 +1,5 @@
 ﻿using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLines;
+using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine;
 using SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork;
 
 namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProductionLines
@@ -8,13 +9,23 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProductionLine
     {
         // Happy path tests
         [Test]
-        public async Task WhenDataIsValid_IsSuccessful()
+        public async Task CanFilterByWorld()
         {
-            // TODO test that world filter is working once I can set up new production lines
-            var worldId = Guid.NewGuid();
-            var productionLines = (await ProductionModule.ExecuteQueryAsync(new GetProductionLinesQuery(worldId)));
+            var world1 = Guid.NewGuid();
+            await ProductionModule.ExecuteCommandAsync(new SetUpProductionLineCommand(world1, "World 1 Rocky Desert Iron Ingots - Line 1"));
 
-            productionLines.Should().BeEmpty();
+            var world2 = Guid.NewGuid();
+            await ProductionModule.ExecuteCommandAsync(new SetUpProductionLineCommand(world2, "World 2 Rocky Desert Iron Ingots - Line 1"));
+
+            var world1ProductionLines = (await ProductionModule.ExecuteQueryAsync(new GetProductionLinesQuery(world1)));
+
+            var world1ProductionLine = world1ProductionLines.Single();
+            world1ProductionLine.Name.Should().Be("World 1 Rocky Desert Iron Ingots - Line 1");
+
+            var world2ProductionLines = (await ProductionModule.ExecuteQueryAsync(new GetProductionLinesQuery(world2)));
+
+            var world2ProductionLine = world2ProductionLines.Single();
+            world2ProductionLine.Name.Should().Be("World 2 Rocky Desert Iron Ingots - Line 1");
         }
     }
 }

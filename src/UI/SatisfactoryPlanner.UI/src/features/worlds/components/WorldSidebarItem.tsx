@@ -15,11 +15,11 @@ export const WorldSidebarItem = () => {
     storage.setWorldId(currentWorld.id);
 
     return (
-      <div className="flex items-center p-4 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-800 cursor-pointer select-none">
+      <div className="flex items-center p-4 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:bg-sky-950 cursor-pointer select-none">
         <FontAwesomeIcon icon={faGlobeAmericas} size="xl" className="mr-2" />
         <div>
           <div className="font-bold">Current World</div>
-          <div className="text-gray-400 text-sm font-semibold">
+          <div className="text-muted-foreground text-sm font-semibold">
             {currentWorld.name}
           </div>
         </div>

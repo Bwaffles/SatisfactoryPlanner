@@ -15,5 +15,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProductionLines
         }
 
         public static ProductionLineName As(CaseInsensitiveString value) => new(value);
+
+        public override string ToString() => Value.ToString();
     }
 }
