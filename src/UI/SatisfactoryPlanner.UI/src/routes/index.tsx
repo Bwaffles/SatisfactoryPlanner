@@ -32,39 +32,39 @@ export const AppRoutes = () => {
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route
-          path="profile"
+          path="/profile"
           element={<ProtectedRoute component={Profile} />}
         />
         <Route
-          path="resources"
+          path="/resources"
           element={<ProtectedRoute component={Resources} />}
         />
         <Route
-          path="resources/:resourceId"
+          path="/resources/:resourceId"
           element={<ProtectedRoute component={ResourceDetails} />}
         />
         <Route
-          path="nodes/:nodeId"
+          path="/nodes/:nodeId"
           element={<ProtectedRoute component={WorldNodeDetails} />}
         />
         <Route
-          path="nodes/:nodeId/increase-extraction-rate"
+          path="/nodes/:nodeId/increase-extraction-rate"
           element={
             <ProtectedRoute component={IncreaseWorldNodeExtractionRate} />
           }
         />
         <Route
-          path="nodes/:nodeId/decrease-extraction-rate"
+          path="/nodes/:nodeId/decrease-extraction-rate"
           element={
             <ProtectedRoute component={DecreaseWorldNodeExtractionRate} />
           }
         />
         <Route
-          path="production-lines"
+          path="/production-lines"
           element={<ProtectedRoute component={ProductionLines} />}
         />
         <Route
-          path="production-lines/set-up"
+          path="/production-lines/set-up"
           element={<ProtectedRoute component={SetUpProductionLine} />}
         />
         <Route path="/loginError" element={<LoginError />} />
