@@ -1,34 +1,8 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query";
 
-import * as Config from "config";
-import { axios } from "lib/axios";
+import { useApi } from "lib/api";
 import { queryClient } from "lib/react-query";
 import storage from "utils/storage";
-
-const tapWorldNode = async (
-  getAccessTokenSilently: any,
-  worldId: string,
-  nodeId: string,
-  extractorId: string
-): Promise<string> => {
-  const baseUrl = Config.API_URL;
-  const accessToken = await getAccessTokenSilently({
-    audience: baseUrl,
-  });
-
-  return axios.post(
-    `/worlds/${worldId}/nodes/${nodeId}/tap`,
-    {
-      extractorId,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-};
 
 type TapWorldNodeRequest = {
   nodeId: string;
@@ -36,10 +10,10 @@ type TapWorldNodeRequest = {
 };
 
 export const useTapWorldNode = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const api = useApi();
   const worldId = storage.getWorldId();
 
-  return useMutation({
+  return useMutation<string, unknown, TapWorldNodeRequest>({
     onSuccess: () => {
       // Invalidating queries that show whether a node has been tapped or not
 
@@ -51,13 +25,10 @@ export const useTapWorldNode = () => {
         queryKey: ["getWorldNodeDetails"],
       });
     },
-    mutationFn: (variables: TapWorldNodeRequest) => {
-      return tapWorldNode(
-        getAccessTokenSilently,
-        worldId,
-        variables.nodeId,
-        variables.extractorId
-      );
+    mutationFn: (variables) => {
+      return api.post(`/worlds/${worldId}/nodes/${variables.nodeId}/tap`, {
+        extractorId: variables.extractorId,
+      });
     },
   });
 };

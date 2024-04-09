@@ -12,7 +12,7 @@ import {
   DecreaseWorldNodeExtractionRateRequest,
   useDecreaseWorldNodeExtractionRate,
 } from "features/worldNodes/api/decreaseWorldNodeExtractionRate";
-import { ErrorResponse } from "lib/axios";
+import { ErrorResponse } from "lib/api";
 import { formatNumber } from "utils/format";
 
 export const DecreaseWorldNodeExtractionRate = () => {

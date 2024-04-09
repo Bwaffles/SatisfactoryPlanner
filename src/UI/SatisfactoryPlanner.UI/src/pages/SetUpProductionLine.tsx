@@ -17,14 +17,15 @@ import {
   Input,
 } from "components/Elements";
 import { useSetUpProductionLine } from "features/productionLines/api/setUpProductionLine";
-import { ErrorResponse } from "lib/axios";
+import { ErrorResponse } from "lib/api";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Required." }),
 });
 
 export const SetUpProductionLine = () => {
-  const [errorMessages, setErrorMessages] = useState<string[] | null>(null);
+  const [setUpErrorResponse, setSetUpErrorResponse] =
+    useState<ErrorResponse | null>(null);
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,7 +42,7 @@ export const SetUpProductionLine = () => {
       },
       {
         onSuccess: () => navigate(`/production-lines`, { replace: true }), // TODO return id of line and go to details page
-        onError: (error) => setErrorMessages((error as ErrorResponse).messages),
+        onError: (error) => setSetUpErrorResponse(error),
       }
     );
   }
@@ -66,9 +67,9 @@ export const SetUpProductionLine = () => {
               </FormItem>
             )}
           />
-          {errorMessages != null && (
+          {setUpErrorResponse != null && (
             <div>
-              {errorMessages.map((message) => {
+              {setUpErrorResponse.messages.map((message) => {
                 return (
                   <p
                     key={message}

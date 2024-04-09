@@ -8,6 +8,7 @@ import { getCurrentUser } from "features/users/api/getCurrentUser";
 import { createCurrentUser } from "features/users/api/createCurrentUser";
 import { getCurrentPioneerWorlds } from "features/worlds/api/getCurrentPioneerWorlds";
 import { CurrentPioneerWorld } from "features/worlds/types";
+import { useApi } from "lib/api";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export const Login = () => {
 };
 
 const useLogin = () => {
+  const api = useApi();
   const { getAccessTokenSilently, user } = useAuth0();
   const auth0UserId = user!.sub!;
 
@@ -49,7 +51,7 @@ const useLogin = () => {
     // Polling to see if the spawn pioneer process has finished--it should take around 4-5 seconds to complete
     // TODO better polling.
     const currentWorlds = await poll({
-      fn: () => getCurrentPioneerWorlds(getAccessTokenSilently),
+      fn: () => getCurrentPioneerWorlds(api),
       validate: (worlds: CurrentPioneerWorld[]) => worlds.length,
       interval: 3000,
       maxAttempts: 10,
