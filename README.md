@@ -1,8 +1,6 @@
-# SatisfactoryPlanner
+# How to Use
 
-## How to Use
-
-### Database Migrations
+## Database Migrations
 
 From the root folder, run `dotnet run --project src/Database/DatabaseMigrator/ [debug|release] [serverConnectionString] [connectionString]` to start the interactive migration app during development.
 
@@ -17,17 +15,17 @@ Note: On local dev you can just run `dotnet run --project src/Database/DatabaseM
 - "Server": [serverConnectionString]
 - "SatisfactoryPlanner": [connectionString]
 
-### Run Integration Tests
+## Run Integration Tests
 
 Run `Nuke RunAllIntegrationTests`. You need to have `Docker Desktop` running for the database container to be created.
 
-### Run Client App
+## Run Client App
 
 From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 
-## Technology
+# Technology
 
-### UI
+## UI
 
 - [React 18.1.0](https://reactjs.org/)
 - [Typescript 4.6.4](https://www.typescriptlang.org/)
@@ -44,7 +42,7 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
   - tailwind-merge - Merge tailwind css classes so there aren't any duplicates
   - tailwindcss-animate
 
-### Backend
+## Backend
 
 - [Autofac](https://autofac.org/) - inversion of Control Container
 - [Dapper](https://github.com/DapperLib/Dapper) - micro ORM for read models
@@ -56,40 +54,59 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 - [Microsoft.AspNetCore.Authentication.JwtBearer](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) - jwt bearer token for authentication
 - [EF Core 7](https://learn.microsoft.com/en-us/ef/core/) - ORM for write models
 
-## UI
+# Front End
 
-Design methodology is to use task based UI.
+The front end consists of a React SPA built with Vite, deployed on Vercel.
+
+The design methodology is to use task based UI.
 
 - https://codeopinion.com/decomposing-crud-to-a-task-based-ui/
 
-## Backend
+## Vite
+
+Originally the ui project was created using create react app, but it's since been abandoned and won't be updated anymore. I was getting more and more warnings from package vulnerabilities that I couldn't fix. I decided I'd migrate from CRA to Vite and using https://www.freecodecamp.org/news/how-to-migrate-from-create-react-app-to-vite/ I was able to do the migration in less than an hour. I was debating between Vite and a framework like Next.js. While I'm not necessarily against Next.js, it seemed like a lot of extra that I didn't immediately need. My main issue to solve was getting rid of the vulnerabilies. There is an article in the Next.js docs that describes how to migrate from Vite so if I ever need some new features I can just follow that and migrate again. For now, Vite it is.
+
+## UI Framework
+
+I'm using [Shadcn](https://ui.shadcn.com) and TailwindCSS for my components and styling. Shadcn I'm using the gray theme and I'm manually installing the components as needed.
+
+# Back End
 
 - Using a Module Monolithic architecture where the application is broken down into separate independent modules but is all deployed in a single executable.
 - The design methodology is Domain Driven Design.
 - Each module is designed using clean architecture.
 
-### Intent Based API
+## API
 
 Using intent based API instead of the typical CRUD Rest API since this application is using CQRS architecture. So intead of a generic edit factory method, you would have commands to edit specific pieces of information about that factory.
 
-Because of this, most API will be either a GET or POST request. There's a good argument that endpoints such as `worlds/worldId/nodes/nodeId/increase-extraction-rate` could be a PATCH because it's just updating a small piece of a world node, but the thinking here is that increase-extraction-rate is the resource and the resource is a command. We're not exposing the resource so that it can be Created, Updated, or Deleted, we're providing explicit actions that can be performed. If the client wants to change information about the worldNode, we'll provide specific end points of all the available actions instead of leaving it up to the client to figure out what combination of fields can be changed and when.
+API will either be a GET or a POST request. There's a good argument that endpoints such as `worlds/worldId/nodes/nodeId/increase-extraction-rate` could be a PATCH because it's just updating a small piece of a world node, but the thinking here is that increase-extraction-rate is the resource and the resource is a command. We're not exposing the resource so that it can be Created, Updated, or Deleted, we're providing explicit actions that can be performed. If the client wants to change information about the worldNode, we'll provide specific end points of all the available actions instead of leaving it up to the client to figure out what combination of fields can be changed and when.
 
 - https://codeopinion.com/is-a-rest-api-with-cqrs-possible/
 - https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling
 - https://techblog.pointsbet.com/a-structured-approach-to-designing-intent-based-apis-910ed1fc78f2
 
-#### Authorization
+### Authorization
+
+#### Permissions
 
 All routes need to be decorated with either `NoPermissionRequired` or `HasPermission` attribute. `NoPermissionRequired` marks a route as one that is accessible to all roles, typically this is reserved for `@me` routes since you will always have permission to access your own data. `HasPermission` requires you to state the name of the permission. The user making the request must have a role with the given permission or they will get a `403 Forbidden` error.
 
-#### GET
+#### World Authorization
 
-200, 204, or 404 when the item wasn't found? I researched this for hours and I'm going to make the final decision (for now) indicated below:
+Any route that is accessing data specific to a world needs to be decorated with `WorldAuthorization` attribute. This ensures that the logged in user has access to the given world. Typically I've been putting the world in the route itself like `worlds/worldId/production-lines`. If the user making the request doesn't have access to that world they will get a `403 Forbidden` error.
 
-- If pioneer is found at `/pioneers/9`, return `200 Ok`.
-- If pioneer is found at `/pioneers?id=9`, return `200 Ok`.
-- If no pioneer is found at `/pioneers/9`, return `404 Not Found`.
-- If no pioneer is found at `/pioneers?id=9`, return `204 No Content`.
+### GET
+
+Allowed return codes are 200, 204, 404. Example of possible scenarios:
+
+- `200 Ok` with content in body of the response
+  - End point like `/pioneers/9` and pioneer is found
+  - End point like `/pioneers?id=9` and pioneer is found
+- `204 No Content`
+  - End point like `/pioneers?id=9` and no pioneer is found.
+- `404 Not Found`
+  - End point like `/pioneers/9` and no pioneer is found.
 
 Reasoning being that `/pioneers/9` is a resource and the resource does not exist. There is no such thing as pioneer 9. How did you even get that url? However, if you call the pioneers collection and you want to filter to only pioneers with id of 9, then the resource of pioneers does exist but your search yielded no results.
 
@@ -97,24 +114,26 @@ Reasoning being that `/pioneers/9` is a resource and the resource does not exist
 - https://stackoverflow.com/a/61049975
 - FYI dissenting opinion https://jsonapi.org/format/#fetching-resources-responses I think the docs are up to interpretation. On the surface it seems to say to always use `200 Ok` and return null. But I think reading it deeper it means more like return `200 Ok` if pioneer 9 exists but there is no data there.
 
-#### POST
+### POST
 
-`200 Ok` - When the request completes successfully and there is data to be returned. The data will be returned in the body of the response.
-`204 No Content` - When the request completes successfully and there is no data to be returned.
+All commands will be be treated as POST because the command itself is the resource.
 
-## Validation
+- `200 Ok` - When the request completes successfully and there is data to be returned. The data will be returned in the body of the response.
+- `204 No Content` - When the request completes successfully and there is no data to be returned.
+
+# Validation
 
 I use 3 levels of validation in this order: UI, Request, and Domain.
 
-### UI
+## UI
 
 TODO
 
-### Request
+## Request
 
 These are validations performed on Commands and Queries before the Handler will execute. These validations are very simple and do not involve any system data, other than what is provided in the request. For example, checking that an Id it not empty.
 
-### Domain
+## Domain
 
 TODO
 
@@ -122,11 +141,11 @@ TODO
 
 Domain events are added to entities whenever an action has been performed. Domain events are published at 2 different stages of the transaction. You can handle a domain event within a transaction so that you can ensure the entire transaction completes together, or you can handle it outside the transaction if it's not critical or dependent on some third party integration.
 
-### Inside Transaction
+## Inside Transaction
 
 To handle a domain event within the transaction, create a `XDomainEventHandler` that inherits from `INotificationHandler<XDomainEvent>`. Perform your changes to the domain and it will be saves together with the changes that initiated the domain event when the unit of work has finished.
 
-### Outside Transaction
+## Outside Transaction
 
 To handle a domain event outside a transaction, create a `XNotification` that inherits from `DomainNotificationBase<XDomainEvent>`. The notifications are registerd in the module startup class to be processed in the outbox of the module. They will be serialized and saved in the `outbox_messages` table in the module's schema. The quartz scheduler watches this table and runs the `ProcessOutboxCommandHandler` that reads unprocessed messages and executes any handlers that inherit from `INotificationHandler<XNotification>`.
 
@@ -140,17 +159,17 @@ You can also trigger an integration event if you need other modules to be able t
 
 Modules can subscribe to events in their Startup EventBusModule. This creates handlers that will load the event into the modules inbox_messages table. There is a job running called `ProcessInboxCommandHandler` that reads unprocessed messages and executes any handlers for that messages.
 
-## Domain
+# Domain
 
-### Entities
+## Entities
 
-#### Identity
+## Identity
 
 All entities have strongly typed ids following the advice in https://andrewlock.net/using-strongly-typed-entity-ids-to-avoid-primitive-obsession-part-1/. Ids are generated by the entity on creation. This approach allows the ownership of the id to stay within the entity and ignores whatever method of persistance is used. Ids are always get only properties.
 
 This extra overhead provides us with the benefit of compile type protection that we don't pass the wrong type of id into a method. If you had a method that accepted 2 ids from different entities and both ids were GUIDs then you could mistakenly pass the parameters in the wrong order and the compiler wouldn't know the difference. You would hopefully get test failures, or runtime failures but that's a lot later in the cycle. If you instead created WorldId and NodeId and used those instead of passing GUIDs around the domain you would get a compiler error when you try to pass in a NodeId for a WorldId.
 
-### Nodes
+## Nodes
 
 I've gone back and forth probably 5 times now on how this should be implemented. Ideally, you would expect to have a Node object that's your aggregate root and you would Tap, IncreaseExtractionRate etc. However the Node is also an entity with a specific location in the world. This Node is the same for all pioneers so the Node is more like a Node reference. When a new World is created, it should have all the Nodes as untapped. You can think of it as every world has its own copy of the nodes. I ended up with 2 options for implementing this:
 
@@ -197,13 +216,3 @@ So I like the idea of referencing the entire extractor on the WorldNode, but not
 - Update references to use code instead of id
 - Change Extractor from an entity to a value object with the 4 subclasses
 - Replace all access to extractors from the database table to use the ExtractorFactory
-
-## Frontend
-
-### Vite
-
-Originally the ui project was created using create react app, but it's since been abandoned and won't be updated anymore. I was getting more and more warnings from package vulnerabilities that I couldn't fix. I decided I'd migrate from CRA to Vite and using https://www.freecodecamp.org/news/how-to-migrate-from-create-react-app-to-vite/ I was able to do the migration in less than an hour. I was debating between Vite and a framework like Next.js. While I'm not necessarily against Next.js, it seemed like a lot of extra that I didn't immediately need. My main issue to solve was getting rid of the vulnerabilies. There is an article in the Next.js docs that describes how to migrate from Vite so if I ever need some new features I can just follow that and migrate again. For now, Vite it is.
-
-### UI Framework
-
-I'm using [Shadcn](https://ui.shadcn.com) and TailwindCSS for my components and styling. Shadcn I'm using the gray theme and I'm manually installing the components as needed.
