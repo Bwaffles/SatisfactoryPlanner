@@ -1,41 +1,18 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query";
 
-import * as Config from "config";
-import { axios } from "lib/axios";
+import { useApi } from "lib/api";
 import { queryClient } from "lib/react-query";
 import storage from "utils/storage";
-
-const dismantleExtractor = async (
-  getAccessTokenSilently: any,
-  worldId: string,
-  nodeId: string
-): Promise<string> => {
-  const baseUrl = Config.API_URL;
-  const accessToken = await getAccessTokenSilently({
-    audience: baseUrl,
-  });
-
-  return axios.post(
-    `/worlds/${worldId}/nodes/${nodeId}/dismantle-extractor`,
-    null,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-};
 
 type DismantleExtractorRequest = {
   nodeId: string;
 };
 
 export const useDismantleExtractor = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const api = useApi();
   const worldId = storage.getWorldId();
 
-  return useMutation({
+  return useMutation<string, unknown, DismantleExtractorRequest>({
     onSuccess: () => {
       // Invalidating queries that show whether a node has been tapped or not
 
@@ -48,10 +25,9 @@ export const useDismantleExtractor = () => {
       });
     },
     mutationFn: (variables: DismantleExtractorRequest) => {
-      return dismantleExtractor(
-        getAccessTokenSilently,
-        worldId,
-        variables.nodeId
+      return api.post(
+        `/worlds/${worldId}/nodes/${variables.nodeId}/dismantle-extractor`,
+        null
       );
     },
   });

@@ -1,30 +1,8 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query";
 
-import * as Config from "config";
 import { queryClient } from "lib/react-query";
 import storage from "utils/storage";
-import { axios } from "lib/axios";
-
-const decreaseWorldNodeExtractionRate = async (
-  getAccessTokenSilently: any,
-  worldId: string,
-  request: DecreaseWorldNodeExtractionRateRequest
-): Promise<string> => {
-  const accessToken = await getAccessTokenSilently({
-    audience: Config.API_URL,
-  });
-
-  return axios.post(
-    `/worlds/${worldId}/nodes/${request.nodeId}/decrease-extraction-rate`,
-    request.data,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-};
+import { useApi } from "lib/api";
 
 export type DecreaseWorldNodeExtractionRateRequest = {
   nodeId: string;
@@ -34,10 +12,10 @@ export type DecreaseWorldNodeExtractionRateRequest = {
 };
 
 export const useDecreaseWorldNodeExtractionRate = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const api = useApi();
   const worldId = storage.getWorldId();
 
-  return useMutation({
+  return useMutation<string, unknown, DecreaseWorldNodeExtractionRateRequest>({
     onSuccess: () => {
       // Invalidating queries that show extraction rates
 
@@ -51,10 +29,9 @@ export const useDecreaseWorldNodeExtractionRate = () => {
       });
     },
     mutationFn: (variables: DecreaseWorldNodeExtractionRateRequest) => {
-      return decreaseWorldNodeExtractionRate(
-        getAccessTokenSilently,
-        worldId,
-        variables
+      return api.post(
+        `/worlds/${worldId}/nodes/${variables.nodeId}/decrease-extraction-rate`,
+        variables.data
       );
     },
   });

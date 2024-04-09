@@ -1,30 +1,14 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useQuery } from "react-query";
 
-import * as Config from "config";
 import storage from "utils/storage";
 import { Resource } from "../types";
-import { axios } from "lib/axios";
-
-export const getResources = async (
-  getAccessTokenSilently: any,
-  worldId: string
-): Promise<Resource[]> => {
-  const accessToken = await getAccessTokenSilently({
-    audience: Config.API_URL,
-  });
-  return axios.get(`/worlds/${worldId}/resources`, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-};
+import { useApi } from "lib/api";
 
 export const useGetResources = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const api = useApi();
   const worldId = storage.getWorldId();
-  return useQuery({
+  return useQuery<Resource[]>({
     queryKey: ["getResources"],
-    queryFn: () => getResources(getAccessTokenSilently, worldId),
+    queryFn: () => api.get(`/worlds/${worldId}/resources`),
   });
 };

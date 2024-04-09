@@ -1,28 +1,19 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useQuery } from "react-query";
 
-import * as Config from "config";
 import { CurrentPioneerWorld } from "../types";
-import { axios } from "lib/axios";
+import { useApi } from "lib/api";
+import { AxiosInstance } from "axios";
 
 export const getCurrentPioneerWorlds = async (
-  getAccessTokenSilently: any
+  api: AxiosInstance
 ): Promise<CurrentPioneerWorld[]> => {
-  const accessToken = await getAccessTokenSilently({
-    audience: Config.API_URL,
-  });
-
-  return axios.get("/worlds/worlds/@me", {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+  return api.get("/worlds/worlds/@me");
 };
 
 export const useCurrentPioneerWorlds = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const api = useApi();
   return useQuery({
     queryKey: ["getCurrentPioneersWorlds"],
-    queryFn: () => getCurrentPioneerWorlds(getAccessTokenSilently),
+    queryFn: () => getCurrentPioneerWorlds(api),
   });
 };
