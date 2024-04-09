@@ -10,11 +10,19 @@ export type SetUpProductionLineRequest = {
   };
 };
 
+export type SetUpProductionLineResponse = {
+  productionLineId: string;
+};
+
 export const useSetUpProductionLine = () => {
   const api = useApi();
   const worldId = storage.getWorldId();
 
-  return useMutation<string, ErrorResponse, SetUpProductionLineRequest>({
+  return useMutation<
+    SetUpProductionLineResponse,
+    ErrorResponse,
+    SetUpProductionLineRequest
+  >({
     onSuccess: () => {
       queryClient.invalidateQueries("getProductionLines");
     },

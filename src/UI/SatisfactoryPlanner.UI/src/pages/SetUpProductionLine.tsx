@@ -41,7 +41,10 @@ export const SetUpProductionLine = () => {
         data: values,
       },
       {
-        onSuccess: () => navigate(`/production-lines`, { replace: true }), // TODO return id of line and go to details page
+        onSuccess: (response) =>
+          navigate(`/production-lines/${response.productionLineId}`, {
+            replace: true,
+          }),
         onError: (error) => setSetUpErrorResponse(error),
       }
     );
