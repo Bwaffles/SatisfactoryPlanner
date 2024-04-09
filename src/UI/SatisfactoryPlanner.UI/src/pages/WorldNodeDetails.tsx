@@ -45,7 +45,7 @@ export const WorldNodeDetails = () => {
   return (
     <ContentLayout title={nodeName}>
       <h2 className="text-xl font-bold mb-6">Node Details</h2>
-      <div className="flex flex-wrap gap-x-12 gap-y-4 p-6 w-fit bg-gray-800 rounded mb-6">
+      <div className="flex flex-wrap gap-x-12 gap-y-4 p-6 w-fit bg-gray-900 rounded mb-6">
         <FieldWrapper label="Purity">
           <div className={"text-xl font-bold " + purityTextColor}>
             {worldNodeDetails!.purity}

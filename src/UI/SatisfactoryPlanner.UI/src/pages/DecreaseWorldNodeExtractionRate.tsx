@@ -95,12 +95,12 @@ export const DecreaseWorldNodeExtractionRate = () => {
                 <input
                   id="extractionRate"
                   type="text"
-                  className="p-2 pr-0 w-24 text-right rounded-l border border-r-0 border-solid bg-gray-800 border-gray-600 text-gray-200 focus:outline-none outline-none"
+                  className="p-2 pr-0 w-24 text-right rounded-l border border-r-0 border-solid bg-gray-950 border-gray-600 text-gray-200 focus:outline-none outline-none"
                   {...methods.register("extractionRate", {
                     valueAsNumber: true,
                   })}
                 />
-                <span className="p-2 text-xs leading-6 rounded-r border border-l-0 border-solid bg-gray-800 border-gray-600 text-gray-400">
+                <span className="p-2 text-xs leading-6 rounded-r border border-l-0 border-solid bg-gray-950 border-gray-600 text-gray-400">
                   per min
                 </span>
               </div>
