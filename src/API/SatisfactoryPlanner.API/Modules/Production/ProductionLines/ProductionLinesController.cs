@@ -14,7 +14,7 @@ namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines
     public class ProductionLinesController(IProductionModule module) : ControllerBase
     {
         /// <summary>
-        ///     Get the production lines set up in the world.
+        ///     Get the production lines in the world.
         /// </summary>
         /// <response code="200">
         ///     Returns results as a list of <see cref="ProductionLineDto" />.
@@ -37,7 +37,7 @@ namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines
         ///     Returns results as a <see cref="ProductionLineDetailsDto" />.
         /// </response>
         /// <response code="404">
-        ///     Returned when the production line doesn't exist.
+        ///     A production line with the given id does not exist.
         /// </response>
         [Authorize]
         [HasPermission(ProductionPermissions.GetProductionLineDetails)]

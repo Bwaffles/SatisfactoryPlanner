@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
@@ -45,6 +46,7 @@ namespace SatisfactoryPlanner.API
 
             services.AddControllers(options =>
             {
+                options.Filters.Add(new ProducesAttribute("application/json"));
                 options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
             });
 
@@ -123,13 +125,11 @@ namespace SatisfactoryPlanner.API
 
             app.UseMiddleware<CorrelationMiddleware>();
 
-            app.UseSwaggerDocumentation();
 
             if (env.IsDevelopment())
             {
                 app.UseProblemDetails();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SatisfactoryPlanner.API v1"));
+                app.UseSwaggerDocumentation();
             }
             // else
             // {

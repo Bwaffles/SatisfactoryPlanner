@@ -18,6 +18,7 @@ namespace SatisfactoryPlanner.API.Configuration.Extensions
                 var commentsFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var commentsFile = Path.Combine(baseDirectory, commentsFileName);
                 options.IncludeXmlComments(commentsFile, true);
+                options.SupportNonNullableReferenceTypes();
 
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
