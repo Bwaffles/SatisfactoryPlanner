@@ -25,20 +25,20 @@ export const UntappedWorldNodeView = ({
   return (
     <>
       <h2 className="text-xl font-bold mb-6">Extraction Details</h2>
-      <div className="flex flex-col gap-6 p-6 w-fit bg-gray-800 rounded">
+      <div className="flex flex-col gap-6 p-6 w-fit bg-gray-900 rounded">
         <p>Select the extractor to tap the node with:</p>
         <div className="flex flex-wrap gap-12">
           {worldNodeDetails.availableExtractors?.map((extractor) => {
             var selectedExtractorClasses =
               extractor.id === selectedExtractor
-                ? "bg-sky-800 border-white-900"
-                : "bg-gray-700 hover:bg-sky-900 cursor-pointer border-transparent";
+                ? "bg-sky-900 border-white"
+                : "bg-gray-800 hover:bg-gray-800/70 cursor-pointer border-transparent";
 
             return (
               <div
                 key={extractor.id}
                 className={
-                  "flex flex-col items-center rounded p-6 w-64 border-4 " +
+                  "flex flex-col items-center rounded-lg p-6 w-64 border " +
                   selectedExtractorClasses
                 }
                 onClick={
@@ -66,7 +66,7 @@ export const UntappedWorldNodeView = ({
           })}
         </div>
         {validationMessage != null && (
-          <div className="text-red-500">{validationMessage}</div>
+          <div className="text-destructive-error">{validationMessage}</div>
         )}
         <div>
           <Button

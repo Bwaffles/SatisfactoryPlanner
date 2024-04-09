@@ -27,7 +27,7 @@ export const ResourcesList = () => {
     return (
       <div
         key={resource.id}
-        className="flex flex-col items-center justify-between h-60 w-60 py-4 px-5 bg-gray-800 rounded hover:bg-sky-900 cursor-pointer"
+        className="flex flex-col items-center justify-between h-60 w-60 py-4 px-5 bg-gray-900 rounded hover:bg-gray-900/60 cursor-pointer"
         onClick={() => {
           handleResourceClick(resource.id);
         }}
@@ -37,14 +37,16 @@ export const ResourcesList = () => {
         <div className="flex flex-row justify-between items-end w-full">
           <div className="flex flex-row gap-2 items-end">
             <div className="text-right">
-              <div className="text-right text-xs text-gray-400">Extracted</div>
-              <span className="text-right text-lg">
+              <div className="text-xs text-muted-foreground">Extracted</div>
+              <span className="text-lg">
                 {formatNumber(resource.extractionRate)}
               </span>
             </div>
             <span className="text-2xl font-semibold">/</span>
             <div>
-              <div className="text-right text-xs text-gray-400">Total</div>
+              <div className="text-right text-xs text-muted-foreground">
+                Total
+              </div>
               <span className="text-lg">
                 {formatNumber(resource.maxExtractionRate)}
               </span>

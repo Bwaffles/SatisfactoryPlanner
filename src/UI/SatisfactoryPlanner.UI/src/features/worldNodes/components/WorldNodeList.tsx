@@ -56,7 +56,7 @@ export const WorldNodeList = ({ resourceId }: WorldNodeListProps) => {
         });
 
         return (
-          <div key={biome} className="mb-4 p-6 bg-gray-800 rounded">
+          <div key={biome} className="mb-4 p-6 bg-gray-900 rounded">
             <div className="flex flex-col mb-6">
               <h3 className="text-lg font-bold mb-4">{biome}</h3>
               <div className="flex gap-10">
@@ -91,7 +91,7 @@ export const WorldNodeList = ({ resourceId }: WorldNodeListProps) => {
               return (
                 <div
                   key={node.id}
-                  className="flex flex-row items-center mb-4 py-6 px-6 bg-gray-700 rounded hover:bg-sky-900 cursor-pointer"
+                  className="flex flex-row items-center mb-4 py-6 px-6 bg-gray-800 rounded hover:bg-gray-800/60 cursor-pointer"
                   onClick={() => {
                     handleNodeClick(node.id);
                   }}
