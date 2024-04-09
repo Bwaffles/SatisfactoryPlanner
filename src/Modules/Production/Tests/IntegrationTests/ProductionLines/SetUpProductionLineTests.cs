@@ -15,11 +15,12 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProductionLine
         {
             var worldId = Guid.NewGuid();
 
-            await ProductionModule.ExecuteCommandAsync(new SetUpProductionLineCommand(worldId, "Rocky Desert Iron Ingots - Line 1"));
+            var productionLineId = await ProductionModule.ExecuteCommandAsync(new SetUpProductionLineCommand(worldId, "Rocky Desert Iron Ingots - Line 1"));
 
             var productionLines = await ProductionModule.ExecuteQueryAsync(new GetProductionLinesQuery(worldId));
             productionLines.Should().HaveCount(1);
 
+            productionLines[0].Id.Should().Be(productionLineId);
             productionLines[0].Name.Should().Be("Rocky Desert Iron Ingots - Line 1");
         }
 
@@ -42,10 +43,7 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProductionLine
         [Test]
         public void WhenWorldIdIsEmpty_ThrowsInvalidCommandException()
         {
-            AssertInvalidCommand(async () =>
-            {
-                await ProductionModule.ExecuteCommandAsync(new SetUpProductionLineCommand(Guid.Empty, ""));
-            });
+            AssertInvalidCommand(async () => await ProductionModule.ExecuteCommandAsync(new SetUpProductionLineCommand(Guid.Empty, "")));
         }
 
         // Command tests
@@ -56,10 +54,7 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProductionLine
 
             await ProductionModule.ExecuteCommandAsync(new SetUpProductionLineCommand(worldId, "Rocky Desert Iron Ingots - Line 1"));
 
-            AssertBrokenRule<ProductionLineNameMustBeUniqueRule>(async () =>
-            {
-                await ProductionModule.ExecuteCommandAsync(new SetUpProductionLineCommand(worldId, "ROCKY DESERT IRON INGOTS - LINE 1"));
-            });
+            AssertBrokenRule<ProductionLineNameMustBeUniqueRule>(async () => await ProductionModule.ExecuteCommandAsync(new SetUpProductionLineCommand(worldId, "ROCKY DESERT IRON INGOTS - LINE 1")));
         }
     }
 }

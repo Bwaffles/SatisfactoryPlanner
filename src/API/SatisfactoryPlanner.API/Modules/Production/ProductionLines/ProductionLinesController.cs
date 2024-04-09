@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
+using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLineDetails;
 using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLines;
 using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine;
 
@@ -30,17 +31,41 @@ namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines
         }
 
         /// <summary>
+        ///     Get the details of the production line.
+        /// </summary>
+        /// <response code="200">
+        ///     Returns results as a <see cref="ProductionLineDetailsDto" />.
+        /// </response>
+        /// <response code="404">
+        ///     Returned when the production line doesn't exist.
+        /// </response>
+        [Authorize]
+        [HasPermission(ProductionPermissions.GetProductionLineDetails)]
+        [WorldAuthorization]
+        [HttpGet("worlds/{worldId}/[controller]/{productionLineId}")]
+        [ProducesResponseType(typeof(ProductionLineDetailsDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetProductionLineDetails([FromRoute] Guid worldId, [FromRoute] Guid productionLineId)
+        {
+            var productionLineDetails = await module.ExecuteQueryAsync(new GetProductionLineDetailsQuery(worldId, productionLineId));
+            if (productionLineDetails is null)
+                return NotFound();
+
+            return Ok(productionLineDetails);
+        }
+
+        /// <summary>
         ///     Set up a new production line in the world.
         /// </summary>
         [Authorize]
         [HasPermission(ProductionPermissions.SetUpProductionLine)]
         [WorldAuthorization]
         [HttpPost("worlds/{worldId}/[controller]/set-up")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> SetUpProductionLine([FromRoute] Guid worldId, [FromBody]SetUpProductionLineRequest request)
         {
             await module.ExecuteCommandAsync(new SetUpProductionLineCommand(worldId, request.Name));
-            return Ok();
+            return NoContent();
         }
     }
 }

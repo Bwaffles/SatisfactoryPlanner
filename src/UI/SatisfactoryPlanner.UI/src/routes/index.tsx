@@ -16,6 +16,7 @@ import { ResourceDetails } from "pages/ResourceDetails";
 import { Resources } from "pages/Resources";
 import { WorldNodeDetails } from "pages/WorldNodeDetails";
 import { SetUpProductionLine } from "pages/SetUpProductionLine";
+import { ProductionLineDetails } from "pages/ProductionLineDetails";
 
 const ProtectedRoute = ({
   component,
@@ -62,6 +63,10 @@ export const AppRoutes = () => {
         <Route
           path="/production-lines"
           element={<ProtectedRoute component={ProductionLines} />}
+        />
+        <Route
+          path="/production-lines/:productionLineId"
+          element={<ProtectedRoute component={ProductionLineDetails} />}
         />
         <Route
           path="/production-lines/set-up"
