@@ -3,7 +3,7 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine
 {
-    public class SetUpProductionLineCommand(Guid worldId, string name) : CommandBase
+    public class SetUpProductionLineCommand(Guid worldId, string name) : CommandBase<Guid>
     {
         public Guid WorldId { get; } = worldId;
 
