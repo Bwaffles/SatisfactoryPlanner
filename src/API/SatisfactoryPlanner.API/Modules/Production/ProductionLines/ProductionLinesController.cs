@@ -67,5 +67,19 @@ namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines
             var productionLineId = await module.ExecuteCommandAsync(new SetUpProductionLineCommand(worldId, request.Name));
             return Ok(new SetUpProductionLineResponse(productionLineId));
         }
+
+        /// <summary>
+        ///     Rename a production line.
+        /// </summary>
+        [Authorize]
+        [HasPermission(ProductionPermissions.RenameProductionLine)]
+        [WorldAuthorization]
+        [HttpPost("worlds/{worldId}/[controller]/{productionLineId}/rename")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Rename([FromRoute] Guid worldId, [FromRoute] Guid productionLineId, [FromBody] RenameProductionLineRequest request)
+        {
+            await module.ExecuteCommandAsync(new RenameProductionLineCommand(worldId, productionLineId, request.Name));
+            return Ok();
+        }
     }
 }

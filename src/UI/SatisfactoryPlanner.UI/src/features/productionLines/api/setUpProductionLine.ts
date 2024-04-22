@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { queryClient } from "lib/react-query";
 import storage from "utils/storage";
 import { ErrorResponse, useApi } from "lib/api";
+import { productionLineKeys } from "./queryKeys";
 
 export type SetUpProductionLineRequest = {
   data: {
@@ -24,7 +25,7 @@ export const useSetUpProductionLine = () => {
     SetUpProductionLineRequest
   >({
     onSuccess: () => {
-      queryClient.invalidateQueries("getProductionLines");
+      queryClient.invalidateQueries(productionLineKeys.lists());
     },
     mutationFn: (variables: SetUpProductionLineRequest) => {
       return api.post(

@@ -20,7 +20,7 @@ import { useSetUpProductionLine } from "features/productionLines/api/setUpProduc
 import { ErrorResponse } from "lib/api";
 
 const formSchema = z.object({
-  name: z.string().min(1, { message: "Required." }),
+  name: z.string().min(1, { message: "Name can't be blank." }),
 });
 
 export const SetUpProductionLine = () => {

@@ -29,16 +29,32 @@ namespace SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines
                 domainEvent.Name.Should().Be(ProductionLineName.As("New Name After Rename"));
             }
 
-            [TestCase("Original Name on Set Up", "ORIGINAL NAME ON SET UP")]
-            [TestCase("Original Name on Set Up", "Original Name on Set Up")]
-            public void IgnoreWhenRenamingToCurrentName(string initialName, string renameName)
+            [Test]
+            public void CanRenameToUpdateCasing()
             {
                 var worldId = new WorldId(Guid.NewGuid());
-                var productionLineName = ProductionLineName.As(initialName);
+                var productionLineName = ProductionLineName.As("Original Name on Set Up");
                 var counter = Substitute.For<IProductionLineCounter>();
                 var productionLine = ProductionLine.SetUp(worldId, productionLineName, counter);
 
-                productionLine.Rename(ProductionLineName.As(renameName), counter);
+                counter.CountProductionLinesWithName(worldId, productionLineName).Returns(1);
+                productionLine.Rename(ProductionLineName.As("ORIGINAL NAME ON SET UP"), counter);
+
+                var domainEvent = DomainEventAssertions.AssertPublishedEvent<ProductionLineRenamedDomainEvent>(productionLine);
+
+                domainEvent.ProductionLineId.Should().Be(productionLine.Id);
+                domainEvent.Name.Should().Be(ProductionLineName.As("ORIGINAL NAME ON SET UP"), "because user is allowed to change casing of the name.");
+            }
+
+            [Test]
+            public void IgnoreWhenRenamingToSameName()
+            {
+                var worldId = new WorldId(Guid.NewGuid());
+                var productionLineName = ProductionLineName.As("Original Name on Set Up");
+                var counter = Substitute.For<IProductionLineCounter>();
+                var productionLine = ProductionLine.SetUp(worldId, productionLineName, counter);
+
+                productionLine.Rename(ProductionLineName.As("Original Name on Set Up"), counter);
 
                 DomainEventAssertions
                     .AssertEventIsNotPublished<ProductionLineRenamedDomainEvent>(productionLine,
