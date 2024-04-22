@@ -30,7 +30,7 @@ export const ProductionLineName = (props: ProductionLineNameProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [renameErrorResponse, setRenameErrorResponse] =
     useState<ErrorResponse | null>(null);
-  const renameProductionLineMutation = useRenameProductionLine();
+  const renameProductionLine = useRenameProductionLine();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,7 +39,7 @@ export const ProductionLineName = (props: ProductionLineNameProps) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    renameProductionLineMutation.mutate(
+    renameProductionLine.mutate(
       {
         productionLineId: props.productionLineId,
         data: values,
@@ -82,7 +82,11 @@ export const ProductionLineName = (props: ProductionLineNameProps) => {
                 </FormItem>
               )}
             />
-            <Button variant="default" size="sm">
+            <Button
+              variant="default"
+              size="sm"
+              isLoading={renameProductionLine.isLoading}
+            >
               Rename
             </Button>
             <Button
