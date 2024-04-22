@@ -1,8 +1,9 @@
 import React from "react";
-
 import { useParams } from "react-router-dom";
+
 import { Head } from "components/Layout/Head";
 import { useGetProductionLineDetails } from "features/productionLines/api/getProductionLineDetails";
+import { ProductionLineName } from "features/productionLines/components/ProductionLineName";
 
 export const ProductionLineDetails = () => {
   const { productionLineId } = useParams();
@@ -22,9 +23,10 @@ export const ProductionLineDetails = () => {
     <>
       <Head title={`${productionLineDetails?.name}`} />
       <div className="container py-4">
-        <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl mb-6">
-          {productionLineDetails?.name}
-        </h1>
+        <ProductionLineName
+          productionLineId={productionLineDetails!.id}
+          name={productionLineDetails!.name}
+        />
       </div>
     </>
   );
