@@ -33,10 +33,10 @@ export const SetUpProductionLine = () => {
       name: "",
     },
   });
-  const setUpProductionLineMutation = useSetUpProductionLine();
+  const setUpProductionLine = useSetUpProductionLine();
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setUpProductionLineMutation.mutate(
+    setUpProductionLine.mutate(
       {
         data: values,
       },
@@ -84,7 +84,7 @@ export const SetUpProductionLine = () => {
               })}
             </div>
           )}
-          <Button>Set Up</Button>
+          <Button isLoading={setUpProductionLine.isLoading}>Set Up</Button>
           <Button
             variant="outline"
             className="ml-3"
