@@ -36,11 +36,14 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProductionLines
 
         public void Rename(ProductionLineName name, IProductionLineCounter productionLineCounter)
         {
-            if (_name == name)
+            var hasSameCasing = _name.HasSameCasingAs(name);
+            if (_name == name && hasSameCasing)
                 return;
 
-            CheckRule(new ProductionLineNameMustBeUniqueRule(_worldId, name, productionLineCounter));
+            if (_name != name)
+                CheckRule(new ProductionLineNameMustBeUniqueRule(_worldId, name, productionLineCounter));
 
+            // If the name is different or uses different casing then let it be updated
             _name = name;
 
             AddDomainEvent(new ProductionLineRenamedDomainEvent(Id, _name));
