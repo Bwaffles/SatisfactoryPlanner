@@ -125,10 +125,10 @@ namespace SatisfactoryPlanner.API
 
             app.UseMiddleware<CorrelationMiddleware>();
 
+            app.UseProblemDetails();
 
             if (env.IsDevelopment())
             {
-                app.UseProblemDetails();
                 app.UseSwaggerDocumentation();
             }
             // else
