@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 
 export const MainLayout = () => {
   return (
-    <div className="dark flex min-h-screen bg-background text-foreground">
+    <div className="flex min-h-screen bg-background text-foreground">
       <Sidebar />
       <main className="w-full h-full min-h-screen">
         <React.Suspense
