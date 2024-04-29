@@ -22,6 +22,7 @@ using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
+using Serilog.Context;
 using Serilog.Formatting.Compact;
 using ILogger = Serilog.ILogger;
 
@@ -36,24 +37,27 @@ var _logger = new LoggerConfiguration()
         fileSizeLimitBytes: 5 * 1024 * 1024)
     .CreateLogger();
 
-var _loggerForApi = _logger.ForContext("Module", "API");
-_loggerForApi.Information("Application started.");
+using (LogContext.PushProperty("Context", "Startup"))
+{
+    var _loggerForApi = _logger.ForContext("Module", "API");
+    _loggerForApi.Information("Application started.");
 
-var builder = WebApplication.CreateBuilder(args);
+    var builder = WebApplication.CreateBuilder(args);
 
-ConfigureServices(builder);
+    ConfigureServices(builder);
 
-// Using a custom DI container.
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(RegisterModules);
+    // Using a custom DI container.
+    builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+    builder.Host.ConfigureContainer<ContainerBuilder>(RegisterModules);
 
-var app = builder.Build();
+    var app = builder.Build();
 
-Configure(app, app.Environment, _logger, builder.Configuration);
+    Configure(app, app.Environment, _logger, builder.Configuration);
 
-app.MapControllers();
+    app.MapControllers();
 
-app.Run();
+    app.Run();
+}
 
 static void ConfigureServices(WebApplicationBuilder builder)
 {
@@ -167,12 +171,6 @@ static void InitializeModules(IApplicationBuilder app, ILogger logger, Configura
         logger
     );
 
-    WorldsStartup.Initialize(
-        connectionString,
-        executionContextAccessor,
-        logger
-    );
-
     ResourcesStartup.Initialize(
         connectionString,
         executionContextAccessor,
@@ -183,4 +181,10 @@ static void InitializeModules(IApplicationBuilder app, ILogger logger, Configura
         connectionString,
         executionContextAccessor,
         logger);
+
+    WorldsStartup.Initialize(
+        connectionString,
+        executionContextAccessor,
+        logger
+    );
 }
