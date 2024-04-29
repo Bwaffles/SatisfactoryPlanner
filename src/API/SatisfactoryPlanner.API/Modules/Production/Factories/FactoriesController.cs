@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using SatisfactoryPlanner.Modules.Production.Application.Factories.BuildFactory;
 using SatisfactoryPlanner.Modules.Production.Application.Factories.BuildSubFactory;
-using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using SatisfactoryPlanner.Modules.Production.Application.Factories.GetFactories;
 
 namespace SatisfactoryPlanner.API.Modules.Production.Factories

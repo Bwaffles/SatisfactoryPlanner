@@ -11,7 +11,9 @@ namespace SatisfactoryPlanner.API.Configuration.Extensions
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Satisfactory Planner API", Version = "v1", Description = "Satisfactory Planner API."
+                    Title = "Satisfactory Planner API",
+                    Version = "v1",
+                    Description = "Satisfactory Planner API."
                 });
 
                 var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
