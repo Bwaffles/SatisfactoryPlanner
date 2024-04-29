@@ -62,7 +62,7 @@ namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines
         [WorldAuthorization]
         [HttpPost("worlds/{worldId}/[controller]/set-up")]
         [ProducesResponseType(typeof(SetUpProductionLineResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> SetUpProductionLine([FromRoute] Guid worldId, [FromBody]SetUpProductionLineRequest request)
+        public async Task<IActionResult> SetUpProductionLine([FromRoute] Guid worldId, [FromBody] SetUpProductionLineRequest request)
         {
             var productionLineId = await module.ExecuteCommandAsync(new SetUpProductionLineCommand(worldId, request.Name));
             return Ok(new SetUpProductionLineResponse(productionLineId));
