@@ -42,13 +42,11 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
             {
                 try
                 {
-                    _logger.Information(
-                        "Executing command {Command}",
-                        command.GetType().Name);
+                    _logger.Information("Executing command {Command}", command.GetType().Name);
 
                     var result = await _decorated.Handle(command, cancellationToken);
 
-                    _logger.Information("Command {Command} processed successful", command.GetType().Name);
+                    _logger.Information("Command {Command} processed successfully", command.GetType().Name);
 
                     return result;
                 }
