@@ -14,20 +14,6 @@ namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines
     public class ProductionLinesController(IProductionModule module) : ControllerBase
     {
         /// <summary>
-        ///     Set up a new production line in the world.
-        /// </summary>
-        [Authorize]
-        [HasPermission(ProductionPermissions.SetUpProductionLine)]
-        [WorldAuthorization]
-        [HttpPost("worlds/{worldId}/[controller]/set-up")]
-        [ProducesResponseType(typeof(SetUpProductionLineResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> SetUpProductionLine([FromRoute] Guid worldId, [FromBody] SetUpProductionLineRequest request)
-        {
-            var productionLineId = await module.ExecuteCommandAsync(new SetUpProductionLineCommand(worldId, request.Name));
-            return Ok(new SetUpProductionLineResponse(productionLineId));
-        }
-
-        /// <summary>
         ///     Rename a production line.
         /// </summary>
         [Authorize]
