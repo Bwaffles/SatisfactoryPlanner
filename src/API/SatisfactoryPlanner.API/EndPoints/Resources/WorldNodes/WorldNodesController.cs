@@ -17,26 +17,6 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
     public class WorldNodesController(IResourcesModule module) : Controller
     {
         /// <summary>
-        ///     Tap the world node with an extractor.
-        /// </summary>
-        [Authorize]
-        [HasPermission(ResourcesPermissions.TapWorldNode)]
-        [WorldAuthorization]
-        [HttpPost("worlds/{worldId}/nodes/{nodeId}/tap")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> TapWorldNode([FromRoute] Guid worldId, [FromRoute] Guid nodeId,
-            [FromBody] TapWorldNodeRequest request)
-        {
-            await module.ExecuteCommandAsync(new TapWorldNodeCommand(
-                worldId,
-                nodeId,
-                request.ExtractorId
-            ));
-
-            return Ok();
-        }
-
-        /// <summary>
         ///     Increase the extraction rate of resources from the world node.
         /// </summary>
         [Authorize]
