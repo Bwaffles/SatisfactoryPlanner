@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
+using SatisfactoryPlanner.API.Endpoints;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourceDetails;
 using Swashbuckle.AspNetCore.Annotations;
@@ -15,7 +16,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         [HttpGet("api/resources/resources/{resourceId}")]
         [SwaggerOperation(
             Summary = "Get the details of the resource.",
-            Tags = ["Resources"])]
+            Tags = [Tags.Resources])]
         [SwaggerResponse(200, Type = typeof(ResourceDetailsDto))]
         public async Task<IActionResult> HandleAsync(
             [FromRoute]

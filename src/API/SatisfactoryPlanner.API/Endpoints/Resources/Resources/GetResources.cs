@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
+using SatisfactoryPlanner.API.Endpoints;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResources;
 using Swashbuckle.AspNetCore.Annotations;
@@ -17,7 +18,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
         [HttpGet("api/worlds/{worldId}/resources")]
         [SwaggerOperation(
             Summary = "Get the resources available in the world.",
-            Tags = ["Resources"])]
+            Tags = [Tags.Resources])]
         [SwaggerResponse(200, Type = typeof(List<ResourceDto>))]
         public async Task<IActionResult> HandleAsync([FromRoute] Guid worldId)
         {

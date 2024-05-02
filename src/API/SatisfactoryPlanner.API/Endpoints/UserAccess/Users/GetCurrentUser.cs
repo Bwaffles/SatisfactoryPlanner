@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization;
+using SatisfactoryPlanner.API.Endpoints;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Users.GetCurrentUser;
 using Swashbuckle.AspNetCore.Annotations;
@@ -16,7 +17,7 @@ namespace SatisfactoryPlanner.API.Modules.UserAccess.Users
         [SwaggerOperation(
             Summary = "Get the currently authenticated user.", 
             Description = "Gets the currently authenticated user based on the user id in the access token.",
-            Tags = ["Users"])]
+            Tags = [Tags.Users])]
         [SwaggerResponse(200, Type = typeof(CurrentUserDto))]
         [SwaggerResponse(204, "The user was not found.")]
         public async Task<IActionResult> HandleAsync()
