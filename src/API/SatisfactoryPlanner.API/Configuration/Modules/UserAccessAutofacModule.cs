@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
 
-namespace SatisfactoryPlanner.API.Modules.UserAccess
+namespace SatisfactoryPlanner.API.Configuration.Modules
 {
     public class UserAccessAutofacModule : Module
     {

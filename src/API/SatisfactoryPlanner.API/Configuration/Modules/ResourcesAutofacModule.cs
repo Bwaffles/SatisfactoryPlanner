@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure;
 
-namespace SatisfactoryPlanner.API.Modules.Resources
+namespace SatisfactoryPlanner.API.Configuration.Modules
 {
     public class ResourcesAutofacModule : Module
     {

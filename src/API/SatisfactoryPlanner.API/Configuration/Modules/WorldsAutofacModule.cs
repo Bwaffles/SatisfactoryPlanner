@@ -2,7 +2,7 @@
 using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure;
 
-namespace SatisfactoryPlanner.API.Modules.Worlds
+namespace SatisfactoryPlanner.API.Configuration.Modules
 {
     public class WorldsAutofacModule : Module
     {
