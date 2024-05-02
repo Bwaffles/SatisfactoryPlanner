@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
-using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResourceDetails;
-using SatisfactoryPlanner.Modules.Resources.Application.Resources.GetResources;
 
 namespace SatisfactoryPlanner.API.Modules.Resources.Resources
 {
@@ -12,23 +10,6 @@ namespace SatisfactoryPlanner.API.Modules.Resources.Resources
     [ApiController]
     public class ResourcesController(IResourcesModule module) : Controller
     {
-        /// <summary>
-        ///     Get the resources available in the world.
-        /// </summary>
-        /// <response code="200">
-        ///     Returns the resources as a list of <see cref="ResourceDto" />.
-        /// </response>
-        [Authorize]
-        [HasPermission(ResourcesPermissions.GetResources)]
-        [WorldAuthorization]
-        [HttpGet("worlds/{worldId}/[controller]")]
-        [ProducesResponseType(typeof(List<ResourceDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetResources([FromRoute] Guid worldId)
-        {
-            var resources = await module.ExecuteQueryAsync(new GetResourcesQuery(worldId));
-            return Ok(resources);
-        }
-
         /// <summary>
         ///     Get the details of the resource.
         /// </summary>
