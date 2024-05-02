@@ -1,30 +1,36 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
+using SatisfactoryPlanner.API.Endpoints;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine;
-using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines
 {
-
     [ApiController]
-    [Route("api")]
-    public class ProductionLinesController(IProductionModule module) : ControllerBase
+    public class RenameProductionLine(IProductionModule module) : ControllerBase
     {
-        /// <summary>
-        ///     Rename a production line.
-        /// </summary>
         [Authorize]
         [HasPermission(ProductionPermissions.RenameProductionLine)]
         [WorldAuthorization]
-        [HttpPost("worlds/{worldId}/[controller]/{productionLineId}/rename")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Rename([FromRoute] Guid worldId, [FromRoute] Guid productionLineId, [FromBody] RenameProductionLineRequest request)
+        [HttpPost("api/worlds/{worldId}/production-lines/{productionLineId}/rename")]
+        [SwaggerOperation(
+            Summary = "Rename a production line.",
+            Tags = [Tags.ProductionLines])]
+        [SwaggerResponse(200)]
+        public async Task<IActionResult> HandleAsync([FromRoute] Guid worldId, [FromRoute] Guid productionLineId, [FromBody] RenameProductionLineRequest request)
         {
             await module.ExecuteCommandAsync(new RenameProductionLineCommand(worldId, productionLineId, request.Name));
             return Ok();
         }
+    }
+
+    public class RenameProductionLineRequest
+    {
+        [BindRequired]
+        public required string Name { get; set; }
     }
 }
