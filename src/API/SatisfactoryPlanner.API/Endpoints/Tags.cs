@@ -6,5 +6,6 @@
         public const string Resources = "Resources";
         public const string Users = "Users";
         public const string Worlds = "Worlds";
+        public const string ProductionLines = "Production Lines";
     }
 }

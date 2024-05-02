@@ -14,23 +14,6 @@ namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines
     public class ProductionLinesController(IProductionModule module) : ControllerBase
     {
         /// <summary>
-        ///     Get the production lines in the world.
-        /// </summary>
-        /// <response code="200">
-        ///     Returns results as a list of <see cref="ProductionLineDto" />.
-        /// </response>
-        [Authorize]
-        [HasPermission(ProductionPermissions.GetProductionLines)]
-        [WorldAuthorization]
-        [HttpGet("worlds/{worldId}/[controller]")]
-        [ProducesResponseType(typeof(List<ProductionLineDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetProductionLines([FromRoute] Guid worldId)
-        {
-            var productionLines = await module.ExecuteQueryAsync(new GetProductionLinesQuery(worldId));
-            return Ok(productionLines);
-        }
-
-        /// <summary>
         ///     Get the details of the production line.
         /// </summary>
         /// <response code="200">
