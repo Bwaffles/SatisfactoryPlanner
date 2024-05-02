@@ -3,40 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
-using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLineDetails;
-using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLines;
 using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 
 namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines
 {
+
     [ApiController]
     [Route("api")]
     public class ProductionLinesController(IProductionModule module) : ControllerBase
     {
-        /// <summary>
-        ///     Get the details of the production line.
-        /// </summary>
-        /// <response code="200">
-        ///     Returns results as a <see cref="ProductionLineDetailsDto" />.
-        /// </response>
-        /// <response code="404">
-        ///     A production line with the given id does not exist.
-        /// </response>
-        [Authorize]
-        [HasPermission(ProductionPermissions.GetProductionLineDetails)]
-        [WorldAuthorization]
-        [HttpGet("worlds/{worldId}/[controller]/{productionLineId}")]
-        [ProducesResponseType(typeof(ProductionLineDetailsDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetProductionLineDetails([FromRoute] Guid worldId, [FromRoute] Guid productionLineId)
-        {
-            var productionLineDetails = await module.ExecuteQueryAsync(new GetProductionLineDetailsQuery(worldId, productionLineId));
-            if (productionLineDetails is null)
-                return NotFound();
-
-            return Ok(productionLineDetails);
-        }
-
         /// <summary>
         ///     Set up a new production line in the world.
         /// </summary>
