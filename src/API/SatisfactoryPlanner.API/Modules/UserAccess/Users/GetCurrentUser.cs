@@ -14,8 +14,8 @@ namespace SatisfactoryPlanner.API.Modules.UserAccess.Users
         [NoPermissionRequired]
         [HttpGet("api/user-access/users/@me")]
         [SwaggerOperation(
-            Summary = "Get the currently logged in user.", 
-            Description = "Gets the currently logged in user based on the user id in the access token.",
+            Summary = "Get the currently authenticated user.", 
+            Description = "Gets the currently authenticated user based on the user id in the access token.",
             Tags = ["Users"])]
         [SwaggerResponse(200, "The user exists.", typeof(CurrentUserDto))]
         [SwaggerResponse(204, "The user was not found.")]
