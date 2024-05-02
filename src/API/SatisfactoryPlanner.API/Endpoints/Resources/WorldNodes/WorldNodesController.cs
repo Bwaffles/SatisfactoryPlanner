@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
-using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DecreaseExtractionRate;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DismantleExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DowngradeExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.UpgradeExtractor;
@@ -14,27 +13,6 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
     [Route("api")]
     public class WorldNodesController(IResourcesModule module) : Controller
     {
-        /// <summary>
-        ///     Decrease the extraction rate of resources from the world node.
-        /// </summary>
-        [Authorize]
-        [HasPermission(ResourcesPermissions.DecreaseWorldNodeExtractionRate)]
-        [WorldAuthorization]
-        [HttpPost("worlds/{worldId}/nodes/{nodeId}/decrease-extraction-rate")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> DecreaseWorldNodeExtractionRate([FromRoute] Guid worldId,
-            [FromRoute] Guid nodeId,
-            [FromBody] DecreaseWorldNodeExtractionRateRequest request)
-        {
-            await module.ExecuteCommandAsync(new DecreaseExtractionRateCommand(
-                worldId,
-                nodeId,
-                request.ExtractionRate
-            ));
-
-            return NoContent();
-        }
-
         /// <summary>
         ///     Upgrade the extractor used to extract resources from the world node.
         /// </summary>

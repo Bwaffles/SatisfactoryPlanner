@@ -5,27 +5,27 @@ using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.API.Endpoints;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
-using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DecreaseExtractionRate;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
 {
     [ApiController]
-    public class IncreaseWorldNodeExtractionRate(IResourcesModule module) : ControllerBase
+    public class DecreaseWorldNodeExtractionRate(IResourcesModule module) : ControllerBase
     {
         [Authorize]
-        [HasPermission(ResourcesPermissions.IncreaseWorldNodeExtractionRate)]
+        [HasPermission(ResourcesPermissions.DecreaseWorldNodeExtractionRate)]
         [WorldAuthorization]
-        [HttpPost("api/worlds/{worldId}/nodes/{nodeId}/increase-extraction-rate")]
+        [HttpPost("api/worlds/{worldId}/nodes/{nodeId}/decrease-extraction-rate")]
         [SwaggerOperation(
-            Summary = "Increase the extraction rate of resources from the world node.",
+            Summary = "Decrease the extraction rate of resources from the world node.",
             Tags = [Tags.WorldNodes])]
         [SwaggerResponse(204)]
         public async Task<IActionResult> HandleAsync([FromRoute] Guid worldId,
             [FromRoute] Guid nodeId,
-            [FromBody] IncreaseWorldNodeExtractionRateRequest request)
+            [FromBody] DecreaseWorldNodeExtractionRateRequest request)
         {
-            await module.ExecuteCommandAsync(new IncreaseExtractionRateCommand(
+            await module.ExecuteCommandAsync(new DecreaseExtractionRateCommand(
                 worldId,
                 nodeId,
                 request.ExtractionRate
@@ -35,7 +35,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
         }
     }
 
-    public class IncreaseWorldNodeExtractionRateRequest
+    public class DecreaseWorldNodeExtractionRateRequest
     {
         [BindRequired]
         public decimal ExtractionRate { get; set; }
