@@ -86,6 +86,8 @@ API will either be a GET or a POST request. There's a good argument that endpoin
 - https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling
 - https://techblog.pointsbet.com/a-structured-approach-to-designing-intent-based-apis-910ed1fc78f2
 
+I'm also making use of the REPR (Request-Endpoint-Response) pattern to separate all my endpoints into their own files. The driving force behind this decision is to allow for better discovery of the available actions in the api. Since I'm using intent based API, commands and queries, having an end point with the same name as my command makes it a lot easier to trace the related code through the layers. I'm still using controllers because after investigating Minimal API or Fast Endpoints, I felt like I could achieve my goal just as well by sticking with controllers. Those libraries may be faster, but I'm not suffering any performance issues right now. If I were to port over to those, I'd need to reinvent some of my existing logic like with my permissions and it didn't seem worth it. Still open to it later on down the line.
+
 ### Authorization
 
 #### Permissions
