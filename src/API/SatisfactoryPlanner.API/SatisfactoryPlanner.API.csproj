@@ -1,73 +1,76 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..</DockerfileContext>
-    <UserSecretsId>85da2702-6815-4906-a76e-daa240260f8f</UserSecretsId>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-	  <NoWarn>$(NoWarn);1591</NoWarn>
-	  <Nullable>enable</Nullable>
-	  <ImplicitUsings>enable</ImplicitUsings>
-	  <RootNamespace>SatisfactoryPlanner.API</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..</DockerfileContext>
+		<UserSecretsId>85da2702-6815-4906-a76e-daa240260f8f</UserSecretsId>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>SatisfactoryPlanner.API</RootNamespace>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.4" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.0" />
-    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
-    <PackageReference Include="Serilog.Formatting.Compact" Version="2.0.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="4.9.4" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.0" />
+		<PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+		<PackageReference Include="Serilog.Formatting.Compact" Version="2.0.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
-  </ItemGroup>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\Production\Application\SatisfactoryPlanner.Modules.Production.Application.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\Production\Infrastructure\SatisfactoryPlanner.Modules.Production.Infrastructure.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\Worlds\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\Worlds\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\Resources\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\UserAccess\Application\SatisfactoryPlanner.Modules.UserAccess.Application.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\UserAccess\Infrastructure\SatisfactoryPlanner.Modules.UserAccess.Infrastructure.csproj">
-      <PrivateAssets>All</PrivateAssets>
-    </ProjectReference>
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\Production\Application\SatisfactoryPlanner.Modules.Production.Application.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\Production\Infrastructure\SatisfactoryPlanner.Modules.Production.Infrastructure.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\Worlds\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\Worlds\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\Resources\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\UserAccess\Application\SatisfactoryPlanner.Modules.UserAccess.Application.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\UserAccess\Infrastructure\SatisfactoryPlanner.Modules.UserAccess.Infrastructure.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="logs\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="logs\" />
+	</ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="SatisfactoryPlanner.API.ArchTests" />
+	</ItemGroup>
 
 </Project>
