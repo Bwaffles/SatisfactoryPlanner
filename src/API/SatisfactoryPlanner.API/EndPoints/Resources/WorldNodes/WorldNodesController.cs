@@ -7,7 +7,6 @@ using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DecreaseExtra
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DismantleExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DowngradeExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
-using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.UpgradeExtractor;
@@ -18,24 +17,6 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
     [Route("api")]
     public class WorldNodesController(IResourcesModule module) : Controller
     {
-        /// <summary>
-        ///     Get nodes in the world.
-        /// </summary>
-        /// <response code="200">
-        ///     Returns the world nodes as a list of <see cref="WorldNodeDto" />.
-        /// </response>
-        [Authorize]
-        [HasPermission(ResourcesPermissions.GetWorldNodes)]
-        [WorldAuthorization]
-        [HttpGet("worlds/{worldId}/nodes")]
-        [ProducesResponseType(typeof(List<WorldNodeDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetWorldNodes([FromRoute] Guid worldId,
-            [FromQuery] GetWorldNodesRequest request)
-        {
-            var worldNodes = await module.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, request.ResourceId));
-            return Ok(worldNodes);
-        }
-
         /// <summary>
         ///     Get the details of a node in the world.
         /// </summary>
