@@ -21,14 +21,6 @@ partial class Build : NukeBuild
         .Unlisted()
         .Executes(() =>
         {
-            // When I restore the solution, I get a warning about the Satisfactory.UI project being invalid
-            //var projects = Solution.GetProjects("*").Where(project => project.Name != "_build");
-            //foreach (var project in projects)
-            //{
-            //    DotNetRestore(s => s
-            //        .SetProjectFile(project));
-            //}
-
             DotNetRestore(s => s.SetProjectFile(Solution));
         });
 

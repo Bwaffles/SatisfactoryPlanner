@@ -71,6 +71,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<InternalsVisibleTo Include="SatisfactoryPlanner.API.ArchTests" />
+		<InternalsVisibleTo Include="SatisfactoryPlanner.API.IntegrationTests" />
 	</ItemGroup>
 
 </Project>

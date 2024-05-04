@@ -1,4 +1,3 @@
-using Dapper;
 using MediatR;
 using Npgsql;
 using NSubstitute;
@@ -7,7 +6,6 @@ using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
 using Serilog;
-using System.Data;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
 {
@@ -33,7 +31,7 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
 
             await using (var connection = new NpgsqlConnection(ConnectionString))
             {
-                await ClearDatabase(connection);
+                await DatabaseClearer.Clear(connection);
             }
 
             Logger = Substitute.For<ILogger>();
@@ -61,19 +59,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
         {
             UserAccessStartup.Stop();
             //SystemClock.Reset();
-        }
-
-        private static async Task ClearDatabase(IDbConnection connection)
-        {
-            var sql = ClearDatabaseSqlGenerator.InSchema("users")
-                .ClearTable("inbox_messages")
-                .ClearTable("internal_commands")
-                .ClearTable("outbox_messages")
-                .ClearTable("users")
-                .ClearTable("user_roles")
-                .GenerateSql();
-
-            await connection.ExecuteScalarAsync(sql);
         }
     }
 }

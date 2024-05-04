@@ -85,7 +85,9 @@ partial class Build
 
     Target RunResourcesIntegrationTests => _ => _
         .Unlisted()
-        .DependsOn(BuildModuleIntegrationTests)
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
+        .DependsOn(CreateIntegrationTestDatabase)
         .Executes(() =>
         {
             var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
@@ -101,7 +103,9 @@ partial class Build
 
     Target RunUserAccessIntegrationTests => _ => _
         .Unlisted()
-        .DependsOn(BuildModuleIntegrationTests)
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
+        .DependsOn(CreateIntegrationTestDatabase)
         .Executes(() =>
         {
             var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
@@ -117,7 +121,9 @@ partial class Build
 
     Target RunWorldsIntegrationTests => _ => _
         .Unlisted()
-        .DependsOn(BuildModuleIntegrationTests)
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
+        .DependsOn(CreateIntegrationTestDatabase)
         .Executes(() =>
         {
             var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
@@ -133,7 +139,9 @@ partial class Build
 
     Target RunProductionIntegrationTests => _ => _
         .Unlisted()
-        .DependsOn(BuildModuleIntegrationTests)
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
+        .DependsOn(CreateIntegrationTestDatabase)
         .Executes(() =>
         {
             var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
@@ -147,11 +155,34 @@ partial class Build
                 .SetProjectFile(Solution.GetProject($"{Modules}.Production.IntegrationTests")));
         });
 
+    // ------------------------------------
+    // -  Api Integration Tests Setup  -
+    // ------------------------------------
+
+    Target RunApiIntegrationTests => _ => _
+        .Unlisted()
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
+        .DependsOn(CreateIntegrationTestDatabase)
+        .Executes(() =>
+        {
+            var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
+
+            Environment.SetEnvironmentVariable(
+                SatisfactoryPlannerDatabaseEnvName,
+                databaseConfiguration.ConnectionString);
+
+            DotNetTest(s => s
+                .EnableNoBuild()
+                .SetProjectFile(Solution.GetProject($"SatisfactoryPlanner.API.IntegrationTests")));
+        });
+
     Target RunAllIntegrationTests => _ => _
         .DependsOn(RunResourcesIntegrationTests)
         .DependsOn(RunUserAccessIntegrationTests)
         .DependsOn(RunWorldsIntegrationTests)
         .DependsOn(RunProductionIntegrationTests)
+        .DependsOn(RunApiIntegrationTests)
         .Executes(() =>
         {
 
