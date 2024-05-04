@@ -15,7 +15,7 @@ namespace SatisfactoryPlanner.API.IntegrationTests
     {
         protected string ConnectionString { get; private set; } = default!;
 
-        public HttpClient Client { get; private set; }
+        public HttpClient Client { get; private set; } = default!;
 
         [OneTimeSetUp]
         public void OnStartup()
