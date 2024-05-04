@@ -21,6 +21,7 @@ namespace SatisfactoryPlanner.API.Configuration.Extensions
                 var commentsFile = Path.Combine(baseDirectory, commentsFileName);
                 options.IncludeXmlComments(commentsFile, true);
                 options.SupportNonNullableReferenceTypes();
+                options.EnableAnnotations();
 
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
