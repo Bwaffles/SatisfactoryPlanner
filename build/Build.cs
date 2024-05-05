@@ -37,6 +37,8 @@ partial class Build : NukeBuild
 
     Target RunUnitTests => _ => _
         .Unlisted()
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
         .Executes(() =>
         {
             var projects = Solution.GetProjects("*.UnitTests");
@@ -53,6 +55,8 @@ partial class Build : NukeBuild
 
     Target RunArchitectureTests => _ => _
         .Unlisted()
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
         .Executes(() =>
         {
             var projects = Solution.GetProjects("*.ArchTests");
@@ -69,10 +73,9 @@ partial class Build : NukeBuild
 
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
     Target RunCIBuild => _ => _
-        .DependsOn(CompileSolution)
-        .DependsOn(RunArchitectureTests)
-        .DependsOn(RunUnitTests)
         .DependsOn(RunAllIntegrationTests)
+        .DependsOn(RunUnitTests)
+        .DependsOn(RunArchitectureTests)
         .Executes(() =>
         {
         });
