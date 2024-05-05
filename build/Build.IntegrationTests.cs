@@ -86,7 +86,7 @@ partial class Build
     Target RunResourcesIntegrationTests => _ => _
         .Unlisted()
         .ProceedAfterFailure()
-        .DependsOn(CompileSolution)
+        .DependsOn(BuildModuleIntegrationTests)
         .DependsOn(CreateIntegrationTestDatabase)
         .Executes(() =>
         {
@@ -97,8 +97,10 @@ partial class Build
                 databaseConfiguration.ConnectionString);
 
             DotNetTest(s => s
-                .EnableNoBuild()
-                .SetProjectFile(Solution.GetProject($"{Modules}.Resources.IntegrationTests")));
+                .SetProjectFile(Solution.GetProject($"{Modules}.Resources.IntegrationTests"))
+                .SetConfiguration(Configuration)
+                .EnableNoRestore()
+                .EnableNoBuild());
         });
 
     Target RunUserAccessIntegrationTests => _ => _
@@ -115,8 +117,10 @@ partial class Build
                 databaseConfiguration.ConnectionString);
 
             DotNetTest(s => s
-                .EnableNoBuild()
-                .SetProjectFile(Solution.GetProject($"{Modules}.UserAccess.IntegrationTests")));
+                .SetProjectFile(Solution.GetProject($"{Modules}.UserAccess.IntegrationTests"))
+                .SetConfiguration(Configuration)
+                .EnableNoRestore()
+                .EnableNoBuild());
         });
 
     Target RunWorldsIntegrationTests => _ => _
@@ -133,8 +137,10 @@ partial class Build
                 databaseConfiguration.ConnectionString);
 
             DotNetTest(s => s
-                .EnableNoBuild()
-                .SetProjectFile(Solution.GetProject($"{Modules}.Worlds.IntegrationTests")));
+                .SetProjectFile(Solution.GetProject($"{Modules}.Worlds.IntegrationTests"))
+                .SetConfiguration(Configuration)
+                .EnableNoRestore()
+                .EnableNoBuild());
         });
 
     Target RunProductionIntegrationTests => _ => _
@@ -151,8 +157,10 @@ partial class Build
                 databaseConfiguration.ConnectionString);
 
             DotNetTest(s => s
-                .EnableNoBuild()
-                .SetProjectFile(Solution.GetProject($"{Modules}.Production.IntegrationTests")));
+                .SetProjectFile(Solution.GetProject($"{Modules}.Production.IntegrationTests"))
+                .SetConfiguration(Configuration)
+                .EnableNoRestore()
+                .EnableNoBuild());
         });
 
     // ------------------------------------
@@ -173,8 +181,10 @@ partial class Build
                 databaseConfiguration.ConnectionString);
 
             DotNetTest(s => s
-                .EnableNoBuild()
-                .SetProjectFile(Solution.GetProject($"SatisfactoryPlanner.API.IntegrationTests")));
+                .SetProjectFile(Solution.GetProject($"SatisfactoryPlanner.API.IntegrationTests"))
+                .SetConfiguration(Configuration)
+                .EnableNoRestore()
+                .EnableNoBuild());
         });
 
     Target RunAllIntegrationTests => _ => _

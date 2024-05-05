@@ -17,22 +17,21 @@ partial class Build : NukeBuild
 
     const string PostgresImage = "postgres:13.3";
 
-    Target RestoreSolution => _ => _
+    Target CleanSolution => _ => _
         .Unlisted()
         .Executes(() =>
         {
-            DotNetRestore(s => s.SetProjectFile(Solution));
+            DotNetClean(s => s.SetProject(Solution));
         });
 
     Target CompileSolution => _ => _
         .Unlisted()
-        .DependsOn(RestoreSolution)
+        .DependsOn(CleanSolution)
         .Executes(() =>
         {
             DotNetBuild(s => s
                 .SetProjectFile(Solution)
-                .SetConfiguration(Configuration)
-                .EnableNoRestore());
+                .SetConfiguration(Configuration));
         });
 
     Target RunUnitTests => _ => _
