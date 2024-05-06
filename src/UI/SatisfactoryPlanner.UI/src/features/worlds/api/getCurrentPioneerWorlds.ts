@@ -1,11 +1,10 @@
 import { useQuery } from "react-query";
 
 import { CurrentPioneerWorld } from "../types";
-import { useApi } from "lib/api";
-import { AxiosInstance } from "axios";
+import { ApiClient, useApi } from "lib/api";
 
 export const getCurrentPioneerWorlds = async (
-  api: AxiosInstance
+  api: ApiClient
 ): Promise<CurrentPioneerWorld[]> => {
   return api.get("/worlds/worlds/@me");
 };
