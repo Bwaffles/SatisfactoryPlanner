@@ -36,7 +36,7 @@ export const Login = () => {
 
 const useLogin = () => {
   const api = useApi();
-  const { getAccessTokenSilently, user } = useAuth0();
+  const { user } = useAuth0();
   const auth0UserId = user!.sub!;
 
   // ? is it bad to do a mutation inside of this query?
@@ -46,7 +46,7 @@ const useLogin = () => {
       return true;
     }
 
-    await createCurrentUser(getAccessTokenSilently, auth0UserId);
+    await createCurrentUser(api, auth0UserId);
 
     // Polling to see if the spawn pioneer process has finished--it should take around 4-5 seconds to complete
     // TODO better polling.
