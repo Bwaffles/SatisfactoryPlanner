@@ -72,14 +72,13 @@
           "items": {
             "type": "string",
             "enum": [
-              "BuildModuleIntegrationTests",
               "CleanIntegrationTestDatabaseContainer",
               "CleanupDockerProjects",
               "CompileSolution",
               "CreateDevelopmentDatabase",
               "CreateIntegrationTestDatabase",
-              "RestoreSolution",
               "RunAllIntegrationTests",
+              "RunApiIntegrationTests",
               "RunArchitectureTests",
               "RunCIBuild",
               "RunDockerCompose",
@@ -107,14 +106,13 @@
           "items": {
             "type": "string",
             "enum": [
-              "BuildModuleIntegrationTests",
               "CleanIntegrationTestDatabaseContainer",
               "CleanupDockerProjects",
               "CompileSolution",
               "CreateDevelopmentDatabase",
               "CreateIntegrationTestDatabase",
-              "RestoreSolution",
               "RunAllIntegrationTests",
+              "RunApiIntegrationTests",
               "RunArchitectureTests",
               "RunCIBuild",
               "RunDockerCompose",

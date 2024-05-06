@@ -2,49 +2,28 @@ using Nuke.Common.ProjectModel;
 
 partial class Build : NukeBuild
 {
-    /// Support plugins are available for:
-    ///   - JetBrains ReSharper        https://nuke.build/resharper
-    ///   - JetBrains Rider            https://nuke.build/rider
-    ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
-    ///   - Microsoft VSCode           https://nuke.build/vscode
-
     public static int Main() => Execute<Build>(x => x.StartDevelopmentEnvironment);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    readonly Configuration Configuration = Configuration.Release; // Always using release to be as close to production as possible
 
     [Solution] readonly Solution Solution;
 
     const string PostgresImage = "postgres:13.3";
 
-    Target RestoreSolution => _ => _
-        .Unlisted()
-        .Executes(() =>
-        {
-            // When I restore the solution, I get a warning about the Satisfactory.UI project being invalid
-            //var projects = Solution.GetProjects("*").Where(project => project.Name != "_build");
-            //foreach (var project in projects)
-            //{
-            //    DotNetRestore(s => s
-            //        .SetProjectFile(project));
-            //}
-
-            DotNetRestore(s => s.SetProjectFile(Solution));
-        });
-
     Target CompileSolution => _ => _
         .Unlisted()
-        .DependsOn(RestoreSolution)
         .Executes(() =>
         {
             DotNetBuild(s => s
                 .SetProjectFile(Solution)
-                .SetConfiguration(Configuration)
-                .EnableNoRestore());
+                .SetConfiguration(Configuration));
         });
 
     Target RunUnitTests => _ => _
         .Unlisted()
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
         .Executes(() =>
         {
             var projects = Solution.GetProjects("*.UnitTests");
@@ -61,6 +40,8 @@ partial class Build : NukeBuild
 
     Target RunArchitectureTests => _ => _
         .Unlisted()
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
         .Executes(() =>
         {
             var projects = Solution.GetProjects("*.ArchTests");
@@ -77,10 +58,9 @@ partial class Build : NukeBuild
 
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
     Target RunCIBuild => _ => _
-        .DependsOn(CompileSolution)
-        .DependsOn(RunArchitectureTests)
-        .DependsOn(RunUnitTests)
         .DependsOn(RunAllIntegrationTests)
+        .DependsOn(RunUnitTests)
+        .DependsOn(RunArchitectureTests)
         .Executes(() =>
         {
         });
