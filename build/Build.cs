@@ -2,31 +2,17 @@ using Nuke.Common.ProjectModel;
 
 partial class Build : NukeBuild
 {
-    /// Support plugins are available for:
-    ///   - JetBrains ReSharper        https://nuke.build/resharper
-    ///   - JetBrains Rider            https://nuke.build/rider
-    ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
-    ///   - Microsoft VSCode           https://nuke.build/vscode
-
     public static int Main() => Execute<Build>(x => x.StartDevelopmentEnvironment);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    readonly Configuration Configuration = Configuration.Release; // Always using release to be as close to production as possible
 
     [Solution] readonly Solution Solution;
 
     const string PostgresImage = "postgres:13.3";
 
-    Target CleanSolution => _ => _
-        .Unlisted()
-        .Executes(() =>
-        {
-            DotNetClean(s => s.SetProject(Solution));
-        });
-
     Target CompileSolution => _ => _
         .Unlisted()
-        .DependsOn(CleanSolution)
         .Executes(() =>
         {
             DotNetBuild(s => s

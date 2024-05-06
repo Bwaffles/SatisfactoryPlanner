@@ -66,27 +66,12 @@ partial class Build
     // ------------------------------------
 
     const string Modules = "SatisfactoryPlanner.Modules";
-
-    Target BuildModuleIntegrationTests => _ => _
-        .Unlisted()
-        .DependsOn(CreateIntegrationTestDatabase)
-        .Executes(() =>
-        {
-            var projects = Solution.GetProjects($"{Modules}.*.IntegrationTests");
-            foreach (var project in projects)
-            {
-                DotNetBuild(s => s
-                    .SetProjectFile(project)
-                    .DisableNoRestore());
-            }
-        });
-
     const string SatisfactoryPlannerDatabaseEnvName = "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
 
     Target RunResourcesIntegrationTests => _ => _
         .Unlisted()
         .ProceedAfterFailure()
-        .DependsOn(BuildModuleIntegrationTests)
+        .DependsOn(CompileSolution)
         .DependsOn(CreateIntegrationTestDatabase)
         .Executes(() =>
         {

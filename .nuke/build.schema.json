@@ -72,9 +72,7 @@
           "items": {
             "type": "string",
             "enum": [
-              "BuildModuleIntegrationTests",
               "CleanIntegrationTestDatabaseContainer",
-              "CleanSolution",
               "CleanupDockerProjects",
               "CompileSolution",
               "CreateDevelopmentDatabase",
@@ -108,9 +106,7 @@
           "items": {
             "type": "string",
             "enum": [
-              "BuildModuleIntegrationTests",
               "CleanIntegrationTestDatabaseContainer",
-              "CleanSolution",
               "CleanupDockerProjects",
               "CompileSolution",
               "CreateDevelopmentDatabase",
