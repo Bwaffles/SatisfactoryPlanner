@@ -41,7 +41,7 @@ const useLogin = () => {
 
   // ? is it bad to do a mutation inside of this query?
   return useQuery("login", async () => {
-    const currentUser = await getCurrentUser(getAccessTokenSilently);
+    const currentUser = await getCurrentUser(api);
     if (currentUser) {
       return true;
     }
