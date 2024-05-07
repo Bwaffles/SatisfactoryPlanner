@@ -1,11 +1,7 @@
-import Axios from "axios";
+import Axios, { AxiosInstance } from "axios";
 
 import * as Config from "../config";
 import { useAuth0 } from "@auth0/auth0-react";
-
-export type ErrorResponse = {
-  messages: string[];
-};
 
 export const useApi = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -55,5 +51,29 @@ export const useApi = () => {
     }
   );
 
-  return axios;
+  return new ApiClient(axios);
 };
+
+export type ErrorResponse = {
+  messages: string[];
+};
+
+export class ApiClient {
+  private _axiosInstance: AxiosInstance;
+  public constructor(axiosInstance: AxiosInstance) {
+    this._axiosInstance = axiosInstance;
+  }
+
+  get<TResponseData = any, TRequestData = any>(
+    url: string,
+    data?: TRequestData
+  ): Promise<TResponseData> {
+    return this._axiosInstance.get(url, { data: data });
+  }
+  post<TResponseData = any, TRequestData = any>(
+    url: string,
+    data?: TRequestData
+  ): Promise<TResponseData> {
+    return this._axiosInstance.post(url, data);
+  }
+}
