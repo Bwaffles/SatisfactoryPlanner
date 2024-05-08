@@ -1,8 +1,7 @@
 ﻿using SatisfactoryPlanner.Modules.Production.Application.Contracts;
-using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLineDetails;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLines
+namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLineDetails
 {
     public class GetProductionLineDetailsQuery(Guid worldId, Guid productionLineId) : IQuery<ProductionLineDetailsDto?>
     {

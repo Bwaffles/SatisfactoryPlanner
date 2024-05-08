@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine
+namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.RenameProductionLine
 {
     internal class RenameProductionLineCommandValidator : AbstractValidator<RenameProductionLineCommand>
     {

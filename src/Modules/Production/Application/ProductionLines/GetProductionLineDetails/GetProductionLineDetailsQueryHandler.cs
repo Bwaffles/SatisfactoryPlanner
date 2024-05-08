@@ -1,11 +1,10 @@
 ﻿using Dapper;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.Production.Application.Configuration.Queries;
-using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLineDetails;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLines
+namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLineDetails
 {
     internal class GetProductionLineDetailsQueryHandler(IDbConnectionFactory dbConnectionFactory)
         : IQueryHandler<GetProductionLineDetailsQuery, ProductionLineDetailsDto?>
