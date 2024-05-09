@@ -26,6 +26,12 @@
 		<ProjectReference Include="..\..\..\BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
+		<ProjectReference Include="..\..\..\Modules\Production\Application\SatisfactoryPlanner.Modules.Production.Application.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\..\Modules\Production\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Production.IntegrationTests.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
 		<ProjectReference Include="..\..\..\Modules\UserAccess\Application\SatisfactoryPlanner.Modules.UserAccess.Application.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>

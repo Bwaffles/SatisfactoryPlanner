@@ -9,6 +9,9 @@ namespace SatisfactoryPlanner.API.IntegrationTests.Endpoints.UserAccess.Users
         public static async Task<HttpResponseMessage> Execute(HttpClient client, CreateCurrentUserRequest createCurrentUserRequest)
             => await client.PostAsJsonAsync("/api/user-access/users/@me", createCurrentUserRequest);
 
+        public static async Task<HttpResponseMessage> Execute(HttpClient client)
+            => await client.PostAsJsonAsync("/api/user-access/users/@me", new CreateCurrentUserRequest { Auth0UserId = AuthenticatedUser.Auth0UserId });
+
         [TestFixture]
         public class Tests : IntegrationTest
         {

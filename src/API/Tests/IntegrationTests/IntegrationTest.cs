@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
-using Npgsql;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
-using SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork;
 
 namespace SatisfactoryPlanner.API.IntegrationTests
 {
@@ -46,7 +44,8 @@ namespace SatisfactoryPlanner.API.IntegrationTests
         [SetUp]
         public async Task BeforeEachTest()
         {
-            await ClearDatabase();
+            await DatabaseClearer.Clear(ConnectionString);
+
             // since tests run sequentially, each test can manipulate this user to perform their test and it will reset before each test so the tests don't affect each other
             AuthenticatedUser.Reset(); 
         }
@@ -55,17 +54,6 @@ namespace SatisfactoryPlanner.API.IntegrationTests
         public void OnShutdown()
         {
             Client.Dispose();
-        }
-
-        private async Task ClearDatabase()
-        {
-            await using (var connection = new NpgsqlConnection(ConnectionString))
-            {
-                // Call out to each module's integration test project so that the api tests don't need to stay in sync with all module changes.
-                // Assuming each integration test project knows how to clear its own database data between tests.
-                await DatabaseClearer.Clear(connection);
-                // TODO add other module's database clearers 
-            }
         }
     }
 }

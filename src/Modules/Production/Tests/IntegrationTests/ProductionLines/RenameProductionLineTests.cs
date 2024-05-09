@@ -7,7 +7,7 @@ using SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork;
 namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProductionLines
 {
     [TestFixture]
-    public class RenameProductionLineTests : TestBase
+    public class RenameProductionLineTests : IntegrationTest
     {
         // Happy path tests
         [Test]

@@ -1,0 +1,208 @@
+﻿namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
+{
+    public partial class Item
+    { // Definitions of all the items--there are a lot so keeping it separate from the code of the class
+
+        // Resources
+        public static Item IronOre => new(ItemCategory.Resources, "IronOre", "Iron Ore", StackSize.Medium, ResourceForm.Solid, 1, 0, 0, 0, "Used for crafting.\r\nThe most essential basic resource.");
+        public static Item CopperOre => new(ItemCategory.Resources, "CopperOre", "Copper Ore", StackSize.Medium, ResourceForm.Solid, 3, 0, 0, 0, "Used for crafting.\r\nBasic resource mainly used for electricity.");
+        public static Item Limestone => new(ItemCategory.Resources, "Limestone", "Limestone", StackSize.Medium, ResourceForm.Solid, 2, 0, 0, 0, "Used for crafting.\r\nBasic resource mainly used for stable foundations.");
+        public static Item Coal => new(ItemCategory.Resources, "Coal", "Coal", StackSize.Medium, ResourceForm.Solid, 3, 0, 0, 0, "Mainly used as fuel for vehicles & coal generators and for steel production.");
+        public static Item Sulfur => new(ItemCategory.Resources, "Sulfur", "Sulfur", StackSize.Medium, ResourceForm.Solid, 11, 0, 0, 0, "Sulfur is primarily used for Black Powder.");
+        public static Item RawQuartz => new(ItemCategory.Resources, "RawQuartz", "Raw Quartz", StackSize.Medium, ResourceForm.Solid, 15, 0, 0, 0, "Raw Quartz can be processed into Quartz Crystals and Silica, which both offer a variety of applications.");
+        public static Item CateriumOre => new(ItemCategory.Resources, "CateriumOre", "Caterium Ore", StackSize.Medium, ResourceForm.Solid, 7, 0, 0, 0, "Caterium Ore is smelted into Caterium Ingots. Caterium Ingots are mostly used for advanced electronics.");
+        public static Item Bauxite => new(ItemCategory.Resources, "Bauxite", "Bauxite", StackSize.Medium, ResourceForm.Solid, 8, 0, 0, 0, "Bauxite is used to produce Alumina, which can be further refined into the Aluminum Scrap required to produce Aluminum Ingots.");
+        public static Item Uranium => new(ItemCategory.Resources, "Uranium", "Uranium", StackSize.Medium, ResourceForm.Solid, 35, 0, 15, 0, "Uranium is a radioactive element. \r\nUsed to produce Encased Uranium Cells for Uranium Fuel Rods.\r\n\r\nCaution: Moderately Radioactive.");
+        public static Item Water => new(ItemCategory.Resources, "Water", "Water", StackSize.Fluid, ResourceForm.Liquid, 5, 0, 0, 0, "It's water.");
+        public static Item CrudeOil => new(ItemCategory.Resources, "CrudeOil", "Crude Oil", StackSize.Fluid, ResourceForm.Liquid, 30, 0.32m, 0, 0, "Crude Oil is refined into all kinds of Oil-based resources, like Fuel and Plastic.");
+        public static Item NitrogenGas => new(ItemCategory.Resources, "NitrogenGas", "Nitrogen Gas", StackSize.Fluid, ResourceForm.Gas, 10, 0, 0, 0, "Nitrogen can be used in a variety of ways, such as metallurgy, cooling, and Nitric Acid production. On Massage-2(AB)b, it can be extracted from underground gas wells.");
+
+        // Ingots
+        public static Item IronIngot => new(ItemCategory.Ingots, "IronIngot", "Iron Ingot", StackSize.Medium, ResourceForm.Solid, 2, 0, 0, 0, "Used for crafting.\r\nCrafted into the most basic parts.");
+        public static Item CopperIngot => new(ItemCategory.Ingots, "CopperIngot", "Copper Ingot", StackSize.Medium, ResourceForm.Solid, 6, 0, 0, 0, "Used for crafting.\r\nCrafted into the most basic parts.");
+        public static Item SteelIngot => new(ItemCategory.Ingots, "SteelIngot", "Steel Ingot", StackSize.Medium, ResourceForm.Solid, 8, 0, 0, 0, "Steel Ingots are made from Iron Ore that's been smelted with Coal. They are made into several parts used in building construction.");
+        public static Item CateriumIngot => new(ItemCategory.Ingots, "CateriumIngot", "Caterium Ingot", StackSize.Medium, ResourceForm.Solid, 42, 0, 0, 0, "Caterium Ingots are smelted from Caterium Ore. Caterium Ingots are mostly used for advanced electronics.");
+        public static Item AluminumIngot => new(ItemCategory.Ingots, "AluminumIngot", "Aluminum Ingot", StackSize.Medium, ResourceForm.Solid, 131, 0, 0, 0, "Aluminum Ingots are made from Aluminum Scrap, which is refined from Alumina Solution.\r\nUsed to produce specialized aluminum-based parts.");
+
+        // Standard Parts
+        public static Item IronRod => new(ItemCategory.StandardParts, "IronRod", "Iron Rod", StackSize.Big, ResourceForm.Solid, 4, 0, 0, 0, "Used for crafting.\r\nOne of the most basic parts.");
+        public static Item IronPlate => new(ItemCategory.StandardParts, "IronPlate", "Iron Plate", StackSize.Big, ResourceForm.Solid, 6, 0, 0, 0, "Used for crafting.\r\nOne of the most basic parts.");
+        public static Item ReinforcedIronPlate => new(ItemCategory.StandardParts, "ReinforcedIronPlate", "Reinforced Iron Plate", StackSize.Medium, ResourceForm.Solid, 120, 0, 0, 0, "Used for crafting.\r\nA sturdier and more durable Iron Plate.");
+        public static Item Screw => new(ItemCategory.StandardParts, "Screw", "Screw", StackSize.Huge, ResourceForm.Solid, 2, 0, 0, 0, "Used for crafting.\r\nOne of the most basic parts.");
+        public static Item ModularFrame => new(ItemCategory.StandardParts, "ModularFrame", "Modular Frame", StackSize.Small, ResourceForm.Solid, 408, 0, 0, 0, "Used for crafting.\r\nMulti-purpose building block.");
+        public static Item HeavyModularFrame => new(ItemCategory.StandardParts, "HeavyModularFrame", "Heavy Modular Frame", StackSize.Small, ResourceForm.Solid, 11520, 0, 0, 0, "A more robust multi-purpose frame.");
+        public static Item FusedModularFrame => new(ItemCategory.StandardParts, "FusedModularFrame", "Fused Modular Frame", StackSize.Small, ResourceForm.Solid, 62840, 0, 0, 0, "A corrosion resistant, nitride hardened, highly robust, yet lightweight modular frame.");
+        public static Item SteelBeam => new(ItemCategory.StandardParts, "SteelBeam", "Steel Beam", StackSize.Big, ResourceForm.Solid, 64, 0, 0, 0, "Steel Beams are used most often when constructing a little more advanced buildings.");
+        public static Item SteelPipe => new(ItemCategory.StandardParts, "SteelPipe", "Steel Pipe", StackSize.Big, ResourceForm.Solid, 24, 0, 0, 0, "Steel Pipes are used most often when constructing a little more advanced buildings.");
+        public static Item EncasedIndustrialBeam => new(ItemCategory.StandardParts, "EncasedIndustrialBeam", "Encased Industrial Beam", StackSize.Medium, ResourceForm.Solid, 632, 0, 0, 0, "Encased Industrial Beams utilizes the compressive strength of concrete and tensile strength of steel simultaneously.\r\nMostly used as a stable basis for constructing buildings.");
+        public static Item CopperSheet => new(ItemCategory.StandardParts, "CopperSheet", "Copper Sheet", StackSize.Big, ResourceForm.Solid, 24, 0, 0, 0, "Used for crafting.\r\nPrimarily used for pipelines due to its high corrosion resistance.");
+        public static Item AluminumCasing => new(ItemCategory.StandardParts, "AluminumCasing", "Aluminum Casing", StackSize.Big, ResourceForm.Solid, 393, 0, 0, 0, "A versatile container cast from Aluminum Ingots.");
+        public static Item AlcladAluminumSheet => new(ItemCategory.StandardParts, "AlcladAluminumSheet", "Alclad Aluminum Sheet", StackSize.Big, ResourceForm.Solid, 266, 0, 0, 0, "Thin, lightweight, and highly durable sheets mainly used for products that require high heat conduction or a high specific strength.");
+
+        // Industrial Parts
+        public static Item Rotor => new(ItemCategory.IndustrialParts, "Rotor", "Rotor", StackSize.Medium, ResourceForm.Solid, 140, 0, 0, 0, "Used for crafting.\r\nThe moving parts of a motor.");
+        public static Item Stator => new(ItemCategory.IndustrialParts, "Stator", "Stator", StackSize.Medium, ResourceForm.Solid, 240, 0, 0, 0, "Used for crafting.\r\nThe static parts of a motor.");
+        public static Item Motor => new(ItemCategory.IndustrialParts, "Motor", "Motor", StackSize.Small, ResourceForm.Solid, 1520, 0, 0, 0, "The Motor creates a mechanical force that is used to move things from machines to vehicles.");
+        public static Item HeatSink => new(ItemCategory.IndustrialParts, "HeatSink", "Heat Sink", StackSize.Medium, ResourceForm.Solid, 2804, 0, 0, 0, "Used to dissipate heat faster.");
+        public static Item CoolingSystem => new(ItemCategory.IndustrialParts, "CoolingSystem", "Cooling System", StackSize.Medium, ResourceForm.Solid, 12006, 0, 0, 0, "Used to keep temperatures of advanced parts and buildings from exceeding to inefficient levels.");
+        public static Item TurboMotor => new(ItemCategory.IndustrialParts, "TurboMotor", "Turbo Motor", StackSize.Small, ResourceForm.Solid, 242720, 0, 0, 0, "The Turbo Motor is a more complex and more powerful version of the regular Motor.");
+        public static Item Battery => new(ItemCategory.IndustrialParts, "Battery", "Battery", StackSize.Big, ResourceForm.Solid, 465, 6000, 0, 0, "Primarily used as fuel for Drones and Vehicles.");
+
+        // Compounds
+        public static Item Concrete => new(ItemCategory.Compounds, "Concrete", "Concrete", StackSize.Huge, ResourceForm.Solid, 12, 0, 0, 0, "Used for building.\r\nGood for stable foundations.");
+        public static Item QuartzCrystal => new(ItemCategory.Compounds, "QuartzCrystal", "Quartz Crystal", StackSize.Big, ResourceForm.Solid, 50, 0, 0, 0, "Derived from Raw Quartz. Used in the production of advanced radar technology and high-quality display screens.");
+        public static Item Silica => new(ItemCategory.Compounds, "Silica", "Silica", StackSize.Big, ResourceForm.Solid, 20, 0, 0, 0, "Derived from Raw Quartz. Commonly used to create glass structures, advanced refinement processes, and alternative production of electronics.");
+        public static Item CompactedCoal => new(ItemCategory.Compounds, "CompactedCoal", "Compacted Coal", StackSize.Medium, ResourceForm.Solid, 28, 630, 0, 0, "A much more efficient alternative to Coal. Used as fuel for vehicles and coal generators.");
+        public static Item CopperPowder => new(ItemCategory.Compounds, "CopperPowder", "Copper Powder", StackSize.Huge, ResourceForm.Solid, 72, 0, 0, 0, "Ground down Copper Ingots.\r\nThe high natural density of Copper, combined with the granularity of the powder, makes this part fit for producing Nuclear Pasta in the Particle Accelerator.");
+
+        // Electronics
+        public static Item Cable => new(ItemCategory.Electronics, "Cable", "Cable", StackSize.Big, ResourceForm.Solid, 24, 0, 0, 0, "Used for crafting.\r\nPrimarily used to build power lines.");
+        public static Item Wire => new(ItemCategory.Electronics, "Wire", "Wire", StackSize.Huge, ResourceForm.Solid, 6, 0, 0, 0, "Used for crafting.\r\nOne of the most basic parts.");
+        public static Item CircuitBoard => new(ItemCategory.Electronics, "CircuitBoard", "Circuit Board", StackSize.Big, ResourceForm.Solid, 696, 0, 0, 0, "Circuit Boards are advanced electronics that are used in a plethora of different ways.");
+        public static Item HighSpeedConnector => new(ItemCategory.Electronics, "HighSpeedConnector", "High-Speed Connector", StackSize.Medium, ResourceForm.Solid, 3776, 0, 0, 0, "The high-speed connector connects several cables and wires in a very efficient way. Uses a standard pattern so its applications are many and varied.");
+        public static Item AILimiter => new(ItemCategory.Electronics, "AILimiter", "AI Limiter", StackSize.Medium, ResourceForm.Solid, 920, 0, 0, 0, "AI Limiters are super advanced electronics that are used to control AIs and keep them from evolving in malicious ways.");
+        public static Item Quickwire => new(ItemCategory.Electronics, "Quickwire", "Quickwire", StackSize.Huge, ResourceForm.Solid, 17, 0, 0, 0, "Caterium's high conductivity and resistance to corrosion makes it ideal for small, advanced electronics.");
+
+        // Communications
+        public static Item Computer => new(ItemCategory.Communications, "Computer", "Computer", StackSize.Small, ResourceForm.Solid, 17260, 0, 0, 0, "A Computer is a complex logic machine that is used to control advanced behavior in machines.");
+        public static Item Supercomputer => new(ItemCategory.Communications, "Supercomputer", "Supercomputer", StackSize.Small, ResourceForm.Solid, 99576, 0, 0, 0, "The supercomputer is the next-gen version of the computer.");
+        public static Item RadioControlUnit => new(ItemCategory.Communications, "RadioControlUnit", "Radio Control Unit", StackSize.Small, ResourceForm.Solid, 19600, 0, 0, 0, "Enhances and directs radio signals.");
+        public static Item CrystalOscillator => new(ItemCategory.Communications, "CrystalOscillator", "Crystal Oscillator", StackSize.Medium, ResourceForm.Solid, 3072, 0, 0, 0, "A crystal oscillator is an electronic oscillator circuit that uses the mechanical resonance of a vibrating crystal to create an electrical signal with a precise frequency.");
+
+        // Oil Products
+        public static Item PackagedOil => new(ItemCategory.OilProducts, "PackagedOil", "Packaged Oil", StackSize.Medium, ResourceForm.Solid, 180, 320, 0, 0, "Crude Oil, packaged for alternative transport. Can be used as fuel for Vehicles.");
+        public static Item Plastic => new(ItemCategory.OilProducts, "Plastic", "Plastic", StackSize.Big, ResourceForm.Solid, 75, 0, 0, 0, "A versatile and easy to manufacture material that can be used for a lot of things.");
+        public static Item Rubber => new(ItemCategory.OilProducts, "Rubber", "Rubber", StackSize.Big, ResourceForm.Solid, 60, 0, 0, 0, "Rubber is a material that is very flexible and has a lot of friction.");
+        public static Item PolymerResin => new(ItemCategory.OilProducts, "PolymerResin", "Polymer Resin", StackSize.Big, ResourceForm.Solid, 12, 0, 0, 0, "Used for crafting.\r\nA by-product of oil refinement into fuel. Commonly used to manufacture plastics.");
+        public static Item PetroleumCoke => new(ItemCategory.OilProducts, "PetroleumCoke", "Petroleum Coke", StackSize.Big, ResourceForm.Solid, 20, 180, 0, 0, "Used for crafting.\r\nA carbon-rich material distilled from Heavy Oil Residue. \r\nUsed as a less efficient coal replacement.");
+        public static Item HeavyOilResidue => new(ItemCategory.OilProducts, "HeavyOilResidue", "Heavy Oil Residue", StackSize.Fluid, ResourceForm.Liquid, 30, 0.4m, 0, 0, "A by-product of Plastic and Rubber production. Can be further refined into Fuel and Petroleum Coke.");
+        public static Item PackagedHeavyOilResidue => new(ItemCategory.OilProducts, "PackagedHeavyOilResidue", "Packaged Heavy Oil Residue", StackSize.Medium, ResourceForm.Solid, 180, 400, 0, 0, "Heavy Oil Residue, packaged for alternative transport. Can be used as fuel for Vehicles.");
+
+        // Advanced Refinement
+        public static Item AluminumScrap => new(ItemCategory.AdvancedRefinement, "AluminumScrap", "Aluminum Scrap", StackSize.Huge, ResourceForm.Solid, 27, 0, 0, 0, "Aluminum Scrap is pure aluminum refined from Alumina. Can be smelted down to Aluminum Ingots for industrial usage.");
+        public static Item AluminaSolution => new(ItemCategory.AdvancedRefinement, "AluminaSolution", "Alumina Solution", StackSize.Fluid, ResourceForm.Liquid, 20, 0, 0, 0, "Dissolved Alumina, extracted from Bauxite. Can be further refined into Aluminum Scrap for Aluminum Ingot production.");
+        public static Item PackagedAluminaSolution => new(ItemCategory.AdvancedRefinement, "PackagedAluminaSolution", "Packaged Alumina Solution", StackSize.Medium, ResourceForm.Solid, 160, 0, 0, 0, "Alumina Solution, packaged for alternative transport.");
+        public static Item SulfuricAcid => new(ItemCategory.AdvancedRefinement, "SulfuricAcid", "Sulfuric Acid", StackSize.Fluid, ResourceForm.Liquid, 16, 0, 0, 0, "A mineral acid produced by combining Sulfur and Water in a complex reaction. Primarily used in refinement processes and Battery production.");
+        public static Item PackagedSulfuricAcid => new(ItemCategory.AdvancedRefinement, "PackagedSulfuricAcid", "Packaged Sulfuric Acid", StackSize.Medium, ResourceForm.Solid, 152, 0, 0, 0, "Sulfuric Acid, packaged for alternative transport.");
+        public static Item NitricAcid => new(ItemCategory.AdvancedRefinement, "NitricAcid", "Nitric Acid", StackSize.Fluid, ResourceForm.Liquid, 94, 0, 0, 0, "Produced by reaction of Nitrogen Gas with Water. Its high corrosiveness and oxidizing properties make it an excellent choice for refinement and fuel production processes.");
+        public static Item PackagedNitricAcid => new(ItemCategory.AdvancedRefinement, "PackagedNitricAcid", "Packaged Nitric Acid", StackSize.Medium, ResourceForm.Solid, 412, 0, 0, 0, "Nitric Acid, packaged for alternative transport.");
+
+        // Biomass
+        public static Item ColorCartridge => new(ItemCategory.Biomass, "ColorCartridge", "Color Cartridge", StackSize.Big, ResourceForm.Solid, 10, 900, 0, 0, "Used for applying Patterns to structures with the Customizer.\r\n\r\n(Patterns can be purchased in the AWESOME Shop.)");
+        public static Item Fabric => new(ItemCategory.Biomass, "Fabric", "Fabric", StackSize.Medium, ResourceForm.Solid, 140, 15, 0, 0, "Used for equipment crafting.\r\nFlexible but durable fabric.");
+        public static Item FlowerPetals => new(ItemCategory.Biomass, "FlowerPetals", "Flower Petals", StackSize.Huge, ResourceForm.Solid, 10, 100, 0, 0, "Used for crafting.\r\nColorful native flower petals.");
+        public static Item Wood => new(ItemCategory.Biomass, "Wood", "Wood", StackSize.Big, ResourceForm.Solid, 30, 100, 0, 0, "Primarily used as fuel.\r\nBiomass Burners and vehicles can use it for power.");
+        public static Item Mycelia => new(ItemCategory.Biomass, "Mycelia", "Mycelia", StackSize.Big, ResourceForm.Solid, 10, 20, 0, 0, "Used for crafting.\r\nBiomass Burners and vehicles can use it for power.");
+        public static Item Leaves => new(ItemCategory.Biomass, "Leaves", "Leaves", StackSize.Huge, ResourceForm.Solid, 3, 15, 0, 0, "Primarily used as fuel.\r\nBiomass Burners and vehicles can use it for power.");
+        public static Item Biomass => new(ItemCategory.Biomass, "Biomass", "Biomass", StackSize.Big, ResourceForm.Solid, 12, 180, 0, 0, "Primarily used as fuel.\r\nBiomass burners and vehicles can use it for power.\r\nBiomass is much more energy-efficient than raw biological matter.");
+        public static Item SolidBiofuel => new(ItemCategory.Biomass, "SolidBiofuel", "Solid Biofuel", StackSize.Big, ResourceForm.Solid, 48, 450, 0, 0, "The most energy-efficient form of solid biomass. Can be used as fuel for the Chainsaw.");
+
+        // Fuel
+        public static Item LiquidBiofuel => new(ItemCategory.Fuel, "LiquidBiofuel", "Liquid Biofuel", StackSize.Fluid, ResourceForm.Liquid, 261, 0.75m, 0, 0, "Liquid Biofuel can be used to generate power or packaged to be used as fuel for Vehicles.");
+        public static Item PackagedLiquidBiofuel => new(ItemCategory.Fuel, "PackagedLiquidBiofuel", "Packaged Liquid Biofuel", StackSize.Medium, ResourceForm.Solid, 370, 750, 0, 0, "Liquid Biofuel, packaged for alternative transport. Can be used as fuel for Vehicles and the Jetpack.");
+        public static Item Fuel => new(ItemCategory.Fuel, "Fuel", "Fuel", StackSize.Fluid, ResourceForm.Liquid, 75, 0.75m, 0, 0, "Fuel can be used to generate power or packaged to be used as fuel for Vehicles or the Jetpack.");
+        public static Item PackagedFuel => new(ItemCategory.Fuel, "PackagedFuel", "Packaged Fuel", StackSize.Medium, ResourceForm.Solid, 270, 750, 0, 0, "Fuel, packaged for alternative transport. Can be used as fuel for Vehicles and the Jetpack.");
+        public static Item Turbofuel => new(ItemCategory.Fuel, "Turbofuel", "Turbofuel", StackSize.Fluid, ResourceForm.Liquid, 225, 2, 0, 0, "A more efficient alternative to Fuel. Can be used to generate power or packaged to be used as fuel for Vehicles.");
+        public static Item PackagedTurbofuel => new(ItemCategory.Fuel, "PackagedTurbofuel", "Packaged Turbofuel", StackSize.Medium, ResourceForm.Solid, 570, 2000, 0, 0, "Turbofuel, packaged for alternative transport. Can be used as fuel for Vehicles and the Jetpack.");
+
+        // Containers
+        public static Item EmptyCanister => new(ItemCategory.Containers, "EmptyCanister", "Empty Canister", StackSize.Medium, ResourceForm.Solid, 60, 0, 0, 0, "Used to package fluids for transportation.");
+        public static Item EmptyFluidTank => new(ItemCategory.Containers, "EmptyFluidTank", "Empty Fluid Tank", StackSize.Medium, ResourceForm.Solid, 225, 0, 0, 0, "Used to package gases and volatile liquids for transportation.");
+        public static Item PressureConversionCube => new(ItemCategory.Containers, "PressureConversionCube", "Pressure Conversion Cube", StackSize.Small, ResourceForm.Solid, 257312, 0, 0, 0, "Converts outgoing force into internal pressure. Required to contain unstable, high-energy matter.");
+        public static Item PackagedWater => new(ItemCategory.Containers, "PackagedWater", "Packaged Water", StackSize.Medium, ResourceForm.Solid, 130, 0, 0, 0, "Water, packaged for alternative transport."); // maybe standard parts? sf calc has it as containers
+        public static Item PackagedNitrogenGas => new(ItemCategory.Containers, "PackagedNitrogenGas", "Packaged Nitrogen Gas", StackSize.Medium, ResourceForm.Solid, 312, 0, 0, 0, "Nitrogen Gas, packaged for alternative transport.");
+
+        // Nuclear
+        public static Item ElectromagneticControlRod => new(ItemCategory.Nuclear, "ElectromagneticControlRod", "Electromagnetic Control Rod", StackSize.Medium, ResourceForm.Solid, 2560, 0, 0, 0, "Control Rods regulate power output via electromagnetism.");
+        public static Item EncasedUraniumCell => new(ItemCategory.Nuclear, "EncasedUraniumCell", "Encased Uranium Cell", StackSize.Big, ResourceForm.Solid, 147, 0, 0.5m, 0, "Uranium Cells are produced from Uranium Ore. \r\nUsed to produce Uranium Fuel Rods for Nuclear Power production.\r\n\r\nCaution: Mildly Radioactive.");
+        public static Item NonFissileUranium => new(ItemCategory.Nuclear, "NonFissileUranium", "Non-fissile Uranium", StackSize.Huge, ResourceForm.Solid, 0, 0, 0.75m, 0, "The isotope Uranium-238 is non-fissile, meaning it cannot be used for nuclear fission. It can, however, be converted into fissile Plutonium in the Particle Accelerator.\r\n\r\nCaution: Mildly Radioactive.");
+        public static Item UraniumFuelRod => new(ItemCategory.Nuclear, "UraniumFuelRod", "Uranium Fuel Rod", StackSize.Small, ResourceForm.Solid, 44092, 750000, 50, 0, "Used as fuel for the Nuclear Power Plant.\r\n\r\nCaution: Produces radioactive Uranium Waste when consumed.\r\nCaution: Moderately Radioactive.");
+        public static Item UraniumWaste => new(ItemCategory.Nuclear, "UraniumWaste", "Uranium Waste", StackSize.Huge, ResourceForm.Solid, 0, 0, 10, 0, "The by-product of consuming Uranium Fuel Rods in the Nuclear Power Plant.\r\nNon-fissile Uranium can be extracted. Handle with caution.\r\n\r\nCaution: HIGHLY Radioactive.");
+        public static Item PlutoniumPellet => new(ItemCategory.Nuclear, "PlutoniumPellet", "Plutonium Pellet", StackSize.Medium, ResourceForm.Solid, 0, 0, 20, 0, "Produced in the Particle Accelerator through conversion of Non-fissile Uranium.\r\nUsed to produce Encased Plutonium Cells for Plutonium Fuel Rods.\r\n\r\nPower Usage: 250-750 MW (500 MW average).\r\nCaution: Moderately Radioactive.");
+        public static Item EncasedPlutoniumCell => new(ItemCategory.Nuclear, "EncasedPlutoniumCell", "Encased Plutonium Cell", StackSize.Big, ResourceForm.Solid, 0, 0, 120, 0, "Plutonium Cells are concrete encased Plutonium Pellets.\r\nUsed to produce Plutonium Fuel Rods for Nuclear Power production.\r\n\r\nCaution: Moderately Radioactive.");
+        public static Item PlutoniumFuelRod => new(ItemCategory.Nuclear, "PlutoniumFuelRod", "Plutonium Fuel Rod", StackSize.Small, ResourceForm.Solid, 153184, 1500000, 150, 0, "Used as fuel for the Nuclear Power Plant.\r\n\r\nCaution: Produces radioactive Plutonium Waste when consumed.\r\nCaution: HIGHLY Radioactive.");
+        public static Item PlutoniumWaste => new(ItemCategory.Nuclear, "PlutoniumWaste", "Plutonium Waste", StackSize.Huge, ResourceForm.Solid, 0, 0, 200, 0, "The by-product of consuming Plutonium Fuel Rods in the Nuclear Power Plant.\r\nNeeds to be stored in a safe location. Handle with caution.\r\n\r\nCaution: EXTREMELY Radioactive.");
+
+        // Space Elevator
+        public static Item SmartPlating => new(ItemCategory.SpaceElevator, "SmartPlating", "Smart Plating", StackSize.Small, ResourceForm.Solid, 520, 0, 0, 0, "Project Part #1. Ship with the Space Elevator to complete phases of Project Assembly.");
+        public static Item VersatileFramework => new(ItemCategory.SpaceElevator, "VersatileFramework", "Versatile Framework", StackSize.Small, ResourceForm.Solid, 1176, 0, 0, 0, "Project Part #2. Ship with the Space Elevator to complete phases of Project Assembly.");
+        public static Item AutomatedWiring => new(ItemCategory.SpaceElevator, "AutomatedWiring", "Automated Wiring", StackSize.Small, ResourceForm.Solid, 1440, 0, 0, 0, "Project Part #3. Ship with the Space Elevator to complete phases of Project Assembly.");
+        public static Item ModularEngine => new(ItemCategory.SpaceElevator, "ModularEngine", "Modular Engine", StackSize.Small, ResourceForm.Solid, 9960, 0, 0, 0, "Project Part #4. Ship with the Space Elevator to complete phases of Project Assembly.");
+        public static Item AdaptiveControlUnit => new(ItemCategory.SpaceElevator, "AdaptiveControlUnit", "Adaptive Control Unit", StackSize.Small, ResourceForm.Solid, 86120, 0, 0, 0, "Project Part #5. Ship with the Space Elevator to complete phases of Project Assembly.");
+        public static Item AssemblyDirectorSystem => new(ItemCategory.SpaceElevator, "AssemblyDirectorSystem", "Assembly Director System", StackSize.Small, ResourceForm.Solid, 543632, 0, 0, 0, "Project Part #6. Ship with the Space Elevator to complete phases of Project Assembly.\r\n\r\nThis extremely fast and precise computing system is specifically designed to direct the Project Assembly: Assembly Phase.");
+        public static Item MagneticFieldGenerator => new(ItemCategory.SpaceElevator, "MagneticFieldGenerator", "Magnetic Field Generator", StackSize.Small, ResourceForm.Solid, 15650, 0, 0, 0, "Project Part #7. Ship with the Space Elevator to complete phases of Project Assembly.\r\n\r\nThese modular generators use superconducting magnets and vast amounts of electricity to produce an easily expandable and powerful magnetic field.");
+        public static Item ThermalPropulsionRocket => new(ItemCategory.SpaceElevator, "ThermalPropulsionRocket", "Thermal Propulsion Rocket", StackSize.Small, ResourceForm.Solid, 732956, 0, 0, 0, "Project Part #8. Ship with the Space Elevator to complete phases of Project Assembly.\r\n\r\nUses extreme heat to produce the high-pressure plasma required to get Project Assembly into motion.");
+        public static Item NuclearPasta => new(ItemCategory.SpaceElevator, "NuclearPasta", "Nuclear Pasta", StackSize.Small, ResourceForm.Solid, 543424, 0, 0, 0, "Project Part #9. Ship with the Space Elevator to complete phases of Project Assembly.\r\nPower Usage: 500-1500 MW (1000 MW average).\r\n\r\nNuclear Pasta is extremely dense degenerate matter, formed when extreme pressure forces protons and electrons together into neutrons. It is theorized to exist naturally within the crust of neutron stars.");
+
+        // Consumables
+        public static Item GasFilter => new(ItemCategory.Consumables, "GasFilter", "Gas Filter", StackSize.Small, ResourceForm.Solid, 830, 0, 0, 0, "Used in the Gas Mask to filter out toxins and pollutants from the air.");
+        public static Item IodineInfusedFilter => new(ItemCategory.Consumables, "IodineInfusedFilter", "Iodine Infused Filter", StackSize.Small, ResourceForm.Solid, 2718, 0, 0, 0, "Used in the Hazmat Suit to absorb radioactive particles.");
+        public static Item BerylNut => new(ItemCategory.Consumables, "BerylNut", "Beryl Nut", StackSize.Medium, ResourceForm.Solid, 0, 0, 0, 5, "Slot: Hands\r\nConsumable\r\n\r\nCan be eaten to restore half a health segment.");
+        public static Item MedicinalInhaler => new(ItemCategory.Consumables, "MedicinalInhaler", "Medicinal Inhaler", StackSize.Small, ResourceForm.Solid, 125, 0, 0, 100, "Fully restores health when used.\r\n\r\nThe FICSIT Medicinal Inhaler can be produced from a variety of different ingredients.");
+        public static Item BaconAgaric => new(ItemCategory.Consumables, "BaconAgaric", "Bacon Agaric", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 20, "Slot: Hands\r\nConsumable\r\n\r\nCan be eaten to restore two health segments.");
+        public static Item Paleberry => new(ItemCategory.Consumables, "Paleberry", "Paleberry", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 10, "Slot: Hands\r\nConsumable\r\n\r\nCan be eaten to restore one health segment.");
+
+        // Tools 
+        public static Item Beacon => new(ItemCategory.Tools, "Beacon", "Beacon", StackSize.Medium, ResourceForm.Solid, 320, 0, 0, 0, "PENDING REMOVAL\r\nThis item will (likely) be removed in a future update.\r\n\r\nCurrently only used as an ingredient in an alternative recipe.");
+        public static Item PortableMiner => new(ItemCategory.Tools, "PortableMiner", "Portable Miner", StackSize.One, ResourceForm.Solid, 56, 0, 0, 0, "Can be set up on a resource node to automatically extract the resource. Note that it has limited storage space.");
+        public static Item Chainsaw => new(ItemCategory.Tools, "Chainsaw", "Chainsaw", StackSize.One, ResourceForm.Solid, 2760, 0, 0, 0, "Slot: Hands\r\nFuel: Biofuel\r\n\r\nUsed to clear an area of flora that is too difficult to remove by hand.");
+        public static Item ObjectScanner => new(ItemCategory.Tools, "ObjectScanner", "Object Scanner", StackSize.One, ResourceForm.Solid, 1400, 0, 0, 0, "Scans the area for a set item. Beeps at a rate proportional to proximity and direction.");
+        public static Item Zipline => new(ItemCategory.Tools, "Zipline", "Zipline", StackSize.One, ResourceForm.Solid, 5284, 0, 0, 0, "Provides faster traversal in factories by allowing Pioneers to zip along Power lines.\r\nActivate the Zipline and aim at a nearby Power Line to connect to it.");
+        public static Item FactoryCart => new(ItemCategory.Tools, "FactoryCart", "Factory Cart™", StackSize.One, ResourceForm.Solid, 1552, 0, 0, 0, "The one and only FICSIT Factory Cart™\r\nNow with special - FICSIT Foundation only - Grip Wheels, for an even smoother and faster factory floor experience!");
+        public static Item GoldenFactoryCart => new(ItemCategory.Tools, "GoldenFactoryCart", "Golden Factory Cart™", StackSize.One, ResourceForm.Solid, 1852, 0, 0, 0, "The one and only Golden FICSIT Factory Cart™\r\n\r\nYou have now officially ascended. \r\nGo forth now, Master of Spaghetti, God of the Factory, Sinker of Cups, Employee of the Planet... travel in STYLE!");
+
+        // Body Equipment
+        public static Item Parachute => new(ItemCategory.BodyEquipment, "Parachute", "Parachute", StackSize.One, ResourceForm.Solid, 608, 0, 0, 0, "Slows down your fall when activated in mid-air.");
+        public static Item HoverPack => new(ItemCategory.BodyEquipment, "HoverPack", "Hover Pack", StackSize.One, ResourceForm.Solid, 413920, 0, 0, 0, "Power consumption: 100 MW\r\n\r\nAllows for vertical movement and hovering in mid-air to improve building efficiency and factory traversal. Wirelessly connects to nearby power connections, such as Power Poles and Buildings, for power consumption.\r\n\r\nSlow-fall: Hold {PlayerMovement_Jump} after losing connection mid-air.\r\nDisable Hoverpack: Double tap {PlayerMovement_Crouch} while hovering.");
+        public static Item HazmatSuit => new(ItemCategory.BodyEquipment, "HazmatSuit", "Hazmat Suit", StackSize.One, ResourceForm.Solid, 54100, 0, 0, 0, "Shields Pioneers from the adverse effects of radiation. \r\nConsumes Iodine Infused Filters from the inventory while worn in radioactive areas.");
+        public static Item GasMask => new(ItemCategory.BodyEquipment, "GasMask", "Gas Mask", StackSize.One, ResourceForm.Solid, 55000, 0, 0, 0, "Allows Pioneers to breathe normally while in toxic gas areas.\r\nConsumes Gas Filters from the inventory when in use.");
+        public static Item Jetpack => new(ItemCategory.BodyEquipment, "Jetpack", "Jetpack", StackSize.One, ResourceForm.Solid, 49580, 0, 0, 0, "The Jetpack allows Pioneers to travel through the air with increased control.\r\n\r\nFuel is automatically consumed from the inventory to refill the Jetpack while on the ground.\r\nDifferent fuel types can be used and provide different levels of Jetpack efficiency. The preferred fuel type will be used if available and can be set in the equipment inventory.");
+        public static Item BladeRunners => new(ItemCategory.BodyEquipment, "BladeRunners", "Blade Runners", StackSize.One, ResourceForm.Solid, 4088, 0, 0, 0, "An exoskeleton for the lower legs that assists movement, allowing Pioneers to sprint faster and jump higher.\r\nAlso dampens the impact of landing.");
+
+        // Weapons
+        public static Item XenoZapper => new(ItemCategory.Weapons, "XenoZapper", "Xeno-Zapper", StackSize.One, ResourceForm.Solid, 1880, 0, 0, 0, "Standard issue electroshock self-defense weapon for melee range.");
+        public static Item XenoBasher => new(ItemCategory.Weapons, "XenoBasher", "Xeno-Basher", StackSize.One, ResourceForm.Solid, 18800, 0, 0, 0, "Heavy electroshock self-defense weapon for melee range.");
+        public static Item RebarGun => new(ItemCategory.Weapons, "RebarGun", "Rebar Gun", StackSize.One, ResourceForm.Solid, 1968, 0, 0, 0, "Improvised ranged weapon for self-defense. Has to be reloaded after each use.");
+        public static Item Rifle => new(ItemCategory.Weapons, "Rifle", "Rifle", StackSize.One, ResourceForm.Solid, 9480, 0, 0, 0, "A long-range, rapid-fire weapon. Specifically designed to deliver adequate performance within the designated work area.");
+        public static Item NobeliskDetonator => new(ItemCategory.Weapons, "NobeliskDetonator", "Nobelisk Detonator", StackSize.One, ResourceForm.Solid, 6480, 0, 0, 0, "A remote-control device used to handle and detonate Nobelisks.");
+
+        //Ammunition
+        public static Item BlackPowder => new(ItemCategory.Ammunition, "BlackPowder", "Black Powder", StackSize.Big, ResourceForm.Solid, 14, 0, 0, 0, "An explosive powder that is commonly used to produce simple explosives.");
+        public static Item SmokelessPowder => new(ItemCategory.Ammunition, "SmokelessPowder", "Smokeless Powder", StackSize.Medium, ResourceForm.Solid, 58, 0, 0, 0, "An explosive powder that is commonly used to produce modern firearms.");
+        // TODO /Script/CoreUObject.Class'/Script/FactoryGame.FGAmmoTypeProjectile'
+        // TODO /Script/CoreUObject.Class'/Script/FactoryGame.FGAmmoTypeSpreadshot'
+        // TODO /Script/CoreUObject.Class'/Script/FactoryGame.FGAmmoTypeInstantHit'
+
+        // Alien Remains
+        public static Item HogRemains => new(ItemCategory.AlienRemains, "HogRemains", "Hog Remains", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 250, "The carapace of the alien Hog creature.\r\nUsed for MAM research.");
+        public static Item HatcherRemains => new(ItemCategory.AlienRemains, "HatcherRemains", "Hatcher Remains", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 250, "The shell-like remains of an alien... thing.\r\nUsed for MAM research.");
+        public static Item PlasmaSpitterRemains => new(ItemCategory.AlienRemains, "PlasmaSpitterRemains", "Plasma Spitter Remains", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 250, "The remains of a plasma spitting alien creature.\r\nUsed for MAM research.");
+        public static Item StingerRemains => new(ItemCategory.AlienRemains, "StingerRemains", "Stinger Remains", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 250, "The remains of whatever that creepy thing was.\r\nUsed for MAM research.");
+        public static Item AlienProtein => new(ItemCategory.AlienRemains, "AlienProtein", "Alien Protein", StackSize.Medium, ResourceForm.Solid, 0, 0, 0, 0, "Ground down Alien Remains in a neat little package.\r\nUsed for medical purposes and to research alien organisms.");
+        public static Item AlienDNACapsule => new(ItemCategory.AlienRemains, "AlienDNACapsule", "Alien DNA Capsule", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 0, "This data capsule translates organic chemicals into readable alien genetics information.\r\nUsed for researching alien organisms.\r\n\r\nGo the extra kilometer! Knowledge is power, and power is just efficiency with fewer steps. Depositing Alien DNA Capsules in the AWESOME Sink provides FICSIT with knowledge, and Pioneers with Coupons.");
+
+        // Power Shards
+        public static Item BluePowerSlug => new(ItemCategory.PowerShards, "BluePowerSlug", "Blue Power Slug", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 0, "A strange slug radiating a strange power.");
+        public static Item YellowPowerSlug => new(ItemCategory.PowerShards, "YellowPowerSlug", "Yellow Power Slug", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 0, "A strange slug radiating a weak strange power.");
+        public static Item PurplePowerSlug => new(ItemCategory.PowerShards, "PurplePowerSlug", "Purple Power Slug", StackSize.Small, ResourceForm.Solid, 0, 0, 0, 0, "A strange slug radiating a powerful strange power.");
+        public static Item PowerShard => new(ItemCategory.PowerShards, "PowerShard", "Power Shard", StackSize.Medium, ResourceForm.Solid, 0, 0, 0, 0, "Mucus from the power slugs compressed into a solid crystal-like shard. \r\nIt radiates a strange power.");
+
+        // FICSMAS
+        public static Item FICSMASWonderStar => new(ItemCategory.FICSMAS, "FICSMASWonderStar", "FICSMAS Wonder Star", StackSize.Small, ResourceForm.Solid, 1, 0, 0, 0, "This special FICSMAS Star signifies the productivity of FICSIT all across the universe. It also signifies the fact that you have nearly completed the Holiday Event, so it's time to get back to work.");
+        public static Item FICSMASOrnamentBundle => new(ItemCategory.FICSMAS, "FICSMASOrnamentBundle", "FICSMAS Ornament Bundle", StackSize.Medium, ResourceForm.Solid, 1, 0, 0, 0, "All the FICSMAS Ornaments smashed together to make even more FICSMAS Decorations!");
+        public static Item FICSMASDecoration => new(ItemCategory.FICSMAS, "FICSMASDecoration", "FICSMAS Decoration", StackSize.Medium, ResourceForm.Solid, 1, 0, 0, 0, "A decoration used to make decorations. Its use cases are questionable.");
+        public static Item CandyCane => new(ItemCategory.FICSMAS, "CandyCane", "Candy Cane", StackSize.Huge, ResourceForm.Solid, 1, 0, 0, 0, "A delicious Candy Cane to be enjoyed during the FICSMAS Holidays. \r\n*Disclaimer: Can't be consumed...");
+        public static Item ActualSnow => new(ItemCategory.FICSMAS, "ActualSnow", "Actual Snow", StackSize.Huge, ResourceForm.Solid, 1, 0, 0, 0, "It's snow. Not the nice, thick, crunchy kind though... more the disgustingly wet, slushy kind... Guess we can make stuff from it.");
+        public static Item FICSMASBow => new(ItemCategory.FICSMAS, "FICSMASBow", "FICSMAS Bow", StackSize.Huge, ResourceForm.Solid, 1, 0, 0, 0, "A fancy Bow, maybe someone can wear this? You certainly can't! Probably, some parts and decorations can be made from this.");
+        public static Item CopperFICSMASOrnament => new(ItemCategory.FICSMAS, "CopperFICSMASOrnament", "Copper FICSMAS Ornament", StackSize.Big, ResourceForm.Solid, 1, 0, 0, 0, "Still used for making FICSMAS Decorations.");
+        public static Item IronFICSMASOrnament => new(ItemCategory.FICSMAS, "IronFICSMASOrnament", "Iron FICSMAS Ornament", StackSize.Big, ResourceForm.Solid, 1, 0, 0, 0, "This super special... nope... still just used for making FICSMAS Decorations.");
+        public static Item FICSMASTreeBranch => new(ItemCategory.FICSMAS, "FICSMASTreeBranch", "FICSMAS Tree Branch", StackSize.Big, ResourceForm.Solid, 1, 0, 0, 0, "A special Tree Branch used to produce parts and buildings during the FICSMAS Event.");
+        public static Item RedFICSMASOrnament => new(ItemCategory.FICSMAS, "RedFICSMASOrnament", "Red FICSMAS Ornament", StackSize.Huge, ResourceForm.Solid, 1, 0, 0, 0, "Used for making FICSMAS Decorations.");
+        public static Item BlueFICSMASOrnament => new(ItemCategory.FICSMAS, "BlueFICSMASOrnament", "Blue FICSMAS Ornament", StackSize.Huge, ResourceForm.Solid, 1, 0, 0, 0, "Again, used for making FICSMAS Decorations.");
+        public static Item FICSMASGift => new(ItemCategory.FICSMAS, "FICSMASGift", "FICSMAS Gift", StackSize.Huge, ResourceForm.Solid, 1, 0, 0, 0, "Special FICSMAS buildings and parts can be obtained and produced from this FICSIT Holiday present.\r\n\r\n*Watch the sky for deliveries from orbit!");
+        public static Item CandyCaneBasher => new(ItemCategory.FICSMAS, "CandyCaneBasher", "Candy Cane Basher", StackSize.One, ResourceForm.Solid, 1, 0, 0, 0, "Slot: Hands\r\n\r\nHeavy delicious self defense weapon for melee range.");
+
+        // Other
+        public static Item HUBParts => new(ItemCategory.Other, "HUBParts", "HUB Parts", StackSize.One, ResourceForm.Solid, 0, 0, 0, 0, "The parts required to build the basic structure of the HUB.");
+    }
+}

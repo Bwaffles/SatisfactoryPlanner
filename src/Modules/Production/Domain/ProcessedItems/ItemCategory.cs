@@ -1,0 +1,29 @@
+﻿namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
+{
+    public enum ItemCategory
+    {
+        Resources,
+        Ingots,
+        StandardParts,
+        IndustrialParts,
+        Compounds,
+        Electronics,
+        Communications,
+        OilProducts,
+        AdvancedRefinement,
+        Biomass,
+        Fuel,
+        Containers,
+        Nuclear,
+        SpaceElevator,
+        Consumables,
+        Tools,
+        BodyEquipment,
+        Weapons,
+        Ammunition,
+        AlienRemains,
+        PowerShards,
+        FICSMAS,
+        Other,
+    }
+}

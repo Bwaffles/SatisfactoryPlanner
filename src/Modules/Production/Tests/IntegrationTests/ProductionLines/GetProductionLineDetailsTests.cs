@@ -5,7 +5,7 @@ using SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork;
 namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProductionLines
 {
     [TestFixture]
-    internal class GetProductionLineDetailsTests : TestBase
+    internal class GetProductionLineDetailsTests : IntegrationTest
     {
         [Test]
         public async Task WhenDataIsValid_IsSuccessful()
