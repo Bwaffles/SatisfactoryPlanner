@@ -1,3 +1,5 @@
+![Build Status](https://github.com/Bwaffles/SatisfactoryPlanner/actions/workflows/build.yml/badge.svg?event=pull_request)
+
 # How to Use
 
 ## Database Migrations
