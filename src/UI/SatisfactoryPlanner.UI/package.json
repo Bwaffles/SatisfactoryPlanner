@@ -62,6 +62,7 @@
     "vite-plugin-checker": "^0.6.4"
   },
   "optionalDependencies": {
+    "@esbuild/linux-x64": "^0.21.1",
     "@rollup/rollup-linux-x64-gnu": "^4.17.2"
   }
 }
