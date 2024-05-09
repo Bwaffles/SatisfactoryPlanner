@@ -1,4 +1,5 @@
-﻿using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLines;
+﻿using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.GetProductionLineDetails;
+using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.RenameProductionLine;
 using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine;
 using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines.Rules;
 using SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork;
@@ -6,7 +7,7 @@ using SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork;
 namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProductionLines
 {
     [TestFixture]
-    public class RenameProductionLineTests : TestBase
+    public class RenameProductionLineTests : IntegrationTest
     {
         // Happy path tests
         [Test]

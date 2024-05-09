@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Head } from "components/Layout/Head";
 import { useGetProductionLineDetails } from "features/productionLines/api/getProductionLineDetails";
 import { ProductionLineName } from "features/productionLines/components/ProductionLineName";
+import { ProcessedItems } from "features/productionLines/components/ProcessedItems";
 
 export const ProductionLineDetails = () => {
   const { productionLineId } = useParams();
@@ -27,6 +28,7 @@ export const ProductionLineDetails = () => {
           productionLineId={productionLineDetails!.id}
           name={productionLineDetails!.name}
         />
+        <ProcessedItems />
       </div>
     </>
   );

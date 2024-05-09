@@ -5,7 +5,7 @@ using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
 using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
 using SatisfactoryPlanner.API.Endpoints;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
-using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine;
+using SatisfactoryPlanner.Modules.Production.Application.ProductionLines.RenameProductionLine;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SatisfactoryPlanner.API.Modules.Production.ProductionLines

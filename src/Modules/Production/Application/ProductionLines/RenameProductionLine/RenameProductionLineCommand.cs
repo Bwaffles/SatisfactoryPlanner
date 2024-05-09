@@ -1,7 +1,7 @@
 ﻿using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using System;
 
-namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine
+namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.RenameProductionLine
 {
     public class RenameProductionLineCommand(Guid worldId, Guid productionLineId, string name) : CommandBase
     {

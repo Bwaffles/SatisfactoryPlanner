@@ -5,7 +5,7 @@ using SatisfactoryPlanner.Modules.Production.Domain.ProductionLines;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.SetUpProductionLine
+namespace SatisfactoryPlanner.Modules.Production.Application.ProductionLines.RenameProductionLine
 {
     internal class RenameProductionLineCommandHandler(IProductionLineRepository productionLineRepository, IProductionLineCounter productionLineCounter) : ICommandHandler<RenameProductionLineCommand>
     {
