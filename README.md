@@ -1,4 +1,4 @@
-![Build Status](https://github.com/Bwaffles/SatisfactoryPlanner/actions/workflows/build.yml/badge.svg?event=pull_request)
+[![Build Status](https://github.com/Bwaffles/SatisfactoryPlanner/actions/workflows/build.yml/badge.svg?event=pull_request)](https://github.com/Bwaffles/SatisfactoryPlanner/actions/workflows/build.yml)
 
 # How to Use
 
