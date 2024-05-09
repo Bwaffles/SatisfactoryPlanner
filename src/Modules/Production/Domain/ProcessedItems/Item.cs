@@ -4,45 +4,45 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 {
     public partial class Item : ValueObject
     {
-        public ItemCategory Category { get; set; }
+        public ItemCategory Category { get; }
 
-        public string Id { get; set; }
+        public string Id { get; }
 
         /// <summary>
         /// Used to get the resource name in blueprints
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; }
 
         /// <summary>
         /// Used to get the resource description in blueprints.
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; }
 
         /// <summary>
         /// The number of items of a certain type we can stack in one inventory slot.
         /// </summary>
-        public StackSize StackSize { get; set; }
+        public StackSize StackSize { get; }
 
         /// <summary>
         /// Energy value for this resource if used as fuel.
         /// </summary>
-        public decimal EnergyValue { get; set; }
+        public decimal EnergyValue { get; }
 
         /// <summary>
         /// How much radiation this item gives out, 0 means it's not radioactive.
         /// </summary>
-        public decimal RadioactiveDecay { get; set; }
+        public decimal RadioactiveDecay { get; }
 
-        public ResourceForm Form { get; set; }
+        public ResourceForm Form { get; }
 
-        public long ResourceSinkPoints { get; set; }
+        public long ResourceSinkPoints { get; }
 
-        public decimal HealthGain { get; internal set; }
+        public decimal HealthGain { get; }
 
-        private Item(ItemCategory subCategory, string id, string name, StackSize stackSize, ResourceForm form, long resourceSinkPoints, decimal energyValue, decimal radioactiveDecay,
+        private Item(ItemCategory category, string id, string name, StackSize stackSize, ResourceForm form, long resourceSinkPoints, decimal energyValue, decimal radioactiveDecay,
             decimal healthGain, string description)
         {
-            Category = subCategory;
+            Category = category;
             Id = id;
             Name = name;
             Form = form;

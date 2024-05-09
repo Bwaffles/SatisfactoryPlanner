@@ -1,4 +1,5 @@
-﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+﻿using SatisfactoryPlanner.BuildingBlocks.ArchTests;
+using SatisfactoryPlanner.BuildingBlocks.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -148,40 +149,9 @@ namespace SatisfactoryPlanner.Modules.UserAccess.ArchTests
         }
 
         [Test]
-        public void ValueObject_Should_Have_Private_Constructor_With_Parameters_For_His_State()
+        public void ValueObject_ShouldHavePrivateConstructorWithParametersForItsState()
         {
-            var valueObjects = Types.InAssembly(DomainAssembly)
-                .That()
-                .Inherit(typeof(ValueObject)).GetTypes();
-
-            var failingTypes = new List<Type>();
-            foreach (var entityType in valueObjects)
-            {
-                var hasExpectedConstructor = false;
-
-                const BindingFlags bindingFlags = BindingFlags.DeclaredOnly |
-                                                  BindingFlags.Public |
-                                                  BindingFlags.Instance;
-                var names = entityType.GetFields(bindingFlags).Select(x => x.Name.ToLower()).ToList();
-                var propertyNames = entityType.GetProperties(bindingFlags).Select(x => x.Name.ToLower()).ToList();
-                names.AddRange(propertyNames);
-                var constructors = entityType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
-                foreach (var constructorInfo in constructors)
-                {
-                    var parameters = constructorInfo.GetParameters().Select(x => x.Name!.ToLower()).ToList();
-
-                    if (names.Intersect(parameters).Count() == names.Count)
-                    {
-                        hasExpectedConstructor = true;
-                        break;
-                    }
-                }
-
-                if (!hasExpectedConstructor)
-                    failingTypes.Add(entityType);
-            }
-
-            AssertFailingTypes(failingTypes);
+            DomainAssembly.AssertValueObjectsHavePrivateConstructorWithParametersForState();
         }
 
         [Test]

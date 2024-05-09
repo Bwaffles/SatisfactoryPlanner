@@ -25,6 +25,9 @@
     <ProjectReference Include="..\..\..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.ArchTests\SatisfactoryPlanner.BuildingBlocks.ArchTests.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
     <ProjectReference Include="..\..\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
