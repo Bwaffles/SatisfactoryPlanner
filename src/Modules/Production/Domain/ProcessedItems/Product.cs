@@ -2,18 +2,18 @@
 
 namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 {
-    public class Ingredient : ValueObject
+    public class Product: ValueObject
     {
         public decimal Amount { get; }
 
         public Item Item { get; }
 
-        private Ingredient(decimal amount, Item item)
+        private Product(decimal amount, Item item)
         {
-            Amount = amount;
             Item = item;
+            Amount = amount;
         }
 
-        public static Ingredient As(decimal amount, Item item) => new(amount, item);
+        public static Product As(decimal amount, Item item) => new(amount, item);
     }
 }

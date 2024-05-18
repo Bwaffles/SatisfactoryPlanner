@@ -1,4 +1,5 @@
-﻿using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
+﻿using SatisfactoryPlanner.BuildingBlocks.ArchTests;
+using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure;
 using System.Reflection;
@@ -15,10 +16,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.ArchTests
 
         protected static void AssertAreImmutable(IEnumerable<Type> types)
         {
-            var failingTypes = types
-                .Where(type => type.GetFields().Any(x => !x.IsInitOnly) || type.GetProperties().Any(x => x.CanWrite));
-
-            AssertFailingTypes(failingTypes);
+            types.AssertImmutability();
         }
 
         protected static void AssertFailingTypes(IEnumerable<Type> types)

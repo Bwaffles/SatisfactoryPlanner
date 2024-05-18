@@ -12,7 +12,11 @@ import {
 } from "components/Elements/Select";
 import { useGetItemsToProcess } from "../api/getItemsToProcess";
 
-export const ItemSelect = () => {
+interface ItemSelectProps {
+  onItemSelected?(itemId: string): void;
+}
+
+export const ItemSelect = (props: ItemSelectProps) => {
   const { data: response } = useGetItemsToProcess();
 
   const categories = response!.items.reduce<Record<string, any>>(
@@ -28,7 +32,11 @@ export const ItemSelect = () => {
   const categoryKeys = Object.keys(categories);
 
   return (
-    <Select>
+    <Select
+      onValueChange={(value) => {
+        if (props.onItemSelected) props.onItemSelected(value);
+      }}
+    >
       <SelectTrigger className="w-[225px]">
         <SelectValue placeholder="Item" />
       </SelectTrigger>

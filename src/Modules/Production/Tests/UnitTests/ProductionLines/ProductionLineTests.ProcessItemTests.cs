@@ -21,7 +21,7 @@ namespace SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines
 
                 var productionLine = ProductionLine.SetUp(worldId, productionLineName, counter);
                 var itemId = new ItemId(Guid.NewGuid());
-                var ingredient = Ingredient.Of(itemId);
+                var ingredient = IngredientOld.Of(itemId);
                 var recipe = Recipe.As([ingredient]);
 
                 var processedItem = productionLine.ProcessItem(itemId, recipe);
@@ -44,7 +44,7 @@ namespace SatisfactoryPlanner.Modules.Production.UnitTests.ProductionLines
 
                 var productionLine = ProductionLine.SetUp(worldId, productionLineName, counter);
                 var itemId = new ItemId(Guid.NewGuid());
-                var ingredient = Ingredient.Of(itemId);
+                var ingredient = IngredientOld.Of(itemId);
                 var recipe = Recipe.As([ingredient]);
 
                 var firstProcessedItem = productionLine.ProcessItem(itemId, recipe);
