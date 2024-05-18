@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
+using SatisfactoryPlanner.BuildingBlocks.ArchTests;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using SatisfactoryPlanner.Modules.Production.Domain.Factories;
 using SatisfactoryPlanner.Modules.Production.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace SatisfactoryPlanner.Modules.Production.ArchTests
@@ -19,10 +19,7 @@ namespace SatisfactoryPlanner.Modules.Production.ArchTests
 
         protected static void AssertAreImmutable(IEnumerable<Type> types)
         {
-            var failingTypes = types
-                .Where(type => type.GetFields().Any(x => !x.IsInitOnly) || type.GetProperties().Any(x => x.CanWrite));
-
-            AssertFailingTypes(failingTypes);
+            types.AssertImmutability();
         }
 
         protected static void AssertFailingTypes(IEnumerable<Type> types)

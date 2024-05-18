@@ -111,8 +111,8 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
                 CopperPowder,
 
                 // Electronics
-                Cable,
                 Wire,
+                Cable,
                 CircuitBoard,
                 HighSpeedConnector,
                 AILimiter,
@@ -224,7 +224,18 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
                 //Ammunition
                 BlackPowder,
                 SmokelessPowder,
-                // TODO more ammo needed
+                IronRebar,
+                ExplosiveRebar,
+                ShatterRebar,
+                StunRebar,
+                RifleAmmo,
+                HomingRifleAmmo,
+                TurboRifleAmmo,
+                Nobelisk,
+                ClusterNobelisk,
+                GasNobelisk,
+                NukeNobelisk,
+                PulseNobelisk,
 
                 // Alien Remains
                 HatcherRemains,
@@ -241,19 +252,23 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
                 PowerShard,
 
                 // FICSMAS
-                FICSMASWonderStar,
-                FICSMASOrnamentBundle,
-                FICSMASDecoration,
-                CandyCane,
-                ActualSnow,
-                FICSMASBow,
-                CopperFICSMASOrnament,
-                IronFICSMASOrnament,
-                FICSMASTreeBranch,
+                FICSMASGift,
                 RedFICSMASOrnament,
                 BlueFICSMASOrnament,
-                FICSMASGift,
+                CopperFICSMASOrnament,
+                IronFICSMASOrnament,
+                FICSMASOrnamentBundle,
+                FICSMASDecoration,
+                ActualSnow,
+                Snowball,
+                FICSMASBow,
+                FICSMASTreeBranch,
+                FICSMASWonderStar,
+                CandyCane,
                 CandyCaneBasher,
+                SweetFireworks,
+                FancyFireworks,
+                SparklyFireworks,
 
                 // Other
                 HUBParts
