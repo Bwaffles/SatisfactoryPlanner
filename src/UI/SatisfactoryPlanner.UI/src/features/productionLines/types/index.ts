@@ -32,17 +32,14 @@ export enum RecipeType {
   Alternate,
 }
 
-export type Ingredient = {
+export type RecipeItem = {
   itemId: string;
   itemName: string;
   amount: Amount;
 };
 
-export type Product = {
-  itemId: string;
-  itemName: string;
-  amount: Amount;
-};
+export interface Ingredient extends RecipeItem {}
+export interface Product extends RecipeItem {}
 
 export type Amount = {
   amountPerCycle: number;

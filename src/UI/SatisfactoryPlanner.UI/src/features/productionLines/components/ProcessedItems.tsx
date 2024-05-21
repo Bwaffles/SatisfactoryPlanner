@@ -14,7 +14,7 @@ export const ProcessedItems = () => {
       <br />
       {selectedItem && (
         <>
-          <p className="mb-3">Select a recipe:</p>
+          <p className="mb-3">Select a recipe</p>
           <RecipeSelect itemId={selectedItem}></RecipeSelect>
         </>
       )}

@@ -1,6 +1,15 @@
 import React from "react";
 import { useGetItemRecipes } from "../api/getItemRecipes";
-import { Recipe } from "../types";
+import { Recipe, RecipeItem } from "../types";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "components/Elements/Card/Card";
+import { Separator } from "components/Elements/Separator/Separator";
+import { cn } from "utils";
 
 interface RecipeSelectProps {
   itemId: string;
@@ -9,59 +18,73 @@ export const RecipeSelect = (props: RecipeSelectProps) => {
   var { data: response } = useGetItemRecipes({ itemId: props.itemId });
 
   return (
-    <>
-      <div className="flex gap-6 justify-between">
-        <div>
-          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mb-3">
-            Ingredient Recipes
-          </h3>
-          {response?.data.ingredientRecipes.map((recipe) => {
-            return RenderRecipe(recipe);
-          })}
-        </div>
-        <div>
-          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mb-3">
-            Produced Recipes
-          </h3>
-          {response?.data.productRecipes.map((recipe) => {
-            return RenderRecipe(recipe);
-          })}
-        </div>
-      </div>
-    </>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      {RenderRecipeSection(
+        props.itemId,
+        `Recipes Producing ${props.itemId}`,
+        response!.data.productRecipes
+      )}
+      {RenderRecipeSection(
+        props.itemId,
+        `Recipes Consuming ${props.itemId}`,
+        response!.data.ingredientRecipes
+      )}
+    </div>
   );
 };
 
-function RenderRecipe(recipe: Recipe): JSX.Element {
+function RenderRecipeSection(itemId: string, title: string, recipes: Recipe[]) {
   return (
-    <div key={recipe.id}>
-      <div className="font-bold text-lg">
-        {recipe.name} - {recipe.type}
+    <div>
+      <div className="text-xl font-semibold mb-3">{title}</div>
+      <div className="flex flex-col gap-4">
+        {recipes.map((recipe) => {
+          return RenderRecipe(itemId, recipe);
+        })}
       </div>
-      <div className="flex gap-12">
-        <div>
-          <p className="font-semibold">Ingredients</p>
-          {recipe.ingredients.map((ingredient) => {
-            return (
-              <div key={ingredient.itemId} className="mb-3">
-                {ingredient.amount.amountPerCycle} (
-                {ingredient.amount.amountPerMinute}/min) - {ingredient.itemName}
-              </div>
-            );
-          })}
+    </div>
+  );
+}
+
+function RenderRecipe(itemId: string, recipe: Recipe): JSX.Element {
+  return (
+    <Card key={recipe.id}>
+      <CardHeader>
+        <CardTitle>{recipe.name}</CardTitle>
+        <CardDescription>{recipe.type}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-[minmax(0,_1fr)_auto_minmax(0,_1fr)] gap-6">
+          {RenderItems(itemId, "Ingredients", recipe.ingredients)}
+          <Separator orientation="vertical"></Separator>
+          {RenderItems(itemId, "Products", recipe.products)}
         </div>
-        <div>
-          <p className="font-semibold">Products</p>
-          {recipe.products.map((product) => {
-            return (
-              <div key={product.itemId} className="mb-3">
-                {product.amount.amountPerCycle} (
-                {product.amount.amountPerMinute}/min) - {product.itemName}
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function RenderItems(itemId: string, title: string, items: RecipeItem[]) {
+  return (
+    <div>
+      <div className="text-muted-foreground mb-3">{title}</div>
+      {items.map((item) => {
+        return (
+          <div
+            key={item.itemId}
+            className={cn(
+              "mb-1 flex flex-row justify-between gap-2",
+              item.itemId === itemId ? "font-bold" : ""
+            )}
+          >
+            <span>{item.itemName}</span>
+            <span className="text-muted-foreground whitespace-nowrap">
+              {item.amount.amountPerCycle} ({item.amount.amountPerMinute}
+              /min)
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 }
