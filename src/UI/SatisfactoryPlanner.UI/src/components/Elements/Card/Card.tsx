@@ -23,7 +23,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    className={cn("flex flex-col space-y-1.5 p-6 pb-3", className)}
     {...props}
   />
 ));
@@ -60,7 +60,7 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+  <div ref={ref} className={cn("p-6 pt-3", className)} {...props} />
 ));
 CardContent.displayName = "CardContent";
 
@@ -70,11 +70,28 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center p-6 pt-0", className)}
+    className={cn("flex items-center p-6 pt-3", className)}
     {...props}
   />
 ));
 CardFooter.displayName = "CardFooter";
+
+const CardActionArea = React.forwardRef<
+  HTMLButtonElement,
+  React.HTMLAttributes<HTMLButtonElement>
+>(({ className, ...props }, ref) => (
+  <button
+    ref={ref}
+    type="button"
+    className={cn(
+      "w-full cursor-pointer text-inherit bg-transparent m-0 p-0 outline-none [border-radius:inherit] [text-align:inherit] appearance-none",
+      "hover:bg-accent/50",
+      className
+    )}
+    {...props}
+  />
+));
+CardActionArea.displayName = "CardActionArea";
 
 export {
   Card,
@@ -83,4 +100,5 @@ export {
   CardTitle,
   CardDescription,
   CardContent,
+  CardActionArea,
 };
