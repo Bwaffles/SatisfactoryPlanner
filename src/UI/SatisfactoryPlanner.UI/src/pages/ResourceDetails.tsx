@@ -5,6 +5,8 @@ import Doggo from "assets/Lizard_Doggo.png";
 import { ContentLayout } from "components/Layout/ContentLayout";
 import { WorldNodeList } from "features/worldNodes/components/WorldNodeList";
 import { useGetResourceDetails } from "features/resources/api/getResourceDetails";
+import { Card, CardContent } from "components/Elements/Card/Card";
+import { H2 } from "components/Typography";
 
 export const ResourceDetails = () => {
   const { resourceId } = useParams();
@@ -21,21 +23,25 @@ export const ResourceDetails = () => {
   var description = resourceDetails!.description.split("\\r\\n");
   return (
     <ContentLayout title={resourceDetails!.name}>
-      <h2 className="text-xl font-bold mb-6">Resource Details</h2>
-      <div className="flex flex-col gap-4 mb-10 py-6 px-10 bg-gray-900 rounded">
-        <div className="flex flex-row gap-4">
-          <img className="h-40 w-40 text-center" alt="Icon" src={Doggo}></img>
-          <div>
-            {description.map((line) => {
-              return (
-                <p key={line} className="mb-4">
-                  {line}
-                </p>
-              );
-            })}
+      <H2>Resource Details</H2>
+      <Card>
+        <CardContent className="flex flex-col gap-4">
+          <div className="flex flex-row gap-4">
+            <img className="h-40 w-40 text-center" alt="Icon" src={Doggo}></img>
+            <div>
+              {description.map((line) => {
+                return (
+                  <p key={line} className="mb-4">
+                    {line}
+                  </p>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
+
+      <H2 className="mt-10">Nodes</H2>
       <WorldNodeList resourceId={resourceId!}></WorldNodeList>
     </ContentLayout>
   );

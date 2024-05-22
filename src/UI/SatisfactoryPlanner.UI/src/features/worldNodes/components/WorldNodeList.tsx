@@ -5,6 +5,14 @@ import { formatNumber } from "utils/format";
 
 import { useGetWorldNodes } from "../api/getWorldNodes";
 import { WorldNode } from "../types";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "components/Elements/Card/Card";
+import { cn } from "utils";
 
 type WorldNodeListProps = {
   resourceId: string;
@@ -34,8 +42,7 @@ export const WorldNodeList = ({ resourceId }: WorldNodeListProps) => {
   );
 
   return (
-    <>
-      <h2 className="text-xl font-bold mb-6">Nodes</h2>
+    <div className="flex flex-col gap-4">
       {Object.keys(nodesByBiome).map((biome) => {
         var biomeNodes = nodesByBiome[biome];
 
@@ -56,78 +63,95 @@ export const WorldNodeList = ({ resourceId }: WorldNodeListProps) => {
         });
 
         return (
-          <div key={biome} className="mb-4 p-6 bg-gray-900 rounded">
-            <div className="flex flex-col mb-6">
-              <h3 className="text-lg font-bold mb-4">{biome}</h3>
-              <div className="flex gap-10">
-                <div>
-                  <div className="text-gray-400">Nodes Tapped</div>
-                  <div className="text-xl font-bold">
-                    {nodesTapped} / {numberOfNodes}
-                  </div>
-                </div>
-                <div>
-                  <div className="text-gray-400">Extraction Rate</div>
-                  <div className="text-xl font-bold">
-                    {formatNumber(currentBiomeExtractionRate)}
-                    {" / "}
-                    {formatNumber(maxBiomeExtractionRate)}
-                    <span className="ml-2 text-gray-400 text-xs">per min</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {biomeNodes.map((node) => {
-              var purityTextColor =
-                node.purity === "Pure"
-                  ? "text-green-600"
-                  : node.purity === "Normal"
-                  ? "text-yellow-600"
-                  : node.purity === "Impure"
-                  ? "text-red-600"
-                  : "";
-
-              return (
-                <div
-                  key={node.id}
-                  className="flex flex-row items-center mb-4 py-6 px-6 bg-gray-800 rounded hover:bg-gray-800/60 cursor-pointer"
-                  onClick={() => {
-                    handleNodeClick(node.id);
-                  }}
-                >
-                  <div className="py-4 mr-6 w-16 text-3xl text-center font-bold bg-sky-800 rounded">
-                    {node.number}
-                  </div>
-                  <div className="w-24">
-                    <div className="text-gray-400">Purity</div>
-                    <div className={"text-xl font-bold " + purityTextColor}>
-                      {node.purity}
+          <Card key={biome}>
+            <CardHeader>
+              <CardTitle>{biome}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col mb-6">
+                <div className="flex gap-10">
+                  <div>
+                    <div className="text-muted-foreground">Nodes Tapped</div>
+                    <div className="text-lg font-bold">
+                      {nodesTapped} / {numberOfNodes}
                     </div>
                   </div>
-                  <div className="w-24">
-                    <div className="text-gray-400">Tapped</div>
-                    <div className="text-xl font-bold">
-                      {node.isTapped ? "Yes" : "No"}
-                    </div>
-                  </div>
-                  <div className="w-48">
-                    <div className="text-gray-400">Extraction Rate</div>
-                    <div className="text-xl font-bold">
-                      {formatNumber(node.extractionRate)}
+                  <div>
+                    <div className="text-muted-foreground">Extraction Rate</div>
+                    <div className="text-lg font-bold">
+                      {formatNumber(currentBiomeExtractionRate)}
                       {" / "}
-                      {formatNumber(node.maxExtractionRate)}
-                      <span className="ml-2 text-gray-400 text-xs">
+                      {formatNumber(maxBiomeExtractionRate)}
+                      <span className="ml-2 text-muted-foreground text-xs">
                         per min
                       </span>
                     </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {biomeNodes.map((node) => {
+                  var purityTextColor =
+                    node.purity === "Pure"
+                      ? "text-green-600"
+                      : node.purity === "Normal"
+                      ? "text-yellow-600"
+                      : node.purity === "Impure"
+                      ? "text-red-600"
+                      : "";
+
+                  return (
+                    <Card key={node.id}>
+                      <CardActionArea
+                        onClick={() => {
+                          handleNodeClick(node.id);
+                        }}
+                      >
+                        <CardContent className="py-4 flex flex-row items-end">
+                          <div className="py-3 mr-6 w-14 text-2xl text-center font-bold bg-sky-900 rounded">
+                            {node.number}
+                          </div>
+                          <div className="w-24">
+                            <div className="text-muted-foreground">Purity</div>
+                            <div
+                              className={cn(
+                                "text-lg font-bold",
+                                purityTextColor
+                              )}
+                            >
+                              {node.purity}
+                            </div>
+                          </div>
+                          <div className="w-24">
+                            <div className="text-muted-foreground">Tapped</div>
+                            <div className="text-lg font-bold">
+                              {node.isTapped ? "Yes" : "No"}
+                            </div>
+                          </div>
+                          <div className="w-48">
+                            <div className="text-muted-foreground">
+                              Extraction Rate
+                            </div>
+                            <div className="text-lg font-bold">
+                              {formatNumber(node.extractionRate)}
+                              {" / "}
+                              {formatNumber(node.maxExtractionRate)}
+                              <span className="ml-2 text-muted-foreground text-xs">
+                                per min
+                              </span>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
         );
       })}
-    </>
+    </div>
   );
 };
