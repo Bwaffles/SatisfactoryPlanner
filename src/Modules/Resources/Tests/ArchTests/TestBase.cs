@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using SatisfactoryPlanner.BuildingBlocks.ArchTests;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure;
@@ -16,10 +17,7 @@ namespace SatisfactoryPlanner.Modules.Resources.ArchTests
 
         protected static void AssertAreImmutable(IEnumerable<Type> types)
         {
-            var failingTypes = types
-                .Where(type => type.GetFields().Any(x => !x.IsInitOnly) || type.GetProperties().Any(x => x.CanWrite));
-
-            AssertFailingTypes(failingTypes);
+            types.AssertImmutability();
         }
 
         protected static void AssertFailingTypes(IEnumerable<Type> types)

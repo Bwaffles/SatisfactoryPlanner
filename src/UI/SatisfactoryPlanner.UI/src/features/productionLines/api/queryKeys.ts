@@ -8,4 +8,6 @@ export const productionLineKeys = {
 export const processedItemsKeys = {
   all: ["processedItems"] as const,
   itemsToProcess: () => [...processedItemsKeys.all, "itemsToProcess"] as const,
+  itemRecipes: (itemId: string) =>
+    [...processedItemsKeys.itemsToProcess(), itemId, "recipes"] as const,
 };

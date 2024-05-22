@@ -23,7 +23,7 @@ export const ProductionLineDetails = () => {
   return (
     <>
       <Head title={`${productionLineDetails?.name}`} />
-      <div className="container py-4">
+      <div className="container py-4 mb-3">
         <ProductionLineName
           productionLineId={productionLineDetails!.id}
           name={productionLineDetails!.name}
