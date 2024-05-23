@@ -6,6 +6,7 @@ import { formatNumber } from "utils/format";
 
 import { useTapWorldNode } from "../api/tapWorldNode";
 import { WorldNodeDetails } from "../types";
+import { Card, CardContent, CardFooter } from "components/Elements/Card/Card";
 
 type UntappedWorldNodeViewProps = {
   worldNodeDetails: WorldNodeDetails;
@@ -23,9 +24,8 @@ export const UntappedWorldNodeView = ({
   const tapNodeMutation = useTapWorldNode();
 
   return (
-    <>
-      <h2 className="text-xl font-bold mb-6">Extraction Details</h2>
-      <div className="flex flex-col gap-6 p-6 w-fit bg-gray-900 rounded">
+    <Card className="w-fit">
+      <CardContent className="flex flex-col gap-6 p-6">
         <p>Select the extractor to tap the node with:</p>
         <div className="flex flex-wrap gap-12">
           {worldNodeDetails.availableExtractors?.map((extractor) => {
@@ -53,10 +53,10 @@ export const UntappedWorldNodeView = ({
                 <div className="text-lg font-bold mb-3">{extractor.name}</div>
                 <FieldWrapper label="Max Extraction Rate" className="col-auto">
                   <div className="flex">
-                    <div className={"text-xl font-bold"}>
+                    <div className={"text-lg font-bold"}>
                       {formatNumber(extractor.maxExtractionRate)}
                     </div>
-                    <div className="ml-2 text-gray-400 text-xs leading-8">
+                    <div className="ml-2 text-muted-foreground text-xs leading-8">
                       per min
                     </div>
                   </div>
@@ -68,26 +68,25 @@ export const UntappedWorldNodeView = ({
         {validationMessage != null && (
           <div className="text-destructive-error">{validationMessage}</div>
         )}
-        <div>
-          <Button
-            isLoading={tapNodeMutation.isLoading}
-            className="mt-4"
-            onClick={() => {
-              if (selectedExtractor == null) {
-                setValidationMessage("Select an extractor.");
-                return;
-              }
+      </CardContent>
+      <CardFooter>
+        <Button
+          isLoading={tapNodeMutation.isLoading}
+          onClick={() => {
+            if (selectedExtractor == null) {
+              setValidationMessage("Select an extractor.");
+              return;
+            }
 
-              tapNodeMutation.mutate({
-                nodeId: worldNodeDetails.nodeId,
-                extractorId: selectedExtractor!,
-              });
-            }}
-          >
-            Tap
-          </Button>
-        </div>
-      </div>
-    </>
+            tapNodeMutation.mutate({
+              nodeId: worldNodeDetails.nodeId,
+              extractorId: selectedExtractor!,
+            });
+          }}
+        >
+          Tap
+        </Button>
+      </CardFooter>
+    </Card>
   );
 };
