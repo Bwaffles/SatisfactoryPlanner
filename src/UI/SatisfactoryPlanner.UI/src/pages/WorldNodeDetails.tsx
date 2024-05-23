@@ -7,6 +7,8 @@ import { TappedWorldNodeView } from "features/worldNodes/components/TappedWorldN
 import { UntappedWorldNodeView } from "features/worldNodes/components/UntappedWorldNodeView";
 import { FieldWrapper } from "components/Elements/Form/FieldWrapper";
 import { formatNumber } from "utils/format";
+import { H2 } from "components/Typography";
+import { Card, CardContent } from "components/Elements/Card/Card";
 
 export const WorldNodeDetails = () => {
   const { nodeId } = useParams();
@@ -44,35 +46,41 @@ export const WorldNodeDetails = () => {
 
   return (
     <ContentLayout title={nodeName}>
-      <h2 className="text-xl font-bold mb-6">Node Details</h2>
-      <div className="flex flex-wrap gap-x-12 gap-y-4 p-6 w-fit bg-gray-900 rounded mb-6">
-        <FieldWrapper label="Purity">
-          <div className={"text-xl font-bold " + purityTextColor}>
-            {worldNodeDetails!.purity}
-          </div>
-        </FieldWrapper>
+      <H2>Node Details</H2>
+      <Card className="w-fit">
+        <CardContent className="flex flex-wrap gap-x-12 gap-y-4 py-6">
+          <FieldWrapper label="Purity">
+            <div className={"text-lg font-bold " + purityTextColor}>
+              {worldNodeDetails!.purity}
+            </div>
+          </FieldWrapper>
 
-        {currentExtractor !== undefined && (
-          <FieldWrapper label="Max Extraction Rate with Current Extractor">
-            <div className="flex">
-              <div className={"text-xl font-bold"}>
-                {formatNumber(currentExtractor.maxExtractionRate)}
+          {currentExtractor !== undefined && (
+            <FieldWrapper label="Max Extraction Rate with Current Extractor">
+              <div className="flex">
+                <div className={"text-lg font-bold"}>
+                  {formatNumber(currentExtractor.maxExtractionRate)}
+                </div>
+                <div className="ml-2 text-muted-foreground text-xs leading-8">
+                  per min
+                </div>
               </div>
-              <div className="ml-2 text-gray-400 text-xs leading-8">
+            </FieldWrapper>
+          )}
+          <FieldWrapper label="Max Extraction Rate with Fastest Extractor">
+            <div className="flex">
+              <div className={"text-lg font-bold"}>
+                {formatNumber(fastestExtractor.maxExtractionRate)}
+              </div>
+              <div className="ml-2 text-muted-foreground text-xs leading-8">
                 per min
               </div>
             </div>
           </FieldWrapper>
-        )}
-        <FieldWrapper label="Max Extraction Rate with Fastest Extractor">
-          <div className="flex">
-            <div className={"text-xl font-bold"}>
-              {formatNumber(fastestExtractor.maxExtractionRate)}
-            </div>
-            <div className="ml-2 text-gray-400 text-xs leading-8">per min</div>
-          </div>
-        </FieldWrapper>
-      </div>
+        </CardContent>
+      </Card>
+
+      <H2 className="mt-6">Extraction Details</H2>
       {worldNodeDetails!.isTapped ? (
         <TappedWorldNodeView worldNodeDetails={worldNodeDetails!} />
       ) : (

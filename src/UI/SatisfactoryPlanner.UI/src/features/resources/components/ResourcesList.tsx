@@ -5,6 +5,14 @@ import Doggo from "assets/Lizard_Doggo.png";
 
 import { useGetResources } from "../api/getResources";
 import { formatNumber, formatPercent } from "utils/format";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "components/Elements/Card/Card";
+import { Separator } from "components/Elements/Separator/Separator";
 
 export const ResourcesList = () => {
   const { isError, data: resources, error } = useGetResources();
@@ -25,39 +33,41 @@ export const ResourcesList = () => {
         : resource.extractionRate / resource.maxExtractionRate;
 
     return (
-      <div
-        key={resource.id}
-        className="flex flex-col items-center justify-between h-60 w-60 py-4 px-5 bg-gray-900 rounded hover:bg-gray-900/60 cursor-pointer"
-        onClick={() => {
-          handleResourceClick(resource.id);
-        }}
-      >
-        <div className="text-center text-lg font-bold">{resource.name}</div>
-        <img className="h-28 w-28 text-center" alt="Resource" src={Doggo}></img>
-        <div className="flex flex-row justify-between items-end w-full">
-          <div className="flex flex-row gap-2 items-end">
-            <div className="text-right">
-              <div className="text-xs text-muted-foreground">Extracted</div>
-              <span className="text-lg">
-                {formatNumber(resource.extractionRate)}
-              </span>
-            </div>
-            <span className="text-2xl font-semibold">/</span>
-            <div>
-              <div className="text-right text-xs text-muted-foreground">
-                Total
+      <Card key={resource.id}>
+        <CardActionArea
+          onClick={() => {
+            handleResourceClick(resource.id);
+          }}
+        >
+          <CardHeader className="text-center">
+            <CardTitle>{resource.name}</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center justify-between h-52 w-60">
+            <img className="h-28 w-28 text-center" alt="Resource" src={Doggo} />
+            <div className="flex flex-row justify-between items-end w-full">
+              <div className="flex flex-row gap-2 items-end">
+                <div className="text-right">
+                  <div className="text-xs text-muted-foreground">Extracted</div>
+                  <span className="text-lg">
+                    {formatNumber(resource.extractionRate)}
+                  </span>
+                </div>
+                <span className="text-2xl font-semibold">/</span>
+                <div className="text-right">
+                  <div className="text-xs text-muted-foreground">Total</div>
+                  <span className="text-lg">
+                    {formatNumber(resource.maxExtractionRate)}
+                  </span>
+                </div>
               </div>
+              <Separator orientation="vertical"></Separator>
               <span className="text-lg">
-                {formatNumber(resource.maxExtractionRate)}
+                {formatPercent(percentResourceExtractionRate)}
               </span>
             </div>
-          </div>
-          <span className="bg-gray-500 w-px h-full"></span>
-          <span className="text-lg">
-            {formatPercent(percentResourceExtractionRate)}
-          </span>
-        </div>
-      </div>
+          </CardContent>
+        </CardActionArea>
+      </Card>
     );
   });
 

@@ -14,6 +14,7 @@ import {
 } from "features/worldNodes/api/decreaseWorldNodeExtractionRate";
 import { ErrorResponse } from "lib/api";
 import { formatNumber } from "utils/format";
+import { Card, CardContent } from "components/Elements/Card/Card";
 
 export const DecreaseWorldNodeExtractionRate = () => {
   const { nodeId } = useParams();
@@ -74,13 +75,13 @@ export const DecreaseWorldNodeExtractionRate = () => {
             );
           })}
         >
-          <div className="py-6 w-1/2 grid grid-cols-2 gap-y-6">
+          <div className="w-1/2 grid grid-cols-2 gap-y-6">
             <FieldWrapper label="Current Extraction Rate" className="col-auto">
               <div className="flex">
-                <div className={"text-xl font-bold"}>
+                <div className={"text-lg font-bold"}>
                   {formatNumber(worldNodeDetails?.extractionRate!)}
                 </div>
-                <div className="ml-2 text-gray-400 text-xs leading-8">
+                <div className="ml-2 text-muted-foreground text-xs leading-8">
                   per min
                 </div>
               </div>
@@ -95,12 +96,12 @@ export const DecreaseWorldNodeExtractionRate = () => {
                 <input
                   id="extractionRate"
                   type="text"
-                  className="p-2 pr-0 w-24 text-right rounded-l border border-r-0 border-solid bg-gray-950 border-gray-600 text-gray-200 focus:outline-none outline-none"
+                  className="p-2 pr-0 w-24 text-right rounded-l border border-r-0 border-solid bg-background border-input text-gray-200 focus:outline-none outline-none"
                   {...methods.register("extractionRate", {
                     valueAsNumber: true,
                   })}
                 />
-                <span className="p-2 text-xs leading-6 rounded-r border border-l-0 border-solid bg-gray-950 border-gray-600 text-gray-400">
+                <span className="p-2 text-xs leading-6 rounded-r border border-l-0 border-solid bg-background border-input text-muted-foreground">
                   per min
                 </span>
               </div>
@@ -109,7 +110,7 @@ export const DecreaseWorldNodeExtractionRate = () => {
               <div className="col-span-2">
                 {errorMessages.map((message) => {
                   return (
-                    <p key={message} className="mb-2 text-red-600">
+                    <p key={message} className="mb-2 text-destructive-error">
                       {message}
                     </p>
                   );
@@ -130,9 +131,14 @@ export const DecreaseWorldNodeExtractionRate = () => {
           </div>
         </form>
       ) : (
-        <div className="p-24 bg-gray-800 rounded w-1/2 text-center text-lg font-semibold">
-          The extraction rate is already 0 and can't be decreased any further.
-        </div>
+        <Card className="w-1/2">
+          <CardContent>
+            <div className="p-20 text-center text-lg">
+              The extraction rate is already 0 and can't be decreased any
+              further.
+            </div>
+          </CardContent>
+        </Card>
       )}
     </ContentLayout>
   );

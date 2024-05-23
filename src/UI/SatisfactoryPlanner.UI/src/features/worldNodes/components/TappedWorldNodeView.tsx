@@ -18,6 +18,8 @@ import { useDowngradeExtractor } from "../api/downgradeExtractor";
 import { useUpgradeExtractor } from "../api/upgradeExtractor";
 import { useDismantleExtractor } from "../api/dismantleExtractor";
 import { AvailableExtractor, WorldNodeDetails } from "../types";
+import { Card, CardContent } from "components/Elements/Card/Card";
+import { cn } from "utils";
 
 type TappedWorldNodeViewProps = {
   worldNodeDetails: WorldNodeDetails;
@@ -39,14 +41,11 @@ export const TappedWorldNodeView = ({
   )!;
 
   return (
-    <>
-      <h2 className="text-xl font-bold mb-6">Extraction Details</h2>
-      <div className="flex flex-col gap-6 p-6 w-fit bg-gray-900 rounded">
-        <div className="flex flex-wrap gap-x-12 gap-y-4">
-          <FieldWrapper label="Extraction Rate">
-            {renderExtractionRate(navigate, worldNodeDetails, currentExtractor)}
-          </FieldWrapper>
-        </div>
+    <Card className="w-fit">
+      <CardContent className="py-6">
+        <FieldWrapper label="Extraction Rate" className="mb-10">
+          {renderExtractionRate(navigate, worldNodeDetails, currentExtractor)}
+        </FieldWrapper>
         <FieldWrapper label="Extractor">
           {renderExtractor(
             worldNodeDetails,
@@ -58,8 +57,8 @@ export const TappedWorldNodeView = ({
             setSelectedExtractor
           )}
         </FieldWrapper>
-      </div>
-    </>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -164,18 +163,18 @@ function renderExtractionRate(
       )}
       <input
         type="text"
-        className={
-          "h-10 p-2 pr-0 w-24 text-right border border-solid bg-gray-800 border-gray-600 text-gray-200 " +
-          (canDecreaseRate ? "border-x-0" : "border-r-0 rounded-l")
-        }
+        className={cn(
+          "h-10 p-2 pr-0 w-24 text-right border border-solid bg-gray-800 border-gray-600 text-gray-200",
+          canDecreaseRate ? "border-x-0" : "border-r-0 rounded-l"
+        )}
         value={formatNumber(worldNodeDetails.extractionRate)}
         disabled={true}
       />
       <span
-        className={
-          "h-10 p-2 text-xs whitespace-nowrap leading-6 border border-solid bg-gray-800 border-gray-600 text-gray-400 " +
-          (canIncreaseRate ? "border-x-0" : "border-l-0 rounded-r")
-        }
+        className={cn(
+          "h-10 p-2 text-xs whitespace-nowrap leading-6 border border-solid bg-gray-800 border-gray-600 text-gray-400",
+          canIncreaseRate ? "border-x-0" : "border-l-0 rounded-r"
+        )}
       >
         per min
       </span>
