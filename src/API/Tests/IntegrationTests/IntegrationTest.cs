@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
+using SatisfactoryPlanner.BuildingBlocks.IntegrationTests.Probing;
 
 namespace SatisfactoryPlanner.API.IntegrationTests
 {
@@ -47,13 +48,21 @@ namespace SatisfactoryPlanner.API.IntegrationTests
             await DatabaseClearer.Clear(ConnectionString);
 
             // since tests run sequentially, each test can manipulate this user to perform their test and it will reset before each test so the tests don't affect each other
-            AuthenticatedUser.Reset(); 
+            AuthenticatedUser.Reset();
         }
 
         [OneTimeTearDown]
         public void OnShutdown()
         {
             Client.Dispose();
+        }
+
+        protected static async Task<T> GetEventually<T>(IProbe<T> probe, int timeout)
+            where T : class
+        {
+            var poller = new Poller(timeout);
+
+            return await poller.GetAsync(probe);
         }
     }
 }

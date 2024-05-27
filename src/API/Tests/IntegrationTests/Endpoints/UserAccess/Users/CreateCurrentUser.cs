@@ -25,7 +25,7 @@ namespace SatisfactoryPlanner.API.IntegrationTests.Endpoints.UserAccess.Users
 
                 response.Should().HaveStatusCode(HttpStatusCode.Created);
 
-                var responseContent = (await response.Content.ReadFromJsonAsync<CreateCurrentUserResponse>())!;
+                var responseContent = (await response.ReadContentAsync<CreateCurrentUserResponse>())!;
                 responseContent.UserId.Should().NotBeEmpty();
             }
         }

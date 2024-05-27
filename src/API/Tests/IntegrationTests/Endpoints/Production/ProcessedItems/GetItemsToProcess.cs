@@ -1,7 +1,6 @@
 ﻿using SatisfactoryPlanner.API.Endpoints.Production.ProcessedItems;
 using SatisfactoryPlanner.API.IntegrationTests.Endpoints.UserAccess.Users;
 using System.Net;
-using System.Net.Http.Json;
 
 namespace SatisfactoryPlanner.API.IntegrationTests.Endpoints.Production.ProcessedItems
 {
@@ -24,7 +23,7 @@ namespace SatisfactoryPlanner.API.IntegrationTests.Endpoints.Production.Processe
 
                 response.Should().HaveStatusCode(HttpStatusCode.OK);
 
-                var responseContent = (await response.Content.ReadFromJsonAsync<GetItemsToProcessReponse>())!;
+                var responseContent = (await response.ReadContentAsync<GetItemsToProcessReponse>())!;
                 var items = responseContent.Items;
                 items.Should().NotBeEmpty();
             }
