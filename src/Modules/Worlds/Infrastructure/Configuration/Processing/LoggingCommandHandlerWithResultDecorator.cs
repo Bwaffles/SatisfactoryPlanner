@@ -38,7 +38,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Proces
 
                     var result = await _decorated.Handle(command, cancellationToken);
 
-                    _logger.Information("Command processed successfully, result {Result}", result);
+                    _logger.Information("Command {Command} processed successfully, result {Result}", command.GetType().Name, result);
 
                     return result;
                 }

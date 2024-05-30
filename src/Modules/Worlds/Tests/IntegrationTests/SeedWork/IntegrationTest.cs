@@ -1,18 +1,19 @@
-using Dapper;
 using Npgsql;
 using NSubstitute;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
 using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
-using System.Data;
 
 namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork
 {
-    public class TestBase
+    public class IntegrationTest
     {
         protected string ConnectionString { get; private set; } = null!;
+
+        public IEventsBus EventsBus { get; private set; } = default!;
 
         protected ILogger Logger { get; private set; } = null!;
 
@@ -29,16 +30,18 @@ namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork
 
             await using (var connection = new NpgsqlConnection(ConnectionString))
             {
-                await ClearDatabase(connection);
+                await DatabaseClearer.Clear(connection);
             }
 
             Logger = Substitute.For<ILogger>();
             ExecutionContext = new ExecutionContextMock(Guid.NewGuid());
+            EventsBus = Substitute.For<IEventsBus>();
 
-            WorldsStartup.Initialize(
+            WorldsStartup.Start(
                 ConnectionString,
                 ExecutionContext,
-                Logger);
+                Logger,
+                EventsBus);
 
             WorldsModule = new WorldsModule();
         }
@@ -47,19 +50,6 @@ namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork
         public void AfterEachTest()
         {
             WorldsStartup.Stop();
-        }
-
-        private static async Task ClearDatabase(IDbConnection connection)
-        {
-            var sql = ClearDatabaseSqlGenerator.InSchema("worlds")
-                .ClearTable("inbox_messages")
-                .ClearTable("internal_commands")
-                .ClearTable("outbox_messages")
-                .ClearTable("pioneers")
-                .ClearTable("worlds")
-                .GenerateSql();
-
-            await connection.ExecuteScalarAsync(sql);
         }
     }
 }

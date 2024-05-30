@@ -5,7 +5,7 @@ using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 {
     [TestFixture]
-    internal class GetWorldNodeDetailsTests : TestBase
+    internal class GetWorldNodeDetailsTests : IntegrationTest
     {
         // Happy path tests
         [Test]

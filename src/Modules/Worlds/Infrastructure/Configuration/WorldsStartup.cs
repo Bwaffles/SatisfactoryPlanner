@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.Modules.Worlds.Application.Worlds.CreateStarterWorld;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.DataAccess;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Domain;
@@ -17,19 +18,19 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
 {
     /// <summary>
     ///     Initialize the services and configurations for the Worlds module.
-    ///     This will set up the logging, domain services and dependency injection for this module.
-    ///     Should be called from the main application Startup.
+    ///     Should be called from the main application startup.
     /// </summary>
-    public class WorldsStartup
+    public static class WorldsStartup
     {
-        public static void Initialize(
+        public static void Start(
             string connectionString,
             IExecutionContextAccessor executionContextAccessor,
-            ILogger logger)
+            ILogger logger,
+            IEventsBus eventsBus)
         {
             var moduleLogger = logger.ForContext("Module", "Worlds");
 
-            ConfigureCompositionRoot(connectionString, executionContextAccessor, moduleLogger);
+            ConfigureCompositionRoot(connectionString, executionContextAccessor, moduleLogger, eventsBus);
 
             QuartzStartup.Initialize(moduleLogger);
             EventsBusStartup.Initialize(moduleLogger);
@@ -40,8 +41,8 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
         private static void ConfigureCompositionRoot(
             string connectionString,
             IExecutionContextAccessor executionContextAccessor,
-            ILogger logger
-        )
+            ILogger logger,
+            IEventsBus eventsBus)
         {
             var containerBuilder = new ContainerBuilder();
 
@@ -51,7 +52,7 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
             containerBuilder.RegisterModule(new DomainModule());
             containerBuilder.RegisterModule(new ProcessingModule());
-            containerBuilder.RegisterModule(new EventsBusModule());
+            containerBuilder.RegisterModule(new EventsBusModule(eventsBus));
             containerBuilder.RegisterModule(new MediatorModule());
 
             var domainNotificationsMap = new BiDictionary<string, Type>();

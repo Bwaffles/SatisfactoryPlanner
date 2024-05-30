@@ -1,6 +1,7 @@
 using MediatR;
 using Npgsql;
 using NSubstitute;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
 using SatisfactoryPlanner.Modules.UserAccess.Application.Contracts;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure;
@@ -9,9 +10,11 @@ using Serilog;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
 {
-    public class TestBase
+    public class IntegrationTest
     {
         protected string ConnectionString { get; private set; } = default!;
+
+        public IEventsBus EventsBus { get; private set; } = default!;
 
         protected ILogger Logger { get; private set; } = default!;
 
@@ -34,13 +37,15 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
                 await DatabaseClearer.Clear(connection);
             }
 
-            Logger = Substitute.For<ILogger>();
             ExecutionContext = new ExecutionContextMock(Guid.NewGuid());
+            Logger = Substitute.For<ILogger>();
+            EventsBus = Substitute.For<IEventsBus>();
 
-            UserAccessStartup.Initialize(
+            UserAccessStartup.Start(
                 ConnectionString,
                 ExecutionContext,
-                Logger);
+                Logger,
+                EventsBus);
 
             UserAccessModule = new UserAccessModule();
         }

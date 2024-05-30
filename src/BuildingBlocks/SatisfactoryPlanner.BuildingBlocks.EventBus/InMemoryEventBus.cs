@@ -1,12 +1,14 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.BuildingBlocks.EventBus
 {
     public sealed class InMemoryEventBus
     {
-        private readonly IDictionary<string, List<IIntegrationEventHandler>> _handlersDictionary;
+        private readonly Dictionary<string, List<IIntegrationEventHandler>> _handlersDictionary;
 
         public static InMemoryEventBus Instance { get; } = new();
 
@@ -14,27 +16,31 @@ namespace SatisfactoryPlanner.BuildingBlocks.EventBus
 
         private InMemoryEventBus()
         {
-            _handlersDictionary = new Dictionary<string, List<IIntegrationEventHandler>>();
+            _handlersDictionary = [];
         }
 
         public void Subscribe<T>(IIntegrationEventHandler<T> handler)
             where T : IntegrationEvent
         {
             var eventType = typeof(T).FullName;
-            if (eventType != null)
+            if (eventType == null)
+                return;
+
+            if (_handlersDictionary.TryGetValue(eventType, out var handlers))
             {
-                if (_handlersDictionary.ContainsKey(eventType))
+                if (handlers.Any(_ => _.GetType() == handler.GetType()))
                 {
-                    var handlers = _handlersDictionary[eventType];
-                    handlers.Add(handler);
+                    // Making the assumption that an event handler being subscribed more than once is a configuration error and won't come up normally.
+                    // Want this to fail loud and fast so no one has to spend hours debugging code silently running twice.
+                    throw new InvalidOperationException($"Handler '{handler.GetType().FullName}' is already subscribed to event '{eventType}'. " +
+                        "Ensure you aren't subscribing with the same handler more than once.");
                 }
-                else
-                {
-                    _handlersDictionary.Add(eventType, new List<IIntegrationEventHandler>
-                    {
-                        handler
-                    });
-                }
+
+                handlers.Add(handler);
+            }
+            else
+            {
+                _handlersDictionary.Add(eventType, [handler]);
             }
         }
 
@@ -42,15 +48,16 @@ namespace SatisfactoryPlanner.BuildingBlocks.EventBus
             where T : IntegrationEvent
         {
             var eventType = @event.GetType().FullName;
-
             if (eventType == null)
                 return;
 
-            var integrationEventHandlers = _handlersDictionary[eventType];
-
-            foreach (var integrationEventHandler in integrationEventHandlers)
+            foreach (var integrationEventHandler in _handlersDictionary[eventType])
+            {
                 if (integrationEventHandler is IIntegrationEventHandler<T> handler)
                     await handler.Handle(@event);
+            }
         }
+
+        public void Reset() { _handlersDictionary.Clear(); }
     }
 }

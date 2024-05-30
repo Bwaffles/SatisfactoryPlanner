@@ -5,7 +5,7 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.Application.Users.CreateCurrentUser
 {
-    public class PioneerUserCreatedNotification : DomainNotificationBase<PioneerUserCreatedDomainEvent>
+    public class PioneerUserCreatedNotification : DomainEventNotificationBase<PioneerUserCreatedDomainEvent>
     {
         [JsonConstructor]
         public PioneerUserCreatedNotification(PioneerUserCreatedDomainEvent domainEvent, Guid id)

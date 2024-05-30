@@ -7,7 +7,7 @@ using SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork;
 namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.Users
 {
     [TestFixture]
-    public class CreateUserTests : TestBase
+    public class CreateUserTests : IntegrationTest
     {
         [Test]
         public async Task CreatePioneerUser_Test()

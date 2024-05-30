@@ -14,16 +14,24 @@ using SatisfactoryPlanner.API.Configuration.Routing;
 using SatisfactoryPlanner.API.Configuration.Validation;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.BuildingBlocks.EventBus;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Context;
+using Serilog.Events;
 using Serilog.Formatting.Compact;
 using ILogger = Serilog.ILogger;
 
 var _logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning) // Filter out ASP.NET Core infrastructre logs that are Information and below
+    .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
+    .MinimumLevel.Override("Microsoft.AspNetCore.DataProtection", LogEventLevel.Fatal) // See Program.ConfigureAuthenticationService comments for why this is being done
     .Enrich.FromLogContext()
     .WriteTo.Console(
         outputTemplate:
@@ -37,9 +45,12 @@ var _logger = new LoggerConfiguration()
 using (LogContext.PushProperty("Context", "Startup"))
 {
     var _loggerForApi = _logger.ForContext("Module", "API");
-    _loggerForApi.Information("Application started.");
+    _loggerForApi.Information("Application starting...");
 
     var builder = WebApplication.CreateBuilder(args);
+
+    builder.Host.UseSerilog(_loggerForApi);
+    Log.Logger = _loggerForApi;
 
     ConfigureServices(builder);
 
@@ -49,10 +60,35 @@ using (LogContext.PushProperty("Context", "Startup"))
 
     var app = builder.Build();
 
-    Configure(app, app.Environment, _logger, builder.Configuration);
+    var eventsBus = new InMemoryEventBusClient();
+
+    var lifeTime = app.Lifetime;
+    lifeTime.ApplicationStopping.Register(() =>
+    {
+        using (LogContext.PushProperty("Context", "Stopping"))
+        {
+            _loggerForApi.Information("Application stopping...");
+            ProductionStartup.Stop();
+            ResourcesStartup.Stop();
+            WorldsStartup.Stop();
+            UserAccessStartup.Stop();
+            eventsBus.Stop();
+        }
+    });
+    lifeTime.ApplicationStopped.Register(() =>
+    {
+        using (LogContext.PushProperty("Context", "Stopped"))
+        {
+            _loggerForApi.Information("Application stopped");
+            _logger.Dispose();
+        }
+    });
+
+    Configure(app, app.Environment, _logger, builder.Configuration, eventsBus);
 
     app.MapControllers();
 
+    _loggerForApi.Information("Application started");
     app.Run();
 }
 
@@ -124,7 +160,7 @@ static void RegisterModules(ContainerBuilder containerBuilder)
     containerBuilder.RegisterModule(new UserAccessAutofacModule());
 }
 
-static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger, ConfigurationManager configuration)
+static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger, ConfigurationManager configuration, IEventsBus eventsBus)
 {
     app.UseCors(builder =>
         builder
@@ -133,7 +169,7 @@ static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger 
             .AllowAnyMethod()
     );
 
-    InitializeModules(app, logger, configuration);
+    StartModules(app, logger, configuration, eventsBus);
 
     app.UseMiddleware<CorrelationMiddleware>();
 
@@ -150,6 +186,8 @@ static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger 
 
     //app.UseHttpsRedirection();
 
+    app.UseSerilogRequestLogging();
+
     app.UseAuthentication();
 
     // To be used by WorldAuthorization to get world id from the body of the request
@@ -161,32 +199,37 @@ static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger 
     app.UseAuthorization();
 }
 
-static void InitializeModules(IApplicationBuilder app, ILogger logger, ConfigurationManager configuration)
+static void StartModules(IApplicationBuilder app, ILogger logger, ConfigurationManager configuration, IEventsBus eventsBus)
 {
     var container = app.ApplicationServices.GetAutofacRoot();
     var executionContextAccessor = container.Resolve<IExecutionContextAccessor>();
     var connectionString = configuration.GetConnectionString("SatisfactoryPlanner") ?? throw new InvalidOperationException("SatisfactoryPlanner connection string not defined.");
 
-    ProductionStartup.Initialize(
+    ProductionStartup.Start(
         connectionString,
         executionContextAccessor,
-        logger
+        logger,
+        eventsBus
     );
 
-    ResourcesStartup.Initialize(
+    ResourcesStartup.Start(
         connectionString,
         executionContextAccessor,
-        logger
+        logger,
+        eventsBus
     );
 
-    UserAccessStartup.Initialize(
+    UserAccessStartup.Start(
         connectionString,
         executionContextAccessor,
-        logger);
+        logger,
+        eventsBus
+    );
 
-    WorldsStartup.Initialize(
+    WorldsStartup.Start(
         connectionString,
         executionContextAccessor,
-        logger
+        logger,
+        eventsBus
     );
 }

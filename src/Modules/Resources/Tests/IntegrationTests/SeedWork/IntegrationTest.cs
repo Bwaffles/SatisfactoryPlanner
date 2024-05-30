@@ -1,18 +1,19 @@
-using Dapper;
 using Npgsql;
 using NSubstitute;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
 using SatisfactoryPlanner.Modules.Resources.Application.Contracts;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using Serilog;
-using System.Data;
 
 namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
 {
-    public class TestBase
+    public class IntegrationTest
     {
         protected string ConnectionString { get; private set; } = null!;
+
+        public IEventsBus EventsBus { get; private set; } = default!;
 
         protected ILogger Logger { get; private set; } = null!;
 
@@ -32,16 +33,18 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
 
             await using (var connection = new NpgsqlConnection(ConnectionString))
             {
-                await ClearDatabase(connection);
+                await DatabaseClearer.Clear(connection);
             }
 
             Logger = Substitute.For<ILogger>();
             ExecutionContext = new ExecutionContextMock(Guid.NewGuid());
+            EventsBus = Substitute.For<IEventsBus>();
 
-            ResourcesStartup.Initialize(
+            ResourcesStartup.Start(
                 ConnectionString,
                 ExecutionContext,
-                Logger);
+                Logger,
+                EventsBus);
 
             ResourcesModule = new ResourcesModule();
         }
@@ -60,26 +63,6 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
         {
             ResourcesStartup.Stop();
             //SystemClock.Reset();
-        }
-
-        private static async Task ClearDatabase(IDbConnection connection)
-        {
-            /* Not clearing the following tables since they're pre-loaded reference tables:
-             *   extractor_allowed_resources,
-             *   extractors,
-             *   nodes,
-             *   resource_forms,
-             *   resources
-             */
-
-            var sql = ClearDatabaseSqlGenerator.InSchema("resources")
-                .ClearTable("inbox_messages")
-                .ClearTable("internal_commands")
-                .ClearTable("outbox_messages")
-                .ClearTable("world_nodes")
-                .GenerateSql();
-
-            await connection.ExecuteScalarAsync(sql);
         }
     }
 }

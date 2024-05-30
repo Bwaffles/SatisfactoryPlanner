@@ -22,6 +22,6 @@ public class DatabaseConfiguration
         Password = "123qwe!@#QWE";
         Port = port;
         ServerConnectionString = $"Server=127.0.0.1:{Port};User Id={User};Password={Password};";
-        ConnectionString = $"{ServerConnectionString}Database=satisfactory-planner;";
+        ConnectionString = $"{ServerConnectionString}Database=satisfactory-planner;Log Parameters=true;Include Error Detail=true;";
     }
 }
