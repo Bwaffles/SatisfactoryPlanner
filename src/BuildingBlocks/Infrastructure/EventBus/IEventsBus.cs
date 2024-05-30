@@ -11,6 +11,9 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus
         void Subscribe<T>(IIntegrationEventHandler<T> handler)
             where T : IntegrationEvent;
 
-        void StartConsuming();
+        /// <summary>
+        /// Stop the event bus and clean up event subscriptions.
+        /// </summary>
+        void Stop();
     }
 }

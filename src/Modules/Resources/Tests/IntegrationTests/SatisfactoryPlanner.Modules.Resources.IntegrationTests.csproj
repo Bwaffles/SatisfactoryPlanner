@@ -25,6 +25,9 @@
 		<ProjectReference Include="..\..\..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
+		<ProjectReference Include="..\..\..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj" >
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
 		<ProjectReference Include="..\..\..\..\BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>

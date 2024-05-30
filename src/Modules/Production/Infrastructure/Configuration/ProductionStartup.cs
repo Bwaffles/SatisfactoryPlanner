@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.DataAccess;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Domain;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.EventsBus;
@@ -17,17 +18,16 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
 {
     /// <summary>
     ///     Initialize the services and configurations for the Production module.
-    ///     This will set up the logging and dependency injection for this module.
-    ///     Should be called from the main application Startup.
+    ///     Should be called from the main application startup.
     /// </summary>
-    public class ProductionStartup
+    public static class ProductionStartup
     {
-        public static void Initialize(string connectionString, IExecutionContextAccessor executionContextAccessor,
-            ILogger logger)
+        public static void Start(string connectionString, IExecutionContextAccessor executionContextAccessor,
+            ILogger logger, IEventsBus eventsBus)
         {
             var moduleLogger = logger.ForContext("Module", "Production");
 
-            ConfigureCompositionRoot(connectionString, executionContextAccessor, logger);
+            ConfigureCompositionRoot(connectionString, executionContextAccessor, logger, eventsBus);
 
             QuartzStartup.Initialize(moduleLogger);
             EventsBusStartup.Initialize(moduleLogger);
@@ -39,7 +39,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
         }
 
         private static void ConfigureCompositionRoot(string connectionString,
-            IExecutionContextAccessor executionContextAccessor, ILogger logger)
+            IExecutionContextAccessor executionContextAccessor, ILogger logger, IEventsBus eventsBus)
         {
             var containerBuilder = new ContainerBuilder();
 
@@ -49,7 +49,7 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
             containerBuilder.RegisterModule(new DomainModule());
             containerBuilder.RegisterModule(new ProcessingModule());
-            containerBuilder.RegisterModule(new EventsBusModule());
+            containerBuilder.RegisterModule(new EventsBusModule(eventsBus));
             containerBuilder.RegisterModule(new MediatorModule());
 
             var domainNotificationsMap = new BiDictionary<string, Type>();

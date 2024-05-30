@@ -12,19 +12,26 @@ namespace SatisfactoryPlanner.API.IntegrationTests
     [NonParallelizable]
     public class IntegrationTest
     {
+        private WebApplicationFactory<Program> _webApplicationFactory = default!;
+
         protected string ConnectionString { get; private set; } = default!;
 
         public HttpClient Client { get; private set; } = default!;
 
-        [OneTimeSetUp]
-        public void OnStartup()
+        [SetUp]
+        public async Task BeforeEachTest()
         {
             const string connectionStringEnvironmentVariable = "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
             ConnectionString = EnvironmentVariablesProvider.GetVariable(connectionStringEnvironmentVariable);
             if (ConnectionString == null)
                 throw new ApplicationException($"Define connection string to integration tests database using environment variable: {connectionStringEnvironmentVariable}.");
 
-            Client = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+            await DatabaseClearer.Clear(ConnectionString);
+
+            // since tests run sequentially, each test can manipulate this user to perform their test and it will reset before each test so the tests don't affect each other
+            AuthenticatedUser.Reset();
+
+            _webApplicationFactory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
             {
                 // Override authentication to make all calls anonymous https://timdeschryver.dev/blog/how-to-test-your-csharp-web-api#authenticationhandler
                 builder.ConfigureTestServices(services =>
@@ -32,6 +39,7 @@ namespace SatisfactoryPlanner.API.IntegrationTests
                     services
                     .AddAuthentication("IntegrationTest")
                     .AddScheme<AuthenticationSchemeOptions, IntegrationTestAuthenticationHandler>("IntegrationTest", options => { });
+
                 });
 
                 // Set this to a nonexistant server to be extra sure we don't spam our auth server
@@ -39,22 +47,15 @@ namespace SatisfactoryPlanner.API.IntegrationTests
                 builder.UseSetting("Auth0:Audience", "fakeAudience");
 
                 builder.UseSetting("ConnectionStrings:SatisfactoryPlanner", ConnectionString);
-            }).CreateClient();
+
+            });
+            Client = _webApplicationFactory.CreateClient();
         }
 
-        [SetUp]
-        public async Task BeforeEachTest()
+        [TearDown]
+        public void AfterEachTest()
         {
-            await DatabaseClearer.Clear(ConnectionString);
-
-            // since tests run sequentially, each test can manipulate this user to perform their test and it will reset before each test so the tests don't affect each other
-            AuthenticatedUser.Reset();
-        }
-
-        [OneTimeTearDown]
-        public void OnShutdown()
-        {
-            Client.Dispose();
+            _webApplicationFactory.Dispose(); // this will shut down the server as well as all clients
         }
 
         protected static async Task<T> GetEventually<T>(IProbe<T> probe, int timeout)

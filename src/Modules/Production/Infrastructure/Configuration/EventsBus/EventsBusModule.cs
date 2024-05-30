@@ -1,16 +1,13 @@
 ﻿using Autofac;
-using SatisfactoryPlanner.BuildingBlocks.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.EventsBus
 {
-    internal class EventsBusModule : Module
+    internal class EventsBusModule(IEventsBus eventsBus) : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<InMemoryEventBusClient>()
-                .As<IEventsBus>()
-                .SingleInstance();
+            builder.RegisterInstance(eventsBus).As<IEventsBus>();
         }
     }
 }

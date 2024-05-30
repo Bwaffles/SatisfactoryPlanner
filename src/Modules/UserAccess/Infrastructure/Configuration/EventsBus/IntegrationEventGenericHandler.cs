@@ -13,26 +13,24 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Ev
     {
         public async Task Handle(T @event)
         {
-            using (var scope = UserAccessCompositionRoot.BeginLifetimeScope())
+            using var scope = UserAccessCompositionRoot.BeginLifetimeScope();
+            using var connection = scope.Resolve<IDbConnectionFactory>().GetOpenConnection();
+            var type = @event.GetType().FullName;
+            var data = JsonConvert.SerializeObject(@event, new JsonSerializerSettings
             {
-                using (var connection = scope.Resolve<IDbConnectionFactory>().GetOpenConnection())
-                {
-                    var type = @event.GetType().FullName;
-                    var data = JsonConvert.SerializeObject(@event, new JsonSerializerSettings
-                    {
-                        ContractResolver = new AllPropertiesContractResolver()
-                    });
+                ContractResolver = new AllPropertiesContractResolver()
+            });
 
-                    // TODO won't work with my db
-                    var sql = "INSERT INTO [users].[InboxMessages] (Id, OccurredOn, Type, Data) " +
-                              "VALUES (@Id, @OccurredOn, @Type, @Data)";
-
-                    await connection.ExecuteScalarAsync(sql, new
-                    {
-                        @event.Id, @event.OccurredOn, type, data
-                    });
-                }
-            }
+            const string sql = "INSERT INTO users.inbox_messages (id, occurred_on, type, data) " +
+                               $"VALUES (@{nameof(@event.Id)}, @{nameof(@event.OccurredOn)}, @{nameof(type)}, @{nameof(data)})";
+            var param = new
+            {
+                @event.Id,
+                @event.OccurredOn,
+                type,
+                data
+            };
+            await connection.ExecuteScalarAsync(sql, param);
         }
     }
 }

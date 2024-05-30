@@ -6,7 +6,7 @@ using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 {
     [TestFixture]
-    public class DowngradeExtractorTests : TestBase
+    public class DowngradeExtractorTests : IntegrationTest
     {
         // Happy path tests
         [Test]

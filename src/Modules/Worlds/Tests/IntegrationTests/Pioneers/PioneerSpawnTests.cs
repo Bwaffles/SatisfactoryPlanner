@@ -8,7 +8,7 @@ using SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork;
 namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.Pioneers
 {
     [TestFixture]
-    public class PioneerSpawnTests : TestBase
+    public class PioneerSpawnTests : IntegrationTest
     {
         [Test]
         public async Task SpawnPioneer_Test()

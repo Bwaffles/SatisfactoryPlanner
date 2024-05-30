@@ -26,21 +26,21 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration.Quartz
             logger.Information("Quartz started.");
         }
 
-        internal static void Shutdown() => _scheduler.Shutdown();
+        internal static void Shutdown() => _scheduler?.Shutdown().Wait();
 
         private static IScheduler StartScheduler(ILogger logger)
         {
+            LogProvider.SetCurrentLogProvider(new SerilogLogProvider(logger));
+
             var schedulerConfiguration = new NameValueCollection
             {
                 {
-                    "quartz.scheduler.instanceName", "SatisfactoryPlanner"
+                    "quartz.scheduler.instanceName", "SatisfactoryPlanner.Worlds"
                 }
             };
 
             var schedulerFactory = new StdSchedulerFactory(schedulerConfiguration);
             var scheduler = schedulerFactory.GetScheduler().GetAwaiter().GetResult();
-
-            LogProvider.SetCurrentLogProvider(new SerilogLogProvider(logger));
 
             scheduler.Start().GetAwaiter().GetResult();
 

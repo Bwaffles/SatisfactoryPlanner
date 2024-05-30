@@ -12,7 +12,16 @@ namespace SatisfactoryPlanner.API.IntegrationTests
         public static async Task<T> ReadContentAsync<T>(this HttpResponseMessage message)
         {
             var content = await message.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<T>(content, Options)!;
+
+            try
+            {
+                return JsonSerializer.Deserialize<T>(content, Options)!;
+            }
+            catch
+            {
+                Console.WriteLine($"Failed to read content: {content}");
+                throw;
+            }
         }
     }
 }

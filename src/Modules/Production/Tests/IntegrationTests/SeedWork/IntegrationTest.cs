@@ -3,6 +3,7 @@ using Npgsql;
 using NSubstitute;
 using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using SatisfactoryPlanner.Modules.Production.Infrastructure;
@@ -14,6 +15,8 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork
     public class IntegrationTest
     {
         protected string ConnectionString { get; private set; } = null!;
+
+        public IEventsBus EventsBus { get; private set; } = default!;
 
         protected ILogger Logger { get; private set; } = null!;
 
@@ -36,11 +39,13 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork
 
             Logger = Substitute.For<ILogger>();
             ExecutionContext = new ExecutionContextMock(Guid.NewGuid());
+            EventsBus = Substitute.For<IEventsBus>();
 
-            ProductionStartup.Initialize(
+            ProductionStartup.Start(
                 ConnectionString,
                 ExecutionContext,
-                Logger);
+                Logger,
+                EventsBus);
 
             ProductionModule = new ProductionModule();
         }
