@@ -27,23 +27,20 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration
         {
             var moduleLogger = logger.ForContext("Module", "Resources");
 
-            ConfigureCompositionRoot(connectionString, executionContextAccessor, logger, eventsBus);
+            ConfigureCompositionRoot(connectionString, executionContextAccessor, moduleLogger, eventsBus);
 
             QuartzStartup.Initialize(moduleLogger);
             EventsBusStartup.Initialize(moduleLogger);
         }
 
-        public static void Stop()
-        {
-            QuartzStartup.Shutdown();
-        }
+        public static void Stop() => QuartzStartup.Shutdown();
 
         private static void ConfigureCompositionRoot(string connectionString,
             IExecutionContextAccessor executionContextAccessor, ILogger logger, IEventsBus eventsBus)
         {
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterModule(new LoggingModule(logger.ForContext("Module", "Resources")));
+            containerBuilder.RegisterModule(new LoggingModule(logger));
 
             var loggerFactory = new SerilogLoggerFactory(logger);
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));

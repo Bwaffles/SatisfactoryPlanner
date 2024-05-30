@@ -1,5 +1,4 @@
-﻿using MediatR;
-using SatisfactoryPlanner.Modules.Production.Application.Configuration.Commands;
+﻿using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using System.Reflection;
 
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
@@ -10,18 +9,13 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration
     internal static class Assemblies
     {
         /// <summary>
-        ///     The assembly of our Application project.
+        ///     The assembly of the Production.Application project.
         /// </summary>
-        internal static readonly Assembly Application = typeof(InternalCommandBase).Assembly;
+        internal static readonly Assembly Application = typeof(IProductionModule).Assembly;
 
         /// <summary>
-        ///     The assembly of our Infrastructure project.
+        ///     The assembly of the Production.Infrastructure project.
         /// </summary>
         internal static readonly Assembly Infrastructure = typeof(ProductionContext).Assembly;
-
-        /// <summary>
-        ///     The assembly of the MediatR library.
-        /// </summary>
-        internal static readonly Assembly Mediatr = typeof(IMediator).GetTypeInfo().Assembly;
     }
 }

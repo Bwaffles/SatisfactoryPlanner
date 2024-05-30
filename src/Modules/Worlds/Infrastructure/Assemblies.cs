@@ -1,5 +1,4 @@
-﻿using MediatR;
-using SatisfactoryPlanner.Modules.Worlds.Application.Configuration.Commands;
+﻿using SatisfactoryPlanner.Modules.Worlds.Application.Contracts;
 using System.Reflection;
 
 namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
@@ -12,16 +11,11 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure
         /// <summary>
         ///     The assembly of our Worlds.Application project.
         /// </summary>
-        internal static readonly Assembly Application = typeof(InternalCommandBase).Assembly;
+        internal static readonly Assembly Application = typeof(IWorldsModule).Assembly;
 
         /// <summary>
         ///     The assembly of our Worlds.Infrastructure project.
         /// </summary>
         internal static readonly Assembly Infrastructure = typeof(WorldsContext).Assembly;
-
-        /// <summary>
-        ///     The assembly of the MediatR library.
-        /// </summary>
-        internal static readonly Assembly Mediatr = typeof(IMediator).GetTypeInfo().Assembly;
     }
 }
