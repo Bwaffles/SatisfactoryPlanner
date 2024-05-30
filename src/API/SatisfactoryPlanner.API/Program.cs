@@ -49,8 +49,8 @@ using (LogContext.PushProperty("Context", "Startup"))
 
     var builder = WebApplication.CreateBuilder(args);
 
-    builder.Host.UseSerilog(_logger);
-    Log.Logger = _logger;
+    builder.Host.UseSerilog(_loggerForApi);
+    Log.Logger = _loggerForApi;
 
     ConfigureServices(builder);
 
@@ -60,7 +60,7 @@ using (LogContext.PushProperty("Context", "Startup"))
 
     var app = builder.Build();
 
-    var eventsBus = new InMemoryEventBusClient(_logger);
+    var eventsBus = new InMemoryEventBusClient();
 
     var lifeTime = app.Lifetime;
     lifeTime.ApplicationStopping.Register(() =>
