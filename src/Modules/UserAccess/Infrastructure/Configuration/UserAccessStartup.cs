@@ -23,34 +23,21 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration
     /// </summary>
     public static class UserAccessStartup
     {
-        public static void Start(
-            string connectionString,
-            IExecutionContextAccessor executionContextAccessor,
-            ILogger logger,
-            IEventsBus eventsBus)
+        public static void Start(string connectionString, IExecutionContextAccessor executionContextAccessor,
+            ILogger logger, IEventsBus eventsBus)
         {
             var moduleLogger = logger.ForContext("Module", "UserAccess");
 
-            ConfigureCompositionRoot(
-                connectionString,
-                executionContextAccessor,
-                moduleLogger,
-                eventsBus);
+            ConfigureCompositionRoot(connectionString, executionContextAccessor, moduleLogger, eventsBus);
 
             QuartzStartup.Initialize(moduleLogger);
             EventsBusStartup.Initialize(moduleLogger);
         }
 
-        public static void Stop()
-        {
-            QuartzStartup.Shutdown();
-        }
+        public static void Stop() => QuartzStartup.Shutdown();
 
-        private static void ConfigureCompositionRoot(
-            string connectionString,
-            IExecutionContextAccessor executionContextAccessor,
-            ILogger logger,
-            IEventsBus eventsBus)
+        private static void ConfigureCompositionRoot(string connectionString,
+            IExecutionContextAccessor executionContextAccessor, ILogger logger, IEventsBus eventsBus)
         {
             var containerBuilder = new ContainerBuilder();
 

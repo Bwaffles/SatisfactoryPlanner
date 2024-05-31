@@ -22,11 +22,8 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
     /// </summary>
     public static class WorldsStartup
     {
-        public static void Start(
-            string connectionString,
-            IExecutionContextAccessor executionContextAccessor,
-            ILogger logger,
-            IEventsBus eventsBus)
+        public static void Start(string connectionString, IExecutionContextAccessor executionContextAccessor,
+            ILogger logger, IEventsBus eventsBus)
         {
             var moduleLogger = logger.ForContext("Module", "Worlds");
 
@@ -38,11 +35,8 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
 
         public static void Stop() => QuartzStartup.Shutdown();
 
-        private static void ConfigureCompositionRoot(
-            string connectionString,
-            IExecutionContextAccessor executionContextAccessor,
-            ILogger logger,
-            IEventsBus eventsBus)
+        private static void ConfigureCompositionRoot(string connectionString,
+            IExecutionContextAccessor executionContextAccessor, ILogger logger, IEventsBus eventsBus)
         {
             var containerBuilder = new ContainerBuilder();
 
