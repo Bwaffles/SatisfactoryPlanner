@@ -30,7 +30,7 @@
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
-    --destructive-error: 0 84.2% 60.2%;
+    --destructive-text: 0 84.2% 60.2%;
 
     --ring: 224 71.4% 4.1%;
 
@@ -66,7 +66,7 @@
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;
-    --destructive-error: 0 84% 60%; /* For accessibility, this reads better for error text */
+    --destructive-text: 0 84% 60%; /* For accessibility, this reads better for red text on a black background*/
 
     --ring: 202, 80%, 24%;
   }

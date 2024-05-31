@@ -29,13 +29,13 @@
 		<ProjectReference Include="..\..\..\Modules\Production\Application\SatisfactoryPlanner.Modules.Production.Application.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-		<ProjectReference Include="..\..\..\Modules\Production\Infrastructure\SatisfactoryPlanner.Modules.Production.Infrastructure.csproj" >
+		<ProjectReference Include="..\..\..\Modules\Production\Infrastructure\SatisfactoryPlanner.Modules.Production.Infrastructure.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\..\..\Modules\Production\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Production.IntegrationTests.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-		<ProjectReference Include="..\..\..\Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj" >
+		<ProjectReference Include="..\..\..\Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\..\..\Modules\Resources\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Resources.IntegrationTests.csproj">
@@ -44,16 +44,17 @@
 		<ProjectReference Include="..\..\..\Modules\UserAccess\Application\SatisfactoryPlanner.Modules.UserAccess.Application.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-		<ProjectReference Include="..\..\..\Modules\UserAccess\Infrastructure\SatisfactoryPlanner.Modules.UserAccess.Infrastructure.csproj" >
+		<ProjectReference Include="..\..\..\Modules\UserAccess\Infrastructure\SatisfactoryPlanner.Modules.UserAccess.Infrastructure.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\..\..\Modules\UserAccess\Tests\IntegrationTests\SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
+		<ProjectReference Include="..\..\..\Modules\Warehouses\Application\SatisfactoryPlanner.Modules.Warehouses.Application.csproj" />
 		<ProjectReference Include="..\..\..\Modules\Worlds\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj">
 		  <PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-		<ProjectReference Include="..\..\..\Modules\Worlds\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj" >
+		<ProjectReference Include="..\..\..\Modules\Worlds\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\..\..\Modules\Worlds\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Worlds.IntegrationTests.csproj">
