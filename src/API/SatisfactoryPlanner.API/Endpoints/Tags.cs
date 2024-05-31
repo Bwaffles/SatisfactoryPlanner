@@ -10,5 +10,8 @@
         // Production
         public const string ProductionLines = "Production Lines";
         public const string ProcessedItems = "Processed Items";
+
+        // Warehouses
+        public const string Warehouse = "Warehouse";
     }
 }

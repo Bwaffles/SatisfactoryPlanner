@@ -19,6 +19,7 @@ using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration;
+using SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Context;
@@ -70,8 +71,9 @@ using (LogContext.PushProperty("Context", "Startup"))
             _loggerForApi.Information("Application stopping...");
             ProductionStartup.Stop();
             ResourcesStartup.Stop();
-            WorldsStartup.Stop();
             UserAccessStartup.Stop();
+            WarehousesStartup.Stop();
+            WorldsStartup.Stop();
             eventsBus.Stop();
         }
     });
@@ -154,10 +156,11 @@ static void ConfigureAuthorizationService(WebApplicationBuilder builder)
 
 static void RegisterModules(ContainerBuilder containerBuilder)
 {
-    containerBuilder.RegisterModule(new WorldsAutofacModule());
-    containerBuilder.RegisterModule(new ResourcesAutofacModule());
     containerBuilder.RegisterModule(new ProductionAutofacModule());
+    containerBuilder.RegisterModule(new ResourcesAutofacModule());
     containerBuilder.RegisterModule(new UserAccessAutofacModule());
+    containerBuilder.RegisterModule(new WarehousesAutofacModule());
+    containerBuilder.RegisterModule(new WorldsAutofacModule());
 }
 
 static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger, ConfigurationManager configuration, IEventsBus eventsBus)
@@ -225,6 +228,11 @@ static void StartModules(IApplicationBuilder app, ILogger logger, ConfigurationM
         logger,
         eventsBus
     );
+
+    WarehousesStartup.Start(
+        connectionString,
+        executionContextAccessor,
+        logger);
 
     WorldsStartup.Start(
         connectionString,

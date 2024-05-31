@@ -42,10 +42,10 @@
 		<ProjectReference Include="..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-		<ProjectReference Include="..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj" >
+		<ProjectReference Include="..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-		<ProjectReference Include="..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj" >
+		<ProjectReference Include="..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\..\Modules\Production\Application\SatisfactoryPlanner.Modules.Production.Application.csproj">
@@ -53,6 +53,12 @@
 		</ProjectReference>
 		<ProjectReference Include="..\..\Modules\Production\Infrastructure\SatisfactoryPlanner.Modules.Production.Infrastructure.csproj">
 			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\Warehouses\Application\SatisfactoryPlanner.Modules.Warehouses.Application.csproj">
+		  <PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\Warehouses\Infrastructure\SatisfactoryPlanner.Modules.Warehouses.Infrastructure.csproj">
+		  <PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\..\Modules\Worlds\Application\SatisfactoryPlanner.Modules.Worlds.Application.csproj">
 			<PrivateAssets>All</PrivateAssets>
