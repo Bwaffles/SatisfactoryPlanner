@@ -11,30 +11,18 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching
 {
-    public class DomainEventsDispatcher : IDomainEventsDispatcher
-    {
-        private readonly IDomainEventsAccessor _domainEventsProvider;
-
-        private readonly IDomainNotificationsMapper _domainNotificationsMapper;
-        private readonly IMediator _mediator;
-
-        private readonly IOutbox _outbox;
-
-        private readonly ILifetimeScope _scope;
-
-        public DomainEventsDispatcher(
+    public class DomainEventsDispatcher(
             IMediator mediator,
             ILifetimeScope scope,
             IOutbox outbox,
             IDomainEventsAccessor domainEventsProvider,
-            IDomainNotificationsMapper domainNotificationsMapper)
+        IDomainEventNotificationMapper domainNotificationsMapper) : IDomainEventsDispatcher
         {
-            _mediator = mediator;
-            _scope = scope;
-            _outbox = outbox;
-            _domainEventsProvider = domainEventsProvider;
-            _domainNotificationsMapper = domainNotificationsMapper;
-        }
+        private readonly IDomainEventsAccessor _domainEventsProvider = domainEventsProvider;
+        private readonly IDomainEventNotificationMapper _domainNotificationsMapper = domainNotificationsMapper;
+        private readonly IMediator _mediator = mediator;
+        private readonly IOutbox _outbox = outbox;
+        private readonly ILifetimeScope _scope = scope;
 
         public async Task DispatchEventsAsync()
         {
@@ -44,8 +32,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
             foreach (var domainEvent in domainEvents)
             {
                 var domainEvenNotificationType = typeof(IDomainEventNotification<>);
-                var domainNotificationWithGenericType =
-                    domainEvenNotificationType.MakeGenericType(domainEvent.GetType());
+                var domainNotificationWithGenericType = domainEvenNotificationType.MakeGenericType(domainEvent.GetType());
                 var domainNotification = _scope.ResolveOptional(domainNotificationWithGenericType, new List<Parameter>
                 {
                     new NamedParameter("domainEvent", domainEvent), new NamedParameter("id", domainEvent.Id)
@@ -63,7 +50,8 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
                 await _mediator.Publish(domainEvent);
 
             // Save domain event notifications to the outbox to be handled when able.
-            // Notifications are not guaranteed to be handled in the same transaction that caused it.
+            // Saving notifications to the outbox happens in the same transaction and must succeed or the transaction is rolled back.
+            // Notifications are not handled in the same transaction that caused it.
             foreach (var domainEventNotification in domainEventNotifications)
             {
                 var type = _domainNotificationsMapper.GetName(domainEventNotification.GetType());

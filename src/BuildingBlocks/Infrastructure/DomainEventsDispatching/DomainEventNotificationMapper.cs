@@ -2,14 +2,10 @@
 
 namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching
 {
-    public class DomainNotificationsMapper : IDomainNotificationsMapper
+    /// <inheritdoc cref="IDomainEventNotificationMapper"/>
+    public class DomainEventNotificationMapper(BiDictionary<string, Type> domainNotificationsMap) : IDomainEventNotificationMapper
     {
-        private readonly BiDictionary<string, Type> _domainNotificationsMap;
-
-        public DomainNotificationsMapper(BiDictionary<string, Type> domainNotificationsMap)
-        {
-            _domainNotificationsMap = domainNotificationsMap;
-        }
+        private readonly BiDictionary<string, Type> _domainNotificationsMap = domainNotificationsMap;
 
         public string GetName(Type type)
         {

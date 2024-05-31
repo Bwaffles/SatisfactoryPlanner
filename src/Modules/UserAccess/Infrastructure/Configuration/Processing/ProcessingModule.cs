@@ -17,10 +17,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
                 .As<IDomainEventsDispatcher>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<DomainNotificationsMapper>()
-                .As<IDomainNotificationsMapper>()
-                .InstancePerLifetimeScope();
-
             builder.RegisterType<DomainEventsAccessor>()
                 .As<IDomainEventsAccessor>()
                 .InstancePerLifetimeScope();

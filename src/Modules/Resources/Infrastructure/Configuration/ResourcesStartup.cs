@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
-using SatisfactoryPlanner.BuildingBlocks.Infrastructure;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.DataAccess;
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Domain;
@@ -12,7 +11,6 @@ using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Process
 using SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Quartz;
 using Serilog;
 using Serilog.Extensions.Logging;
-using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration
 {
@@ -35,24 +33,17 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration
 
         public static void Stop() => QuartzStartup.Shutdown();
 
-        private static void ConfigureCompositionRoot(string connectionString,
-            IExecutionContextAccessor executionContextAccessor, ILogger logger, IEventsBus eventsBus)
+        private static void ConfigureCompositionRoot(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger, IEventsBus eventsBus)
         {
             var containerBuilder = new ContainerBuilder();
 
             containerBuilder.RegisterModule(new LoggingModule(logger));
-
-            var loggerFactory = new SerilogLoggerFactory(logger);
-            containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
+            containerBuilder.RegisterModule(new DataAccessModule(connectionString, new SerilogLoggerFactory(logger)));
             containerBuilder.RegisterModule(new DomainModule());
             containerBuilder.RegisterModule(new ProcessingModule());
             containerBuilder.RegisterModule(new EventsBusModule(eventsBus));
             containerBuilder.RegisterModule(new MediatorModule());
-
-            var domainNotificationsMap = new BiDictionary<string, Type>();
-            //domainNotificationsMap.Add("MeetingGroupProposalAcceptedNotification", typeof(MeetingGroupProposalAcceptedNotification));
-            containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
-
+            containerBuilder.RegisterModule(new OutboxModule());
             containerBuilder.RegisterModule(new QuartzModule());
 
             containerBuilder.RegisterInstance(executionContextAccessor);
