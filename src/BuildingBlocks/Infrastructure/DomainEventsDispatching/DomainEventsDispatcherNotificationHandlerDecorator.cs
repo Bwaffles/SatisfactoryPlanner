@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SatisfactoryPlanner.BuildingBlocks.Application.Events;
 using SatisfactoryPlanner.BuildingBlocks.Domain;
 using Serilog;
 using System;
@@ -28,6 +29,9 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
                     case IDomainEvent domainEvent:
                         _logger.Information("Processing {DomainEvent} with {Handler}", domainEvent.GetType().Name, handler);
                         break;
+                    case IDomainEventNotification domainEventNotification:
+                        _logger.Information("Processing {DomainEventNotification} with {Handler}", domainEventNotification.GetType().Name, handler);
+                        break;
                 }
 
                 await _decorated.Handle(notification, cancellationToken);
@@ -39,6 +43,9 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
                     case IDomainEvent domainEvent:
                         _logger.Information("Sucessfully processed {DomainEvent} with {Handler}", domainEvent.GetType().Name, handler);
                         break;
+                    case IDomainEventNotification domainEventNotification:
+                        _logger.Information("Sucessfully processed {DomainEventNotification} with {Handler}", domainEventNotification.GetType().Name, handler);
+                        break;
                 }
             }
             catch (Exception exception)
@@ -47,6 +54,9 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
                 {
                     case IDomainEvent domainEvent:
                         _logger.Error(exception, "Processing {DomainEvent} with {Handler} failed", domainEvent.GetType().Name, handler);
+                        break;
+                    case IDomainEventNotification domainEventNotification:
+                        _logger.Error(exception, "Processing {DomainEventNotification} with {Handler} failed", domainEventNotification.GetType().Name, handler);
                         break;
                 }
 

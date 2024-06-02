@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatching
 {
     public class DomainEventsDispatcher(
-            IMediator mediator,
-            ILifetimeScope scope,
-            IOutbox outbox,
-            IDomainEventsAccessor domainEventsProvider,
+        IMediator mediator,
+        ILifetimeScope scope,
+        IOutbox outbox,
+        IDomainEventsAccessor domainEventsProvider,
         IDomainEventNotificationMapper domainNotificationsMapper) : IDomainEventsDispatcher
-        {
+    {
         private readonly IDomainEventsAccessor _domainEventsProvider = domainEventsProvider;
         private readonly IDomainEventNotificationMapper _domainNotificationsMapper = domainNotificationsMapper;
         private readonly IMediator _mediator = mediator;
@@ -35,7 +35,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Infrastructure.DomainEventsDispatch
                 var domainNotificationWithGenericType = domainEvenNotificationType.MakeGenericType(domainEvent.GetType());
                 var domainNotification = _scope.ResolveOptional(domainNotificationWithGenericType, new List<Parameter>
                 {
-                    new NamedParameter("domainEvent", domainEvent), new NamedParameter("id", domainEvent.Id)
+                    new NamedParameter("domainEvent", domainEvent)
                 });
 
                 if (domainNotification != null)
