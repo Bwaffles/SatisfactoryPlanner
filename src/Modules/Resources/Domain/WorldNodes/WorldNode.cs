@@ -12,6 +12,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
     public class WorldNode : Entity, IAggregateRoot
     {
         private readonly NodeId _nodeId;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "Used by EF to save world id when spawned.")]
         private readonly WorldId _worldId;
         private ExtractionRate _extractionRate;
         private ExtractorId? _extractorId;
@@ -37,7 +38,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 
             _extractorId = extractor.Id;
 
-            AddDomainEvent(new WorldNodeTappedDomainEvent(Id, _worldId, _nodeId, _extractorId));
+            AddDomainEvent(new WorldNodeTappedDomainEvent(Id, _extractorId));
         }
 
         public void IncreaseExtractionRate(ExtractionRate extractionRate,

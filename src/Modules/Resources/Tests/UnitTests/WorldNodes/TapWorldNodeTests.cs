@@ -21,11 +21,8 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
 
             worldNodeTestData.WorldNode.Tap(extractor, worldNodeTestData.ResourceId);
 
-            var domainEvent =
-                DomainEventAssertions.AssertPublishedEvent<WorldNodeTappedDomainEvent>(worldNodeTestData.WorldNode);
+            var domainEvent = DomainEventAssertions.AssertPublishedEvent<WorldNodeTappedDomainEvent>(worldNodeTestData.WorldNode);
             domainEvent.WorldNodeId.Should().Be(worldNodeTestData.WorldNode.Id);
-            domainEvent.WorldId.Should().Be(worldNodeTestData.WorldId);
-            domainEvent.NodeId.Should().Be(worldNodeTestData.NodeId);
             domainEvent.ExtractorId.Should().Be(extractor.Id);
         }
 
