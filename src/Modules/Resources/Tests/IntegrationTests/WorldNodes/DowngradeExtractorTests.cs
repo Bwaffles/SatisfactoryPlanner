@@ -14,17 +14,16 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         {
             var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
-            var worldNodeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
 
-            var slowerExtractorId = worldNodeDetails.AvailableExtractors
+            var slowerExtractorId = result.Details.AvailableExtractors
                 .First(availableExtractor => availableExtractor.Name == "Miner Mk.1").Id;
 
             await ResourcesModule.ExecuteCommandAsync(
                 new DowngradeExtractorCommand(worldId, nodeId, slowerExtractorId));
 
-            var postUpgradeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postUpgradeResult = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postUpgradeDetails = postUpgradeResult.Details;
             postUpgradeDetails.ExtractorId.Should().Be(slowerExtractorId);
         }
 
@@ -37,8 +36,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             await ResourcesModule.ExecuteCommandAsync(
                 new DowngradeExtractorCommand(worldId, nodeId, extractorId));
 
-            var postUpgradeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postUpgradeDetails = result.Details;
             postUpgradeDetails.ExtractorId.Should().Be(extractorId);
         }
 

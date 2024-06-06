@@ -16,8 +16,9 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 
             await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(worldId, nodeId));
 
-            var postDismantleDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postDismantleDetails = result.Details;
+
             postDismantleDetails.IsTapped.Should().BeFalse();
             postDismantleDetails.ExtractorId.Should().BeNull();
             postDismantleDetails.ExtractionRate.Should().Be(0);

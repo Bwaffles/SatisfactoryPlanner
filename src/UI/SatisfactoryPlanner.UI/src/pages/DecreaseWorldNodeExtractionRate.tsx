@@ -20,14 +20,11 @@ export const DecreaseWorldNodeExtractionRate = () => {
   const { nodeId } = useParams();
   const [errorMessages, setErrorMessages] = useState<string[] | null>(null);
   const navigate = useNavigate();
-  const {
-    isError,
-    data: worldNodeDetails,
-    error,
-  } = useGetWorldNodeDetails(nodeId!);
+  const { isError, data: response, error } = useGetWorldNodeDetails(nodeId!);
   const decreaseWorldNodeExtractionRateMutation =
     useDecreaseWorldNodeExtractionRate();
 
+  var worldNodeDetails = response?.data.details;
   const schema = z.object({
     extractionRate: z
       .number({
