@@ -1,4 +1,5 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
+using SatisfactoryPlanner.Modules.GameData.GameData;
 
 namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 {

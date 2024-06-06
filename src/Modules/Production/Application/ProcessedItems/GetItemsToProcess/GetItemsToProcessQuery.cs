@@ -1,6 +1,6 @@
-﻿using SatisfactoryPlanner.Modules.Production.Application.Configuration.Queries;
+﻿using SatisfactoryPlanner.Modules.GameData.GameData;
+using SatisfactoryPlanner.Modules.Production.Application.Configuration.Queries;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
-using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

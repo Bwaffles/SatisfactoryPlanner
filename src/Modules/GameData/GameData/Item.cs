@@ -1,8 +1,6 @@
-﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
-
-namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
+﻿namespace SatisfactoryPlanner.Modules.GameData.GameData
 {
-    public partial class Item : ValueObject
+    public partial class Item
     {
         public ItemCategory Category { get; }
 

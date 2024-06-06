@@ -1,4 +1,6 @@
-﻿namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
+﻿using SatisfactoryPlanner.Modules.GameData.GameData;
+
+namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 {
     public partial class Recipe
     {

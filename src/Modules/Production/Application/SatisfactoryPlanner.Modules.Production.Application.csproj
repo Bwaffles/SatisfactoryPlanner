@@ -19,6 +19,9 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
+    <ProjectReference Include="..\..\GameData\GameData\SatisfactoryPlanner.Modules.GameData.GameData.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
     <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Production.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
