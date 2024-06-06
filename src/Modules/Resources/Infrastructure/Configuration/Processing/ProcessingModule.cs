@@ -37,7 +37,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Infrastructure.Configuration.Pro
             builder.RegisterGenericDecorator(typeof(LoggingCommandHandlerWithResultDecorator<,>), typeof(ICommandHandler<,>));
 
             builder.RegisterGenericDecorator(typeof(DomainEventsDispatcherNotificationHandlerDecorator<>), typeof(INotificationHandler<>));
-            builder.RegisterGenericDecorator(typeof(LoggingNotificationHandlerDecorator<>), typeof(INotificationHandler<>));
 
             builder.RegisterAssemblyTypes(Assemblies.Application)
                 .AsClosedTypesOf(typeof(IDomainEventNotification<>))

@@ -4,10 +4,6 @@ using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds.Events;
 
 namespace SatisfactoryPlanner.Modules.Worlds.Application.Worlds.CreateStarterWorld
 {
-    public class WorldCreatedNotification : DomainEventNotificationBase<WorldCreatedDomainEvent>
-    {
-        [JsonConstructor]
-        public WorldCreatedNotification(WorldCreatedDomainEvent domainEvent, Guid id)
-            : base(domainEvent, id) { }
-    }
+    [method: JsonConstructor]
+    public class WorldCreatedNotification(WorldCreatedDomainEvent domainEvent) : DomainEventNotification<WorldCreatedDomainEvent>(domainEvent);
 }

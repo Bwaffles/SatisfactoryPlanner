@@ -17,10 +17,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
                 .As<IDomainEventsDispatcher>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<DomainNotificationsMapper>()
-                .As<IDomainNotificationsMapper>()
-                .InstancePerLifetimeScope();
-
             builder.RegisterType<DomainEventsAccessor>()
                 .As<IDomainEventsAccessor>()
                 .InstancePerLifetimeScope();
@@ -41,7 +37,6 @@ namespace SatisfactoryPlanner.Modules.UserAccess.Infrastructure.Configuration.Pr
             builder.RegisterGenericDecorator(typeof(LoggingCommandHandlerWithResultDecorator<,>), typeof(ICommandHandler<,>));
 
             builder.RegisterGenericDecorator(typeof(DomainEventsDispatcherNotificationHandlerDecorator<>), typeof(INotificationHandler<>));
-            builder.RegisterGenericDecorator(typeof(LoggingNotificationHandlerDecorator<>), typeof(INotificationHandler<>));
 
             builder.RegisterAssemblyTypes(Assemblies.Application)
                 .AsClosedTypesOf(typeof(IDomainEventNotification<>))

@@ -1,18 +1,13 @@
-﻿using MediatR;
+﻿using SatisfactoryPlanner.BuildingBlocks.Application.Events;
 using SatisfactoryPlanner.Modules.Worlds.Domain.Pioneers.Events;
 using SatisfactoryPlanner.Modules.Worlds.Domain.Worlds;
 
 namespace SatisfactoryPlanner.Modules.Worlds.Application.Worlds.CreateStarterWorld
 {
     // ReSharper disable once UnusedMember.Global
-    public class CreateStarterWorldOnPioneerSpawnedEvent : INotificationHandler<PioneerSpawnedDomainEvent>
+    public class CreateStarterWorldOnPioneerSpawnedEvent(IWorldRepository worldRepository) : IDomainEventHandler<PioneerSpawnedDomainEvent>
     {
-        private readonly IWorldRepository _worldRepository;
-
-        public CreateStarterWorldOnPioneerSpawnedEvent(IWorldRepository worldRepository)
-        {
-            _worldRepository = worldRepository;
-        }
+        private readonly IWorldRepository _worldRepository = worldRepository;
 
         public async Task Handle(PioneerSpawnedDomainEvent notification, CancellationToken cancellationToken)
         {
