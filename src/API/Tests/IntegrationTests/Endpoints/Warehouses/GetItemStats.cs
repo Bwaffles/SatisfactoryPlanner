@@ -1,8 +1,6 @@
 ﻿using FluentAssertions.Execution;
 using SatisfactoryPlanner.API.Endpoints.Warehouses;
-using SatisfactoryPlanner.API.IntegrationTests.Endpoints.Production.ProcessedItems;
-using SatisfactoryPlanner.API.IntegrationTests.Endpoints.UserAccess.Users;
-using SatisfactoryPlanner.Modules.Worlds.Application.Worlds.GetCurrentPioneerWorlds;
+using SatisfactoryPlanner.API.IntegrationTests.Endpoints.Worlds;
 using System.Net;
 
 namespace SatisfactoryPlanner.API.IntegrationTests.Endpoints.Warehouses
@@ -18,12 +16,7 @@ namespace SatisfactoryPlanner.API.IntegrationTests.Endpoints.Warehouses
             [Test]
             public async Task HappyPath()
             {
-                // Need a user so we pass the permissions check... nearly every endpoint test will need this
-                // TODO should we add a test for each endpoint that it has the right authorization? Maybe we can check its attributes?
-                await CreateCurrentUser.Execute(Client);
-
-                var currentPioneerWorlds = (await GetEventually(new GetCurrentPioneerWorlds.Probe(Client), 10000))!;
-                var worldId = (await currentPioneerWorlds.ReadContentAsync<List<PioneerWorldDto>>())[0].Id;
+                var worldId = await new WorldFixture(Client).CreateEmptyWorld();
 
                 var response = await Execute(Client, worldId);
 
