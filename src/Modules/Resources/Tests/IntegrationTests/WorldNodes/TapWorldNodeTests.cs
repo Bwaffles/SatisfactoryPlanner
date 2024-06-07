@@ -1,4 +1,5 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.TapWorldNode;
@@ -16,6 +17,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             var worldId = await new WorldFixture().Create(ResourcesModule);
 
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
+                .WorldNodes
                 .First(_ => _.ResourceName == "Bauxite");
             var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
             var nodeDetails = result.Details;
@@ -26,6 +28,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             await ResourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(worldId, node.Id, extractor.Id));
 
             var postTapNodeResult = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
+
             var postTapNodeDetails = postTapNodeResult.Details;
             postTapNodeDetails.IsTapped.Should().BeTrue();
             postTapNodeDetails.ExtractorId.Should().Be(extractor.Id);
@@ -69,6 +72,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             var worldId = await new WorldFixture().Create(ResourcesModule);
 
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
+                .WorldNodes
                 .First(_ => _.ResourceName == "Bauxite");
             var extractor = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id)))
                 .Details.AvailableExtractors.First();
@@ -87,6 +91,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             var worldId = await new WorldFixture().Create(ResourcesModule);
 
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
+                .WorldNodes
                 .First(_ => _.ResourceName == "Bauxite");
             var extractor = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id)))
                 .Details.AvailableExtractors.First();
@@ -104,6 +109,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             var worldId = await new WorldFixture().Create(ResourcesModule);
 
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
+                .WorldNodes
                 .First(_ => _.ResourceName == "Bauxite");
 
             Assert.CatchAsync<InvalidCommandException>(async () =>

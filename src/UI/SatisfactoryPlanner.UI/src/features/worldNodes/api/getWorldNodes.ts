@@ -7,9 +7,17 @@ import { useApi } from "lib/api";
 export const useGetWorldNodes = (resourceId: string) => {
   const api = useApi();
   const worldId = storage.getWorldId();
-  return useQuery<WorldNode[]>({
+  return useQuery<GetWorldNodesReponse>({
     queryKey: ["getWorldNodes"],
     queryFn: async () =>
       api.get(`/worlds/${worldId}/nodes?resourceId=${resourceId}`),
   });
+};
+
+export type GetWorldNodesReponse = {
+  data: GetWorldNodeResult;
+};
+
+export type GetWorldNodeResult = {
+  worldNodes: WorldNode[];
 };

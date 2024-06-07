@@ -13,6 +13,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         {
             var worldId = await new WorldFixture().Create(ResourcesModule);
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
+                .WorldNodes
                 .First(node => node.ResourceName == "Bauxite"
                                && node.Purity == "Pure"
                                && node.Biome == "Red Bamboo Fields"

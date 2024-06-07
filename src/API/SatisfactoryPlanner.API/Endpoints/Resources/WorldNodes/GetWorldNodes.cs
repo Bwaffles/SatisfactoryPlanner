@@ -19,17 +19,19 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
         [SwaggerOperation(
             Summary = "Get nodes in the world.",
             Tags = [Tags.WorldNodes])]
-        [SwaggerResponse(200, Type = typeof(List<WorldNodeDto>))]
+        [SwaggerResponse(200, Type = typeof(GetWorldNodesResponse))]
         public async Task<IActionResult> HandleAsync([FromRoute] Guid worldId,
             [FromQuery] GetWorldNodesRequest request)
         {
             var worldNodes = await module.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, request.ResourceId));
-            return Ok(worldNodes);
+            return Ok(new GetWorldNodesResponse(worldNodes));
         }
     }
 
-    public class GetWorldNodesRequest
+    public record GetWorldNodesRequest
     {
         public Guid? ResourceId { get; set; }
     }
+
+    public record GetWorldNodesResponse(GetWorldNodesResult Data);
 }

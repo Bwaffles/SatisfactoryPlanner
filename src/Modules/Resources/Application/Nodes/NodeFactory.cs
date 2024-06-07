@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.Resources;
 using System;
@@ -7,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using static SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes.GetWorldNodesResult;
 
 namespace SatisfactoryPlanner.Modules.Resources.Application.Nodes
 {

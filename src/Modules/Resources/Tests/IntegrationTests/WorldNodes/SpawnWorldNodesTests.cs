@@ -15,11 +15,13 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             var worldId = Guid.NewGuid();
 
             (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
+                .WorldNodes
                 .Should().BeEmpty();
 
             await ResourcesModule.ExecuteCommandAsync(new SpawnWorldNodesCommand(anonymousId, worldId));
 
             (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
+                .WorldNodes
                 .Should().NotBeEmpty();
         }
     }

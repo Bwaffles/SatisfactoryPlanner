@@ -20,6 +20,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 
             _settings.NodeId =
                 (await resourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(_settings.WorldId, null)))
+                .WorldNodes
                 .First(node => node.ResourceName == "Bauxite").Id;
 
             _settings.ExtractorId =

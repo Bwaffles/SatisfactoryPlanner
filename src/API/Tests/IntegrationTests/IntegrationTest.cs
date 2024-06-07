@@ -59,11 +59,6 @@ namespace SatisfactoryPlanner.API.IntegrationTests
         }
 
         protected static async Task<T> GetEventually<T>(IProbe<T> probe, int timeout)
-            where T : class
-        {
-            var poller = new Poller(timeout);
-
-            return await poller.GetAsync(probe);
-        }
+            where T : class => await Polling.GetEventually(probe, timeout);
     }
 }

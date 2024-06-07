@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
 {
-    public class OutboxMessagesHelper
+    public static class OutboxMessagesHelper
     {
         public static async Task<List<OutboxMessageDto>> GetOutboxMessages(IDbConnection connection)
         {

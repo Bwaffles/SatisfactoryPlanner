@@ -1,3 +1,5 @@
+using FluentAssertions.Execution;
+using MediatR;
 using Npgsql;
 using NSubstitute;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
@@ -24,17 +26,13 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
         [SetUp]
         public async Task BeforeEachTest()
         {
-            const string connectionStringEnvironmentVariable =
-                "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
+            const string connectionStringEnvironmentVariable = "ASPNETCORE_SatisfactoryPlanner_IntegrationTests_ConnectionString";
             ConnectionString = EnvironmentVariablesProvider.GetVariable(connectionStringEnvironmentVariable);
             if (ConnectionString == null)
-                throw new ApplicationException(
-                    $"Define connection string to integration tests database using environment variable: {connectionStringEnvironmentVariable}.");
+                throw new ApplicationException($"Define connection string to integration tests database using environment variable: {connectionStringEnvironmentVariable}.");
 
             await using (var connection = new NpgsqlConnection(ConnectionString))
-            {
                 await DatabaseClearer.Clear(connection);
-            }
 
             Logger = Substitute.For<ILogger>();
             ExecutionContext = new ExecutionContextMock(Guid.NewGuid());
@@ -55,14 +53,16 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
         //    await using var connection = new NpgsqlConnection(ConnectionString);
         //    var messages = await OutboxMessagesHelper.GetOutboxMessages(connection);
 
-        //    return OutboxMessagesHelper.Deserialize<T>(messages.Last());
-        //}
+        protected static void AssertAll(Action assert)
+        {
+            using (new AssertionScope())
+                assert();
+        }
 
         [TearDown]
         public void AfterEachTest()
         {
             ResourcesStartup.Stop();
-            //SystemClock.Reset();
         }
     }
 }
