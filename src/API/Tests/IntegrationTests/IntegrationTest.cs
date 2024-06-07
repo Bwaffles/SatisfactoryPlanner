@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using FluentAssertions.Execution;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,5 +61,11 @@ namespace SatisfactoryPlanner.API.IntegrationTests
 
         protected static async Task<T> GetEventually<T>(IProbe<T> probe, int timeout)
             where T : class => await Polling.GetEventually(probe, timeout);
+
+        protected static void AssertAll(Action assert)
+        {
+            using (new AssertionScope())
+                assert();
+        }
     }
 }
