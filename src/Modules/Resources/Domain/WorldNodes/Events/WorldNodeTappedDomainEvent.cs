@@ -1,27 +1,12 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Domain;
 using SatisfactoryPlanner.Modules.Resources.Domain.Extractors;
-using SatisfactoryPlanner.Modules.Resources.Domain.Nodes;
-using SatisfactoryPlanner.Modules.Resources.Domain.Worlds;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events
 {
-    public class WorldNodeTappedDomainEvent : DomainEventBase
+    public class WorldNodeTappedDomainEvent(WorldNodeId worldNodeId, ExtractorId extractorId) : DomainEventBase
     {
-        public WorldNodeId WorldNodeId { get; }
+        public WorldNodeId WorldNodeId { get; } = worldNodeId;
 
-        public WorldId WorldId { get; }
-
-        public NodeId NodeId { get; }
-
-        public ExtractorId ExtractorId { get; }
-
-        public WorldNodeTappedDomainEvent(WorldNodeId worldNodeId, WorldId worldId, NodeId nodeId,
-            ExtractorId extractorId)
-        {
-            WorldNodeId = worldNodeId;
-            WorldId = worldId;
-            NodeId = nodeId;
-            ExtractorId = extractorId;
-        }
+        public ExtractorId ExtractorId { get; } = extractorId;
     }
 }

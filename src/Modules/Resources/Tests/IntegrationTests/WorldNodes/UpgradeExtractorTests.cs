@@ -14,31 +14,28 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
         {
             var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
-            var worldNodeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
 
-            var differentExtractorId = worldNodeDetails.AvailableExtractors
+            var differentExtractorId = result.Details.AvailableExtractors
                 .First(availableExtractor => availableExtractor.Name == "Miner Mk.3").Id;
 
             await ResourcesModule.ExecuteCommandAsync(
                 new UpgradeExtractorCommand(worldId, nodeId, differentExtractorId));
 
-            var postUpgradeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postUpgradeResult = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postUpgradeDetails = postUpgradeResult.Details;
             postUpgradeDetails.ExtractorId.Should().Be(differentExtractorId);
         }
 
         [Test]
         public async Task WhenAlreadyUsingGivenExtractor_IsSuccessful()
         {
-            var (worldId, nodeId, extractorId) =
-                await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
+            var (worldId, nodeId, extractorId) = await new TappedWorldNodeFixture().Create(ResourcesModule, "Miner Mk.2");
 
-            await ResourcesModule.ExecuteCommandAsync(
-                new UpgradeExtractorCommand(worldId, nodeId, extractorId));
+            await ResourcesModule.ExecuteCommandAsync(new UpgradeExtractorCommand(worldId, nodeId, extractorId));
 
-            var postUpgradeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postUpgradeDetails = result.Details;
             postUpgradeDetails.ExtractorId.Should().Be(extractorId);
         }
 

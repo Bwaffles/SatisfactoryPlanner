@@ -25,7 +25,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             _settings.ExtractorId =
                 (await resourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(_settings.WorldId,
                     _settings.NodeId)))
-                .AvailableExtractors.First(nodeDetail => nodeDetail.Name == extractorName).Id;
+                .Details.AvailableExtractors.First(nodeDetail => nodeDetail.Name == extractorName).Id;
 
             await resourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(_settings.WorldId, _settings.NodeId,
                 _settings.ExtractorId));

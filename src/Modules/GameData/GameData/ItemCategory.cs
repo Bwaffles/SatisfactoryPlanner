@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
+﻿namespace SatisfactoryPlanner.Modules.GameData.GameData
 {
     public enum ItemCategory
     {

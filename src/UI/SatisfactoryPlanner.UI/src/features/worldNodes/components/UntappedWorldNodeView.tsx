@@ -5,7 +5,7 @@ import { FieldWrapper } from "components/Elements/Form/FieldWrapper";
 import { formatNumber } from "utils/format";
 
 import { useTapWorldNode } from "../api/tapWorldNode";
-import { WorldNodeDetails } from "../types";
+import { WorldNodeDetails } from "../api/getWorldNodeDetails";
 import { Card, CardContent, CardFooter } from "components/Elements/Card/Card";
 
 type UntappedWorldNodeViewProps = {

@@ -16,8 +16,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 
             await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, nodeId, 21));
 
-            var postTapNodeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postTapNodeDetails = result.Details;
             postTapNodeDetails.ExtractionRate.Should().Be(21);
         }
 

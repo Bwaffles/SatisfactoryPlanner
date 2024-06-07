@@ -18,8 +18,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
                                && node.Biome == "Red Bamboo Fields"
                                && node.Number == 4);
 
-            var worldNodeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
+            var worldNodeDetails = result.Details;
 
             // Not sure how I feel about the node/resource part of this test
             // It requires some knowledge about a specific node, like that bauxite has 3 potential extractors

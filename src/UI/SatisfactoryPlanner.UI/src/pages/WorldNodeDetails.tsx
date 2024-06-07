@@ -12,46 +12,39 @@ import { Card, CardContent } from "components/Elements/Card/Card";
 
 export const WorldNodeDetails = () => {
   const { nodeId } = useParams();
-  const {
-    isError,
-    data: worldNodeDetails,
-    error,
-  } = useGetWorldNodeDetails(nodeId!);
+  const { isError, data: response, error } = useGetWorldNodeDetails(nodeId!);
 
   if (isError) {
     return <span>Error: {(error as Error).message}</span>;
   }
 
-  var nodeName = `${worldNodeDetails!.resourceName} - ${
-    worldNodeDetails!.biome
-  } ${worldNodeDetails!.number}`;
-
+  var worldNodeDetails = response?.data.details!;
   var purityTextColor =
-    worldNodeDetails!.purity === "Pure"
+    worldNodeDetails.purity === "Pure"
       ? "text-green-600"
-      : worldNodeDetails!.purity === "Normal"
+      : worldNodeDetails.purity === "Normal"
       ? "text-yellow-600"
-      : worldNodeDetails!.purity === "Impure"
+      : worldNodeDetails.purity === "Impure"
       ? "text-red-600"
       : "";
 
-  const currentExtractor = worldNodeDetails!.availableExtractors.find(
-    (extractor) => extractor.id === worldNodeDetails!.extractorId
+  const currentExtractor = worldNodeDetails.availableExtractors.find(
+    (extractor) => extractor.id === worldNodeDetails.extractorId
   )!;
 
   const fastestExtractor =
-    worldNodeDetails!.availableExtractors[
-      worldNodeDetails!.availableExtractors.length - 1
+    worldNodeDetails.availableExtractors[
+      worldNodeDetails.availableExtractors.length - 1
     ];
 
   return (
-    <ContentLayout title={nodeName}>
+    <ContentLayout title={worldNodeDetails.nodeName}>
       <H2>Node Details</H2>
       <Card className="w-fit">
         <CardContent className="flex flex-wrap gap-x-12 gap-y-4 py-6">
           <FieldWrapper label="Purity">
             <div className={"text-lg font-bold " + purityTextColor}>
-              {worldNodeDetails!.purity}
+              {worldNodeDetails.purity}
             </div>
           </FieldWrapper>
 
@@ -81,7 +74,7 @@ export const WorldNodeDetails = () => {
       </Card>
 
       <H2 className="mt-6">Extraction Details</H2>
-      {worldNodeDetails!.isTapped ? (
+      {worldNodeDetails.isTapped ? (
         <TappedWorldNodeView worldNodeDetails={worldNodeDetails!} />
       ) : (
         <UntappedWorldNodeView worldNodeDetails={worldNodeDetails!} />

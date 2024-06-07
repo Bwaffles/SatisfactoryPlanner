@@ -17,15 +17,16 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
 
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
                 .First(_ => _.ResourceName == "Bauxite");
-            var nodeDetails = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
+            var nodeDetails = result.Details;
             nodeDetails.IsTapped.Should().BeFalse();
 
             var extractor = nodeDetails.AvailableExtractors.First();
 
             await ResourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(worldId, node.Id, extractor.Id));
 
-            var postTapNodeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
+            var postTapNodeResult = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id));
+            var postTapNodeDetails = postTapNodeResult.Details;
             postTapNodeDetails.IsTapped.Should().BeTrue();
             postTapNodeDetails.ExtractorId.Should().Be(extractor.Id);
         }
@@ -70,7 +71,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
                 .First(_ => _.ResourceName == "Bauxite");
             var extractor = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id)))
-                .AvailableExtractors.First();
+                .Details.AvailableExtractors.First();
 
             var differentWorldId = Guid.NewGuid();
             Assert.CatchAsync<InvalidCommandException>(async () =>
@@ -88,7 +89,7 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             var node = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null)))
                 .First(_ => _.ResourceName == "Bauxite");
             var extractor = (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, node.Id)))
-                .AvailableExtractors.First();
+                .Details.AvailableExtractors.First();
 
             var randomNodeId = Guid.NewGuid();
             Assert.CatchAsync<InvalidCommandException>(async () =>

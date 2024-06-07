@@ -1,4 +1,4 @@
-﻿namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
+﻿namespace SatisfactoryPlanner.Modules.GameData.GameData
 {
     public partial class Item
     { // Definitions of all the items--there are a lot so keeping it separate from the code of the class

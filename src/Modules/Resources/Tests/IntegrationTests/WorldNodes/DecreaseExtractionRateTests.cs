@@ -18,8 +18,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, nodeId, 21));
             await ResourcesModule.ExecuteCommandAsync(new DecreaseExtractionRateCommand(worldId, nodeId, 10));
 
-            var postTapNodeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postTapNodeDetails = result.Details;
             postTapNodeDetails.ExtractionRate.Should().Be(10);
         }
 
@@ -31,8 +31,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, nodeId, 21));
             await ResourcesModule.ExecuteCommandAsync(new DecreaseExtractionRateCommand(worldId, nodeId, 0));
 
-            var postTapNodeDetails =
-                await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+            var postTapNodeDetails = result.Details;
             postTapNodeDetails.ExtractionRate.Should().Be(0);
         }
 

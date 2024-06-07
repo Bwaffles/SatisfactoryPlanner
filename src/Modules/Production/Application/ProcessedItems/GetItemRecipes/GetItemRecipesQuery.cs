@@ -1,4 +1,5 @@
 ﻿using SatisfactoryPlanner.BuildingBlocks.Application;
+using SatisfactoryPlanner.Modules.GameData.GameData;
 using SatisfactoryPlanner.Modules.Production.Application.Configuration.Queries;
 using SatisfactoryPlanner.Modules.Production.Application.Contracts;
 using SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems;

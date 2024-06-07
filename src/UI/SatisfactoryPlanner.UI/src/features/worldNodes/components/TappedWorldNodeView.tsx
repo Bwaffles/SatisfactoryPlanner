@@ -17,7 +17,10 @@ import { formatNumber } from "utils/format";
 import { useDowngradeExtractor } from "../api/downgradeExtractor";
 import { useUpgradeExtractor } from "../api/upgradeExtractor";
 import { useDismantleExtractor } from "../api/dismantleExtractor";
-import { AvailableExtractor, WorldNodeDetails } from "../types";
+import {
+  AvailableExtractor,
+  WorldNodeDetails,
+} from "../api/getWorldNodeDetails";
 import { Card, CardContent } from "components/Elements/Card/Card";
 import { cn } from "utils";
 
