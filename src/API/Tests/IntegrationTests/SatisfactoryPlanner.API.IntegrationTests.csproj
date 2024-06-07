@@ -35,6 +35,9 @@
 		<ProjectReference Include="..\..\..\Modules\Production\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Production.IntegrationTests.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
+		<ProjectReference Include="..\..\..\Modules\Resources\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
 		<ProjectReference Include="..\..\..\Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>

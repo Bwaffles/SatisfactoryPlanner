@@ -19,7 +19,7 @@ type WorldNodeListProps = {
 };
 
 export const WorldNodeList = ({ resourceId }: WorldNodeListProps) => {
-  const { isError, data: worldNodes, error } = useGetWorldNodes(resourceId);
+  const { isError, data: response, error } = useGetWorldNodes(resourceId);
   const navigate = useNavigate();
 
   const handleNodeClick = (nodeId: string) => {
@@ -30,6 +30,7 @@ export const WorldNodeList = ({ resourceId }: WorldNodeListProps) => {
     return <span>Error: {(error as Error).message}</span>;
   }
 
+  const worldNodes = response!.data.worldNodes;
   const nodesByBiome = worldNodes!.reduce<Record<string, WorldNode[]>>(
     (group, node) => {
       const { biome } = node;
