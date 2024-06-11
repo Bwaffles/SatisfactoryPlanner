@@ -38,6 +38,6 @@
 
         private static string DescribeFailureOf(IProbe probe) => probe.DescribeFailureTo();
 
-        private static string DescribeFailureOf<T>(IProbe<T> probe) => DescribeFailureOf(probe);
+        private static string DescribeFailureOf<T>(IProbe<T> probe) => probe.DescribeFailureTo();
     }
 }
