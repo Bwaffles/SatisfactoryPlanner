@@ -23,32 +23,20 @@ using SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration;
 using SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration;
 using Serilog;
 using Serilog.Context;
+using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
 using ILogger = Serilog.ILogger;
 
-var _logger = new LoggerConfiguration()
-    .MinimumLevel.Information()
-    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning) // Filter out ASP.NET Core infrastructre logs that are Information and below
-    .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
-    .MinimumLevel.Override("Microsoft.AspNetCore.DataProtection", LogEventLevel.Fatal) // See Program.ConfigureAuthenticationService comments for why this is being done
-    .Enrich.FromLogContext()
-    .WriteTo.Console(
-        outputTemplate:
-        "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
-    .WriteTo.File(new CompactJsonFormatter(),
-        "logs/logs.json",
-        rollOnFileSizeLimit: true,
-        fileSizeLimitBytes: 5 * 1024 * 1024)
-    .CreateLogger();
+var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 using (LogContext.PushProperty("Context", "Startup"))
 {
+    var _logger = CreateLogger(configuration);
+
     var _loggerForApi = _logger.ForContext("Module", "API");
     _loggerForApi.Information("Application starting...");
-
-    var builder = WebApplication.CreateBuilder(args);
 
     builder.Host.UseSerilog(_loggerForApi);
     Log.Logger = _loggerForApi;
@@ -86,12 +74,38 @@ using (LogContext.PushProperty("Context", "Startup"))
         }
     });
 
-    Configure(app, app.Environment, _logger, builder.Configuration, eventsBus);
+    Configure(app, app.Environment, _logger, configuration, eventsBus);
 
     app.MapControllers();
 
     _loggerForApi.Information("Application started");
     app.Run();
+}
+
+static Logger CreateLogger(ConfigurationManager configuration)
+{
+    var loggerConfiguration = new LoggerConfiguration()
+            .MinimumLevel.Information()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning) // Filter out ASP.NET Core infrastructre logs that are Information and below
+            .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
+            .MinimumLevel.Override("Microsoft.AspNetCore.DataProtection", LogEventLevel.Fatal) // See Program.ConfigureAuthenticationService comments for why this is being done
+            .Enrich.FromLogContext();
+
+    if (configuration.GetValue<bool>("Logs:EnableConsoleLogging"))
+    {
+        loggerConfiguration
+        .WriteTo.Console(
+            outputTemplate:
+            "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}");
+    }
+
+    return loggerConfiguration
+        .WriteTo.File(new CompactJsonFormatter(),
+            "logs/logs.json",
+            rollOnFileSizeLimit: true,
+            fileSizeLimitBytes: 5 * 1024 * 1024)
+        .CreateLogger();
 }
 
 static void ConfigureServices(WebApplicationBuilder builder)
