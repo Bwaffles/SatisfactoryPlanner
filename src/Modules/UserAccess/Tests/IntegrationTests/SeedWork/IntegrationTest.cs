@@ -45,7 +45,11 @@ namespace SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.SeedWork
                 ConnectionString,
                 ExecutionContext,
                 Logger,
-                EventsBus);
+                EventsBus,
+                new UserAccessConfiguration()
+                {
+                    InternalProcessingExecutionInterval = TimeSpan.FromMilliseconds(200)
+                });
 
             UserAccessModule = new UserAccessModule();
         }

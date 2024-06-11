@@ -45,7 +45,11 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork
                 ConnectionString,
                 ExecutionContext,
                 Logger,
-                EventsBus);
+                EventsBus,
+                new ProductionConfiguration()
+                {
+                    InternalProcessingExecutionInterval = TimeSpan.FromMilliseconds(200)
+                });
 
             ProductionModule = new ProductionModule();
         }

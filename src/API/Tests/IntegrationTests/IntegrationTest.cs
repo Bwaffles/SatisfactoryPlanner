@@ -49,6 +49,7 @@ namespace SatisfactoryPlanner.API.IntegrationTests
 
                 builder.UseSetting("ConnectionStrings:SatisfactoryPlanner", ConnectionString);
 
+                builder.UseSetting("InternalProcessingExecutionInterval", TimeSpan.FromMilliseconds(200).ToString());
             });
             Client = _webApplicationFactory.CreateClient();
         }

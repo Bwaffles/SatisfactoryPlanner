@@ -207,26 +207,39 @@ static void StartModules(IApplicationBuilder app, ILogger logger, ConfigurationM
     var container = app.ApplicationServices.GetAutofacRoot();
     var executionContextAccessor = container.Resolve<IExecutionContextAccessor>();
     var connectionString = configuration.GetConnectionString("SatisfactoryPlanner") ?? throw new InvalidOperationException("SatisfactoryPlanner connection string not defined.");
+    var internalProcessingExecutionInterval = configuration.GetValue<TimeSpan>("InternalProcessingExecutionInterval");
 
     ProductionStartup.Start(
         connectionString,
         executionContextAccessor,
         logger,
-        eventsBus
+        eventsBus,
+        new ProductionConfiguration()
+        {
+            InternalProcessingExecutionInterval = internalProcessingExecutionInterval
+        }
     );
 
     ResourcesStartup.Start(
         connectionString,
         executionContextAccessor,
         logger,
-        eventsBus
+        eventsBus,
+        new ResourcesConfiguration()
+        {
+            InternalProcessingExecutionInterval = internalProcessingExecutionInterval
+        }
     );
 
     UserAccessStartup.Start(
         connectionString,
         executionContextAccessor,
         logger,
-        eventsBus
+        eventsBus,
+        new UserAccessConfiguration()
+        {
+            InternalProcessingExecutionInterval = internalProcessingExecutionInterval
+        }
     );
 
     WarehousesStartup.Start(
@@ -238,6 +251,10 @@ static void StartModules(IApplicationBuilder app, ILogger logger, ConfigurationM
         connectionString,
         executionContextAccessor,
         logger,
-        eventsBus
+        eventsBus,
+        new WorldsConfiguration()
+        {
+            InternalProcessingExecutionInterval = internalProcessingExecutionInterval
+        }
     );
 }

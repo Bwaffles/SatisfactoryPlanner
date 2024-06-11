@@ -5,6 +5,7 @@ using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Proces
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Processing.InternalCommands;
 using SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Processing.Outbox;
 using Serilog;
+using System;
 using System.Collections.Specialized;
 
 namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Quartz
@@ -13,15 +14,15 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Qu
     {
         private static IScheduler _scheduler = null!;
 
-        internal static void Initialize(ILogger logger)
+        internal static void Initialize(ILogger logger, TimeSpan internalProcessingExecutionInterval)
         {
             logger.Information("Quartz starting...");
 
             _scheduler = StartScheduler(logger);
 
-            ScheduleProcessOutboxJob();
-            ScheduleProcessInboxJob();
-            ScheduleProcessInternalCommandsJob();
+            ScheduleProcessOutboxJob(internalProcessingExecutionInterval);
+            ScheduleProcessInboxJob(internalProcessingExecutionInterval);
+            ScheduleProcessInternalCommandsJob(internalProcessingExecutionInterval);
 
             logger.Information("Quartz started.");
         }
@@ -47,14 +48,16 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Qu
             return scheduler;
         }
 
-        private static void ScheduleProcessInternalCommandsJob()
+        private static void ScheduleProcessInternalCommandsJob(TimeSpan internalProcessingExecutionInterval)
         {
             var processInternalCommandsJob = JobBuilder.Create<ProcessInternalCommandsJob>().Build();
             var triggerCommandsProcessing =
                 TriggerBuilder
                     .Create()
                     .StartNow()
-                    .WithCronSchedule("0/2 * * ? * *")
+                    .WithSimpleSchedule(scheduleBuilder => scheduleBuilder
+                        .WithInterval(internalProcessingExecutionInterval)
+                        .RepeatForever())
                     .Build();
 
             _scheduler
@@ -62,14 +65,16 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Qu
                 .GetAwaiter().GetResult();
         }
 
-        private static void ScheduleProcessInboxJob()
+        private static void ScheduleProcessInboxJob(TimeSpan internalProcessingExecutionInterval)
         {
             var processInboxJob = JobBuilder.Create<ProcessInboxJob>().Build();
             var processInboxTrigger =
                 TriggerBuilder
                     .Create()
                     .StartNow()
-                    .WithCronSchedule("0/2 * * ? * *")
+                    .WithSimpleSchedule(scheduleBuilder => scheduleBuilder
+                        .WithInterval(internalProcessingExecutionInterval)
+                        .RepeatForever())
                     .Build();
 
             _scheduler
@@ -77,14 +82,16 @@ namespace SatisfactoryPlanner.Modules.Production.Infrastructure.Configuration.Qu
                 .GetAwaiter().GetResult();
         }
 
-        private static void ScheduleProcessOutboxJob()
+        private static void ScheduleProcessOutboxJob(TimeSpan internalProcessingExecutionInterval)
         {
             var processOutboxJob = JobBuilder.Create<ProcessOutboxJob>().Build();
             var trigger =
                 TriggerBuilder
                     .Create()
                     .StartNow()
-                    .WithCronSchedule("0/2 * * ? * *")
+                    .WithSimpleSchedule(scheduleBuilder => scheduleBuilder
+                        .WithInterval(internalProcessingExecutionInterval)
+                        .RepeatForever())
                     .Build();
 
             _scheduler
