@@ -41,7 +41,11 @@ namespace SatisfactoryPlanner.Modules.Worlds.IntegrationTests.SeedWork
                 ConnectionString,
                 ExecutionContext,
                 Logger,
-                EventsBus);
+                EventsBus,
+                new WorldsConfiguration()
+                {
+                    InternalProcessingExecutionInterval = TimeSpan.FromMilliseconds(200)
+                });
 
             WorldsModule = new WorldsModule();
         }

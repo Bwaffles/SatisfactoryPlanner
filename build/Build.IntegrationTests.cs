@@ -4,6 +4,9 @@ using Utils;
 
 partial class Build
 {
+    [Parameter("Determines whether or not to recreate the integration test db container before running the tests.")]
+    readonly bool RecreateIntegrationTestDb = true;
+
     const string IntegrationTestDatabaseContainerName = "satifactory-planner-integration-test-db";
 
     /// <summary>
@@ -49,6 +52,8 @@ partial class Build
     /// </summary>
     Target CreateIntegrationTestDatabase => _ => _
         .Unlisted()
+        .OnlyWhenStatic(() => RecreateIntegrationTestDb)
+        .WhenSkipped(DependencyBehavior.Skip)
         .DependsOn(StartIntegrationTestDatabaseContainer)
         .Executes(() =>
         {

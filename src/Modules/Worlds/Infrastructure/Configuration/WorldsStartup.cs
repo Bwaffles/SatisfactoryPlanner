@@ -21,13 +21,13 @@ namespace SatisfactoryPlanner.Modules.Worlds.Infrastructure.Configuration
     public static class WorldsStartup
     {
         public static void Start(string connectionString, IExecutionContextAccessor executionContextAccessor,
-            ILogger logger, IEventsBus eventsBus)
+            ILogger logger, IEventsBus eventsBus, WorldsConfiguration configuration)
         {
             var moduleLogger = logger.ForContext("Module", "Worlds");
 
             ConfigureCompositionRoot(connectionString, executionContextAccessor, moduleLogger, eventsBus);
 
-            QuartzStartup.Initialize(moduleLogger);
+            QuartzStartup.Initialize(moduleLogger, configuration.InternalProcessingExecutionInterval);
             EventsBusStartup.Initialize(moduleLogger);
         }
 

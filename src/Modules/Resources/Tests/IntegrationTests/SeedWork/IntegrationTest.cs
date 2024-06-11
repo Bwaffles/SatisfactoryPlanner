@@ -42,7 +42,11 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
                 ConnectionString,
                 ExecutionContext,
                 Logger,
-                EventsBus);
+                EventsBus,
+                new ResourcesConfiguration()
+                {
+                    InternalProcessingExecutionInterval = TimeSpan.FromMilliseconds(200)
+                });
 
             ResourcesModule = new ResourcesModule();
         }

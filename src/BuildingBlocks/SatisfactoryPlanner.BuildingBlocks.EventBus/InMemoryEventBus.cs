@@ -51,7 +51,10 @@ namespace SatisfactoryPlanner.BuildingBlocks.EventBus
             if (eventType == null)
                 return;
 
-            foreach (var integrationEventHandler in _handlersDictionary[eventType])
+            if (!_handlersDictionary.TryGetValue(eventType, out var integrationEventHandlers))
+                throw new InvalidOperationException($"Event '{eventType}' published without any subscribers.");
+
+            foreach (var integrationEventHandler in integrationEventHandlers)
             {
                 if (integrationEventHandler is IIntegrationEventHandler<T> handler)
                     await handler.Handle(@event);

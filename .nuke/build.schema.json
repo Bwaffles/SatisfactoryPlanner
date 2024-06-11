@@ -62,6 +62,10 @@
             "type": "string"
           }
         },
+        "RecreateIntegrationTestDb": {
+          "type": "boolean",
+          "description": "Determines whether or not to recreate the integration test db container before running the tests"
+        },
         "Root": {
           "type": "string",
           "description": "Root directory during build execution"
