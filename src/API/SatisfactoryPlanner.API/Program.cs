@@ -260,7 +260,11 @@ static void StartModules(IApplicationBuilder app, ILogger logger, ConfigurationM
         connectionString,
         executionContextAccessor,
         logger,
-        eventsBus);
+        eventsBus,
+        new WarehousesConfiguration()
+        {
+            InternalProcessingExecutionInterval = internalProcessingExecutionInterval
+        });
 
     WorldsStartup.Start(
         connectionString,
