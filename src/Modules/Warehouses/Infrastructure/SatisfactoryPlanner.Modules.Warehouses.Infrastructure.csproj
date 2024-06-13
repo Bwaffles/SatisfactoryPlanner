@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
   </ItemGroup>
 
@@ -17,6 +18,9 @@
 		<PrivateAssets>All</PrivateAssets>
 	</ProjectReference>
     <ProjectReference Include="..\..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Resources\IntegrationEvents\SatisfactoryPlanner.Modules.Resources.IntegrationEvents.csproj">
 		<PrivateAssets>All</PrivateAssets>
 	</ProjectReference>
     <ProjectReference Include="..\Application\SatisfactoryPlanner.Modules.Warehouses.Application.csproj">

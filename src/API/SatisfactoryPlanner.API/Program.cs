@@ -259,7 +259,8 @@ static void StartModules(IApplicationBuilder app, ILogger logger, ConfigurationM
     WarehousesStartup.Start(
         connectionString,
         executionContextAccessor,
-        logger);
+        logger,
+        eventsBus);
 
     WorldsStartup.Start(
         connectionString,

@@ -1,8 +1,12 @@
 ﻿using Autofac;
 using SatisfactoryPlanner.BuildingBlocks.Application;
+using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
+using SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration.DataAccess;
+using SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration.EventsBus;
 using SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration.Logging;
 using SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration.Mediation;
 using Serilog;
+using Serilog.Extensions.Logging;
 
 namespace SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration
 {
@@ -13,22 +17,25 @@ namespace SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration
     public static class WarehousesStartup
     {
         public static void Start(string connectionString, IExecutionContextAccessor executionContextAccessor,
-            ILogger logger)
+            ILogger logger, IEventsBus eventsBus)
         {
             var moduleLogger = logger.ForContext("Module", "Warehouses");
 
-            ConfigureCompositionRoot(connectionString, executionContextAccessor, moduleLogger);
+            ConfigureCompositionRoot(connectionString, executionContextAccessor, moduleLogger, eventsBus);
+
+            EventsBusStartup.Initialize(moduleLogger);
         }
 
         public static void Stop() { }
 
-        private static void ConfigureCompositionRoot(string connectionString,
-            IExecutionContextAccessor executionContextAccessor, ILogger logger)
+        private static void ConfigureCompositionRoot(string connectionString, IExecutionContextAccessor executionContextAccessor, ILogger logger, IEventsBus eventsBus)
         {
             var containerBuilder = new ContainerBuilder();
 
             containerBuilder.RegisterModule(new LoggingModule(logger));
+            containerBuilder.RegisterModule(new DataAccessModule(connectionString, new SerilogLoggerFactory(logger)));
 
+            containerBuilder.RegisterModule(new EventsBusModule(eventsBus));
             containerBuilder.RegisterModule(new MediatorModule());
 
             containerBuilder.RegisterInstance(executionContextAccessor);
