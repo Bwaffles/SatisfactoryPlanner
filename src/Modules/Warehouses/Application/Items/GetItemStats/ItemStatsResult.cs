@@ -8,11 +8,11 @@ public class ItemStatsResult
     {
         public required string ItemId { get; init; }
         public required string ItemName { get; init; }
-        public required decimal AmountProduced { get; init; }
-        public required decimal AmountExported { get; init; }
-        public required decimal AmountAvailable { get; init; }
-        public required decimal AmountConsumed { get; init; }
-        public required decimal AmountImported { get; init; }
+        public required decimal AmountProduced { get; set; }
+        public required decimal AmountExported { get; set; }
+        public required decimal AmountAvailable { get; set; }
+        public required decimal AmountConsumed { get; set; }
+        public required decimal AmountImported { get; set; }
         public required List<ProductionSource> ProducedAt { get; init; }
         public required List<ConsumptionSource> ConsumedAt { get; init; }
     }

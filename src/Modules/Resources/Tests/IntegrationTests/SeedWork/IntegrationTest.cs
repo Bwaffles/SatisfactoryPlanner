@@ -51,11 +51,24 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork
             ResourcesModule = new ResourcesModule();
         }
 
-        //protected async Task<T> GetLastOutboxMessage<T>()
-        //    where T : class, INotification
-        //{
-        //    await using var connection = new NpgsqlConnection(ConnectionString);
-        //    var messages = await OutboxMessagesHelper.GetOutboxMessages(connection);
+        /// <summary>
+        /// Assert that the outbox contains a single serializable notification of type <typeparamref name="TNotificationType"/>.
+        /// <para>
+        /// Assertion fails if the outbox has more than 1 of the same notification, if it has no notifications of the given type,
+        /// or if we can't serialize the data back to the same notification type.
+        /// </para>
+        /// </summary>
+        protected async Task AssertOutboxContains<TNotificationType>() where TNotificationType : class, INotification
+        {
+            await using var connection = new NpgsqlConnection(ConnectionString);
+            var messages = await OutboxMessagesHelper.GetOutboxMessages(connection);
+
+            messages.Should().ContainSingle(message => message.Type == typeof(TNotificationType).Name);
+
+            var message = messages.Single(message => message.Type == typeof(TNotificationType).Name);
+            message.Invoking(OutboxMessagesHelper.Deserialize<TNotificationType>)
+                .Should().NotThrow();
+        }
 
         protected static void AssertAll(Action assert)
         {

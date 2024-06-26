@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests.Probing;
+using SatisfactoryPlanner.IntegrationTests;
 
 namespace SatisfactoryPlanner.API.IntegrationTests
 {
@@ -17,6 +18,7 @@ namespace SatisfactoryPlanner.API.IntegrationTests
 
         protected string ConnectionString { get; private set; } = default!;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Structure", "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method", Justification = "Disposing of _webApplicationFactory disposes the client")]
         public HttpClient Client { get; private set; } = default!;
 
         [SetUp]

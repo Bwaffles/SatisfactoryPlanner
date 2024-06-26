@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using SatisfactoryPlanner.BuildingBlocks.ArchTests;
 using SatisfactoryPlanner.Modules.Warehouses.Application.Contracts;
+using SatisfactoryPlanner.Modules.Warehouses.Domain.ItemSources;
 using SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration;
 using System.Reflection;
 
@@ -10,7 +11,7 @@ namespace SatisfactoryPlanner.Modules.Warehouses.ArchTests
     {
         protected static Assembly ApplicationAssembly => typeof(IWarehousesModule).Assembly;
 
-        //protected static Assembly DomainAssembly => typeof(ItemSource).Assembly;
+        protected static Assembly DomainAssembly => typeof(ItemSource).Assembly;
 
         protected static Assembly InfrastructureAssembly => typeof(WarehousesStartup).Assembly;
 

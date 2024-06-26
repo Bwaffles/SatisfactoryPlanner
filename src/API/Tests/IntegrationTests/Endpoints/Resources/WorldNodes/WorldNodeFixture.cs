@@ -1,4 +1,5 @@
 ﻿using SatisfactoryPlanner.API.Modules.Resources.WorldNodes;
+using SatisfactoryPlanner.BuildingBlocks.IntegrationTests.Probing;
 using static SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes.GetWorldNodesResult;
 using GetWorldNodesTests = SatisfactoryPlanner.API.IntegrationTests.Endpoints.UserAccess.Users.GetWorldNodes;
 

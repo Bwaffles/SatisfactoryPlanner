@@ -1,0 +1,72 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="Npgsql" Version="8.0.3" />
+    <PackageReference Include="NSubstitute" Version="5.1.0" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\BuildingBlocks\Tests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests\SatisfactoryPlanner.BuildingBlocks.IntegrationTests.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Modules\Production\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Production.IntegrationTests.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Modules\Resources\Application\SatisfactoryPlanner.Modules.Resources.Application.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Modules\Resources\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Resources.IntegrationTests.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Modules\UserAccess\Tests\IntegrationTests\SatisfactoryPlanner.Modules.UserAccess.IntegrationTests.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Modules\Warehouses\Application\SatisfactoryPlanner.Modules.Warehouses.Application.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Modules\Warehouses\Infrastructure\SatisfactoryPlanner.Modules.Warehouses.Infrastructure.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Modules\Warehouses\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Warehouses.IntegrationTests.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\Modules\Worlds\Tests\IntegrationTests\SatisfactoryPlanner.Modules.Worlds.IntegrationTests.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="NUnit.Framework" />
+  </ItemGroup>
+
+</Project>

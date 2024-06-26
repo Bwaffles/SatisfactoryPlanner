@@ -27,6 +27,9 @@
     <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Resources.Domain.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
+    <ProjectReference Include="..\IntegrationEvents\SatisfactoryPlanner.Modules.Resources.IntegrationEvents.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
   </ItemGroup>
 
 </Project>

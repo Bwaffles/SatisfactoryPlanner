@@ -1025,6 +1025,9 @@
             </Rule>
           </Rule>
         </Rule>
+        <Property Name="Project" Value="SatisfactoryPlanner.Modules.Warehouses.ArchTests" />
+        <Property Name="Project" Value="SatisfactoryPlanner.Modules.Warehouses.UnitTests" />
+        <Property Name="Project" Value="SatisfactoryPlanner.API.ArchTests" />
       </Rule>
     </Rule>
   </Rule>

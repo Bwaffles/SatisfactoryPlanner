@@ -12,5 +12,10 @@ namespace SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration
         ///     The assembly of the Warehouses.Application project.
         /// </summary>
         public static readonly Assembly Application = typeof(IWarehousesModule).Assembly;
+
+        /// <summary>
+        ///     The assembly of the Warehouses.Infrastructure project.
+        /// </summary>
+        public static readonly Assembly Infrastructure = typeof(WarehousesStartup).Assembly;
     }
 }

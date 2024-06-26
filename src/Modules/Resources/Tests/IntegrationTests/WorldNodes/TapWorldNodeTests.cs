@@ -32,6 +32,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
             var postTapNodeDetails = postTapNodeResult.Details;
             postTapNodeDetails.IsTapped.Should().BeTrue();
             postTapNodeDetails.ExtractorId.Should().Be(extractor.Id);
+
+            await AssertOutboxContains<WorldNodeTappedNotification>();
         }
 
         // CommandValidator tests
