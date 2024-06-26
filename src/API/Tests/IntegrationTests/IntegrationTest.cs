@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests.Probing;
+using SatisfactoryPlanner.IntegrationTests;
 
 namespace SatisfactoryPlanner.API.IntegrationTests
 {

@@ -153,6 +153,29 @@ partial class Build
                 .EnableNoBuild());
         });
 
+    // -----------------------------------------
+    // -  Application Integration Tests Setup  -
+    // -----------------------------------------
+    Target RunApplicationIntegrationTests => _ => _
+        .Unlisted()
+        .ProceedAfterFailure()
+        .DependsOn(CompileSolution)
+        .DependsOn(CreateIntegrationTestDatabase)
+        .Executes(() =>
+        {
+            var databaseConfiguration = DatabaseConfiguration.IntegrationTests;
+
+            Environment.SetEnvironmentVariable(
+                SatisfactoryPlannerDatabaseEnvName,
+                databaseConfiguration.ConnectionString);
+
+            DotNetTest(s => s
+                .SetProjectFile(Solution.GetProject($"SatisfactoryPlanner.IntegrationTests"))
+                .SetConfiguration(Configuration)
+                .EnableNoRestore()
+                .EnableNoBuild());
+        });
+
     // ------------------------------------
     // -  Api Integration Tests Setup  -
     // ------------------------------------
@@ -182,6 +205,7 @@ partial class Build
         .DependsOn(RunUserAccessIntegrationTests)
         .DependsOn(RunWorldsIntegrationTests)
         .DependsOn(RunProductionIntegrationTests)
+        .DependsOn(RunApplicationIntegrationTests)
         .DependsOn(RunApiIntegrationTests)
         .Executes(() =>
         {
