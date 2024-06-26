@@ -11,7 +11,7 @@ namespace SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration.Ev
         {
             var eventBus = CompositionRoot.BeginLifetimeScope().Resolve<IEventsBus>();
 
-            SubscribeToIntegrationEvent<WorldNodeTappedIntegrationEvent>(eventBus, logger);
+            SubscribeToIntegrationEvent<NodeTappedIntegrationEvent>(eventBus, logger);
         }
 
         private static void SubscribeToIntegrationEvent<T>(IEventsBus eventBus, ILogger logger)

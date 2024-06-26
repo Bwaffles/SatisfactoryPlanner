@@ -2,7 +2,7 @@
 
 namespace SatisfactoryPlanner.Modules.Resources.IntegrationEvents
 {
-    public class WorldNodeTappedIntegrationEvent(Guid id, DateTime occurredOn, Guid worldId, Guid nodeId, string nodeName, string itemId) : IntegrationEvent(id, occurredOn)
+    public class NodeTappedIntegrationEvent(Guid id, DateTime occurredOn, Guid worldId, Guid nodeId, string nodeName, string itemId) : IntegrationEvent(id, occurredOn)
     {
         public Guid WorldId { get; } = worldId;
 

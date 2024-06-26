@@ -29,6 +29,9 @@
     <ProjectReference Include="..\Application\SatisfactoryPlanner.Modules.Warehouses.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\SatisfactoryPlanner.Modules.Warehouses.Domain.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+    <ProjectReference Include="..\..\GameData\GameData\SatisfactoryPlanner.Modules.GameData.GameData.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
+  </ItemGroup>
+
+</Project>

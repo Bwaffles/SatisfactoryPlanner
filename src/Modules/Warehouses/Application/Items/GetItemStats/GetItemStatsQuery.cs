@@ -1,109 +1,83 @@
-﻿using SatisfactoryPlanner.Modules.Warehouses.Application.Configuration;
+﻿using Dapper;
+using SatisfactoryPlanner.BuildingBlocks.Application.Data;
+using SatisfactoryPlanner.Modules.GameData.GameData;
+using SatisfactoryPlanner.Modules.Warehouses.Application.Configuration;
 using static SatisfactoryPlanner.Modules.Warehouses.Application.Items.GetItemStats.ItemStatsResult;
 
 namespace SatisfactoryPlanner.Modules.Warehouses.Application.Items.GetItemStats
 {
     public record GetItemStatsQuery(Guid WorldId) : QueryBase<ItemStatsResult>;
 
-    internal class GetItemStatsQueryHandler : IQueryHandler<GetItemStatsQuery, ItemStatsResult>
+    internal class GetItemStatsQueryHandler(IDbConnectionFactory dbConnectionFactory) : IQueryHandler<GetItemStatsQuery, ItemStatsResult>
     {
-        public Task<ItemStatsResult> Handle(GetItemStatsQuery request, CancellationToken cancellationToken)
+        private readonly IDbConnectionFactory _dbConnectionFactory = dbConnectionFactory;
+
+        public async Task<ItemStatsResult> Handle(GetItemStatsQuery request, CancellationToken cancellationToken)
         {
-            return Task.Run(() =>
-                // TODO placeholder until we get the data loaded
-                DateTime.Now.Minute % 2 == 0
-                ? new ItemStatsResult
+            var connection = _dbConnectionFactory.GetOpenConnection();
+
+            const string sql = $"SELECT item_source.source_name as {nameof(ItemSourceDto.SourceName)}, " +
+                               $"       produced_item.item_id as {nameof(ItemSourceDto.ProducedItemItemId)}, " +
+                               $"       produced_item.rate as {nameof(ItemSourceDto.ProducedItemRate)} " +
+                               "   FROM warehouses.item_sources as item_source " +
+                               "   JOIN warehouses.produced_items as produced_item on produced_item.item_source_id = item_source.id " +
+                               "  WHERE item_source.world_id = @WorldId;";
+
+
+            var producedItemSources = (await connection.QueryAsync<ItemSourceDto>(sql, new
+            {
+                request.WorldId
+            }))
+            .ToList();
+
+            var result = new ItemStatsResult
+            {
+                Items = []
+            };
+
+            foreach (var producedItemSource in producedItemSources)
+            {
+                var warehouseItem = result.Items.SingleOrDefault(item => item.ItemId == producedItemSource.ProducedItemItemId);
+                if (warehouseItem == null)
                 {
-                    Items = [
-                    new WarehouseItem
+                    warehouseItem = new WarehouseItem
                     {
-                        ItemId = "IronOre",
-                        ItemName = "Iron Ore",
-                        AmountProduced = 300,
-                        AmountExported = 300,
-                        AmountAvailable = 0,
-                        AmountConsumed = 300,
-                        AmountImported = 300,
-                        ProducedAt = [
-                            new ProductionSource
-                            {
-                                Name = "Blue Crater 1",
-                                AmountProduced = 300,
-                                AmountExported = 300,
-                                AmountAvailable = 0,
-                            }
-                        ],
-                        ConsumedAt = [
-                            new ConsumptionSource {
-                                Name="Iron Ingot Factory Line 1",
-                                AmountConsumed = 150,
-                                AmountImported = 150
-                            },
-                            new ConsumptionSource {
-                                Name="Iron Ingot Factory Line 2",
-                                AmountConsumed = 150,
-                                AmountImported = 150
-                            }
-                        ]
-                    },
-                    new WarehouseItem
-                    {
-                        ItemId = "IronIngot",
-                        ItemName = "Iron Ingot",
-                        AmountProduced = 300,
-                        AmountExported = 310,
-                        AmountAvailable = -10,
-                        AmountConsumed = 300,
-                        AmountImported = 300,
-                        ProducedAt = [
-                            new ProductionSource
-                            {
-                                Name = "Iron Ingot Factory Line 1",
-                                AmountProduced = 150,
-                                AmountExported = 150,
-                                AmountAvailable = 0,
-                            },
-                            new ProductionSource
-                            {
-                                Name = "Iron Ingot Factory Line 2",
-                                AmountProduced = 150,
-                                AmountExported = 160,
-                                AmountAvailable = -10,
-                            }
-                        ],
-                        ConsumedAt = [
-                            new ConsumptionSource {
-                                Name="Iron Plate Line 1",
-                                AmountConsumed = 300,
-                                AmountImported = 300
-                            }
-                        ]
-                    },
-                    new WarehouseItem
-                    {
-                        ItemId = "IronPlates",
-                        ItemName = "Iron Plates",
-                        AmountProduced = 200,
+                        ItemId = producedItemSource.ProducedItemItemId,
+                        ItemName = Item.GetById(producedItemSource.ProducedItemItemId).Name,
+                        AmountProduced = 0,
                         AmountExported = 0,
-                        AmountAvailable = 200,
+                        AmountAvailable = 0,
                         AmountConsumed = 0,
                         AmountImported = 0,
-                        ProducedAt = [
-                            new ProductionSource
-                            {
-                                Name = "Iron Plate Line 1",
-                                AmountProduced = 200,
-                                AmountExported = 0,
-                                AmountAvailable = 200,
-                            }
-                        ],
-                        ConsumedAt = [
-                        ]
-                    }
-                ]
+                        ProducedAt = [],
+                        ConsumedAt = []
+                    };
+
+                    result.Items.Add(warehouseItem);
                 }
-                : new ItemStatsResult { Items = [] }
-            );
+
+                var productionSource = new ProductionSource
+                {
+                    Name = producedItemSource.SourceName,
+                    AmountProduced = producedItemSource.ProducedItemRate,
+                    AmountExported = 0,
+                    AmountAvailable = producedItemSource.ProducedItemRate,
+                };
+
+                warehouseItem.ProducedAt.Add(productionSource);
+
+                warehouseItem.AmountProduced += producedItemSource.ProducedItemRate;
+                warehouseItem.AmountAvailable = warehouseItem.AmountProduced - warehouseItem.AmountExported;
+            }
+
+            return result;
+        }
+
+        private class ItemSourceDto
+        {
+            public required string SourceName { get; set; }
+            public required string ProducedItemItemId { get; set; }
+            public decimal ProducedItemRate { get; set; }
         }
     }
 }

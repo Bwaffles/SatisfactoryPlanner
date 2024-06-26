@@ -17,6 +17,7 @@ namespace SatisfactoryPlanner.API.IntegrationTests
 
         protected string ConnectionString { get; private set; } = default!;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Structure", "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method", Justification = "Disposing of _webApplicationFactory disposes the client")]
         public HttpClient Client { get; private set; } = default!;
 
         [SetUp]

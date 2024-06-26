@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes
 {
-    public class PublishWorldNodeTappedIntegrationEvent(IEventsBus eventsBus, IDbConnectionFactory dbConnectionFactory) : IDomainEventNotificationHandler<WorldNodeTappedNotification, WorldNodeTappedDomainEvent>
+    public class PublishNodeTappedIntegrationEvent(IEventsBus eventsBus, IDbConnectionFactory dbConnectionFactory) : IDomainEventNotificationHandler<WorldNodeTappedNotification, WorldNodeTappedDomainEvent>
     {
         private readonly IEventsBus _eventsBus = eventsBus;
         private readonly IDbConnectionFactory _dbConnectionFactory = dbConnectionFactory;
@@ -40,7 +40,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Application.WorldNodes
             // but in the meantime the only way to map them is with the name.
             var item = Item.All.Single(item => item.Name == worldNode.ResourceName);
 
-            await _eventsBus.Publish(new WorldNodeTappedIntegrationEvent(
+            await _eventsBus.Publish(new NodeTappedIntegrationEvent(
                 notification.DomainEvent.Id,
                 notification.DomainEvent.OccurredOn,
                 worldNode.WorldId,
