@@ -2,7 +2,7 @@
 
 namespace SatisfactoryPlanner.Modules.Warehouses.Domain.ItemSources.Events
 {
-    public class ItemProducedDomainEvent(ItemSourceId itemSourceId, string itemId, decimal rate) : DomainEventBase
+    public class ProductionRateChangedDomainEvent(ItemSourceId itemSourceId, string itemId, decimal rate) : DomainEventBase
     {
         public ItemSourceId ItemSourceId { get; } = itemSourceId;
 

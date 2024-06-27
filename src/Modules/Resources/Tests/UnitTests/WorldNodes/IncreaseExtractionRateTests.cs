@@ -23,7 +23,7 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             var domainEvent =
                 DomainEventAssertions.AssertPublishedEvent<ExtractionRateIncreasedDomainEvent>(worldNode);
             domainEvent.WorldNodeId.Should().Be(worldNode.Id);
-            domainEvent.ExtractionRate.Should().Be(ExtractionRate.Of(120));
+            domainEvent.ExtractionRate.Should().Be(120);
         }
 
         [Test]

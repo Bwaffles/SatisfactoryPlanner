@@ -74,17 +74,11 @@ namespace SatisfactoryPlanner.Modules.Warehouses.Domain.ItemSources
             _producedItems.Add(ProducedItem.CreateNew(Id, item, rate));
         }
 
-        //internal void DecreaseProduction(decimal amount, string itemId)
-        //{
-        //    var producedItem = FindProducedItem(itemId);
-        //    producedItem.Rate = amount;
-        //}
-
-        //internal void IncreaseProduction(decimal amount, string itemId)
-        //{
-        //    var producedItem = FindProducedItem(itemId);
-        //    producedItem.Rate = amount;
-        //}
+        public void ChangeProductionRate(Item item, Rate rate)
+        {
+            var producedItem = GetProducedItem(item);
+            producedItem.ChangeRate(rate);
+        }
 
         ///// <summary>
         ///// Import <paramref name="amount"/> of consumed <paramref name="itemId"/> from the <paramref name="fromSource"/>.
@@ -109,9 +103,6 @@ namespace SatisfactoryPlanner.Modules.Warehouses.Domain.ItemSources
         //    return _consumedItems.Find(item => item.ItemId == itemId);
         //}
 
-        //private ProducedItem FindProducedItem(string itemId)
-        //{
-        //    return _producedItems.Find(item => item.ItemId == itemId);
-        //}
+        private ProducedItem GetProducedItem(Item item) => _producedItems.Single(producedItem => producedItem.ItemId == item.Id);
     }
 }

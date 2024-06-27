@@ -10,8 +10,6 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
         /// </summary>
         public decimal Rate { get; }
 
-        private ExtractionRate() { }
-
         private ExtractionRate(decimal rate)
         {
             if (rate < 0)
