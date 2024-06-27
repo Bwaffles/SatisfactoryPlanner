@@ -3,12 +3,14 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 {
-    public class ExtractionRate : ValueObject
+    public sealed class ExtractionRate : ValueObject
     {
         /// <summary>
         ///     The rate of extraction in resources per minute.
         /// </summary>
         public decimal Rate { get; }
+
+        private ExtractionRate() { }
 
         private ExtractionRate(decimal rate)
         {

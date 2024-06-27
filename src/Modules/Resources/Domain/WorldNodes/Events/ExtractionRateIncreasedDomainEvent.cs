@@ -2,16 +2,10 @@
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events
 {
-    public class ExtractionRateIncreasedDomainEvent : DomainEventBase
+    public class ExtractionRateIncreasedDomainEvent(WorldNodeId worldNodeId, ExtractionRate extractionRate) : DomainEventBase
     {
-        public ExtractionRate ExtractionRate { get; }
+        public ExtractionRate ExtractionRate { get; } = extractionRate;
 
-        public WorldNodeId WorldNodeId { get; }
-
-        public ExtractionRateIncreasedDomainEvent(WorldNodeId worldNodeId, ExtractionRate extractionRate)
-        {
-            WorldNodeId = worldNodeId;
-            ExtractionRate = extractionRate;
-        }
+        public WorldNodeId WorldNodeId { get; } = worldNodeId;
     }
 }
