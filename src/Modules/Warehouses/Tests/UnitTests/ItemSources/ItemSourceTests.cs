@@ -36,7 +36,34 @@ namespace SatisfactoryPlanner.Modules.Warehouses.UnitTests.ItemSources
                 var domainEvent = DomainEventAssertions.AssertPublishedEvent<ItemProducedDomainEvent>(itemSource);
                 domainEvent.ItemSourceId.Should().Be(itemSource.Id);
                 domainEvent.ItemId.Should().Be(Item.IronOre.Id);
-                domainEvent.Rate.Should().Be(Rate.Of(0));
+                domainEvent.Rate.Should().Be(0);
+            }
+        }
+
+        public class ChangeProductionRateTests : UnitTest
+        {
+            [Test]
+            public void WhenDataIsValid_IsSuccessful()
+            {
+                var itemSource = new ItemSourceFixture().CreateForNode();
+                itemSource.Produces(Item.IronOre, Rate.Of(0));
+
+                itemSource.ChangeProductionRate(Item.IronOre, Rate.Of(250.125m));
+
+                var domainEvent = DomainEventAssertions.AssertPublishedEvent<ProductionRateChangedDomainEvent>(itemSource);
+                domainEvent.ItemSourceId.Should().Be(itemSource.Id);
+                domainEvent.ItemId.Should().Be(Item.IronOre.Id);
+                domainEvent.Rate.Should().Be(250.125m);
+
+                DomainEventsTestHelper.ClearAllDomainEvents(itemSource);
+
+                itemSource.ChangeProductionRate(Item.IronOre, Rate.Of(314));
+
+                domainEvent = DomainEventAssertions.AssertPublishedEvent<ProductionRateChangedDomainEvent>(itemSource);
+                domainEvent.ItemSourceId.Should().Be(itemSource.Id);
+                domainEvent.ItemId.Should().Be(Item.IronOre.Id);
+                domainEvent.Rate.Should().Be(314);
+
             }
         }
     }

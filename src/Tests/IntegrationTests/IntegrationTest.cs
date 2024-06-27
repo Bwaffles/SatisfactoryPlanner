@@ -1,5 +1,4 @@
 using FluentAssertions.Execution;
-using NSubstitute;
 using SatisfactoryPlanner.BuildingBlocks.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.EventBus;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests;
@@ -10,6 +9,8 @@ using SatisfactoryPlanner.Modules.Warehouses.Application.Contracts;
 using SatisfactoryPlanner.Modules.Warehouses.Infrastructure;
 using SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration;
 using Serilog;
+using Serilog.Core;
+using Serilog.Formatting.Compact;
 
 namespace SatisfactoryPlanner.IntegrationTests;
 
@@ -20,7 +21,7 @@ public class IntegrationTest
 
     public IEventsBus EventsBus { get; private set; } = default!;
 
-    protected ILogger Logger { get; private set; } = null!;
+    private Logger Logger { get; set; } = null!;
 
     protected IResourcesModule ResourcesModule { get; private set; } = null!;
 
@@ -36,7 +37,15 @@ public class IntegrationTest
 
         await DatabaseClearer.Clear(ConnectionString);
 
-        Logger = Substitute.For<ILogger>();
+        Logger = new LoggerConfiguration()
+            .MinimumLevel.Information()
+            .Enrich.FromLogContext()
+            .WriteTo.File(new CompactJsonFormatter(),
+                "logs/logs.json",
+                rollOnFileSizeLimit: true,
+                fileSizeLimitBytes: 10 * 1024 * 1024)
+            .CreateLogger();
+
         ExecutionContext = new ExecutionContextMock(Guid.NewGuid());
         EventsBus = new InMemoryEventBusClient();
 
@@ -70,6 +79,8 @@ public class IntegrationTest
     {
         EventsBus.Stop();
         EventsBus.Dispose();
+
+        Logger.Dispose();
 
         ResourcesStartup.Stop();
         WarehousesStartup.Stop();

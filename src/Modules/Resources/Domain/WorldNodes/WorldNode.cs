@@ -54,7 +54,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 
             _extractionRate = extractionRate;
 
-            AddDomainEvent(new ExtractionRateIncreasedDomainEvent(Id, _extractionRate));
+            AddDomainEvent(new ExtractionRateIncreasedDomainEvent(Id, _extractionRate.Rate));
         }
 
         public void DecreaseExtractionRate(ExtractionRate extractionRate)
