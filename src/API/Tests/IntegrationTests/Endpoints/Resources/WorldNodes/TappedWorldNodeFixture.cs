@@ -1,5 +1,6 @@
 ﻿using SatisfactoryPlanner.API.IntegrationTests.Endpoints.UserAccess.Users;
 using SatisfactoryPlanner.API.IntegrationTests.Endpoints.Worlds;
+using static SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails.WorldNodeDetailsResult;
 
 namespace SatisfactoryPlanner.API.IntegrationTests.Endpoints.Resources.WorldNodes
 {
@@ -12,20 +13,21 @@ namespace SatisfactoryPlanner.API.IntegrationTests.Endpoints.Resources.WorldNode
         /// Create a new tapped node.
         /// </summary>
         /// <returns>The settings that were used to create the tapped node.</returns>
-        public async Task<Settings> Create(string extractorName = "Miner Mk.1")
+        public async Task<Settings> Create(string resourceName = "Iron Ore", string extractorName = "Miner Mk.1")
         {
             _settings.WorldId = await new WorldFixture(_client).CreateEmptyWorld();
 
             _settings.NodeId = (await new WorldNodeFixture(_client)
-                    .FindWorldNode(_settings.WorldId, worldNode => worldNode.ResourceName == "Iron Ore"))
+                    .FindWorldNode(_settings.WorldId, worldNode => worldNode.ResourceName == resourceName))
                     .Id;
 
-            _settings.ExtractorId = (await GetWorldNodeDetails
-                .GetResult(_client, _settings.WorldId, _settings.NodeId))
-                .Details.AvailableExtractors
-                .First(nodeDetail => nodeDetail.Name == extractorName).Id;
+            _settings.AvailableExtractors = (await GetWorldNodeDetails.GetResult(_client, _settings.WorldId, _settings.NodeId))
+                .Details.AvailableExtractors.ToList();
 
-            await TapWorldNode.Execute(_client, _settings.WorldId, _settings.NodeId, _settings.ExtractorId);
+            _settings.CurrentExtractor = _settings.AvailableExtractors
+                .First(nodeDetail => nodeDetail.Name == extractorName);
+
+            await TapWorldNode.Execute(_client, _settings.WorldId, _settings.NodeId, _settings.CurrentExtractor.Id);
 
             return _settings;
         }
@@ -36,19 +38,14 @@ namespace SatisfactoryPlanner.API.IntegrationTests.Endpoints.Resources.WorldNode
 
             public Guid NodeId { get; set; }
 
-            public Guid ExtractorId { get; set; }
+            public AvailableExtractor CurrentExtractor { get; set; } = null!;
+
+            public List<AvailableExtractor> AvailableExtractors { get; set; } = null!;
 
             public void Deconstruct(out Guid worldId, out Guid nodeId)
             {
                 worldId = WorldId;
                 nodeId = NodeId;
-            }
-
-            public void Deconstruct(out Guid worldId, out Guid nodeId, out Guid extractorId)
-            {
-                worldId = WorldId;
-                nodeId = NodeId;
-                extractorId = ExtractorId;
             }
         }
     }
