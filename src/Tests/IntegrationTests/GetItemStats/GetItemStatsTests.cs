@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests.Probing;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DecreaseExtractionRate;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
@@ -125,9 +126,6 @@ internal class GetItemStatsTests : IntegrationTest
         await IncreaseExtractionRate(worldId, ironOreNode.Id, 10);
 
         var itemStatsResult = await GetItemStats(worldId, warehouseItem => warehouseItem.AmountProduced > 0);
-
-        // outbox has rate of 10, but warehouses inbox has it as 0 so its getting lost somewhere--probably in json 
-        // I can use domain objects in my domain events right? Having trouble deserializing a value object 
         itemStatsResult.Should().BeEquivalentTo(new ItemStatsResult
         {
             Items = [
@@ -146,6 +144,28 @@ internal class GetItemStatsTests : IntegrationTest
                 }
             ]
         });
+
+        await DecreaseExtractionRate(worldId, ironOreNode.Id, 7);
+
+        itemStatsResult = await GetItemStats(worldId, warehouseItem => warehouseItem.AmountProduced != 10);
+        itemStatsResult.Should().BeEquivalentTo(new ItemStatsResult
+        {
+            Items = [
+                new WarehouseItem {
+                    ItemId = "IronOre",
+                    ItemName = "Iron Ore",
+                    AmountProduced = 7,
+                    AmountExported = 0,
+                    AmountAvailable = 7,
+                    AmountConsumed = 0,
+                    AmountImported = 0,
+                    ProducedAt = [
+                        ProductionSource(nodeDetails.NodeName, 7, 0, 7)
+                    ],
+                    ConsumedAt = []
+                }
+            ]
+        });
     }
 
     private async Task SpawnWorldNodes(Guid worldId) => await ResourcesModule.ExecuteCommandAsync(new SpawnWorldNodesCommand(Guid.NewGuid(), worldId));
@@ -157,6 +177,8 @@ internal class GetItemStatsTests : IntegrationTest
     private async Task TapWorldNode(Guid worldId, Guid nodeId, Guid extractorId) => await ResourcesModule.ExecuteCommandAsync(new TapWorldNodeCommand(worldId, nodeId, extractorId));
 
     private async Task IncreaseExtractionRate(Guid worldId, Guid nodeId, decimal extractionRate) => await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, nodeId, extractionRate));
+
+    private async Task DecreaseExtractionRate(Guid worldId, Guid nodeId, decimal extractionRate) => await ResourcesModule.ExecuteCommandAsync(new DecreaseExtractionRateCommand(worldId, nodeId, extractionRate));
 
     private async Task<ItemStatsResult> GetItemStats(Guid worldId) => await Polling.GetEventually(new GetItemStatsProbe(WarehousesModule, worldId, warehouseItem => true), 7000);
 

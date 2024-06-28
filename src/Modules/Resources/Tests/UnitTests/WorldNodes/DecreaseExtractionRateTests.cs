@@ -7,79 +7,77 @@ using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events;
 using SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Rules;
 
-namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
+namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes;
+
+[TestFixture]
+public class DecreaseExtractionRateTests
 {
-    [TestFixture]
-    public class DecreaseExtractionRateTests
+    // Happy path tests
+    [TestCase(60)]
+    [TestCase(0)]
+    public void WhenDataIsValid_IsSuccessful(int extractionRate)
     {
-        // Happy path tests
-        [TestCase(60)]
-        [TestCase(0)]
-        public void WhenDataIsValid_IsSuccessful(int extractionRate)
+        var worldNode = Setup(120);
+
+        worldNode.DecreaseExtractionRate(ExtractionRate.Of(extractionRate));
+
+        var domainEvent = DomainEventAssertions.AssertPublishedEvent<ExtractionRateDecreasedDomainEvent>(worldNode);
+        domainEvent.WorldNodeId.Should().Be(worldNode.Id);
+        domainEvent.ExtractionRate.Should().Be(extractionRate);
+    }
+
+    [Test]
+    public void WhenNewRateIsSameAsTheCurrentRate_IsIgnored()
+    {
+        var worldNode = Setup(120);
+
+        worldNode.DecreaseExtractionRate(ExtractionRate.Of(120));
+
+        DomainEventAssertions.AssertEventIsNotPublished<ExtractionRateDecreasedDomainEvent>(worldNode,
+            "because the rate didn't change");
+    }
+
+    // Business rule tests
+    [Test]
+    public void WhenWorldNodeIsNotTapped_RuleIsBroken()
+    {
+        var worldNode = Setup(isTapped: false);
+
+        RuleAssertions.AssertBrokenRule<MustBeTappedRule>(() =>
         {
-            var worldNode = Setup(120);
+            worldNode.DecreaseExtractionRate(ExtractionRate.Of(0));
+        });
+    }
 
-            worldNode.DecreaseExtractionRate(ExtractionRate.Of(extractionRate));
+    [Test]
+    public void WhenNewRateIsGreaterThanCurrentRate_RuleIsBroken()
+    {
+        var worldNode = Setup(120);
 
-            var domainEvent =
-                DomainEventAssertions.AssertPublishedEvent<ExtractionRateDecreasedDomainEvent>(worldNode);
-            domainEvent.WorldNodeId.Should().Be(worldNode.Id);
-            domainEvent.ExtractionRate.Should().Be(ExtractionRate.Of(extractionRate));
-        }
-
-        [Test]
-        public void WhenNewRateIsSameAsTheCurrentRate_IsIgnored()
+        RuleAssertions.AssertBrokenRule<CannotDecreaseExtractionRateAboveCurrentExtractionRateRule>(() =>
         {
-            var worldNode = Setup(120);
+            worldNode.DecreaseExtractionRate(ExtractionRate.Of(121));
+        });
+    }
 
-            worldNode.DecreaseExtractionRate(ExtractionRate.Of(120));
+    private static WorldNode Setup(decimal? extractionRate = null, bool isTapped = true)
+    {
+        var worldNodeFixture = new WorldNodeFixture();
+        if (isTapped)
+            worldNodeFixture.IsTapped();
 
-            DomainEventAssertions.AssertEventIsNotPublished<ExtractionRateDecreasedDomainEvent>(worldNode,
-                "because the rate didn't change");
-        }
+        var worldNodeTestData = worldNodeFixture.Create();
+        var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
 
-        // Business rule tests
-        [Test]
-        public void WhenWorldNodeIsNotTapped_RuleIsBroken()
-        {
-            var worldNode = Setup(isTapped: false);
+        if (isTapped)
+            mockExtractionRateCalculator
+                .GetMaxExtractionRate(worldNodeTestData.NodeId, worldNodeTestData.Extractor!.Id)
+                .Returns(ExtractionRate.Of(300));
 
-            RuleAssertions.AssertBrokenRule<MustBeTappedRule>(() =>
-            {
-                worldNode.DecreaseExtractionRate(ExtractionRate.Of(0));
-            });
-        }
+        if (extractionRate != null)
+            worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate.Value),
+                mockExtractionRateCalculator);
 
-        [Test]
-        public void WhenNewRateIsGreaterThanCurrentRate_RuleIsBroken()
-        {
-            var worldNode = Setup(120);
-
-            RuleAssertions.AssertBrokenRule<CannotDecreaseExtractionRateAboveCurrentExtractionRateRule>(() =>
-            {
-                worldNode.DecreaseExtractionRate(ExtractionRate.Of(121));
-            });
-        }
-
-        private static WorldNode Setup(decimal? extractionRate = null, bool isTapped = true)
-        {
-            var worldNodeFixture = new WorldNodeFixture();
-            if (isTapped)
-                worldNodeFixture.IsTapped();
-
-            var worldNodeTestData = worldNodeFixture.Create();
-            var mockExtractionRateCalculator = Substitute.For<IExtractionRateCalculator>();
-
-            if (isTapped)
-                mockExtractionRateCalculator
-                    .GetMaxExtractionRate(worldNodeTestData.NodeId, worldNodeTestData.Extractor!.Id)
-                    .Returns(ExtractionRate.Of(300));
-
-            if (extractionRate != null)
-                worldNodeTestData.WorldNode.IncreaseExtractionRate(ExtractionRate.Of(extractionRate.Value),
-                    mockExtractionRateCalculator);
-
-            return worldNodeTestData.WorldNode;
-        }
+        return worldNodeTestData.WorldNode;
     }
 }

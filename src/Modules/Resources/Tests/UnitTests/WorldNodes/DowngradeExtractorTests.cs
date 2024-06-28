@@ -96,11 +96,9 @@ namespace SatisfactoryPlanner.Modules.Resources.UnitTests.WorldNodes
             worldNodeTestData.WorldNode.DowngradeExtractor(slowestExtractor, resourceId, worldNodeTestData.Extractor,
                 mockExtractionRateCalculator);
 
-            var domainEvent =
-                DomainEventAssertions.AssertPublishedEvent<ExtractionRateDecreasedDomainEvent>(worldNodeTestData
-                    .WorldNode);
+            var domainEvent = DomainEventAssertions.AssertPublishedEvent<ExtractionRateDecreasedDomainEvent>(worldNodeTestData.WorldNode);
             domainEvent.WorldNodeId.Should().Be(worldNodeTestData.WorldNode.Id);
-            domainEvent.ExtractionRate.Should().Be(ExtractionRate.Of(300));
+            domainEvent.ExtractionRate.Should().Be(300);
         }
 
         [Theory]
