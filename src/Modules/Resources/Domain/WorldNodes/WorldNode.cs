@@ -67,7 +67,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 
             _extractionRate = extractionRate;
 
-            AddDomainEvent(new ExtractionRateDecreasedDomainEvent(Id, _extractionRate));
+            AddDomainEvent(new ExtractionRateDecreasedDomainEvent(Id, _extractionRate.Rate));
         }
 
         public void UpgradeExtractor(Extractor extractor, ResourceId resourceId, Extractor? currentExtractor)
@@ -102,7 +102,7 @@ namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
             if (_extractionRate > maxExtractionRate)
             {
                 _extractionRate = maxExtractionRate;
-                AddDomainEvent(new ExtractionRateDecreasedDomainEvent(Id, _extractionRate));
+                AddDomainEvent(new ExtractionRateDecreasedDomainEvent(Id, _extractionRate.Rate));
             }
         }
 
