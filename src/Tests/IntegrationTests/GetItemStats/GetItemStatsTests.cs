@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests.Probing;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DecreaseExtractionRate;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DowngradeExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.IncreaseExtractionRate;
@@ -18,7 +19,6 @@ internal class GetItemStatsTests : IntegrationTest
     public async Task TapOneNodeScenario()
     {
         var worldId = Guid.NewGuid();
-
         await SpawnWorldNodes(worldId);
 
         var nodes = await GetWorldNodes(worldId);
@@ -54,7 +54,6 @@ internal class GetItemStatsTests : IntegrationTest
     public async Task TapMultipleNodesScenario()
     {
         var worldId = Guid.NewGuid();
-
         await SpawnWorldNodes(worldId);
 
         var nodes = await GetWorldNodes(worldId);
@@ -109,11 +108,11 @@ internal class GetItemStatsTests : IntegrationTest
             ]
         });
     }
+
     [Test]
     public async Task UpdateNodeAmountScenario()
     {
         var worldId = Guid.NewGuid();
-
         await SpawnWorldNodes(worldId);
 
         var nodes = await GetWorldNodes(worldId);
@@ -168,6 +167,47 @@ internal class GetItemStatsTests : IntegrationTest
         });
     }
 
+    [Test]
+    public async Task ExtractorDowngradedScenario()
+    {
+        var worldId = Guid.NewGuid();
+        await SpawnWorldNodes(worldId);
+
+        var nodes = await GetWorldNodes(worldId);
+
+        var ironOreNode = nodes.First(node => node.ResourceName == "Iron Ore");
+        var nodeDetails = await GetNodeDetails(worldId, ironOreNode.Id);
+        var fastestExtractor = nodeDetails.AvailableExtractors.OrderBy(extractor => extractor.MaxExtractionRate).Last();
+        await TapWorldNode(worldId, ironOreNode.Id, fastestExtractor.Id);
+
+        await IncreaseExtractionRate(worldId, ironOreNode.Id, fastestExtractor.MaxExtractionRate);
+
+        // Since we're at the max extraction rate for the fastest extractor, when we downgrade extractors it can't support that rate and should decrease the extraction rate
+        var slowestExtractor = nodeDetails.AvailableExtractors.OrderBy(extractor => extractor.MaxExtractionRate).First();
+        await DowngradeExtractor(worldId, ironOreNode.Id, slowestExtractor.Id);
+        var newExtractionRate = slowestExtractor.MaxExtractionRate;
+
+        var itemStatsResult = await GetItemStats(worldId, warehouseItem => warehouseItem.AmountProduced == newExtractionRate);
+        itemStatsResult.Should().BeEquivalentTo(new ItemStatsResult
+        {
+            Items = [
+                new WarehouseItem {
+                    ItemId = "IronOre",
+                    ItemName = "Iron Ore",
+                    AmountProduced = newExtractionRate,
+                    AmountExported = 0,
+                    AmountAvailable = newExtractionRate,
+                    AmountConsumed = 0,
+                    AmountImported = 0,
+                    ProducedAt = [
+                        ProductionSource(nodeDetails.NodeName, newExtractionRate, 0, newExtractionRate)
+                    ],
+                    ConsumedAt = []
+                }
+            ]
+        });
+    }
+
     private async Task SpawnWorldNodes(Guid worldId) => await ResourcesModule.ExecuteCommandAsync(new SpawnWorldNodesCommand(Guid.NewGuid(), worldId));
 
     private async Task<List<GetWorldNodesResult.WorldNodeDto>> GetWorldNodes(Guid worldId) => (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null))).WorldNodes;
@@ -179,6 +219,8 @@ internal class GetItemStatsTests : IntegrationTest
     private async Task IncreaseExtractionRate(Guid worldId, Guid nodeId, decimal extractionRate) => await ResourcesModule.ExecuteCommandAsync(new IncreaseExtractionRateCommand(worldId, nodeId, extractionRate));
 
     private async Task DecreaseExtractionRate(Guid worldId, Guid nodeId, decimal extractionRate) => await ResourcesModule.ExecuteCommandAsync(new DecreaseExtractionRateCommand(worldId, nodeId, extractionRate));
+
+    private async Task DowngradeExtractor(Guid worldId, Guid nodeId, Guid extractorId) => await ResourcesModule.ExecuteCommandAsync(new DowngradeExtractorCommand(worldId, nodeId, extractorId));
 
     private async Task<ItemStatsResult> GetItemStats(Guid worldId) => await Polling.GetEventually(new GetItemStatsProbe(WarehousesModule, worldId, warehouseItem => true), 7000);
 
