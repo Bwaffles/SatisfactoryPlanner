@@ -1,14 +1,14 @@
 import { useQuery } from "react-query";
 
-import storage from "utils/storage";
 import { Resource } from "../types";
 import { useApi } from "lib/api";
+import useUser from "providers/user-provider";
 
 export const useGetResources = () => {
   const api = useApi();
-  const worldId = storage.getWorldId();
+  const { world } = useUser();
   return useQuery<Resource[]>({
     queryKey: ["getResources"],
-    queryFn: () => api.get(`/worlds/${worldId}/resources`),
+    queryFn: () => api.get(`/worlds/${world?.id}/resources`),
   });
 };

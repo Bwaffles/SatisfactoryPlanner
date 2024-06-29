@@ -1,9 +1,9 @@
 import { useMutation } from "react-query";
 
 import { queryClient } from "lib/react-query";
-import storage from "utils/storage";
 import { ErrorResponse, useApi } from "lib/api";
 import { productionLineKeys } from "./queryKeys";
+import useUser from "providers/user-provider";
 
 export type RenameProductionLineRequest = {
   productionLineId: string;
@@ -14,7 +14,7 @@ export type RenameProductionLineRequest = {
 
 export const useRenameProductionLine = () => {
   const api = useApi();
-  const worldId = storage.getWorldId();
+  const { world } = useUser();
 
   return useMutation<void, ErrorResponse, RenameProductionLineRequest>({
     onSuccess: (_, variables) => {
@@ -25,7 +25,7 @@ export const useRenameProductionLine = () => {
     },
     mutationFn: (variables: RenameProductionLineRequest) => {
       return api.post(
-        `/worlds/${worldId}/production-lines/${variables.productionLineId}/rename`,
+        `/worlds/${world?.id}/production-lines/${variables.productionLineId}/rename`,
         variables.data
       );
     },

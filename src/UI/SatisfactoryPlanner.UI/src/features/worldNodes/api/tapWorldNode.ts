@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 
 import { useApi } from "lib/api";
 import { queryClient } from "lib/react-query";
-import storage from "utils/storage";
+import useUser from "providers/user-provider";
 
 type TapWorldNodeRequest = {
   nodeId: string;
@@ -11,7 +11,7 @@ type TapWorldNodeRequest = {
 
 export const useTapWorldNode = () => {
   const api = useApi();
-  const worldId = storage.getWorldId();
+  const { world } = useUser();
 
   return useMutation<string, unknown, TapWorldNodeRequest>({
     onSuccess: () => {
@@ -26,7 +26,7 @@ export const useTapWorldNode = () => {
       });
     },
     mutationFn: (variables) => {
-      return api.post(`/worlds/${worldId}/nodes/${variables.nodeId}/tap`, {
+      return api.post(`/worlds/${world?.id}/nodes/${variables.nodeId}/tap`, {
         extractorId: variables.extractorId,
       });
     },
