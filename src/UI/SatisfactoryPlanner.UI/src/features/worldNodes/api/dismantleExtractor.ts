@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 
 import { useApi } from "lib/api";
 import { queryClient } from "lib/react-query";
-import storage from "utils/storage";
+import useUser from "providers/user-provider";
 
 type DismantleExtractorRequest = {
   nodeId: string;
@@ -10,7 +10,7 @@ type DismantleExtractorRequest = {
 
 export const useDismantleExtractor = () => {
   const api = useApi();
-  const worldId = storage.getWorldId();
+  const { world } = useUser();
 
   return useMutation<string, unknown, DismantleExtractorRequest>({
     onSuccess: () => {
@@ -26,7 +26,7 @@ export const useDismantleExtractor = () => {
     },
     mutationFn: (variables: DismantleExtractorRequest) => {
       return api.post(
-        `/worlds/${worldId}/nodes/${variables.nodeId}/dismantle-extractor`,
+        `/worlds/${world?.id}/nodes/${variables.nodeId}/dismantle-extractor`,
         null
       );
     },

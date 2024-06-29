@@ -1,8 +1,8 @@
 import { useMutation } from "react-query";
 
 import { queryClient } from "lib/react-query";
-import storage from "utils/storage";
 import { useApi } from "lib/api";
+import useUser from "providers/user-provider";
 
 export type IncreaseWorldNodeExtractionRateRequest = {
   nodeId: string;
@@ -13,7 +13,7 @@ export type IncreaseWorldNodeExtractionRateRequest = {
 
 export const useIncreaseWorldNodeExtractionRate = () => {
   const api = useApi();
-  const worldId = storage.getWorldId();
+  const { world } = useUser();
 
   return useMutation<string, unknown, IncreaseWorldNodeExtractionRateRequest>({
     onSuccess: () => {
@@ -30,7 +30,7 @@ export const useIncreaseWorldNodeExtractionRate = () => {
     },
     mutationFn: (variables: IncreaseWorldNodeExtractionRateRequest) => {
       return api.post(
-        `/worlds/${worldId}/nodes/${variables.nodeId}/increase-extraction-rate`,
+        `/worlds/${world?.id}/nodes/${variables.nodeId}/increase-extraction-rate`,
         variables.data
       );
     },

@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 
 import { queryClient } from "lib/react-query";
 import { useApi } from "lib/api";
-import storage from "utils/storage";
+import useUser from "providers/user-provider";
 
 type DowngradeExtractorRequest = {
   nodeId: string;
@@ -11,7 +11,7 @@ type DowngradeExtractorRequest = {
 
 export const useDowngradeExtractor = () => {
   const api = useApi();
-  const worldId = storage.getWorldId();
+  const { world } = useUser();
 
   return useMutation<string, unknown, DowngradeExtractorRequest>({
     onSuccess: () => {
@@ -28,7 +28,7 @@ export const useDowngradeExtractor = () => {
     },
     mutationFn: (variables: DowngradeExtractorRequest) => {
       return api.post(
-        `/worlds/${worldId}/nodes/${variables.nodeId}/downgrade-extractor`,
+        `/worlds/${world?.id}/nodes/${variables.nodeId}/downgrade-extractor`,
         {
           extractorId: variables.extractorId,
         }

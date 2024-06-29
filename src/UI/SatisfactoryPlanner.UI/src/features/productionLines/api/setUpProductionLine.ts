@@ -1,9 +1,9 @@
 import { useMutation } from "react-query";
 
 import { queryClient } from "lib/react-query";
-import storage from "utils/storage";
 import { ErrorResponse, useApi } from "lib/api";
 import { productionLineKeys } from "./queryKeys";
+import useUser from "providers/user-provider";
 
 export type SetUpProductionLineRequest = {
   data: {
@@ -17,7 +17,7 @@ export type SetUpProductionLineResponse = {
 
 export const useSetUpProductionLine = () => {
   const api = useApi();
-  const worldId = storage.getWorldId();
+  const { world } = useUser();
 
   return useMutation<
     SetUpProductionLineResponse,
@@ -29,7 +29,7 @@ export const useSetUpProductionLine = () => {
     },
     mutationFn: (variables: SetUpProductionLineRequest) => {
       return api.post(
-        `/worlds/${worldId}/production-lines/set-up`,
+        `/worlds/${world?.id}/production-lines/set-up`,
         variables.data
       );
     },

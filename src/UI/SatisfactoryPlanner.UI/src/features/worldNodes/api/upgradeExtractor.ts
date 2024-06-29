@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 
 import { queryClient } from "lib/react-query";
 import { useApi } from "lib/api";
-import storage from "utils/storage";
+import useUser from "providers/user-provider";
 
 type UpgradeExtractorRequest = {
   nodeId: string;
@@ -11,7 +11,7 @@ type UpgradeExtractorRequest = {
 
 export const useUpgradeExtractor = () => {
   const api = useApi();
-  const worldId = storage.getWorldId();
+  const { world } = useUser();
 
   return useMutation<string, unknown, UpgradeExtractorRequest>({
     onSuccess: () => {
@@ -24,7 +24,7 @@ export const useUpgradeExtractor = () => {
     },
     mutationFn: (variables: UpgradeExtractorRequest) => {
       return api.post(
-        `/worlds/${worldId}/nodes/${variables.nodeId}/upgrade-extractor`,
+        `/worlds/${world?.id}/nodes/${variables.nodeId}/upgrade-extractor`,
         {
           extractorId: variables.extractorId,
         }

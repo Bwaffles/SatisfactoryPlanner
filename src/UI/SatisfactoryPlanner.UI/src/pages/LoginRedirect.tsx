@@ -6,14 +6,15 @@ import { Spinner } from "components/Elements/Spinner";
 
 // On login, Auth0 will redirect here and we'll wait until the authentication process is finished.
 // For whatever reason, we can land here before the user is authenticated
-// Once the user is authenticated we'll redirect to the Login page to handle the rest of the process.
+// Once the user is authenticated we'll redirect to the Home page to handle the rest of the process.
+// user-provider handles making sure the user/world is set up properly before loading the app
 export const LoginRedirect = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/login");
+      navigate("/");
     }
   }, [isAuthenticated, navigate]);
 

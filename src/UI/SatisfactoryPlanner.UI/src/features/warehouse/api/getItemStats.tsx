@@ -2,14 +2,15 @@ import { useQuery } from "react-query";
 
 import { useApi } from "lib/api";
 import { warehouseKeys } from "./queryKeys";
-import storage from "utils/storage";
+import useUser from "providers/user-provider";
 
 export const useGetItemStats = () => {
   const api = useApi();
-  const worldId = storage.getWorldId();
+  const { world } = useUser();
+
   return useQuery<GetItemStatsResponse>({
     queryKey: warehouseKeys.itemStats(),
-    queryFn: async () => api.get(`worlds/${worldId}/warehouse/item-stats`),
+    queryFn: async () => api.get(`worlds/${world?.id}/warehouse/item-stats`),
   });
 };
 

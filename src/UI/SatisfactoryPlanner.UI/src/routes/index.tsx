@@ -6,7 +6,6 @@ import { MainLayout } from "components/Layout";
 import { DecreaseWorldNodeExtractionRate } from "pages/DecreaseWorldNodeExtractionRate";
 import { Home } from "pages/Home";
 import { IncreaseWorldNodeExtractionRate } from "pages/IncreaseWorldNodeExtractionRate";
-import { Login } from "pages/Login";
 import { LoginError } from "pages/LoginError";
 import { LoginRedirect } from "pages/LoginRedirect";
 import { NoMatch } from "pages/NoMatch";
@@ -72,11 +71,10 @@ export const AppRoutes = () => {
           path="/production-lines/set-up"
           element={<ProtectedRoute component={SetUpProductionLine} />}
         />
-        <Route path="/loginError" element={<LoginError />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
+      <Route path="/loginError" element={<LoginError />} />
       <Route path="/loginRedirect" element={<LoginRedirect />} />
-      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };
