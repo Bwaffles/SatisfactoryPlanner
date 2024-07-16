@@ -2,21 +2,6 @@
 
 # How to Use
 
-## Database Migrations
-
-From the root folder, run `dotnet run --project src/Database/DatabaseMigrator/ [debug|release] [serverConnectionString] [connectionString]` to start the interactive migration app during development.
-
-- [debug|release]: debug mode is an interactive experience to help with testing your migrations. release mode is used in integration testing to just run all the migrations.
-- [serverConnectionString]: the connection string to your database server without the database name. This is needed since the migrator app is the one to create the initial database.
-- [connectionString]: the connection string to the satisfactory-planner database.
-
-e.g. `dotnet run --project src/Database/DatabaseMigrator/ debug "Server=127.0.0.1;User Id=myusername;Password=mypassword" "Server=127.0.0.1;Database=satisfactory-planner;User Id=myusername;Password=mypassword"`
-
-Note: On local dev you can just run `dotnet run --project src/Database/DatabaseMigrator/` if you add user secrets with the following values set to your connection strings. It will always run in debug mode.
-
-- "Server": [serverConnectionString]
-- "SatisfactoryPlanner": [connectionString]
-
 ## Run Integration Tests
 
 Run `Nuke RunAllIntegrationTests`. You need to have `Docker Desktop` running for the database container to be created.
