@@ -2,7 +2,7 @@
   "profiles": {
     "DatabaseMigrator": {
       "commandName": "Project",
-      "commandLineArgs": "debug"
+      "commandLineArgs": "dev -s \"Server=localhost:1401;User Id=build-user;Password=PgD8GMoaBwF6Cg6r1Zn9\""
     },
     "Docker": {
       "commandName": "Docker"

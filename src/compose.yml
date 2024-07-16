@@ -29,7 +29,7 @@ services:
       db: 
         condition: service_healthy
         
-    command: ["release", "Host=db;User Id=${DB_USER};Password=${DB_PASSWORD};", "Host=db;User Id=${DB_USER};Password=${DB_PASSWORD};Database=satisfactory-planner;" ]
+    command: ["migrate", "--server-connection-string=Host=db;User Id=${DB_USER};Password=${DB_PASSWORD};" ]
     build:
       context: .
       dockerfile: Database/DatabaseMigrator/Dockerfile
