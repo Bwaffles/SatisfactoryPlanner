@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "DatabaseMigrator.Functions": {
-      "commandName": "Project",
-      "commandLineArgs": "--port 7204"
-    }
-  }
-}
