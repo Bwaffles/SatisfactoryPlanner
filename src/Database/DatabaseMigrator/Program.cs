@@ -1,57 +1,47 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CommandLine;
 using System;
 
 namespace DatabaseMigrator
 {
+    internal class Options
+    {
+        [Option('s', "server-connection-string", Required = true, HelpText = "The connection to the database server.")]
+        public string ServerConnectionString { get; set; }
+    }
+
+    [Verb("migrate", HelpText = "Run all migrations.")]
+    internal class MigrateOptions : Options
+    {
+    }
+
+    [Verb("dev", HelpText = "Start an interactive session to manually control migrations and rollbacks for development of new migrations.")]
+    internal class DevOptions : Options
+    {
+    }
+
     internal class Program
     {
         private static int Main(string[] args)
         {
             Console.WriteLine("Starting migration...");
 
-            var environment = args.Length > 0 ? args[0] : "debug";
-            if (environment != "release" && environment != "debug")
-            {
-                // release: used from the BuildIntegrationTests Nuke script to run all migrations
-                // debug: used during dev to have an interactive experience so we can test rollbacks and migration retests
-                WriterCommandArgumentError();
-                return -1;
-            }
-
-            string serverConnectionString; // to be able to create the DB
-            string connectionString; // to be able to create the DB
-            if (args.Length > 1)
-            {
-                serverConnectionString = args[1];
-                connectionString = args[2];
-            }
-            else
-            {
-                var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
-
-                serverConnectionString = config.GetConnectionString("Server");
-                connectionString = config.GetConnectionString("SatisfactoryPlanner");
-            }
-
-            var runner = new MigrationRunner(serverConnectionString, connectionString);
-
-            UpdateDatabase(runner, environment);
-
-            return 0;
+            return Parser.Default.ParseArguments<MigrateOptions, DevOptions>(args)
+                .MapResult(
+                    (MigrateOptions opts) => RunMigrate(opts),
+                    (DevOptions opts) => RunDev(opts),
+                    _ => 1);
         }
 
-        private static void WriterCommandArgumentError() =>
-            Console.WriteLine(
-                "Invalid arguments. Execution: DatabaseMigrator [(release|debug)] [serverConnectionString] [connectionString].\r\n");
-
-        private static void UpdateDatabase(MigrationRunner runner, string environment)
+        private static MigrationRunner CreateMigrationRunner(Options options)
         {
-            if (environment == "release")
-            {
-                runner.Migrate();
-                return;
-            }
-            
+            var serverConnectionString = options.ServerConnectionString;
+            return new MigrationRunner(serverConnectionString, "satisfactory-planner");
+        }
+
+        private static int RunDev(DevOptions options)
+        {
+            var runner = CreateMigrationRunner(options);
+
             runner.ListMigrations();
 
             bool quit = false;
@@ -59,6 +49,16 @@ namespace DatabaseMigrator
             {
                 quit = SelectOption(runner);
             }
+
+            return 0;
+        }
+
+        private static int RunMigrate(MigrateOptions options)
+        {
+            var runner = CreateMigrationRunner(options);
+            runner.Migrate();
+
+            return 0;
         }
 
         private static bool SelectOption(MigrationRunner runner)

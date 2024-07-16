@@ -62,7 +62,7 @@ partial class Build
             DotNetRun(s => s
                 .SetProjectFile(databaseMigratorProject)
                 .SetConfiguration(Configuration)
-                .SetApplicationArguments($"release \"{databaseConfiguration.ServerConnectionString}\" \"{databaseConfiguration.ConnectionString}\"")
+                .SetApplicationArguments($"migrate --server-connection-string=\"{databaseConfiguration.ServerConnectionString}\"")
                 .SetProcessWorkingDirectory(databaseMigratorProject.Directory));
         });
 

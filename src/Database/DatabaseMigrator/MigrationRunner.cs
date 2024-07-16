@@ -1,6 +1,5 @@
 ﻿using DatabaseMigrator.Migrations;
 using FluentMigrator.Runner;
-using FluentMigrator.Runner.Initialization;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DatabaseMigrator
@@ -9,10 +8,11 @@ namespace DatabaseMigrator
     {
         private readonly IMigrationRunner _migrationRunner;
 
-        public MigrationRunner(string serverConnectionString, string connectionString)
+        public MigrationRunner(string serverConnectionString, string databaseName)
         {
-            Database.EnsureDatabase(serverConnectionString, "satisfactory-planner");
+            Database.EnsureDatabase(serverConnectionString, databaseName);
 
+            var connectionString = $"{serverConnectionString};Database={databaseName};";
             var servicesProvider = new ServiceCollection()
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
@@ -31,10 +31,7 @@ namespace DatabaseMigrator
 
         public void ListMigrations() => _migrationRunner.ListMigrations();
 
-        public void Migrate()
-        {
-            _migrationRunner.MigrateUp();
-        }
+        public void Migrate() => _migrationRunner.MigrateUp();
 
         public void RerunPreviousMigration()
         {
@@ -43,9 +40,6 @@ namespace DatabaseMigrator
             _migrationRunner.MigrateUp();
         }
 
-        public void Rollback()
-        {
-            _migrationRunner.Rollback(1);
-        }
+        public void Rollback() => _migrationRunner.Rollback(1);
     }
 }
