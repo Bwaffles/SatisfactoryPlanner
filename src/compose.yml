@@ -3,6 +3,17 @@ version: '3.4'
 name: satisfactory-planner
 
 services:  
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    ports:
+      - "5341:80"
+    environment:
+      ACCEPT_EULA: "Y"
+    restart: unless-stopped
+    volumes:
+      - ../data/seq-data:/data
+
   api:
     image: satisfactory-planner.api
     container_name: api
@@ -16,6 +27,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__SatisfactoryPlanner=Host=db;User Id=${DB_USER};Password=${DB_PASSWORD};Database=satisfactory-planner;
+      - Logs__Seq__Enable=true
+      - Logs__Seq__ServerUrl=http://seq:5341
     build:
       context: .
       dockerfile: API/SatisfactoryPlanner.API/Dockerfile

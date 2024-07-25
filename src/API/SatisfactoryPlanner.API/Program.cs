@@ -100,6 +100,13 @@ static Logger CreateLogger(ConfigurationManager configuration)
             "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}");
     }
 
+    if (configuration.GetValue<bool>("Logs:Seq:Enable"))
+    {
+        var seqServerUrl = configuration.GetValue<string>("Logs:Seq:ServerUrl") ?? throw new InvalidOperationException("Logs:Seq:ServerUrl not defined.");
+
+        loggerConfiguration.WriteTo.Seq(seqServerUrl);
+    }
+
     return loggerConfiguration
         .WriteTo.File(new CompactJsonFormatter(),
             "logs/logs.json",
@@ -203,7 +210,7 @@ static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger 
 
     //app.UseHttpsRedirection();
 
-    app.UseSerilogRequestLogging();
+    app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = LogExtensions.EnrichFromRequest);
 
     app.UseAuthentication();
 
