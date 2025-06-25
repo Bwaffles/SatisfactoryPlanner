@@ -33,8 +33,8 @@ namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
                 node.ExtractionRate.Should().Be(0);
                 node.MaxExtractionRate.Should().Be(780);
                 node.MapPositionX.Should().Be(-5292.68359M);
-                node.MapPositionY.Should().Be(92075.19530M);
-                node.MapPositionZ.Should().Be(22756.32620M);
+                node.MapPositionY.Should().Be(92075.19531M);
+                node.MapPositionZ.Should().Be(22756.32617M);
             });
         }
 

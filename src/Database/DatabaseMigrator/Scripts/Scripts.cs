@@ -27,5 +27,10 @@
         ///     Update the resource nodes for update 7.
         /// </summary>
         public static string UpdateResourceNodes = $"{Path}/0004__update_resource_nodes.sql";
+
+        /// <summary>
+        ///     Update the resource nodes for update 1.1.
+        /// </summary>
+        public static string UpdateResourceNodes1_1 = $"{Path}/0005__update_resource_nodes_v1_1.sql";
     }
 }

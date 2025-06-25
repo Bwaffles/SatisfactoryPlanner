@@ -31,6 +31,9 @@
 		<None Update="Scripts\0004__update_resource_nodes.sql">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Update="Scripts\0005__update_resource_nodes_v1_1.sql">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="Scripts\Generators\0002_SeedResourceNodes\resource_nodes_data.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
@@ -42,6 +45,15 @@
 		</None>
 		<None Update="Scripts\Generators\0004_UpdateResourceNodes\update_7_resource_nodes_data.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Scripts\Generators\0005_UpdateResourceNodes_v1_1\existing_nodes.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Scripts\Generators\0005_UpdateResourceNodes_v1_1\new_nodes.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Scripts\Generators\0005_UpdateResourceNodes_v1_1\nodes_v1.1.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="Scripts\Generators\SeedResourceExtractors\FactoryGame.FGBuildableResourceExtractor.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
