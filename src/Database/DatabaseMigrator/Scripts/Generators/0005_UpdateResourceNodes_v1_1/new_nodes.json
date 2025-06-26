@@ -1,0 +1,852 @@
+[
+  {
+    "ItemCode": "Desc_Stone_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode464_UAID_40B076DF2F790EE201_1850696287",
+    "MapPositionX": 15240.25390625,
+    "MapPositionY": -158578.609375,
+    "MapPositionZ": -1387.1209716797,
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "Number": 5
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode464_UAID_40B076DF2F7915E201_1334543513",
+    "MapPositionX": 40251.38671875,
+    "MapPositionY": -144690.515625,
+    "MapPositionZ": 369.07440185547,
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "Number": 6
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode464_UAID_40B076DF2F790FE201_1577140465",
+    "MapPositionX": 66756.9453125,
+    "MapPositionY": -150676.984375,
+    "MapPositionZ": -1180.9619140625,
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "Number": 7
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode464_UAID_40B076DF2F7914E201_2026233335",
+    "MapPositionX": 92494.6875,
+    "MapPositionY": -132749.0625,
+    "MapPositionZ": 670.67614746094,
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "Number": 8
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode589_UAID_40B076DF2F79B1E101_1767545917",
+    "MapPositionX": 135005.1875,
+    "MapPositionY": 123175.484375,
+    "MapPositionZ": 12311.319335938,
+    "Purity": "Impure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode589_UAID_40B076DF2F79B2E101_1298360096",
+    "MapPositionX": 146861.0,
+    "MapPositionY": 115062.7890625,
+    "MapPositionZ": 12296.141601562,
+    "Purity": "Pure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode521_UAID_40B076DF2F79C3E101_1735462083",
+    "MapPositionX": -167201.15625,
+    "MapPositionY": 61297.75,
+    "MapPositionZ": 24000.763671875,
+    "Purity": "Normal",
+    "Biome": "Dangle Spires",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode521_UAID_40B076DF2F79C3E101_1100698081",
+    "MapPositionX": -164380.90625,
+    "MapPositionY": 64840.765625,
+    "MapPositionZ": 24379.79296875,
+    "Purity": "Normal",
+    "Biome": "Dangle Spires",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_Stone_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode69_UAID_A036BCACDEB0A7A601_1261875850",
+    "MapPositionX": 225430.5,
+    "MapPositionY": -6949.228515625,
+    "MapPositionZ": -1549.8608398438,
+    "Purity": "Pure",
+    "Biome": "Swamp",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode462_UAID_40B076DF2F7902E201_1630060169",
+    "MapPositionX": -58995.6796875,
+    "MapPositionY": -224574.765625,
+    "MapPositionZ": 9573.6044921875,
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode462_UAID_40B076DF2F7907E201_1624182051",
+    "MapPositionX": -64962.75,
+    "MapPositionY": -201169.0625,
+    "MapPositionZ": 6925.3540039062,
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode462_UAID_40B076DF2F790CE201_2008279933",
+    "MapPositionX": -52876.6875,
+    "MapPositionY": -201761.703125,
+    "MapPositionZ": 6792.5341796875,
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode563_UAID_40B076DF2F79B8E101_1620414156",
+    "MapPositionX": 221480.640625,
+    "MapPositionY": 146593.890625,
+    "MapPositionZ": -200.09094238281,
+    "Purity": "Impure",
+    "Biome": "Abyss Cliffs",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode563_UAID_40B076DF2F79B7E101_1869159978",
+    "MapPositionX": 225650.65625,
+    "MapPositionY": 147647.984375,
+    "MapPositionZ": -193.43524169922,
+    "Purity": "Impure",
+    "Biome": "Abyss Cliffs",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode563_UAID_40B076DF2F79B9E101_1570060334",
+    "MapPositionX": 233432.65625,
+    "MapPositionY": 145602.984375,
+    "MapPositionZ": -267.43524169922,
+    "Purity": "Impure",
+    "Biome": "Abyss Cliffs",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode563_UAID_40B076DF2F79BBE101_1434258671",
+    "MapPositionX": 233292.984375,
+    "MapPositionY": 139879.984375,
+    "MapPositionZ": -304.43524169922,
+    "Purity": "Impure",
+    "Biome": "Abyss Cliffs",
+    "Number": 4
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode524_UAID_40B076DF2F798ADF01_1172524943",
+    "MapPositionX": 237724.65625,
+    "MapPositionY": -23005.71875,
+    "MapPositionZ": 8796.6357421875,
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_OreIron_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode523_UAID_40B076DF2F7987DF01_1117795413",
+    "MapPositionX": 245043.1875,
+    "MapPositionY": -22318.056640625,
+    "MapPositionZ": 8820.6298828125,
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_40B076DF2F794DE201_1841969367",
+    "MapPositionX": 20143.978515625,
+    "MapPositionY": -169847.125,
+    "MapPositionZ": 15477.609375,
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_40B076DF2F794FE201_2126930721",
+    "MapPositionX": 95345.5390625,
+    "MapPositionY": -168441.796875,
+    "MapPositionZ": 13262.0,
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode83_UAID_40B076DF2F79FFE101_1122581639",
+    "MapPositionX": -156723.46875,
+    "MapPositionY": 109165.40625,
+    "MapPositionZ": 16113.072265625,
+    "Purity": "Impure",
+    "Biome": "Dangle Spires",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode83_UAID_40B076DF2F79FBE101_1618730935",
+    "MapPositionX": -159616.375,
+    "MapPositionY": 112857.8828125,
+    "MapPositionZ": 16254.215820312,
+    "Purity": "Impure",
+    "Biome": "Dangle Spires",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode547_UAID_40B076DF2F79AEE101_1979010387",
+    "MapPositionX": 58030.6171875,
+    "MapPositionY": 82304.8828125,
+    "MapPositionZ": 11800.666015625,
+    "Purity": "Normal",
+    "Biome": "Eastern Dune Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_A036BCACDEB0A6A601_2086848673",
+    "MapPositionX": -26897.671875,
+    "MapPositionY": -145468.75,
+    "MapPositionZ": 8397.134765625,
+    "Purity": "Pure",
+    "Biome": "Northern Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreCopper_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode547_UAID_40B076DF2F79ADE101_1836911209",
+    "MapPositionX": 80832.0390625,
+    "MapPositionY": 242478.203125,
+    "MapPositionZ": -4444.0463867188,
+    "Purity": "Pure",
+    "Biome": "Southern Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode142_UAID_40B076DF2F79E9DD01_1434900545",
+    "MapPositionX": 208139.609375,
+    "MapPositionY": -23983.0859375,
+    "MapPositionZ": 594.19293212891,
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode142_UAID_40B076DF2F79E9DD01_1872254547",
+    "MapPositionX": 208006.5,
+    "MapPositionY": -16382.58984375,
+    "MapPositionZ": -55.342662811279,
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode142_UAID_40B076DF2F79E8DD01_2087440367",
+    "MapPositionX": 211843.21875,
+    "MapPositionY": -18819.654296875,
+    "MapPositionZ": -29.199884414673,
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode487_UAID_40B076DF2F7934DF01_1597642799",
+    "MapPositionX": 103845.5703125,
+    "MapPositionY": -94854.0390625,
+    "MapPositionZ": 12651.911132812,
+    "Purity": "Normal",
+    "Biome": "Maze Canyons",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode169_UAID_40B076DF2F7939DE01_2083925623",
+    "MapPositionX": 114180.0234375,
+    "MapPositionY": -16999.984375,
+    "MapPositionZ": 14021.446289062,
+    "Purity": "Normal",
+    "Biome": "Maze Canyons",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode121_UAID_40B076DF2F7938DF01_2097772508",
+    "MapPositionX": -135468.0,
+    "MapPositionY": -174682.0,
+    "MapPositionZ": 7753.0,
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_OreGold_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode176_UAID_40B076DF2F793BDF01_1694110039",
+    "MapPositionX": -153387.21875,
+    "MapPositionY": 82252.4453125,
+    "MapPositionZ": 20330.234375,
+    "Purity": "Pure",
+    "Biome": "Western Dune Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F797DE001_1807610722",
+    "MapPositionX": 151131.296875,
+    "MapPositionY": 75310.9140625,
+    "MapPositionZ": 9714.443359375,
+    "Purity": "Impure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F795EE801_1339162695",
+    "MapPositionX": 153853.6875,
+    "MapPositionY": 84162.78125,
+    "MapPositionZ": 9505.6005859375,
+    "Purity": "Impure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7980E001_1705275252",
+    "MapPositionX": 155600.484375,
+    "MapPositionY": 113111.5703125,
+    "MapPositionZ": 6026.2465820312,
+    "Purity": "Impure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7984E001_1384492965",
+    "MapPositionX": 193869.03125,
+    "MapPositionY": 116585.2734375,
+    "MapPositionZ": 10248.458007812,
+    "Purity": "Impure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 4
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7981E001_1464253430",
+    "MapPositionX": 177478.03125,
+    "MapPositionY": 129905.2734375,
+    "MapPositionZ": 10377.458007812,
+    "Purity": "Impure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 5
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7984E001_1664435967",
+    "MapPositionX": 180820.03125,
+    "MapPositionY": 141195.28125,
+    "MapPositionZ": 9394.4580078125,
+    "Purity": "Impure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 6
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7974E101_1674467201",
+    "MapPositionX": -275456.5,
+    "MapPositionY": -165870.109375,
+    "MapPositionZ": -1621.8963623047,
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F79ACE101_1257410031",
+    "MapPositionX": -265694.5,
+    "MapPositionY": -162571.109375,
+    "MapPositionZ": 1526.1036376953,
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7973E101_1125437021",
+    "MapPositionX": -281034.40625,
+    "MapPositionY": -142694.96875,
+    "MapPositionZ": -1635.9776611328,
+    "Purity": "Impure",
+    "Biome": "Rocky Desert",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7974E101_1439035199",
+    "MapPositionX": -271793.5,
+    "MapPositionY": -146229.109375,
+    "MapPositionZ": -1628.8963623047,
+    "Purity": "Impure",
+    "Biome": "Rocky Desert",
+    "Number": 4
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7972E101_1083579843",
+    "MapPositionX": -148429.6875,
+    "MapPositionY": 56309.953125,
+    "MapPositionZ": 3127.6848144531,
+    "Purity": "Pure",
+    "Biome": "Western Dune Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7971E101_2069219665",
+    "MapPositionX": -144746.09375,
+    "MapPositionY": 64418.60546875,
+    "MapPositionZ": 3136.9489746094,
+    "Purity": "Impure",
+    "Biome": "Western Dune Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7983E001_1088885785",
+    "MapPositionX": 214894.03125,
+    "MapPositionY": 116756.2734375,
+    "MapPositionZ": 10801.458007812,
+    "Purity": "Normal",
+    "Biome": "Abyss Cliffs",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F7983E001_1840982787",
+    "MapPositionX": 239775.03125,
+    "MapPositionY": 148305.28125,
+    "MapPositionZ": 6682.4584960938,
+    "Purity": "Pure",
+    "Biome": "Abyss Cliffs",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F796FE101_1569477308",
+    "MapPositionX": 209926.734375,
+    "MapPositionY": 162974.75,
+    "MapPositionZ": 5348.37890625,
+    "Purity": "Normal",
+    "Biome": "Abyss Cliffs",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode573_UAID_40B076DF2F796BE101_1963012602",
+    "MapPositionX": 206003.171875,
+    "MapPositionY": 181237.3125,
+    "MapPositionZ": 10347.3203125,
+    "Purity": "Pure",
+    "Biome": "Abyss Cliffs",
+    "Number": 4
+  },
+  {
+    "ItemCode": "Desc_Coal_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode614",
+    "MapPositionX": 330471.40625,
+    "MapPositionY": -264658.34375,
+    "MapPositionZ": 2144.0053710938,
+    "Purity": "Pure",
+    "Biome": "Dune Desert",
+    "Number": 4
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode71_UAID_40B076DF2F7925DB01_1453678949",
+    "MapPositionX": 91305.265625,
+    "MapPositionY": 220216.78125,
+    "MapPositionZ": -78.607200622559,
+    "Purity": "Impure",
+    "Biome": "Southern Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode71_UAID_40B076DF2F7929DB01_1177072656",
+    "MapPositionX": 96367.984375,
+    "MapPositionY": 220401.46875,
+    "MapPositionZ": -83.758453369141,
+    "Purity": "Normal",
+    "Biome": "Southern Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode71_UAID_40B076DF2F7924DB01_1576108771",
+    "MapPositionX": 94847.2265625,
+    "MapPositionY": 224537.15625,
+    "MapPositionZ": -85.799781799316,
+    "Purity": "Pure",
+    "Biome": "Southern Forest",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode71_UAID_40B076DF2F79B9DB01_1490254983",
+    "MapPositionX": -213022.5625,
+    "MapPositionY": -170020.8125,
+    "MapPositionZ": -1317.3026123047,
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode71_UAID_40B076DF2F797CDB01_1695622247",
+    "MapPositionX": -145043.578125,
+    "MapPositionY": 165965.15625,
+    "MapPositionZ": 12698.50390625,
+    "Purity": "Pure",
+    "Biome": "Dangle Spires",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode71_UAID_40B076DF2F7912DC01_2042985647",
+    "MapPositionX": 188183.265625,
+    "MapPositionY": -247467.90625,
+    "MapPositionZ": 23307.0078125,
+    "Purity": "Pure",
+    "Biome": "Spire Coast",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_Sulfur_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode71_UAID_40B076DF2F7923DB01_2085455593",
+    "MapPositionX": 242309.96875,
+    "MapPositionY": 152778.875,
+    "MapPositionZ": 8887.830078125,
+    "Purity": "Pure",
+    "Biome": "Abyss Cliffs",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode57_UAID_40B076DF2F7991DF01_1459615180",
+    "MapPositionX": 62289.96875,
+    "MapPositionY": -137424.125,
+    "MapPositionZ": 8325.423828125,
+    "Purity": "Impure",
+    "Biome": "Northern Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode57_UAID_40B076DF2F7935DF01_1413169977",
+    "MapPositionX": 55041.62109375,
+    "MapPositionY": -130641.2734375,
+    "MapPositionZ": 7156.283203125,
+    "Purity": "Impure",
+    "Biome": "Northern Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode136_UAID_40B076DF2F7975DF01_1587576239",
+    "MapPositionX": 61653.5234375,
+    "MapPositionY": 196432.234375,
+    "MapPositionZ": -3725.4567871094,
+    "Purity": "Pure",
+    "Biome": "Southern Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode136_UAID_40B076DF2F7975DF01_1622351243",
+    "MapPositionX": 55253.2578125,
+    "MapPositionY": 205856.15625,
+    "MapPositionZ": -5763.1850585938,
+    "Purity": "Normal",
+    "Biome": "Southern Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode136_UAID_40B076DF2F7975DF01_1617269241",
+    "MapPositionX": 62111.484375,
+    "MapPositionY": 207627.140625,
+    "MapPositionZ": -4197.0180664062,
+    "Purity": "Impure",
+    "Biome": "Southern Forest",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode474_UAID_40B076DF2F798EDF01_2134364650",
+    "MapPositionX": 190097.75,
+    "MapPositionY": -17280.927734375,
+    "MapPositionZ": 9456.515625,
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode474_UAID_40B076DF2F7983DF01_2128950703",
+    "MapPositionX": 196667.8125,
+    "MapPositionY": -13955.926757812,
+    "MapPositionZ": 9398.4814453125,
+    "Purity": "Normal",
+    "Biome": "Titan Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode474_UAID_40B076DF2F798DDF01_1645035472",
+    "MapPositionX": 193979.5625,
+    "MapPositionY": -5467.69140625,
+    "MapPositionZ": 10260.310546875,
+    "Purity": "Pure",
+    "Biome": "Titan Forest",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_RawQuartz_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode588_UAID_40B076DF2F79CEDF01_1910960903",
+    "MapPositionX": -171986.09375,
+    "MapPositionY": -144145.578125,
+    "MapPositionZ": -2030.1938476562,
+    "Purity": "Pure",
+    "Biome": "Rocky Desert",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_OreUranium_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode484_UAID_40B076DF2F79E0DF01_2091429101",
+    "MapPositionX": 180193.90625,
+    "MapPositionY": -189199.453125,
+    "MapPositionZ": 23503.19921875,
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode135",
+    "MapPositionX": -182183.359375,
+    "MapPositionY": -142367.0,
+    "MapPositionZ": -1743.8706054688,
+    "Purity": "Normal",
+    "Biome": "Rocky Desert",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode43_UAID_40B076DF2F7932D901_1711042113",
+    "MapPositionX": -46645.4296875,
+    "MapPositionY": -252947.015625,
+    "MapPositionZ": 4931.095703125,
+    "Purity": "Impure",
+    "Biome": "Spire Coast",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode43",
+    "MapPositionX": 82558.765625,
+    "MapPositionY": -219609.03125,
+    "MapPositionZ": 8929.0693359375,
+    "Purity": "Pure",
+    "Biome": "Spire Coast",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode241",
+    "MapPositionX": 172559.328125,
+    "MapPositionY": -285516.90625,
+    "MapPositionZ": 21591.23046875,
+    "Purity": "Normal",
+    "Biome": "Spire Coast",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode241_UAID_40B076DF2F7947D301_1723440520",
+    "MapPositionX": 272832.375,
+    "MapPositionY": -261865.6875,
+    "MapPositionZ": 1087.6807861328,
+    "Purity": "Impure",
+    "Biome": "Dune Desert",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode43_UAID_40B076DF2F7936D401_1733397541",
+    "MapPositionX": -80869.7734375,
+    "MapPositionY": -32418.93359375,
+    "MapPositionZ": 15656.698242188,
+    "Purity": "Impure",
+    "Biome": "Crater Lakes",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode607",
+    "MapPositionX": -143612.109375,
+    "MapPositionY": 20728.1796875,
+    "MapPositionZ": 19457.724609375,
+    "Purity": "Impure",
+    "Biome": "Red Jungle",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode519_UAID_40B076DF2F79D3D901_1586151453",
+    "MapPositionX": -181813.765625,
+    "MapPositionY": 89076.6328125,
+    "MapPositionZ": 17039.228515625,
+    "Purity": "Normal",
+    "Biome": "Dangle Spires",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode47_3066",
+    "MapPositionX": 15459.890625,
+    "MapPositionY": -803.77032470703,
+    "MapPositionZ": 14671.2109375,
+    "Purity": "Normal",
+    "Biome": "Red Bamboo Fields",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode99",
+    "MapPositionX": 132957.515625,
+    "MapPositionY": 240892.875,
+    "MapPositionZ": -14192.569335938,
+    "Purity": "Impure",
+    "Biome": "Blue Crater",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode43_UAID_40B076DF2F793ED901_1532454233",
+    "MapPositionX": 152961.875,
+    "MapPositionY": -24054.3359375,
+    "MapPositionZ": 4287.4365234375,
+    "Purity": "Impure",
+    "Biome": "Titan Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode43_UAID_40B076DF2F7941D901_1404601764",
+    "MapPositionX": 230542.484375,
+    "MapPositionY": -33617.0234375,
+    "MapPositionZ": 2185.2993164062,
+    "Purity": "Impure",
+    "Biome": "Titan Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode101_UAID_40B076DF2F79E6D901_1551800812",
+    "MapPositionX": 119148.9140625,
+    "MapPositionY": 71321.390625,
+    "MapPositionZ": 18673.609375,
+    "Purity": "Impure",
+    "Biome": "Titan Forest",
+    "Number": 3
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode172_UAID_40B076DF2F79DFD901_1471130569",
+    "MapPositionX": 80730.3359375,
+    "MapPositionY": 204811.921875,
+    "MapPositionZ": 5722.4125976562,
+    "Purity": "Impure",
+    "Biome": "Southern Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode78_1097",
+    "MapPositionX": 228273.234375,
+    "MapPositionY": 116287.0390625,
+    "MapPositionZ": -1581.8171386719,
+    "Purity": "Normal",
+    "Biome": "Abyss Cliffs",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode172",
+    "MapPositionX": -24065.671875,
+    "MapPositionY": 269858.09375,
+    "MapPositionZ": -13353.768554688,
+    "Purity": "Normal",
+    "Biome": "Grass Fields",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode101_UAID_40B076DF2F79E7D901_2125168992",
+    "MapPositionX": 162898.921875,
+    "MapPositionY": 65413.69140625,
+    "MapPositionZ": 9782.39453125,
+    "Purity": "Pure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 1
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode101_1893",
+    "MapPositionX": 161928.671875,
+    "MapPositionY": 103777.140625,
+    "MapPositionZ": 5602.8876953125,
+    "Purity": "Impure",
+    "Biome": "Eastern Dune Forest",
+    "Number": 2
+  },
+  {
+    "ItemCode": "Desc_SAM_C",
+    "InstanceName": "Persistent_Level:PersistentLevel.BP_ResourceNode519",
+    "MapPositionX": -48375.421875,
+    "MapPositionY": 128937.1328125,
+    "MapPositionZ": 23613.654296875,
+    "Purity": "Pure",
+    "Biome": "Western Dune Forest",
+    "Number": 1
+  }
+]
