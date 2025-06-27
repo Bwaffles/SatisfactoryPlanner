@@ -114,6 +114,8 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Product.As(1, Item.AluminumIngot)],
             [Building.Smelter]);
 
+        // FicsiteIngot
+
         #endregion
 
         #region Standard Parts
@@ -147,7 +149,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 
         // ReinforcedIronPlate
         public static readonly Recipe ReinforcedIronPlate = new(RecipeType.Standard, "ReinforcedIronPlate", "Reinforced Iron Plate", ManufacturingTime.Of(12, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(6, Item.IronPlate), Ingredient.As(12, Item.Screw)],
+            [Ingredient.As(6, Item.IronPlate), Ingredient.As(12, Item.Screws)],
             [Product.As(1, Item.ReinforcedIronPlate)],
             [Building.Assembler, Building.CraftBench]);
 
@@ -157,7 +159,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Building.Assembler]);
 
         public static readonly Recipe BoltedIronPlate = new(RecipeType.Alternate, "BoltedIronPlate", "Bolted Iron Plate", ManufacturingTime.Of(12, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(18, Item.IronPlate), Ingredient.As(50, Item.Screw)],
+            [Ingredient.As(18, Item.IronPlate), Ingredient.As(50, Item.Screws)],
             [Product.As(3, Item.ReinforcedIronPlate)],
             [Building.Assembler]);
 
@@ -166,20 +168,20 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Product.As(3, Item.ReinforcedIronPlate)],
             [Building.Assembler]);
 
-        // Screw
+        // Screws
         public static readonly Recipe Screw = new(RecipeType.Standard, "Screw", "Screw", ManufacturingTime.Of(6, 1), VariablePowerConsumption.None(),
             [Ingredient.As(1, Item.IronRod)],
-            [Product.As(4, Item.Screw)],
+            [Product.As(4, Item.Screws)],
             [Building.Constructor, Building.CraftBench]);
 
         public static readonly Recipe CastScrew = new(RecipeType.Alternate, "CastScrew", "Cast Screw", ManufacturingTime.Of(24, 1), VariablePowerConsumption.None(),
             [Ingredient.As(5, Item.IronIngot)],
-            [Product.As(20, Item.Screw)],
+            [Product.As(20, Item.Screws)],
             [Building.Constructor]);
 
         public static readonly Recipe SteelScrew = new(RecipeType.Alternate, "SteelScrew", "Steel Screw", ManufacturingTime.Of(12, 1), VariablePowerConsumption.None(),
             [Ingredient.As(1, Item.SteelBeam)],
-            [Product.As(52, Item.Screw)],
+            [Product.As(52, Item.Screws)],
             [Building.Constructor]);
 
         // ModularFrame
@@ -189,7 +191,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Building.Assembler, Building.CraftBench]);
 
         public static readonly Recipe BoltedFrame = new(RecipeType.Alternate, "BoltedFrame", "Bolted Frame", ManufacturingTime.Of(24, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(3, Item.ReinforcedIronPlate), Ingredient.As(56, Item.Screw)],
+            [Ingredient.As(3, Item.ReinforcedIronPlate), Ingredient.As(56, Item.Screws)],
             [Product.As(2, Item.ModularFrame)],
             [Building.Assembler]);
 
@@ -200,7 +202,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 
         // HeavyModularFrame
         public static readonly Recipe HeavyModularFrame = new(RecipeType.Standard, "HeavyModularFrame", "Heavy Modular Frame", ManufacturingTime.Of(30, 0.6m), VariablePowerConsumption.None(),
-            [Ingredient.As(5, Item.ModularFrame), Ingredient.As(15, Item.SteelPipe), Ingredient.As(5, Item.EncasedIndustrialBeam), Ingredient.As(100, Item.Screw)],
+            [Ingredient.As(5, Item.ModularFrame), Ingredient.As(15, Item.SteelPipe), Ingredient.As(5, Item.EncasedIndustrialBeam), Ingredient.As(100, Item.Screws)],
             [Product.As(1, Item.HeavyModularFrame)],
             [Building.Manufacturer, Building.CraftBench]);
 
@@ -210,7 +212,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Building.Manufacturer]);
 
         public static readonly Recipe HeavyFlexibleFrame = new(RecipeType.Alternate, "HeavyFlexibleFrame", "Heavy Flexible Frame", ManufacturingTime.Of(16, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(5, Item.ModularFrame), Ingredient.As(3, Item.EncasedIndustrialBeam), Ingredient.As(20, Item.Rubber), Ingredient.As(104, Item.Screw)],
+            [Ingredient.As(5, Item.ModularFrame), Ingredient.As(3, Item.EncasedIndustrialBeam), Ingredient.As(20, Item.Rubber), Ingredient.As(104, Item.Screws)],
             [Product.As(1, Item.HeavyModularFrame)],
             [Building.Manufacturer]);
 
@@ -276,17 +278,19 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Product.As(3, Item.AlcladAluminumSheet)],
             [Building.Assembler, Building.CraftBench]);
 
+        // FicsiteTrigon
+
         #endregion
 
         #region Industrial Parts
         // Rotor
         public static readonly Recipe Rotor = new(RecipeType.Standard, "Rotor", "Rotor", ManufacturingTime.Of(15, 0.8m), VariablePowerConsumption.None(),
-            [Ingredient.As(5, Item.IronRod), Ingredient.As(25, Item.Screw)],
+            [Ingredient.As(5, Item.IronRod), Ingredient.As(25, Item.Screws)],
             [Product.As(1, Item.Rotor)],
             [Building.Assembler, Building.CraftBench]);
 
         public static readonly Recipe CopperRotor = new(RecipeType.Alternate, "CopperRotor", "Copper Rotor", ManufacturingTime.Of(16, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(6, Item.CopperSheet), Ingredient.As(52, Item.Screw)],
+            [Ingredient.As(6, Item.CopperSheet), Ingredient.As(52, Item.Screws)],
             [Product.As(3, Item.Rotor)],
             [Building.Assembler]);
 
@@ -524,12 +528,18 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Product.As(12, Item.Quickwire)],
             [Building.Assembler]);
 
+        // SingularityCell
+
+        // ReanimatedSAM
+
+        // SAMFluctuator
+
         #endregion
 
         #region Communications
         // Computer
         public static readonly Recipe Computer = new(RecipeType.Standard, "Computer", "Computer", ManufacturingTime.Of(24, 1.5m), VariablePowerConsumption.None(),
-            [Ingredient.As(10, Item.CircuitBoard), Ingredient.As(9, Item.Cable), Ingredient.As(18, Item.Plastic), Ingredient.As(52, Item.Screw)],
+            [Ingredient.As(10, Item.CircuitBoard), Ingredient.As(9, Item.Cable), Ingredient.As(18, Item.Plastic), Ingredient.As(52, Item.Screws)],
             [Product.As(1, Item.Computer)],
             [Building.Manufacturer, Building.CraftBench]);
 
@@ -733,15 +743,13 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Product.As(1, Item.PackagedNitricAcid)],
             [Building.Packager]);
 
+        // Diamonds
+
+        // DissolvedSilica
+
         #endregion
 
         #region Biomass
-
-        // Color Cartridge
-        public static readonly Recipe ColorCartridge = new(RecipeType.Standard, "ColorCartridge", "Color Cartridge", ManufacturingTime.Of(6, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(5, Item.FlowerPetals)],
-            [Product.As(10, Item.ColorCartridge)],
-            [Building.Constructor, Building.CraftBench]);
 
         // Fabric
         public static readonly Recipe Fabric = new(RecipeType.Standard, "Fabric", "Fabric", ManufacturingTime.Of(4, 1), VariablePowerConsumption.None(),
@@ -861,6 +869,14 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Product.As(2, Item.PackagedTurbofuel)],
             [Building.Packager]);
 
+        // RocketFuel
+
+        // PackagedRocketFuel
+
+        // IonizedFuel
+
+        // PackagedIonizedFuel
+
         #endregion
 
         #region Containers
@@ -948,7 +964,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Building.Manufacturer]);
 
         public static readonly Recipe UraniumFuelUnit = new(RecipeType.Alternate, "UraniumFuelUnit", "Uranium Fuel Unit", ManufacturingTime.Of(300, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(100, Item.EncasedUraniumCell), Ingredient.As(10, Item.ElectromagneticControlRod), Ingredient.As(3, Item.CrystalOscillator), Ingredient.As(6, Item.Beacon)],
+            [Ingredient.As(100, Item.EncasedUraniumCell), Ingredient.As(10, Item.ElectromagneticControlRod), Ingredient.As(3, Item.CrystalOscillator)],
             [Product.As(3, Item.UraniumFuelRod)],
             [Building.Manufacturer]);
 
@@ -979,6 +995,28 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Ingredient.As(20, Item.EncasedPlutoniumCell), Ingredient.As(1, Item.PressureConversionCube)],
             [Product.As(1, Item.PlutoniumFuelRod)],
             [Building.Assembler]);
+
+        // Ficsonium
+
+        // FicsoniumFuelRod
+
+        #endregion
+
+        #region Quantum Technology
+
+        // AlienPowerMatrix
+
+        // TimeCrystal
+
+        // DarkMatterCrystal
+
+        // DarkMatterResidue
+
+        // ExcitedPhotonicMatter
+
+        // SuperpositionOscillator
+
+        // NeuralQuantumProcessor
 
         #endregion
 
@@ -1053,6 +1091,12 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Product.As(1, Item.NuclearPasta)],
             [Building.ParticleAccelerator]);
 
+        // BiochemicalSculptor
+
+        // BallisticWarpDrive
+
+        // AIExpansionServer
+
         #endregion
 
         #region Consumables
@@ -1094,17 +1138,6 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 
         #region Tools
 
-        // Beacon
-        public static readonly Recipe Beacon = new(RecipeType.Standard, "Beacon", "Beacon", ManufacturingTime.Of(8, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(3, Item.IronPlate), Ingredient.As(1, Item.IronRod), Ingredient.As(15, Item.Wire), Ingredient.As(2, Item.Cable)],
-            [Product.As(1, Item.Beacon)],
-            [Building.Manufacturer, Building.EquipmentWorkshop]);
-
-        public static readonly Recipe CrystalBeacon = new(RecipeType.Alternate, "CrystalBeacon", "Crystal Beacon", ManufacturingTime.Of(120, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(4, Item.SteelBeam), Ingredient.As(16, Item.SteelPipe), Ingredient.As(1, Item.CrystalOscillator)],
-            [Product.As(20, Item.Beacon)],
-            [Building.Manufacturer]);
-
         // PortableMiner
         public static readonly Recipe PortableMiner = new(RecipeType.Standard, "PortableMiner", "Portable Miner", ManufacturingTime.Of(40, 1), VariablePowerConsumption.None(),
             [Ingredient.As(2, Item.IronPlate), Ingredient.As(4, Item.IronRod)],
@@ -1118,13 +1151,13 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 
         // Chainsaw
         public static readonly Recipe Chainsaw = new(RecipeType.Standard, "Chainsaw", "Chainsaw", ManufacturingTime.Of(60, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(5, Item.ReinforcedIronPlate), Ingredient.As(25, Item.IronRod), Ingredient.As(160, Item.Screw), Ingredient.As(15, Item.Cable)],
+            [Ingredient.As(5, Item.ReinforcedIronPlate), Ingredient.As(25, Item.IronRod), Ingredient.As(160, Item.Screws), Ingredient.As(15, Item.Cable)],
             [Product.As(1, Item.Chainsaw)],
             [Building.EquipmentWorkshop]);
 
         // ObjectScanner
         public static readonly Recipe ObjectScanner = new(RecipeType.Standard, "ObjectScanner", "Object Scanner", ManufacturingTime.Of(40, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(4, Item.ReinforcedIronPlate), Ingredient.As(20, Item.Wire), Ingredient.As(50, Item.Screw)],
+            [Ingredient.As(4, Item.ReinforcedIronPlate), Ingredient.As(20, Item.Wire), Ingredient.As(50, Item.Screws)],
             [Product.As(1, Item.ObjectScanner)],
             [Building.EquipmentWorkshop]);
 
@@ -1156,10 +1189,10 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Product.As(1, Item.Parachute)],
             [Building.EquipmentWorkshop]);
 
-        // HoverPack
+        // Hoverpack
         public static readonly Recipe HoverPack = new(RecipeType.Standard, "HoverPack", "Hover Pack", ManufacturingTime.Of(120, 1), VariablePowerConsumption.None(),
             [Ingredient.As(8, Item.Motor), Ingredient.As(4, Item.HeavyModularFrame), Ingredient.As(8, Item.Computer), Ingredient.As(40, Item.AlcladAluminumSheet)],
-            [Product.As(1, Item.HoverPack)],
+            [Product.As(1, Item.Hoverpack)],
             [Building.EquipmentWorkshop]);
 
         // HazmatSuit
@@ -1204,13 +1237,13 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 
         // RebarGun
         public static readonly Recipe RebarGun = new(RecipeType.Standard, "RebarGun", "Rebar Gun", ManufacturingTime.Of(60, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(6, Item.ReinforcedIronPlate), Ingredient.As(16, Item.IronRod), Ingredient.As(100, Item.Screw)],
+            [Ingredient.As(6, Item.ReinforcedIronPlate), Ingredient.As(16, Item.IronRod), Ingredient.As(100, Item.Screws)],
             [Product.As(1, Item.RebarGun)],
             [Building.EquipmentWorkshop]);
 
         // Rifle
         public static readonly Recipe Rifle = new(RecipeType.Standard, "Rifle", "Rifle", ManufacturingTime.Of(120, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(2, Item.Motor), Ingredient.As(10, Item.Rubber), Ingredient.As(25, Item.SteelPipe), Ingredient.As(250, Item.Screw)],
+            [Ingredient.As(2, Item.Motor), Ingredient.As(10, Item.Rubber), Ingredient.As(25, Item.SteelPipe), Ingredient.As(250, Item.Screws)],
             [Product.As(1, Item.Rifle)],
             [Building.EquipmentWorkshop]);
 
@@ -1332,7 +1365,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Building.Constructor, Building.CraftBench]);
 
         public static readonly Recipe SpitterProtein = new(RecipeType.Standard, "SpitterProtein", "Spitter Protein", ManufacturingTime.Of(3, 1.333333m), VariablePowerConsumption.None(),
-            [Ingredient.As(1, Item.PlasmaSpitterRemains)],
+            [Ingredient.As(1, Item.SpitterRemains)],
             [Product.As(1, Item.AlienProtein)],
             [Building.Constructor, Building.CraftBench]);
 
@@ -1401,21 +1434,21 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
             [Product.As(1, Item.FICSMASOrnamentBundle)],
             [Building.Assembler]);
 
-        // FICSMASDecoration
+        // FICSMASWreath
         public static readonly Recipe FICSMASDecoration = new(RecipeType.Standard, "FICSMASDecoration", "FICSMAS Decoration", ManufacturingTime.Of(60, 1), VariablePowerConsumption.None(),
             [Ingredient.As(15, Item.FICSMASTreeBranch), Ingredient.As(6, Item.FICSMASOrnamentBundle)],
-            [Product.As(2, Item.FICSMASDecoration)],
+            [Product.As(2, Item.FICSMASWreath)],
             [Building.Assembler]);
 
-        // ActualSnow
+        // FICSMASActualSnow
         public static readonly Recipe ActualSnow = new(RecipeType.Standard, "ActualSnow", "Actual Snow", ManufacturingTime.Of(12, 1), VariablePowerConsumption.None(),
             [Ingredient.As(5, Item.FICSMASGift)],
-            [Product.As(2, Item.ActualSnow)],
+            [Product.As(2, Item.FICSMASActualSnow)],
             [Building.Constructor]);
 
         // Snowball
         public static readonly Recipe Snowball = new(RecipeType.Standard, "Snowball", "Snowball", ManufacturingTime.Of(12, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(3, Item.ActualSnow)],
+            [Ingredient.As(3, Item.FICSMASActualSnow)],
             [Product.As(1, Item.Snowball)],
             [Building.Constructor]);
 
@@ -1433,7 +1466,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 
         // FICSMASWonderStar
         public static readonly Recipe FICSMASWonderStar = new(RecipeType.Standard, "FICSMASWonderStar", "FICSMAS Wonder Star", ManufacturingTime.Of(60, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(5, Item.FICSMASDecoration), Ingredient.As(20, Item.CandyCane)],
+            [Ingredient.As(5, Item.FICSMASWreath), Ingredient.As(20, Item.CandyCane)],
             [Product.As(1, Item.FICSMASWonderStar)],
             [Building.Assembler]);
 
@@ -1463,7 +1496,7 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
 
         // SparklyFireworks
         public static readonly Recipe SparklyFireworks = new(RecipeType.Standard, "SparklyFireworks", "Sparkly Fireworks", ManufacturingTime.Of(24, 1), VariablePowerConsumption.None(),
-            [Ingredient.As(3, Item.FICSMASTreeBranch), Ingredient.As(2, Item.ActualSnow)],
+            [Ingredient.As(3, Item.FICSMASTreeBranch), Ingredient.As(2, Item.FICSMASActualSnow)],
             [Product.As(1, Item.SparklyFireworks)],
             [Building.Assembler, Building.EquipmentWorkshop]);
 

@@ -66,6 +66,7 @@
                 CateriumOre,
                 Bauxite,
                 Uranium,
+                SAM,
                 Water,
                 CrudeOil,
                 NitrogenGas,
@@ -76,12 +77,13 @@
                 SteelIngot,
                 CateriumIngot,
                 AluminumIngot,
+                FicsiteIngot,
 
                 // Standard Parts
                 IronRod,
                 IronPlate,
                 ReinforcedIronPlate,
-                Screw,
+                Screws,
                 ModularFrame,
                 HeavyModularFrame,
                 FusedModularFrame,
@@ -91,6 +93,7 @@
                 CopperSheet,
                 AluminumCasing,
                 AlcladAluminumSheet,
+                FicsiteTrigon,
 
                 // Industrial Parts
                 Rotor,
@@ -115,6 +118,9 @@
                 HighSpeedConnector,
                 AILimiter,
                 Quickwire,
+                SingularityCell,
+                ReanimatedSAM,
+                SAMFluctuator,
 
                 // Communications
                 Computer,
@@ -139,11 +145,11 @@
                 PackagedSulfuricAcid,
                 NitricAcid,
                 PackagedNitricAcid,
+                Diamonds,
+                DissolvedSilica,
                 
                 // Biomass
-                ColorCartridge,
                 Fabric,
-                FlowerPetals,
                 Wood,
                 Mycelia,
                 Leaves,
@@ -157,6 +163,10 @@
                 PackagedFuel,
                 Turbofuel,
                 PackagedTurbofuel,
+                RocketFuel,
+                PackagedRocketFuel,
+                IonizedFuel,
+                PackagedIonizedFuel,
                 
                 // Containers
                 EmptyCanister,
@@ -175,6 +185,17 @@
                 EncasedPlutoniumCell,
                 PlutoniumFuelRod,
                 PlutoniumWaste,
+                Ficsonium,
+                FicsoniumFuelRod,
+
+                // Quantum Technology
+                AlienPowerMatrix,
+                TimeCrystal,
+                DarkMatterCrystal,
+                DarkMatterResidue,
+                ExcitedPhotonicMatter,
+                SuperpositionOscillator,
+                NeuralQuantumProcessor,
 
                 // Space Elevator
                 SmartPlating,
@@ -186,6 +207,9 @@
                 MagneticFieldGenerator,
                 ThermalPropulsionRocket,
                 NuclearPasta,
+                BiochemicalSculptor,
+                BallisticWarpDrive,
+                AIExpansionServer,
 
                 // Consumables
                 GasFilter,
@@ -196,7 +220,6 @@
                 Paleberry,
 
                 // Tools
-                Beacon,
                 PortableMiner,
                 Chainsaw,
                 ObjectScanner,
@@ -206,7 +229,7 @@
                 
                 // Body Equipment
                 Parachute,
-                HoverPack,
+                Hoverpack,
                 HazmatSuit,
                 GasMask,
                 Jetpack,
@@ -238,7 +261,7 @@
                 // Alien Remains
                 HatcherRemains,
                 HogRemains,
-                PlasmaSpitterRemains,
+                SpitterRemains,
                 StingerRemains,
                 AlienProtein,
                 AlienDNACapsule,
@@ -256,8 +279,8 @@
                 CopperFICSMASOrnament,
                 IronFICSMASOrnament,
                 FICSMASOrnamentBundle,
-                FICSMASDecoration,
-                ActualSnow,
+                FICSMASWreath,
+                FICSMASActualSnow,
                 Snowball,
                 FICSMASBow,
                 FICSMASTreeBranch,
@@ -266,10 +289,7 @@
                 CandyCaneBasher,
                 SweetFireworks,
                 FancyFireworks,
-                SparklyFireworks,
-
-                // Other
-                HUBParts
+                SparklyFireworks
             ];
         }
 

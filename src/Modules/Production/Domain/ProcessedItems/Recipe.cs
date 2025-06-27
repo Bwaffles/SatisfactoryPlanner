@@ -200,7 +200,6 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
                 PackagedNitricAcid,
 
                 // Biomass
-                ColorCartridge,
                 Fabric,
                 PolyesterFabric,
                 BiomassAlienProtein,
@@ -249,6 +248,8 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
                 PlutoniumFuelRod,
                 PlutoniumFuelUnit,
 
+                // Quantum Technology
+
                 // Space Elevator
                 SmartPlating,
                 PlasticSmartPlating,
@@ -272,8 +273,6 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
                 VitaminInhaler,
 
                 // Tools
-                Beacon,
-                CrystalBeacon,
                 PortableMiner,
                 AutomatedMiner,
                 Chainsaw,

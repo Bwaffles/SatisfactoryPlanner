@@ -15,6 +15,7 @@
         Fuel,
         Containers,
         Nuclear,
+        QuantumTechnology,
         SpaceElevator,
         Consumables,
         Tools,
@@ -23,7 +24,6 @@
         Ammunition,
         AlienRemains,
         PowerShards,
-        FICSMAS,
-        Other,
+        FICSMAS
     }
 }
