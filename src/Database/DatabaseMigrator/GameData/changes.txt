@@ -1,0 +1,13 @@
+New Items
+=======================
+{ Name = Mercer Sphere, StackSize = SS_SMALL, Form = RF_SOLID, ResourceSinkPoints = 0, EnergyValue = 0.000000, RadioactiveDecay = 0.000000, HealthGain = , Description = A weird alien phenomenon. While the sphere appears liquid, it behaves like a solid and does not have any detectable mass. It seems to somehow interact with and have awareness of its environment. }
+{ Name = Somersloop, StackSize = SS_SMALL, Form = RF_SOLID, ResourceSinkPoints = 0, EnergyValue = 0.000000, RadioactiveDecay = 0.000000, HealthGain = , Description = An odd alien object with a mind-bending, yet somehow familiar shape. It emits an unsettling energy. }
+
+Turbo Rifle Ammo Changes
+=======================
+More than 1 Turbo Rifle Ammo found.
+
+Turbo Rifle Ammo Changes
+=======================
+More than 1 Turbo Rifle Ammo found.
+
