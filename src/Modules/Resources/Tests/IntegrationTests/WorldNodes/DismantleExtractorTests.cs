@@ -3,75 +3,62 @@ using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DismantleExtr
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.IntegrationTests.SeedWork;
 
-namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes
+namespace SatisfactoryPlanner.Modules.Resources.IntegrationTests.WorldNodes;
+
+[TestFixture]
+public class DismantleExtractorTests : IntegrationTest
 {
-    [TestFixture]
-    public class DismantleExtractorTests : IntegrationTest
+    // Happy path tests
+    [Test]
+    public async Task WhenDataIsValid_IsSuccessful()
     {
-        // Happy path tests
-        [Test]
-        public async Task WhenDataIsValid_IsSuccessful()
-        {
-            var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule);
+        var (worldId, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule);
 
-            await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(worldId, nodeId));
+        await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(worldId, nodeId));
 
-            var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
-            var postDismantleDetails = result.Details;
+        var result = await ResourcesModule.ExecuteQueryAsync(new GetWorldNodeDetailsQuery(worldId, nodeId));
+        var postDismantleDetails = result.Details;
 
-            postDismantleDetails.IsTapped.Should().BeFalse();
-            postDismantleDetails.ExtractorId.Should().BeNull();
-            postDismantleDetails.ExtractionRate.Should().Be(0);
-        }
+        postDismantleDetails.IsTapped.Should().BeFalse();
+        postDismantleDetails.ExtractorId.Should().BeNull();
+        postDismantleDetails.ExtractionRate.Should().Be(0);
 
-        // CommandValidator tests
-        [Test]
-        public async Task WhenWorldIdIsEmpty_ThrowsInvalidCommandException()
-        {
-            var (_, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule);
+        await AssertOutboxContains<ExtractorDismantledNotification>();
+    }
 
-            Assert.CatchAsync<InvalidCommandException>(async () =>
-            {
-                await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(Guid.Empty, nodeId));
-            });
-        }
+    // CommandValidator tests
+    [Test]
+    public async Task WhenWorldIdIsEmpty_ThrowsInvalidCommandException()
+    {
+        var (_, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule);
 
-        [Test]
-        public async Task WhenNodeIdIsEmpty_ThrowsInvalidCommandException()
-        {
-            var (worldId, _) = await new TappedWorldNodeFixture().Create(ResourcesModule);
+        Assert.CatchAsync<InvalidCommandException>(async () => await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(Guid.Empty, nodeId)));
+    }
 
-            Assert.CatchAsync<InvalidCommandException>(async () =>
-            {
-                await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(worldId, Guid.Empty));
-            });
-        }
+    [Test]
+    public async Task WhenNodeIdIsEmpty_ThrowsInvalidCommandException()
+    {
+        var (worldId, _) = await new TappedWorldNodeFixture().Create(ResourcesModule);
 
-        // Command Tests
-        [Test]
-        public async Task WhenWorldDoesNotExist_ThrowsInvalidCommandException()
-        {
-            var (_, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule);
+        Assert.CatchAsync<InvalidCommandException>(async () => await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(worldId, Guid.Empty)));
+    }
 
-            var randomWorldId = Guid.NewGuid();
-            Assert.CatchAsync<InvalidCommandException>(async () =>
-            {
-                await ResourcesModule.ExecuteCommandAsync(
-                    new DismantleExtractorCommand(randomWorldId, nodeId));
-            });
-        }
+    // Command Tests
+    [Test]
+    public async Task WhenWorldDoesNotExist_ThrowsInvalidCommandException()
+    {
+        var (_, nodeId) = await new TappedWorldNodeFixture().Create(ResourcesModule);
 
-        [Test]
-        public async Task WhenNodeDoesNotExist_ThrowsInvalidCommandException()
-        {
-            var (worldId, _) = await new TappedWorldNodeFixture().Create(ResourcesModule);
+        var randomWorldId = Guid.NewGuid();
+        Assert.CatchAsync<InvalidCommandException>(async () => await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(randomWorldId, nodeId)));
+    }
 
-            var randomNodeId = Guid.NewGuid();
-            Assert.CatchAsync<InvalidCommandException>(async () =>
-            {
-                await ResourcesModule.ExecuteCommandAsync(
-                    new DismantleExtractorCommand(worldId, randomNodeId));
-            });
-        }
+    [Test]
+    public async Task WhenNodeDoesNotExist_ThrowsInvalidCommandException()
+    {
+        var (worldId, _) = await new TappedWorldNodeFixture().Create(ResourcesModule);
+
+        var randomNodeId = Guid.NewGuid();
+        Assert.CatchAsync<InvalidCommandException>(async () => await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(worldId, randomNodeId)));
     }
 }

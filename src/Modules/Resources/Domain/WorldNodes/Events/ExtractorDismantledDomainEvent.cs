@@ -2,13 +2,8 @@
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes.Events
 {
-    public class ExtractorDismantledDomainEvent : DomainEventBase
+    public class ExtractorDismantledDomainEvent(WorldNodeId worldNodeId) : DomainEventBase
     {
-        public WorldNodeId WorldNodeId { get; }
-
-        public ExtractorDismantledDomainEvent(WorldNodeId worldNodeId)
-        {
-            WorldNodeId = worldNodeId;
-        }
+        public WorldNodeId WorldNodeId { get; } = worldNodeId;
     }
 }
