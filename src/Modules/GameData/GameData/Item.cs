@@ -191,8 +191,8 @@
                 // Quantum Technology
                 AlienPowerMatrix,
                 TimeCrystal,
-                DarkMatterCrystal,
                 DarkMatterResidue,
+                DarkMatterCrystal,
                 ExcitedPhotonicMatter,
                 SuperpositionOscillator,
                 NeuralQuantumProcessor,

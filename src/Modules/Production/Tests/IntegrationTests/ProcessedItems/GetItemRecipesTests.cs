@@ -17,7 +17,7 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProcessedItems
             AssertAll(() =>
             {
                 var productRecipes = itemRecipes.ProductRecipes;
-                productRecipes.Should().HaveCount(3);
+                productRecipes.Should().HaveCount(5);
                 productRecipes.Should().OnlyHaveUniqueItems();
                 productRecipes.Should().ContainEquivalentOf(new RecipeDto
                 {
@@ -84,7 +84,7 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProcessedItems
                 });
 
                 var ingredientRecipes = itemRecipes.IngredientRecipes;
-                ingredientRecipes.Should().HaveCount(6);
+                ingredientRecipes.Should().HaveCount(10);
                 ingredientRecipes.Should().OnlyHaveUniqueItems();
                 ingredientRecipes.Should().ContainEquivalentOf(new RecipeDto
                 {
@@ -135,6 +135,18 @@ namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProcessedItems
             {
                 itemRecipes.ProductRecipes.Should().NotBeEmpty("because you can produce plutonium fuel rods");
                 itemRecipes.IngredientRecipes.Should().BeEmpty("because plutonium fuel rods are the end of their production chain");
+            });
+        }
+
+        [Test]
+        public async Task CanGetRecipesWithNoIngredients()
+        {
+            var itemRecipes = await ProductionModule.ExecuteQueryAsync(new GetItemRecipesQuery("ExcitedPhotonicMatter"));
+
+            AssertAll(() =>
+            {
+                itemRecipes.ProductRecipes.Single(productRecipe => productRecipe.Id == "ExcitedPhotonicMatter")
+                    .Ingredients.Should().BeEmpty("because excited photonic matter doesn't need ingredients to produce");
             });
         }
 

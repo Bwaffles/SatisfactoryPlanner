@@ -15,6 +15,8 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
         public static readonly Building Manufacturer = new("Manufacturer", "Manufacturer", ProductionMethod.Automatic);
         public static readonly Building Blender = new("Blender", "Blender", ProductionMethod.Automatic);
         public static readonly Building ParticleAccelerator = new("ParticleAccelerator", "Particle Accelerator", ProductionMethod.Automatic);
+        public static readonly Building Converter = new("Converter", "Converter", ProductionMethod.Automatic);
+        public static readonly Building QuantumEncoder = new("QuantumEncoder", "Quantum Encoder", ProductionMethod.Automatic);
 
         public string Id { get; }
 
