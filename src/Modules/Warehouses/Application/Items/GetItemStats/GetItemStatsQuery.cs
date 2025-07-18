@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.BuildingBlocks.Application.Data;
 using SatisfactoryPlanner.Modules.GameData.GameData;
 using SatisfactoryPlanner.Modules.Warehouses.Application.Configuration;
@@ -40,10 +41,11 @@ namespace SatisfactoryPlanner.Modules.Warehouses.Application.Items.GetItemStats
                 var warehouseItem = result.Items.SingleOrDefault(item => item.ItemId == producedItemSource.ProducedItemItemId);
                 if (warehouseItem == null)
                 {
+                    var item = Item.FindById(producedItemSource.ProducedItemItemId) ?? throw new InvalidCommandException("Item must exist.");
                     warehouseItem = new WarehouseItem
                     {
-                        ItemId = producedItemSource.ProducedItemItemId,
-                        ItemName = Item.GetById(producedItemSource.ProducedItemItemId).Name,
+                        ItemId = item.Id,
+                        ItemName = item.Name,
                         AmountProduced = 0,
                         AmountExported = 0,
                         AmountAvailable = 0,

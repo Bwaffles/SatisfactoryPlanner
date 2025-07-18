@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Newtonsoft.Json;
+using SatisfactoryPlanner.BuildingBlocks.Application;
 using SatisfactoryPlanner.Modules.GameData.GameData;
 using SatisfactoryPlanner.Modules.Warehouses.Application.Configuration;
 using SatisfactoryPlanner.Modules.Warehouses.Domain.ItemSources;
@@ -15,10 +16,17 @@ namespace SatisfactoryPlanner.Modules.Warehouses.Application.ItemSources.Registe
 
         public async Task<Unit> Handle(RegisterNodeCommand request, CancellationToken cancellationToken)
         {
-            var source = Source.Node(new SourceId(request.NodeId), request.NodeName);
-            var itemSource = ItemSource.Register(new WorldId(request.WorldId), source);
+            var worldId = new WorldId(request.WorldId);
+            var sourceId = new SourceId(request.NodeId);
 
-            var item = Item.GetById(request.ItemId);
+            var itemSource = await _itemSourcesRepository.FindAsync(worldId, sourceId);
+            if (itemSource != null)
+                return Unit.Value;
+
+            var source = Source.Node(sourceId, request.NodeName);
+            itemSource = ItemSource.Register(worldId, source);
+
+            var item = Item.FindById(request.ItemId) ?? throw new InvalidCommandException("Item must exist.");
             itemSource.Produces(item, Rate.Of(0));
 
             await _itemSourcesRepository.AddAsync(itemSource);

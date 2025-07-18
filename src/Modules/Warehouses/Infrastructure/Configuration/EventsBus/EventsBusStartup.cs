@@ -14,6 +14,7 @@ public static class EventsBusStartup
         SubscribeToIntegrationEvent<NodeTappedIntegrationEvent>(eventBus, logger);
         SubscribeToIntegrationEvent<ExtractionRateIncreasedIntegrationEvent>(eventBus, logger);
         SubscribeToIntegrationEvent<ExtractionRateDecreasedIntegrationEvent>(eventBus, logger);
+        SubscribeToIntegrationEvent<ExtractorDismantledIntegrationEvent>(eventBus, logger);
     }
 
     private static void SubscribeToIntegrationEvent<T>(IEventsBus eventBus, ILogger logger)
