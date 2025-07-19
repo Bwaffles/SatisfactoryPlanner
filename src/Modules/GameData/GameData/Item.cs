@@ -296,17 +296,9 @@
         public static readonly List<Item> All;
 
         /// <summary>
-        /// Get an <see cref="Item"/> by the given <paramref name="id"/>.
+        /// Find an <see cref="Item"/> by the given <paramref name="id"/>.
         /// </summary>
-        /// <returns>The found <see cref="Item"/>.</returns>
-        /// <exception cref="ArgumentException">Thrown when there is no item with that id.</exception>
-        public static Item GetById(string id)
-        {
-            var item = All.SingleOrDefault(item => item.Id == id);
-            if (item == null)
-                throw new ArgumentException("Id does not match a known item", nameof(id));
-
-            return item;
-        }
+        /// <returns>The found <see cref="Item"/> or null if no item is found.</returns>
+        public static Item? FindById(string id) => All.SingleOrDefault(item => item.Id == id);
     }
 }

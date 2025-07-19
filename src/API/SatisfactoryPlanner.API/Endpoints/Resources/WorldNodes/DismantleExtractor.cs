@@ -20,7 +20,7 @@ namespace SatisfactoryPlanner.API.Modules.Resources.WorldNodes
             Summary = "Dismantle the extractor used to extract resources from the world node.",
             Description = "Dismantle the extractor used to extract the resources from the world node. " +
                             "After it's been dismantled, the node will be untapped. " +
-                            "To start extracting resources from it again, you will need to tap the node again.",
+                            "To resume extracting resources from it, you will need to tap the node again.",
             Tags = [Tags.WorldNodes])]
         [SwaggerResponse(204)]
         public async Task<IActionResult> HandleAsync([FromRoute] Guid worldId, [FromRoute] Guid nodeId)

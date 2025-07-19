@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using FluentValidation;
 using MediatR;
 using MediatR.Pipeline;
 using SatisfactoryPlanner.BuildingBlocks.Infrastructure.Configuration;
@@ -19,7 +20,8 @@ namespace SatisfactoryPlanner.Modules.Warehouses.Infrastructure.Configuration.Me
             Type[] mediatorOpenTypes = [
                 typeof(IRequestHandler<,>),
                 typeof(IRequestHandler<>),
-                typeof(INotificationHandler<>)
+                typeof(INotificationHandler<>),
+                typeof(IValidator<>)
             ];
 
             builder.RegisterSource(new ScopedContravariantRegistrationSource(mediatorOpenTypes));

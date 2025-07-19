@@ -56,6 +56,12 @@ partial class Build : NukeBuild
             }
         });
 
+    Target RunAllTests => _ => _
+        .DependsOn(RunArchitectureTests)
+        .DependsOn(RunUnitTests)
+        .DependsOn(RunAllIntegrationTests)
+        .Executes(() => { });
+
     // ReSharper disable once UnusedMember.Local because it's called from the buildPipeline script for my CI Pipeline git Action
     Target RunCIBuild => _ => _
         .DependsOn(RunAllIntegrationTests)

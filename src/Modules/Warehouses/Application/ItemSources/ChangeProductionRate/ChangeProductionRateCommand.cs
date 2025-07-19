@@ -19,7 +19,7 @@ internal class ChangeProductionRateCommandHandler(IItemSourcesRepository itemSou
         var itemSource = await _itemSourcesRepository.FindAsync(new WorldId(request.WorldId), new SourceId(request.SourceId))
             ?? throw new InvalidCommandException("Item source must exist.");
 
-        var item = Item.GetById(request.ItemId);
+        var item = Item.FindById(request.ItemId) ?? throw new InvalidCommandException("Item must exist.");
 
         itemSource.ChangeProductionRate(item, Rate.Of(request.Rate));
 

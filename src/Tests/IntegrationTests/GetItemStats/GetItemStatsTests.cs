@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using SatisfactoryPlanner.BuildingBlocks.IntegrationTests.Probing;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DecreaseExtractionRate;
+using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DismantleExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.DowngradeExtractor;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodeDetails;
 using SatisfactoryPlanner.Modules.Resources.Application.WorldNodes.GetWorldNodes;
@@ -208,6 +209,132 @@ internal class GetItemStatsTests : IntegrationTest
         });
     }
 
+    [Test]
+    public async Task ExtractorDismantledScenario()
+    {
+        var worldId = Guid.NewGuid();
+        await SpawnWorldNodes(worldId);
+
+        var nodes = await GetWorldNodes(worldId);
+
+        var ironOreNode = nodes.First(node => node.ResourceName == "Iron Ore");
+        var nodeDetails = await GetNodeDetails(worldId, ironOreNode.Id);
+        var extractor = nodeDetails.AvailableExtractors.First();
+        await TapWorldNode(worldId, ironOreNode.Id, extractor.Id);
+
+        await IncreaseExtractionRate(worldId, ironOreNode.Id, 15);
+
+        // When we dismantle an extractor, it should leave the source in the warehouse, but set the items produced to 0
+        await DismantleExtractor(worldId, ironOreNode.Id);
+
+        var itemStatsResult = await GetItemStats(worldId);
+        itemStatsResult.Should().BeEquivalentTo(new ItemStatsResult
+        {
+            Items = [
+                new WarehouseItem {
+                    ItemId = "IronOre",
+                    ItemName = "Iron Ore",
+                    AmountProduced = 0,
+                    AmountExported = 0,
+                    AmountAvailable = 0,
+                    AmountConsumed = 0,
+                    AmountImported = 0,
+                    ProducedAt = [
+                        ProductionSource(nodeDetails.NodeName, 0, 0, 0)
+                    ],
+                    ConsumedAt = []
+                }
+            ]
+        });
+    }
+
+    [Test]
+    public async Task ExtractorDismantledWhenMoreThanOneNodeInWarehouseScenario()
+    {
+        var worldId = Guid.NewGuid();
+        await SpawnWorldNodes(worldId);
+
+        var nodes = await GetWorldNodes(worldId);
+
+        var firstIronOreNode = nodes.First(node => node.ResourceName == "Iron Ore");
+        var firstNodeDetails = await GetNodeDetails(worldId, firstIronOreNode.Id);
+        var firstNodeExtractor = firstNodeDetails.AvailableExtractors.First();
+        await TapWorldNode(worldId, firstIronOreNode.Id, firstNodeExtractor.Id);
+
+        await IncreaseExtractionRate(worldId, firstIronOreNode.Id, 10);
+
+        var secondIronOreNode = nodes.Last(node => node.ResourceName == "Iron Ore");
+        var secondNodeDetails = await GetNodeDetails(worldId, secondIronOreNode.Id);
+        var secondNodeExtractor = secondNodeDetails.AvailableExtractors.First();
+        await TapWorldNode(worldId, secondIronOreNode.Id, secondNodeExtractor.Id);
+
+        await IncreaseExtractionRate(worldId, secondIronOreNode.Id, 5);
+
+        // When we dismantle an extractor, it should leave the source in the warehouse, but set the items produced to 0
+        await DismantleExtractor(worldId, secondIronOreNode.Id);
+
+        var itemStatsResult = await GetItemStats(worldId);
+        itemStatsResult.Should().BeEquivalentTo(new ItemStatsResult
+        {
+            Items = [
+                new WarehouseItem {
+                    ItemId = "IronOre",
+                    ItemName = "Iron Ore",
+                    AmountProduced = 10,
+                    AmountExported = 0,
+                    AmountAvailable = 10,
+                    AmountConsumed = 0,
+                    AmountImported = 0,
+                    ProducedAt = [
+                        ProductionSource(firstNodeDetails.NodeName, 10, 0, 10),
+                        ProductionSource(secondNodeDetails.NodeName, 0, 0, 0)
+                    ],
+                    ConsumedAt = []
+                }
+            ]
+        });
+    }
+
+    [Test]
+    public async Task ExtractorDismantledAndTappedAgainScenario()
+    {
+        var worldId = Guid.NewGuid();
+        await SpawnWorldNodes(worldId);
+
+        var nodes = await GetWorldNodes(worldId);
+
+        var ironOreNode = nodes.First(node => node.ResourceName == "Iron Ore");
+        var nodeDetails = await GetNodeDetails(worldId, ironOreNode.Id);
+        var extractor = nodeDetails.AvailableExtractors.First();
+        await TapWorldNode(worldId, ironOreNode.Id, extractor.Id);
+
+        await DismantleExtractor(worldId, ironOreNode.Id);
+
+        await TapWorldNode(worldId, ironOreNode.Id, extractor.Id);
+
+        await IncreaseExtractionRate(worldId, ironOreNode.Id, 15);
+
+        var itemStatsResult = await GetItemStats(worldId);
+        itemStatsResult.Should().BeEquivalentTo(new ItemStatsResult
+        {
+            Items = [
+                new WarehouseItem {
+                    ItemId = "IronOre",
+                    ItemName = "Iron Ore",
+                    AmountProduced = 15,
+                    AmountExported = 0,
+                    AmountAvailable = 15,
+                    AmountConsumed = 0,
+                    AmountImported = 0,
+                    ProducedAt = [
+                        ProductionSource(nodeDetails.NodeName, 15, 0, 15)
+                    ],
+                    ConsumedAt = []
+                }
+            ]
+        });
+    }
+
     private async Task SpawnWorldNodes(Guid worldId) => await ResourcesModule.ExecuteCommandAsync(new SpawnWorldNodesCommand(Guid.NewGuid(), worldId));
 
     private async Task<List<GetWorldNodesResult.WorldNodeDto>> GetWorldNodes(Guid worldId) => (await ResourcesModule.ExecuteQueryAsync(new GetWorldNodesQuery(worldId, null))).WorldNodes;
@@ -221,6 +348,8 @@ internal class GetItemStatsTests : IntegrationTest
     private async Task DecreaseExtractionRate(Guid worldId, Guid nodeId, decimal extractionRate) => await ResourcesModule.ExecuteCommandAsync(new DecreaseExtractionRateCommand(worldId, nodeId, extractionRate));
 
     private async Task DowngradeExtractor(Guid worldId, Guid nodeId, Guid extractorId) => await ResourcesModule.ExecuteCommandAsync(new DowngradeExtractorCommand(worldId, nodeId, extractorId));
+
+    private async Task DismantleExtractor(Guid worldId, Guid nodeId) => await ResourcesModule.ExecuteCommandAsync(new DismantleExtractorCommand(worldId, nodeId));
 
     private async Task<ItemStatsResult> GetItemStats(Guid worldId) => await Polling.GetEventually(new GetItemStatsProbe(WarehousesModule, worldId, warehouseItem => true), 7000);
 

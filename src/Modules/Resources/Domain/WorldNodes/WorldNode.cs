@@ -9,7 +9,7 @@ using System;
 
 namespace SatisfactoryPlanner.Modules.Resources.Domain.WorldNodes
 {
-    public class WorldNode : Entity, IAggregateRoot
+    public sealed class WorldNode : Entity, IAggregateRoot
     {
         private readonly NodeId _nodeId;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "Used by EF to save world id when spawned.")]
