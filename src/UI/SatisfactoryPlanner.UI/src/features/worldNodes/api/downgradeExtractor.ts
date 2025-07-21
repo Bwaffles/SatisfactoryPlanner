@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { queryClient } from "lib/react-query";
 import { useApi } from "lib/api";
 import useUser from "providers/user-provider";
+import { worldNodeKeys } from "./queryKeys";
 
 type DowngradeExtractorRequest = {
   nodeId: string;
@@ -14,17 +15,14 @@ export const useDowngradeExtractor = () => {
   const { world } = useUser();
 
   return useMutation<string, unknown, DowngradeExtractorRequest>({
-    onSuccess: () => {
-      // Invalidating queries that show current extractor & extraction rates
-
-      // Let these ones update behind the scenes since they're not as likely to be needed so fast
-      queryClient.invalidateQueries("getResources"); // resource extraction rate totals
-      queryClient.invalidateQueries("getWorldNodes"); // world node extraction rate
-
+    onSuccess: (_data: string, variables: DowngradeExtractorRequest) => {
       // Wait until getWorldNodeDetails finishes updating before ending the mutation so that the world node details page updates
-      return queryClient.invalidateQueries({
-        queryKey: ["getWorldNodeDetails"],
-      });
+      return queryClient.invalidateQueries(
+        {
+          queryKey: worldNodeKeys.details(variables.nodeId),
+        },
+        { cancelRefetch: false }
+      );
     },
     mutationFn: (variables: DowngradeExtractorRequest) => {
       return api.post(

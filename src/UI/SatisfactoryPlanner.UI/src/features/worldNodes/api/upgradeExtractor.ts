@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { queryClient } from "lib/react-query";
 import { useApi } from "lib/api";
 import useUser from "providers/user-provider";
+import { worldNodeKeys } from "./queryKeys";
 
 type UpgradeExtractorRequest = {
   nodeId: string;
@@ -14,13 +15,14 @@ export const useUpgradeExtractor = () => {
   const { world } = useUser();
 
   return useMutation<string, unknown, UpgradeExtractorRequest>({
-    onSuccess: () => {
-      // Invalidating queries that show current extractor
-
+    onSuccess: (_data: string, variables: UpgradeExtractorRequest) => {
       // Wait until getWorldNodeDetails finishes updating before ending the mutation so that the world node details page updates
-      return queryClient.invalidateQueries({
-        queryKey: ["getWorldNodeDetails"],
-      });
+      return queryClient.invalidateQueries(
+        {
+          queryKey: worldNodeKeys.details(variables.nodeId),
+        },
+        { cancelRefetch: false }
+      );
     },
     mutationFn: (variables: UpgradeExtractorRequest) => {
       return api.post(

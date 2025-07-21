@@ -2,13 +2,14 @@ import { useQuery } from "react-query";
 
 import { useApi } from "lib/api";
 import useUser from "providers/user-provider";
+import { worldNodeKeys } from "./queryKeys";
 
 export const useGetWorldNodeDetails = (nodeId: string) => {
   const api = useApi();
   const { world } = useUser();
 
   return useQuery<GetWorldNodeDetailsResponse>({
-    queryKey: ["getWorldNodeDetails"],
+    queryKey: worldNodeKeys.details(nodeId),
     queryFn: () => api.get(`/worlds/${world?.id}/nodes/${nodeId}`),
   });
 };

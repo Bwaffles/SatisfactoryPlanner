@@ -1,9 +1,17 @@
-import { QueryClient, DefaultOptions } from "react-query";
+import { QueryClient, DefaultOptions, MutationCache } from "react-query";
 
 const queryConfig: DefaultOptions = {
-    queries: {
-        suspense: true,
-    },
+  queries: {
+    suspense: true,
+    staleTime: 2 * 60 * 1000,
+  },
 };
 
-export const queryClient = new QueryClient({ defaultOptions: queryConfig });
+export const queryClient = new QueryClient({
+  defaultOptions: queryConfig,
+  mutationCache: new MutationCache({
+    onSuccess: (_data, _variables, _context) => {
+      queryClient.invalidateQueries();
+    },
+  }),
+});
