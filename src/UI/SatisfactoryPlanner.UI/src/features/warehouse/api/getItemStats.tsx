@@ -11,6 +11,7 @@ export const useGetItemStats = () => {
   return useQuery<GetItemStatsResponse>({
     queryKey: warehouseKeys.itemStats(),
     queryFn: async () => api.get(`worlds/${world?.id}/warehouse/item-stats`),
+    refetchInterval: 30 * 1000,
   });
 };
 
