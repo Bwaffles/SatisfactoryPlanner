@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { useApi } from "lib/api";
 import { queryClient } from "lib/react-query";
 import useUser from "providers/user-provider";
+import { worldNodeKeys } from "./queryKeys";
 
 type DismantleExtractorRequest = {
   nodeId: string;
@@ -13,16 +14,14 @@ export const useDismantleExtractor = () => {
   const { world } = useUser();
 
   return useMutation<string, unknown, DismantleExtractorRequest>({
-    onSuccess: () => {
-      // Invalidating queries that show whether a node has been tapped or not
-
-      // Let this one update behind the scenes since it's not as likely to be needed so fast
-      queryClient.invalidateQueries("getWorldNodes");
-
+    onSuccess: (_data: string, variables: DismantleExtractorRequest) => {
       // Wait until getWorldNodeDetails finishes updating before ending the mutation so that the node details page updates
-      return queryClient.invalidateQueries({
-        queryKey: ["getWorldNodeDetails"],
-      });
+      return queryClient.invalidateQueries(
+        {
+          queryKey: worldNodeKeys.details(variables.nodeId),
+        },
+        { cancelRefetch: false }
+      );
     },
     mutationFn: (variables: DismantleExtractorRequest) => {
       return api.post(
