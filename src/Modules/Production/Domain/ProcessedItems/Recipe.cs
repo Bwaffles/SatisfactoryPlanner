@@ -415,5 +415,11 @@ namespace SatisfactoryPlanner.Modules.Production.Domain.ProcessedItems
         }
 
         public static readonly List<Recipe> All;
+
+        /// <summary>
+        /// Find a <see cref="Recipe"/> by the given <paramref name="id"/>.
+        /// </summary>
+        /// <returns>The found <see cref="Recipe"/> or null if no recipe is found.</returns>
+        public static Recipe? FindById(string id) => All.SingleOrDefault(item => item.Id == id);
     }
 }

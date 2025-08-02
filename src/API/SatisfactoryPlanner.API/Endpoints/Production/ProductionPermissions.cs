@@ -8,5 +8,6 @@
         public const string RenameProductionLine = "Production.RenameProductionLine";
         public const string GetItemsToProcess = "Production.GetItemsToProcess";
         public const string GetItemRecipes = "Production.GetItemRecipes";
+        public const string GetRecipeDetails = "Production.GetRecipeDetails";
     }
 }

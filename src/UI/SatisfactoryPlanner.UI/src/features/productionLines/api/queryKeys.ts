@@ -10,4 +10,6 @@ export const processedItemsKeys = {
   itemsToProcess: () => [...processedItemsKeys.all, "itemsToProcess"] as const,
   itemRecipes: (itemId: string) =>
     [...processedItemsKeys.itemsToProcess(), itemId, "recipes"] as const,
+  recipeDetails: (recipeId: string) =>
+    [...processedItemsKeys.all, "recipe", recipeId] as const,
 };

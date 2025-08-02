@@ -14,33 +14,4 @@ namespace SatisfactoryPlanner.Modules.Production.Application.ProcessedItems.GetI
         /// </summary>
         public List<RecipeDto> ProductRecipes { get; set; }
     }
-
-    public class RecipeDto
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public List<IngredientDto> Ingredients { get; set; }
-        public List<ProductDto> Products { get; set; }
-    }
-
-    public class IngredientDto
-    {
-        public string ItemId { get; set; }
-        public string ItemName { get; set; }
-        public AmountDto Amount { get; set; }
-    }
-
-    public class ProductDto
-    {
-        public string ItemId { get; set; }
-        public string ItemName { get; set; }
-        public AmountDto Amount { get; set; }
-    }
-
-    public class AmountDto
-    {
-        public decimal AmountPerCycle { get; set; }
-        public decimal AmountPerMinute { get; set; }
-    }
 }
