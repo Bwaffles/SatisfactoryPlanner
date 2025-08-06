@@ -16,7 +16,7 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 
 - [React 18.3.1](https://reactjs.org/)
 - [Tanstack/React-Query v4.40.1](https://tanstack.com/query/v4/docs) - Running queries and mutations
-- [Typescript 4.6.4](https://www.typescriptlang.org/)
+- [Typescript 4.7.4](https://www.typescriptlang.org/)
 - [Font Awesome 6.5.2](https://fontawesome.com/icons) - Free icons--do not have a paid license
 - [Tailwind CSS 3.4.3](https://tailwindcss.com/docs/installation) - Styling as an alternative to bootstrap
   - autoprefixer && postcss - Used for set up of Tailwind Css
