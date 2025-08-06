@@ -14,12 +14,13 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 
 ## UI
 
-- [React 18.1.0](https://reactjs.org/)
-- [Typescript 4.6.4](https://www.typescriptlang.org/)
-- [Font Awesome 6.1.1](https://fontawesome.com/icons) - Free icons--do not have a paid license
-- [Tailwind CSS 3.0.24](https://tailwindcss.com/docs/installation) - Styling as an alternative to bootstrap
-- autoprefixer && postcss - Used for set up of Tailwind Css
-- [Vite 5.2.8](https://vitejs.dev/) - Build and dev server
+- [React 18.3.1](https://reactjs.org/)
+- [Tanstack/React-Query v4.40.1](https://tanstack.com/query/v4/docs) - Running queries and mutations
+- [Typescript 4.7.4](https://www.typescriptlang.org/)
+- [Font Awesome 6.5.2](https://fontawesome.com/icons) - Free icons--do not have a paid license
+- [Tailwind CSS 3.4.3](https://tailwindcss.com/docs/installation) - Styling as an alternative to bootstrap
+  - autoprefixer && postcss - Used for set up of Tailwind Css
+- [Vite 5.4.19](https://vitejs.dev/) - Build and dev server
 - [zod 3.21.4](https://zod.dev/) - Form validation
   - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers#zod) - used to get some zod resolvers
   - [react-hook-form](https://react-hook-form.com/) - Working with forms

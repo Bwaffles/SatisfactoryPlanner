@@ -2,7 +2,8 @@ import * as React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter as Router } from "react-router-dom";
-import { QueryClientProvider } from "react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { Spinner } from "components/Elements/Spinner";
 import { queryClient } from "lib/react-query";
@@ -27,6 +28,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             <AuthProvider>
               <QueryClientProvider client={queryClient}>
                 {children}
+                <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
               </QueryClientProvider>
             </AuthProvider>
           </Router>
