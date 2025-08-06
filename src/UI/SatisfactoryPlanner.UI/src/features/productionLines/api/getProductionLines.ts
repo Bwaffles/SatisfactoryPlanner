@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { ProductionLine } from "../types";
 import { useApi } from "lib/api";

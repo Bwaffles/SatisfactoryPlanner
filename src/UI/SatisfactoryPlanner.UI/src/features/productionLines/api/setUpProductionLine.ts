@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import { queryClient } from "lib/react-query";
 import { ErrorResponse, useApi } from "lib/api";
