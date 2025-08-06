@@ -14,7 +14,7 @@ From `src/UI/SatisfactoryPlanner.UI`, run `npm start`.
 
 ## UI
 
-- [React 18.1.0](https://reactjs.org/)
+- [React 18.3.1](https://reactjs.org/)
 - [Tanstack/React-Query v4.40.1](https://tanstack.com/query/v4/docs) - Running queries and mutations
 - [Typescript 4.6.4](https://www.typescriptlang.org/)
 - [Font Awesome 6.5.2](https://fontawesome.com/icons) - Free icons--do not have a paid license
