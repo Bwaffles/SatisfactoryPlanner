@@ -27,6 +27,15 @@ export type Recipe = {
   products: Product[];
 };
 
+export type RecipeDetails = {
+  id: string;
+  name: string;
+  type: RecipeType;
+  ingredients: Ingredient[];
+  products: Product[];
+  producedIn: Building[];
+};
+
 export enum RecipeType {
   Standard,
   Alternate,
@@ -45,3 +54,14 @@ export type Amount = {
   amountPerCycle: number;
   amountPerMinute: number;
 };
+
+export type Building = {
+  id: string;
+  name: string;
+  productionMethod: ProductionMethod;
+};
+
+export enum ProductionMethod {
+  Automatic,
+  Manual,
+}

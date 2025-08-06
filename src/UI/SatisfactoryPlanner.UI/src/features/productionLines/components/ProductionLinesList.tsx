@@ -3,6 +3,7 @@ import React from "react";
 import { useGetProductionLines } from "../api/getProductionLines";
 import { Button } from "components/Elements";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export const ProductionLinesList = () => {
   const {
@@ -32,13 +33,13 @@ export const ProductionLinesList = () => {
                 key={productionLine.id}
                 className="p-5 border-b last:border-b-0"
               >
-                <a
-                  href={`production-lines/${productionLine.id}`}
+                <Link
+                  to={`${productionLine.id}`}
                   title={`View the details of ${productionLine.name}.`}
                   className="font-semibold hover:text-sky-700"
                 >
                   {productionLine.name}
-                </a>
+                </Link>
               </li>
             );
           })}
@@ -50,12 +51,9 @@ export const ProductionLinesList = () => {
           </h2>
           <p className="text-muted-foreground ">
             Get started by{" "}
-            <a
-              href="/production-lines/set-up"
-              className="text-sky-600 hover:underline"
-            >
+            <Link to="set-up" className="text-sky-600 hover:underline">
               setting up a new production line
-            </a>
+            </Link>
             .
           </p>
         </div>

@@ -1,4 +1,5 @@
-﻿using SatisfactoryPlanner.Modules.Production.Application.ProcessedItems.GetItemsToProcess;
+﻿using SatisfactoryPlanner.Modules.Production.Application.ProcessedItems;
+using SatisfactoryPlanner.Modules.Production.Application.ProcessedItems.GetItemsToProcess;
 using SatisfactoryPlanner.Modules.Production.IntegrationTests.SeedWork;
 
 namespace SatisfactoryPlanner.Modules.Production.IntegrationTests.ProcessedItems

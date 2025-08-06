@@ -76,21 +76,26 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = "CardFooter";
 
-const CardActionArea = React.forwardRef<
-  HTMLButtonElement,
-  React.HTMLAttributes<HTMLButtonElement>
->(({ className, ...props }, ref) => (
-  <button
-    ref={ref}
-    type="button"
-    className={cn(
-      "w-full cursor-pointer text-inherit bg-transparent m-0 p-0 outline-none [border-radius:inherit] [text-align:inherit] appearance-none",
-      "hover:bg-accent/50",
-      className
-    )}
-    {...props}
-  />
-));
+export interface CardActionAreaProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  isSelected?: boolean;
+}
+
+const CardActionArea = React.forwardRef<HTMLButtonElement, CardActionAreaProps>(
+  ({ className, isSelected, ...props }, ref) => (
+    <button
+      ref={ref}
+      type="button"
+      className={cn(
+        "w-full cursor-pointer text-inherit bg-transparent m-0 p-0 outline-none [border-radius:inherit] [text-align:inherit] appearance-none",
+        "hover:bg-accent/50",
+        isSelected ? "bg-accent/75 hover:bg-accent/100" : "",
+        className
+      )}
+      {...props}
+    />
+  )
+);
 CardActionArea.displayName = "CardActionArea";
 
 export {
