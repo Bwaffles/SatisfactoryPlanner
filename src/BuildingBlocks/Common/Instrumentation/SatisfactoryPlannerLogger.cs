@@ -4,7 +4,6 @@ using SatisfactoryPlanner.BuildingBlocks.Common.EnvironmentInfo;
 using SatisfactoryPlanner.BuildingBlocks.Common.Extensions;
 using Serilog;
 using Serilog.Events;
-using Serilog.Extensions.Logging;
 using Serilog.Formatting.Compact;
 using Serilog.Templates;
 using Serilog.Templates.Themes;
@@ -24,7 +23,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation
     /// </remarks>
     public static class SatisfactoryPlannerLogger
     {
-        private const string Template = "{@t:u} [{@l}][{Module}:{Context}][{Substring(SourceContext, LastIndexOf(SourceContext, '.') + 1)}] {@m}\n{@x}";
+        private const string Template = "{@t:u} [{@l}][{Module}:{Context}][{SourceContext}] {@m}\n{@x}";
         private static bool _isConfigured;
 
         /// <summary>
@@ -76,18 +75,12 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation
         }
 
         /// <summary>
-        /// Get a logger for the ConsoleApp module.
+        /// Get a factory for the given <paramref name="module"/> able to create instances of <see cref="ILogger{TCategoryName}"/>.
         /// </summary>
-        /// <param name="source">The class the logger is used for.</param>
-        /// <remarks>This is intended to be used for console startup where DI hasn't been configured yet.</remarks>
-        public static ILogger GetConsoleAppLogger(Type source)
+        public static ILoggerFactory GetLoggerFactory(Module module)
         {
-            var logger = Log.Logger.ForContext(new PropertyBagEnricher()
-                .Add("SourceContext", source)
-                .Add("Module", "ConsoleApp"));
-
-            return new SerilogLoggerFactory(logger)
-                .CreateLogger(source);
+            return new LoggerFactory()
+                .AddSerilog(Log.Logger.ForContext("Module", module));
         }
 
         /// <summary>

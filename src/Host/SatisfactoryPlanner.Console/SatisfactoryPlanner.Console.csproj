@@ -18,6 +18,9 @@
     <ProjectReference Include="..\..\BuildingBlocks\Common\SatisfactoryPlanner.BuildingBlocks.Common.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
+    <ProjectReference Include="..\SatisfactoryPlanner.Host\SatisfactoryPlanner.Host.csproj">
+		<PrivateAssets>All</PrivateAssets>
+	</ProjectReference>
   </ItemGroup>
 
 </Project>

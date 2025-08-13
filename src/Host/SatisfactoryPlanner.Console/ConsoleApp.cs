@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SatisfactoryPlanner.BuildingBlocks.Common.EnvironmentInfo;
 using SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation;
+using SatisfactoryPlanner.Host;
 
 namespace SatisfactoryPlanner.Console
 {
@@ -49,13 +50,14 @@ namespace SatisfactoryPlanner.Console
                 Exit(ExitCodes.UnknownFailure);
             }
 
-            var logger = SatisfactoryPlannerLogger.GetConsoleAppLogger(typeof(ConsoleApp));
+            var loggerFactory = SatisfactoryPlannerLogger.GetLoggerFactory(Module.ConsoleApp);
+            var logger = loggerFactory.CreateLogger(typeof(ConsoleApp));
             using (logger.PushContext("Startup"))
             {
                 try
                 {
                     logger.LogInformation("Starting console...");
-                    // TODO Bootstrap.Start
+                    Bootstrap.Start(startupContext, loggerFactory);
                 }
                 catch (Exception ex)
                 {
