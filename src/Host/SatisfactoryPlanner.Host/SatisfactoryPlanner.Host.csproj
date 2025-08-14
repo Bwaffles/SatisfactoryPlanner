@@ -8,11 +8,16 @@
 
   <ItemGroup>
 	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
+	  <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\API\SatisfactoryPlanner.API\SatisfactoryPlanner.API.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
     <ProjectReference Include="..\..\BuildingBlocks\Common\SatisfactoryPlanner.BuildingBlocks.Common.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>

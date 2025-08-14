@@ -177,11 +177,7 @@ static void ConfigureAuthorizationService(WebApplicationBuilder builder)
 
 static void RegisterModules(ContainerBuilder containerBuilder)
 {
-    containerBuilder.RegisterModule(new ProductionAutofacModule());
-    containerBuilder.RegisterModule(new ResourcesAutofacModule());
-    containerBuilder.RegisterModule(new UserAccessAutofacModule());
-    containerBuilder.RegisterModule(new WarehousesAutofacModule());
-    containerBuilder.RegisterModule(new WorldsAutofacModule());
+    containerBuilder.RegisterModule<ApiModule>();
 }
 
 static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger, ConfigurationManager configuration, IEventsBus eventsBus)

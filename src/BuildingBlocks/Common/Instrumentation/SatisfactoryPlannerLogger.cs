@@ -77,11 +77,12 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation
         /// <summary>
         /// Get a factory for the given <paramref name="module"/> able to create instances of <see cref="ILogger{TCategoryName}"/>.
         /// </summary>
-        public static ILoggerFactory GetLoggerFactory(Module module)
-        {
-            return new LoggerFactory()
-                .AddSerilog(Log.Logger.ForContext("Module", module));
-        }
+        public static ILoggerFactory GetLoggerFactory(Module module) => new LoggerFactory().AddSerilog(GetSerilogLogger(module));
+
+        /// <summary>
+        /// Get a Serilog logger that can be used to configure the .NET Host.
+        /// </summary>
+        public static Serilog.ILogger GetSerilogLogger(Module module) => Log.Logger.ForContext("Module", module);
 
         /// <summary>
         /// Push the <paramref name="context"/> value to the log enrichment Context property.

@@ -1,6 +1,9 @@
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SatisfactoryPlanner.API.Configuration.Modules;
 using SatisfactoryPlanner.BuildingBlocks.Common.EnvironmentInfo;
 using System.Reflection;
 
@@ -23,6 +26,8 @@ namespace SatisfactoryPlanner.Host
         {
             return new HostBuilder()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule<ApiModule>())
                 .ConfigureWebHostDefaults(builder =>
                 {
                     builder.UseKestrel();
