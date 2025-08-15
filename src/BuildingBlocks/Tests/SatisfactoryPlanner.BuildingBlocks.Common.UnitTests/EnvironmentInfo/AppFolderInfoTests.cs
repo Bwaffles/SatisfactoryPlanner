@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Microsoft.Extensions.Logging.Testing;
+using Microsoft.Extensions.Logging.Abstractions;
 using NSubstitute;
 using SatisfactoryPlanner.BuildingBlocks.Common.EnvironmentInfo;
 
@@ -17,9 +17,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.UnitTests.EnvironmentInfo
                 var startupContext = Substitute.For<IStartupContext>();
                 startupContext.AppData.Returns(@"C:\ProgramData\SatisfactoryPlanner");
 
-                var logger = new FakeLogger();
-
-                var appFolderInfo = new AppFolderInfo(startupContext, logger);
+                var appFolderInfo = new AppFolderInfo(startupContext, NullLoggerFactory.Instance);
 
                 appFolderInfo.AppDataFolder.Should().Be(@"C:\ProgramData\SatisfactoryPlanner");
             }
@@ -32,9 +30,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.UnitTests.EnvironmentInfo
                 var startupContext = Substitute.For<IStartupContext>();
                 startupContext.AppData.Returns(appData);
 
-                var logger = new FakeLogger();
-
-                var appFolderInfo = new AppFolderInfo(startupContext, logger);
+                var appFolderInfo = new AppFolderInfo(startupContext, NullLoggerFactory.Instance);
 
                 appFolderInfo.AppDataFolder.Should().Be(@"C:\ProgramData\SatisfactoryPlanner");
             }

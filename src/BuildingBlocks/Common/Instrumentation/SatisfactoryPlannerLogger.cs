@@ -55,7 +55,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation
                 loggerConfiguration.WriteTo.Debug(new ExpressionTemplate(Template));
             }
 
-            var appFolderInfo = new AppFolderInfo(startupContext, NullLogger.Instance);
+            var appFolderInfo = new AppFolderInfo(startupContext, NullLoggerFactory.Instance);
 
             loggerConfiguration
                .WriteTo.File(new CompactJsonFormatter(),

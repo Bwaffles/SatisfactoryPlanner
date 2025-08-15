@@ -21,8 +21,9 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.EnvironmentInfo
         /// <inheritdoc/>
         public string AppDataFolder { get; }
 
-        public AppFolderInfo(IStartupContext startupContext, ILogger logger)
+        public AppFolderInfo(IStartupContext startupContext, ILoggerFactory loggerFactory)
         {
+            var logger = loggerFactory.CreateLogger<AppFolderInfo>();
             if (!string.IsNullOrWhiteSpace(startupContext.AppData))
             {
                 AppDataFolder = startupContext.AppData;
