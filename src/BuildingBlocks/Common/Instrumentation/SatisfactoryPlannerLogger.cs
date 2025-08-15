@@ -16,10 +16,10 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation
     /// The logger for the application.
     /// </summary>
     /// <remarks>
-    /// Logging is intended to be passed through DI as much as possible since it's easy for the Modules to set up their specific loggers.
-    /// During Startup, and any common classes that might be used before DI is set up can still access the logs statically.
-    /// 
-    /// Intending to only expose Microsoft Logging, and abstracting the fact that we use Serilog as much as possible.
+    /// <para>Logging is intended to be passed through DI as much as possible since it's easy for the Modules to set up their specific loggers.
+    /// During Startup, and any common classes that might be used before DI is set up can still access the logs statically.</para>
+    ///
+    /// <para>Intending to only expose Microsoft Logging, and abstracting the fact that we use Serilog as much as possible.</para>
     /// </remarks>
     public static class SatisfactoryPlannerLogger
     {
@@ -60,8 +60,8 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation
             loggerConfiguration
                .WriteTo.File(new CompactJsonFormatter(),
                    Path.Combine(appFolderInfo.GetLogFolder(), "satisfactory-planner.json"),
-                   rollOnFileSizeLimit: true,
-                   fileSizeLimitBytes: 5 * 1024 * 1024);
+                   fileSizeLimitBytes: 5 * 1024 * 1024,
+                   rollOnFileSizeLimit: true);
 
             Log.Logger = loggerConfiguration.CreateLogger();
         }
@@ -93,7 +93,7 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation
         /// {
         ///   ... log your messages here to include the Startup as the Context
         /// }
-        /// 
+        ///
         /// Messages logged here won't have Startup as the Context
         /// </code>>
         public static IDisposable? PushContext(this ILogger logger, string context)

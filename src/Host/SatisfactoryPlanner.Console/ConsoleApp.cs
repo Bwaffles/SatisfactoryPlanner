@@ -8,7 +8,7 @@ namespace SatisfactoryPlanner.Console
 {
     internal class Options
     {
-        [Option('d', "data-folder", Required = false, HelpText = @"The path to the folder for the application data.")]
+        [Option('d', "data-folder", Required = false, HelpText = "The path to the folder for the application data.")]
         public string? DataFolder { get; set; }
     }
 
@@ -17,14 +17,8 @@ namespace SatisfactoryPlanner.Console
         public static void Main(string[] args)
         {
             Parser.Default.ParseArguments<Options>(args)
-                .WithParsed(options =>
-                {
-                    StartConsoleApp(options);
-                })
-                .WithNotParsed(options =>
-                {
-                    Exit(ExitCodes.Normal);
-                });
+                .WithParsed(options => StartConsoleApp(options))
+                .WithNotParsed(options => Exit(ExitCodes.Normal));
         }
 
         private static void StartConsoleApp(Options options)
