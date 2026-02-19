@@ -1,12 +1,10 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Hellang.Middleware.ProblemDetails;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using SatisfactoryPlanner.API.Configuration.Authorization.Permissions;
-using SatisfactoryPlanner.API.Configuration.Authorization.Worlds;
+using SatisfactoryPlanner.API.Configuration.Authentication;
+using SatisfactoryPlanner.API.Configuration.Authorization;
 using SatisfactoryPlanner.API.Configuration.ExecutionContext;
 using SatisfactoryPlanner.API.Configuration.Extensions;
 using SatisfactoryPlanner.API.Configuration.Modules;
@@ -41,7 +39,7 @@ using (LogContext.PushProperty("Context", "Startup"))
     builder.Host.UseSerilog(_loggerForApi);
     Log.Logger = _loggerForApi;
 
-    ConfigureServices(builder);
+    ConfigureServices(builder.Services, configuration);
 
     // Using a custom DI container.
     builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -115,64 +113,33 @@ static Logger CreateLogger(ConfigurationManager configuration)
         .CreateLogger();
 }
 
-static void ConfigureServices(WebApplicationBuilder builder)
+static void ConfigureServices(IServiceCollection services, ConfigurationManager configuration)
 {
-    ConfigureAuthenticationService(builder);
-    ConfigureAuthorizationService(builder);
+    services.ConfigureAuthenticationService(configuration);
+    services.ConfigureAuthorizationService();
 
-    builder.Services.AddControllers(options =>
+    services.AddControllers(options =>
     {
         options.Filters.Add(new ProducesAttribute("application/json"));
         options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
     });
 
-    builder.Services.AddRouting(options =>
+    services.AddRouting(options =>
     {
         options.LowercaseUrls = true;
     });
 
-    builder.Services.AddSwaggerDocumentation();
+    services.AddSwaggerDocumentation();
 
-    builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-    builder.Services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
+    services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+    services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
 
-    builder.Services.AddProblemDetails(options =>
+    services.AddProblemDetails(options =>
     {
         options.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
         options.Map<BusinessRuleValidationException>(
             ex => new BusinessRuleValidationExceptionProblemDetails(ex));
     });
-}
-
-static void ConfigureAuthenticationService(WebApplicationBuilder builder) => builder.Services
-    // The warnings in logs about signing keys is because of this issue https://github.com/dotnet/aspnetcore/issues/47410.
-    // AddAuthentication calls AddDataProtection because it's a general function for different auth types,
-    // but we aren't using data protection for JWT tokens and it's giving us a warning. Seems to be put in the backlog by microsoft for now.
-    // I have ignored the warnings for the DataProtection namespace in the logs so that no one spends time on this again.
-    // Can revisit later on to see if a solution has been implemented.
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}/";
-        options.Audience = builder.Configuration["Auth0:Audience"];
-    });
-
-static void ConfigureAuthorizationService(WebApplicationBuilder builder)
-{
-    builder.Services.AddAuthorization(options =>
-    {
-        options.AddPolicy(HasPermissionAttribute.HasPermissionPolicyName, policyBuilder =>
-        {
-            policyBuilder.Requirements.Add(new HasPermissionAuthorizationRequirement());
-        });
-        options.AddPolicy(WorldAuthorizationAttribute.HasPermissionPolicyName, policyBuilder =>
-        {
-            policyBuilder.Requirements.Add(new WorldAuthorizationRequirement());
-        });
-    });
-
-    builder.Services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
-    builder.Services.AddScoped<IAuthorizationHandler, WorldAuthorizationHandler>();
 }
 
 static void RegisterModules(ContainerBuilder containerBuilder)

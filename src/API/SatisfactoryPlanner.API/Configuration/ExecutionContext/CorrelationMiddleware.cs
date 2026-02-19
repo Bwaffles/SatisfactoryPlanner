@@ -1,8 +1,8 @@
 ﻿namespace SatisfactoryPlanner.API.Configuration.ExecutionContext
 {
-    internal class CorrelationMiddleware(RequestDelegate next)
+    public class CorrelationMiddleware(RequestDelegate next)
     {
-        internal const string CorrelationHeaderKey = "CorrelationId";
+        public const string CorrelationHeaderKey = "CorrelationId";
 
         public async Task Invoke(HttpContext context)
         {

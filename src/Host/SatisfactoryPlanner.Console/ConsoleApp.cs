@@ -51,7 +51,7 @@ namespace SatisfactoryPlanner.Console
                 try
                 {
                     logger.LogInformation("Starting console...");
-                    Bootstrap.Start(startupContext, loggerFactory);
+                    new Bootstrap(startupContext, loggerFactory).Start();
                 }
                 catch (Exception ex)
                 {

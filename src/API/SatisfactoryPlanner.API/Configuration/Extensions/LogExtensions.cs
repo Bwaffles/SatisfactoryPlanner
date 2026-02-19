@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation;
+using Serilog;
 
 namespace SatisfactoryPlanner.API.Configuration.Extensions
 {
@@ -6,6 +7,9 @@ namespace SatisfactoryPlanner.API.Configuration.Extensions
     {
         public static void EnrichFromRequest(IDiagnosticContext diagnosticContext, HttpContext httpContext)
         {
+            diagnosticContext.Set("Module", Module.Application.ToString());
+            diagnosticContext.Set("Context", "Request");
+
             var request = httpContext.Request;
 
             // Set all the common properties available for every request

@@ -1,0 +1,21 @@
+{
+  "SatisfactoryPlanner": {
+    "Server": {
+      "BindAddress": "localhost",
+      "Port": 12345
+    }
+  },
+  "Logs": {
+    "EnableConsoleLogging": true,
+    "Seq": {
+      "Enable": false,
+      "ServerUrl": ""
+    }
+  },
+  "Auth0": {
+    "Domain": "satisfactoryplanner-dev.us.auth0.com",
+    "Audience": "http://localhost:55915/api"
+  },
+  "AllowedHosts": "*",
+  "InternalProcessingExecutionInterval": "0:00:02"
+}

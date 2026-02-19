@@ -1,0 +1,55 @@
+<Project>
+	<!-- Common to all SatisfactoryPlanner Projects -->
+	<PropertyGroup>
+
+		<SatisfactoryPlannerRootDir>$(MSBuildThisFileDirectory)..\</SatisfactoryPlannerRootDir>
+
+		 <!--Specifies the type of output--> 
+		<SatisfactoryPlannerOutputType>Library</SatisfactoryPlannerOutputType>
+		<SatisfactoryPlannerOutputType Condition="$(MSBuildProjectName.Contains('Tests'))">Test</SatisfactoryPlannerOutputType>
+		<SatisfactoryPlannerOutputType Condition="'$(MSBuildProjectName)'=='SatisfactoryPlanner.Console'">Exe</SatisfactoryPlannerOutputType>
+		
+		 <!--Specifies whether it's one of our own libraries--> 
+		<SatisfactoryPlannerProject>false</SatisfactoryPlannerProject>
+		<SatisfactoryPlannerProject Condition="$(MSBuildProjectName.StartsWith('SatisfactoryPlanner'))">true</SatisfactoryPlannerProject>
+		<SatisfactoryPlannerProject Condition="$(MSBuildProjectName.StartsWith('DatabaseMigrator'))">true</SatisfactoryPlannerProject>
+		
+	</PropertyGroup>
+
+	<!--<PropertyGroup>
+		<Configuration Condition="'$(Configuration)'==''">Release</Configuration>
+		
+		--><!-- Centralize intermediate and default outputs --><!--
+		<BaseIntermediateOutputPath>$(SatisfactoryPlannerRootDir)_temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+		<IntermediateOutputPath>$(SatisfactoryPlannerRootDir)_temp\obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
+		<OutputPath>$(SatisfactoryPlannerRootDir)_temp\bin\$(Configuration)\$(MSBuildProjectName)\</OutputPath>
+
+		--><!-- Output to _output and _tests respectively --><!--
+		<OutputPath Condition="'$(SatisfactoryPlannerProject)'=='true'">$(SatisfactoryPlannerRootDir)_output\</OutputPath>
+		<OutputPath Condition="'$(SatisfactoryPlannerOutputType)'=='Test'">$(SatisfactoryPlannerRootDir)_tests\</OutputPath>
+
+		--><!-- Paths relative to project file for better readability --><!--
+		<EnableBaseIntermediateOutputPathMismatchWarning>false</EnableBaseIntermediateOutputPathMismatchWarning>
+		<BaseIntermediateOutputPath>$([MSBuild]::MakeRelative('$(MSBuildProjectDirectory)', '$(BaseIntermediateOutputPath)'))</BaseIntermediateOutputPath>
+		<IntermediateOutputPath>$([MSBuild]::MakeRelative('$(MSBuildProjectDirectory)', '$(IntermediateOutputPath)'))</IntermediateOutputPath>
+		<OutputPath>$([MSBuild]::MakeRelative('$(MSBuildProjectDirectory)', '$(OutputPath)'))</OutputPath>
+
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>-->
+	
+	<!-- Set the Product and Version info for our own projects -->
+	<PropertyGroup Condition="'$(SatisfactoryPlannerProject)'=='true'">
+		<Product>Satisfactory Planner</Product>
+
+		 <!--Should be replaced by CI--> 
+		<AssemblyVersion>0.0.0.*</AssemblyVersion>
+		<AssemblyConfiguration>$(Configuration)-dev</AssemblyConfiguration>
+		<NeutralLanguage>en</NeutralLanguage>
+
+		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+
+		<Deterministic Condition="$(AssemblyVersion.EndsWith('*'))">False</Deterministic>
+	</PropertyGroup>
+</Project>

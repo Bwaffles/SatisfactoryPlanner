@@ -16,10 +16,32 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\API\SatisfactoryPlanner.API\SatisfactoryPlanner.API.csproj">
+      <PrivateAssets></PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
     <ProjectReference Include="..\..\BuildingBlocks\Common\SatisfactoryPlanner.BuildingBlocks.Common.csproj">
       <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BuildingBlocks\Infrastructure\SatisfactoryPlanner.BuildingBlocks.Infrastructure.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BuildingBlocks\SatisfactoryPlanner.BuildingBlocks.EventBus\SatisfactoryPlanner.BuildingBlocks.EventBus.csproj">
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Production\Infrastructure\SatisfactoryPlanner.Modules.Production.Infrastructure.csproj">
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Resources\Infrastructure\SatisfactoryPlanner.Modules.Resources.Infrastructure.csproj">
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\UserAccess\Infrastructure\SatisfactoryPlanner.Modules.UserAccess.Infrastructure.csproj">
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Warehouses\Infrastructure\SatisfactoryPlanner.Modules.Warehouses.Infrastructure.csproj">
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Worlds\Infrastructure\SatisfactoryPlanner.Modules.Worlds.Infrastructure.csproj">
     </ProjectReference>
   </ItemGroup>
 

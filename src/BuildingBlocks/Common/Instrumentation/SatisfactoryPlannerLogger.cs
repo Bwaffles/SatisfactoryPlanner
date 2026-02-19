@@ -80,9 +80,14 @@ namespace SatisfactoryPlanner.BuildingBlocks.Common.Instrumentation
         public static ILoggerFactory GetLoggerFactory(Module module) => new LoggerFactory().AddSerilog(GetSerilogLogger(module));
 
         /// <summary>
+        /// Get a Serilog logger that can be used to configure modules.
+        /// </summary>
+        public static Serilog.ILogger GetSerilogLogger() => Log.Logger;
+
+        /// <summary>
         /// Get a Serilog logger that can be used to configure the .NET Host.
         /// </summary>
-        public static Serilog.ILogger GetSerilogLogger(Module module) => Log.Logger.ForContext("Module", module);
+        public static Serilog.ILogger GetSerilogLogger(Module module) => GetSerilogLogger().ForContext("Module", module);
 
         /// <summary>
         /// Push the <paramref name="context"/> value to the log enrichment Context property.

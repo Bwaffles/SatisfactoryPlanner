@@ -40,6 +40,9 @@
 		<ProjectReference Include="..\..\BuildingBlocks\Application\SatisfactoryPlanner.BuildingBlocks.Application.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
+		<ProjectReference Include="..\..\BuildingBlocks\Common\SatisfactoryPlanner.BuildingBlocks.Common.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
 		<ProjectReference Include="..\..\BuildingBlocks\Domain\SatisfactoryPlanner.BuildingBlocks.Domain.csproj">
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>

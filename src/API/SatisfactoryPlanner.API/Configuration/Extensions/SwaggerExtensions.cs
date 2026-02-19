@@ -3,9 +3,9 @@ using System.Reflection;
 
 namespace SatisfactoryPlanner.API.Configuration.Extensions
 {
-    internal static class SwaggerExtensions
+    public static class SwaggerExtensions
     {
-        internal static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
+        public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
         {
             services.AddSwaggerGen(options =>
             {
@@ -54,7 +54,7 @@ namespace SatisfactoryPlanner.API.Configuration.Extensions
             return services;
         }
 
-        internal static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app)
+        public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app)
         {
             app.UseSwagger();
 
