@@ -1,3 +1,4 @@
+using _build;
 using static Nuke.Common.Tools.Npm.NpmTasks;
 
 partial class Build
@@ -20,9 +21,22 @@ partial class Build
         .Executes(() =>
         {
             Docker("compose up db db-migrator -d --build", Solution.Directory);
+            Docker("compose wait db-migrator", Solution.Directory);
+        });
+
+    Target StartFrontend => _ => _
+        .Unlisted()
+        .After(StartBackend, StartLegacyBackend, StartLegacyDockerBackend) // run app last since all other services are required first
+        .Executes(() =>
+        {
+            Task.Run(() =>
+            {
+                var uiProject = Solution.GetProject("SatisfactoryPlanner.UI")!;
+                Npm("start", uiProject.Directory);
+            });
         });
     
-    Target RunDockerCompose => _ => _
+    Target StartLegacyDockerBackend => _ => _
         .Unlisted()
         .DependsOn(CleanupDockerProjects)
         .Executes(() => 
@@ -30,10 +44,9 @@ partial class Build
             Docker("compose up -d --build", Solution.Directory);
         });
 
-    Target StartApi => _ => _
+    Target StartLegacyBackend => _ => _
         .Unlisted()
-        .DependsOn(CreateDevelopmentDatabase)
-        .DependsOn(CompileSolution)
+        .DependsOn(CompileSolution, CreateDevelopmentDatabase)
         .Executes(() =>
         {
             Task.Run(() =>
@@ -43,20 +56,26 @@ partial class Build
             });
         });
 
-    Target StartApp => _ => _
+    /// <summary>
+    /// Starts the backend console app.
+    /// </summary>
+    Target StartBackend => _ => _
         .Unlisted()
-        .After(StartApi, RunDockerCompose) // run app last since all other services are required first
+        .DependsOn(CompileSolution, CreateDevelopmentDatabase)
         .Executes(() =>
         {
             Task.Run(() =>
             {
-                var uiProject = Solution.GetProject("SatisfactoryPlanner.UI")!;
-                Npm("start", uiProject.Directory);
+                DotNetRun(s => s
+                    .SetProjectFile(Solution.GetProject("SatisfactoryPlanner.Console"))
+                    .SetConfiguration(Configuration)
+                    .EnableNoRestore()
+                    .EnableNoBuild());
             });
         });
 
-    Target StartDevelopmentEnvironment => _ => _
-        .DependsOn(StartApi, StartApp)
+    Target StartLegacyDevelopmentEnvironment => _ => _
+        .DependsOn(StartLegacyBackend, StartFrontend)
         .Executes(() =>
         {
             DevelopmentEnvironmentIsRunning = true;
@@ -73,9 +92,11 @@ partial class Build
                 Thread.Sleep(10);
         });
 
-    Target StartApplication => _ => _
-        .DependsOn(RunDockerCompose)
-        .DependsOn(StartApp)
+    /// <summary>
+    /// Start the legacy development environment in docker containers.
+    /// </summary>
+    Target StartLegacyDockerDevelopmentEnvironment => _ => _
+        .DependsOn(StartLegacyDockerBackend, StartFrontend)
         .Executes(() =>
         {
             DevelopmentEnvironmentIsRunning = true;
@@ -92,9 +113,30 @@ partial class Build
         });
 
     /// <summary>
+    /// Starts the development environment, running the api through the new console app.
+    /// </summary>
+    Target StartDevelopmentEnvironment => _ => _
+        .DependsOn(StartBackend, StartFrontend)
+        .Executes(() =>
+        {
+            DevelopmentEnvironmentIsRunning = true;
+
+            Console.CancelKeyPress += (s, a) =>
+            {
+                // kill dotnet watch
+                // kill react
+                a.Cancel = true;
+                DevelopmentEnvironmentIsRunning = false;
+            };
+
+            while (DevelopmentEnvironmentIsRunning)
+                Thread.Sleep(10);
+        });
+
+    /// <summary>
     ///     Start only the api in a container. Useful when doing front end work and just need to keep the server running.
     /// </summary>
     Target StartApiContainer => _ => _
-        .DependsOn(RunDockerCompose)
+        .DependsOn(StartLegacyDockerBackend)
         .Executes(() => {});
 }

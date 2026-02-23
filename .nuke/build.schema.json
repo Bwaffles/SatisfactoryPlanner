@@ -87,19 +87,21 @@
               "RunApplicationIntegrationTests",
               "RunArchitectureTests",
               "RunCIBuild",
-              "RunDockerCompose",
               "RunProductionIntegrationTests",
               "RunResourcesIntegrationTests",
               "RunUnitTests",
               "RunUserAccessIntegrationTests",
               "RunWarehousesIntegrationTests",
               "RunWorldsIntegrationTests",
-              "StartApi",
               "StartApiContainer",
-              "StartApp",
-              "StartApplication",
+              "StartBackend",
               "StartDevelopmentEnvironment",
-              "StartIntegrationTestDatabaseContainer"
+              "StartFrontend",
+              "StartIntegrationTestDatabaseContainer",
+              "StartLegacyBackend",
+              "StartLegacyDevelopmentEnvironment",
+              "StartLegacyDockerBackend",
+              "StartLegacyDockerDevelopmentEnvironment"
             ]
           }
         },
@@ -124,19 +126,21 @@
               "RunApplicationIntegrationTests",
               "RunArchitectureTests",
               "RunCIBuild",
-              "RunDockerCompose",
               "RunProductionIntegrationTests",
               "RunResourcesIntegrationTests",
               "RunUnitTests",
               "RunUserAccessIntegrationTests",
               "RunWarehousesIntegrationTests",
               "RunWorldsIntegrationTests",
-              "StartApi",
               "StartApiContainer",
-              "StartApp",
-              "StartApplication",
+              "StartBackend",
               "StartDevelopmentEnvironment",
-              "StartIntegrationTestDatabaseContainer"
+              "StartFrontend",
+              "StartIntegrationTestDatabaseContainer",
+              "StartLegacyBackend",
+              "StartLegacyDevelopmentEnvironment",
+              "StartLegacyDockerBackend",
+              "StartLegacyDockerDevelopmentEnvironment"
             ]
           }
         },
